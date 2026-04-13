@@ -8,6 +8,8 @@ const SUPABASE_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 export default function Home() {
   const [worker, setWorker] = useState("");
   const [supervisor, setSupervisor] = useState("");
+  const [workerSignature, setWorkerSignature] = useState("");
+  const [supervisorSignature, setSupervisorSignature] = useState("");
   const [jobSite, setJobSite] = useState("");
   const [task, setTask] = useState("");
   const [risk, setRisk] = useState("");
