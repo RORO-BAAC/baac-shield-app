@@ -34,6 +34,8 @@ export default function Home() {
   const [rectified, setRectified] = useState(false);
 
   const fileRef = useRef(null);
+  const workerSigRef = useRef(null);
+  const supervisorSigRef = useRef(null);
 
   const shieldOptions = useMemo(() => {
     const map = {
