@@ -11,7 +11,7 @@ export default function Home() {
   const [jobSite, setJobSite] = useState("");
   const [task, setTask] = useState("");
   const [risk, setRisk] = useState("");
-  const [shield, setShield] = useState("");
+  const [selectedShields, setSelectedShields] = useState([]);
   const [notes, setNotes] = useState("");
   const [stopWork, setStopWork] = useState(false);
   const [photos, setPhotos] = useState([]);
@@ -121,13 +121,21 @@ export default function Home() {
     setPhotos(files.map((f) => f.name));
   }
 
+  function toggleShield(shield) {
+    setSelectedShields((prev) =>
+      prev.includes(shield)
+        ? prev.filter((item) => item !== shield)
+        : [...prev, shield]
+    );
+  }
+
   function clearForm() {
     setWorker("");
     setSupervisor("");
     setJobSite("");
     setTask("");
     setRisk("");
-    setShield("");
+    setSelectedShields([]);
     setNotes("");
     setStopWork(false);
     setPhotos([]);
@@ -145,7 +153,7 @@ export default function Home() {
       job_site: jobSite,
       task_description: task,
       critical_risk: risk,
-      shield_control: shield,
+      shield_control: selectedShields.join(", "),
       notes,
       stop_work: stopWork,
       photos: photos.join(", "),
@@ -291,7 +299,7 @@ export default function Home() {
             value={risk}
             onChange={(e) => {
               setRisk(e.target.value);
-              setShield("");
+              setSelectedShields([]);
             }}
             style={{ width: "100%", padding: 12, marginTop: 6, borderRadius: 10, border: "1px solid #cbd5e1" }}
           >
@@ -312,21 +320,40 @@ export default function Home() {
         </div>
 
         <div>
-          <label>Shield / Control</label>
-          <br />
-          <select
-            value={shield}
-            onChange={(e) => setShield(e.target.value)}
-            style={{ width: "100%", padding: 12, marginTop: 6, borderRadius: 10, border: "1px solid #cbd5e1" }}
-            disabled={!risk}
+          <label>Shield / Controls</label>
+          <div
+            style={{
+              marginTop: 8,
+              border: "1px solid #cbd5e1",
+              borderRadius: 12,
+              padding: 12,
+              background: "#f8fafc",
+            }}
           >
-            <option value="">
-              {risk ? "Choose a shield" : "Select a risk first"}
-            </option>
-            {shieldOptions.map((item) => (
-              <option key={item}>{item}</option>
-            ))}
-          </select>
+            {!risk ? (
+              <div style={{ color: "#64748b" }}>Select a risk first</div>
+            ) : (
+              shieldOptions.map((item) => (
+                <label
+                  key={item}
+                  style={{
+                    display: "block",
+                    marginBottom: 10,
+                    padding: 8,
+                    borderRadius: 8,
+                    background: selectedShields.includes(item) ? "#dbeafe" : "white",
+                  }}
+                >
+                  <input
+                    type="checkbox"
+                    checked={selectedShields.includes(item)}
+                    onChange={() => toggleShield(item)}
+                  />{" "}
+                  {item}
+                </label>
+              ))
+            )}
+          </div>
         </div>
 
         <div>
@@ -484,7 +511,7 @@ export default function Home() {
                 <div><strong>Site:</strong> {record.job_site}</div>
                 <div><strong>Task:</strong> {record.task_description}</div>
                 <div><strong>Risk:</strong> {record.critical_risk}</div>
-                <div><strong>Shield:</strong> {record.shield_control}</div>
+                <div><strong>Shield(s):</strong> {record.shield_control}</div>
                 <div><strong>Submitted:</strong> {record.submitted_at}</div>
                 {record.stop_work && (
                   <div style={{ color: "#b91c1c", fontWeight: "bold", marginTop: 8 }}>
