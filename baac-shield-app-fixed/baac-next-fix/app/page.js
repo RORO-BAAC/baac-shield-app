@@ -2,6 +2,9 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 
+const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const SUPABASE_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
 export default function Home() {
   const [worker, setWorker] = useState("");
   const [supervisor, setSupervisor] = useState("");
@@ -14,6 +17,8 @@ export default function Home() {
   const [photos, setPhotos] = useState([]);
   const [records, setRecords] = useState([]);
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
   const fileRef = useRef(null);
 
   const shieldOptions = useMemo(() => {
@@ -84,15 +89,31 @@ export default function Home() {
   }, [risk]);
 
   useEffect(() => {
-    const saved = localStorage.getItem("baac-shield-records");
-    if (saved) {
-      setRecords(JSON.parse(saved));
-    }
+    loadRecords();
   }, []);
 
-  useEffect(() => {
-    localStorage.setItem("baac-shield-records", JSON.stringify(records));
-  }, [records]);
+  async function loadRecords() {
+    try {
+      const res = await fetch(
+        `${SUPABASE_URL}/rest/v1/records?select=*&order=submitted_at.desc`,
+        {
+          headers: {
+            apikey: SUPABASE_KEY,
+            Authorization: `Bearer ${SUPABASE_KEY}`,
+          },
+        }
+      );
+
+      if (!res.ok) {
+        throw new Error("Could not load records");
+      }
+
+      const data = await res.json();
+      setRecords(data);
+    } catch (error) {
+      setMessage("Could not load records from database.");
+    }
+  }
 
   function handleFiles(e) {
     const files = Array.from(e.target.files || []);
@@ -111,30 +132,70 @@ export default function Home() {
     setPhotos([]);
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
+    setLoading(true);
+    setMessage("");
+    setSubmitted(false);
 
-    const newRecord = {
-      id: Date.now(),
-      worker,
-      supervisor,
-      jobSite,
-      task,
-      risk,
-      shield,
+    const payload = {
+      worker_name: worker,
+      supervisor_name: supervisor,
+      job_site: jobSite,
+      task_description: task,
+      critical_risk: risk,
+      shield_control: shield,
       notes,
-      stopWork,
-      photos,
-      submittedAt: new Date().toLocaleString(),
+      stop_work: stopWork,
+      photos: photos.join(", "),
     };
 
-    setRecords((prev) => [newRecord, ...prev]);
-    setSubmitted(true);
-    clearForm();
+    try {
+      const res = await fetch(`${SUPABASE_URL}/rest/v1/records`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          apikey: SUPABASE_KEY,
+          Authorization: `Bearer ${SUPABASE_KEY}`,
+          Prefer: "return=representation",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) {
+        const text = await res.text();
+        throw new Error(text || "Insert failed");
+      }
+
+      clearForm();
+      setSubmitted(true);
+      setMessage("Record submitted to database.");
+      await loadRecords();
+    } catch (error) {
+      setMessage("Could not save record. Check Supabase table and RLS.");
+    } finally {
+      setLoading(false);
+    }
   }
 
-  function deleteRecord(id) {
-    setRecords((prev) => prev.filter((record) => record.id !== id));
+  async function deleteRecord(id) {
+    try {
+      const res = await fetch(`${SUPABASE_URL}/rest/v1/records?id=eq.${id}`, {
+        method: "DELETE",
+        headers: {
+          apikey: SUPABASE_KEY,
+          Authorization: `Bearer ${SUPABASE_KEY}`,
+        },
+      });
+
+      if (!res.ok) {
+        throw new Error("Delete failed");
+      }
+
+      await loadRecords();
+    } catch (error) {
+      setMessage("Could not delete record.");
+    }
   }
 
   return (
@@ -359,6 +420,7 @@ export default function Home() {
 
         <button
           type="submit"
+          disabled={loading}
           style={{
             padding: 14,
             border: "none",
@@ -370,21 +432,21 @@ export default function Home() {
             cursor: "pointer",
           }}
         >
-          Submit Record
+          {loading ? "Saving..." : "Submit Record"}
         </button>
       </form>
 
-      {submitted && (
+      {message && (
         <div
           style={{
             marginTop: 20,
             padding: 16,
-            background: "#ecfdf5",
+            background: submitted ? "#ecfdf5" : "#fff7ed",
             borderRadius: 12,
-            border: "1px solid #a7f3d0",
+            border: submitted ? "1px solid #a7f3d0" : "1px solid #fdba74",
           }}
         >
-          <strong>Record submitted and saved on this device.</strong>
+          {message}
         </div>
       )}
 
@@ -413,12 +475,14 @@ export default function Home() {
                   background: "#f8fafc",
                 }}
               >
-                <div><strong>Worker:</strong> {record.worker}</div>
-                <div><strong>Site:</strong> {record.jobSite}</div>
-                <div><strong>Risk:</strong> {record.risk}</div>
-                <div><strong>Shield:</strong> {record.shield}</div>
-                <div><strong>Submitted:</strong> {record.submittedAt}</div>
-                {record.stopWork && (
+                <div><strong>Worker:</strong> {record.worker_name}</div>
+                <div><strong>Supervisor:</strong> {record.supervisor_name}</div>
+                <div><strong>Site:</strong> {record.job_site}</div>
+                <div><strong>Task:</strong> {record.task_description}</div>
+                <div><strong>Risk:</strong> {record.critical_risk}</div>
+                <div><strong>Shield:</strong> {record.shield_control}</div>
+                <div><strong>Submitted:</strong> {record.submitted_at}</div>
+                {record.stop_work && (
                   <div style={{ color: "#b91c1c", fontWeight: "bold", marginTop: 8 }}>
                     Stop Work Required
                   </div>
