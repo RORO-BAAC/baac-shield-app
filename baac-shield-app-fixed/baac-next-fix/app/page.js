@@ -1,9 +1,78 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 export default function Home() {
   const [submitted, setSubmitted] = useState(false);
+  const [risk, setRisk] = useState("");
+  const [stopWork, setStopWork] = useState(false);
+
+  const shieldOptions = useMemo(() => {
+    const map = {
+      "Breaking Containment": [
+        "Isolation verified",
+        "Gas testing complete",
+        "Ignition sources controlled",
+      ],
+      "Bypassing Safety Controls": [
+        "Authorization obtained",
+        "Bypass documented",
+        "Crew briefed",
+      ],
+      "Confined Space Entry": [
+        "Permit in place",
+        "Atmosphere tested",
+        "Attendant assigned",
+      ],
+      Driving: [
+        "Seatbelt confirmed",
+        "Journey plan reviewed",
+        "Fit for duty confirmed",
+      ],
+      "Energy Isolation": [
+        "LOTO applied",
+        "Zero energy verified",
+        "Residual energy checked",
+      ],
+      Excavation: [
+        "Locates verified",
+        "Permit confirmed",
+        "Protective system in place",
+      ],
+      "Hot Work": [
+        "Permit in place",
+        "Gas test complete",
+        "Fire watch assigned",
+      ],
+      "Line of Fire": [
+        "Exclusion zone established",
+        "Safe positioning confirmed",
+        "Loose objects secured",
+      ],
+      "Safe Mechanical Lifting": [
+        "Lift plan reviewed",
+        "Rigging inspected",
+        "Qualified operator confirmed",
+      ],
+      "Working at Height": [
+        "Fall protection in place",
+        "Anchor verified",
+        "Rescue plan reviewed",
+      ],
+      "Working Around Mobile Equipment": [
+        "Spotter assigned",
+        "Blind spots reviewed",
+        "Travel path controlled",
+      ],
+      "Work Authorization": [
+        "Permit verified",
+        "FLRA complete",
+        "Scope reviewed",
+      ],
+    };
+
+    return map[risk] || [];
+  }, [risk]);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -11,35 +80,77 @@ export default function Home() {
   }
 
   return (
-    <main style={{ padding: 20, fontFamily: "Arial", maxWidth: 700, margin: "0 auto" }}>
-      <h1>BAAC SHIELD</h1>
-      <p>Identify the risk. Verify the shield.</p>
+    <main
+      style={{
+        padding: 20,
+        fontFamily: "Arial, sans-serif",
+        maxWidth: 760,
+        margin: "0 auto",
+        background: "#f8fafc",
+        minHeight: "100vh",
+      }}
+    >
+      <div
+        style={{
+          background: "#0f2f66",
+          color: "white",
+          padding: 20,
+          borderRadius: 14,
+          marginBottom: 20,
+        }}
+      >
+        <h1 style={{ margin: 0 }}>BAAC SHIELD</h1>
+        <p style={{ marginTop: 8, marginBottom: 0 }}>
+          Identify the risk. Verify the shield.
+        </p>
+      </div>
 
-      <form onSubmit={handleSubmit} style={{ display: "grid", gap: 14 }}>
+      <form
+        onSubmit={handleSubmit}
+        style={{
+          display: "grid",
+          gap: 14,
+          background: "white",
+          padding: 20,
+          borderRadius: 14,
+          boxShadow: "0 2px 10px rgba(0,0,0,0.08)",
+        }}
+      >
+        <h2 style={{ marginTop: 0 }}>Worker Record</h2>
+
         <div>
-          <label>Worker Name</label><br />
-          <input type="text" style={{ width: "100%", padding: 10 }} />
+          <label>Worker Name</label>
+          <br />
+          <input type="text" style={{ width: "100%", padding: 10, marginTop: 6 }} />
         </div>
 
         <div>
-          <label>Supervisor Name</label><br />
-          <input type="text" style={{ width: "100%", padding: 10 }} />
+          <label>Supervisor Name</label>
+          <br />
+          <input type="text" style={{ width: "100%", padding: 10, marginTop: 6 }} />
         </div>
 
         <div>
-          <label>Job Site</label><br />
-          <input type="text" style={{ width: "100%", padding: 10 }} />
+          <label>Job Site</label>
+          <br />
+          <input type="text" style={{ width: "100%", padding: 10, marginTop: 6 }} />
         </div>
 
         <div>
-          <label>Task Description</label><br />
-          <textarea rows="3" style={{ width: "100%", padding: 10 }} />
+          <label>Task Description</label>
+          <br />
+          <textarea rows="3" style={{ width: "100%", padding: 10, marginTop: 6 }} />
         </div>
 
         <div>
-          <label>Critical Risk Category</label><br />
-          <select style={{ width: "100%", padding: 10 }}>
-            <option>Choose a risk</option>
+          <label>Critical Risk Category</label>
+          <br />
+          <select
+            value={risk}
+            onChange={(e) => setRisk(e.target.value)}
+            style={{ width: "100%", padding: 10, marginTop: 6 }}
+          >
+            <option value="">Choose a risk</option>
             <option>Breaking Containment</option>
             <option>Bypassing Safety Controls</option>
             <option>Confined Space Entry</option>
@@ -56,31 +167,73 @@ export default function Home() {
         </div>
 
         <div>
-          <label>Shield / Control</label><br />
-          <textarea rows="3" placeholder="Describe the shield or control being used" style={{ width: "100%", padding: 10 }} />
+          <label>Shield / Control</label>
+          <br />
+          <select
+            style={{ width: "100%", padding: 10, marginTop: 6 }}
+            disabled={!risk}
+          >
+            <option value="">
+              {risk ? "Choose a shield" : "Select a risk first"}
+            </option>
+            {shieldOptions.map((item) => (
+              <option key={item}>{item}</option>
+            ))}
+          </select>
         </div>
 
         <div>
-          <label>Hazards / Notes</label><br />
-          <textarea rows="4" placeholder="List hazards, conditions, or concerns" style={{ width: "100%", padding: 10 }} />
+          <label>Hazards / Notes</label>
+          <br />
+          <textarea
+            rows="4"
+            placeholder="List hazards, conditions, or concerns"
+            style={{ width: "100%", padding: 10, marginTop: 6 }}
+          />
         </div>
 
-        <div>
-          <label>
-            <input type="checkbox" /> Supervisor verified shield is in place
+        <div
+          style={{
+            border: "1px solid #d1d5db",
+            borderRadius: 12,
+            padding: 16,
+            background: "#f8fafc",
+          }}
+        >
+          <h3 style={{ marginTop: 0 }}>Supervisor Approval</h3>
+
+          <label style={{ display: "block", marginBottom: 10 }}>
+            <input type="checkbox" /> Shield verified in place
           </label>
-        </div>
 
-        <div>
-          <label>
+          <label style={{ display: "block", marginBottom: 10 }}>
             <input type="checkbox" /> Corrective actions completed
           </label>
-        </div>
 
-        <div>
-          <label>
-            <input type="checkbox" /> Stop work required
+          <label style={{ display: "block" }}>
+            <input
+              type="checkbox"
+              checked={stopWork}
+              onChange={(e) => setStopWork(e.target.checked)}
+            />{" "}
+            Stop work required
           </label>
+
+          {stopWork && (
+            <div
+              style={{
+                marginTop: 12,
+                padding: 12,
+                borderRadius: 10,
+                background: "#fee2e2",
+                color: "#991b1b",
+                fontWeight: "bold",
+              }}
+            >
+              Stop work has been triggered. Work should not continue until the
+              issue is corrected and reviewed.
+            </div>
+          )}
         </div>
 
         <button
@@ -88,10 +241,12 @@ export default function Home() {
           style={{
             padding: 12,
             border: "none",
-            borderRadius: 8,
+            borderRadius: 10,
             background: "#123d82",
             color: "white",
-            fontWeight: "bold"
+            fontWeight: "bold",
+            fontSize: 16,
+            cursor: "pointer",
           }}
         >
           Submit Record
@@ -99,9 +254,17 @@ export default function Home() {
       </form>
 
       {submitted && (
-        <div style={{ marginTop: 20, padding: 16, background: "#eef6ee", borderRadius: 10 }}>
+        <div
+          style={{
+            marginTop: 20,
+            padding: 16,
+            background: "#ecfdf5",
+            borderRadius: 12,
+            border: "1px solid #a7f3d0",
+          }}
+        >
           <strong>Record submitted.</strong>
-          <div>Your BAAC SHIELD form is working.</div>
+          <div>Your BAAC SHIELD worker form is active and working.</div>
         </div>
       )}
     </main>
