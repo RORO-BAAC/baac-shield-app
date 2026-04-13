@@ -1,12 +1,19 @@
 "use client";
 
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 export default function Home() {
-  const [submitted, setSubmitted] = useState(false);
+  const [worker, setWorker] = useState("");
+  const [supervisor, setSupervisor] = useState("");
+  const [jobSite, setJobSite] = useState("");
+  const [task, setTask] = useState("");
   const [risk, setRisk] = useState("");
+  const [shield, setShield] = useState("");
+  const [notes, setNotes] = useState("");
   const [stopWork, setStopWork] = useState(false);
   const [photos, setPhotos] = useState([]);
+  const [records, setRecords] = useState([]);
+  const [submitted, setSubmitted] = useState(false);
   const fileRef = useRef(null);
 
   const shieldOptions = useMemo(() => {
@@ -76,14 +83,58 @@ export default function Home() {
     return map[risk] || [];
   }, [risk]);
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    setSubmitted(true);
-  }
+  useEffect(() => {
+    const saved = localStorage.getItem("baac-shield-records");
+    if (saved) {
+      setRecords(JSON.parse(saved));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("baac-shield-records", JSON.stringify(records));
+  }, [records]);
 
   function handleFiles(e) {
     const files = Array.from(e.target.files || []);
     setPhotos(files.map((f) => f.name));
+  }
+
+  function clearForm() {
+    setWorker("");
+    setSupervisor("");
+    setJobSite("");
+    setTask("");
+    setRisk("");
+    setShield("");
+    setNotes("");
+    setStopWork(false);
+    setPhotos([]);
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    const newRecord = {
+      id: Date.now(),
+      worker,
+      supervisor,
+      jobSite,
+      task,
+      risk,
+      shield,
+      notes,
+      stopWork,
+      photos,
+      submittedAt: new Date().toLocaleString(),
+    };
+
+    setRecords((prev) => [newRecord, ...prev]);
+    setSubmitted(true);
+    clearForm();
+  }
+
+  function deleteRecord(id) {
+    setRecords((prev) => prev.filter((record) => record.id !== id));
   }
 
   return (
@@ -129,25 +180,45 @@ export default function Home() {
         <div>
           <label>Worker Name</label>
           <br />
-          <input type="text" style={{ width: "100%", padding: 12, marginTop: 6, borderRadius: 10, border: "1px solid #cbd5e1" }} />
+          <input
+            value={worker}
+            onChange={(e) => setWorker(e.target.value)}
+            type="text"
+            style={{ width: "100%", padding: 12, marginTop: 6, borderRadius: 10, border: "1px solid #cbd5e1" }}
+          />
         </div>
 
         <div>
           <label>Supervisor Name</label>
           <br />
-          <input type="text" style={{ width: "100%", padding: 12, marginTop: 6, borderRadius: 10, border: "1px solid #cbd5e1" }} />
+          <input
+            value={supervisor}
+            onChange={(e) => setSupervisor(e.target.value)}
+            type="text"
+            style={{ width: "100%", padding: 12, marginTop: 6, borderRadius: 10, border: "1px solid #cbd5e1" }}
+          />
         </div>
 
         <div>
           <label>Job Site</label>
           <br />
-          <input type="text" style={{ width: "100%", padding: 12, marginTop: 6, borderRadius: 10, border: "1px solid #cbd5e1" }} />
+          <input
+            value={jobSite}
+            onChange={(e) => setJobSite(e.target.value)}
+            type="text"
+            style={{ width: "100%", padding: 12, marginTop: 6, borderRadius: 10, border: "1px solid #cbd5e1" }}
+          />
         </div>
 
         <div>
           <label>Task Description</label>
           <br />
-          <textarea rows="3" style={{ width: "100%", padding: 12, marginTop: 6, borderRadius: 10, border: "1px solid #cbd5e1" }} />
+          <textarea
+            value={task}
+            onChange={(e) => setTask(e.target.value)}
+            rows="3"
+            style={{ width: "100%", padding: 12, marginTop: 6, borderRadius: 10, border: "1px solid #cbd5e1" }}
+          />
         </div>
 
         <div>
@@ -155,7 +226,10 @@ export default function Home() {
           <br />
           <select
             value={risk}
-            onChange={(e) => setRisk(e.target.value)}
+            onChange={(e) => {
+              setRisk(e.target.value);
+              setShield("");
+            }}
             style={{ width: "100%", padding: 12, marginTop: 6, borderRadius: 10, border: "1px solid #cbd5e1" }}
           >
             <option value="">Choose a risk</option>
@@ -178,6 +252,8 @@ export default function Home() {
           <label>Shield / Control</label>
           <br />
           <select
+            value={shield}
+            onChange={(e) => setShield(e.target.value)}
             style={{ width: "100%", padding: 12, marginTop: 6, borderRadius: 10, border: "1px solid #cbd5e1" }}
             disabled={!risk}
           >
@@ -194,8 +270,9 @@ export default function Home() {
           <label>Hazards / Notes</label>
           <br />
           <textarea
+            value={notes}
+            onChange={(e) => setNotes(e.target.value)}
             rows="4"
-            placeholder="List hazards, conditions, or concerns"
             style={{ width: "100%", padding: 12, marginTop: 6, borderRadius: 10, border: "1px solid #cbd5e1" }}
           />
         </div>
@@ -255,14 +332,6 @@ export default function Home() {
         >
           <h3 style={{ marginTop: 0 }}>Supervisor Approval</h3>
 
-          <label style={{ display: "block", marginBottom: 10 }}>
-            <input type="checkbox" /> Shield verified in place
-          </label>
-
-          <label style={{ display: "block", marginBottom: 10 }}>
-            <input type="checkbox" /> Corrective actions completed
-          </label>
-
           <label style={{ display: "block" }}>
             <input
               type="checkbox"
@@ -283,8 +352,7 @@ export default function Home() {
                 fontWeight: "bold",
               }}
             >
-              Stop work has been triggered. Work should not continue until the
-              issue is corrected and reviewed.
+              Stop work has been triggered.
             </div>
           )}
         </div>
@@ -316,10 +384,63 @@ export default function Home() {
             border: "1px solid #a7f3d0",
           }}
         >
-          <strong>Record submitted.</strong>
-          <div>Your BAAC SHIELD worker form is active and working.</div>
+          <strong>Record submitted and saved on this device.</strong>
         </div>
       )}
+
+      <div
+        style={{
+          marginTop: 22,
+          background: "white",
+          padding: 18,
+          borderRadius: 16,
+          boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
+        }}
+      >
+        <h2 style={{ marginTop: 0 }}>Saved Records</h2>
+
+        {records.length === 0 ? (
+          <p>No saved records yet.</p>
+        ) : (
+          <div style={{ display: "grid", gap: 12 }}>
+            {records.map((record) => (
+              <div
+                key={record.id}
+                style={{
+                  border: "1px solid #dbe4ee",
+                  borderRadius: 12,
+                  padding: 14,
+                  background: "#f8fafc",
+                }}
+              >
+                <div><strong>Worker:</strong> {record.worker}</div>
+                <div><strong>Site:</strong> {record.jobSite}</div>
+                <div><strong>Risk:</strong> {record.risk}</div>
+                <div><strong>Shield:</strong> {record.shield}</div>
+                <div><strong>Submitted:</strong> {record.submittedAt}</div>
+                {record.stopWork && (
+                  <div style={{ color: "#b91c1c", fontWeight: "bold", marginTop: 8 }}>
+                    Stop Work Required
+                  </div>
+                )}
+                <button
+                  onClick={() => deleteRecord(record.id)}
+                  style={{
+                    marginTop: 10,
+                    padding: "8px 12px",
+                    borderRadius: 8,
+                    border: "1px solid #cbd5e1",
+                    background: "white",
+                    cursor: "pointer",
+                  }}
+                >
+                  Delete
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
     </main>
   );
 }
