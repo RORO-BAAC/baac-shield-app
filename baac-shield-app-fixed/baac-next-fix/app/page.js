@@ -301,7 +301,53 @@ export default function Home() {
   const closedRecords = records.filter(
     (r) => r.status === "Approved" || r.status === "Closed"
   );
+  function downloadPdf(record) {
+  const doc = new jsPDF();
 
+  doc.setFillColor(15, 47, 102);
+  doc.rect(0, 0, 210, 30, "F");
+
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(22);
+  doc.text("BAAC SHIELD Report", 14, 18);
+
+  doc.setFontSize(10);
+  doc.text("Identify the risk. Verify the shield.", 14, 25);
+
+  let y = 40;
+  const lineGap = 8;
+
+  doc.setTextColor(0, 0, 0);
+  doc.setFontSize(12);
+
+  const addLine = (label, value) => {
+    const text = `${label}: ${value || "—"}`;
+    const split = doc.splitTextToSize(text, 180);
+    doc.text(split, 14, y);
+    y += split.length * 6 + 2;
+  };
+
+  addLine("Worker", record.worker_name);
+  addLine("Worker Signature", record.worker_signature);
+  addLine("Supervisor", record.supervisor_name);
+  addLine("Supervisor Signature", record.supervisor_signature);
+  addLine("Job Site", record.job_site);
+  addLine("Task Description", record.task_description);
+  addLine("Critical Risk", record.critical_risk);
+  addLine("Shield Controls", record.shield_control);
+  addLine("Notes", record.notes);
+  addLine("Status", record.status);
+  addLine("Reviewed By", record.reviewed_by);
+  addLine("Supervisor Comments", record.supervisor_review_comments);
+  addLine("Corrective Actions", record.corrective_actions);
+  addLine("Rectified", record.rectified ? "Yes" : "No");
+  addLine("Stop Work", record.stop_work ? "Yes" : "No");
+  addLine("Photos", record.photos);
+  addLine("Submitted At", record.submitted_at);
+  addLine("Reviewed At", record.reviewed_at);
+
+  doc.save(`baac-shield-record-${record.id}.pdf`);
+}
   function statusColor(status) {
     if (status === "Approved" || status === "Closed") return "#166534";
     if (status === "Stop Work") return "#b91c1c";
@@ -984,6 +1030,24 @@ export default function Home() {
                           Review
                         </button>
 
+                         <button
+  onClick={() => downloadPdf(record)}
+  style={{
+    display: "block",
+    width: "100%",
+    marginBottom: 8,
+    padding: "8px 12px",
+    borderRadius: 8,
+    border: "1px solid #cbd5e1",
+    background: "#0f2f66",
+    color: "white",
+    cursor: "pointer",
+    fontWeight: "bold"
+  }}
+>
+  Download PDF
+</button>
+    
                         <button
                           onClick={() => deleteRecord(record.id)}
                           style={{
