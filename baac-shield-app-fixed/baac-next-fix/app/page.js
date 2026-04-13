@@ -105,13 +105,14 @@ export default function Home() {
       );
 
       if (!res.ok) {
-        throw new Error("Could not load records");
+        const text = await res.text();
+        throw new Error(text || "Could not load records");
       }
 
       const data = await res.json();
       setRecords(data);
     } catch (error) {
-      setMessage("Could not load records from database.");
+      setMessage(`Could not load records from database: ${error.message}`);
     }
   }
 
@@ -171,9 +172,8 @@ export default function Home() {
       setSubmitted(true);
       setMessage("Record submitted to database.");
       await loadRecords();
-    catch (error) {
-      setMessage(`ERROR: ${error.message}`);
-}
+    } catch (error) {
+      setMessage(`Could not save record: ${error.message}`);
     } finally {
       setLoading(false);
     }
@@ -190,12 +190,13 @@ export default function Home() {
       });
 
       if (!res.ok) {
-        throw new Error("Delete failed");
+        const text = await res.text();
+        throw new Error(text || "Delete failed");
       }
 
       await loadRecords();
     } catch (error) {
-      setMessage("Could not delete record.");
+      setMessage(`Could not delete record: ${error.message}`);
     }
   }
 
@@ -445,6 +446,8 @@ export default function Home() {
             background: submitted ? "#ecfdf5" : "#fff7ed",
             borderRadius: 12,
             border: submitted ? "1px solid #a7f3d0" : "1px solid #fdba74",
+            whiteSpace: "pre-wrap",
+            wordBreak: "break-word",
           }}
         >
           {message}
