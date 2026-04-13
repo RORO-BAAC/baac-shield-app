@@ -450,22 +450,40 @@ export default function Home() {
           </div>
 
           <div>
-            <label>Worker Signature</label>
-            <br />
-            <input
-              value={workerSignature}
-              onChange={(e) => setWorkerSignature(e.target.value)}
-              type="text"
-              placeholder="Type full name as signature"
-              style={{
-                width: "100%",
-                padding: 12,
-                marginTop: 6,
-                borderRadius: 10,
-                border: "1px solid #cbd5e1",
-              }}
-            />
-          </div>
+  <label>Worker Signature</label>
+  <div
+    style={{
+      border: "2px solid #cbd5e1",
+      borderRadius: 10,
+      marginTop: 6
+    }}
+  >
+    <SignatureCanvas
+      penColor="black"
+      canvasProps={{
+        width: 350,
+        height: 120,
+        className: "sigCanvas"
+      }}
+      ref={workerSigRef}
+    />
+  </div>
+
+  <button
+    type="button"
+    onClick={() => workerSigRef.current.clear()}
+    style={{
+      marginTop: 6,
+      padding: "6px 10px",
+      borderRadius: 6,
+      border: "1px solid #cbd5e1",
+      background: "white",
+      cursor: "pointer"
+    }}
+  >
+    Clear Signature
+  </button>
+</div>
 
           <div>
             <label>Supervisor Name</label>
