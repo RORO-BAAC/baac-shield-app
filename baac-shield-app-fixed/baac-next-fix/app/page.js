@@ -149,6 +149,8 @@ export default function Home() {
     setNotes("");
     setStopWork(false);
     setPhotos([]);
+    setWorkerSignature("");
+    setSupervisorSignature("");
   }
 
   async function handleSubmit(e) {
