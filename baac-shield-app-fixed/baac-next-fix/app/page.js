@@ -7,8 +7,8 @@ const SUPABASE_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
 export default function Home() {
   const [worker, setWorker] = useState("");
-  const [supervisor, setSupervisor] = useState("");
   const [workerSignature, setWorkerSignature] = useState("");
+  const [supervisor, setSupervisor] = useState("");
   const [supervisorSignature, setSupervisorSignature] = useState("");
   const [jobSite, setJobSite] = useState("");
   const [task, setTask] = useState("");
@@ -26,6 +26,7 @@ export default function Home() {
   const [reviewingId, setReviewingId] = useState(null);
   const [reviewStatus, setReviewStatus] = useState("Pending Review");
   const [reviewSupervisor, setReviewSupervisor] = useState("");
+  const [reviewSupervisorSignature, setReviewSupervisorSignature] = useState("");
   const [reviewComments, setReviewComments] = useState("");
   const [correctiveActions, setCorrectiveActions] = useState("");
   const [rectified, setRectified] = useState(false);
@@ -141,7 +142,9 @@ export default function Home() {
 
   function clearForm() {
     setWorker("");
+    setWorkerSignature("");
     setSupervisor("");
+    setSupervisorSignature("");
     setJobSite("");
     setTask("");
     setRisk("");
@@ -149,8 +152,6 @@ export default function Home() {
     setNotes("");
     setStopWork(false);
     setPhotos([]);
-    setWorkerSignature("");
-    setSupervisorSignature("");
   }
 
   async function handleSubmit(e) {
@@ -161,7 +162,9 @@ export default function Home() {
 
     const payload = {
       worker_name: worker,
+      worker_signature: workerSignature,
       supervisor_name: supervisor,
+      supervisor_signature: supervisorSignature,
       job_site: jobSite,
       task_description: task,
       critical_risk: risk,
@@ -208,7 +211,8 @@ export default function Home() {
   function startReview(record) {
     setReviewingId(record.id);
     setReviewStatus(record.status || "Pending Review");
-    setReviewSupervisor(record.reviewed_by || "");
+    setReviewSupervisor(record.reviewed_by || record.supervisor_name || "");
+    setReviewSupervisorSignature(record.supervisor_signature || "");
     setReviewComments(record.supervisor_review_comments || "");
     setCorrectiveActions(record.corrective_actions || "");
     setRectified(Boolean(record.rectified));
@@ -225,6 +229,7 @@ export default function Home() {
     const payload = {
       status: reviewStatus,
       reviewed_by: reviewSupervisor,
+      supervisor_signature: reviewSupervisorSignature,
       supervisor_review_comments: reviewComments,
       corrective_actions: correctiveActions,
       rectified: rectified,
@@ -253,6 +258,7 @@ export default function Home() {
       setReviewingId(null);
       setReviewStatus("Pending Review");
       setReviewSupervisor("");
+      setReviewSupervisorSignature("");
       setReviewComments("");
       setCorrectiveActions("");
       setRectified(false);
@@ -285,9 +291,15 @@ export default function Home() {
     }
   }
 
-  const pendingRecords = records.filter((r) => (r.status || "Pending Review") === "Pending Review");
-  const actionRecords = records.filter((r) => r.status === "Needs Correction" || r.status === "Stop Work");
-  const closedRecords = records.filter((r) => r.status === "Approved" || r.status === "Closed");
+  const pendingRecords = records.filter(
+    (r) => (r.status || "Pending Review") === "Pending Review"
+  );
+  const actionRecords = records.filter(
+    (r) => r.status === "Needs Correction" || r.status === "Stop Work"
+  );
+  const closedRecords = records.filter(
+    (r) => r.status === "Approved" || r.status === "Closed"
+  );
 
   function statusColor(status) {
     if (status === "Approved" || status === "Closed") return "#166534";
@@ -373,25 +385,105 @@ export default function Home() {
           <div>
             <label>Worker Name</label>
             <br />
-            <input value={worker} onChange={(e) => setWorker(e.target.value)} type="text" style={{ width: "100%", padding: 12, marginTop: 6, borderRadius: 10, border: "1px solid #cbd5e1" }} />
+            <input
+              value={worker}
+              onChange={(e) => setWorker(e.target.value)}
+              type="text"
+              style={{
+                width: "100%",
+                padding: 12,
+                marginTop: 6,
+                borderRadius: 10,
+                border: "1px solid #cbd5e1",
+              }}
+            />
+          </div>
+
+          <div>
+            <label>Worker Signature</label>
+            <br />
+            <input
+              value={workerSignature}
+              onChange={(e) => setWorkerSignature(e.target.value)}
+              type="text"
+              placeholder="Type full name as signature"
+              style={{
+                width: "100%",
+                padding: 12,
+                marginTop: 6,
+                borderRadius: 10,
+                border: "1px solid #cbd5e1",
+              }}
+            />
           </div>
 
           <div>
             <label>Supervisor Name</label>
             <br />
-            <input value={supervisor} onChange={(e) => setSupervisor(e.target.value)} type="text" style={{ width: "100%", padding: 12, marginTop: 6, borderRadius: 10, border: "1px solid #cbd5e1" }} />
+            <input
+              value={supervisor}
+              onChange={(e) => setSupervisor(e.target.value)}
+              type="text"
+              style={{
+                width: "100%",
+                padding: 12,
+                marginTop: 6,
+                borderRadius: 10,
+                border: "1px solid #cbd5e1",
+              }}
+            />
+          </div>
+
+          <div>
+            <label>Supervisor Signature</label>
+            <br />
+            <input
+              value={supervisorSignature}
+              onChange={(e) => setSupervisorSignature(e.target.value)}
+              type="text"
+              placeholder="Type full name as signature"
+              style={{
+                width: "100%",
+                padding: 12,
+                marginTop: 6,
+                borderRadius: 10,
+                border: "1px solid #cbd5e1",
+              }}
+            />
           </div>
 
           <div>
             <label>Job Site</label>
             <br />
-            <input value={jobSite} onChange={(e) => setJobSite(e.target.value)} type="text" style={{ width: "100%", padding: 12, marginTop: 6, borderRadius: 10, border: "1px solid #cbd5e1" }} />
+            <input
+              value={jobSite}
+              onChange={(e) => setJobSite(e.target.value)}
+              type="text"
+              style={{
+                width: "100%",
+                padding: 12,
+                marginTop: 6,
+                borderRadius: 10,
+                border: "1px solid #cbd5e1",
+              }}
+            />
           </div>
 
           <div>
             <label>Task Description</label>
             <br />
-            <textarea value={task} onChange={(e) => setTask(e.target.value)} rows="3" style={{ width: "100%", padding: 12, marginTop: 6, borderRadius: 10, border: "1px solid #cbd5e1" }} />
+            <textarea
+              value={task}
+              onChange={(e) => setTask(e.target.value)}
+              rows="3"
+              style={{
+                width: "100%",
+                padding: 12,
+                marginTop: 6,
+                borderRadius: 10,
+                border: "1px solid #cbd5e1",
+              }}
+            />
           </div>
 
           <div>
@@ -403,7 +495,13 @@ export default function Home() {
                 setRisk(e.target.value);
                 setSelectedShields([]);
               }}
-              style={{ width: "100%", padding: 12, marginTop: 6, borderRadius: 10, border: "1px solid #cbd5e1" }}
+              style={{
+                width: "100%",
+                padding: 12,
+                marginTop: 6,
+                borderRadius: 10,
+                border: "1px solid #cbd5e1",
+              }}
             >
               <option value="">Choose a risk</option>
               <option>Breaking Containment</option>
@@ -443,7 +541,9 @@ export default function Home() {
                       marginBottom: 10,
                       padding: 8,
                       borderRadius: 8,
-                      background: selectedShields.includes(item) ? "#dbeafe" : "white",
+                      background: selectedShields.includes(item)
+                        ? "#dbeafe"
+                        : "white",
                     }}
                   >
                     <input
@@ -461,7 +561,18 @@ export default function Home() {
           <div>
             <label>Hazards / Notes</label>
             <br />
-            <textarea value={notes} onChange={(e) => setNotes(e.target.value)} rows="4" style={{ width: "100%", padding: 12, marginTop: 6, borderRadius: 10, border: "1px solid #cbd5e1" }} />
+            <textarea
+              value={notes}
+              onChange={(e) => setNotes(e.target.value)}
+              rows="4"
+              style={{
+                width: "100%",
+                padding: 12,
+                marginTop: 6,
+                borderRadius: 10,
+                border: "1px solid #cbd5e1",
+              }}
+            />
           </div>
 
           <div
@@ -556,28 +667,79 @@ export default function Home() {
               gap: 12,
             }}
           >
-            <div style={{ background: "white", borderRadius: 14, padding: 16, boxShadow: "0 2px 12px rgba(0,0,0,0.08)" }}>
-              <div style={{ color: "#64748b", fontSize: 12 }}>Pending Review</div>
-              <div style={{ fontSize: 28, fontWeight: "bold" }}>{pendingRecords.length}</div>
+            <div
+              style={{
+                background: "white",
+                borderRadius: 14,
+                padding: 16,
+                boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
+              }}
+            >
+              <div style={{ color: "#64748b", fontSize: 12 }}>
+                Pending Review
+              </div>
+              <div style={{ fontSize: 28, fontWeight: "bold" }}>
+                {pendingRecords.length}
+              </div>
             </div>
-            <div style={{ background: "white", borderRadius: 14, padding: 16, boxShadow: "0 2px 12px rgba(0,0,0,0.08)" }}>
-              <div style={{ color: "#64748b", fontSize: 12 }}>Needs Action</div>
-              <div style={{ fontSize: 28, fontWeight: "bold" }}>{actionRecords.length}</div>
+            <div
+              style={{
+                background: "white",
+                borderRadius: 14,
+                padding: 16,
+                boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
+              }}
+            >
+              <div style={{ color: "#64748b", fontSize: 12 }}>
+                Needs Action
+              </div>
+              <div style={{ fontSize: 28, fontWeight: "bold" }}>
+                {actionRecords.length}
+              </div>
             </div>
-            <div style={{ background: "white", borderRadius: 14, padding: 16, boxShadow: "0 2px 12px rgba(0,0,0,0.08)" }}>
-              <div style={{ color: "#64748b", fontSize: 12 }}>Approved / Closed</div>
-              <div style={{ fontSize: 28, fontWeight: "bold" }}>{closedRecords.length}</div>
+            <div
+              style={{
+                background: "white",
+                borderRadius: 14,
+                padding: 16,
+                boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
+              }}
+            >
+              <div style={{ color: "#64748b", fontSize: 12 }}>
+                Approved / Closed
+              </div>
+              <div style={{ fontSize: 28, fontWeight: "bold" }}>
+                {closedRecords.length}
+              </div>
             </div>
           </div>
 
           {reviewingId && (
-            <div style={{ background: "white", borderRadius: 16, padding: 18, boxShadow: "0 2px 12px rgba(0,0,0,0.08)" }}>
+            <div
+              style={{
+                background: "white",
+                borderRadius: 16,
+                padding: 18,
+                boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
+              }}
+            >
               <h2 style={{ marginTop: 0 }}>Supervisor Review</h2>
 
               <div style={{ display: "grid", gap: 12 }}>
                 <div>
-                  <label>Status</label><br />
-                  <select value={reviewStatus} onChange={(e) => setReviewStatus(e.target.value)} style={{ width: "100%", padding: 12, marginTop: 6, borderRadius: 10, border: "1px solid #cbd5e1" }}>
+                  <label>Status</label>
+                  <br />
+                  <select
+                    value={reviewStatus}
+                    onChange={(e) => setReviewStatus(e.target.value)}
+                    style={{
+                      width: "100%",
+                      padding: 12,
+                      marginTop: 6,
+                      borderRadius: 10,
+                      border: "1px solid #cbd5e1",
+                    }}
+                  >
                     <option>Pending Review</option>
                     <option>Approved</option>
                     <option>Needs Correction</option>
@@ -587,22 +749,83 @@ export default function Home() {
                 </div>
 
                 <div>
-                  <label>Supervisor Sign-Off</label><br />
-                  <input value={reviewSupervisor} onChange={(e) => setReviewSupervisor(e.target.value)} type="text" style={{ width: "100%", padding: 12, marginTop: 6, borderRadius: 10, border: "1px solid #cbd5e1" }} />
+                  <label>Supervisor Sign-Off Name</label>
+                  <br />
+                  <input
+                    value={reviewSupervisor}
+                    onChange={(e) => setReviewSupervisor(e.target.value)}
+                    type="text"
+                    style={{
+                      width: "100%",
+                      padding: 12,
+                      marginTop: 6,
+                      borderRadius: 10,
+                      border: "1px solid #cbd5e1",
+                    }}
+                  />
                 </div>
 
                 <div>
-                  <label>Supervisor Comments</label><br />
-                  <textarea value={reviewComments} onChange={(e) => setReviewComments(e.target.value)} rows="4" style={{ width: "100%", padding: 12, marginTop: 6, borderRadius: 10, border: "1px solid #cbd5e1" }} />
+                  <label>Supervisor Signature</label>
+                  <br />
+                  <input
+                    value={reviewSupervisorSignature}
+                    onChange={(e) =>
+                      setReviewSupervisorSignature(e.target.value)
+                    }
+                    type="text"
+                    placeholder="Type full name as signature"
+                    style={{
+                      width: "100%",
+                      padding: 12,
+                      marginTop: 6,
+                      borderRadius: 10,
+                      border: "1px solid #cbd5e1",
+                    }}
+                  />
                 </div>
 
                 <div>
-                  <label>Corrective Actions</label><br />
-                  <textarea value={correctiveActions} onChange={(e) => setCorrectiveActions(e.target.value)} rows="4" style={{ width: "100%", padding: 12, marginTop: 6, borderRadius: 10, border: "1px solid #cbd5e1" }} />
+                  <label>Supervisor Comments</label>
+                  <br />
+                  <textarea
+                    value={reviewComments}
+                    onChange={(e) => setReviewComments(e.target.value)}
+                    rows="4"
+                    style={{
+                      width: "100%",
+                      padding: 12,
+                      marginTop: 6,
+                      borderRadius: 10,
+                      border: "1px solid #cbd5e1",
+                    }}
+                  />
+                </div>
+
+                <div>
+                  <label>Corrective Actions</label>
+                  <br />
+                  <textarea
+                    value={correctiveActions}
+                    onChange={(e) => setCorrectiveActions(e.target.value)}
+                    rows="4"
+                    style={{
+                      width: "100%",
+                      padding: 12,
+                      marginTop: 6,
+                      borderRadius: 10,
+                      border: "1px solid #cbd5e1",
+                    }}
+                  />
                 </div>
 
                 <label>
-                  <input type="checkbox" checked={rectified} onChange={(e) => setRectified(e.target.checked)} /> Rectified / corrected
+                  <input
+                    type="checkbox"
+                    checked={rectified}
+                    onChange={(e) => setRectified(e.target.checked)}
+                  />{" "}
+                  Rectified / corrected
                 </label>
 
                 <div style={{ display: "flex", gap: 10 }}>
@@ -629,6 +852,7 @@ export default function Home() {
                       setReviewingId(null);
                       setReviewStatus("Pending Review");
                       setReviewSupervisor("");
+                      setReviewSupervisorSignature("");
                       setReviewComments("");
                       setCorrectiveActions("");
                       setRectified(false);
@@ -648,7 +872,14 @@ export default function Home() {
             </div>
           )}
 
-          <div style={{ background: "white", borderRadius: 16, padding: 18, boxShadow: "0 2px 12px rgba(0,0,0,0.08)" }}>
+          <div
+            style={{
+              background: "white",
+              borderRadius: 16,
+              padding: 18,
+              boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
+            }}
+          >
             <h2 style={{ marginTop: 0 }}>All Records</h2>
 
             {records.length === 0 ? (
@@ -665,19 +896,64 @@ export default function Home() {
                       background: "#f8fafc",
                     }}
                   >
-                    <div style={{ display: "flex", justifyContent: "space-between", gap: 12, flexWrap: "wrap" }}>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        gap: 12,
+                        flexWrap: "wrap",
+                      }}
+                    >
                       <div>
-                        <div><strong>Worker:</strong> {record.worker_name}</div>
-                        <div><strong>Supervisor:</strong> {record.supervisor_name}</div>
-                        <div><strong>Site:</strong> {record.job_site}</div>
-                        <div><strong>Task:</strong> {record.task_description}</div>
-                        <div><strong>Risk:</strong> {record.critical_risk}</div>
-                        <div><strong>Shield(s):</strong> {record.shield_control}</div>
-                        <div><strong>Notes:</strong> {record.notes}</div>
-                        <div><strong>Submitted:</strong> {record.submitted_at}</div>
-                        {record.reviewed_by && <div><strong>Reviewed By:</strong> {record.reviewed_by}</div>}
-                        {record.supervisor_review_comments && <div><strong>Comments:</strong> {record.supervisor_review_comments}</div>}
-                        {record.corrective_actions && <div><strong>Corrective Actions:</strong> {record.corrective_actions}</div>}
+                        <div>
+                          <strong>Worker:</strong> {record.worker_name}
+                        </div>
+                        <div>
+                          <strong>Worker Signature:</strong>{" "}
+                          {record.worker_signature || "—"}
+                        </div>
+                        <div>
+                          <strong>Supervisor:</strong> {record.supervisor_name}
+                        </div>
+                        <div>
+                          <strong>Supervisor Signature:</strong>{" "}
+                          {record.supervisor_signature || "—"}
+                        </div>
+                        <div>
+                          <strong>Site:</strong> {record.job_site}
+                        </div>
+                        <div>
+                          <strong>Task:</strong> {record.task_description}
+                        </div>
+                        <div>
+                          <strong>Risk:</strong> {record.critical_risk}
+                        </div>
+                        <div>
+                          <strong>Shield(s):</strong> {record.shield_control}
+                        </div>
+                        <div>
+                          <strong>Notes:</strong> {record.notes}
+                        </div>
+                        <div>
+                          <strong>Submitted:</strong> {record.submitted_at}
+                        </div>
+                        {record.reviewed_by && (
+                          <div>
+                            <strong>Reviewed By:</strong> {record.reviewed_by}
+                          </div>
+                        )}
+                        {record.supervisor_review_comments && (
+                          <div>
+                            <strong>Comments:</strong>{" "}
+                            {record.supervisor_review_comments}
+                          </div>
+                        )}
+                        {record.corrective_actions && (
+                          <div>
+                            <strong>Corrective Actions:</strong>{" "}
+                            {record.corrective_actions}
+                          </div>
+                        )}
                       </div>
 
                       <div>
@@ -725,13 +1001,25 @@ export default function Home() {
                     </div>
 
                     {record.stop_work && (
-                      <div style={{ color: "#b91c1c", fontWeight: "bold", marginTop: 10 }}>
+                      <div
+                        style={{
+                          color: "#b91c1c",
+                          fontWeight: "bold",
+                          marginTop: 10,
+                        }}
+                      >
                         Stop Work Required
                       </div>
                     )}
 
                     {record.rectified && (
-                      <div style={{ color: "#166534", fontWeight: "bold", marginTop: 10 }}>
+                      <div
+                        style={{
+                          color: "#166534",
+                          fontWeight: "bold",
+                          marginTop: 10,
+                        }}
+                      >
                         Rectified
                       </div>
                     )}
@@ -750,7 +1038,9 @@ export default function Home() {
             padding: 16,
             background: submitted ? "#ecfdf5" : "#fff7ed",
             borderRadius: 12,
-            border: submitted ? "1px solid #a7f3d0" : "1px solid #fdba74",
+            border: submitted
+              ? "1px solid #a7f3d0"
+              : "1px solid #fdba74",
             whiteSpace: "pre-wrap",
             wordBreak: "break-word",
           }}
