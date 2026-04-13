@@ -171,8 +171,9 @@ export default function Home() {
       setSubmitted(true);
       setMessage("Record submitted to database.");
       await loadRecords();
-    } catch (error) {
-      setMessage("Could not save record. Check Supabase table and RLS.");
+    catch (error) {
+      setMessage(`ERROR: ${error.message}`);
+}
     } finally {
       setLoading(false);
     }
