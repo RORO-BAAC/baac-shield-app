@@ -1,11 +1,13 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 
 export default function Home() {
   const [submitted, setSubmitted] = useState(false);
   const [risk, setRisk] = useState("");
   const [stopWork, setStopWork] = useState(false);
+  const [photos, setPhotos] = useState([]);
+  const fileRef = useRef(null);
 
   const shieldOptions = useMemo(() => {
     const map = {
@@ -79,10 +81,15 @@ export default function Home() {
     setSubmitted(true);
   }
 
+  function handleFiles(e) {
+    const files = Array.from(e.target.files || []);
+    setPhotos(files.map((f) => f.name));
+  }
+
   return (
     <main
       style={{
-        padding: 20,
+        padding: 16,
         fontFamily: "Arial, sans-serif",
         maxWidth: 760,
         margin: "0 auto",
@@ -92,15 +99,16 @@ export default function Home() {
     >
       <div
         style={{
-          background: "#0f2f66",
+          background: "linear-gradient(135deg, #0f2f66, #1d4f9a)",
           color: "white",
           padding: 20,
-          borderRadius: 14,
-          marginBottom: 20,
+          borderRadius: 16,
+          marginBottom: 18,
+          boxShadow: "0 4px 14px rgba(0,0,0,0.15)",
         }}
       >
-        <h1 style={{ margin: 0 }}>BAAC SHIELD</h1>
-        <p style={{ marginTop: 8, marginBottom: 0 }}>
+        <h1 style={{ margin: 0, fontSize: 34 }}>BAAC SHIELD</h1>
+        <p style={{ marginTop: 8, marginBottom: 0, opacity: 0.95 }}>
           Identify the risk. Verify the shield.
         </p>
       </div>
@@ -111,35 +119,35 @@ export default function Home() {
           display: "grid",
           gap: 14,
           background: "white",
-          padding: 20,
-          borderRadius: 14,
-          boxShadow: "0 2px 10px rgba(0,0,0,0.08)",
+          padding: 18,
+          borderRadius: 16,
+          boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
         }}
       >
-        <h2 style={{ marginTop: 0 }}>Worker Record</h2>
+        <h2 style={{ marginTop: 0, marginBottom: 6 }}>Worker Record</h2>
 
         <div>
           <label>Worker Name</label>
           <br />
-          <input type="text" style={{ width: "100%", padding: 10, marginTop: 6 }} />
+          <input type="text" style={{ width: "100%", padding: 12, marginTop: 6, borderRadius: 10, border: "1px solid #cbd5e1" }} />
         </div>
 
         <div>
           <label>Supervisor Name</label>
           <br />
-          <input type="text" style={{ width: "100%", padding: 10, marginTop: 6 }} />
+          <input type="text" style={{ width: "100%", padding: 12, marginTop: 6, borderRadius: 10, border: "1px solid #cbd5e1" }} />
         </div>
 
         <div>
           <label>Job Site</label>
           <br />
-          <input type="text" style={{ width: "100%", padding: 10, marginTop: 6 }} />
+          <input type="text" style={{ width: "100%", padding: 12, marginTop: 6, borderRadius: 10, border: "1px solid #cbd5e1" }} />
         </div>
 
         <div>
           <label>Task Description</label>
           <br />
-          <textarea rows="3" style={{ width: "100%", padding: 10, marginTop: 6 }} />
+          <textarea rows="3" style={{ width: "100%", padding: 12, marginTop: 6, borderRadius: 10, border: "1px solid #cbd5e1" }} />
         </div>
 
         <div>
@@ -148,7 +156,7 @@ export default function Home() {
           <select
             value={risk}
             onChange={(e) => setRisk(e.target.value)}
-            style={{ width: "100%", padding: 10, marginTop: 6 }}
+            style={{ width: "100%", padding: 12, marginTop: 6, borderRadius: 10, border: "1px solid #cbd5e1" }}
           >
             <option value="">Choose a risk</option>
             <option>Breaking Containment</option>
@@ -170,7 +178,7 @@ export default function Home() {
           <label>Shield / Control</label>
           <br />
           <select
-            style={{ width: "100%", padding: 10, marginTop: 6 }}
+            style={{ width: "100%", padding: 12, marginTop: 6, borderRadius: 10, border: "1px solid #cbd5e1" }}
             disabled={!risk}
           >
             <option value="">
@@ -188,14 +196,59 @@ export default function Home() {
           <textarea
             rows="4"
             placeholder="List hazards, conditions, or concerns"
-            style={{ width: "100%", padding: 10, marginTop: 6 }}
+            style={{ width: "100%", padding: 12, marginTop: 6, borderRadius: 10, border: "1px solid #cbd5e1" }}
           />
         </div>
 
         <div
           style={{
             border: "1px solid #d1d5db",
-            borderRadius: 12,
+            borderRadius: 14,
+            padding: 16,
+            background: "#f8fafc",
+          }}
+        >
+          <h3 style={{ marginTop: 0 }}>Attachments</h3>
+
+          <input
+            ref={fileRef}
+            type="file"
+            multiple
+            style={{ display: "none" }}
+            onChange={handleFiles}
+          />
+
+          <button
+            type="button"
+            onClick={() => fileRef.current?.click()}
+            style={{
+              padding: 12,
+              border: "1px solid #94a3b8",
+              borderRadius: 10,
+              background: "white",
+              cursor: "pointer",
+              fontWeight: "bold",
+            }}
+          >
+            Upload Photos
+          </button>
+
+          {photos.length > 0 && (
+            <div style={{ marginTop: 12 }}>
+              <strong>Selected files:</strong>
+              <ul style={{ marginTop: 8, paddingLeft: 18 }}>
+                {photos.map((name) => (
+                  <li key={name}>{name}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+
+        <div
+          style={{
+            border: "1px solid #d1d5db",
+            borderRadius: 14,
             padding: 16,
             background: "#f8fafc",
           }}
@@ -239,9 +292,9 @@ export default function Home() {
         <button
           type="submit"
           style={{
-            padding: 12,
+            padding: 14,
             border: "none",
-            borderRadius: 10,
+            borderRadius: 12,
             background: "#123d82",
             color: "white",
             fontWeight: "bold",
