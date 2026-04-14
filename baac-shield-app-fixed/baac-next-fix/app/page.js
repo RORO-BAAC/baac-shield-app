@@ -330,20 +330,23 @@ export default function Home() {
       corrective_actions: correctiveActions,
       rectified,
       reviewed_at: new Date().toISOString(),
-      stop_work: reviewStatus === "Stop Work" ? true : false,
+      stop_work: reviewStatus === "Stop Work",
     };
 
     try {
-      const res = await fetch(`${SUPABASE_URL}/rest/v1/records?id=eq.${reviewingId}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-          apikey: SUPABASE_KEY,
-          Authorization: `Bearer ${SUPABASE_KEY}`,
-          Prefer: "return=representation",
-        },
-        body: JSON.stringify(payload),
-      });
+      const res = await fetch(
+        `${SUPABASE_URL}/rest/v1/records?id=eq.${reviewingId}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            apikey: SUPABASE_KEY,
+            Authorization: `Bearer ${SUPABASE_KEY}`,
+            Prefer: "return=representation",
+          },
+          body: JSON.stringify(payload),
+        }
+      );
 
       if (!res.ok) {
         const text = await res.text();
@@ -358,6 +361,7 @@ export default function Home() {
       setReviewComments("");
       setCorrectiveActions("");
       setRectified(false);
+      supervisorSigRef.current?.clear();
       await loadRecords();
     } catch (error) {
       setMessage(`Could not save supervisor review: ${error.message}`);
@@ -427,7 +431,10 @@ export default function Home() {
     addLine("Submitted At", record.submitted_at);
     addLine("Reviewed At", record.reviewed_at);
 
-    if (record.worker_signature && String(record.worker_signature).startsWith("data:image")) {
+    if (
+      record.worker_signature &&
+      String(record.worker_signature).startsWith("data:image")
+    ) {
       if (y > 220) {
         doc.addPage();
         y = 20;
@@ -438,7 +445,10 @@ export default function Home() {
       y += 38;
     }
 
-    if (record.supervisor_signature && String(record.supervisor_signature).startsWith("data:image")) {
+    if (
+      record.supervisor_signature &&
+      String(record.supervisor_signature).startsWith("data:image")
+    ) {
       if (y > 220) {
         doc.addPage();
         y = 20;
@@ -474,11 +484,11 @@ export default function Home() {
   }
 
   function statusColor(status) {
-  if (status === "Approved") return "#166534";
-  if (status === "Stop Work") return "#b91c1c";
-  if (status === "Needs Correction") return "#b45309";
-  return "#1d4ed8";
-}
+    if (status === "Approved") return "#166534";
+    if (status === "Stop Work") return "#b91c1c";
+    if (status === "Needs Correction") return "#b45309";
+    return "#1d4ed8";
+  }
 
   const pendingRecords = records.filter(
     (r) => (r.status || "Pending Review") === "Pending Review"
@@ -486,9 +496,7 @@ export default function Home() {
   const actionRecords = records.filter(
     (r) => r.status === "Needs Correction" || r.status === "Stop Work"
   );
-  const closedRecords = records.filter(
-    (r) => r.status === "Approved"
-  );
+  const closedRecords = records.filter((r) => r.status === "Approved");
 
   return (
     <main
@@ -512,30 +520,31 @@ export default function Home() {
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-  <img
-    src="/baac-logo.png"
-    alt="BAAC Logo"
-    style={{
-      height: 50,
-      width: "auto",
-      borderRadius: 6,
-      background: "white",
-      padding: 4,
-    }}
-  />
-  <div>
-    <h1 style={{ margin: 0, fontSize: 26 }}>BAAC SHIELD</h1>
-    <div style={{ fontSize: 12, opacity: 0.7 }}>
-      Identify the risk. Verify the shield.
-    </div>
-  </div>
-</div>
+          <img
+            src="/baac-logo.png"
+            alt="BAAC Logo"
+            style={{
+              height: 50,
+              width: "auto",
+              borderRadius: 6,
+              background: "white",
+              padding: 4,
+            }}
+          />
+          <div>
+            <h1 style={{ margin: 0, fontSize: 26 }}>BAAC SHIELD</h1>
+            <div style={{ fontSize: 12, opacity: 0.7 }}>
+              Identify the risk. Verify the shield.
+            </div>
+          </div>
+        </div>
+
         <p style={{ marginTop: 8, marginBottom: 0, opacity: 0.95 }}>
           Worker submission and supervisor review workflow
         </p>
       </div>
 
-      <div style={{ display: "flex", gap: 10, marginBottom: 18 }}>
+      <div style={{ display: "flex", gap: 10, marginBottom: 18, flexWrap: "wrap" }}>
         <button
           type="button"
           onClick={() => setActiveTab("worker")}
@@ -551,6 +560,7 @@ export default function Home() {
         >
           Worker Form
         </button>
+
         <button
           type="button"
           onClick={() => setActiveTab("supervisor")}
@@ -566,21 +576,22 @@ export default function Home() {
         >
           Supervisor Review
         </button>
-            <button
-  type="button"
-  onClick={() => setActiveTab("dashboard")}
-  style={{
-    padding: "10px 14px",
-    borderRadius: 10,
-    border: "1px solid #cbd5e1",
-    background: activeTab === "dashboard" ? "#123d82" : "white",
-    color: activeTab === "dashboard" ? "white" : "#0f172a",
-    fontWeight: "bold",
-    cursor: "pointer",
-  }}
->
-  Safety Dashboard
-</button>
+
+        <button
+          type="button"
+          onClick={() => setActiveTab("dashboard")}
+          style={{
+            padding: "10px 14px",
+            borderRadius: 10,
+            border: "1px solid #cbd5e1",
+            background: activeTab === "dashboard" ? "#123d82" : "white",
+            color: activeTab === "dashboard" ? "white" : "#0f172a",
+            fontWeight: "bold",
+            cursor: "pointer",
+          }}
+        >
+          Safety Dashboard
+        </button>
       </div>
 
       {activeTab === "worker" && (
@@ -633,6 +644,14 @@ export default function Home() {
                 borderRadius: 10,
                 border: "1px solid #cbd5e1",
               }}
+            />
+          </div>
+
+          <div>
+            <label>Supervisor Signature</label>
+            <SignatureBox
+              sigRef={supervisorSigRef}
+              onSave={setSupervisorSignature}
             />
           </div>
 
@@ -851,54 +870,59 @@ export default function Home() {
               gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
               gap: 12,
             }}
-{activeTab === "dashboard" && (
-  <div
-    style={{
-      background: "white",
-      padding: 20,
-      borderRadius: 16,
-      boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
-    }}
-  >
-    <h2>Safety Dashboard</h2>
-
-    <div style={{ display: "grid", gap: 12 }}>
-      <div style={{ padding: 12, background: "#f1f5f9", borderRadius: 10 }}>
-        <strong>Total Records:</strong> {records.length}
-      </div>
-
-      <div style={{ padding: 12, background: "#fef9c3", borderRadius: 10 }}>
-        <strong>Pending Review:</strong> {pendingRecords.length}
-      </div>
-
-      <div style={{ padding: 12, background: "#fee2e2", borderRadius: 10 }}>
-        <strong>Needs Action:</strong> {actionRecords.length}
-      </div>
-
-      <div style={{ padding: 12, background: "#dcfce7", borderRadius: 10 }}>
-        <strong>Approved / Closed:</strong> {closedRecords.length}
-      </div>
-    </div>
-  </div>
-)}
-
           >
-            <div style={{ background: "white", borderRadius: 14, padding: 16, boxShadow: "0 2px 12px rgba(0,0,0,0.08)" }}>
+            <div
+              style={{
+                background: "white",
+                borderRadius: 14,
+                padding: 16,
+                boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
+              }}
+            >
               <div style={{ color: "#64748b", fontSize: 12 }}>Pending Review</div>
-              <div style={{ fontSize: 28, fontWeight: "bold" }}>{pendingRecords.length}</div>
+              <div style={{ fontSize: 28, fontWeight: "bold" }}>
+                {pendingRecords.length}
+              </div>
             </div>
-            <div style={{ background: "white", borderRadius: 14, padding: 16, boxShadow: "0 2px 12px rgba(0,0,0,0.08)" }}>
+
+            <div
+              style={{
+                background: "white",
+                borderRadius: 14,
+                padding: 16,
+                boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
+              }}
+            >
               <div style={{ color: "#64748b", fontSize: 12 }}>Needs Action</div>
-              <div style={{ fontSize: 28, fontWeight: "bold" }}>{actionRecords.length}</div>
+              <div style={{ fontSize: 28, fontWeight: "bold" }}>
+                {actionRecords.length}
+              </div>
             </div>
-            <div style={{ background: "white", borderRadius: 14, padding: 16, boxShadow: "0 2px 12px rgba(0,0,0,0.08)" }}>
+
+            <div
+              style={{
+                background: "white",
+                borderRadius: 14,
+                padding: 16,
+                boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
+              }}
+            >
               <div style={{ color: "#64748b", fontSize: 12 }}>Approved / Closed</div>
-              <div style={{ fontSize: 28, fontWeight: "bold" }}>{closedRecords.length}</div>
+              <div style={{ fontSize: 28, fontWeight: "bold" }}>
+                {closedRecords.length}
+              </div>
             </div>
           </div>
 
           {reviewingId && (
-            <div style={{ background: "white", borderRadius: 16, padding: 18, boxShadow: "0 2px 12px rgba(0,0,0,0.08)" }}>
+            <div
+              style={{
+                background: "white",
+                borderRadius: 16,
+                padding: 18,
+                boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
+              }}
+            >
               <h2 style={{ marginTop: 0 }}>Supervisor Review</h2>
 
               <div style={{ display: "grid", gap: 12 }}>
@@ -943,11 +967,11 @@ export default function Home() {
                 <div>
                   <label>Supervisor Signature</label>
                   <br />
-                 <SignatureBox
-            sigRef={supervisorSigRef}
-             onSave={setReviewSupervisorSignature}
-             />
-             </div>
+                  <SignatureBox
+                    sigRef={supervisorSigRef}
+                    onSave={setReviewSupervisorSignature}
+                  />
+                </div>
 
                 <div>
                   <label>Supervisor Comments</label>
@@ -1020,6 +1044,7 @@ export default function Home() {
                       setReviewComments("");
                       setCorrectiveActions("");
                       setRectified(false);
+                      supervisorSigRef.current?.clear();
                     }}
                     style={{
                       padding: "12px 16px",
@@ -1036,7 +1061,14 @@ export default function Home() {
             </div>
           )}
 
-          <div style={{ background: "white", borderRadius: 16, padding: 18, boxShadow: "0 2px 12px rgba(0,0,0,0.08)" }}>
+          <div
+            style={{
+              background: "white",
+              borderRadius: 16,
+              padding: 18,
+              boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
+            }}
+          >
             <h2 style={{ marginTop: 0 }}>All Records</h2>
 
             {records.length === 0 ? (
@@ -1216,6 +1248,87 @@ export default function Home() {
                     </div>
                   );
                 })}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
+      {activeTab === "dashboard" && (
+        <div
+          style={{
+            background: "white",
+            padding: 20,
+            borderRadius: 16,
+            boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
+            display: "grid",
+            gap: 16,
+          }}
+        >
+          <h2 style={{ margin: 0 }}>Safety Dashboard</h2>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
+              gap: 12,
+            }}
+          >
+            <div style={{ padding: 16, background: "#f1f5f9", borderRadius: 12 }}>
+              <div style={{ fontSize: 12, color: "#64748b" }}>Total Records</div>
+              <div style={{ fontSize: 28, fontWeight: "bold" }}>{records.length}</div>
+            </div>
+
+            <div style={{ padding: 16, background: "#fef9c3", borderRadius: 12 }}>
+              <div style={{ fontSize: 12, color: "#64748b" }}>Pending Review</div>
+              <div style={{ fontSize: 28, fontWeight: "bold" }}>{pendingRecords.length}</div>
+            </div>
+
+            <div style={{ padding: 16, background: "#fee2e2", borderRadius: 12 }}>
+              <div style={{ fontSize: 12, color: "#64748b" }}>Needs Action</div>
+              <div style={{ fontSize: 28, fontWeight: "bold" }}>{actionRecords.length}</div>
+            </div>
+
+            <div style={{ padding: 16, background: "#dcfce7", borderRadius: 12 }}>
+              <div style={{ fontSize: 12, color: "#64748b" }}>Approved</div>
+              <div style={{ fontSize: 28, fontWeight: "bold" }}>{closedRecords.length}</div>
+            </div>
+          </div>
+
+          <div
+            style={{
+              background: "#f8fafc",
+              borderRadius: 12,
+              padding: 16,
+              border: "1px solid #dbe4ee",
+            }}
+          >
+            <h3 style={{ marginTop: 0 }}>Recent Records</h3>
+            {records.length === 0 ? (
+              <p>No records yet.</p>
+            ) : (
+              <div style={{ display: "grid", gap: 10 }}>
+                {records.slice(0, 5).map((record) => (
+                  <div
+                    key={record.id}
+                    style={{
+                      padding: 12,
+                      background: "white",
+                      borderRadius: 10,
+                      border: "1px solid #e2e8f0",
+                    }}
+                  >
+                    <div><strong>Worker:</strong> {record.worker_name}</div>
+                    <div><strong>Site:</strong> {record.job_site}</div>
+                    <div><strong>Risk:</strong> {record.critical_risk}</div>
+                    <div>
+                      <strong>Status:</strong>{" "}
+                      <span style={{ color: statusColor(record.status || "Pending Review"), fontWeight: "bold" }}>
+                        {record.status || "Pending Review"}
+                      </span>
+                    </div>
+                  </div>
+                ))}
               </div>
             )}
           </div>
