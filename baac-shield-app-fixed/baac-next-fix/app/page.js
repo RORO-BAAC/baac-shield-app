@@ -780,14 +780,14 @@ export default function Home() {
               background: "#f8fafc",
             }}
           >
-            <h3 style={{ marginTop: 0 }}>Worker Stop Work Check</h3>
+            <h3 style={{ marginTop: 0 }}>Unsafe Condition / Stop Work</h3>
             <label style={{ display: "block" }}>
               <input
                 type="checkbox"
                 checked={stopWork}
                 onChange={(e) => setStopWork(e.target.checked)}
               />{" "}
-              Stop work required
+              Unsafe condition identified — stop work and escalate
             </label>
           </div>
 
