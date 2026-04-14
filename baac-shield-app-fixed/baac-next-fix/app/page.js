@@ -604,14 +604,6 @@ export default function Home() {
           </div>
 
           <div>
-            <label>Supervisor Signature</label>
-            <SignatureBox
-              sigRef={supervisorSigRef}
-              onSave={setSupervisorSignature}
-            />
-          </div>
-
-          <div>
             <label>Job Site</label>
             <br />
             <input
