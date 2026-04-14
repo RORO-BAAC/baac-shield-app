@@ -184,10 +184,10 @@ export default function Home() {
     }
   }
 
-  function handleFiles(e) {
-    const files = Array.from(e.target.files || []);
-    setPhotos(files.map((f) => f.name));
-  }
+  async function handleFiles(e) {
+  const files = Array.from(e.target.files || []);
+  setPhotos(files);
+}
 
   function toggleShield(shield) {
     setSelectedShields((prev) =>
