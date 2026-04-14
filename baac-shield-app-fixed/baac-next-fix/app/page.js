@@ -851,6 +851,37 @@ export default function Home() {
               gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
               gap: 12,
             }}
+{activeTab === "dashboard" && (
+  <div
+    style={{
+      background: "white",
+      padding: 20,
+      borderRadius: 16,
+      boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
+    }}
+  >
+    <h2>Safety Dashboard</h2>
+
+    <div style={{ display: "grid", gap: 12 }}>
+      <div style={{ padding: 12, background: "#f1f5f9", borderRadius: 10 }}>
+        <strong>Total Records:</strong> {records.length}
+      </div>
+
+      <div style={{ padding: 12, background: "#fef9c3", borderRadius: 10 }}>
+        <strong>Pending Review:</strong> {pendingRecords.length}
+      </div>
+
+      <div style={{ padding: 12, background: "#fee2e2", borderRadius: 10 }}>
+        <strong>Needs Action:</strong> {actionRecords.length}
+      </div>
+
+      <div style={{ padding: 12, background: "#dcfce7", borderRadius: 10 }}>
+        <strong>Approved / Closed:</strong> {closedRecords.length}
+      </div>
+    </div>
+  </div>
+)}
+
           >
             <div style={{ background: "white", borderRadius: 14, padding: 16, boxShadow: "0 2px 12px rgba(0,0,0,0.08)" }}>
               <div style={{ color: "#64748b", fontSize: 12 }}>Pending Review</div>
