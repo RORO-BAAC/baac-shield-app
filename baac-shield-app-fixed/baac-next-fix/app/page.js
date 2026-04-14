@@ -856,7 +856,6 @@ export default function Home() {
                     <option>Approved</option>
                     <option>Needs Correction</option>
                     <option>Stop Work</option>
-                    <option>Closed</option>
                   </select>
                 </div>
 
