@@ -888,20 +888,11 @@ export default function Home() {
                 <div>
                   <label>Supervisor Signature</label>
                   <br />
-                  <input
-                    value={reviewSupervisorSignature}
-                    onChange={(e) => setReviewSupervisorSignature(e.target.value)}
-                    type="text"
-                    placeholder="Type full name as signature"
-                    style={{
-                      width: "100%",
-                      padding: 12,
-                      marginTop: 6,
-                      borderRadius: 10,
-                      border: "1px solid #cbd5e1",
-                    }}
-                  />
-                </div>
+                 <SignatureBox
+            sigRef={supervisorSigRef}
+             onSave={setReviewSupervisorSignature}
+             />
+             </div>
 
                 <div>
                   <label>Supervisor Comments</label>
