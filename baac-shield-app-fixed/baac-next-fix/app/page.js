@@ -7,6 +7,59 @@ import SignatureCanvas from "react-signature-canvas";
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const SUPABASE_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
+function SignatureBox({ sigRef, onSave }) {
+  return (
+    <div>
+      <div
+        style={{
+          border: "2px solid #cbd5e1",
+          borderRadius: 10,
+          marginTop: 6,
+          background: "white",
+          overflow: "hidden",
+        }}
+      >
+        <SignatureCanvas
+          ref={sigRef}
+          penColor="black"
+          onEnd={() => {
+            if (sigRef.current && !sigRef.current.isEmpty()) {
+              onSave(sigRef.current.toDataURL("image/png"));
+            }
+          }}
+          canvasProps={{
+            width: 700,
+            height: 180,
+            style: {
+              width: "100%",
+              height: 180,
+              display: "block",
+            },
+          }}
+        />
+      </div>
+
+      <button
+        type="button"
+        onClick={() => {
+          sigRef.current?.clear();
+          onSave("");
+        }}
+        style={{
+          marginTop: 8,
+          padding: "8px 12px",
+          borderRadius: 8,
+          border: "1px solid #cbd5e1",
+          background: "white",
+          cursor: "pointer",
+        }}
+      >
+        Clear Signature
+      </button>
+    </div>
+  );
+}
+
 export default function Home() {
   const [worker, setWorker] = useState("");
   const [workerSignature, setWorkerSignature] = useState("");
@@ -156,6 +209,8 @@ export default function Home() {
     setNotes("");
     setStopWork(false);
     setPhotos([]);
+    workerSigRef.current?.clear();
+    supervisorSigRef.current?.clear();
   }
 
   async function handleSubmit(e) {
@@ -236,7 +291,7 @@ export default function Home() {
       supervisor_signature: reviewSupervisorSignature,
       supervisor_review_comments: reviewComments,
       corrective_actions: correctiveActions,
-      rectified: rectified,
+      rectified,
       reviewed_at: new Date().toISOString(),
       stop_work: reviewStatus === "Stop Work" ? true : false,
     };
@@ -295,6 +350,80 @@ export default function Home() {
     }
   }
 
+  function downloadPdf(record) {
+    const doc = new jsPDF();
+
+    doc.setFillColor(15, 47, 102);
+    doc.rect(0, 0, 210, 30, "F");
+
+    doc.setTextColor(255, 255, 255);
+    doc.setFontSize(22);
+    doc.text("BAAC SHIELD Report", 14, 18);
+
+    doc.setFontSize(10);
+    doc.text("Identify the risk. Verify the shield.", 14, 25);
+
+    let y = 40;
+
+    const addLine = (label, value) => {
+      const text = `${label}: ${value || "—"}`;
+      const split = doc.splitTextToSize(text, 180);
+      doc.setTextColor(0, 0, 0);
+      doc.setFontSize(12);
+      doc.text(split, 14, y);
+      y += split.length * 6 + 4;
+    };
+
+    addLine("Worker", record.worker_name);
+    addLine("Supervisor", record.supervisor_name);
+    addLine("Job Site", record.job_site);
+    addLine("Task Description", record.task_description);
+    addLine("Critical Risk", record.critical_risk);
+    addLine("Shield Controls", record.shield_control);
+    addLine("Notes", record.notes);
+    addLine("Status", record.status);
+    addLine("Reviewed By", record.reviewed_by);
+    addLine("Supervisor Comments", record.supervisor_review_comments);
+    addLine("Corrective Actions", record.corrective_actions);
+    addLine("Rectified", record.rectified ? "Yes" : "No");
+    addLine("Stop Work", record.stop_work ? "Yes" : "No");
+    addLine("Photos", record.photos);
+    addLine("Submitted At", record.submitted_at);
+    addLine("Reviewed At", record.reviewed_at);
+
+    if (record.worker_signature && String(record.worker_signature).startsWith("data:image")) {
+      if (y > 220) {
+        doc.addPage();
+        y = 20;
+      }
+      doc.setFontSize(12);
+      doc.text("Worker Signature:", 14, y);
+      y += 4;
+      doc.addImage(record.worker_signature, "PNG", 14, y, 80, 30);
+      y += 38;
+    }
+
+    if (record.supervisor_signature && String(record.supervisor_signature).startsWith("data:image")) {
+      if (y > 220) {
+        doc.addPage();
+        y = 20;
+      }
+      doc.setFontSize(12);
+      doc.text("Supervisor Signature:", 14, y);
+      y += 4;
+      doc.addImage(record.supervisor_signature, "PNG", 14, y, 80, 30);
+    }
+
+    doc.save(`baac-shield-record-${record.id}.pdf`);
+  }
+
+  function statusColor(status) {
+    if (status === "Approved" || status === "Closed") return "#166534";
+    if (status === "Stop Work") return "#b91c1c";
+    if (status === "Needs Correction") return "#b45309";
+    return "#1d4ed8";
+  }
+
   const pendingRecords = records.filter(
     (r) => (r.status || "Pending Review") === "Pending Review"
   );
@@ -304,59 +433,6 @@ export default function Home() {
   const closedRecords = records.filter(
     (r) => r.status === "Approved" || r.status === "Closed"
   );
-  function downloadPdf(record) {
-  const doc = new jsPDF();
-
-  doc.setFillColor(15, 47, 102);
-  doc.rect(0, 0, 210, 30, "F");
-
-  doc.setTextColor(255, 255, 255);
-  doc.setFontSize(22);
-  doc.text("BAAC SHIELD Report", 14, 18);
-
-  doc.setFontSize(10);
-  doc.text("Identify the risk. Verify the shield.", 14, 25);
-
-  let y = 40;
-  const lineGap = 8;
-
-  doc.setTextColor(0, 0, 0);
-  doc.setFontSize(12);
-
-  const addLine = (label, value) => {
-    const text = `${label}: ${value || "—"}`;
-    const split = doc.splitTextToSize(text, 180);
-    doc.text(split, 14, y);
-    y += split.length * 6 + 2;
-  };
-
-  addLine("Worker", record.worker_name);
-  addLine("Worker Signature", record.worker_signature);
-  addLine("Supervisor", record.supervisor_name);
-  addLine("Supervisor Signature", record.supervisor_signature);
-  addLine("Job Site", record.job_site);
-  addLine("Task Description", record.task_description);
-  addLine("Critical Risk", record.critical_risk);
-  addLine("Shield Controls", record.shield_control);
-  addLine("Notes", record.notes);
-  addLine("Status", record.status);
-  addLine("Reviewed By", record.reviewed_by);
-  addLine("Supervisor Comments", record.supervisor_review_comments);
-  addLine("Corrective Actions", record.corrective_actions);
-  addLine("Rectified", record.rectified ? "Yes" : "No");
-  addLine("Stop Work", record.stop_work ? "Yes" : "No");
-  addLine("Photos", record.photos);
-  addLine("Submitted At", record.submitted_at);
-  addLine("Reviewed At", record.reviewed_at);
-
-  doc.save(`baac-shield-record-${record.id}.pdf`);
-}
-  function statusColor(status) {
-    if (status === "Approved" || status === "Closed") return "#166534";
-    if (status === "Stop Work") return "#b91c1c";
-    if (status === "Needs Correction") return "#b45309";
-    return "#1d4ed8";
-  }
 
   return (
     <main
@@ -450,86 +526,17 @@ export default function Home() {
           </div>
 
           <div>
-  <label>Worker Signature</label>
-  <div
-    style={{
-      border: "2px solid #cbd5e1",
-      borderRadius: 10,
-      marginTop: 6
-    }}
-  >
-    <SignatureCanvas
-      penColor="black"
-      canvasProps={{
-        width: 350,
-        height: 120,
-        className: "sigCanvas"
-      }}
-      ref={workerSigRef}
-    />
-  </div>
-
-  <button
-    type="button"
-    onClick={() => workerSigRef.current.clear()}
-    style={{
-      marginTop: 6,
-      padding: "6px 10px",
-      borderRadius: 6,
-      border: "1px solid #cbd5e1",
-      background: "white",
-      cursor: "pointer"
-    }}
-  >
-    Clear Signature
-  </button>
-</div>
+            <label>Worker Signature</label>
+            <SignatureBox sigRef={workerSigRef} onSave={setWorkerSignature} />
+          </div>
 
           <div>
-  <label>Supervisor Signature</label>
-  <div
-    style={{
-      border: "2px solid #cbd5e1",
-      borderRadius: 10,
-      marginTop: 6
-    }}
-  >
-    <SignatureCanvas
-      penColor="black"
-      canvasProps={{
-        width: 350,
-        height: 120,
-        className: "sigCanvas"
-      }}
-      ref={supervisorSigRef}
-    />
-  </div>
-
-  <button
-    type="button"
-    onClick={() => supervisorSigRef.current.clear()}
-    style={{
-      marginTop: 6,
-      padding: "6px 10px",
-      borderRadius: 6,
-      border: "1px solid #cbd5e1",
-      background: "white",
-      cursor: "pointer"
-    }}
-  >
-    Clear Signature
-  </button>
-</div>
-               
-
-          <div>
-            <label>Supervisor Signature</label>
+            <label>Supervisor Name</label>
             <br />
             <input
-              value={supervisorSignature}
-              onChange={(e) => setSupervisorSignature(e.target.value)}
+              value={supervisor}
+              onChange={(e) => setSupervisor(e.target.value)}
               type="text"
-              placeholder="Type full name as signature"
               style={{
                 width: "100%",
                 padding: 12,
@@ -537,6 +544,14 @@ export default function Home() {
                 borderRadius: 10,
                 border: "1px solid #cbd5e1",
               }}
+            />
+          </div>
+
+          <div>
+            <label>Supervisor Signature</label>
+            <SignatureBox
+              sigRef={supervisorSigRef}
+              onSave={setSupervisorSignature}
             />
           </div>
 
@@ -858,9 +873,7 @@ export default function Home() {
                   <br />
                   <input
                     value={reviewSupervisorSignature}
-                    onChange={(e) =>
-                      setReviewSupervisorSignature(e.target.value)
-                    }
+                    onChange={(e) => setReviewSupervisorSignature(e.target.value)}
                     type="text"
                     placeholder="Type full name as signature"
                     style={{
@@ -993,54 +1006,24 @@ export default function Home() {
                       }}
                     >
                       <div>
-                        <div>
-                          <strong>Worker:</strong> {record.worker_name}
-                        </div>
-                        <div>
-                          <strong>Worker Signature:</strong>{" "}
-                          {record.worker_signature || "—"}
-                        </div>
-                        <div>
-                          <strong>Supervisor:</strong> {record.supervisor_name}
-                        </div>
-                        <div>
-                          <strong>Supervisor Signature:</strong>{" "}
-                          {record.supervisor_signature || "—"}
-                        </div>
-                        <div>
-                          <strong>Site:</strong> {record.job_site}
-                        </div>
-                        <div>
-                          <strong>Task:</strong> {record.task_description}
-                        </div>
-                        <div>
-                          <strong>Risk:</strong> {record.critical_risk}
-                        </div>
-                        <div>
-                          <strong>Shield(s):</strong> {record.shield_control}
-                        </div>
-                        <div>
-                          <strong>Notes:</strong> {record.notes}
-                        </div>
-                        <div>
-                          <strong>Submitted:</strong> {record.submitted_at}
-                        </div>
+                        <div><strong>Worker:</strong> {record.worker_name}</div>
+                        <div><strong>Worker Signature:</strong> {record.worker_signature ? "Captured" : "—"}</div>
+                        <div><strong>Supervisor:</strong> {record.supervisor_name}</div>
+                        <div><strong>Supervisor Signature:</strong> {record.supervisor_signature ? "Captured" : "—"}</div>
+                        <div><strong>Site:</strong> {record.job_site}</div>
+                        <div><strong>Task:</strong> {record.task_description}</div>
+                        <div><strong>Risk:</strong> {record.critical_risk}</div>
+                        <div><strong>Shield(s):</strong> {record.shield_control}</div>
+                        <div><strong>Notes:</strong> {record.notes}</div>
+                        <div><strong>Submitted:</strong> {record.submitted_at}</div>
                         {record.reviewed_by && (
-                          <div>
-                            <strong>Reviewed By:</strong> {record.reviewed_by}
-                          </div>
+                          <div><strong>Reviewed By:</strong> {record.reviewed_by}</div>
                         )}
                         {record.supervisor_review_comments && (
-                          <div>
-                            <strong>Comments:</strong>{" "}
-                            {record.supervisor_review_comments}
-                          </div>
+                          <div><strong>Comments:</strong> {record.supervisor_review_comments}</div>
                         )}
                         {record.corrective_actions && (
-                          <div>
-                            <strong>Corrective Actions:</strong>{" "}
-                            {record.corrective_actions}
-                          </div>
+                          <div><strong>Corrective Actions:</strong> {record.corrective_actions}</div>
                         )}
                       </div>
 
@@ -1071,24 +1054,24 @@ export default function Home() {
                           Review
                         </button>
 
-                         <button
-  onClick={() => downloadPdf(record)}
-  style={{
-    display: "block",
-    width: "100%",
-    marginBottom: 8,
-    padding: "8px 12px",
-    borderRadius: 8,
-    border: "1px solid #cbd5e1",
-    background: "#0f2f66",
-    color: "white",
-    cursor: "pointer",
-    fontWeight: "bold"
-  }}
->
-  Download PDF
-</button>
-    
+                        <button
+                          onClick={() => downloadPdf(record)}
+                          style={{
+                            display: "block",
+                            width: "100%",
+                            marginBottom: 8,
+                            padding: "8px 12px",
+                            borderRadius: 8,
+                            border: "1px solid #cbd5e1",
+                            background: "#0f2f66",
+                            color: "white",
+                            cursor: "pointer",
+                            fontWeight: "bold",
+                          }}
+                        >
+                          Download PDF
+                        </button>
+
                         <button
                           onClick={() => deleteRecord(record.id)}
                           style={{
@@ -1144,9 +1127,7 @@ export default function Home() {
             padding: 16,
             background: submitted ? "#ecfdf5" : "#fff7ed",
             borderRadius: 12,
-            border: submitted
-              ? "1px solid #a7f3d0"
-              : "1px solid #fdba74",
+            border: submitted ? "1px solid #a7f3d0" : "1px solid #fdba74",
             whiteSpace: "pre-wrap",
             wordBreak: "break-word",
           }}
