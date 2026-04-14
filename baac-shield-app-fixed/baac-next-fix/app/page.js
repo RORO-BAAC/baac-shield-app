@@ -78,7 +78,11 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [activeTab, setActiveTab] = useState("worker");
-
+  
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [session, setSession] = useState(null);
+  
   const [reviewingId, setReviewingId] = useState(null);
   const [reviewStatus, setReviewStatus] = useState("Pending Review");
   const [reviewSupervisor, setReviewSupervisor] = useState("");
