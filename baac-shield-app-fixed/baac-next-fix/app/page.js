@@ -474,7 +474,7 @@ export default function Home() {
   }
 
   function statusColor(status) {
-    if (status === "Approved" || status === "Closed") return "#166534";
+    if (status === "Approved" return "#166534";
     if (status === "Stop Work") return "#b91c1c";
     if (status === "Needs Correction") return "#b45309";
     return "#1d4ed8";
@@ -487,7 +487,7 @@ export default function Home() {
     (r) => r.status === "Needs Correction" || r.status === "Stop Work"
   );
   const closedRecords = records.filter(
-    (r) => r.status === "Approved" || r.status === "Closed"
+    (r) => r.status === "Approved"
   );
 
   return (
