@@ -95,6 +95,29 @@ export default function Home() {
   const workerSigRef = useRef(null);
   const supervisorSigRef = useRef(null);
 
+  async function signIn() {
+  setMessage("");
+
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email,
+    password,
+  });
+
+  if (error) {
+    setMessage(`Login failed: ${error.message}`);
+    return;
+  }
+
+  setSession(data.session);
+  setMessage("Logged in successfully.");
+}
+
+async function signOut() {
+  await supabase.auth.signOut();
+  setSession(null);
+  setMessage("Logged out.");
+}
+  
   const shieldOptions = useMemo(() => {
     const map = {
       "Breaking Containment": [
