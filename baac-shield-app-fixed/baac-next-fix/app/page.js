@@ -511,7 +511,25 @@ export default function Home() {
           boxShadow: "0 4px 14px rgba(0,0,0,0.15)",
         }}
       >
-        <h1 style={{ margin: 0, fontSize: 34 }}>BAAC SHIELD</h1>
+        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+  <img
+    src="/baac-logo.png"
+    alt="BAAC Logo"
+    style={{
+      height: 50,
+      width: "auto",
+      borderRadius: 6,
+      background: "white",
+      padding: 4,
+    }}
+  />
+  <div>
+    <h1 style={{ margin: 0, fontSize: 26 }}>BAAC SHIELD</h1>
+    <div style={{ fontSize: 12, opacity: 0.7 }}>
+      Identify the risk. Verify the shield.
+    </div>
+  </div>
+</div>
         <p style={{ marginTop: 8, marginBottom: 0, opacity: 0.95 }}>
           Worker submission and supervisor review workflow
         </p>
