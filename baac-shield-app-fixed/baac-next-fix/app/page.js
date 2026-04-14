@@ -197,6 +197,38 @@ export default function Home() {
     );
   }
 
+  async function uploadPhotosToSupabase(files) {
+  const uploadedUrls = [];
+
+  for (const file of files) {
+    const fileName = `${Date.now()}-${file.name}`;
+
+    const uploadRes = await fetch(
+      `${SUPABASE_URL}/storage/v1/object/baac-photos/${fileName}`,
+      {
+        method: "POST",
+        headers: {
+          apikey: SUPABASE_KEY,
+          Authorization: `Bearer ${SUPABASE_KEY}`,
+          "Content-Type": file.type || "application/octet-stream",
+          "x-upsert": "true",
+        },
+        body: file,
+      }
+    );
+
+    if (!uploadRes.ok) {
+      const text = await uploadRes.text();
+      throw new Error(text || "Photo upload failed");
+    }
+
+    const publicUrl = `${SUPABASE_URL}/storage/v1/object/public/baac-photos/${fileName}`;
+    uploadedUrls.push(publicUrl);
+  }
+
+  return uploadedUrls;
+}
+  
   function clearForm() {
     setWorker("");
     setWorkerSignature("");
