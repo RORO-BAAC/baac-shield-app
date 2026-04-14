@@ -193,7 +193,7 @@ export default function Page() {
         <div className="header-top">
           <div>
             <div className="brand">
-              <img src="/baac-shield.png" alt="BAAC SHIELD" />
+              <img src="/baac-logo.png" alt="BAAC SHIELD" />
               <div>
                 <div style={{ fontSize: 12, letterSpacing: 2, opacity: .75 }}>BAAC</div>
                 <div style={{ fontSize: 22, fontWeight: 700 }}>SHIELD Critical Risk Management</div>
