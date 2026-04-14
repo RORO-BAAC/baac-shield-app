@@ -474,11 +474,11 @@ export default function Home() {
   }
 
   function statusColor(status) {
-    if (status === "Approved" return "#166534";
-    if (status === "Stop Work") return "#b91c1c";
-    if (status === "Needs Correction") return "#b45309";
-    return "#1d4ed8";
-  }
+  if (status === "Approved") return "#166534";
+  if (status === "Stop Work") return "#b91c1c";
+  if (status === "Needs Correction") return "#b45309";
+  return "#1d4ed8";
+}
 
   const pendingRecords = records.filter(
     (r) => (r.status || "Pending Review") === "Pending Review"
