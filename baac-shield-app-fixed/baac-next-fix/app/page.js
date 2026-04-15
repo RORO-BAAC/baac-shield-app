@@ -1341,6 +1341,87 @@ function unlockProtectedTab() {
         </div>
       )}
 
+{showPinPrompt && (
+  <div
+    style={{
+      position: "fixed",
+      inset: 0,
+      background: "rgba(15, 23, 42, 0.55)",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      zIndex: 1000,
+      padding: 20,
+    }}
+  >
+    <div
+      style={{
+        width: "100%",
+        maxWidth: 420,
+        background: "white",
+        borderRadius: 16,
+        padding: 20,
+        boxShadow: "0 8px 30px rgba(0,0,0,0.2)",
+      }}
+    >
+      <h3 style={{ marginTop: 0, marginBottom: 8 }}>Supervisor Access</h3>
+      <p style={{ marginTop: 0, color: "#475569" }}>
+        Enter supervisor PIN to continue.
+      </p>
+
+      <input
+        value={pinInput}
+        onChange={(e) => setPinInput(e.target.value)}
+        type="password"
+        placeholder="Enter PIN"
+        style={{
+          width: "100%",
+          padding: 12,
+          borderRadius: 10,
+          border: "1px solid #cbd5e1",
+          marginBottom: 12,
+        }}
+      />
+
+      <div style={{ display: "flex", gap: 10 }}>
+        <button
+          type="button"
+          onClick={unlockProtectedTab}
+          style={{
+            padding: "10px 14px",
+            borderRadius: 10,
+            border: "none",
+            background: "#123d82",
+            color: "white",
+            fontWeight: "bold",
+            cursor: "pointer",
+          }}
+        >
+          Unlock
+        </button>
+
+        <button
+          type="button"
+          onClick={() => {
+            setShowPinPrompt(false);
+            setPinInput("");
+            setPendingTab("");
+          }}
+          style={{
+            padding: "10px 14px",
+            borderRadius: 10,
+            border: "1px solid #cbd5e1",
+            background: "white",
+            cursor: "pointer",
+          }}
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+)}
+
       {message && (
         <div
           style={{
