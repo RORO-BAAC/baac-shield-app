@@ -577,7 +577,7 @@ function unlockProtectedTab() {
 
         <button
           type="button"
-          onClick={() => setActiveTab("supervisor")}
+          onClick={() => requestProtectedTab("supervisor")}
           style={{
             padding: "10px 14px",
             borderRadius: 10,
@@ -593,7 +593,7 @@ function unlockProtectedTab() {
 
         <button
           type="button"
-          onClick={() => setActiveTab("dashboard")}
+          onClick={() => requestProtectedTab("dashboard")}
           style={{
             padding: "10px 14px",
             borderRadius: 10,
