@@ -77,6 +77,11 @@ export default function Home() {
   const [message, setMessage] = useState("");
   const [activeTab, setActiveTab] = useState("worker");
 
+  const [supervisorPin, setSupervisorPin] = useState("1234");
+  const [pinInput, setPinInput] = useState("");
+  const [showPinPrompt, setShowPinPrompt] = useState(false);
+  const [pendingTab, setPendingTab] = useState("");
+
   const [reviewingId, setReviewingId] = useState(null);
   const [reviewStatus, setReviewStatus] = useState("Pending Review");
   const [reviewSupervisor, setReviewSupervisor] = useState("");
