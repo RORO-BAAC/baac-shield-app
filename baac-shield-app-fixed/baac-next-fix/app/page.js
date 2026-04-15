@@ -313,6 +313,26 @@ function unlockProtectedTab() {
         throw new Error(text || "Insert failed");
       }
 
+            await fetch("/api/send-alert", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          to: "YOUR_EMAIL_HERE",
+          subject: stopWork
+            ? "BAAC SHIELD - STOP WORK ALERT"
+            : "BAAC SHIELD - New Record Submitted",
+          worker,
+          supervisor,
+          jobSite,
+          task,
+          risk,
+          notes,
+          stopWork,
+        }),
+      });
+      
       clearForm();
       setSubmitted(true);
       setMessage("Record submitted to database.");
