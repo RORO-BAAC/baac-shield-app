@@ -94,6 +94,23 @@ export default function Home() {
   const workerSigRef = useRef(null);
   const supervisorSigRef = useRef(null);
 
+  function requestProtectedTab(tabName) {
+  setPendingTab(tabName);
+  setPinInput("");
+  setShowPinPrompt(true);
+}
+
+function unlockProtectedTab() {
+  if (pinInput === supervisorPin) {
+    setActiveTab(pendingTab);
+    setShowPinPrompt(false);
+    setPinInput("");
+    setMessage("");
+  } else {
+    setMessage("Incorrect supervisor PIN.");
+  }
+}
+
   const shieldOptions = useMemo(() => {
     const map = {
       "Breaking Containment": [
