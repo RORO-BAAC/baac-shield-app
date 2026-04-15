@@ -4,6 +4,9 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import jsPDF from "jspdf";
 import SignatureCanvas from "react-signature-canvas";
 
+const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const SUPABASE_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
 function SignatureBox({ sigRef, onSave }) {
   return (
     <div>
@@ -57,14 +60,10 @@ function SignatureBox({ sigRef, onSave }) {
   );
 }
 
-const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const SUPABASE_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-
 export default function Home() {
   const [worker, setWorker] = useState("");
   const [workerSignature, setWorkerSignature] = useState("");
   const [supervisor, setSupervisor] = useState("");
-  const [supervisorSignature, setSupervisorSignature] = useState("");
   const [jobSite, setJobSite] = useState("");
   const [task, setTask] = useState("");
   const [risk, setRisk] = useState("");
@@ -186,7 +185,7 @@ export default function Home() {
 
   function handleFiles(e) {
     const files = Array.from(e.target.files || []);
-    setPhotos(files.map((f) => f.name));
+    setPhotos(files);
   }
 
   function toggleShield(shield) {
@@ -197,11 +196,46 @@ export default function Home() {
     );
   }
 
+  async function uploadPhotosToSupabase(files) {
+    if (!files || files.length === 0) return [];
+
+    const uploadedUrls = [];
+
+    for (const file of files) {
+      const safeName = file.name.replace(/\s+/g, "-");
+      const fileName = `${Date.now()}-${safeName}`;
+
+      const uploadRes = await fetch(
+        `${SUPABASE_URL}/storage/v1/object/baac-photos/${fileName}`,
+        {
+          method: "POST",
+          headers: {
+            apikey: SUPABASE_KEY,
+            Authorization: `Bearer ${SUPABASE_KEY}`,
+            "Content-Type": file.type || "application/octet-stream",
+            "x-upsert": "true",
+          },
+          body: file,
+        }
+      );
+
+      if (!uploadRes.ok) {
+        const text = await uploadRes.text();
+        throw new Error(text || "Photo upload failed");
+      }
+
+      uploadedUrls.push(
+        `${SUPABASE_URL}/storage/v1/object/public/baac-photos/${fileName}`
+      );
+    }
+
+    return uploadedUrls;
+  }
+
   function clearForm() {
     setWorker("");
     setWorkerSignature("");
     setSupervisor("");
-    setSupervisorSignature("");
     setJobSite("");
     setTask("");
     setRisk("");
@@ -210,7 +244,6 @@ export default function Home() {
     setStopWork(false);
     setPhotos([]);
     workerSigRef.current?.clear();
-    supervisorSigRef.current?.clear();
   }
 
   async function handleSubmit(e) {
@@ -219,27 +252,29 @@ export default function Home() {
     setMessage("");
     setSubmitted(false);
 
-    const payload = {
-      worker_name: worker,
-      worker_signature: workerSignature,
-      supervisor_name: supervisor,
-      supervisor_signature: supervisorSignature,
-      job_site: jobSite,
-      task_description: task,
-      critical_risk: risk,
-      shield_control: selectedShields.join(", "),
-      notes,
-      stop_work: stopWork,
-      photos: photos.join(", "),
-      status: "Pending Review",
-      supervisor_review_comments: "",
-      corrective_actions: "",
-      rectified: false,
-      reviewed_by: "",
-      reviewed_at: null,
-    };
-
     try {
+      const uploadedPhotoUrls = await uploadPhotosToSupabase(photos);
+
+      const payload = {
+        worker_name: worker,
+        worker_signature: workerSignature,
+        supervisor_name: supervisor,
+        supervisor_signature: "",
+        job_site: jobSite,
+        task_description: task,
+        critical_risk: risk,
+        shield_control: selectedShields.join(", "),
+        notes,
+        stop_work: stopWork,
+        photos: uploadedPhotoUrls.join(", "),
+        status: "Pending Review",
+        supervisor_review_comments: "",
+        corrective_actions: "",
+        rectified: false,
+        reviewed_by: "",
+        reviewed_at: null,
+      };
+
       const res = await fetch(`${SUPABASE_URL}/rest/v1/records`, {
         method: "POST",
         headers: {
@@ -394,10 +429,7 @@ export default function Home() {
     addLine("Submitted At", record.submitted_at);
     addLine("Reviewed At", record.reviewed_at);
 
-    if (
-      record.worker_signature &&
-      String(record.worker_signature).startsWith("data:image")
-    ) {
+    if (record.worker_signature && String(record.worker_signature).startsWith("data:image")) {
       if (y > 220) {
         doc.addPage();
         y = 20;
@@ -408,10 +440,7 @@ export default function Home() {
       y += 38;
     }
 
-    if (
-      record.supervisor_signature &&
-      String(record.supervisor_signature).startsWith("data:image")
-    ) {
+    if (record.supervisor_signature && String(record.supervisor_signature).startsWith("data:image")) {
       if (y > 220) {
         doc.addPage();
         y = 20;
@@ -420,6 +449,27 @@ export default function Home() {
       y += 4;
       doc.addImage(record.supervisor_signature, "PNG", 14, y, 80, 30);
       y += 38;
+    }
+
+    const photoUrls = record.photos
+      ? String(record.photos)
+          .split(",")
+          .map((p) => p.trim())
+          .filter(Boolean)
+      : [];
+
+    if (photoUrls.length > 0) {
+      if (y > 240) {
+        doc.addPage();
+        y = 20;
+      }
+      doc.text("Photo Links:", 14, y);
+      y += 6;
+      photoUrls.forEach((url) => {
+        const split = doc.splitTextToSize(url, 180);
+        doc.text(split, 14, y);
+        y += split.length * 6 + 2;
+      });
     }
 
     doc.save(`baac-shield-record-${record.id}.pdf`);
@@ -590,14 +640,6 @@ export default function Home() {
           </div>
 
           <div>
-            <label>Supervisor Signature</label>
-            <SignatureBox
-              sigRef={supervisorSigRef}
-              onSave={setSupervisorSignature}
-            />
-          </div>
-
-          <div>
             <label>Job Site</label>
             <br />
             <input
@@ -734,6 +776,7 @@ export default function Home() {
               ref={fileRef}
               type="file"
               multiple
+              accept="image/*"
               style={{ display: "none" }}
               onChange={handleFiles}
             />
@@ -757,8 +800,8 @@ export default function Home() {
               <div style={{ marginTop: 12 }}>
                 <strong>Selected files:</strong>
                 <ul style={{ marginTop: 8, paddingLeft: 18 }}>
-                  {photos.map((name) => (
-                    <li key={name}>{name}</li>
+                  {photos.map((file) => (
+                    <li key={file.name}>{file.name}</li>
                   ))}
                 </ul>
               </div>
@@ -1016,133 +1059,179 @@ export default function Home() {
               <p>No records yet.</p>
             ) : (
               <div style={{ display: "grid", gap: 12 }}>
-                {records.map((record) => (
-                  <div
-                    key={record.id}
-                    style={{
-                      border: "1px solid #dbe4ee",
-                      borderRadius: 12,
-                      padding: 14,
-                      background: "#f8fafc",
-                    }}
-                  >
+                {records.map((record) => {
+                  const photoUrls = record.photos
+                    ? String(record.photos)
+                        .split(",")
+                        .map((p) => p.trim())
+                        .filter(Boolean)
+                    : [];
+
+                  return (
                     <div
+                      key={record.id}
                       style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        gap: 12,
-                        flexWrap: "wrap",
+                        border: "1px solid #dbe4ee",
+                        borderRadius: 12,
+                        padding: 14,
+                        background: "#f8fafc",
                       }}
                     >
-                      <div style={{ flex: 1, minWidth: 260 }}>
-                        <div><strong>Worker:</strong> {record.worker_name}</div>
-                        <div><strong>Worker Signature:</strong> {record.worker_signature ? "Captured" : "—"}</div>
-                        <div><strong>Supervisor:</strong> {record.supervisor_name}</div>
-                        <div><strong>Supervisor Signature:</strong> {record.supervisor_signature ? "Captured" : "—"}</div>
-                        <div><strong>Site:</strong> {record.job_site}</div>
-                        <div><strong>Task:</strong> {record.task_description}</div>
-                        <div><strong>Risk:</strong> {record.critical_risk}</div>
-                        <div><strong>Shield(s):</strong> {record.shield_control}</div>
-                        <div><strong>Notes:</strong> {record.notes}</div>
-                        <div><strong>Submitted:</strong> {record.submitted_at}</div>
-                        {record.reviewed_by && (
-                          <div><strong>Reviewed By:</strong> {record.reviewed_by}</div>
-                        )}
-                        {record.supervisor_review_comments && (
-                          <div><strong>Comments:</strong> {record.supervisor_review_comments}</div>
-                        )}
-                        {record.corrective_actions && (
-                          <div><strong>Corrective Actions:</strong> {record.corrective_actions}</div>
-                        )}
-                      </div>
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                          gap: 12,
+                          flexWrap: "wrap",
+                        }}
+                      >
+                        <div style={{ flex: 1, minWidth: 260 }}>
+                          <div><strong>Worker:</strong> {record.worker_name}</div>
+                          <div><strong>Worker Signature:</strong> {record.worker_signature ? "Captured" : "—"}</div>
+                          <div><strong>Supervisor:</strong> {record.supervisor_name}</div>
+                          <div><strong>Supervisor Signature:</strong> {record.supervisor_signature ? "Captured" : "—"}</div>
+                          <div><strong>Site:</strong> {record.job_site}</div>
+                          <div><strong>Task:</strong> {record.task_description}</div>
+                          <div><strong>Risk:</strong> {record.critical_risk}</div>
+                          <div><strong>Shield(s):</strong> {record.shield_control}</div>
+                          <div><strong>Notes:</strong> {record.notes}</div>
+                          <div><strong>Submitted:</strong> {record.submitted_at}</div>
+                          {record.reviewed_by && (
+                            <div><strong>Reviewed By:</strong> {record.reviewed_by}</div>
+                          )}
+                          {record.supervisor_review_comments && (
+                            <div><strong>Comments:</strong> {record.supervisor_review_comments}</div>
+                          )}
+                          {record.corrective_actions && (
+                            <div><strong>Corrective Actions:</strong> {record.corrective_actions}</div>
+                          )}
 
-                      <div style={{ minWidth: 150 }}>
-                        <div
-                          style={{
-                            color: statusColor(record.status || "Pending Review"),
-                            fontWeight: "bold",
-                            marginBottom: 10,
-                          }}
-                        >
-                          {record.status || "Pending Review"}
+                          {photoUrls.length > 0 && (
+                            <div style={{ marginTop: 12 }}>
+                              <strong>Photos:</strong>
+                              <div
+                                style={{
+                                  display: "grid",
+                                  gridTemplateColumns: "repeat(auto-fit, minmax(120px, 1fr))",
+                                  gap: 10,
+                                  marginTop: 8,
+                                }}
+                              >
+                                {photoUrls.map((url) => (
+                                  <a
+                                    key={url}
+                                    href={url}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    style={{ textDecoration: "none" }}
+                                  >
+                                    <img
+                                      src={url}
+                                      alt="Uploaded record"
+                                      style={{
+                                        width: "100%",
+                                        height: 110,
+                                        objectFit: "cover",
+                                        borderRadius: 8,
+                                        border: "1px solid #cbd5e1",
+                                        background: "white",
+                                      }}
+                                    />
+                                  </a>
+                                ))}
+                              </div>
+                            </div>
+                          )}
                         </div>
 
-                        <button
-                          onClick={() => startReview(record)}
-                          style={{
-                            display: "block",
-                            width: "100%",
-                            marginBottom: 8,
-                            padding: "8px 12px",
-                            borderRadius: 8,
-                            border: "1px solid #cbd5e1",
-                            background: "white",
-                            cursor: "pointer",
-                          }}
-                        >
-                          Review
-                        </button>
+                        <div style={{ minWidth: 150 }}>
+                          <div
+                            style={{
+                              color: statusColor(record.status || "Pending Review"),
+                              fontWeight: "bold",
+                              marginBottom: 10,
+                            }}
+                          >
+                            {record.status || "Pending Review"}
+                          </div>
 
-                        <button
-                          onClick={() => downloadPdf(record)}
+                          <button
+                            onClick={() => startReview(record)}
+                            style={{
+                              display: "block",
+                              width: "100%",
+                              marginBottom: 8,
+                              padding: "8px 12px",
+                              borderRadius: 8,
+                              border: "1px solid #cbd5e1",
+                              background: "white",
+                              cursor: "pointer",
+                            }}
+                          >
+                            Review
+                          </button>
+
+                          <button
+                            onClick={() => downloadPdf(record)}
+                            style={{
+                              display: "block",
+                              width: "100%",
+                              marginBottom: 8,
+                              padding: "8px 12px",
+                              borderRadius: 8,
+                              border: "1px solid #cbd5e1",
+                              background: "#0f2f66",
+                              color: "white",
+                              cursor: "pointer",
+                              fontWeight: "bold",
+                            }}
+                          >
+                            Download PDF
+                          </button>
+
+                          <button
+                            onClick={() => deleteRecord(record.id)}
+                            style={{
+                              display: "block",
+                              width: "100%",
+                              padding: "8px 12px",
+                              borderRadius: 8,
+                              border: "1px solid #cbd5e1",
+                              background: "white",
+                              cursor: "pointer",
+                            }}
+                          >
+                            Delete
+                          </button>
+                        </div>
+                      </div>
+
+                      {record.stop_work && (
+                        <div
                           style={{
-                            display: "block",
-                            width: "100%",
-                            marginBottom: 8,
-                            padding: "8px 12px",
-                            borderRadius: 8,
-                            border: "1px solid #cbd5e1",
-                            background: "#0f2f66",
-                            color: "white",
-                            cursor: "pointer",
+                            color: "#b91c1c",
                             fontWeight: "bold",
+                            marginTop: 10,
                           }}
                         >
-                          Download PDF
-                        </button>
+                          Stop Work Required
+                        </div>
+                      )}
 
-                        <button
-                          onClick={() => deleteRecord(record.id)}
+                      {record.rectified && (
+                        <div
                           style={{
-                            display: "block",
-                            width: "100%",
-                            padding: "8px 12px",
-                            borderRadius: 8,
-                            border: "1px solid #cbd5e1",
-                            background: "white",
-                            cursor: "pointer",
+                            color: "#166534",
+                            fontWeight: "bold",
+                            marginTop: 10,
                           }}
                         >
-                          Delete
-                        </button>
-                      </div>
+                          Rectified
+                        </div>
+                      )}
                     </div>
-
-                    {record.stop_work && (
-                      <div
-                        style={{
-                          color: "#b91c1c",
-                          fontWeight: "bold",
-                          marginTop: 10,
-                        }}
-                      >
-                        Stop Work Required
-                      </div>
-                    )}
-
-                    {record.rectified && (
-                      <div
-                        style={{
-                          color: "#166534",
-                          fontWeight: "bold",
-                          marginTop: 10,
-                        }}
-                      >
-                        Rectified
-                      </div>
-                    )}
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             )}
           </div>
