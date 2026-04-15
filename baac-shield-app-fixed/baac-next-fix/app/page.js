@@ -319,7 +319,7 @@ function unlockProtectedTab() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          to: "YOUR_EMAIL_HERE",
+          to: "safety@baacconstruction.com",
           subject: stopWork
             ? "BAAC SHIELD - STOP WORK ALERT"
             : "BAAC SHIELD - New Record Submitted",
