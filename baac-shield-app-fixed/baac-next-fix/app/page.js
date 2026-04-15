@@ -1230,21 +1230,7 @@ function unlockProtectedTab() {
                           >
                             Download PDF
                           </button>
-
-                          <button
-                            onClick={() => deleteRecord(record.id)}
-                            style={{
-                              display: "block",
-                              width: "100%",
-                              padding: "8px 12px",
-                              borderRadius: 8,
-                              border: "1px solid #cbd5e1",
-                              background: "white",
-                              cursor: "pointer",
-                            }}
-                          >
-                            Delete
-                          </button>
+                        
                         </div>
                       </div>
 
