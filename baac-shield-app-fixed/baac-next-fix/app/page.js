@@ -1186,7 +1186,7 @@ function unlockProtectedTab() {
 
     return matchesSearch && matchesStatus && matchesRisk && matchesStopWork;
   })
-  .map((record) => (
+  .map((record) => {
                   const photoUrls = record.photos
                     ? String(record.photos)
                         .split(",")
@@ -1195,8 +1195,7 @@ function unlockProtectedTab() {
                     : [];
 
                   return (
-                    <div
-                      key={record.id}
+                    <div key={record.id}>
                       style={{
                         border: "1px solid #dbe4ee",
                         borderRadius: 12,
