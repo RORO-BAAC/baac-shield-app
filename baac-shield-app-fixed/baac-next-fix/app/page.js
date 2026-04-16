@@ -1219,6 +1219,29 @@ export default function Home() {
                   />{" "}
                   Stop Work Only
                 </label>
+
+<button
+  type="button"
+  onClick={() => {
+    setSearchTerm("");
+    setStatusFilter("All");
+    setRiskFilter("All");
+    setDateFilter("All");
+    setSiteFilter("All");
+    setStopWorkOnly(false);
+  }}
+  style={{
+    padding: "6px 10px",
+    borderRadius: 6,
+    border: "1px solid #cbd5e1",
+    background: "#f1f5f9",
+    cursor: "pointer",
+    fontWeight: "bold",
+  }}
+>
+  Clear Filters
+</button>
+                    
               </div>
             </div>
 
