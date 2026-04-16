@@ -77,6 +77,13 @@ export default function Home() {
   const [message, setMessage] = useState("");
   const [activeTab, setActiveTab] = useState("worker");
 
+  const [searchTerm, setSearchTerm] = useState("");
+  const [statusFilter, setStatusFilter] = useState("All");
+  const [riskFilter, setRiskFilter] = useState("All");
+  const [stopWorkOnly, setStopWorkOnly] = useState(false);
+
+  const [supervisorPin, setSupervisorPin] = useState("1234");
+
   const [supervisorPin, setSupervisorPin] = useState("1234");
   const [pinInput, setPinInput] = useState("");
   const [showPinPrompt, setShowPinPrompt] = useState(false);
