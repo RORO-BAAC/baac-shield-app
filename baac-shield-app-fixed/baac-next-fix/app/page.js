@@ -1195,13 +1195,14 @@ function unlockProtectedTab() {
                     : [];
     
                   return (
-                    <div key={record.id}>
-                      style={{
-                        border: "1px solid #dbe4ee",
-                        borderRadius: 12,
-                        padding: 14,
-                        background: "#f8fafc",
-                      }}
+                    <div
+                    key={record.id}
+                     style={{
+                     border: "1px solid #dbe4ee",
+                     borderRadius: 12,
+                    padding: 14,
+                    background: "#f8fafc",
+                    }}
                     >
                       <div
                         style={{
