@@ -808,12 +808,6 @@ export default function Home() {
             <label>Supervisor Name</label>
             <br />
             <input
-              value={supervisor}   
-              
-          <div>
-            <label>Supervisor Name</label>
-            <br />
-            <input
               value={supervisor}
               onChange={(e) => setSupervisor(e.target.value)}
               type="text"
