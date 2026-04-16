@@ -1160,7 +1160,29 @@ export default function Home() {
                   <option value="Working at Height">Working at Height</option>
                   <option value="Work Authorization">Work Authorization</option>
                 </select>
+                  
+<select
+  value={dateFilter}
+  onChange={(e) => setDateFilter(e.target.value)}
+>
+  <option value="All">All Dates</option>
+  <option value="Today">Today</option>
+  <option value="Last7">Last 7 Days</option>
+  <option value="Last30">Last 30 Days</option>
+</select>
 
+<select
+  value={siteFilter}
+  onChange={(e) => setSiteFilter(e.target.value)}
+>
+  <option value="All">All Sites</option>
+  {[...new Set(records.map((r) => r.job_site).filter(Boolean))].map((site) => (
+    <option key={site} value={site}>
+      {site}
+    </option>
+  ))}
+</select>
+                    
                 <label>
                   <input
                     type="checkbox"
