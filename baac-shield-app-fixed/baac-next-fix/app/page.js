@@ -1100,6 +1100,67 @@ function unlockProtectedTab() {
               boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
             }}
           >
+<div style={{ marginBottom: 16 }}>
+  <input
+    type="text"
+    placeholder="Search worker, site, task..."
+    value={searchTerm}
+    onChange={(e) => setSearchTerm(e.target.value)}
+    style={{
+      width: "100%",
+      padding: 8,
+      marginBottom: 8,
+      borderRadius: 6,
+      border: "1px solid #ccc",
+    }}
+  />
+
+  <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+    <select
+      value={statusFilter}
+      onChange={(e) => setStatusFilter(e.target.value)}
+    >
+      <option value="All">All Status</option>
+      <option value="Pending Review">Pending Review</option>
+      <option value="Approved">Approved</option>
+      <option value="Needs Correction">Needs Correction</option>
+      <option value="Stop Work">Stop Work</option>
+    </select>
+
+    <select
+      value={riskFilter}
+      onChange={(e) => setRiskFilter(e.target.value)}
+    >
+      <option value="All">All Risks</option>
+      <option value="Breaking Containment">Breaking Containment</option>
+      <option value="Confined Space Entry">Confined Space Entry</option>
+      <option value="Energy Isolation">Energy Isolation</option>
+      <option value="Hot Work">Hot Work</option>
+      <option value="Safe Mechanical Lifting">Safe Mechanical Lifting</option>
+      <option value="Working Around Mobile Equipment">
+        Working Around Mobile Equipment
+      </option>
+      <option value="Bypassing Safety Controls">
+        Bypassing Safety Controls
+      </option>
+      <option value="Driving">Driving</option>
+      <option value="Excavation">Excavation</option>
+      <option value="Line of Fire">Line of Fire</option>
+      <option value="Working at Height">Working at Height</option>
+      <option value="Work Authorization">Work Authorization</option>
+    </select>
+
+    <label>
+      <input
+        type="checkbox"
+        checked={stopWorkOnly}
+        onChange={(e) => setStopWorkOnly(e.target.checked)}
+      />
+      Stop Work Only
+    </label>
+  </div>
+</div>
+            
             <h2 style={{ marginTop: 0 }}>All Records</h2>
 
             {records.length === 0 ? (
