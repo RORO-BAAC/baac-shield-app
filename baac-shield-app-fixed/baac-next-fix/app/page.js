@@ -189,6 +189,7 @@ export default function Home() {
 
   useEffect(() => {
     loadRecords();
+    loadProjects();
   }, []);
 
   async function loadRecords() {
@@ -215,6 +216,30 @@ export default function Home() {
     }
   }
 
+  async function loadProjects() {
+    try {
+      const res = await fetch(
+        `${SUPABASE_URL}/rest/v1/projects?select=*&order=name.asc`,
+        {
+          headers: {
+            apikey: SUPABASE_KEY,
+            Authorization: `Bearer ${SUPABASE_KEY}`,
+          },
+        }
+      );
+
+      if (!res.ok) {
+        const text = await res.text();
+        throw new Error(text || "Could not load projects");
+      }
+
+      const data = await res.json();
+      setProjects(data.filter((p) => p.active !== false));
+    } catch (error) {
+      setMessage(`Could not load projects: ${error.message}`);
+    }
+  }
+  
   function handleFiles(e) {
     const files = Array.from(e.target.files || []);
     setPhotos(files);
