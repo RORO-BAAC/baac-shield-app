@@ -1,6 +1,7 @@
 export const metadata = {
   title: 'BAAC SHIELD App',
-  description: 'BAAC SHIELD Critical Risk Management App'
+  description: 'BAAC SHIELD Critical Risk Management App',
+  manifest: '/manifest.json'
 };
 
 import './globals.css';
