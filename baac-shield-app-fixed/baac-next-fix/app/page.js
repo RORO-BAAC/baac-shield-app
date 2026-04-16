@@ -65,6 +65,7 @@ export default function Home() {
   const [worker, setWorker] = useState("");
   const [workerSignature, setWorkerSignature] = useState("");
   const [supervisor, setSupervisor] = useState("");
+  const [projectName, setProjectName] = useState("");
   const [jobSite, setJobSite] = useState("");
   const [task, setTask] = useState("");
   const [risk, setRisk] = useState("");
@@ -84,6 +85,7 @@ export default function Home() {
   const [stopWorkOnly, setStopWorkOnly] = useState(false);
   const [dateFilter, setDateFilter] = useState("All");
   const [siteFilter, setSiteFilter] = useState("All");
+  const [projects, setProjects] = useState([]);
   
   const [supervisorPin, setSupervisorPin] = useState("1234");
   const [pinInput, setPinInput] = useState("");
