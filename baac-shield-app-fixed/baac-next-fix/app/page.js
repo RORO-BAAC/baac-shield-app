@@ -1193,7 +1193,6 @@ function unlockProtectedTab() {
                         .map((p) => p.trim())
                         .filter(Boolean)
                     : [];
-
                   return (
                     <div key={record.id}>
                       style={{
@@ -1269,6 +1268,8 @@ function unlockProtectedTab() {
                             </div>
                           )}
                         </div>
+                            );
+                           })}
 
                         <div style={{ minWidth: 150 }}>
                           <div
