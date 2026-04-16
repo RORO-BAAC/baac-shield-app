@@ -100,21 +100,21 @@ export default function Home() {
   const supervisorSigRef = useRef(null);
 
   function requestProtectedTab(tabName) {
-  setPendingTab(tabName);
-  setPinInput("");
-  setShowPinPrompt(true);
-}
-
-function unlockProtectedTab() {
-  if (pinInput === supervisorPin) {
-    setActiveTab(pendingTab);
-    setShowPinPrompt(false);
+    setPendingTab(tabName);
     setPinInput("");
-    setMessage("");
-  } else {
-    setMessage("Incorrect supervisor PIN.");
+    setShowPinPrompt(true);
   }
-}
+
+  function unlockProtectedTab() {
+    if (pinInput === supervisorPin) {
+      setActiveTab(pendingTab);
+      setShowPinPrompt(false);
+      setPinInput("");
+      setMessage("");
+    } else {
+      setMessage("Incorrect supervisor PIN.");
+    }
+  }
 
   const shieldOptions = useMemo(() => {
     const map = {
@@ -318,7 +318,7 @@ function unlockProtectedTab() {
         throw new Error(text || "Insert failed");
       }
 
-            await fetch("/api/send-alert", {
+      await fetch("/api/send-alert", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -337,7 +337,7 @@ function unlockProtectedTab() {
           stopWork,
         }),
       });
-      
+
       clearForm();
       setSubmitted(true);
       setMessage("Record submitted to database.");
@@ -415,27 +415,6 @@ function unlockProtectedTab() {
     }
   }
 
-  async function deleteRecord(id) {
-    try {
-      const res = await fetch(`${SUPABASE_URL}/rest/v1/records?id=eq.${id}`, {
-        method: "DELETE",
-        headers: {
-          apikey: SUPABASE_KEY,
-          Authorization: `Bearer ${SUPABASE_KEY}`,
-        },
-      });
-
-      if (!res.ok) {
-        const text = await res.text();
-        throw new Error(text || "Delete failed");
-      }
-
-      await loadRecords();
-    } catch (error) {
-      setMessage(`Could not delete record: ${error.message}`);
-    }
-  }
-
   function downloadPdf(record) {
     const doc = new jsPDF();
 
@@ -476,7 +455,10 @@ function unlockProtectedTab() {
     addLine("Submitted At", record.submitted_at);
     addLine("Reviewed At", record.reviewed_at);
 
-    if (record.worker_signature && String(record.worker_signature).startsWith("data:image")) {
+    if (
+      record.worker_signature &&
+      String(record.worker_signature).startsWith("data:image")
+    ) {
       if (y > 220) {
         doc.addPage();
         y = 20;
@@ -487,7 +469,10 @@ function unlockProtectedTab() {
       y += 38;
     }
 
-    if (record.supervisor_signature && String(record.supervisor_signature).startsWith("data:image")) {
+    if (
+      record.supervisor_signature &&
+      String(record.supervisor_signature).startsWith("data:image")
+    ) {
       if (y > 220) {
         doc.addPage();
         y = 20;
@@ -536,6 +521,27 @@ function unlockProtectedTab() {
     (r) => r.status === "Needs Correction" || r.status === "Stop Work"
   );
   const closedRecords = records.filter((r) => r.status === "Approved");
+
+  const filteredRecords = records.filter((record) => {
+    const matchesSearch =
+      !searchTerm ||
+      record.worker_name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      record.job_site?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      record.task_description?.toLowerCase().includes(searchTerm.toLowerCase());
+
+    const matchesStatus =
+      statusFilter === "All" ||
+      (record.status || "Pending Review") === statusFilter;
+
+    const matchesRisk =
+      riskFilter === "All" || record.critical_risk === riskFilter;
+
+    const matchesStopWork = !stopWorkOnly || record.stop_work === true;
+
+    return (
+      matchesSearch && matchesStatus && matchesRisk && matchesStopWork
+    );
+  });
 
   return (
     <main
@@ -1100,109 +1106,90 @@ function unlockProtectedTab() {
               boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
             }}
           >
-<div style={{ marginBottom: 16 }}>
-  <input
-    type="text"
-    placeholder="Search worker, site, task..."
-    value={searchTerm}
-    onChange={(e) => setSearchTerm(e.target.value)}
-    style={{
-      width: "100%",
-      padding: 8,
-      marginBottom: 8,
-      borderRadius: 6,
-      border: "1px solid #ccc",
-    }}
-  />
-
-  <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-    <select
-      value={statusFilter}
-      onChange={(e) => setStatusFilter(e.target.value)}
-    >
-      <option value="All">All Status</option>
-      <option value="Pending Review">Pending Review</option>
-      <option value="Approved">Approved</option>
-      <option value="Needs Correction">Needs Correction</option>
-      <option value="Stop Work">Stop Work</option>
-    </select>
-
-    <select
-      value={riskFilter}
-      onChange={(e) => setRiskFilter(e.target.value)}
-    >
-      <option value="All">All Risks</option>
-      <option value="Breaking Containment">Breaking Containment</option>
-      <option value="Confined Space Entry">Confined Space Entry</option>
-      <option value="Energy Isolation">Energy Isolation</option>
-      <option value="Hot Work">Hot Work</option>
-      <option value="Safe Mechanical Lifting">Safe Mechanical Lifting</option>
-      <option value="Working Around Mobile Equipment">
-        Working Around Mobile Equipment
-      </option>
-      <option value="Bypassing Safety Controls">
-        Bypassing Safety Controls
-      </option>
-      <option value="Driving">Driving</option>
-      <option value="Excavation">Excavation</option>
-      <option value="Line of Fire">Line of Fire</option>
-      <option value="Working at Height">Working at Height</option>
-      <option value="Work Authorization">Work Authorization</option>
-    </select>
-
-    <label>
-      <input
-        type="checkbox"
-        checked={stopWorkOnly}
-        onChange={(e) => setStopWorkOnly(e.target.checked)}
-      />
-      Stop Work Only
-    </label>
-  </div>
-</div>
-            
             <h2 style={{ marginTop: 0 }}>All Records</h2>
 
-            {records.length === 0 ? (
-              <p>No records yet.</p>
+            <div style={{ marginBottom: 16 }}>
+              <input
+                type="text"
+                placeholder="Search worker, site, task..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                style={{
+                  width: "100%",
+                  padding: 8,
+                  marginBottom: 8,
+                  borderRadius: 6,
+                  border: "1px solid #ccc",
+                }}
+              />
+
+              <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+                <select
+                  value={statusFilter}
+                  onChange={(e) => setStatusFilter(e.target.value)}
+                >
+                  <option value="All">All Status</option>
+                  <option value="Pending Review">Pending Review</option>
+                  <option value="Approved">Approved</option>
+                  <option value="Needs Correction">Needs Correction</option>
+                  <option value="Stop Work">Stop Work</option>
+                </select>
+
+                <select
+                  value={riskFilter}
+                  onChange={(e) => setRiskFilter(e.target.value)}
+                >
+                  <option value="All">All Risks</option>
+                  <option value="Breaking Containment">Breaking Containment</option>
+                  <option value="Confined Space Entry">Confined Space Entry</option>
+                  <option value="Energy Isolation">Energy Isolation</option>
+                  <option value="Hot Work">Hot Work</option>
+                  <option value="Safe Mechanical Lifting">Safe Mechanical Lifting</option>
+                  <option value="Working Around Mobile Equipment">
+                    Working Around Mobile Equipment
+                  </option>
+                  <option value="Bypassing Safety Controls">
+                    Bypassing Safety Controls
+                  </option>
+                  <option value="Driving">Driving</option>
+                  <option value="Excavation">Excavation</option>
+                  <option value="Line of Fire">Line of Fire</option>
+                  <option value="Working at Height">Working at Height</option>
+                  <option value="Work Authorization">Work Authorization</option>
+                </select>
+
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={stopWorkOnly}
+                    onChange={(e) => setStopWorkOnly(e.target.checked)}
+                  />{" "}
+                  Stop Work Only
+                </label>
+              </div>
+            </div>
+
+            {filteredRecords.length === 0 ? (
+              <p>No records match your search or filters.</p>
             ) : (
               <div style={{ display: "grid", gap: 12 }}>
-                {records
-  .filter((record) => {
-    const matchesSearch =
-      !searchTerm ||
-      record.worker_name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      record.job_site?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      record.task_description?.toLowerCase().includes(searchTerm.toLowerCase());
-
-    const matchesStatus =
-      statusFilter === "All" || (record.status || "Pending Review") === statusFilter;
-
-    const matchesRisk =
-      riskFilter === "All" || record.critical_risk === riskFilter;
-
-    const matchesStopWork =
-      !stopWorkOnly || record.stop_work === true;
-
-    return matchesSearch && matchesStatus && matchesRisk && matchesStopWork;
-  })
-  .map((record) => {
+                {filteredRecords.map((record) => {
                   const photoUrls = record.photos
                     ? String(record.photos)
                         .split(",")
                         .map((p) => p.trim())
                         .filter(Boolean)
                     : [];
-    
+
                   return (
                     <div
-                    key={record.id}
-                     style={{
-                     border: "1px solid #dbe4ee",
-                     borderRadius: 12,
-                    padding: 14,
-                    background: "#f8fafc",
-                    }}
+                      key={record.id}
+                      style={{
+                        border: "1px solid #dbe4ee",
+                        borderRadius: 12,
+                        padding: 14,
+                        background: "#f8fafc",
+                      }}
                     >
                       <div
                         style={{
@@ -1223,12 +1210,15 @@ function unlockProtectedTab() {
                           <div><strong>Shield(s):</strong> {record.shield_control}</div>
                           <div><strong>Notes:</strong> {record.notes}</div>
                           <div><strong>Submitted:</strong> {record.submitted_at}</div>
+
                           {record.reviewed_by && (
                             <div><strong>Reviewed By:</strong> {record.reviewed_by}</div>
                           )}
+
                           {record.supervisor_review_comments && (
                             <div><strong>Comments:</strong> {record.supervisor_review_comments}</div>
                           )}
+
                           {record.corrective_actions && (
                             <div><strong>Corrective Actions:</strong> {record.corrective_actions}</div>
                           )}
@@ -1270,8 +1260,6 @@ function unlockProtectedTab() {
                             </div>
                           )}
                         </div>
-                            );
-                           })}
 
                         <div style={{ minWidth: 150 }}>
                           <div
@@ -1317,7 +1305,6 @@ function unlockProtectedTab() {
                           >
                             Download PDF
                           </button>
-                        
                         </div>
                       </div>
 
@@ -1434,86 +1421,86 @@ function unlockProtectedTab() {
         </div>
       )}
 
-{showPinPrompt && (
-  <div
-    style={{
-      position: "fixed",
-      inset: 0,
-      background: "rgba(15, 23, 42, 0.55)",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      zIndex: 1000,
-      padding: 20,
-    }}
-  >
-    <div
-      style={{
-        width: "100%",
-        maxWidth: 420,
-        background: "white",
-        borderRadius: 16,
-        padding: 20,
-        boxShadow: "0 8px 30px rgba(0,0,0,0.2)",
-      }}
-    >
-      <h3 style={{ marginTop: 0, marginBottom: 8 }}>Supervisor Access</h3>
-      <p style={{ marginTop: 0, color: "#475569" }}>
-        Enter supervisor PIN to continue.
-      </p>
-
-      <input
-        value={pinInput}
-        onChange={(e) => setPinInput(e.target.value)}
-        type="password"
-        placeholder="Enter PIN"
-        style={{
-          width: "100%",
-          padding: 12,
-          borderRadius: 10,
-          border: "1px solid #cbd5e1",
-          marginBottom: 12,
-        }}
-      />
-
-      <div style={{ display: "flex", gap: 10 }}>
-        <button
-          type="button"
-          onClick={unlockProtectedTab}
+      {showPinPrompt && (
+        <div
           style={{
-            padding: "10px 14px",
-            borderRadius: 10,
-            border: "none",
-            background: "#123d82",
-            color: "white",
-            fontWeight: "bold",
-            cursor: "pointer",
+            position: "fixed",
+            inset: 0,
+            background: "rgba(15, 23, 42, 0.55)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            zIndex: 1000,
+            padding: 20,
           }}
         >
-          Unlock
-        </button>
+          <div
+            style={{
+              width: "100%",
+              maxWidth: 420,
+              background: "white",
+              borderRadius: 16,
+              padding: 20,
+              boxShadow: "0 8px 30px rgba(0,0,0,0.2)",
+            }}
+          >
+            <h3 style={{ marginTop: 0, marginBottom: 8 }}>Supervisor Access</h3>
+            <p style={{ marginTop: 0, color: "#475569" }}>
+              Enter supervisor PIN to continue.
+            </p>
 
-        <button
-          type="button"
-          onClick={() => {
-            setShowPinPrompt(false);
-            setPinInput("");
-            setPendingTab("");
-          }}
-          style={{
-            padding: "10px 14px",
-            borderRadius: 10,
-            border: "1px solid #cbd5e1",
-            background: "white",
-            cursor: "pointer",
-          }}
-        >
-          Cancel
-        </button>
-      </div>
-    </div>
-  </div>
-)}
+            <input
+              value={pinInput}
+              onChange={(e) => setPinInput(e.target.value)}
+              type="password"
+              placeholder="Enter PIN"
+              style={{
+                width: "100%",
+                padding: 12,
+                borderRadius: 10,
+                border: "1px solid #cbd5e1",
+                marginBottom: 12,
+              }}
+            />
+
+            <div style={{ display: "flex", gap: 10 }}>
+              <button
+                type="button"
+                onClick={unlockProtectedTab}
+                style={{
+                  padding: "10px 14px",
+                  borderRadius: 10,
+                  border: "none",
+                  background: "#123d82",
+                  color: "white",
+                  fontWeight: "bold",
+                  cursor: "pointer",
+                }}
+              >
+                Unlock
+              </button>
+
+              <button
+                type="button"
+                onClick={() => {
+                  setShowPinPrompt(false);
+                  setPinInput("");
+                  setPendingTab("");
+                }}
+                style={{
+                  padding: "10px 14px",
+                  borderRadius: 10,
+                  border: "1px solid #cbd5e1",
+                  background: "white",
+                  cursor: "pointer",
+                }}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {message && (
         <div
