@@ -525,27 +525,55 @@ export default function Home() {
   );
   const closedRecords = records.filter((r) => r.status === "Approved");
 
-  const filteredRecords = records.filter((record) => {
-    const matchesSearch =
-      !searchTerm ||
-      record.worker_name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      record.job_site?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      record.task_description?.toLowerCase().includes(searchTerm.toLowerCase());
+ const filteredRecords = records.filter((record) => {
+  const matchesSearch =
+    !searchTerm ||
+    record.worker_name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    record.job_site?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    record.task_description?.toLowerCase().includes(searchTerm.toLowerCase());
 
-    const matchesStatus =
-      statusFilter === "All" ||
-      (record.status || "Pending Review") === statusFilter;
+  const matchesStatus =
+    statusFilter === "All" ||
+    (record.status || "Pending Review") === statusFilter;
 
-    const matchesRisk =
-      riskFilter === "All" || record.critical_risk === riskFilter;
+  const matchesRisk =
+    riskFilter === "All" || record.critical_risk === riskFilter;
 
-    const matchesStopWork = !stopWorkOnly || record.stop_work === true;
+  const matchesStopWork =
+    !stopWorkOnly || record.stop_work === true;
 
-    return (
-      matchesSearch && matchesStatus && matchesRisk && matchesStopWork
-    );
-  });
+  const matchesSite =
+    siteFilter === "All" || record.job_site === siteFilter;
 
+  const submittedDate = record.submitted_at
+    ? new Date(record.submitted_at)
+    : null;
+
+  const now = new Date();
+  const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+  const sevenDaysAgo = new Date();
+  sevenDaysAgo.setDate(now.getDate() - 7);
+
+  const thirtyDaysAgo = new Date();
+  thirtyDaysAgo.setDate(now.getDate() - 30);
+
+  const matchesDate =
+    dateFilter === "All" ||
+    (dateFilter === "Today" && submittedDate && submittedDate >= todayStart) ||
+    (dateFilter === "Last7" && submittedDate && submittedDate >= sevenDaysAgo) ||
+    (dateFilter === "Last30" && submittedDate && submittedDate >= thirtyDaysAgo);
+
+  return (
+    matchesSearch &&
+    matchesStatus &&
+    matchesRisk &&
+    matchesStopWork &&
+    matchesSite &&
+    matchesDate
+  );
+});
+  
   return (
     <main
       style={{
