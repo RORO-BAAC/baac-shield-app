@@ -547,6 +547,7 @@ export default function Home() {
   const headers = [
     "Worker",
     "Supervisor",
+    "Project",
     "Job Site",
     "Task",
     "Risk",
