@@ -316,6 +316,7 @@ export default function Home() {
         worker_name: worker,
         worker_signature: workerSignature,
         supervisor_name: supervisor,
+        project_name: projectName,
         supervisor_signature: "",
         job_site: jobSite,
         task_description: task,
