@@ -781,6 +781,35 @@ export default function Home() {
             <SignatureBox sigRef={workerSigRef} onSave={setWorkerSignature} />
           </div>
 
+                     <div>
+            <label>Project Name</label>
+            <br />
+            <select
+              value={projectName}
+              onChange={(e) => setProjectName(e.target.value)}
+              style={{
+                width: "100%",
+                padding: 12,
+                marginTop: 6,
+                borderRadius: 10,
+                border: "1px solid #cbd5e1",
+              }}
+            >
+              <option value="">Select a project</option>
+              {projects.map((project) => (
+                <option key={project.id} value={project.name}>
+                  {project.name}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div>
+            <label>Supervisor Name</label>
+            <br />
+            <input
+              value={supervisor}   
+              
           <div>
             <label>Supervisor Name</label>
             <br />
