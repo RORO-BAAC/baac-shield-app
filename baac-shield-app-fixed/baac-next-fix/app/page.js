@@ -510,6 +510,54 @@ export default function Home() {
     doc.save(`baac-shield-record-${record.id}.pdf`);
   }
 
+  function exportFilteredToCSV() {
+  if (!filteredRecords.length) {
+    setMessage("No filtered records to export.");
+    return;
+  }
+
+  const headers = [
+    "Worker",
+    "Supervisor",
+    "Job Site",
+    "Task",
+    "Risk",
+    "Status",
+    "Stop Work",
+    "Submitted At"
+  ];
+
+  const rows = filteredRecords.map((record) => [
+    record.worker_name || "",
+    record.supervisor_name || "",
+    record.job_site || "",
+    record.task_description || "",
+    record.critical_risk || "",
+    record.status || "",
+    record.stop_work ? "Yes" : "No",
+    record.submitted_at || ""
+  ]);
+
+  const csvContent = [
+    headers,
+    ...rows
+  ]
+    .map((row) =>
+      row.map((val) => `"${String(val).replace(/"/g, '""')}"`).join(",")
+    )
+    .join("\n");
+
+  const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+  const url = URL.createObjectURL(blob);
+
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = "baac-shield-records.csv";
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+
   function statusColor(status) {
     if (status === "Approved") return "#166534";
     if (status === "Stop Work") return "#b91c1c";
