@@ -559,6 +559,7 @@ export default function Home() {
   const rows = filteredRecords.map((record) => [
     record.worker_name || "",
     record.supervisor_name || "",
+    record.project_name || "",
     record.job_site || "",
     record.task_description || "",
     record.critical_risk || "",
