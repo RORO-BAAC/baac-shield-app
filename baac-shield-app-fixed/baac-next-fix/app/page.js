@@ -27,15 +27,16 @@ function SignatureBox({ sigRef, onSave }) {
               onSave(sigRef.current.toDataURL("image/png"));
             }
           }}
-          canvasProps={{
-            width: 700,
-            height: 180,
-            style: {
-              width: "100%",
-              height: 180,
-              display: "block",
-            },
-          }}
+           canvasProps={{
+           width: 350,
+           height: 180,
+           style: {
+           width: "100%",
+           maxWidth: 350,
+           height: 180,
+           display: "block",
+        },
+        }}
         />
       </div>
 
