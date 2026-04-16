@@ -781,7 +781,7 @@ export default function Home() {
             <SignatureBox sigRef={workerSigRef} onSave={setWorkerSignature} />
           </div>
 
-                     <div>
+          <div>
             <label>Project Name</label>
             <br />
             <select
