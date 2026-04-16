@@ -83,8 +83,6 @@ export default function Home() {
   const [stopWorkOnly, setStopWorkOnly] = useState(false);
 
   const [supervisorPin, setSupervisorPin] = useState("1234");
-
-  const [supervisorPin, setSupervisorPin] = useState("1234");
   const [pinInput, setPinInput] = useState("");
   const [showPinPrompt, setShowPinPrompt] = useState(false);
   const [pendingTab, setPendingTab] = useState("");
