@@ -1167,7 +1167,26 @@ function unlockProtectedTab() {
               <p>No records yet.</p>
             ) : (
               <div style={{ display: "grid", gap: 12 }}>
-                {records.map((record) => {
+                {records
+  .filter((record) => {
+    const matchesSearch =
+      !searchTerm ||
+      record.worker_name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      record.job_site?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      record.task_description?.toLowerCase().includes(searchTerm.toLowerCase());
+
+    const matchesStatus =
+      statusFilter === "All" || (record.status || "Pending Review") === statusFilter;
+
+    const matchesRisk =
+      riskFilter === "All" || record.critical_risk === riskFilter;
+
+    const matchesStopWork =
+      !stopWorkOnly || record.stop_work === true;
+
+    return matchesSearch && matchesStatus && matchesRisk && matchesStopWork;
+  })
+  .map((record) => (
                   const photoUrls = record.photos
                     ? String(record.photos)
                         .split(",")
