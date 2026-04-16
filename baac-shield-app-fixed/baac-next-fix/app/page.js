@@ -82,7 +82,9 @@ export default function Home() {
   const [statusFilter, setStatusFilter] = useState("All");
   const [riskFilter, setRiskFilter] = useState("All");
   const [stopWorkOnly, setStopWorkOnly] = useState(false);
-
+  const [dateFilter, setDateFilter] = useState("All");
+  const [siteFilter, setSiteFilter] = useState("All");
+  
   const [supervisorPin, setSupervisorPin] = useState("1234");
   const [pinInput, setPinInput] = useState("");
   const [showPinPrompt, setShowPinPrompt] = useState(false);
