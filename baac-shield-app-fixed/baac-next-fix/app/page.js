@@ -1396,6 +1396,7 @@ export default function Home() {
                           <div><strong>Worker Signature:</strong> {record.worker_signature ? "Captured" : "—"}</div>
                           <div><strong>Supervisor:</strong> {record.supervisor_name}</div>
                           <div><strong>Supervisor Signature:</strong> {record.supervisor_signature ? "Captured" : "—"}</div>
+                          <div><strong>Project:</strong> {record.project_name}</div>
                           <div><strong>Site:</strong> {record.job_site}</div>
                           <div><strong>Task:</strong> {record.task_description}</div>
                           <div><strong>Risk:</strong> {record.critical_risk}</div>
