@@ -1305,19 +1305,7 @@ export default function Home() {
     </option>
   ))}
 </select>
-    
-<select
-  value={siteFilter}
-  onChange={(e) => setSiteFilter(e.target.value)}
->
-  <option value="All">All Sites</option>
-  {[...new Set(records.map((r) => r.job_site).filter(Boolean))].map((site) => (
-    <option key={site} value={site}>
-      {site}
-    </option>
-  ))}
-</select>
-                    
+                      
                 <label>
                   <input
                     type="checkbox"
