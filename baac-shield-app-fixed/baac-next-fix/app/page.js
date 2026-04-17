@@ -1236,7 +1236,7 @@ export default function Home() {
             <div style={{ marginBottom: 16 }}>
               <input
                 type="text"
-                placeholder="Search worker, site, task..."
+                placeholder="Search worker, project, task..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 style={{
