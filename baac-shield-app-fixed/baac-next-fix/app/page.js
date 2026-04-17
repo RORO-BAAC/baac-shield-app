@@ -601,10 +601,10 @@ export default function Home() {
 
  const filteredRecords = records.filter((record) => {
   const matchesSearch =
-    !searchTerm ||
-    record.worker_name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    record.job_site?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    record.task_description?.toLowerCase().includes(searchTerm.toLowerCase());
+  !searchTerm ||
+  record.worker_name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+  record.task_description?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+  record.project_name?.toLowerCase().includes(searchTerm.toLowerCase());
 
   const matchesStatus =
     statusFilter === "All" ||
