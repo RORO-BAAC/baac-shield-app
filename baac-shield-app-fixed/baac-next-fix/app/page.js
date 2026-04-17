@@ -318,7 +318,6 @@ export default function Home() {
         supervisor_name: supervisor,
         project_name: projectName,
         supervisor_signature: "",
-        job_site: jobSite,
         task_description: task,
         critical_risk: risk,
         shield_control: selectedShields.join(", "),
