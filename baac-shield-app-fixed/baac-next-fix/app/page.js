@@ -1291,6 +1291,18 @@ export default function Home() {
 </select>
 
 <select
+  value={projectFilter}
+  onChange={(e) => setProjectFilter(e.target.value)}
+>
+  <option value="All">All Projects</option>
+  {[...new Set(records.map((r) => r.project_name).filter(Boolean))].map((project) => (
+    <option key={project} value={project}>
+      {project}
+    </option>
+  ))}
+</select>
+    
+<select
   value={siteFilter}
   onChange={(e) => setSiteFilter(e.target.value)}
 >
