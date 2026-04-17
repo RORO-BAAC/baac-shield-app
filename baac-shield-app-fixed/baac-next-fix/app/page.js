@@ -642,7 +642,7 @@ export default function Home() {
     matchesStatus &&
     matchesRisk &&
     matchesStopWork &&
-    matchesDate
+    matchesDate &&
     matchesProject
   );
 });
