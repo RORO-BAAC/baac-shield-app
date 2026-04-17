@@ -1219,6 +1219,39 @@ export default function Home() {
               boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
             }}
           >
+            <div style={{ marginBottom: 20 }}>
+  <h2>Records by Project</h2>
+
+  {Object.entries(projectCounts).length === 0 ? (
+    <p>No data yet.</p>
+  ) : (
+    <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+      {Object.entries(projectCounts).map(([project, count]) => (
+        <div
+          key={project}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 10,
+          }}
+        >
+          <div style={{ width: 150 }}>{project}</div>
+
+          <div
+            style={{
+              height: 20,
+              width: `${count * 20}px`,
+              background: "#3b82f6",
+              borderRadius: 6,
+            }}
+          />
+
+          <div>{count}</div>
+        </div>
+      ))}
+    </div>
+  )}
+</div>
             <h2 style={{ marginTop: 0 }}>All Records</h2>
 
             <div style={{ marginBottom: 10 }}>
