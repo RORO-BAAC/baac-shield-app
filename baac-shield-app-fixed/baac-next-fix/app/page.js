@@ -643,6 +643,7 @@ export default function Home() {
     matchesRisk &&
     matchesStopWork &&
     matchesDate
+    matchesProject
   );
 });
   
