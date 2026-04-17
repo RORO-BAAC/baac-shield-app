@@ -612,6 +612,9 @@ export default function Home() {
   const matchesRisk =
     riskFilter === "All" || record.critical_risk === riskFilter;
 
+  const matchesProject =
+    projectFilter === "All" || record.project_name === projectFilter;
+
   const matchesStopWork =
     !stopWorkOnly || record.stop_work === true;
 
