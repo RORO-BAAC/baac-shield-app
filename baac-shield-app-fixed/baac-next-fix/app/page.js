@@ -66,7 +66,6 @@ export default function Home() {
   const [workerSignature, setWorkerSignature] = useState("");
   const [supervisor, setSupervisor] = useState("");
   const [projectName, setProjectName] = useState("");
-  const [jobSite, setJobSite] = useState("");
   const [task, setTask] = useState("");
   const [risk, setRisk] = useState("");
   const [selectedShields, setSelectedShields] = useState([]);
