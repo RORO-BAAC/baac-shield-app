@@ -468,7 +468,6 @@ export default function Home() {
 
     addLine("Worker", record.worker_name);
     addLine("Supervisor", record.supervisor_name);
-    addLine("Job Site", record.job_site);
     addLine("Task Description", record.task_description);
     addLine("Critical Risk", record.critical_risk);
     addLine("Shield Controls", record.shield_control);
