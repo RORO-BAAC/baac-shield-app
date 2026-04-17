@@ -292,7 +292,6 @@ export default function Home() {
     setWorker("");
     setWorkerSignature("");
     setSupervisor("");
-    setJobSite("");
     setTask("");
     setRisk("");
     setSelectedShields([]);
