@@ -1576,7 +1576,7 @@ export default function Home() {
                     }}
                   >
                     <div><strong>Worker:</strong> {record.worker_name}</div>
-                    <div><strong>Site:</strong> {record.job_site}</div>
+                    <div><strong>Project:</strong> {record.project_name || "—"}</div>
                     <div><strong>Risk:</strong> {record.critical_risk}</div>
                     <div>
                       <strong>Status:</strong>{" "}
