@@ -1336,6 +1336,7 @@ export default function Home() {
     setRiskFilter("All");
     setDateFilter("All");
     setSiteFilter("All");
+    setProjectFilter("All");
     setStopWorkOnly(false);
   }}
   style={{
