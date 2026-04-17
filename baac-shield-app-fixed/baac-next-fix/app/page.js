@@ -824,24 +824,7 @@ export default function Home() {
             />
           </div>
 
-          <div>
-            <label>Job Site</label>
-            <br />
-            <input
-              value={jobSite}
-              onChange={(e) => setJobSite(e.target.value)}
-              type="text"
-              style={{
-                width: "100%",
-                padding: 12,
-                marginTop: 6,
-                borderRadius: 10,
-                border: "1px solid #cbd5e1",
-              }}
-            />
-          </div>
-
-          <div>
+                  <div>
             <label>Task Description</label>
             <br />
             <textarea
