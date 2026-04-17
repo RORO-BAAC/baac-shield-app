@@ -1257,6 +1257,41 @@ export default function Home() {
     </div>
   )}
 </div>
+
+<div style={{ marginBottom: 20 }}>
+  <h2>Records by Critical Risk</h2>
+
+  {Object.entries(riskCounts).length === 0 ? (
+    <p>No data yet.</p>
+  ) : (
+    <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+      {Object.entries(riskCounts).map(([risk, count]) => (
+        <div
+          key={risk}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 10,
+          }}
+        >
+          <div style={{ width: 220 }}>{risk}</div>
+
+          <div
+            style={{
+              height: 20,
+              width: `${count * 20}px`,
+              background: "#f59e0b",
+              borderRadius: 6,
+            }}
+          />
+
+          <div>{count}</div>
+        </div>
+      ))}
+    </div>
+  )}
+</div>
+    
             <h2 style={{ marginTop: 0 }}>All Records</h2>
 
             <div style={{ marginBottom: 10 }}>
