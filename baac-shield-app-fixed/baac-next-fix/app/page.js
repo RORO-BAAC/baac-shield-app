@@ -83,7 +83,6 @@ export default function Home() {
   const [riskFilter, setRiskFilter] = useState("All");
   const [stopWorkOnly, setStopWorkOnly] = useState(false);
   const [dateFilter, setDateFilter] = useState("All");
-  const [siteFilter, setSiteFilter] = useState("All");
   const [projects, setProjects] = useState([]);
   
   const [supervisorPin, setSupervisorPin] = useState("1234");
