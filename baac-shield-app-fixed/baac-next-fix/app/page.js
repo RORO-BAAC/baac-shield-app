@@ -616,9 +616,6 @@ export default function Home() {
   const matchesStopWork =
     !stopWorkOnly || record.stop_work === true;
 
-  const matchesSite =
-    siteFilter === "All" || record.job_site === siteFilter;
-
   const submittedDate = record.submitted_at
     ? new Date(record.submitted_at)
     : null;
@@ -643,7 +640,6 @@ export default function Home() {
     matchesStatus &&
     matchesRisk &&
     matchesStopWork &&
-    matchesSite &&
     matchesDate
   );
 });
