@@ -78,6 +78,11 @@ export default function Home() {
   acc[project] = (acc[project] || 0) + 1;
   return acc;
   }, {});
+  const riskCounts = records.reduce((acc, record) => {
+  const risk = record.critical_risk || "Unknown";
+  acc[risk] = (acc[risk] || 0) + 1;
+  return acc;
+}, {});
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
