@@ -1321,7 +1321,6 @@ export default function Home() {
     setStatusFilter("All");
     setRiskFilter("All");
     setDateFilter("All");
-    setSiteFilter("All");
     setProjectFilter("All");
     setStopWorkOnly(false);
   }}
