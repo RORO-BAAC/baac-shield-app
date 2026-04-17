@@ -84,6 +84,7 @@ export default function Home() {
   const [stopWorkOnly, setStopWorkOnly] = useState(false);
   const [dateFilter, setDateFilter] = useState("All");
   const [projects, setProjects] = useState([]);
+  const [projectFilter, setProjectFilter] = useState("All");
   
   const [supervisorPin, setSupervisorPin] = useState("1234");
   const [pinInput, setPinInput] = useState("");
