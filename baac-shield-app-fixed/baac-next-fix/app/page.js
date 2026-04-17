@@ -73,6 +73,11 @@ export default function Home() {
   const [stopWork, setStopWork] = useState(false);
   const [photos, setPhotos] = useState([]);
   const [records, setRecords] = useState([]);
+  const projectCounts = records.reduce((acc, record) => {
+  const project = record.project_name || "Unknown";
+  acc[project] = (acc[project] || 0) + 1;
+  return acc;
+  }, {});
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
