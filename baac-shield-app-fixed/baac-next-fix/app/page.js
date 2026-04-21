@@ -661,6 +661,51 @@ export default function Home() {
     matchesProject
   );
 });
+
+  if (showSplash) {
+    return (
+      <main
+        style={{
+          minHeight: "100vh",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          background: "linear-gradient(135deg, #0f2f66, #1d4f9a)",
+          color: "white",
+          fontFamily: "Arial, sans-serif",
+          padding: 20,
+        }}
+      >
+        <div
+          style={{
+            textAlign: "center",
+            maxWidth: 420,
+          }}
+        >
+          <img
+            src="/baac-logo.png"
+            alt="BAAC Logo"
+            style={{
+              width: 120,
+              height: "auto",
+              marginBottom: 20,
+              borderRadius: 12,
+              background: "white",
+              padding: 8,
+            }}
+          />
+
+          <h1 style={{ margin: 0, fontSize: 34, letterSpacing: 1 }}>
+            BAAC SHIELD
+          </h1>
+
+          <p style={{ marginTop: 12, fontSize: 16, opacity: 0.9 }}>
+            Identify the risk. Verify the shield.
+          </p>
+        </div>
+      </main>
+    );
+  }
   
   return (
     <main
