@@ -200,6 +200,12 @@ export default function Home() {
   useEffect(() => {
     loadRecords();
     loadProjects();
+
+    const timer = setTimeout(() => {
+    setShowSplash(false);
+  }, 1800);
+
+  return () => clearTimeout(timer);
   }, []);
 
   async function loadRecords() {
