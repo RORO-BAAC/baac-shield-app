@@ -375,6 +375,7 @@ export default function Home() {
             : "BAAC SHIELD - New Record Submitted",
           worker,
           supervisor,
+          project: projectName,
           task,
           risk,
           notes,
