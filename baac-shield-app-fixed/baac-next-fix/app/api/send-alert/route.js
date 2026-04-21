@@ -26,7 +26,7 @@ export async function POST(req) {
         <h2>BAAC SHIELD Alert</h2>
         <p><strong>Worker:</strong> ${worker || "-"}</p>
         <p><strong>Supervisor:</strong> ${supervisor || "-"}</p>
-        <p><strong>Job Site:</strong> ${jobSite || "-"}</p>
+        <p><strong>Project:</strong> ${project || "-"}</p>
         <p><strong>Task:</strong> ${task || "-"}</p>
         <p><strong>Risk:</strong> ${risk || "-"}</p>
         <p><strong>Notes:</strong> ${notes || "-"}</p>
