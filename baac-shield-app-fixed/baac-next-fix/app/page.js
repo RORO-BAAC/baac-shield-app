@@ -87,7 +87,8 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [activeTab, setActiveTab] = useState("worker");
-
+  const [showSplash, setShowSplash] = useState(true);
+  
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState("All");
   const [riskFilter, setRiskFilter] = useState("All");
