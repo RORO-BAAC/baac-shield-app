@@ -1540,6 +1540,23 @@ export default function Home() {
                         }}
                       >
                         <div style={{ flex: 1, minWidth: 260 }}>
+                          {record.stop_work && (
+                           <div
+                          style={{
+                          background: "#dc2626",
+                          color: "white",
+                           padding: "4px 10px",
+                           borderRadius: 6,
+                           fontWeight: "bold",
+                           fontSize: 12,
+                           display: "inline-block",
+                         marginBottom: 8,
+                             }}
+                              >
+                         ⚠ STOP WORK
+                        </div>
+                       )}
+                        
                           <div><strong>Worker:</strong> {record.worker_name}</div>
                           <div><strong>Worker Signature:</strong> {record.worker_signature ? "Captured" : "—"}</div>
                           <div><strong>Supervisor:</strong> {record.supervisor_name}</div>
