@@ -663,49 +663,88 @@ export default function Home() {
 });
 
   if (showSplash) {
-    return (
-      <main
+  return (
+    <main
+      style={{
+        minHeight: "100vh",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        background: "linear-gradient(135deg, #0f2f66, #1d4f9a)",
+        color: "white",
+        fontFamily: "Arial, sans-serif",
+        padding: 20,
+      }}
+    >
+      <div
         style={{
-          minHeight: "100vh",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          background: "linear-gradient(135deg, #0f2f66, #1d4f9a)",
-          color: "white",
-          fontFamily: "Arial, sans-serif",
-          padding: 20,
+          textAlign: "center",
+          maxWidth: 520,
+          opacity: 1,
+          transition: "opacity 0.5s ease",
         }}
       >
-        <div
+        <img
+          src="/baac-logo.png"
+          alt="BAAC Logo"
           style={{
-            textAlign: "center",
-            maxWidth: 420,
+            width: 160,
+            height: "auto",
+            marginBottom: 24,
+            borderRadius: 12,
+            background: "white",
+            padding: 6,
+            boxShadow: "0 8px 24px rgba(0,0,0,0.18)",
+          }}
+        />
+
+        <h1
+          style={{
+            margin: 0,
+            fontSize: 38,
+            letterSpacing: 1.2,
+            fontWeight: "bold",
           }}
         >
-          <img
-            src="/baac-logo.png"
-            alt="BAAC Logo"
-            style={{
-              width: 120,
-              height: "auto",
-              marginBottom: 20,
-              borderRadius: 12,
-              background: "white",
-              padding: 8,
-            }}
-          />
+          BAAC SHIELD
+        </h1>
 
-          <h1 style={{ margin: 0, fontSize: 34, letterSpacing: 1 }}>
-            BAAC SHIELD
-          </h1>
+        <p
+          style={{
+            marginTop: 10,
+            marginBottom: 6,
+            fontSize: 18,
+            fontWeight: "bold",
+            opacity: 0.95,
+          }}
+        >
+          BAAC Critical Risk Management System
+        </p>
 
-          <p style={{ marginTop: 12, fontSize: 16, opacity: 0.9 }}>
-            Identify the risk. Verify the shield.
-          </p>
+        <p
+          style={{
+            marginTop: 8,
+            fontSize: 15,
+            opacity: 0.88,
+          }}
+        >
+          Identify the risk. Verify the shield.
+        </p>
+
+        <div
+          style={{
+            marginTop: 26,
+            fontSize: 14,
+            letterSpacing: 1,
+            opacity: 0.75,
+          }}
+        >
+          Loading...
         </div>
-      </main>
-    );
-  }
+      </div>
+    </main>
+  );
+}
   
   return (
     <main
