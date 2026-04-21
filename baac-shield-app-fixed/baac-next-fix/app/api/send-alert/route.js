@@ -11,7 +11,7 @@ export async function POST(req) {
       subject,
       worker,
       supervisor,
-      jobSite,
+      project,
       task,
       risk,
       notes,
