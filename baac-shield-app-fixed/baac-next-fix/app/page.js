@@ -852,81 +852,70 @@ async function submitHazardReport() {
       </div>
 
       <div style={{ display: "flex", gap: 10, marginBottom: 18, flexWrap: "wrap" }}>
-        <button
-          type="button"
-          onClick={() => setActiveTab("worker")}
-          style={{
-            padding: "10px 14px",
-            borderRadius: 10,
-            border: "1px solid #cbd5e1",
-            background: activeTab === "worker" ? "#123d82" : "white",
-            color: activeTab === "worker" ? "white" : "#0f172a",
-            fontWeight: "bold",
-            cursor: "pointer",
-          }}
-        >
-          Worker Form
-        </button>
+  <button
+    type="button"
+    onClick={() => setActiveTab("worker")}
+    style={{
+      padding: "10px 14px",
+      borderRadius: 10,
+      border: "1px solid #cbd5e1",
+      background: activeTab === "worker" ? "#123d82" : "white",
+      color: activeTab === "worker" ? "white" : "#0f172a",
+      fontWeight: "bold",
+      cursor: "pointer",
+    }}
+  >
+    Worker Form
+  </button>
 
-        <button
-          type="button"
-          onClick={() => requestProtectedTab("supervisor")}
-          style={{
-            padding: "10px 14px",
-            borderRadius: 10,
-            border: "1px solid #cbd5e1",
-            background: activeTab === "supervisor" ? "#123d82" : "white",
-            color: activeTab === "supervisor" ? "white" : "#0f172a",
-            fontWeight: "bold",
-            cursor: "pointer",
-          }}
-        >
-        <button
-       type="button"
-       onClick={() => setActiveTab("hazard")}
-       style={{
-       padding: "10px 20px",
-       marginRight: 8, 
-       borderRadius: 10,
-       border: "1px solid #cbd5e1",
+  <button
+    type="button"
+    onClick={() => setActiveTab("hazard")}
+    style={{
+      padding: "10px 14px",
+      borderRadius: 10,
+      border: "1px solid #cbd5e1",
       background: activeTab === "hazard" ? "#123d82" : "white",
       color: activeTab === "hazard" ? "white" : "#0f172a",
       fontWeight: "bold",
       cursor: "pointer",
     }}
-    >
-  Hazard ID
-</button>
-    <button
-  type="button"
-  onClick={() => requestProtectedTab("supervisor")}
-  style={{
-    padding: "10px 14px",
-    borderRadius: 10,
-    border: "1px solid #cbd5e1",
-    background: activeTab === "supervisor" ? "#123d82" : "white",
-    color: activeTab === "supervisor" ? "white" : "#0f172a",
-    fontWeight: "bold",
-    cursor: "pointer",
-  }}
->
-  Supervisor Review
-<button
-  type="button"
-  onClick={() => requestProtectedTab("dashboard")}
-  style={{
-    padding: "10px 14px",
-    borderRadius: 10,
-    border: "1px solid #cbd5e1",
-    background: activeTab === "dashboard" ? "#123d82" : "white",
-    color: activeTab === "dashboard" ? "white" : "#0f172a",
-    fontWeight: "bold",
-    cursor: "pointer",
-  }}
->
-  Safety Dashboard
-</button>
-      </div>
+  >
+    Hazard ID
+  </button>
+
+  <button
+    type="button"
+    onClick={() => requestProtectedTab("supervisor")}
+    style={{
+      padding: "10px 14px",
+      borderRadius: 10,
+      border: "1px solid #cbd5e1",
+      background: activeTab === "supervisor" ? "#123d82" : "white",
+      color: activeTab === "supervisor" ? "white" : "#0f172a",
+      fontWeight: "bold",
+      cursor: "pointer",
+    }}
+  >
+    Supervisor Review
+  </button>
+
+  <button
+    type="button"
+    onClick={() => requestProtectedTab("dashboard")}
+    style={{
+      padding: "10px 14px",
+      borderRadius: 10,
+      border: "1px solid #cbd5e1",
+      background: activeTab === "dashboard" ? "#123d82" : "white",
+      color: activeTab === "dashboard" ? "white" : "#0f172a",
+      fontWeight: "bold",
+      cursor: "pointer",
+    }}
+  >
+    Safety Dashboard
+  </button>
+</div>
 
       {activeTab === "worker" && (
         <form
