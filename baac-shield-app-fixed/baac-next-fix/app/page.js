@@ -885,7 +885,8 @@ async function submitHazardReport() {
        type="button"
        onClick={() => setActiveTab("hazard")}
        style={{
-       padding: "10px 14px",
+       padding: "10px 20px",
+       marginRight: 8, 
        borderRadius: 10,
        border: "1px solid #cbd5e1",
       background: activeTab === "hazard" ? "#123d82" : "white",
