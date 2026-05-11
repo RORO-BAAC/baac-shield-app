@@ -823,6 +823,21 @@ export default function Home() {
             cursor: "pointer",
           }}
         >
+        <button
+       type="button"
+       onClick={() => setActiveTab("hazard")}
+       style={{
+       padding: "10px 14px",
+       borderRadius: 10,
+       border: "1px solid #cbd5e1",
+      background: activeTab === "hazard" ? "#123d82" : "white",
+      color: activeTab === "hazard" ? "white" : "#0f172a",
+      fontWeight: "bold",
+      cursor: "pointer",
+    }}
+    >
+  Hazard ID
+</button>
           Supervisor Review
         </button>
 
