@@ -1315,6 +1315,7 @@ async function submitHazardReport() {
 
       <button
         type="button"
+         onClick={submitHazardReport}
         style={{
           background: "#123d82",
           color: "white",
