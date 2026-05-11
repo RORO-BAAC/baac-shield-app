@@ -897,6 +897,7 @@ async function submitHazardReport() {
     >
   Hazard ID
 </button>
+    
 <button
   type="button"
   onClick={() => requestProtectedTab("supervisor")}
