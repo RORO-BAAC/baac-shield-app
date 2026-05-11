@@ -897,8 +897,7 @@ async function submitHazardReport() {
     >
   Hazard ID
 </button>
-    
-<button
+    <button
   type="button"
   onClick={() => requestProtectedTab("supervisor")}
   style={{
@@ -912,23 +911,21 @@ async function submitHazardReport() {
   }}
 >
   Supervisor Review
+<button
+  type="button"
+  onClick={() => requestProtectedTab("dashboard")}
+  style={{
+    padding: "10px 14px",
+    borderRadius: 10,
+    border: "1px solid #cbd5e1",
+    background: activeTab === "dashboard" ? "#123d82" : "white",
+    color: activeTab === "dashboard" ? "white" : "#0f172a",
+    fontWeight: "bold",
+    cursor: "pointer",
+  }}
+>
+  Safety Dashboard
 </button>
-
-        <button
-          type="button"
-          onClick={() => requestProtectedTab("dashboard")}
-          style={{
-            padding: "10px 14px",
-            borderRadius: 10,
-            border: "1px solid #cbd5e1",
-            background: activeTab === "dashboard" ? "#123d82" : "white",
-            color: activeTab === "dashboard" ? "white" : "#0f172a",
-            fontWeight: "bold",
-            cursor: "pointer",
-          }}
-        >
-          Safety Dashboard
-        </button>
       </div>
 
       {activeTab === "worker" && (
