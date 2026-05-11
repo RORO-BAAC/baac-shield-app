@@ -1124,6 +1124,156 @@ export default function Home() {
         </form>
       )}
 
+{activeTab === "hazard" && (
+  <div
+    style={{
+      background: "white",
+      padding: 20,
+      borderRadius: 12,
+      border: "1px solid #dbe4ee",
+      marginTop: 20,
+    }}
+  >
+    <h2 style={{ marginTop: 0 }}>Hazard ID Report</h2>
+
+    <div style={{ display: "grid", gap: 16 }}>
+
+      <div>
+        <label>Project</label>
+        <br />
+        <select
+          value={hazardProject}
+          onChange={(e) => setHazardProject(e.target.value)}
+          style={{
+            width: "100%",
+            padding: 12,
+            borderRadius: 10,
+            border: "1px solid #cbd5e1",
+          }}
+        >
+          <option value="">Select a project</option>
+
+          {projects.map((project) => (
+            <option key={project.id} value={project.name}>
+              {project.name}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <div>
+        <label>Reported By</label>
+        <br />
+        <input
+          value={reportedBy}
+          onChange={(e) => setReportedBy(e.target.value)}
+          style={{
+            width: "100%",
+            padding: 12,
+            borderRadius: 10,
+            border: "1px solid #cbd5e1",
+          }}
+        />
+      </div>
+
+      <div>
+        <label>Hazard Category</label>
+        <br />
+        <input
+          value={hazardCategory}
+          onChange={(e) => setHazardCategory(e.target.value)}
+          style={{
+            width: "100%",
+            padding: 12,
+            borderRadius: 10,
+            border: "1px solid #cbd5e1",
+          }}
+        />
+      </div>
+
+      <div>
+        <label>Hazard Description</label>
+        <br />
+        <textarea
+          value={hazardDescription}
+          onChange={(e) => setHazardDescription(e.target.value)}
+          rows={4}
+          style={{
+            width: "100%",
+            padding: 12,
+            borderRadius: 10,
+            border: "1px solid #cbd5e1",
+          }}
+        />
+      </div>
+
+      <div>
+        <label>Immediate Action Taken</label>
+        <br />
+        <textarea
+          value={immediateAction}
+          onChange={(e) => setImmediateAction(e.target.value)}
+          rows={3}
+          style={{
+            width: "100%",
+            padding: 12,
+            borderRadius: 10,
+            border: "1px solid #cbd5e1",
+          }}
+        />
+      </div>
+
+      <div>
+        <label>Risk Level</label>
+        <br />
+        <select
+          value={hazardRiskLevel}
+          onChange={(e) => setHazardRiskLevel(e.target.value)}
+          style={{
+            width: "100%",
+            padding: 12,
+            borderRadius: 10,
+            border: "1px solid #cbd5e1",
+          }}
+        >
+          <option value="">Select risk level</option>
+          <option value="Low">Low</option>
+          <option value="Moderate">Moderate</option>
+          <option value="High">High</option>
+          <option value="Critical">Critical</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Photos</label>
+        <br />
+        <input
+          type="file"
+          multiple
+          accept="image/*"
+          onChange={(e) => setHazardPhotos(Array.from(e.target.files))}
+        />
+      </div>
+
+      <button
+        type="button"
+        style={{
+          background: "#123d82",
+          color: "white",
+          padding: "12px 18px",
+          borderRadius: 10,
+          border: "none",
+          fontWeight: "bold",
+          cursor: "pointer",
+        }}
+      >
+        Submit Hazard Report
+      </button>
+
+    </div>
+  </div>
+)}
+
       {activeTab === "supervisor" && (
         <div style={{ display: "grid", gap: 18 }}>
           <div
