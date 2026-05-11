@@ -394,6 +394,64 @@ export default function Home() {
     }
   }
 
+async function submitHazardReport() {
+  setLoading(true);
+  setMessage("");
+
+  if (!hazardProject || !reportedBy || !hazardDescription || !hazardRiskLevel) {
+    setMessage(
+      "Please complete required fields: Project, Reported By, Hazard Description, and Risk Level."
+    );
+    setLoading(false);
+    return;
+  }
+
+  try {
+    const uploadedPhotoUrls = await uploadPhotosToSupabase(hazardPhotos);
+
+    const payload = {
+      project_name: hazardProject,
+      reported_by: reportedBy,
+      hazard_category: hazardCategory,
+      hazard_description: hazardDescription,
+      immediate_action: immediateAction,
+      risk_level: hazardRiskLevel,
+      photos: uploadedPhotoUrls.join(", "),
+      status: "Open",
+    };
+
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/hazard_reports`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        apikey: SUPABASE_KEY,
+        Authorization: `Bearer ${SUPABASE_KEY}`,
+        Prefer: "return=representation",
+      },
+      body: JSON.stringify(payload),
+    });
+
+    if (!res.ok) {
+      const text = await res.text();
+      throw new Error(text || "Hazard report insert failed");
+    }
+
+    setHazardProject("");
+    setReportedBy("");
+    setHazardCategory("");
+    setHazardDescription("");
+    setImmediateAction("");
+    setHazardRiskLevel("");
+    setHazardPhotos([]);
+
+    setMessage("Hazard report submitted.");
+  } catch (error) {
+    setMessage(`Could not save hazard report: ${error.message}`);
+  } finally {
+    setLoading(false);
+  }
+}
+  
   function startReview(record) {
     setReviewingId(record.id);
     setReviewStatus(record.status || "Pending Review");
