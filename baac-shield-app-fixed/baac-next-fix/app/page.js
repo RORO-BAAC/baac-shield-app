@@ -406,9 +406,17 @@ async function submitHazardReport() {
   setLoading(true);
   setMessage("");
 
-  if (!hazardProject || !reportedBy || !hazardDescription || !hazardRiskLevel) {
+  if (
+  !hazardProject ||
+  !reportedBy ||
+  !hazardCategory ||
+  !hazardDescription ||
+  !hazardRiskLevel
+) {
     setMessage(
-      "Please complete required fields: Project, Reported By, Hazard Description, and Risk Level."
+     setMessage(
+  "Please complete required fields: Project, Reported By, Hazard Category, Hazard Description, and Risk Level."
+);
     );
     setLoading(false);
     return;
