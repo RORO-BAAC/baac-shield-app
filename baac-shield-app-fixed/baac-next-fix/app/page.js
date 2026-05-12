@@ -416,7 +416,6 @@ async function submitHazardReport() {
     setMessage(
   "Please complete required fields: Project, Reported By, Hazard Category, Hazard Description, and Risk Level."
 );
-    );
     setLoading(false);
     return;
   }
