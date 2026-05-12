@@ -414,7 +414,6 @@ async function submitHazardReport() {
   !hazardRiskLevel
 ) {
     setMessage(
-     setMessage(
   "Please complete required fields: Project, Reported By, Hazard Category, Hazard Description, and Risk Level."
 );
     );
