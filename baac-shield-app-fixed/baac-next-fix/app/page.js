@@ -66,6 +66,13 @@ export default function Home() {
   const [workerSignature, setWorkerSignature] = useState("");
   const [supervisor, setSupervisor] = useState("");
   const [projectName, setProjectName] = useState("");
+  const [hazardProject, setHazardProject] = useState("");
+const [reportedBy, setReportedBy] = useState("");
+const [hazardCategory, setHazardCategory] = useState("");
+const [hazardDescription, setHazardDescription] = useState("");
+const [immediateAction, setImmediateAction] = useState("");
+const [hazardRiskLevel, setHazardRiskLevel] = useState("");
+const [hazardPhotos, setHazardPhotos] = useState([]);
   const [task, setTask] = useState("");
   const [risk, setRisk] = useState("");
   const [selectedShields, setSelectedShields] = useState([]);
