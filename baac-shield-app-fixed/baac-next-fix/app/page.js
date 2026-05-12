@@ -451,7 +451,7 @@ async function submitHazardReport() {
       throw new Error(text || "Hazard report insert failed");
     }
 
-await fetch("/api/send-alert", {
+const emailRes = await fetch("/api/send-alert", {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
@@ -473,6 +473,11 @@ await fetch("/api/send-alert", {
     stopWork: hazardRiskLevel === "Critical",
   }),
 });
+
+if (!emailRes.ok) {
+  const emailText = await emailRes.text();
+  throw new Error(emailText || "Hazard email failed");
+}
     
     setHazardProject("");
     setReportedBy("");
