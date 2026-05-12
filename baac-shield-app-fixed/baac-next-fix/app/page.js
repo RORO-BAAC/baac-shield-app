@@ -732,6 +732,23 @@ if (!emailRes.ok) {
   const closedRecords = records.filter((r) => r.status === "Approved");
   const totalHazards = hazardReports.length;
 
+  const hazardTypeCounts = hazardReports.reduce((acc, report) => {
+  const type = report.report_type || "Unknown";
+  acc[type] = (acc[type] || 0) + 1;
+  return acc;
+}, {});
+
+const hazardRiskCounts = hazardReports.reduce((acc, report) => {
+  const level = report.risk_level || "Unknown";
+  acc[level] = (acc[level] || 0) + 1;
+  return acc;
+}, {});
+
+const hazardCategoryCounts = hazardReports.reduce((acc, report) => {
+  const category = report.hazard_category || "Unknown";
+  acc[category] = (acc[category] || 0) + 1;
+  return acc;
+}, {});
 const hazardIdCount = hazardReports.filter(
   (r) => r.report_type === "Hazard ID"
 ).length;
