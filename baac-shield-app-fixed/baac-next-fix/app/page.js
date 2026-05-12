@@ -67,6 +67,7 @@ export default function Home() {
   const [supervisor, setSupervisor] = useState("");
   const [projectName, setProjectName] = useState("");
   const [hazardProject, setHazardProject] = useState("");
+  const [hazardReportType, setHazardReportType] = useState("Hazard ID");
 const [reportedBy, setReportedBy] = useState("");
 const [hazardCategory, setHazardCategory] = useState("");
 const [hazardDescription, setHazardDescription] = useState("");
