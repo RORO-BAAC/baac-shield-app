@@ -2067,7 +2067,33 @@ const criticalHazardCount = hazardReports.filter(
               <div style={{ fontSize: 28, fontWeight: "bold" }}>{closedRecords.length}</div>
             </div>
           </div>
+<div
+  style={{
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
+    gap: 12,
+  }}
+>
+  <div style={{ padding: 16, background: "#f1f5f9", borderRadius: 12 }}>
+    <div style={{ fontSize: 12, color: "#64748b" }}>Total Hazard Reports</div>
+    <div style={{ fontSize: 28, fontWeight: "bold" }}>{totalHazards}</div>
+  </div>
 
+  <div style={{ padding: 16, background: "#e0f2fe", borderRadius: 12 }}>
+    <div style={{ fontSize: 12, color: "#64748b" }}>Hazard IDs</div>
+    <div style={{ fontSize: 28, fontWeight: "bold" }}>{hazardIdCount}</div>
+  </div>
+
+  <div style={{ padding: 16, background: "#ecfdf5", borderRadius: 12 }}>
+    <div style={{ fontSize: 12, color: "#64748b" }}>Observations</div>
+    <div style={{ fontSize: 28, fontWeight: "bold" }}>{observationCount}</div>
+  </div>
+
+  <div style={{ padding: 16, background: "#fee2e2", borderRadius: 12 }}>
+    <div style={{ fontSize: 12, color: "#64748b" }}>Critical Hazards</div>
+    <div style={{ fontSize: 28, fontWeight: "bold" }}>{criticalHazardCount}</div>
+  </div>
+</div>
           <div
             style={{
               background: "#f8fafc",
