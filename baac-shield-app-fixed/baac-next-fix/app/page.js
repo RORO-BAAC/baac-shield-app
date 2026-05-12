@@ -1264,19 +1264,33 @@ async function submitHazardReport() {
       </div>
 
       <div>
-        <label>Hazard Category</label>
-        <br />
-        <input
-          value={hazardCategory}
-          onChange={(e) => setHazardCategory(e.target.value)}
-          style={{
-            width: "100%",
-            padding: 12,
-            borderRadius: 10,
-            border: "1px solid #cbd5e1",
-          }}
-        />
-      </div>
+  <label>Hazard Category</label>
+  <br />
+  <select
+    value={hazardCategory}
+    onChange={(e) => setHazardCategory(e.target.value)}
+    style={{
+      width: "100%",
+      padding: 12,
+      borderRadius: 10,
+      border: "1px solid #cbd5e1",
+    }}
+  >
+    <option value="">Select a critical risk</option>
+    <option>Breaking Containment</option>
+    <option>Bypassing Safety Controls</option>
+    <option>Confined Space Entry</option>
+    <option>Driving</option>
+    <option>Energy Isolation</option>
+    <option>Excavation</option>
+    <option>Hot Work</option>
+    <option>Line of Fire</option>
+    <option>Safe Mechanical Lifting</option>
+    <option>Working at Height</option>
+    <option>Working Around Mobile Equipment</option>
+    <option>Work Authorization</option>
+  </select>
+</div>
 
       <div>
         <label>Hazard Description</label>
