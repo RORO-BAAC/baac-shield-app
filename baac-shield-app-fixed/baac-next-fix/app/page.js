@@ -1228,6 +1228,25 @@ async function submitHazardReport() {
         </select>
       </div>
 
+<div style={{ marginBottom: 16 }}>
+  <label>Report Type</label>
+  <br />
+  <select
+    value={hazardReportType}
+    onChange={(e) => setHazardReportType(e.target.value)}
+    style={{
+      width: "100%",
+      padding: 12,
+      marginTop: 6,
+      borderRadius: 10,
+      border: "1px solid #cbd5e1",
+    }}
+  >
+    <option value="Hazard ID">Hazard ID</option>
+    <option value="Observation">Observation</option>
+  </select>
+</div>
+            
       <div>
         <label>Reported By</label>
         <br />
