@@ -730,6 +730,19 @@ if (!emailRes.ok) {
     (r) => r.status === "Needs Correction" || r.status === "Stop Work"
   );
   const closedRecords = records.filter((r) => r.status === "Approved");
+  const totalHazards = hazardReports.length;
+
+const hazardIdCount = hazardReports.filter(
+  (r) => r.report_type === "Hazard ID"
+).length;
+
+const observationCount = hazardReports.filter(
+  (r) => r.report_type === "Observation"
+).length;
+
+const criticalHazardCount = hazardReports.filter(
+  (r) => r.risk_level === "Critical"
+).length;
 
  const filteredRecords = records.filter((record) => {
   const matchesSearch =
