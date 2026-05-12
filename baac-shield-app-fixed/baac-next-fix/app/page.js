@@ -451,6 +451,29 @@ async function submitHazardReport() {
       throw new Error(text || "Hazard report insert failed");
     }
 
+await fetch("/api/send-alert", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    to: "rod.gonzalez@baacconstruction.com",
+    subject:
+      hazardReportType === "Observation"
+        ? "BAAC SHIELD - New Observation Submitted"
+        : "BAAC SHIELD - New Hazard ID Submitted",
+    worker: reportedBy,
+    supervisor: "",
+    project: hazardProject,
+    task: hazardDescription,
+    risk: hazardCategory,
+    notes: `Type: ${hazardReportType} | Risk Level: ${hazardRiskLevel} | Immediate Action: ${
+      immediateAction || "-"
+    }`,
+    stopWork: hazardRiskLevel === "Critical",
+  }),
+});
+    
     setHazardProject("");
     setReportedBy("");
     setHazardCategory("");
