@@ -81,6 +81,7 @@ const [hazardPhotos, setHazardPhotos] = useState([]);
   const [stopWork, setStopWork] = useState(false);
   const [photos, setPhotos] = useState([]);
   const [records, setRecords] = useState([]);
+  const [hazardReports, setHazardReports] = useState([]);
   const projectCounts = records.reduce((acc, record) => {
   const project = record.project_name || "Unknown";
   acc[project] = (acc[project] || 0) + 1;
