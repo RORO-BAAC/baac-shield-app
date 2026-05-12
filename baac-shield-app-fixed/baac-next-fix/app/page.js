@@ -419,6 +419,7 @@ async function submitHazardReport() {
 
     const payload = {
       project_name: hazardProject,
+      report_type: hazardReportType,
       reported_by: reportedBy,
       hazard_category: hazardCategory,
       hazard_description: hazardDescription,
