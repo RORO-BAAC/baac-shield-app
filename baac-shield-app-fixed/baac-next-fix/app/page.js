@@ -2068,17 +2068,6 @@ const criticalHazardCount = hazardReports.filter(
               <div style={{ fontSize: 12, color: "#64748b" }}>Total Records</div>
               <div style={{ fontSize: 28, fontWeight: "bold" }}>{records.length}</div>
             </div>
-<div style={{ marginTop: 20, display: "grid", gap: 20 }}>
-  <div>
-    <h3>Hazard Reports by Type</h3>
-    {Object.entries(hazardTypeCounts).map(([type, count]) => (
-      <div key={type} style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
-        <div style={{ width: 140 }}>{type}</div>
-        <div style={{ height: 18, width: `${count * 25}px`, background: "#3b82f6", borderRadius: 6 }} />
-        <strong>{count}</strong>
-      </div>
-    ))}
-  </div>
 
   <div>
     <h3>Hazard Reports by Risk Level</h3>
