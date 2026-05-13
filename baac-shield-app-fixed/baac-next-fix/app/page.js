@@ -1509,6 +1509,8 @@ const criticalHazardCount = hazardReports.filter(
           type="button"
          onClick={() => {
   setActiveTab("supervisor");
+
+           setSelectedRecord(report);
            
            setReviewingId(report.id);
 
