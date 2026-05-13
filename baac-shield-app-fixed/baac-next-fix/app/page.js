@@ -1575,6 +1575,55 @@ const criticalHazardCount = hazardReports.filter(
                   />
                 </div>
 
+<div style={{ marginTop: 20 }}>
+  <h3>Corrective Action</h3>
+
+  <label>Corrective Action Required</label>
+  <textarea
+    value={correctiveActionText}
+    onChange={(e) => setCorrectiveActionText(e.target.value)}
+    style={{
+      width: "100%",
+      minHeight: 100,
+      padding: 12,
+      marginTop: 6,
+      borderRadius: 10,
+      border: "1px solid #cbd5e1",
+      marginBottom: 16,
+    }}
+  />
+
+  <label>Assigned To</label>
+  <input
+    type="text"
+    value={assignedTo}
+    onChange={(e) => setAssignedTo(e.target.value)}
+    style={{
+      width: "100%",
+      padding: 12,
+      marginTop: 6,
+      borderRadius: 10,
+      border: "1px solid #cbd5e1",
+      marginBottom: 16,
+    }}
+  />
+
+  <label>Due Date</label>
+  <input
+    type="date"
+    value={dueDate}
+    onChange={(e) => setDueDate(e.target.value)}
+    style={{
+      width: "100%",
+      padding: 12,
+      marginTop: 6,
+      borderRadius: 10,
+      border: "1px solid #cbd5e1",
+      marginBottom: 16,
+    }}
+  />
+</div>
+                      
                 <div>
                   <label>Supervisor Comments</label>
                   <br />
