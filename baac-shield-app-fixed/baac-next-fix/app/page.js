@@ -2083,6 +2083,8 @@ const criticalHazardCount = hazardReports.filter(
               <div style={{ fontSize: 12, color: "#64748b" }}>Approved</div>
               <div style={{ fontSize: 28, fontWeight: "bold" }}>{closedRecords.length}</div>
             </div>
+
+            </div>
             
  <div
   style={{
