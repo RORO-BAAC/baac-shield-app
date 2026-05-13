@@ -1504,39 +1504,6 @@ const criticalHazardCount = hazardReports.filter(
         <div>{report.task_description}</div>
       </div>
 
-      <div style={{ marginTop: 16 }}>
-        <button
-          type="button"
-         onClick={() => {
-  setActiveTab("supervisor");
-
-           setSelectedRecord(report);
-           
-           setReviewingId(report.id);
-
-  setReviewStatus(report.status || "Pending Review");
-  setReviewSupervisor(report.reviewed_by || "");
-  setReviewComments(report.supervisor_review_comments || "");
-
-  setCorrectiveActionText(report.corrective_action || "");
-  setAssignedTo(report.assigned_to || "");
-  setDueDate(report.due_date || "");
-
-  window.scrollTo({ top: 0, behavior: "smooth" });
-}}
-          style={{
-            background: "#123d82",
-            color: "white",
-            border: "none",
-            padding: "10px 14px",
-            borderRadius: 8,
-            cursor: "pointer",
-            fontWeight: "bold",
-          }}
-        >
-          Review Hazard
-        </button>
-      </div>
     </div>
   ))}
 </div>
