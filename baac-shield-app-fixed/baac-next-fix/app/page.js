@@ -2107,7 +2107,7 @@ const criticalHazardCount = hazardReports.filter(
               <div style={{ fontSize: 28, fontWeight: "bold" }}>{closedRecords.length}</div>
             </div>
           </div>
-<div
+  <div
   style={{
     display: "grid",
     gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
