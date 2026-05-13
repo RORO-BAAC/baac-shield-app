@@ -1574,7 +1574,7 @@ const criticalHazardCount = hazardReports.filter(
                     onSave={setReviewSupervisorSignature}
                   />
                 </div>
-{activeTab === "hazard" && (
+{reviewingId && (
 <div style={{ marginTop: 20 }}>
   <h3>Corrective Action</h3>
 
