@@ -1464,50 +1464,6 @@ const criticalHazardCount = hazardReports.filter(
   </div>
 )}
 
-<div
-  style={{
-    marginTop: 30,
-    background: "#f8fafc",
-    padding: 20,
-    borderRadius: 12,
-    border: "1px solid #dbe4ee",
-  }}
->
-  <h2 style={{ marginTop: 0 }}>Hazard Reports</h2>
-
-  {hazardReports.length === 0 && (
-    <div>No hazard reports submitted yet.</div>
-  )}
-
-  {hazardReports.map((report) => (
-    <div
-      key={report.id}
-      style={{
-        background: "white",
-        border: "1px solid #dbe4ee",
-        borderRadius: 12,
-        padding: 16,
-        marginBottom: 16,
-      }}
-    >
-      <div style={{ fontWeight: "bold", marginBottom: 8 }}>
-        {report.report_type || "Hazard"}
-      </div>
-
-      <div><strong>Project:</strong> {report.project_name}</div>
-      <div><strong>Worker:</strong> {report.reported_by}</div>
-      <div><strong>Category:</strong> {report.hazard_category}</div>
-      <div><strong>Risk:</strong> {report.risk_level}</div>
-
-      <div style={{ marginTop: 10 }}>
-        <strong>Description:</strong>
-        <div>{report.task_description}</div>
-      </div>
-
-    </div>
-  ))}
-</div>
-
       {activeTab === "supervisor" && (
         <div style={{ display: "grid", gap: 18 }}>
           <div
