@@ -2069,29 +2069,6 @@ const criticalHazardCount = hazardReports.filter(
               <div style={{ fontSize: 28, fontWeight: "bold" }}>{records.length}</div>
             </div>
 
-  <div>
-    <h3>Hazard Reports by Risk Level</h3>
-    {Object.entries(hazardRiskCounts).map(([level, count]) => (
-      <div key={level} style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
-        <div style={{ width: 140 }}>{level}</div>
-        <div style={{ height: 18, width: `${count * 25}px`, background: "#f59e0b", borderRadius: 6 }} />
-        <strong>{count}</strong>
-      </div>
-    ))}
-  </div>
-
-  <div>
-    <h3>Hazard Reports by Category</h3>
-    {Object.entries(hazardCategoryCounts).map(([category, count]) => (
-      <div key={category} style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
-        <div style={{ width: 220 }}>{category}</div>
-        <div style={{ height: 18, width: `${count * 25}px`, background: "#22c55e", borderRadius: 6 }} />
-        <strong>{count}</strong>
-      </div>
-    ))}
-  </div>
-      
-</div>
             <div style={{ padding: 16, background: "#fef9c3", borderRadius: 12 }}>
               <div style={{ fontSize: 12, color: "#64748b" }}>Pending Review</div>
               <div style={{ fontSize: 28, fontWeight: "bold" }}>{pendingRecords.length}</div>
