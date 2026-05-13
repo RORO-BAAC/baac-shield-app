@@ -2133,7 +2133,8 @@ const criticalHazardCount = hazardReports.filter(
     <div style={{ fontSize: 28, fontWeight: "bold" }}>{criticalHazardCount}</div>
   </div>
 </div>
-
+<h2 style={{ marginTop: 28 }}>Hazard Analytics</h2>
+  
   <div style={{ marginTop: 20, display: "grid", gap: 20 }}>
   <div>
     <h3>Hazard Reports by Type</h3>
