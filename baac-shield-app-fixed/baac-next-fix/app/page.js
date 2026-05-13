@@ -79,7 +79,6 @@ const [hazardPhotos, setHazardPhotos] = useState([]);
 const [correctiveActionText, setCorrectiveActionText] = useState("");
 const [assignedTo, setAssignedTo] = useState("");
 const [dueDate, setDueDate] = useState("");
-const [actionStatus, setActionStatus] = useState("Open");
   
   const [task, setTask] = useState("");
   const [risk, setRisk] = useState("");
