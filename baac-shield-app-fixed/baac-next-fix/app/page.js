@@ -86,9 +86,6 @@ const [assignedTo, setAssignedTo] = useState("");
   const [stopWork, setStopWork] = useState(false);
   const [photos, setPhotos] = useState([]);
 
-  const [hazardActionId, setHazardActionId] = useState(null);
-const [correctiveActionText, setCorrectiveActionText] = useState("");
-const [assignedTo, setAssignedTo] = useState("");
 const [dueDate, setDueDate] = useState("");
 const [actionStatus, setActionStatus] = useState("Open");
   const [records, setRecords] = useState([]);
