@@ -74,6 +74,12 @@ const [hazardDescription, setHazardDescription] = useState("");
 const [immediateAction, setImmediateAction] = useState("");
 const [hazardRiskLevel, setHazardRiskLevel] = useState("");
 const [hazardPhotos, setHazardPhotos] = useState([]);
+
+  const [hazardActionId, setHazardActionId] = useState(null);
+const [correctiveActionText, setCorrectiveActionText] = useState("");
+const [assignedTo, setAssignedTo] = useState("");
+const [dueDate, setDueDate] = useState("");
+const [actionStatus, setActionStatus] = useState("Open");
   const [task, setTask] = useState("");
   const [risk, setRisk] = useState("");
   const [selectedShields, setSelectedShields] = useState([]);
