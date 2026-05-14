@@ -1654,8 +1654,7 @@ const criticalHazardCount = hazardReports.filter(
       }}
     >
       <option>Open</option>
-      <option>Reviewed</option>
-      <option>Closed</option>
+          <option>Closed</option>
     </select>
 
     <label>Supervisor Name</label>
