@@ -1702,7 +1702,7 @@ const criticalHazardCount = hazardReports.filter(
 
     <button
       type="button"
-      onClick={saveReview}
+      onClick={saveHazardReview}
       style={{
         background: "#16a34a",
         color: "white",
