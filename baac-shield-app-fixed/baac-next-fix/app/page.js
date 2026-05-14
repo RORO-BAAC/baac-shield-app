@@ -649,48 +649,7 @@ async function saveHazardReview() {
   } finally {
     setLoading(false);
   }
-}
-
-  try {
-    const res = await fetch(
-      `${SUPABASE_URL}/rest/v1/hazard_reports?id=eq.${hazardActionId}`,
-      {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-          apikey: SUPABASE_KEY,
-          Authorization: `Bearer ${SUPABASE_KEY}`,
-          Prefer: "return=representation",
-        },
-        body: JSON.stringify(payload),
-      }
-    );
-
-    if (!res.ok) {
-      const text = await res.text();
-      throw new Error(text || "Hazard review update failed");
-    }
-
-    setMessage("Hazard review saved.");
-    setHazardActionId(null);
-
-setHazardReports((prev) =>
-  prev.filter((report) => report.id !== hazardActionId)
-);
-      
-    setReviewStatus("Open");
-    setReviewSupervisor("");
-    setReviewComments("");
-    setCorrectiveActionText("");
-
-    await loadRecords();
-  } catch (error) {
-    setMessage(`Could not save hazard review: ${error.message}`);
-  } finally {
-    setLoading(false);
-  }
-}
-  
+    
   function downloadPdf(record) {
     const doc = new jsPDF();
 
