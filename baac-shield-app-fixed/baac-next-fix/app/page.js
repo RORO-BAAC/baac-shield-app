@@ -1517,17 +1517,6 @@ const criticalHazardCount = hazardReports.filter(
             </div>
           </div>
 
-          {reviewingId && (
-            <div
-              style={{
-                background: "white",
-                borderRadius: 16,
-                padding: 18,
-                boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
-              }}
-            >
-              <h2 style={{ marginTop: 0 }}>Supervisor Review</h2>
-
 <div
   style={{
     marginTop: 20,
@@ -1559,6 +1548,17 @@ const criticalHazardCount = hazardReports.filter(
           <div style={{ fontWeight: "bold", marginBottom: 6 }}>
             {report.report_type || "Hazard"}
           </div>
+
+          {reviewingId && (
+            <div
+              style={{
+                background: "white",
+                borderRadius: 16,
+                padding: 18,
+                boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
+              }}
+            >
+              <h2 style={{ marginTop: 0 }}>Supervisor Review</h2>
 
           <div><strong>Project:</strong> {report.project_name}</div>
           <div><strong>Reported By:</strong> {report.reported_by}</div>
