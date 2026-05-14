@@ -1571,7 +1571,6 @@ const criticalHazardCount = hazardReports.filter(
             <div>{report.hazard_description}</div>
           </div>
         </div>
-      ))
   )}
 </div>
               
