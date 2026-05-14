@@ -1572,6 +1572,7 @@ const criticalHazardCount = hazardReports.filter(
           </div>
         </div>
   )}
+    )}
 </div>
               
               <div style={{ display: "grid", gap: 12 }}>
