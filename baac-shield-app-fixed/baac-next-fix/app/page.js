@@ -457,6 +457,7 @@ async function submitHazardReport() {
       risk_level: hazardRiskLevel,
       photos: uploadedPhotoUrls.join(", "),
       status: "Open",
+      action_status: "Open",
     };
 
     const res = await fetch(`${SUPABASE_URL}/rest/v1/hazard_reports`, {
