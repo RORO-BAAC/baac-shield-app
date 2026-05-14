@@ -1558,7 +1558,116 @@ const criticalHazardCount = hazardReports.filter(
         <div style={{ marginTop: 10 }}>
           <strong>Description:</strong>
           <div>{report.hazard_description}</div>
+          <div style={{ marginTop: 14 }}>
+  <button
+    type="button"
+    onClick={() => {
+      setHazardActionId(report.id);
+      setReviewStatus(report.action_status || "Open");
+      setReviewSupervisor(report.reviewed_by || "");
+      setReviewComments(report.supervisor_review_comments || "");
+      setCorrectiveActionText(report.corrective_action || "");
+    }}
+    style={{
+      background: "#123d82",
+      color: "white",
+      border: "none",
+      padding: "10px 14px",
+      borderRadius: 8,
+      fontWeight: "bold",
+      cursor: "pointer",
+    }}
+  >
+    Review / Close Hazard
+  </button>
+</div>
         </div>
+      {hazardActionId === report.id && (
+  <div
+    style={{
+      marginTop: 16,
+      padding: 16,
+      background: "#f8fafc",
+      borderRadius: 10,
+      border: "1px solid #dbe4ee",
+    }}
+  >
+    <label>Status</label>
+    <select
+      value={reviewStatus}
+      onChange={(e) => setReviewStatus(e.target.value)}
+      style={{
+        width: "100%",
+        padding: 10,
+        marginTop: 6,
+        marginBottom: 12,
+        borderRadius: 8,
+      }}
+    >
+      <option>Open</option>
+      <option>Reviewed</option>
+      <option>Closed</option>
+    </select>
+
+    <label>Supervisor Name</label>
+    <input
+      type="text"
+      value={reviewSupervisor}
+      onChange={(e) => setReviewSupervisor(e.target.value)}
+      style={{
+        width: "100%",
+        padding: 10,
+        marginTop: 6,
+        marginBottom: 12,
+        borderRadius: 8,
+      }}
+    />
+
+    <label>Comments</label>
+    <textarea
+      value={reviewComments}
+      onChange={(e) => setReviewComments(e.target.value)}
+      style={{
+        width: "100%",
+        minHeight: 80,
+        padding: 10,
+        marginTop: 6,
+        marginBottom: 12,
+        borderRadius: 8,
+      }}
+    />
+
+    <label>Corrective Action / Resolution</label>
+    <textarea
+      value={correctiveActionText}
+      onChange={(e) => setCorrectiveActionText(e.target.value)}
+      style={{
+        width: "100%",
+        minHeight: 80,
+        padding: 10,
+        marginTop: 6,
+        marginBottom: 12,
+        borderRadius: 8,
+      }}
+    />
+
+    <button
+      type="button"
+      onClick={saveReview}
+      style={{
+        background: "#16a34a",
+        color: "white",
+        border: "none",
+        padding: "10px 14px",
+        borderRadius: 8,
+        fontWeight: "bold",
+        cursor: "pointer",
+      }}
+    >
+      Save Hazard Review
+    </button>
+  </div>
+)}
       </div>
     ))
 )}
