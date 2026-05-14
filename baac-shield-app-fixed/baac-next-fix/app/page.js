@@ -586,6 +586,55 @@ if (!emailRes.ok) {
     }
   }
 
+async function saveHazardReview() {
+  if (!hazardActionId) return;
+
+  setLoading(true);
+  setMessage("");
+
+  const payload = {
+    action_status: reviewStatus,
+    reviewed_by: reviewSupervisor,
+    supervisor_review_comments: reviewComments,
+    corrective_action: correctiveActionText,
+    closed_date: reviewStatus === "Closed" ? new Date().toISOString().split("T")[0] : null,
+  };
+
+  try {
+    const res = await fetch(
+      `${SUPABASE_URL}/rest/v1/hazard_reports?id=eq.${hazardActionId}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          apikey: SUPABASE_KEY,
+          Authorization: `Bearer ${SUPABASE_KEY}`,
+          Prefer: "return=representation",
+        },
+        body: JSON.stringify(payload),
+      }
+    );
+
+    if (!res.ok) {
+      const text = await res.text();
+      throw new Error(text || "Hazard review update failed");
+    }
+
+    setMessage("Hazard review saved.");
+    setHazardActionId(null);
+    setReviewStatus("Open");
+    setReviewSupervisor("");
+    setReviewComments("");
+    setCorrectiveActionText("");
+
+    await loadRecords();
+  } catch (error) {
+    setMessage(`Could not save hazard review: ${error.message}`);
+  } finally {
+    setLoading(false);
+  }
+}
+  
   function downloadPdf(record) {
     const doc = new jsPDF();
 
