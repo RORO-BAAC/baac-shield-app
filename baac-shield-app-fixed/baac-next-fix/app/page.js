@@ -622,6 +622,12 @@ async function saveHazardReview() {
 
     setMessage("Hazard review saved.");
     setHazardActionId(null);
+    setHazardReports((prev) =>
+
+setHazardReports((prev) =>
+  prev.filter((report) => report.id !== hazardActionId)
+);
+      
     setReviewStatus("Open");
     setReviewSupervisor("");
     setReviewComments("");
