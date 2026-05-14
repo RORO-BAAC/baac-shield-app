@@ -1748,8 +1748,7 @@ const criticalHazardCount = hazardReports.filter(
                 </div>
               </div>
             </div>
-          )}
-
+          
           <div
             style={{
               background: "white",
