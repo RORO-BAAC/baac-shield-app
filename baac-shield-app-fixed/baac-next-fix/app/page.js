@@ -1578,7 +1578,7 @@ const criticalHazardCount = hazardReports.filter(
 >
   <h3 style={{ marginTop: 0 }}>Hazard Reports Pending Review</h3>
 
-{hazardReports.filter((r) => .filter((r) => r.action_status !== "Closed").length === 0 ? (
+{hazardReports.filter((r) => r.action_status !== "Closed").length === 0 ? (
   <div>No hazard reports pending review.</div>
 ) : (
   hazardReports
