@@ -1529,51 +1529,40 @@ const criticalHazardCount = hazardReports.filter(
 >
   <h3 style={{ marginTop: 0 }}>Hazard Reports Pending Review</h3>
 
-  {hazardReports.filter((r) => (r.action_status || "Open") !== "Closed").length === 0 ? (
-    <div>No hazard reports pending review.</div>
-  ) : (
-    hazardReports
-      .filter((r) => (r.action_status || "Open") !== "Closed")
-      .map((report) => (
-        <div
-          key={report.id}
-          style={{
-            background: "white",
-            border: "1px solid #dbe4ee",
-            borderRadius: 10,
-            padding: 14,
-            marginBottom: 12,
-          }}
-        >
-          <div style={{ fontWeight: "bold", marginBottom: 6 }}>
-            {report.report_type || "Hazard"}
-          </div>
-
-          {reviewingId && (
-            <div
-              style={{
-                background: "white",
-                borderRadius: 16,
-                padding: 18,
-                boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
-              }}
-            >
-              <h2 style={{ marginTop: 0 }}>Supervisor Review</h2>
-
-          <div><strong>Project:</strong> {report.project_name}</div>
-          <div><strong>Reported By:</strong> {report.reported_by}</div>
-          <div><strong>Category:</strong> {report.hazard_category}</div>
-          <div><strong>Risk:</strong> {report.risk_level}</div>
-          <div><strong>Status:</strong> {report.action_status || "Open"}</div>
-
-          <div style={{ marginTop: 10 }}>
-            <strong>Description:</strong>
-            <div>{report.hazard_description}</div>
-          </div>
+{hazardReports.filter((r) => (r.action_status || "Open") !== "Closed").length === 0 ? (
+  <div>No hazard reports pending review.</div>
+) : (
+  hazardReports
+    .filter((r) => (r.action_status || "Open") !== "Closed")
+    .map((report) => (
+      <div
+        key={report.id}
+        style={{
+          background: "white",
+          border: "1px solid #dbe4ee",
+          borderRadius: 10,
+          padding: 14,
+          marginBottom: 12,
+        }}
+      >
+        <div style={{ fontWeight: "bold", marginBottom: 6 }}>
+          {report.report_type || "Hazard"}
         </div>
-  )}
-</div>
-              
+
+        <div><strong>Project:</strong> {report.project_name}</div>
+        <div><strong>Reported By:</strong> {report.reported_by}</div>
+        <div><strong>Category:</strong> {report.hazard_category}</div>
+        <div><strong>Risk:</strong> {report.risk_level}</div>
+        <div><strong>Status:</strong> {report.action_status || "Open"}</div>
+
+        <div style={{ marginTop: 10 }}>
+          <strong>Description:</strong>
+          <div>{report.hazard_description}</div>
+        </div>
+      </div>
+    ))
+)}
+  
               <div style={{ display: "grid", gap: 12 }}>
                 <div>
                   <label>Status</label>
