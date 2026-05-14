@@ -1866,7 +1866,7 @@ const criticalHazardCount = hazardReports.filter(
                 <div style={{ display: "flex", gap: 10 }}>
                   <button
                     type="button"
-                    onClick={saveReview}
+                    onClick={saveHazardReview}
                     disabled={loading}
                     style={{
                       padding: "12px 16px",
