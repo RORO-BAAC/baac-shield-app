@@ -2074,22 +2074,7 @@ const criticalHazardCount = hazardReports.filter(
             <h2 style={{ marginTop: 0 }}>All Records</h2>
 
             <div style={{ marginBottom: 10 }}>
-  <button
-    type="button"
-    onClick={exportFilteredToCSV}
-    style={{
-      padding: "8px 12px",
-      borderRadius: 8,
-      border: "1px solid #cbd5e1",
-      background: "#f1f5f9",
-      cursor: "pointer",
-      fontWeight: "bold"
-    }}
-  >
-    Export CSV
-  </button>
-</div>
-      
+       
 <button
   type="button"
   onClick={exportCombinedCSV}
