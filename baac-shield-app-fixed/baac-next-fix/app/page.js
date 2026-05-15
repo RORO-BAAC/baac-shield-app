@@ -668,7 +668,6 @@ async function saveHazardReview() {
       doc.text(split, 14, y);
       y += split.length * 6 + 4;
     };
-}
       
     addLine("Worker", record.worker_name);
     addLine("Supervisor", record.supervisor_name);
@@ -2087,21 +2086,7 @@ const criticalHazardCount = hazardReports.filter(
 >
   Export AUDIT CSV
 </button>
-
-<button
-  type="button"
-  onClick={exportAuditPDF}
-  style={{
-    padding: "10px 14px",
-    borderRadius: 8,
-    border: "1px solid #cbd5e1",
-    background: "#fff",
-    cursor: "pointer",
-    fontWeight: "bold",
-    marginLeft: 10,
-  }}
->
-                                
+                               
               </div>
             </div>
 
