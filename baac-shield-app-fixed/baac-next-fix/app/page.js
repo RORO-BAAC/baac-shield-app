@@ -784,6 +784,59 @@ async function saveHazardReview() {
   document.body.removeChild(link);
 }
 
+function exportHazardsToCSV() {
+  if (!hazardReports.length) {
+    setMessage("No hazard reports to export.");
+    return;
+  }
+
+  const headers = [
+    "Report Type",
+    "Project",
+    "Reported By",
+    "Hazard Category",
+    "Risk Level",
+    "Hazard Description",
+    "Immediate Action",
+    "Status",
+    "Reviewed By",
+    "Supervisor Comments",
+    "Corrective Action",
+    "Closed Date"
+  ];
+
+  const rows = hazardReports.map((report) => [
+    report.report_type || "",
+    report.project_name || "",
+    report.reported_by || "",
+    report.hazard_category || "",
+    report.risk_level || "",
+    report.hazard_description || "",
+    report.immediate_action || "",
+    report.action_status || report.status || "",
+    report.reviewed_by || "",
+    report.supervisor_review_comments || "",
+    report.corrective_action || "",
+    report.closed_date || ""
+  ]);
+
+  const csvContent = [headers, ...rows]
+    .map((row) =>
+      row.map((val) => `"${String(val).replace(/"/g, '""')}"`).join(",")
+    )
+    .join("\n");
+
+  const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+  const url = URL.createObjectURL(blob);
+
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = "baac-shield-hazard-reports.csv";
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+  
   function statusColor(status) {
     if (status === "Approved") return "#166534";
     if (status === "Stop Work") return "#b91c1c";
