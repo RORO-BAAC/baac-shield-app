@@ -1916,7 +1916,7 @@ const criticalHazardCount = hazardReports.filter(
                 </div>
               </div>
             </div>
-          
+          )}
           <div
             style={{
               background: "white",
@@ -2114,11 +2114,10 @@ const criticalHazardCount = hazardReports.filter(
 >
   Clear Filters
 </button>
-                 )}
-                   
+                                 
               </div>
             </div>
-
+)}
             {filteredRecords.length === 0 ? (
               <p>No records match your search or filters.</p>
             ) : (
