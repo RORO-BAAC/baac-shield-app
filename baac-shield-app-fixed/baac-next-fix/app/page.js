@@ -2594,4 +2594,3 @@ const criticalHazardCount = hazardReports.filter(
     </main>
   );
 }
-}
