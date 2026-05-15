@@ -668,7 +668,8 @@ async function saveHazardReview() {
       doc.text(split, 14, y);
       y += split.length * 6 + 4;
     };
-
+}
+  
 function exportAuditPDF() {
   const doc = new jsPDF();
 
