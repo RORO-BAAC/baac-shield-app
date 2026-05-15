@@ -1730,7 +1730,6 @@ const criticalHazardCount = hazardReports.filter(
     ))
 )}
  
-{reviewingId && (
               <div style={{ display: "grid", gap: 12 }}>
                 <div>
                   <label>Status</label>
@@ -1916,7 +1915,7 @@ const criticalHazardCount = hazardReports.filter(
                 </div>
               </div>
             </div>
-          )}
+
           <div
             style={{
               background: "white",
