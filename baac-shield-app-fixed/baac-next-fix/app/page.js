@@ -2086,7 +2086,6 @@ const criticalHazardCount = hazardReports.filter(
 >
   Export AUDIT CSV
 </button>
-    </div>
     
             <div style={{ marginBottom: 16 }}>
               <input
