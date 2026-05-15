@@ -2086,10 +2086,7 @@ const criticalHazardCount = hazardReports.filter(
 >
   Export AUDIT CSV
 </button>
-                               
-              </div>
-            </div>
-
+                              
             {filteredRecords.length === 0 ? (
               <p>No records match your search or filters.</p>
             ) : (
