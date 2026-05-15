@@ -2092,7 +2092,7 @@ const criticalHazardCount = hazardReports.filter(
       
 <button
   type="button"
-  onClick={exportHazardsToCSV}
+  onClick={exportCombinedCSV}
   style={{
     padding: "10px 14px",
     borderRadius: 8,
@@ -2102,7 +2102,7 @@ const criticalHazardCount = hazardReports.filter(
     fontWeight: "bold",
   }}
 >
-  Export Hazard CSV
+  Export AUDIT CSV
 </button>
     
             <div style={{ marginBottom: 16 }}>
