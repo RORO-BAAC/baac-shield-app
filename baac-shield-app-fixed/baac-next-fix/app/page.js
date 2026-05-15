@@ -2116,7 +2116,7 @@ const criticalHazardCount = hazardReports.filter(
                                  
               </div>
             </div>
-)}
+
             {filteredRecords.length === 0 ? (
               <p>No records match your search or filters.</p>
             ) : (
