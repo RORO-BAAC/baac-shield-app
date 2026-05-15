@@ -957,7 +957,6 @@ const criticalHazardCount = hazardReports.filter(
     matchesProject
   );
 });
-}
 
   if (showSplash) {
   return (
