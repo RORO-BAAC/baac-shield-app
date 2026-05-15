@@ -784,43 +784,69 @@ async function saveHazardReview() {
   document.body.removeChild(link);
 }
 
-function exportHazardsToCSV() {
-  if (!hazardReports.length) {
-    setMessage("No hazard reports to export.");
-    return;
-  }
-
+function exportCombinedCSV() {
   const headers = [
-    "Report Type",
+    "Record Type",
     "Project",
-    "Reported By",
-    "Hazard Category",
-    "Risk Level",
-    "Hazard Description",
-    "Immediate Action",
+    "Submitted By",
+    "Supervisor",
+    "Category / Risk",
+    "Task / Description",
+    "Controls / Immediate Action",
     "Status",
     "Reviewed By",
     "Supervisor Comments",
     "Corrective Action",
+    "Rectified",
+    "Stop Work",
+    "Submitted At",
     "Closed Date"
   ];
 
-  const rows = hazardReports.map((report) => [
-    report.report_type || "",
+  const workerRows = filteredRecords.map((record) => [
+    "Worker Form",
+    record.project_name || "",
+    record.worker_name || "",
+    record.supervisor_name || "",
+    record.critical_risk || "",
+    record.task_description || "",
+    record.shield_control || "",
+    record.status || "",
+    record.reviewed_by || "",
+    record.supervisor_review_comments || "",
+    record.corrective_actions || "",
+    record.rectified ? "Yes" : "No",
+    record.stop_work ? "Yes" : "No",
+    record.submitted_at || "",
+    ""
+  ]);
+
+  const hazardRows = hazardReports.map((report) => [
+    report.report_type || "Hazard ID",
     report.project_name || "",
     report.reported_by || "",
-    report.hazard_category || "",
-    report.risk_level || "",
+    "",
+    report.hazard_category || report.risk_level || "",
     report.hazard_description || "",
     report.immediate_action || "",
     report.action_status || report.status || "",
     report.reviewed_by || "",
     report.supervisor_review_comments || "",
     report.corrective_action || "",
+    "",
+    report.risk_level === "Critical" ? "Yes" : "No",
+    report.created_at || report.submitted_at || "",
     report.closed_date || ""
   ]);
 
-  const csvContent = [headers, ...rows]
+  const allRows = [...workerRows, ...hazardRows];
+
+  if (!allRows.length) {
+    setMessage("No records to export.");
+    return;
+  }
+
+  const csvContent = [headers, ...allRows]
     .map((row) =>
       row.map((val) => `"${String(val).replace(/"/g, '""')}"`).join(",")
     )
@@ -831,7 +857,7 @@ function exportHazardsToCSV() {
 
   const link = document.createElement("a");
   link.href = url;
-  link.download = "baac-shield-hazard-reports.csv";
+  link.download = "baac-shield-combined-cor-report.csv";
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
