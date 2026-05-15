@@ -2070,12 +2070,11 @@ const criticalHazardCount = hazardReports.filter(
     </div>
   )}
 </div>
-    
+   
             <h2 style={{ marginTop: 0 }}>All Records</h2>
 
             <div style={{ marginBottom: 10 }}>
-       
-<button
+       <button
   type="button"
   onClick={exportCombinedCSV}
   style={{
