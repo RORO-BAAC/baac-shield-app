@@ -587,7 +587,6 @@ if (!emailRes.ok) {
   }
 
 async function saveHazardReview() {
-  alert("Save Hazard Review button clicked");
   
   if (!hazardActionId) {
     alert("No hazard selected.");
@@ -2600,5 +2599,4 @@ const criticalHazardCount = hazardReports.filter(
       )}
     </main>
   );
-}
 }
