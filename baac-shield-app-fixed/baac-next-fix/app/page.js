@@ -587,17 +587,12 @@ if (!emailRes.ok) {
   }
 
 async function saveHazardReview() {
-  
-  if (!hazardActionId) {
-    alert("No hazard selected.");
-    return;
-  }
+  if (!hazardActionId) return;
 
   setLoading(true);
   setMessage("");
 
   const payload = {
-    status: reviewStatus,
     action_status: reviewStatus,
     reviewed_by: reviewSupervisor,
     supervisor_review_comments: reviewComments,
@@ -625,7 +620,6 @@ async function saveHazardReview() {
 
     if (!res.ok) {
       const text = await res.text();
-      alert(`Hazard review failed: ${text}`);
       throw new Error(text || "Hazard review update failed");
     }
 
@@ -636,7 +630,6 @@ async function saveHazardReview() {
     }
 
     setMessage("Hazard review saved.");
-    alert("Hazard review saved.");
 
     setHazardActionId(null);
     setReviewStatus("Open");
@@ -650,7 +643,8 @@ async function saveHazardReview() {
   } finally {
     setLoading(false);
   }
-    
+}
+  
   function downloadPdf(record) {
     const doc = new jsPDF();
 
