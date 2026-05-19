@@ -879,8 +879,9 @@ doc.text("Identify the risk. Verify the shield.", 14, 25);
 doc.setTextColor(0, 0, 0);
 doc.setFontSize(10);
 doc.text(`Generated: ${new Date().toLocaleString()}`, 14, 40);
+  doc.text(`Date Filter: ${dateFilter}`, 14, 46);  
 
-let y = 52;
+let y = 58;
 
       doc.setFontSize(12);
   doc.text(`Total Worker Forms: ${filteredRecords.length}`, 14, y);
