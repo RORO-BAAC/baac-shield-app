@@ -2605,7 +2605,17 @@ const filteredHazardReports = hazardReports.filter((report) => {
   </div>
 </div>
 </div>
-<h2 style={{ marginTop: 28 }}>Hazard Analytics</h2>
+<h2
+  style={{
+    marginTop: 28,
+    marginBottom: 4,
+    color: "#0f2f66",
+    borderBottom: "2px solid #dbe4ee",
+    paddingBottom: 8,
+  }}
+>
+  Hazard Analytics
+</h2>
   
   <div style={{ marginTop: 20, display: "grid", gap: 20 }}>
   <div>
