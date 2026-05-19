@@ -2586,7 +2586,7 @@ const filteredHazardReports = hazardReports.filter((report) => {
   <div style={{ fontSize: 32, fontWeight: "bold", marginTop: 6 }}>
     {observationCount}
   </div>
-</div>>
+</div>
 
   <div style={{ padding: 16, background: "#fee2e2", borderRadius: 12 }}>
     <div style={{ fontSize: 12, color: "#64748b" }}>Critical Hazards</div>
