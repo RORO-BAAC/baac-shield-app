@@ -111,6 +111,8 @@ const [actionStatus, setActionStatus] = useState("Open");
   const [riskFilter, setRiskFilter] = useState("All");
   const [stopWorkOnly, setStopWorkOnly] = useState(false);
   const [dateFilter, setDateFilter] = useState("All");
+  const [startDateFilter, setStartDateFilter] = useState("");
+  const [endDateFilter, setEndDateFilter] = useState("");
   const [projects, setProjects] = useState([]);
   const [projectFilter, setProjectFilter] = useState("All");
   
