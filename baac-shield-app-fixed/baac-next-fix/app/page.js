@@ -955,6 +955,11 @@ doc.setTextColor(0, 0, 0);
 y += 10;
 doc.setFontSize(10);
 
+  if (filteredHazardReports.length === 0) {
+    addLine("Hazard Reports", "No hazard reports match the selected filters.");
+    y += 5;
+  }
+    
   filteredHazardReports.forEach((report) => {
     addLine("Record Type", report.report_type || "Hazard ID");
     addLine("Project", report.project_name);
