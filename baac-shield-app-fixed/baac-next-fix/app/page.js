@@ -906,10 +906,14 @@ let y = 52;
     }
   };
 
-  doc.setFontSize(14);
-  doc.text("Worker Forms", 14, y);
-  y += 8;
-  doc.setFontSize(10);
+  doc.setFillColor(226, 232, 240);
+doc.rect(14, y - 6, 182, 10, "F");
+doc.setTextColor(15, 47, 102);
+doc.setFontSize(14);
+doc.text("Worker Forms", 16, y);
+doc.setTextColor(0, 0, 0);
+y += 10;
+doc.setFontSize(10);
 
   filteredRecords.forEach((record) => {
     addLine("Record Type", "Worker Form");
@@ -931,10 +935,14 @@ let y = 52;
     y = 20;
   }
 
-  doc.setFontSize(14);
-  doc.text("Hazard IDs / Observations", 14, y);
-  y += 8;
-  doc.setFontSize(10);
+ doc.setFillColor(226, 232, 240);
+doc.rect(14, y - 6, 182, 10, "F");
+doc.setTextColor(15, 47, 102);
+doc.setFontSize(14);
+doc.text("Hazard IDs / Observations", 16, y);
+doc.setTextColor(0, 0, 0);
+y += 10;
+doc.setFontSize(10);
 
   hazardReports.forEach((report) => {
     addLine("Record Type", report.report_type || "Hazard ID");
