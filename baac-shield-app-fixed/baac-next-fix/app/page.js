@@ -1059,6 +1059,38 @@ const criticalHazardCount = hazardReports.filter(
   );
 });
 
+const filteredHazardReports = hazardReports.filter((report) => {
+  const matchesSearch =
+    !searchTerm ||
+    report.reported_by?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    report.project_name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    report.hazard_description?.toLowerCase().includes(searchTerm.toLowerCase());
+
+  const matchesProject =
+    projectFilter === "All" || report.project_name === projectFilter;
+
+  const submittedDate = report.created_at
+    ? new Date(report.created_at)
+    : null;
+
+  const now = new Date();
+  const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+  const sevenDaysAgo = new Date();
+  sevenDaysAgo.setDate(now.getDate() - 7);
+
+  const thirtyDaysAgo = new Date();
+  thirtyDaysAgo.setDate(now.getDate() - 30);
+
+  const matchesDate =
+    dateFilter === "All" ||
+    (dateFilter === "Today" && submittedDate && submittedDate >= todayStart) ||
+    (dateFilter === "Last7" && submittedDate && submittedDate >= sevenDaysAgo) ||
+    (dateFilter === "Last30" && submittedDate && submittedDate >= thirtyDaysAgo);
+
+  return matchesSearch && matchesProject && matchesDate;
+});
+  
   if (showSplash) {
   return (
     <main
