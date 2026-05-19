@@ -2477,10 +2477,22 @@ const filteredHazardReports = hazardReports.filter((report) => {
   </div>
 </div>
 
-            <div style={{ padding: 16, background: "#fef9c3", borderRadius: 12 }}>
-              <div style={{ fontSize: 12, color: "#64748b" }}>Pending Review</div>
-              <div style={{ fontSize: 28, fontWeight: "bold" }}>{pendingRecords.length}</div>
-            </div>
+         <div
+  style={{
+    padding: 18,
+    background: "linear-gradient(135deg, #fef9c3, #fffbeb)",
+    borderRadius: 14,
+    border: "1px solid #fde68a",
+    boxShadow: "0 2px 8px rgba(0,0,0,0.06)",
+  }}
+>
+  <div style={{ fontSize: 12, color: "#92400e", fontWeight: "bold" }}>
+    Pending Worker Reviews
+  </div>
+  <div style={{ fontSize: 32, fontWeight: "bold", marginTop: 6 }}>
+    {pendingRecords.length}
+  </div>
+</div>
 
             <div style={{ padding: 16, background: "#fee2e2", borderRadius: 12 }}>
               <div style={{ fontSize: 12, color: "#64748b" }}>Needs Action</div>
