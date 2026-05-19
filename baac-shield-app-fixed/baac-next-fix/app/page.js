@@ -821,7 +821,7 @@ function exportCombinedCSV() {
     ""
   ]);
 
-  const hazardRows = hazardReports.map((report) => [
+  const hazardRows = filteredHazardReports.map((report) => [
     report.report_type || "Hazard ID",
     report.project_name || "",
     report.reported_by || "",
