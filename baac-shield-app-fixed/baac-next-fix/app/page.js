@@ -2253,7 +2253,39 @@ const filteredHazardReports = hazardReports.filter((report) => {
 >
   Export AUDIT PDF
 </button>
-                              
+
+<div
+  style={{
+    display: "flex",
+    gap: 10,
+    flexWrap: "wrap",
+    marginTop: 12,
+    marginBottom: 16,
+  }}
+>
+  <input
+    type="date"
+    value={startDateFilter}
+    onChange={(e) => setStartDateFilter(e.target.value)}
+    style={{
+      padding: "8px 10px",
+      borderRadius: 6,
+      border: "1px solid #cbd5e1",
+    }}
+  />
+
+  <input
+    type="date"
+    value={endDateFilter}
+    onChange={(e) => setEndDateFilter(e.target.value)}
+    style={{
+      padding: "8px 10px",
+      borderRadius: 6,
+      border: "1px solid #cbd5e1",
+    }}
+  />
+</div>
+
             {filteredRecords.length === 0 ? (
               <p>No records match your search or filters.</p>
             ) : (
