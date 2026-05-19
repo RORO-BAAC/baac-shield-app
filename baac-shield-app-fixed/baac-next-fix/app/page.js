@@ -945,7 +945,7 @@ doc.setTextColor(0, 0, 0);
 y += 10;
 doc.setFontSize(10);
 
-  hazardReports.forEach((report) => {
+  filteredHazardReports.forEach((report) => {
     addLine("Record Type", report.report_type || "Hazard ID");
     addLine("Project", report.project_name);
     addLine("Reported By", report.reported_by);
