@@ -862,6 +862,78 @@ function exportCombinedCSV() {
   link.click();
   document.body.removeChild(link);
 }
+
+  function exportAuditPDF() {
+  const doc = new jsPDF();
+
+  doc.setFontSize(20);
+  doc.text("BAAC SHIELD AUDIT REPORT", 14, 20);
+
+  doc.setFontSize(10);
+  doc.text(`Generated: ${new Date().toLocaleString()}`, 14, 28);
+
+  let y = 42;
+
+  const addLine = (label, value) => {
+    const text = `${label}: ${value || "-"}`;
+    const lines = doc.splitTextToSize(text, 180);
+    doc.text(lines, 14, y);
+    y += lines.length * 6 + 3;
+
+    if (y > 270) {
+      doc.addPage();
+      y = 20;
+    }
+  };
+
+  doc.setFontSize(14);
+  doc.text("Worker Forms", 14, y);
+  y += 8;
+  doc.setFontSize(10);
+
+  filteredRecords.forEach((record) => {
+    addLine("Record Type", "Worker Form");
+    addLine("Project", record.project_name);
+    addLine("Worker", record.worker_name);
+    addLine("Supervisor", record.supervisor_name);
+    addLine("Risk", record.critical_risk);
+    addLine("Task", record.task_description);
+    addLine("Status", record.status);
+    addLine("Reviewed By", record.reviewed_by);
+    addLine("Comments", record.supervisor_review_comments);
+    addLine("Corrective Actions", record.corrective_actions);
+    addLine("Submitted", record.submitted_at);
+    y += 5;
+  });
+
+  if (y > 240) {
+    doc.addPage();
+    y = 20;
+  }
+
+  doc.setFontSize(14);
+  doc.text("Hazard IDs / Observations", 14, y);
+  y += 8;
+  doc.setFontSize(10);
+
+  hazardReports.forEach((report) => {
+    addLine("Record Type", report.report_type || "Hazard ID");
+    addLine("Project", report.project_name);
+    addLine("Reported By", report.reported_by);
+    addLine("Category", report.hazard_category);
+    addLine("Risk Level", report.risk_level);
+    addLine("Description", report.hazard_description);
+    addLine("Immediate Action", report.immediate_action);
+    addLine("Status", report.action_status || report.status);
+    addLine("Reviewed By", report.reviewed_by);
+    addLine("Supervisor Comments", report.supervisor_review_comments);
+    addLine("Corrective Action", report.corrective_action);
+    addLine("Closed Date", report.closed_date);
+    y += 5;
+  });
+
+  doc.save("baac-shield-audit-report.pdf");
+}
   
   function statusColor(status) {
     if (status === "Approved") return "#166534";
