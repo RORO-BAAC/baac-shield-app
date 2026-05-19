@@ -960,7 +960,8 @@ doc.setFontSize(10);
     y += 5;
   });
 
-  doc.save("baac-shield-audit-report.pdf");
+   const today = new Date().toISOString().split("T")[0];
+  doc.save(`baac-shield-audit-report-${today}.pdf`);
 }
   
   function statusColor(status) {
