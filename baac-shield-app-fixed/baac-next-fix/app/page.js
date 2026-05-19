@@ -884,8 +884,9 @@ doc.setTextColor(0, 0, 0);
 doc.setFontSize(10);
 doc.text(`Generated: ${new Date().toLocaleString()}`, 14, 40);
   doc.text(`Date Filter: ${dateFilter}`, 14, 46);  
+    doc.text(`Project Filter: ${projectFilter}`, 14, 52);
 
-let y = 58;
+let y = 64;
 
       doc.setFontSize(12);
   doc.text(`Total Worker Forms: ${filteredRecords.length}`, 14, y);
