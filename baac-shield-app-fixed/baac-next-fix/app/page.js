@@ -2722,7 +2722,17 @@ const filteredHazardReports = hazardReports.filter((report) => {
               border: "1px solid #dbe4ee",
             }}
           >
-            <h3 style={{ marginTop: 0 }}>Recent Records</h3>
+           <h3
+  style={{
+    marginTop: 0,
+    marginBottom: 12,
+    color: "#0f2f66",
+    borderBottom: "1px solid #dbe4ee",
+    paddingBottom: 8,
+  }}
+>
+  Recent Records
+</h3>
             {records.length === 0 ? (
               <p>No records yet.</p>
             ) : (
