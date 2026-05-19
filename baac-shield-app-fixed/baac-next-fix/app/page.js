@@ -2686,7 +2686,10 @@ const filteredHazardReports = hazardReports.filter((report) => {
     <h3 style={{ marginBottom: 10, color: "#334155" }}>
   Hazard Reports by Category
 </h3>
-    {Object.entries(hazardCategoryCounts).map(([category, count]) => (
+  {Object.entries(hazardCategoryCounts).length === 0 ? (
+  <p style={{ color: "#64748b" }}>No hazard category data yet.</p>
+) : (
+  Object.entries(hazardCategoryCounts).map(([category, count]) => (
       <div
         key={category}
         style={{
@@ -2707,7 +2710,8 @@ const filteredHazardReports = hazardReports.filter((report) => {
         />
         <strong>{count}</strong>
       </div>
-    ))}
+    ))
+    )}
   </div>
 </div>
           <div
