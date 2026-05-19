@@ -2158,6 +2158,22 @@ const criticalHazardCount = hazardReports.filter(
 >
   Export AUDIT CSV
 </button>
+
+<button
+  type="button"
+  onClick={exportAuditPDF}
+  style={{
+    padding: "10px 14px",
+    borderRadius: 8,
+    border: "1px solid #cbd5e1",
+    background: "#fff",
+    cursor: "pointer",
+    fontWeight: "bold",
+    marginLeft: 10,
+  }}
+>
+  Export AUDIT PDF
+</button>
                               
             {filteredRecords.length === 0 ? (
               <p>No records match your search or filters.</p>
