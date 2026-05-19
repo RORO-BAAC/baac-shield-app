@@ -921,6 +921,11 @@ doc.setTextColor(0, 0, 0);
 y += 10;
 doc.setFontSize(10);
 
+  if (filteredRecords.length === 0) {
+    addLine("Worker Forms", "No worker forms match the selected filters.");
+    y += 5;
+  }
+    
   filteredRecords.forEach((record) => {
     addLine("Record Type", "Worker Form");
     addLine("Project", record.project_name);
