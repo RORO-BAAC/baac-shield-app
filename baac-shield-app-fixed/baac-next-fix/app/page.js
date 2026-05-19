@@ -2619,7 +2619,9 @@ const filteredHazardReports = hazardReports.filter((report) => {
   
   <div style={{ marginTop: 20, display: "grid", gap: 20 }}>
   <div>
-    <h3>Hazard Reports by Type</h3>
+  <h3 style={{ marginBottom: 10, color: "#334155" }}>
+  Hazard Reports by Type
+</h3>
     {Object.entries(hazardTypeCounts).map(([type, count]) => (
       <div
         key={type}
