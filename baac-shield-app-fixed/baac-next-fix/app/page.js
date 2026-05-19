@@ -866,13 +866,21 @@ function exportCombinedCSV() {
   function exportAuditPDF() {
   const doc = new jsPDF();
 
-  doc.setFontSize(20);
-  doc.text("BAAC SHIELD AUDIT REPORT", 14, 20);
+ doc.setFillColor(15, 47, 102);
+doc.rect(0, 0, 210, 32, "F");
 
-  doc.setFontSize(10);
-  doc.text(`Generated: ${new Date().toLocaleString()}`, 14, 28);
+doc.setTextColor(255, 255, 255);
+doc.setFontSize(20);
+doc.text("BAAC SHIELD AUDIT REPORT", 14, 18);
 
-  let y = 42;
+doc.setFontSize(10);
+doc.text("Identify the risk. Verify the shield.", 14, 25);
+
+doc.setTextColor(0, 0, 0);
+doc.setFontSize(10);
+doc.text(`Generated: ${new Date().toLocaleString()}`, 14, 40);
+
+let y = 52;
 
       doc.setFontSize(12);
   doc.text(`Total Worker Forms: ${filteredRecords.length}`, 14, y);
