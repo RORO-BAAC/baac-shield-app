@@ -2511,10 +2511,22 @@ const filteredHazardReports = hazardReports.filter((report) => {
   </div>
 </div>
 
-            <div style={{ padding: 16, background: "#dcfce7", borderRadius: 12 }}>
-              <div style={{ fontSize: 12, color: "#64748b" }}>Approved</div>
-              <div style={{ fontSize: 28, fontWeight: "bold" }}>{closedRecords.length}</div>
-            </div>
+            <div
+  style={{
+    padding: 18,
+    background: "linear-gradient(135deg, #dcfce7, #f0fdf4)",
+    borderRadius: 14,
+    border: "1px solid #bbf7d0",
+    boxShadow: "0 2px 8px rgba(0,0,0,0.06)",
+  }}
+>
+  <div style={{ fontSize: 12, color: "#166534", fontWeight: "bold" }}>
+    Approved / Closed Worker Records
+  </div>
+  <div style={{ fontSize: 32, fontWeight: "bold", marginTop: 6 }}>
+    {closedRecords.length}
+  </div>
+</div>
 
             </div>
             
