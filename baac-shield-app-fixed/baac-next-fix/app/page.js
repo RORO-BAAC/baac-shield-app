@@ -857,7 +857,11 @@ function exportCombinedCSV() {
 
   const link = document.createElement("a");
   link.href = url;
-  link.download = "baac-shield-combined-cor-report.csv";
+ const today = new Date().toISOString().split("T")[0];
+const safeDateFilter = String(dateFilter || "All").replace(/[^a-z0-9]/gi, "-");
+const safeProjectFilter = String(projectFilter || "All").replace(/[^a-z0-9]/gi, "-");
+
+link.download = `baac-shield-audit-report-${today}-${safeDateFilter}-${safeProjectFilter}.csv`;
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
