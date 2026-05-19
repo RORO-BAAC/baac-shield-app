@@ -2460,10 +2460,22 @@ const filteredHazardReports = hazardReports.filter((report) => {
               gap: 12,
             }}
           >
-            <div style={{ padding: 16, background: "#f1f5f9", borderRadius: 12 }}>
-              <div style={{ fontSize: 12, color: "#64748b" }}>Total Records</div>
-              <div style={{ fontSize: 28, fontWeight: "bold" }}>{records.length}</div>
-            </div>
+           <div
+  style={{
+    padding: 18,
+    background: "linear-gradient(135deg, #e0f2fe, #f8fafc)",
+    borderRadius: 14,
+    border: "1px solid #bae6fd",
+    boxShadow: "0 2px 8px rgba(0,0,0,0.06)",
+  }}
+>
+  <div style={{ fontSize: 12, color: "#0369a1", fontWeight: "bold" }}>
+    Total Worker Forms
+  </div>
+  <div style={{ fontSize: 32, fontWeight: "bold", marginTop: 6 }}>
+    {records.length}
+  </div>
+</div>
 
             <div style={{ padding: 16, background: "#fef9c3", borderRadius: 12 }}>
               <div style={{ fontSize: 12, color: "#64748b" }}>Pending Review</div>
