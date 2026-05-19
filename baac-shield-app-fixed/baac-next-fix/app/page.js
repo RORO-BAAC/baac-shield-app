@@ -874,6 +874,18 @@ function exportCombinedCSV() {
 
   let y = 42;
 
+      doc.setFontSize(12);
+  doc.text(`Total Worker Forms: ${filteredRecords.length}`, 14, y);
+  y += 7;
+  doc.text(`Total Hazard Reports: ${hazardReports.length}`, 14, y);
+  y += 7;
+  doc.text(`Pending Worker Reviews: ${pendingRecords.length}`, 14, y);
+  y += 7;
+  doc.text(`Needs Action: ${actionRecords.length}`, 14, y);
+  y += 7;
+  doc.text(`Closed / Approved Worker Records: ${closedRecords.length}`, 14, y);
+  y += 10;
+
   const addLine = (label, value) => {
     const text = `${label}: ${value || "-"}`;
     const lines = doc.splitTextToSize(text, 180);
