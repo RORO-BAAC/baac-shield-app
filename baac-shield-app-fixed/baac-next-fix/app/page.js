@@ -2654,7 +2654,10 @@ const filteredHazardReports = hazardReports.filter((report) => {
    <h3 style={{ marginBottom: 10, color: "#334155" }}>
   Hazard Reports by Risk Level
 </h3>
-    {Object.entries(hazardRiskCounts).map(([level, count]) => (
+  {Object.entries(hazardRiskCounts).length === 0 ? (
+  <p style={{ color: "#64748b" }}>No hazard risk level data yet.</p>
+) : (
+  Object.entries(hazardRiskCounts).map(([level, count]) => (
       <div
         key={level}
         style={{
@@ -2675,7 +2678,8 @@ const filteredHazardReports = hazardReports.filter((report) => {
         />
         <strong>{count}</strong>
       </div>
-    ))}
+    ))
+    )}
   </div>
 
   <div>
