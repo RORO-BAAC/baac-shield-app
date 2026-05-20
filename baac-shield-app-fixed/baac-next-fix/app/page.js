@@ -2204,7 +2204,8 @@ const filteredHazardReports = hazardReports.filter((report) => {
     <p style={{ marginTop: -8, color: "#64748b", fontSize: 13 }}>
   Review worker submissions, corrective actions, approvals, and individual record PDFs.
 </p>
- <button
+<div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginBottom: 16 }}>
+    <button
   type="button"
   onClick={exportCombinedCSV}
   style={{
@@ -2225,7 +2226,7 @@ const filteredHazardReports = hazardReports.filter((report) => {
 </p>
   Export AUDIT CSV
 </button>
-
+</div>
 <button
   type="button"
   onClick={exportAuditPDF}
