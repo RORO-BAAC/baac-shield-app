@@ -2860,9 +2860,9 @@ const filteredHazardReports = hazardReports.filter((report) => {
           style={{
             marginTop: 20,
             padding: 16,
-            background: submitted ? "#ecfdf5" : "#fff7ed",
+         background: "#fff7ed",
             borderRadius: 12,
-            border: submitted ? "1px solid #a7f3d0" : "1px solid #fdba74",
+            border: "1px solid #fdba74",
             whiteSpace: "pre-wrap",
             wordBreak: "break-word",
           }}
