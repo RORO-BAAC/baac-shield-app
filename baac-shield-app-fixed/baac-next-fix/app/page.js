@@ -415,7 +415,6 @@ if (hazardRes.ok) {
       });
 
       clearForm();
-      setSubmitted(true);
       setMessage("Record submitted to database.");
       await loadRecords();
     } catch (error) {
