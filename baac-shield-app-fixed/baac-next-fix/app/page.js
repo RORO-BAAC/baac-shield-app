@@ -753,8 +753,10 @@ function exportCombinedCSV() {
     "Reviewed By",
     "Supervisor Comments",
     "Corrective Action",
-    "Rectified",
-    "Stop Work",
+"Assigned To",
+"Due Date",
+"Rectified",
+"Stop Work",
     "Submitted At",
     "Closed Date"
   ];
@@ -770,8 +772,10 @@ function exportCombinedCSV() {
     record.status || "",
     record.reviewed_by || "",
     record.supervisor_review_comments || "",
-    record.corrective_actions || "",
-    record.rectified ? "Yes" : "No",
+   record.corrective_actions || "",
+record.assigned_to || "",
+record.due_date || "",
+record.rectified ? "Yes" : "No",
     record.stop_work ? "Yes" : "No",
     record.submitted_at || "",
     ""
