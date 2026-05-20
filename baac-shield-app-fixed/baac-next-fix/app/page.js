@@ -2217,57 +2217,84 @@ const filteredHazardReports = hazardReports.filter((report) => {
     fontWeight: "bold",
   }}
 >
-<h3 style={{ marginBottom: 8, color: "#0f2f66" }}>
-  Audit Exports
-</h3>
 
-<p style={{ marginTop: 0, color: "#64748b", fontSize: 13 }}>
-  Download filtered worker records, hazard IDs, observations, corrective actions, and closeouts.
-</p>
-  Export AUDIT CSV
-</button>
-    
-<button
-  type="button"
-  onClick={exportAuditPDF}
+<div
   style={{
-    padding: "10px 14px",
-    borderRadius: 8,
+    marginTop: 16,
+    marginBottom: 20,
+    padding: 16,
     border: "1px solid #cbd5e1",
-    background: "#fff",
-    cursor: "pointer",
-    fontWeight: "bold",
-    marginLeft: 10,
+    borderRadius: 12,
+    background: "#f8fafc",
   }}
 >
-  Export AUDIT PDF
-</button>
+  <h3 style={{ marginTop: 0, marginBottom: 8, color: "#0f2f66" }}>
+    Audit Exports
+  </h3>
 
-  <input
-    type="date"
-    value={startDateFilter}
-    onChange={(e) => setStartDateFilter(e.target.value)}
-    style={{
-      padding: "8px 10px",
-      borderRadius: 6,
-      border: "1px solid #cbd5e1",
-    }}
-  />
+  <p style={{ marginTop: 0, color: "#64748b", fontSize: 13 }}>
+    Download filtered worker records, hazard IDs, observations, corrective actions, and closeouts.
+  </p>
 
- <div style={{ fontWeight: "bold", color: "#334155", width: "100%" }}>
-  Custom Export Date Range
-</div>
-    
+  <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginBottom: 14 }}>
+    <button
+      type="button"
+      onClick={exportCombinedCSV}
+      style={{
+        padding: "10px 14px",
+        borderRadius: 8,
+        border: "1px solid #cbd5e1",
+        background: "#fff",
+        cursor: "pointer",
+        fontWeight: "bold",
+      }}
+    >
+      Export AUDIT CSV
+    </button>
+
+    <button
+      type="button"
+      onClick={exportAuditPDF}
+      style={{
+        padding: "10px 14px",
+        borderRadius: 8,
+        border: "1px solid #cbd5e1",
+        background: "#fff",
+        cursor: "pointer",
+        fontWeight: "bold",
+      }}
+    >
+      Export AUDIT PDF
+    </button>
+  </div>
+
+  <div style={{ fontWeight: "bold", color: "#334155", marginBottom: 8 }}>
+    Custom Export Date Range
+  </div>
+
+  <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
     <input
-    type="date"
-    value={endDateFilter}
-    onChange={(e) => setEndDateFilter(e.target.value)}
-    style={{
-      padding: "8px 10px",
-      borderRadius: 6,
-      border: "1px solid #cbd5e1",
-    }}
-  />
+      type="date"
+      value={startDateFilter}
+      onChange={(e) => setStartDateFilter(e.target.value)}
+      style={{
+        padding: "8px 10px",
+        borderRadius: 6,
+        border: "1px solid #cbd5e1",
+      }}
+    />
+
+    <input
+      type="date"
+      value={endDateFilter}
+      onChange={(e) => setEndDateFilter(e.target.value)}
+      style={{
+        padding: "8px 10px",
+        borderRadius: 6,
+        border: "1px solid #cbd5e1",
+      }}
+    />
+  </div>
 </div>
 
             {filteredRecords.length === 0 ? (
