@@ -2226,7 +2226,7 @@ const filteredHazardReports = hazardReports.filter((report) => {
 </p>
   Export AUDIT CSV
 </button>
-</div>
+    
 <button
   type="button"
   onClick={exportAuditPDF}
@@ -2243,15 +2243,6 @@ const filteredHazardReports = hazardReports.filter((report) => {
   Export AUDIT PDF
 </button>
 
-<div
-  style={{
-    display: "flex",
-    gap: 10,
-    flexWrap: "wrap",
-    marginTop: 12,
-    marginBottom: 16,
-  }}
->
   <input
     type="date"
     value={startDateFilter}
