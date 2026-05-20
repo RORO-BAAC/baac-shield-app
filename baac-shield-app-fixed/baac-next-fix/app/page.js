@@ -2197,6 +2197,9 @@ const filteredHazardReports = hazardReports.filter((report) => {
             <h2 style={{ marginTop: 0, color: "#0f2f66" }}>
   Worker Records
 </h2>
+    <p style={{ marginTop: -8, color: "#64748b", fontSize: 13 }}>
+  Review worker submissions, corrective actions, approvals, and individual record PDFs.
+</p>
  <button
   type="button"
   onClick={exportCombinedCSV}
