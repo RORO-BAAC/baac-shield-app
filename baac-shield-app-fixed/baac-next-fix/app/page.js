@@ -2284,7 +2284,11 @@ const filteredHazardReports = hazardReports.filter((report) => {
     }}
   />
 
-  <input
+ <div style={{ fontWeight: "bold", color: "#334155", width: "100%" }}>
+  Custom Export Date Range
+</div>
+    
+    <input
     type="date"
     value={endDateFilter}
     onChange={(e) => setEndDateFilter(e.target.value)}
