@@ -1789,7 +1789,9 @@ const filteredHazardReports = hazardReports.filter((report) => {
   <h3 style={{ marginTop: 0, color: "#0f2f66" }}>
   Hazard IDs / Observations Pending Review
 </h3>
-
+<p style={{ marginTop: -6, color: "#64748b", fontSize: 13 }}>
+  Review field-submitted hazards and observations, document corrective actions, and close them when complete.
+</p>
 {hazardReports.filter((r) => r.action_status !== "Closed").length === 0 ? (
   <div>No hazard reports pending review.</div>
 ) : (
