@@ -896,8 +896,10 @@ doc.setFontSize(10);
     addLine("Status", record.status);
     addLine("Reviewed By", record.reviewed_by);
     addLine("Comments", record.supervisor_review_comments);
-    addLine("Corrective Actions", record.corrective_actions);
-    addLine("Submitted", record.submitted_at);
+   addLine("Corrective Actions", record.corrective_actions);
+addLine("Assigned To", record.assigned_to);
+addLine("Due Date", record.due_date);
+addLine("Submitted", record.submitted_at);
     y += 5;
   });
 
