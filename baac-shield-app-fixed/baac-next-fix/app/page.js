@@ -2194,7 +2194,9 @@ const filteredHazardReports = hazardReports.filter((report) => {
   )}
 </div>
    
-            <h2 style={{ marginTop: 0 }}>All Records</h2>
+            <h2 style={{ marginTop: 0, color: "#0f2f66" }}>
+  Worker Records
+</h2>
  <button
   type="button"
   onClick={exportCombinedCSV}
