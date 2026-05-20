@@ -526,6 +526,8 @@ if (!emailRes.ok) {
     setReviewComments(record.supervisor_review_comments || "");
     setCorrectiveActions(record.corrective_actions || "");
     setRectified(Boolean(record.rectified));
+    setAssignedTo(record.assigned_to || "");
+    setDueDate(record.due_date || "");
     setActiveTab("supervisor");
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
