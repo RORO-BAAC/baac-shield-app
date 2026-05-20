@@ -2216,6 +2216,13 @@ const filteredHazardReports = hazardReports.filter((report) => {
     fontWeight: "bold",
   }}
 >
+<h3 style={{ marginBottom: 8, color: "#0f2f66" }}>
+  Audit Exports
+</h3>
+
+<p style={{ marginTop: 0, color: "#64748b", fontSize: 13 }}>
+  Download filtered worker records, hazard IDs, observations, corrective actions, and closeouts.
+</p>
   Export AUDIT CSV
 </button>
 
