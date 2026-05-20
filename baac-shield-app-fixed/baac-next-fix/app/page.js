@@ -578,8 +578,10 @@ if (!emailRes.ok) {
       setReviewSupervisorSignature("");
       setReviewComments("");
       setCorrectiveActions("");
-      setRectified(false);
-      supervisorSigRef.current?.clear();
+setAssignedTo("");
+setDueDate("");
+setRectified(false);
+supervisorSigRef.current?.clear();
       await loadRecords();
     } catch (error) {
       setMessage(`Could not save supervisor review: ${error.message}`);
