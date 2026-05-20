@@ -2093,6 +2093,8 @@ const filteredHazardReports = hazardReports.filter((report) => {
                       setReviewSupervisorSignature("");
                       setReviewComments("");
                       setCorrectiveActions("");
+                      setAssignedTo("");
+                      setDueDate("");
                       setRectified(false);
                       supervisorSigRef.current?.clear();
                     }}
