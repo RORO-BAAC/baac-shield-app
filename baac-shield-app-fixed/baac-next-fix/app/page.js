@@ -354,7 +354,6 @@ if (hazardRes.ok) {
     e.preventDefault();
     setLoading(true);
     setMessage("");
-    setSubmitted(false);
 
     try {
       const uploadedPhotoUrls = await uploadPhotosToSupabase(photos);
