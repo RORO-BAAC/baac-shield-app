@@ -87,7 +87,6 @@ const [assignedTo, setAssignedTo] = useState("");
   const [photos, setPhotos] = useState([]);
 
 const [dueDate, setDueDate] = useState("");
-const [actionStatus, setActionStatus] = useState("Open");
   const [records, setRecords] = useState([]);
   const [hazardReports, setHazardReports] = useState([]);
   const projectCounts = records.reduce((acc, record) => {
