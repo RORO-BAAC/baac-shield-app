@@ -99,7 +99,6 @@ const [dueDate, setDueDate] = useState("");
   acc[risk] = (acc[risk] || 0) + 1;
   return acc;
 }, {});
-  const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [activeTab, setActiveTab] = useState("worker");
