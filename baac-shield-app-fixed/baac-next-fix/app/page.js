@@ -545,6 +545,8 @@ if (!emailRes.ok) {
       rectified,
       reviewed_at: new Date().toISOString(),
       stop_work: reviewStatus === "Stop Work",
+      assigned_to: assignedTo,
+      due_date: dueDate || null,
     };
 
     try {
