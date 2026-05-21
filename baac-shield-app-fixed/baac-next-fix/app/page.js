@@ -2204,19 +2204,6 @@ const filteredHazardReports = hazardReports.filter((report) => {
     <p style={{ marginTop: -8, color: "#64748b", fontSize: 13 }}>
   Review worker submissions, corrective actions, approvals, and individual record PDFs.
 </p>
-<div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginBottom: 16 }}>
-    <button
-  type="button"
-  onClick={exportCombinedCSV}
-  style={{
-    padding: "10px 14px",
-    borderRadius: 8,
-    border: "1px solid #cbd5e1",
-    background: "#fff",
-    cursor: "pointer",
-    fontWeight: "bold",
-  }}
->
 
 <div
   style={{
