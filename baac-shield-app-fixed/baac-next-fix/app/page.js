@@ -2945,7 +2945,28 @@ const matchesDate =
         background: "#f8fafc",
       }}
     >
-      Admin tools will be added here.
+      <div style={{ display: "grid", gap: 10 }}>
+  <h3 style={{ marginTop: 0, color: "#0f2f66" }}>
+    Supervisor PIN
+  </h3>
+
+  <p style={{ marginTop: -6, color: "#64748b", fontSize: 13 }}>
+    This PIN controls access to Supervisor Review, Safety Dashboard, and Admin Settings.
+  </p>
+
+  <label>Current Supervisor PIN</label>
+  <input
+    type="text"
+    value={supervisorPin}
+    onChange={(e) => setSupervisorPin(e.target.value)}
+    style={{
+      padding: 10,
+      borderRadius: 8,
+      border: "1px solid #cbd5e1",
+      maxWidth: 220,
+    }}
+  />
+</div>
     </div>
   </div>
 )}
