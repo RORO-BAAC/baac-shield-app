@@ -1267,7 +1267,7 @@ const matchesDate =
     Supervisor Review
   </button>
 
-  <button
+   <button
     type="button"
     onClick={() => requestProtectedTab("dashboard")}
     style={{
@@ -1279,25 +1279,24 @@ const matchesDate =
       fontWeight: "bold",
       cursor: "pointer",
     }}
-
-<button
-  type="button"
-  onClick={() => requestProtectedTab("admin")}
-  style={{
-    padding: "10px 14px",
-    borderRadius: 10,
-    border: "1px solid #cbd5e1",
-    background: activeTab === "admin" ? "#123d82" : "white",
-    color: activeTab === "admin" ? "white" : "#0f172a",
-    fontWeight: "bold",
-    cursor: "pointer",
-  }}
->
-  Admin Settings
-</button>
-
   >
     Safety Dashboard
+  </button>
+
+  <button
+    type="button"
+    onClick={() => requestProtectedTab("admin")}
+    style={{
+      padding: "10px 14px",
+      borderRadius: 10,
+      border: "1px solid #cbd5e1",
+      background: activeTab === "admin" ? "#123d82" : "white",
+      color: activeTab === "admin" ? "white" : "#0f172a",
+      fontWeight: "bold",
+      cursor: "pointer",
+    }}
+  >
+    Admin Settings
   </button>
 </div>
 
