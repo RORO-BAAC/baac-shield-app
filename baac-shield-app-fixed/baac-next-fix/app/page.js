@@ -2920,7 +2920,39 @@ const matchesDate =
         </div>
       )}
 
-      {message && (
+{activeTab === "admin" && (
+  <div
+    style={{
+      background: "white",
+      padding: 20,
+      borderRadius: 16,
+      boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
+      display: "grid",
+      gap: 16,
+    }}
+  >
+    <h2 style={{ margin: 0, color: "#0f2f66" }}>Admin Settings</h2>
+
+    <p style={{ marginTop: 0, color: "#64748b" }}>
+      Manage BAAC SHIELD settings, supervisor access, projects, and reporting options.
+    </p>
+
+    <div
+      style={{
+        padding: 16,
+        border: "1px solid #dbe4ee",
+        borderRadius: 12,
+        background: "#f8fafc",
+      }}
+    >
+      Admin tools will be added here.
+    </div>
+  </div>
+)}
+
+{message && (
+
+{message && (
         <div
           style={{
             marginTop: 20,
