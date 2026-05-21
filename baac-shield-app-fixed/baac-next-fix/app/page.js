@@ -2291,7 +2291,24 @@ const matchesDate =
         border: "1px solid #cbd5e1",
       }}
     />
-  </div>
+ <button
+  type="button"
+  onClick={() => {
+    setStartDateFilter("");
+    setEndDateFilter("");
+  }}
+  style={{
+    padding: "8px 10px",
+    borderRadius: 6,
+    border: "1px solid #cbd5e1",
+    background: "#fff",
+    cursor: "pointer",
+    fontWeight: "bold",
+  }}
+>
+  Clear Dates
+</button>
+      </div>
 </div>
 
             {filteredRecords.length === 0 ? (
