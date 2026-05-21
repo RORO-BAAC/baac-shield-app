@@ -1069,12 +1069,22 @@ const filteredHazardReports = hazardReports.filter((report) => {
   const thirtyDaysAgo = new Date();
   thirtyDaysAgo.setDate(now.getDate() - 30);
 
-  const matchesDate =
-    dateFilter === "All" ||
-    (dateFilter === "Today" && submittedDate && submittedDate >= todayStart) ||
-    (dateFilter === "Last7" && submittedDate && submittedDate >= sevenDaysAgo) ||
-    (dateFilter === "Last30" && submittedDate && submittedDate >= thirtyDaysAgo);
+  const customStartDate = startDateFilter ? new Date(startDateFilter) : null;
+const customEndDate = endDateFilter ? new Date(endDateFilter) : null;
 
+if (customEndDate) {
+  customEndDate.setHours(23, 59, 59, 999);
+}
+
+const matchesDate =
+  customStartDate || customEndDate
+    ? submittedDate &&
+      (!customStartDate || submittedDate >= customStartDate) &&
+      (!customEndDate || submittedDate <= customEndDate)
+    : dateFilter === "All" ||
+      (dateFilter === "Today" && submittedDate && submittedDate >= todayStart) ||
+      (dateFilter === "Last7" && submittedDate && submittedDate >= sevenDaysAgo) ||
+      (dateFilter === "Last30" && submittedDate && submittedDate >= thirtyDaysAgo);
   return matchesSearch && matchesProject && matchesDate;
 });
   
