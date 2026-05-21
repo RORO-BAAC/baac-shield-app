@@ -2951,8 +2951,6 @@ const matchesDate =
 )}
 
 {message && (
-
-{message && (
         <div
           style={{
             marginTop: 20,
