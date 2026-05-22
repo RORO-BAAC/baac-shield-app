@@ -1891,8 +1891,7 @@ const matchesDate =
 </div>
                 
             </div>
-          </div>
-
+   
 <div
   style={{
     marginTop: 20,
