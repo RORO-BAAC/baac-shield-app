@@ -581,7 +581,42 @@ if (!emailRes.ok) {
     setLoading(false);
   }
 }
-  
+  async function markRecordApproved(recordId) {
+  setLoading(true);
+  setMessage("");
+
+  try {
+    const res = await fetch(
+      `${SUPABASE_URL}/rest/v1/records?id=eq.${recordId}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          apikey: SUPABASE_KEY,
+          Authorization: `Bearer ${SUPABASE_KEY}`,
+          Prefer: "return=representation",
+        },
+        body: JSON.stringify({
+          status: "Approved",
+          rectified: true,
+          reviewed_at: new Date().toISOString(),
+        }),
+      }
+    );
+
+    if (!res.ok) {
+      const text = await res.text();
+      throw new Error(text || "Could not approve record");
+    }
+
+    setMessage("Corrective action marked approved.");
+    await loadRecords();
+  } catch (error) {
+    setMessage(`Could not approve record: ${error.message}`);
+  } finally {
+    setLoading(false);
+  }
+}
   function startReview(record) {
     setReviewingId(record.id);
     setReviewStatus(record.status || "Pending Review");
