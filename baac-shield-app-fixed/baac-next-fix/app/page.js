@@ -1891,7 +1891,49 @@ const matchesDate =
     </div>
   </div>
 </div>
-   
+
+{overdueRecords.length > 0 && (
+  <div
+    style={{
+      marginTop: 20,
+      background: "#fef2f2",
+      padding: 16,
+      borderRadius: 12,
+      border: "1px solid #fecaca",
+      marginBottom: 20,
+    }}
+  >
+    <h3 style={{ marginTop: 0, color: "#991b1b" }}>
+      Overdue Corrective Actions
+    </h3>
+
+    <p style={{ marginTop: -6, color: "#7f1d1d", fontSize: 13 }}>
+      These records have a due date before today and are not approved.
+    </p>
+
+    <div style={{ display: "grid", gap: 10 }}>
+      {overdueRecords.map((record) => (
+        <div
+          key={record.id}
+          style={{
+            background: "white",
+            border: "1px solid #fecaca",
+            borderRadius: 10,
+            padding: 12,
+          }}
+        >
+          <div><strong>Worker:</strong> {record.worker_name || "—"}</div>
+          <div><strong>Project:</strong> {record.project_name || "—"}</div>
+          <div><strong>Risk:</strong> {record.critical_risk || "—"}</div>
+          <div><strong>Assigned To:</strong> {record.assigned_to || "—"}</div>
+          <div><strong>Due Date:</strong> {record.due_date || "—"}</div>
+          <div><strong>Status:</strong> {record.status || "Pending Review"}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+)}
+      
 <div
   style={{
     marginTop: 20,
