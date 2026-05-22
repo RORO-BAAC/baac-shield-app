@@ -1858,8 +1858,7 @@ const matchesDate =
               <div style={{ fontSize: 28, fontWeight: "bold" }}>
                 {actionRecords.length}
               </div>
-            </div>
-
+        
             <div
               style={{
                 background: "white",
@@ -1872,6 +1871,7 @@ const matchesDate =
               <div style={{ fontSize: 28, fontWeight: "bold" }}>
                 {closedRecords.length}
               </div>
+                </div>
 
 <div
   style={{
