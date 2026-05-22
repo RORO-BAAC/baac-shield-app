@@ -17,7 +17,7 @@ function SignatureBox({ sigRef, onSave }) {
           marginTop: 6,
           background: "white",
           overflow: "hidden",
-        }}
+        }} 
       >
         <SignatureCanvas
           ref={sigRef}
