@@ -217,7 +217,8 @@ const [dueDate, setDueDate] = useState("");
   useEffect(() => {
     loadRecords();
     loadProjects();
-
+loadSettings();
+    
     const timer = setTimeout(() => {
     setShowSplash(false);
   }, 1800);
