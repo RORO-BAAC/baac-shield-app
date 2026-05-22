@@ -1872,6 +1872,24 @@ const matchesDate =
               <div style={{ fontSize: 28, fontWeight: "bold" }}>
                 {closedRecords.length}
               </div>
+
+<div
+  style={{
+    background: "white",
+    borderRadius: 14,
+    padding: 16,
+    boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
+    border: overdueRecords.length > 0 ? "2px solid #dc2626" : "none",
+  }}
+>
+  <div style={{ color: "#991b1b", fontSize: 12, fontWeight: "bold" }}>
+    Overdue Corrective Actions
+  </div>
+  <div style={{ fontSize: 28, fontWeight: "bold" }}>
+    {overdueRecords.length}
+  </div>
+</div>
+                
             </div>
           </div>
 
