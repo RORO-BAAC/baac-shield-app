@@ -115,6 +115,7 @@ const [dueDate, setDueDate] = useState("");
   const [projectFilter, setProjectFilter] = useState("All");
   
   const [supervisorPin, setSupervisorPin] = useState("1234");
+  const [alertEmail, setAlertEmail] = useState("rod.gonzalez@baacconstruction.com");
   const [pinInput, setPinInput] = useState("");
   const [showPinPrompt, setShowPinPrompt] = useState(false);
   const [pendingTab, setPendingTab] = useState("");
