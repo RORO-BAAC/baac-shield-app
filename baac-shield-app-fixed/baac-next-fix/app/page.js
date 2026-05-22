@@ -1963,6 +1963,23 @@ const matchesDate =
           <div><strong>Assigned To:</strong> {record.assigned_to || "—"}</div>
           <div><strong>Due Date:</strong> {record.due_date || "—"}</div>
           <div><strong>Status:</strong> {record.status || "Pending Review"}</div>
+          <button
+  type="button"
+  onClick={() => markRecordApproved(record.id)}
+  disabled={loading}
+  style={{
+    marginTop: 10,
+    padding: "8px 12px",
+    borderRadius: 8,
+    border: "none",
+    background: "#16a34a",
+    color: "white",
+    cursor: "pointer",
+    fontWeight: "bold",
+  }}
+>
+  Mark Approved / Closed
+</button>
         </div>
       ))}
     </div>
