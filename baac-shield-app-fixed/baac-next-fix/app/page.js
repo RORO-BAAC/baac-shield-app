@@ -351,7 +351,35 @@ async function saveSupervisorPin() {
     setMessage(`Could not save supervisor PIN: ${error.message}`);
   }
 }
-  
+  async function saveAlertEmail() {
+  try {
+    const res = await fetch(
+      `${SUPABASE_URL}/rest/v1/app_settings?setting_key=eq.alert_email`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          apikey: SUPABASE_KEY,
+          Authorization: `Bearer ${SUPABASE_KEY}`,
+          Prefer: "return=representation",
+        },
+        body: JSON.stringify({
+          setting_value: alertEmail,
+          updated_at: new Date().toISOString(),
+        }),
+      }
+    );
+
+    if (!res.ok) {
+      const text = await res.text();
+      throw new Error(text || "Could not save alert email");
+    }
+
+    setMessage("Alert email saved.");
+  } catch (error) {
+    setMessage(`Could not save alert email: ${error.message}`);
+  }
+}
   function handleFiles(e) {
     const files = Array.from(e.target.files || []);
     setPhotos(files);
