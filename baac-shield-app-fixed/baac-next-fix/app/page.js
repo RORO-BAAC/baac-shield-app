@@ -287,6 +287,33 @@ if (hazardRes.ok) {
       setMessage(`Could not load projects: ${error.message}`);
     }
   }
+
+async function loadSettings() {
+  try {
+    const res = await fetch(
+      `${SUPABASE_URL}/rest/v1/app_settings?setting_key=eq.supervisor_pin&select=setting_value`,
+      {
+        headers: {
+          apikey: SUPABASE_KEY,
+          Authorization: `Bearer ${SUPABASE_KEY}`,
+        },
+      }
+    );
+
+    if (!res.ok) {
+      const text = await res.text();
+      throw new Error(text || "Could not load settings");
+    }
+
+    const data = await res.json();
+
+    if (data.length > 0 && data[0].setting_value) {
+      setSupervisorPin(data[0].setting_value);
+    }
+  } catch (error) {
+    setMessage(`Could not load settings: ${error.message}`);
+  }
+}
   
   function handleFiles(e) {
     const files = Array.from(e.target.files || []);
