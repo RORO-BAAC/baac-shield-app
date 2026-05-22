@@ -3024,6 +3024,24 @@ const matchesDate =
       maxWidth: 220,
     }}
   />
+
+<button
+  type="button"
+  onClick={saveSupervisorPin}
+  style={{
+    padding: "10px 14px",
+    borderRadius: 8,
+    border: "none",
+    background: "#123d82",
+    color: "white",
+    cursor: "pointer",
+    fontWeight: "bold",
+    maxWidth: 140,
+  }}
+>
+  Save PIN
+</button>
+    
 </div>
     </div>
   </div>
