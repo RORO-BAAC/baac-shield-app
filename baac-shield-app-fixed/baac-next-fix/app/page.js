@@ -293,7 +293,7 @@ if (hazardRes.ok) {
 async function loadSettings() {
   try {
     const res = await fetch(
-      `${SUPABASE_URL}/rest/v1/app_settings?setting_key=eq.supervisor_pin&select=setting_value`,
+    `${SUPABASE_URL}/rest/v1/app_settings?setting_key=in.(supervisor_pin,alert_email)&select=setting_key,setting_value`,
       {
         headers: {
           apikey: SUPABASE_KEY,
@@ -309,9 +309,15 @@ async function loadSettings() {
 
     const data = await res.json();
 
-    if (data.length > 0 && data[0].setting_value) {
-      setSupervisorPin(data[0].setting_value);
-    }
+   data.forEach((setting) => {
+  if (setting.setting_key === "supervisor_pin" && setting.setting_value) {
+    setSupervisorPin(setting.setting_value);
+  }
+
+  if (setting.setting_key === "alert_email" && setting.setting_value) {
+    setAlertEmail(setting.setting_value);
+  }
+});
   } catch (error) {
     setMessage(`Could not load settings: ${error.message}`);
   }
