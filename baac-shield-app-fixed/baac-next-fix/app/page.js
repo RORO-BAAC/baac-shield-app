@@ -315,6 +315,36 @@ async function loadSettings() {
     setMessage(`Could not load settings: ${error.message}`);
   }
 }
+
+async function saveSupervisorPin() {
+  try {
+    const res = await fetch(
+      `${SUPABASE_URL}/rest/v1/app_settings?setting_key=eq.supervisor_pin`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          apikey: SUPABASE_KEY,
+          Authorization: `Bearer ${SUPABASE_KEY}`,
+          Prefer: "return=representation",
+        },
+        body: JSON.stringify({
+          setting_value: supervisorPin,
+          updated_at: new Date().toISOString(),
+        }),
+      }
+    );
+
+    if (!res.ok) {
+      const text = await res.text();
+      throw new Error(text || "Could not save supervisor PIN");
+    }
+
+    setMessage("Supervisor PIN saved.");
+  } catch (error) {
+    setMessage(`Could not save supervisor PIN: ${error.message}`);
+  }
+}
   
   function handleFiles(e) {
     const files = Array.from(e.target.files || []);
