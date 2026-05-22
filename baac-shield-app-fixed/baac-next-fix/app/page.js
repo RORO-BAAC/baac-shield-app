@@ -1020,6 +1020,15 @@ doc.setFontSize(10);
     (r) => r.status === "Needs Correction" || r.status === "Stop Work"
   );
   const closedRecords = records.filter((r) => r.status === "Approved");
+  const overdueRecords = records.filter((record) => {
+  if (!record.due_date) return false;
+
+  const dueDateValue = new Date(record.due_date);
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  return record.status !== "Approved" && dueDateValue < today;
+});
   const totalHazards = hazardReports.length;
 
   const hazardTypeCounts = hazardReports.reduce((acc, report) => {
