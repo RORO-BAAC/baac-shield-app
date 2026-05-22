@@ -3195,7 +3195,53 @@ const matchesDate =
 >
   Save PIN
 </button>
-    
+    <div
+  style={{
+    marginTop: 18,
+    paddingTop: 16,
+    borderTop: "1px solid #dbe4ee",
+    display: "grid",
+    gap: 10,
+  }}
+>
+  <h3 style={{ marginTop: 0, color: "#0f2f66" }}>
+    Alert Email Recipient
+  </h3>
+
+  <p style={{ marginTop: -6, color: "#64748b", fontSize: 13 }}>
+    This email receives worker form and hazard report alerts.
+  </p>
+
+  <label>Alert Email</label>
+  <input
+    type="email"
+    value={alertEmail}
+    onChange={(e) => setAlertEmail(e.target.value)}
+    style={{
+      padding: 10,
+      borderRadius: 8,
+      border: "1px solid #cbd5e1",
+      maxWidth: 360,
+    }}
+  />
+
+  <button
+    type="button"
+    onClick={saveAlertEmail}
+    style={{
+      padding: "10px 14px",
+      borderRadius: 8,
+      border: "none",
+      background: "#123d82",
+      color: "white",
+      cursor: "pointer",
+      fontWeight: "bold",
+      maxWidth: 160,
+    }}
+  >
+    Save Alert Email
+  </button>
+</div>
 </div>
     </div>
   </div>
