@@ -3015,10 +3015,53 @@ const matchesDate =
     </div>
   </div>
 </div>
-          
+
+<div
+  style={{
+    background: "white",
+    borderRadius: 16,
+    padding: 16,
+    boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
+    marginBottom: 18,
+  }}
+>
+  <h2 style={{ marginTop: 0, color: "#0f2f66" }}>Recent Activity</h2>
+
+  {recentActivity.length === 0 ? (
+    <p style={{ color: "#64748b", marginBottom: 0 }}>No recent activity yet.</p>
+  ) : (
+    <div style={{ display: "grid", gap: 10 }}>
+      {recentActivity.map((item) => (
+        <div
+          key={item.id}
+          style={{
+            padding: 12,
+            border: "1px solid #dbe4ee",
+            borderRadius: 10,
+            background: "#f8fafc",
+          }}
+        >
+          <div style={{ fontWeight: "bold", color: "#0f2f66" }}>
+            {item.type}
+          </div>
+          <div>
+            <strong>Submitted By:</strong> {item.title}
+          </div>
+          <div>
+            <strong>Project:</strong> {item.project}
+          </div>
+          <div style={{ color: "#64748b", fontSize: 13 }}>
+            {new Date(item.time).toLocaleString()}
+          </div>
+        </div>
+      ))}
+    </div>
+  )}
+</div>
+        
           <div
             style={{
-              display: "grid",
+                          display: "grid",
               gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
               gap: 12,
             }}
