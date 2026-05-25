@@ -2943,7 +2943,7 @@ const matchesDate =
   style={{
     background: "white",
     borderRadius: 16,
-    padding: 18,
+   padding: 16,
     boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
     marginBottom: 18,
   }}
@@ -2953,7 +2953,7 @@ const matchesDate =
   <div
     style={{
       display: "grid",
-      gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))",
+ gridTemplateColumns: "repeat(auto-fit, minmax(130px, 1fr))",
       gap: 12,
     }}
   >
