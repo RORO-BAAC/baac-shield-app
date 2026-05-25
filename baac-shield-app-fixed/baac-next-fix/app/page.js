@@ -492,7 +492,7 @@ async function saveSupervisorPin() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          to: "rod.gonzalez@baacconstruction.com",
+        to: alertEmail,
           subject: stopWork
             ? "BAAC SHIELD - STOP WORK ALERT"
             : "BAAC SHIELD - New Record Submitted",
