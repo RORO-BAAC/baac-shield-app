@@ -269,7 +269,7 @@ if (hazardRes.ok) {
   async function loadProjects() {
     try {
       const res = await fetch(
-        `${SUPABASE_URL}/rest/v1/projects?select=*&order=name.asc`,
+    `${SUPABASE_URL}/rest/v1/projects?select=*&active=is.true&order=name.asc`,
         {
           headers: {
             apikey: SUPABASE_KEY,
