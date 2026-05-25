@@ -3283,6 +3283,57 @@ const matchesDate =
   >
     Save Alert Email
   </button>
+
+<div
+  style={{
+    marginTop: 18,
+    paddingTop: 16,
+    borderTop: "1px solid #dbe4ee",
+    display: "grid",
+    gap: 10,
+  }}
+>
+  <h3 style={{ marginTop: 0, color: "#0f2f66" }}>
+    Project Management
+  </h3>
+
+  <p style={{ marginTop: -6, color: "#64748b", fontSize: 13 }}>
+    Add new active projects for worker forms, hazard reports, filters, and dashboards.
+  </p>
+
+  <label>New Project Name</label>
+  <input
+    type="text"
+    value={newProjectName}
+    onChange={(e) => setNewProjectName(e.target.value)}
+    placeholder="Example: BAAC - Site 001"
+    style={{
+      padding: 10,
+      borderRadius: 8,
+      border: "1px solid #cbd5e1",
+      maxWidth: 420,
+    }}
+  />
+
+  <button
+    type="button"
+    onClick={addProject}
+    disabled={loading}
+    style={{
+      padding: "10px 14px",
+      borderRadius: 8,
+      border: "none",
+      background: "#123d82",
+      color: "white",
+      cursor: "pointer",
+      fontWeight: "bold",
+      maxWidth: 150,
+    }}
+  >
+    Add Project
+  </button>
+</div>
+      
 </div>
 </div>
     </div>
