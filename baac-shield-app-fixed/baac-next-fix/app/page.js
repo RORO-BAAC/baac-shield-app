@@ -1135,7 +1135,7 @@ doc.rect(0, 0, 210, 32, "F");
 
 doc.setTextColor(255, 255, 255);
 doc.setFontSize(20);
-doc.text("BAAC SHIELD AUDIT REPORT", 14, 18);
+doc.text(`${companyName} SHIELD AUDIT REPORT`, 14, 18);
 
 doc.setFontSize(10);
 doc.text("Identify the risk. Verify the shield.", 14, 25);
