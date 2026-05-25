@@ -3425,6 +3425,54 @@ const matchesDate =
   }}
 >
   <h3 style={{ marginTop: 0, color: "#0f2f66" }}>
+    Report Branding
+  </h3>
+
+  <p style={{ marginTop: -6, color: "#64748b", fontSize: 13 }}>
+    These settings control company/report information used in BAAC SHIELD.
+  </p>
+
+  <label>Company Name</label>
+  <input
+    type="text"
+    value={companyName}
+    onChange={(e) => setCompanyName(e.target.value)}
+    style={{
+      padding: 10,
+      borderRadius: 8,
+      border: "1px solid #cbd5e1",
+      maxWidth: 420,
+    }}
+  />
+
+  <button
+    type="button"
+    onClick={saveCompanyName}
+    style={{
+      padding: "10px 14px",
+      borderRadius: 8,
+      border: "none",
+      background: "#123d82",
+      color: "white",
+      cursor: "pointer",
+      fontWeight: "bold",
+      maxWidth: 170,
+    }}
+  >
+    Save Company Name
+  </button>
+</div>
+      
+<div
+  style={{
+    marginTop: 18,
+    paddingTop: 16,
+    borderTop: "1px solid #dbe4ee",
+    display: "grid",
+    gap: 10,
+  }}
+>
+  <h3 style={{ marginTop: 0, color: "#0f2f66" }}>
     Project Management
   </h3>
 
