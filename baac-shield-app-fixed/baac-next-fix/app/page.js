@@ -357,8 +357,9 @@ async function deactivateProject(projectId) {
       throw new Error(text || "Could not deactivate project");
     }
 
-    setMessage("Project deactivated.");
-    await loadProjects();
+  setProjects((prev) => prev.filter((project) => project.id !== projectId));
+setMessage("Project deactivated.");
+await loadProjects();
   } catch (error) {
     setMessage(`Could not deactivate project: ${error.message}`);
   } finally {
