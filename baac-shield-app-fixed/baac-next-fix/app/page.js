@@ -1515,7 +1515,7 @@ const matchesDate =
             }}
           />
           <div>
-            <h1 style={{ margin: 0, fontSize: 26 }}>BAAC SHIELD</h1>
+          <h1 style={{ margin: 0, fontSize: 26 }}>{companyName} SHIELD</h1>
             <div style={{ fontSize: 12, opacity: 0.7 }}>
               Identify the risk. Verify the shield.
             </div>
