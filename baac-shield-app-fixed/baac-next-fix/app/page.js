@@ -2165,13 +2165,24 @@ const matchesDate =
       border: overdueRecords.length > 0 ? "2px solid #dc2626" : "none",
     }}
   >
-    <div style={{ color: "#991b1b", fontSize: 12, fontWeight: "bold" }}>
-      Overdue Corrective Actions
-    </div>
-    <div style={{ fontSize: 28, fontWeight: "bold" }}>
-      {overdueRecords.length}
-    </div>
+    <button
+  type="button"
+  onClick={() => setActiveTab("supervisor")}
+  style={{
+    textAlign: "left",
+    border: "none",
+    background: "transparent",
+    padding: 0,
+    cursor: "pointer",
+  }}
+>
+  <div style={{ color: "#991b1b", fontSize: 12, fontWeight: "bold" }}>
+    Overdue Corrective Actions
   </div>
+  <div style={{ fontSize: 28, fontWeight: "bold" }}>
+    {overdueRecords.length}
+  </div>
+</button>
 </div>
 
 {overdueRecords.length > 0 && (
