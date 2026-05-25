@@ -3439,7 +3439,46 @@ const matchesDate =
     </div>
   )}
 </div>    
-      
+
+<div style={{ marginTop: 18 }}>
+  <h4 style={{ marginBottom: 8, color: "#334155" }}>
+    Deactivated Projects
+  </h4>
+
+  {allProjects.filter((project) => project.active === false).length === 0 ? (
+    <div style={{ color: "#64748b", fontSize: 13 }}>
+      No deactivated projects.
+    </div>
+  ) : (
+    <div style={{ display: "grid", gap: 8 }}>
+      {allProjects
+        .filter((project) => project.active === false)
+        .map((project) => (
+          <div
+            key={project.id}
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              gap: 10,
+              padding: 10,
+              border: "1px solid #dbe4ee",
+              borderRadius: 8,
+              background: "#f8fafc",
+              color: "#64748b",
+            }}
+          >
+            <div>{project.name}</div>
+
+            <div style={{ fontWeight: "bold", fontSize: 13 }}>
+              Deactivated
+            </div>
+          </div>
+        ))}
+    </div>
+  )}
+</div>
+    
 </div>
       
 </div>
