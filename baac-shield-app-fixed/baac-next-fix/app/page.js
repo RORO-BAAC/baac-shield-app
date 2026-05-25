@@ -957,7 +957,7 @@ async function saveHazardReview() {
 
     doc.setTextColor(255, 255, 255);
     doc.setFontSize(22);
-    doc.text("BAAC SHIELD Report", 14, 18);
+  doc.text(`${companyName} SHIELD Report`, 14, 18);
 
     doc.setFontSize(10);
     doc.text("Identify the risk. Verify the shield.", 14, 25);
