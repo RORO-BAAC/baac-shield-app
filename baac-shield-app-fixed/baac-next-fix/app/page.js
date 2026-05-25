@@ -331,6 +331,41 @@ if (hazardRes.ok) {
   }
 }
 
+async function deactivateProject(projectId) {
+  setLoading(true);
+  setMessage("");
+
+  try {
+    const res = await fetch(
+      `${SUPABASE_URL}/rest/v1/projects?id=eq.${projectId}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          apikey: SUPABASE_KEY,
+          Authorization: `Bearer ${SUPABASE_KEY}`,
+          Prefer: "return=representation",
+        },
+        body: JSON.stringify({
+          active: false,
+        }),
+      }
+    );
+
+    if (!res.ok) {
+      const text = await res.text();
+      throw new Error(text || "Could not deactivate project");
+    }
+
+    setMessage("Project deactivated.");
+    await loadProjects();
+  } catch (error) {
+    setMessage(`Could not deactivate project: ${error.message}`);
+  } finally {
+    setLoading(false);
+  }
+}
+  
 async function loadSettings() {
   try {
     const res = await fetch(
