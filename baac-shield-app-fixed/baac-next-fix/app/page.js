@@ -285,7 +285,22 @@ if (hazardRes.ok) {
       }
 
       const data = await res.json();
-      setProjects(data.filter((p) => p.active !== false));
+setProjects(data.filter((p) => p.active !== false));
+
+const allRes = await fetch(
+  `${SUPABASE_URL}/rest/v1/projects?select=*&order=name.asc`,
+  {
+    headers: {
+      apikey: SUPABASE_KEY,
+      Authorization: `Bearer ${SUPABASE_KEY}`,
+    },
+  }
+);
+
+if (allRes.ok) {
+  const allData = await allRes.json();
+  setAllProjects(allData);
+}
     } catch (error) {
       setMessage(`Could not load projects: ${error.message}`);
     }
