@@ -1293,6 +1293,26 @@ const openCorrectiveActions = records.filter((record) => {
   );
 });
 
+  const recentActivity = [
+  ...records.map((record) => ({
+    id: `record-${record.id}`,
+    type: "Worker Form",
+    title: record.worker_name || "Unknown worker",
+    project: record.project_name || "Unknown project",
+    time: record.submitted_at,
+  })),
+  ...hazardReports.map((report) => ({
+    id: `hazard-${report.id}`,
+    type: report.report_type || "Hazard ID",
+    title: report.reported_by || "Unknown reporter",
+    project: report.project_name || "Unknown project",
+    time: report.created_at || report.submitted_at,
+  })),
+]
+  .filter((item) => item.time)
+  .sort((a, b) => new Date(b.time) - new Date(a.time))
+  .slice(0, 5);
+
   const hazardTypeCounts = hazardReports.reduce((acc, report) => {
   const type = report.report_type || "Unknown";
   acc[type] = (acc[type] || 0) + 1;
