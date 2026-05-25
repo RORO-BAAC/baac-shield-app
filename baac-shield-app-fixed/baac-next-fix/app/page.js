@@ -1267,6 +1267,32 @@ doc.setFontSize(10);
 });
   const totalHazards = hazardReports.length;
 
+const todayActivityStart = new Date();
+todayActivityStart.setHours(0, 0, 0, 0);
+
+const todayWorkerRecords = records.filter((record) => {
+  if (!record.submitted_at) return false;
+  return new Date(record.submitted_at) >= todayActivityStart;
+});
+
+const todayHazardReports = hazardReports.filter((report) => {
+  const submittedValue = report.created_at || report.submitted_at;
+  if (!submittedValue) return false;
+  return new Date(submittedValue) >= todayActivityStart;
+});
+
+const todayStopWorkRecords = records.filter((record) => {
+  if (!record.submitted_at) return false;
+  return record.stop_work === true && new Date(record.submitted_at) >= todayActivityStart;
+});
+
+const openCorrectiveActions = records.filter((record) => {
+  return (
+    record.status !== "Approved" &&
+    (record.corrective_actions || record.assigned_to || record.due_date)
+  );
+});
+
   const todayActivityStart = new Date();
 todayActivityStart.setHours(0, 0, 0, 0);
 
