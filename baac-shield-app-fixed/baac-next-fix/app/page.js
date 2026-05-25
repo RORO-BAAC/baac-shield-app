@@ -112,6 +112,7 @@ const [dueDate, setDueDate] = useState("");
   const [startDateFilter, setStartDateFilter] = useState("");
   const [endDateFilter, setEndDateFilter] = useState("");
   const [projects, setProjects] = useState([]);
+  const [allProjects, setAllProjects] = useState([]);
   const [newProjectName, setNewProjectName] = useState("");
   const [projectFilter, setProjectFilter] = useState("All");
   
