@@ -290,6 +290,47 @@ if (hazardRes.ok) {
     }
   }
 
+  async function addProject() {
+  const cleanName = newProjectName.trim();
+
+  if (!cleanName) {
+    setMessage("Please enter a project name.");
+    return;
+  }
+
+  setLoading(true);
+  setMessage("");
+
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/projects`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        apikey: SUPABASE_KEY,
+        Authorization: `Bearer ${SUPABASE_KEY}`,
+        Prefer: "return=representation",
+      },
+      body: JSON.stringify({
+        name: cleanName,
+        active: true,
+      }),
+    });
+
+    if (!res.ok) {
+      const text = await res.text();
+      throw new Error(text || "Could not add project");
+    }
+
+    setNewProjectName("");
+    setMessage("Project added.");
+    await loadProjects();
+  } catch (error) {
+    setMessage(`Could not add project: ${error.message}`);
+  } finally {
+    setLoading(false);
+  }
+}
+
 async function loadSettings() {
   try {
     const res = await fetch(
