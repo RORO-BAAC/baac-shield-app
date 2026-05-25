@@ -357,7 +357,13 @@ async function deactivateProject(projectId) {
       throw new Error(text || "Could not deactivate project");
     }
 
-  setProjects((prev) => prev.filter((project) => project.id !== projectId));
+ const updated = await res.json();
+
+if (!updated || updated.length === 0) {
+  throw new Error("Project was not updated. Check Supabase update policy.");
+}
+
+setProjects((prev) => prev.filter((project) => project.id !== projectId));
 setMessage("Project deactivated.");
 await loadProjects();
   } catch (error) {
