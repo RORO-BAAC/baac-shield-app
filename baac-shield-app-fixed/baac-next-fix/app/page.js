@@ -388,6 +388,47 @@ await loadProjects();
     setLoading(false);
   }
 }
+
+async function reactivateProject(projectId) {
+  setLoading(true);
+  setMessage("");
+
+  try {
+    const res = await fetch(
+      `${SUPABASE_URL}/rest/v1/projects?id=eq.${projectId}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          apikey: SUPABASE_KEY,
+          Authorization: `Bearer ${SUPABASE_KEY}`,
+          Prefer: "return=representation",
+        },
+        body: JSON.stringify({
+          active: true,
+        }),
+      }
+    );
+
+    if (!res.ok) {
+      const text = await res.text();
+      throw new Error(text || "Could not reactivate project");
+    }
+
+    const updated = await res.json();
+
+    if (!updated || updated.length === 0) {
+      throw new Error("Project was not updated. Check Supabase update policy.");
+    }
+
+    setMessage("Project reactivated.");
+    await loadProjects();
+  } catch (error) {
+    setMessage(`Could not reactivate project: ${error.message}`);
+  } finally {
+    setLoading(false);
+  }
+}
   
 async function loadSettings() {
   try {
