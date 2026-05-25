@@ -572,7 +572,7 @@ const emailRes = await fetch("/api/send-alert", {
     "Content-Type": "application/json",
   },
   body: JSON.stringify({
-    to: "rod.gonzalez@baacconstruction.com",
+   to: alertEmail,
     subject:
       hazardReportType === "Observation"
         ? "BAAC SHIELD - New Observation Submitted"
