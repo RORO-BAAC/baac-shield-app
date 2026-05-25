@@ -522,6 +522,37 @@ async function saveSupervisorPin() {
     setMessage(`Could not save alert email: ${error.message}`);
   }
 }
+
+async function saveCompanyName() {
+  try {
+    const res = await fetch(
+      `${SUPABASE_URL}/rest/v1/app_settings?setting_key=eq.company_name`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          apikey: SUPABASE_KEY,
+          Authorization: `Bearer ${SUPABASE_KEY}`,
+          Prefer: "return=representation",
+        },
+        body: JSON.stringify({
+          setting_value: companyName,
+          updated_at: new Date().toISOString(),
+        }),
+      }
+    );
+
+    if (!res.ok) {
+      const text = await res.text();
+      throw new Error(text || "Could not save company name");
+    }
+
+    setMessage("Company name saved.");
+  } catch (error) {
+    setMessage(`Could not save company name: ${error.message}`);
+  }
+}
+  
   function handleFiles(e) {
     const files = Array.from(e.target.files || []);
     setPhotos(files);
