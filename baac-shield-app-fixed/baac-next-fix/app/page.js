@@ -3367,6 +3367,56 @@ const matchesDate =
   >
     Add Project
   </button>
+
+  <div style={{ marginTop: 14 }}>
+  <h4 style={{ marginBottom: 8, color: "#334155" }}>
+    Active Projects
+  </h4>
+
+  {projects.length === 0 ? (
+    <div style={{ color: "#64748b", fontSize: 13 }}>
+      No active projects found.
+    </div>
+  ) : (
+    <div style={{ display: "grid", gap: 8 }}>
+      {projects.map((project) => (
+        <div
+          key={project.id}
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            gap: 10,
+            padding: 10,
+            border: "1px solid #dbe4ee",
+            borderRadius: 8,
+            background: "white",
+          }}
+        >
+          <div>{project.name}</div>
+
+          <button
+            type="button"
+            onClick={() => deactivateProject(project.id)}
+            disabled={loading}
+            style={{
+              padding: "6px 10px",
+              borderRadius: 6,
+              border: "1px solid #fecaca",
+              background: "#fef2f2",
+              color: "#991b1b",
+              cursor: "pointer",
+              fontWeight: "bold",
+            }}
+          >
+            Deactivate
+          </button>
+        </div>
+      ))}
+    </div>
+  )}
+</div>    
+      
 </div>
       
 </div>
