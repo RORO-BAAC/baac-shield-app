@@ -2177,8 +2177,6 @@ const matchesDate =
 </div>
 
 {overdueRecords.length > 0 && (
-
-{overdueRecords.length > 0 && (
   <div
     style={{
       marginTop: 20,
