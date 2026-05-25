@@ -3511,9 +3511,22 @@ const matchesDate =
           >
             <div>{project.name}</div>
 
-            <div style={{ fontWeight: "bold", fontSize: 13 }}>
-              Deactivated
-            </div>
+            <button
+  type="button"
+  onClick={() => reactivateProject(project.id)}
+  disabled={loading}
+  style={{
+    padding: "6px 10px",
+    borderRadius: 6,
+    border: "1px solid #bbf7d0",
+    background: "#f0fdf4",
+    color: "#166534",
+    cursor: "pointer",
+    fontWeight: "bold",
+  }}
+>
+  Reactivate
+</button>
           </div>
         ))}
     </div>
