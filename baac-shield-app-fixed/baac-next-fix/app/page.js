@@ -2244,64 +2244,6 @@ const matchesDate =
     </div>
   </div>
 )}
-
-<div
-  style={{
-    marginTop: 20,
-    background: "white",
-    padding: 16,
-    borderRadius: 12,
-    border: "1px solid #dbe4ee",
-    marginBottom: 20,
-  }}
->
-  <h3 style={{ marginTop: 0, color: "#0f2f66" }}>
-    Corrective Action Register
-  </h3>
-
-  <p style={{ marginTop: -6, color: "#64748b", fontSize: 13 }}>
-    All records with assigned corrective actions, due dates, or follow-up requirements.
-  </p>
-
-  {correctiveActionRegister.length === 0 ? (
-    <div>No corrective actions found.</div>
-  ) : (
-    <div style={{ display: "grid", gap: 10 }}>
-      {correctiveActionRegister.map((record) => (
-        <div
-          key={record.id}
-          style={{
-            background:
-              record.status !== "Approved" &&
-              record.due_date &&
-              new Date(record.due_date) < todayActivityStart
-                ? "#fef2f2"
-                : "#f8fafc",
-            border:
-              record.status !== "Approved" &&
-              record.due_date &&
-              new Date(record.due_date) < todayActivityStart
-                ? "1px solid #fecaca"
-                : "1px solid #dbe4ee",
-            borderRadius: 10,
-            padding: 12,
-          }}
-        >
-          <div style={{ fontWeight: "bold", color: "#0f2f66" }}>
-            {record.project_name || "Unknown Project"}
-          </div>
-
-          <div><strong>Worker:</strong> {record.worker_name || "—"}</div>
-          <div><strong>Risk:</strong> {record.critical_risk || "—"}</div>
-          <div><strong>Assigned To:</strong> {record.assigned_to || "—"}</div>
-          <div><strong>Due Date:</strong> {record.due_date || "—"}</div>
-          <div><strong>Status:</strong> {record.status || "Pending Review"}</div>
-          <div><strong>Corrective Action:</strong> {record.corrective_actions || "—"}</div>
-        </div>
-      ))}
-    </div>
-  )}
-</div>
   
 <div
   style={{
@@ -2707,6 +2649,65 @@ const matchesDate =
             gap: 10,
           }}
         >
+
+          <div
+  style={{
+    marginTop: 20,
+    background: "white",
+    padding: 16,
+    borderRadius: 12,
+    border: "1px solid #dbe4ee",
+    marginBottom: 20,
+  }}
+>
+  <h3 style={{ marginTop: 0, color: "#0f2f66" }}>
+    Corrective Action Register
+  </h3>
+
+  <p style={{ marginTop: -6, color: "#64748b", fontSize: 13 }}>
+    All records with assigned corrective actions, due dates, or follow-up requirements.
+  </p>
+
+  {correctiveActionRegister.length === 0 ? (
+    <div>No corrective actions found.</div>
+  ) : (
+    <div style={{ display: "grid", gap: 10 }}>
+      {correctiveActionRegister.map((record) => (
+        <div
+          key={record.id}
+          style={{
+            background:
+              record.status !== "Approved" &&
+              record.due_date &&
+              new Date(record.due_date) < todayActivityStart
+                ? "#fef2f2"
+                : "#f8fafc",
+            border:
+              record.status !== "Approved" &&
+              record.due_date &&
+              new Date(record.due_date) < todayActivityStart
+                ? "1px solid #fecaca"
+                : "1px solid #dbe4ee",
+            borderRadius: 10,
+            padding: 12,
+          }}
+        >
+          <div style={{ fontWeight: "bold", color: "#0f2f66" }}>
+            {record.project_name || "Unknown Project"}
+          </div>
+
+          <div><strong>Worker:</strong> {record.worker_name || "—"}</div>
+          <div><strong>Risk:</strong> {record.critical_risk || "—"}</div>
+          <div><strong>Assigned To:</strong> {record.assigned_to || "—"}</div>
+          <div><strong>Due Date:</strong> {record.due_date || "—"}</div>
+          <div><strong>Status:</strong> {record.status || "Pending Review"}</div>
+          <div><strong>Corrective Action:</strong> {record.corrective_actions || "—"}</div>
+        </div>
+      ))}
+    </div>
+  )}
+</div>
+          
           <div style={{ width: 220 }}>{risk}</div>
 
           <div
