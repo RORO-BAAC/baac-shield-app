@@ -2820,6 +2820,56 @@ const matchesDate =
         >
           <h2 style={{ margin: 0 }}>Safety Dashboard</h2>
 
+          <div
+  style={{
+    background: "#f8fafc",
+    padding: 16,
+    borderRadius: 12,
+    border: "1px solid #dbe4ee",
+    marginBottom: 20,
+  }}
+>
+  <h3 style={{ marginTop: 0, color: "#0f2f66" }}>
+    Audit Exports
+  </h3>
+
+  <p style={{ marginTop: 0, color: "#64748b", fontSize: 13 }}>
+    Download filtered worker records, hazard IDs, observations, corrective actions, and closeouts.
+  </p>
+
+  <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+    <button
+      type="button"
+      onClick={exportCombinedCSV}
+      style={{
+        padding: "10px 14px",
+        borderRadius: 8,
+        border: "1px solid #cbd5e1",
+        background: "#fff",
+        cursor: "pointer",
+        fontWeight: "bold",
+      }}
+    >
+      Export AUDIT CSV
+    </button>
+
+    <button
+      type="button"
+      onClick={exportAuditPDF}
+      style={{
+        padding: "10px 14px",
+        borderRadius: 8,
+        border: "1px solid #cbd5e1",
+        background: "#fff",
+        cursor: "pointer",
+        fontWeight: "bold",
+      }}
+    >
+      Export AUDIT PDF
+    </button>
+  </div>
+</div>
+
 <div
   style={{
     background: "white",
