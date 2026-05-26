@@ -1424,6 +1424,11 @@ const supervisorSortedRecords = [...filteredRecords].sort((a, b) => {
 
   return new Date(b.submitted_at || 0) - new Date(a.submitted_at || 0);
 });
+
+const supervisorActionRecords = supervisorSortedRecords.filter((record) => {
+  const status = record.status || "Pending Review";
+  return status === "Pending Review" || status === "Needs Correction" || status === "Stop Work";
+});
   
 const filteredHazardReports = hazardReports.filter((report) => {
   const matchesSearch =
@@ -2615,7 +2620,7 @@ const matchesDate =
   Review worker submissions, corrective actions, approvals, and individual record PDFs.
 </p>
 
-            {filteredRecords.length === 0 ? (
+         {supervisorActionRecords.map((record) => {
               <p>No records match your search or filters.</p>
             ) : (
               <div style={{ display: "grid", gap: 12 }}>
