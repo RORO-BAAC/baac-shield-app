@@ -3023,6 +3023,54 @@ Records by Critical Risk
     ))}
   </div>
 </div>
+
+<div
+  style={{
+    background: "white",
+    padding: 16,
+    borderRadius: 12,
+    border: "1px solid #dbe4ee",
+    marginBottom: 20,
+  }}
+>
+  <h3 style={{ marginTop: 0, color: "#0f2f66" }}>
+    Open Corrective Action Register
+  </h3>
+
+  <p style={{ marginTop: -4, color: "#64748b", fontSize: 13 }}>
+    Active corrective actions requiring follow-up.
+  </p>
+
+  <div style={{ display: "grid", gap: 10 }}>
+    {correctiveActionRegister.length === 0 ? (
+      <div>No corrective actions found.</div>
+    ) : (
+      correctiveActionRegister.map((record) => (
+        <div
+          key={record.id}
+          style={{
+            background: "#f8fafc",
+            border: "1px solid #dbe4ee",
+            borderRadius: 8,
+            padding: 12,
+          }}
+        >
+          <div>
+            <strong>{record.worker_name || "Unknown Worker"}</strong>
+          </div>
+
+          <div>Project: {record.project_name || "—"}</div>
+          <div>Assigned To: {record.assigned_to || "—"}</div>
+          <div>Due Date: {record.due_date || "—"}</div>
+          <div>Status: {record.status || "Pending Review"}</div>
+          <div>
+            Corrective Action: {record.corrective_actions || "—"}
+          </div>
+        </div>
+      ))
+    )}
+  </div>
+</div>
       
       <div
   style={{
