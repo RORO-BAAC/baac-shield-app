@@ -2856,7 +2856,7 @@ const matchesDate =
               <p>No records match your search or filters.</p>
             ) : (
               <div style={{ display: "grid", gap: 12 }}>
-                {filteredRecords.map((record) => {
+               {supervisorSortedRecords.map((record) => {
                   const photoUrls = record.photos
                     ? String(record.photos)
                         .split(",")
