@@ -1411,6 +1411,16 @@ const matchesDate =
   );
 });
 
+const supervisorSortedRecords = [...filteredRecords].sort((a, b) => {
+  const aPending = (a.status || "Pending Review") === "Pending Review";
+  const bPending = (b.status || "Pending Review") === "Pending Review";
+
+  if (aPending && !bPending) return -1;
+  if (!aPending && bPending) return 1;
+
+  return new Date(b.submitted_at || 0) - new Date(a.submitted_at || 0);
+});
+  
 const filteredHazardReports = hazardReports.filter((report) => {
   const matchesSearch =
     !searchTerm ||
