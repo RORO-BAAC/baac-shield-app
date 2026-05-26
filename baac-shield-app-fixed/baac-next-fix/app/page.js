@@ -2896,8 +2896,7 @@ const matchesDate =
               </div>
             )}
           </div>
-        </div>
-      )}
+                    )}
 
       {activeTab === "dashboard" && (
         <div
