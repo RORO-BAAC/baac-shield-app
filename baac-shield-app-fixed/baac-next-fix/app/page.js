@@ -2200,69 +2200,6 @@ const matchesDate =
 </div>
 </div>
 
-<div
-  style={{
-    marginTop: 20,
-    background: "white",
-    padding: 16,
-    borderRadius: 12,
-    border: "1px solid #dbe4ee",
-    marginBottom: 20,
-  }}
->
-  <h3 style={{ marginTop: 0, color: "#0f2f66" }}>
-    Worker Records Pending Review
-  </h3>
-
-  <p style={{ marginTop: -6, color: "#64748b", fontSize: 13 }}>
-    These worker submissions require supervisor review.
-  </p>
-
-  {pendingRecords.length === 0 ? (
-    <div>No worker records pending review.</div>
-  ) : (
-    <div style={{ display: "grid", gap: 10 }}>
-      {pendingRecords.map((record) => (
-        <div
-          key={record.id}
-          style={{
-            background: "#f8fafc",
-            border: "1px solid #dbe4ee",
-            borderRadius: 10,
-            padding: 12,
-          }}
-        >
-          <div style={{ fontWeight: "bold", color: "#0f2f66" }}>
-            {record.worker_name || "Unknown Worker"}
-          </div>
-
-          <div><strong>Project:</strong> {record.project_name || "—"}</div>
-          <div><strong>Risk:</strong> {record.critical_risk || "—"}</div>
-          <div><strong>Task:</strong> {record.task_description || "—"}</div>
-          <div><strong>Submitted:</strong> {record.submitted_at || "—"}</div>
-
-          <button
-            type="button"
-            onClick={() => startReview(record)}
-            style={{
-              marginTop: 10,
-              padding: "8px 12px",
-              borderRadius: 8,
-              border: "none",
-              background: "#123d82",
-              color: "white",
-              cursor: "pointer",
-              fontWeight: "bold",
-            }}
-          >
-            Review Worker Record
-          </button>
-        </div>
-      ))}
-    </div>
-  )}
-</div>
-
 {overdueRecords.length > 0 && (
   <div
     style={{
