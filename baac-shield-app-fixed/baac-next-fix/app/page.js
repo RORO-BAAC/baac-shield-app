@@ -2928,7 +2928,40 @@ const matchesDate =
   }}
 >
   <h3 style={{ marginTop: 0, color: "#0f2f66" }}>
-    Records by Critical Risk
+   
+<div
+  style={{
+    background: "white",
+    padding: 16,
+    borderRadius: 12,
+    border: "1px solid #dbe4ee",
+    marginBottom: 20,
+  }}
+>
+  <h3 style={{ marginTop: 0, color: "#0f2f66" }}>
+    Records by Project
+  </h3>
+
+  <div style={{ display: "grid", gap: 8 }}>
+    {Object.entries(projectCounts).map(([project, count]) => (
+      <div
+        key={project}
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          padding: 10,
+          background: "#f8fafc",
+          borderRadius: 8,
+        }}
+      >
+        <span>{project}</span>
+        <strong>{count}</strong>
+      </div>
+    ))}
+  </div>
+</div>
+
+Records by Critical Risk
   </h3>
 
   <div style={{ display: "grid", gap: 8 }}>
