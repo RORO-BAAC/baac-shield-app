@@ -2620,11 +2620,11 @@ const matchesDate =
   Review worker submissions, corrective actions, approvals, and individual record PDFs.
 </p>
 
-         {supervisorActionRecords.map((record) => {
-              <p>No records match your search or filters.</p>
-            ) : (
-              <div style={{ display: "grid", gap: 12 }}>
-               {supervisorSortedRecords.map((record) => {
+       {supervisorActionRecords.length === 0 ? (
+  <p>No records require supervisor action.</p>
+) : (
+  <div style={{ display: "grid", gap: 12 }}>
+    {supervisorActionRecords.map((record) => {
                   const photoUrls = record.photos
                     ? String(record.photos)
                         .split(",")
