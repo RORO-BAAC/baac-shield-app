@@ -2480,7 +2480,10 @@ const matchesDate =
     ))
 )}
  
-            <div style={{ display: reviewingId ? "grid" : "none", gap: 12 }}>
+          <div
+  id="worker-review-form"
+  style={{ display: reviewingId ? "grid" : "none", gap: 12 }}
+>
                 <div>
                   <label>Status</label>
                   <br />
