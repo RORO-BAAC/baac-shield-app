@@ -2870,6 +2870,54 @@ const matchesDate =
   </div>
 </div>
 
+    <div
+  style={{
+    display: "flex",
+    gap: 10,
+    flexWrap: "wrap",
+    marginTop: 12,
+  }}
+>
+  <input
+    type="date"
+    value={startDateFilter}
+    onChange={(e) => setStartDateFilter(e.target.value)}
+    style={{
+      padding: 10,
+      borderRadius: 8,
+      border: "1px solid #cbd5e1",
+    }}
+  />
+
+  <input
+    type="date"
+    value={endDateFilter}
+    onChange={(e) => setEndDateFilter(e.target.value)}
+    style={{
+      padding: 10,
+      borderRadius: 8,
+      border: "1px solid #cbd5e1",
+    }}
+  />
+
+  <button
+    type="button"
+    onClick={() => {
+      setStartDateFilter("");
+      setEndDateFilter("");
+    }}
+    style={{
+      padding: "10px 14px",
+      borderRadius: 8,
+      border: "1px solid #cbd5e1",
+      background: "#fff",
+      cursor: "pointer",
+    }}
+  >
+    Clear Dates
+  </button>
+</div>    
+
 <div
   style={{
     background: "white",
