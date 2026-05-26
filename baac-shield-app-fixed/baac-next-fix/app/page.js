@@ -829,7 +829,11 @@ if (!emailRes.ok) {
     setAssignedTo(record.assigned_to || "");
     setDueDate(record.due_date || "");
     setActiveTab("supervisor");
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    setTimeout(() => {
+  document
+    .getElementById("worker-review-form")
+    ?.scrollIntoView({ behavior: "smooth", block: "start" });
+}, 100);
   }
 
   async function saveReview() {
