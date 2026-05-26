@@ -2986,6 +2986,47 @@ Records by Critical Risk
 <div
   style={{
     background: "white",
+    padding: 16,
+    borderRadius: 12,
+    border: "1px solid #dbe4ee",
+    marginBottom: 20,
+  }}
+>
+  <h3 style={{ marginTop: 0, color: "#0f2f66" }}>
+    Full Records History
+  </h3>
+
+  <p style={{ marginTop: -4, color: "#64748b", fontSize: 13 }}>
+    Approved, closed, and historical records available for audit review.
+  </p>
+
+  <div style={{ display: "grid", gap: 10 }}>
+    {closedRecords.slice(0, 20).map((record) => (
+      <div
+        key={record.id}
+        style={{
+          padding: 12,
+          background: "#f8fafc",
+          borderRadius: 8,
+          border: "1px solid #dbe4ee",
+        }}
+      >
+        <div>
+          <strong>{record.worker_name}</strong>
+        </div>
+
+        <div>Project: {record.project_name}</div>
+        <div>Risk: {record.critical_risk}</div>
+        <div>Status: {record.status}</div>
+        <div>Reviewed By: {record.reviewed_by || "—"}</div>
+      </div>
+    ))}
+  </div>
+</div>
+      
+      <div
+  style={{
+    background: "white",
     borderRadius: 16,
    padding: 16,
     boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
