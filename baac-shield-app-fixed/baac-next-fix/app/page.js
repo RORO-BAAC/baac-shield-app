@@ -1293,6 +1293,16 @@ const openCorrectiveActions = records.filter((record) => {
   );
 });
 
+  const correctiveActionRegister = records
+  .filter((record) => {
+    return record.corrective_actions || record.assigned_to || record.due_date;
+  })
+  .sort((a, b) => {
+    const aDate = a.due_date ? new Date(a.due_date) : new Date("9999-12-31");
+    const bDate = b.due_date ? new Date(b.due_date) : new Date("9999-12-31");
+    return aDate - bDate;
+  });
+
   const recentActivity = [
   ...records.map((record) => ({
     id: `record-${record.id}`,
