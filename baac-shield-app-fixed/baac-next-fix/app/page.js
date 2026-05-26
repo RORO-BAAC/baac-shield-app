@@ -1430,6 +1430,11 @@ const supervisorActionRecords = supervisorSortedRecords.filter((record) => {
   return status === "Pending Review" || status === "Needs Correction" || status === "Stop Work";
 });
   
+const supervisorActionRecords = supervisorSortedRecords.filter((record) => {
+  const status = record.status || "Pending Review";
+  return status === "Pending Review" || status === "Needs Correction" || status === "Stop Work";
+});
+  
 const filteredHazardReports = hazardReports.filter((report) => {
   const matchesSearch =
     !searchTerm ||
