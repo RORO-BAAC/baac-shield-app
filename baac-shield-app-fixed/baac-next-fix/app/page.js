@@ -1425,7 +1425,7 @@ const supervisorSortedRecords = [...filteredRecords].sort((a, b) => {
   return new Date(b.submitted_at || 0) - new Date(a.submitted_at || 0);
 });
 
-const supervisorActionRecords = supervisorSortedRecords.filter((record) => {
+const supervisorActionRecords = records.filter((record) => {
   const status = record.status || "Pending Review";
   return status === "Pending Review" || status === "Needs Correction" || status === "Stop Work";
 });
