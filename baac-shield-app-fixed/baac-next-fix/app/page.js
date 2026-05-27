@@ -1664,22 +1664,7 @@ const matchesDate =
     cursor: "pointer",
   }}
 >
-  COR Corrective Actions
-</button>
-      
-  <button
-    type="button"
-    onClick={() => requestProtectedTab("supervisor")}
-    style={{
-      padding: "10px 14px",
-      borderRadius: 10,
-      border: "1px solid #cbd5e1",
-      background: activeTab === "supervisor" ? "#123d82" : "white",
-      color: activeTab === "supervisor" ? "white" : "#0f172a",
-      fontWeight: "bold",
-      cursor: "pointer",
-    }}
-  >
+
     Supervisor Review
   </button>
 
