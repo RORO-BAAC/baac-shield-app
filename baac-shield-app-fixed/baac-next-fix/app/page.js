@@ -1474,13 +1474,14 @@ const filteredHazardReports = hazardReports.filter((report) => {
   const thirtyDaysAgo = new Date();
   thirtyDaysAgo.setDate(now.getDate() - 30);
 
-  const customStartDate = startDateFilter ? new Date(startDateFilter) : null;
-const customEndDate = endDateFilter ? new Date(endDateFilter) : null;
+const customStartDate = startDateFilter
+  ? new Date(`${startDateFilter}T00:00:00`)
+  : null;
 
-if (customEndDate) {
-  customEndDate.setHours(23, 59, 59, 999);
-}
-
+const customEndDate = endDateFilter
+  ? new Date(`${endDateFilter}T23:59:59`)
+  : null;
+  
 const matchesDate =
   customStartDate || customEndDate
     ? submittedDate &&
