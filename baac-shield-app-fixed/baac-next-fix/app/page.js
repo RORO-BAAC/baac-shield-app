@@ -1677,8 +1677,8 @@ const matchesDate =
     padding: "10px 14px",
     borderRadius: 10,
     border: "1px solid #cbd5e1",
-    background: activeTab === "cor" ? "#123d82" : "white",
-    color: activeTab === "cor" ? "white" : "#0f172a",
+   background: activeTab === "supervisor" ? "#123d82" : "white",
+  color: activeTab === "supervisor" ? "white" : "#0f172a",
     fontWeight: "bold",
     cursor: "pointer",
   }}
