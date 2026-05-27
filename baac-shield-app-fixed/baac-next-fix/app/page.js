@@ -1173,9 +1173,9 @@ doc.text(`Generated: ${new Date().toLocaleString()}`, 14, 40);
 let y = 64;
 
       doc.setFontSize(12);
-  doc.text(`Total Worker Forms: ${filteredRecords.length}`, 14, y);
+  doc.text(`Total Worker Forms: ${records.length}`, 14, y);
   y += 7;
-doc.text(`Filtered Hazard Reports: ${filteredHazardReports.length}`, 14, y);
+doc.text(`Filtered Hazard Reports: ${hazardReports.length}`, 14, y);
   y += 7;
   doc.text(`Pending Worker Reviews: ${pendingRecords.length}`, 14, y);
   y += 7;
