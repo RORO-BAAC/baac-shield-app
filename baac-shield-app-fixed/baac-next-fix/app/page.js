@@ -2879,6 +2879,63 @@ const matchesDate =
         >
           <h2 style={{ margin: 0 }}>Safety Dashboard</h2>
 
+             <div
+  style={{
+    background: "white",
+    borderRadius: 16,
+   padding: 16,
+    boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
+    marginBottom: 18,
+  }}
+>
+  <h2 style={{ marginTop: 0, color: "#0f2f66" }}>Today’s Activity</h2>
+
+  <div
+    style={{
+      display: "grid",
+ gridTemplateColumns: "repeat(auto-fit, minmax(130px, 1fr))",
+      gap: 12,
+    }}
+  >
+    <div>
+      <div style={{ color: "#64748b", fontSize: 12 }}>Worker Forms Today</div>
+      <div style={{ fontSize: 28, fontWeight: "bold" }}>
+        {todayWorkerRecords.length}
+      </div>
+    </div>
+
+    <div>
+      <div style={{ color: "#64748b", fontSize: 12 }}>Hazards / Observations Today</div>
+      <div style={{ fontSize: 28, fontWeight: "bold" }}>
+        {todayHazardReports.length}
+      </div>
+    </div>
+
+    <div>
+      <div style={{ color: "#64748b", fontSize: 12 }}>Stop Work Today</div>
+      <div style={{ fontSize: 28, fontWeight: "bold" }}>
+        {todayStopWorkRecords.length}
+      </div>
+    </div>
+
+    <div>
+      <div style={{ color: "#64748b", fontSize: 12 }}>Open Corrective Actions</div>
+      <div style={{ fontSize: 28, fontWeight: "bold" }}>
+        {openCorrectiveActions.length}
+      </div>
+    </div>
+
+    <div>
+      <div style={{ color: "#991b1b", fontSize: 12, fontWeight: "bold" }}>
+        Overdue Corrective Actions
+      </div>
+      <div style={{ fontSize: 28, fontWeight: "bold" }}>
+        {overdueRecords.length}
+      </div>
+    </div>
+  </div>
+</div>
+
           <div
   style={{
     background: "#f8fafc",
@@ -3131,63 +3188,7 @@ Records by Critical Risk
   </div>
 </div>
       
-      <div
-  style={{
-    background: "white",
-    borderRadius: 16,
-   padding: 16,
-    boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
-    marginBottom: 18,
-  }}
->
-  <h2 style={{ marginTop: 0, color: "#0f2f66" }}>Today’s Activity</h2>
-
-  <div
-    style={{
-      display: "grid",
- gridTemplateColumns: "repeat(auto-fit, minmax(130px, 1fr))",
-      gap: 12,
-    }}
-  >
-    <div>
-      <div style={{ color: "#64748b", fontSize: 12 }}>Worker Forms Today</div>
-      <div style={{ fontSize: 28, fontWeight: "bold" }}>
-        {todayWorkerRecords.length}
-      </div>
-    </div>
-
-    <div>
-      <div style={{ color: "#64748b", fontSize: 12 }}>Hazards / Observations Today</div>
-      <div style={{ fontSize: 28, fontWeight: "bold" }}>
-        {todayHazardReports.length}
-      </div>
-    </div>
-
-    <div>
-      <div style={{ color: "#64748b", fontSize: 12 }}>Stop Work Today</div>
-      <div style={{ fontSize: 28, fontWeight: "bold" }}>
-        {todayStopWorkRecords.length}
-      </div>
-    </div>
-
-    <div>
-      <div style={{ color: "#64748b", fontSize: 12 }}>Open Corrective Actions</div>
-      <div style={{ fontSize: 28, fontWeight: "bold" }}>
-        {openCorrectiveActions.length}
-      </div>
-    </div>
-
-    <div>
-      <div style={{ color: "#991b1b", fontSize: 12, fontWeight: "bold" }}>
-        Overdue Corrective Actions
-      </div>
-      <div style={{ fontSize: 28, fontWeight: "bold" }}>
-        {overdueRecords.length}
-      </div>
-    </div>
-  </div>
-</div>
-
+   
 <div
   style={{
     background: "white",
