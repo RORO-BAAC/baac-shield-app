@@ -74,7 +74,26 @@ const [hazardDescription, setHazardDescription] = useState("");
 const [immediateAction, setImmediateAction] = useState("");
 const [hazardRiskLevel, setHazardRiskLevel] = useState("");
 const [hazardPhotos, setHazardPhotos] = useState([]);
+const [corCategory, setCorCategory] = useState("");
+const [corTruckUnit, setCorTruckUnit] = useState("");
+const [corTrailerUnit, setCorTrailerUnit] = useState("");
+const [corEquipmentUnit, setCorEquipmentUnit] = useState("");
+const [corEquipmentDescription, setCorEquipmentDescription] = useState("");
+const [corOfficeLocation, setCorOfficeLocation] = useState("");
+const [corFieldJobNumber, setCorFieldJobNumber] = useState("");
+const [corFieldLocation, setCorFieldLocation] = useState("");
+const [corHandToolDescription, setCorHandToolDescription] = useState("");
 
+const [corIssueDescription, setCorIssueDescription] = useState("");
+const [corAssignedTo, setCorAssignedTo] = useState("");
+const [corTargetFixDate, setCorTargetFixDate] = useState("");
+
+const [corFixedBy, setCorFixedBy] = useState("");
+const [corClosedDate, setCorClosedDate] = useState("");
+const [corCloseoutNotes, setCorCloseoutNotes] = useState("");
+
+const [corBeforePhotos, setCorBeforePhotos] = useState([]);
+const [corAfterPhotos, setCorAfterPhotos] = useState([]);
   const [hazardActionId, setHazardActionId] = useState(null);
 const [correctiveActionText, setCorrectiveActionText] = useState("");
 const [assignedTo, setAssignedTo] = useState("");
