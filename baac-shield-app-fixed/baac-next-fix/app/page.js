@@ -1821,8 +1821,13 @@ const matchesDate =
                 background: "#f8fafc",
               }}
             >
+
+<button
+  type="button"
+  onClick={() => requestProtectedTab("supervisor")}
+
               {!risk ? (
-                <div style={{ color: "#64748b" }}>Select a risk first</div>
+                   <div style={{ color: "#64748b" }}>Select a risk first</div>
               ) : (
                 shieldOptions.map((item) => (
                   <label
