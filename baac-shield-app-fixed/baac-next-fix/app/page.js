@@ -1435,11 +1435,6 @@ const matchesDate =
   );
 });
 
-console.log("records:", records.length);
-console.log("filteredRecords:", filteredRecords.length);
-console.log("hazardReports:", hazardReports.length);
-console.log("filteredHazardReports:", filteredHazardReports.length);
-  
 const supervisorSortedRecords = [...filteredRecords].sort((a, b) => {
   const aPending = (a.status || "Pending Review") === "Pending Review";
   const bPending = (b.status || "Pending Review") === "Pending Review";
