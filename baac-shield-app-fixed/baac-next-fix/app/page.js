@@ -795,6 +795,7 @@ if (!emailRes.ok) {
     setHazardPhotos([]);
 
     setMessage("Hazard report submitted.");
+    await loadRecords();
   } catch (error) {
     setMessage(`Could not save hazard report: ${error.message}`);
   } finally {
