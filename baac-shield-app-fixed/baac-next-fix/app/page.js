@@ -1672,7 +1672,7 @@ const matchesDate =
       
 <button
   type="button"
-  onClick={() => setActiveTab("cor")}
+ onClick={() => requestProtectedTab("supervisor")}
   style={{
     padding: "10px 14px",
     borderRadius: 10,
