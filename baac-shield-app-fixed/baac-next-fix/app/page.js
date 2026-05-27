@@ -1822,10 +1822,6 @@ const matchesDate =
               }}
             >
 
-<button
-  type="button"
-  onClick={() => requestProtectedTab("supervisor")}
-
               {!risk ? (
                    <div style={{ color: "#64748b" }}>Select a risk first</div>
               ) : (
