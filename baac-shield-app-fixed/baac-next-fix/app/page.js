@@ -1635,6 +1635,22 @@ const matchesDate =
     Hazard ID
   </button>
 
+<button
+  type="button"
+  onClick={() => setActiveTab("cor")}
+  style={{
+    padding: "10px 14px",
+    borderRadius: 10,
+    border: "1px solid #cbd5e1",
+    background: activeTab === "cor" ? "#123d82" : "white",
+    color: activeTab === "cor" ? "white" : "#0f172a",
+    fontWeight: "bold",
+    cursor: "pointer",
+  }}
+>
+  COR Corrective Actions
+</button>
+      
   <button
     type="button"
     onClick={() => requestProtectedTab("supervisor")}
