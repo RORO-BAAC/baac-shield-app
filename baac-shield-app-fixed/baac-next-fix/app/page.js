@@ -2703,16 +2703,32 @@ const matchesDate =
                         </div>
                        )}
                         
-                          <div><strong>Worker:</strong> {record.worker_name}</div>
-                          <div><strong>Worker Signature:</strong> {record.worker_signature ? "Captured" : "—"}</div>
-                          <div><strong>Supervisor:</strong> {record.supervisor_name}</div>
-                          <div><strong>Supervisor Signature:</strong> {record.supervisor_signature ? "Captured" : "—"}</div>
-                          <div><strong>Project:</strong> {record.project_name}</div>
-                          <div><strong>Task:</strong> {record.task_description}</div>
-                          <div><strong>Risk:</strong> {record.critical_risk}</div>
-                          <div><strong>Shield(s):</strong> {record.shield_control}</div>
-                          <div><strong>Notes:</strong> {record.notes}</div>
-                          <div><strong>Submitted:</strong> {record.submitted_at}</div>
+                         <div style={{ fontSize: 18, fontWeight: "bold", color: "#0f2f66" }}>
+  {record.project_name || "No Project"}
+</div>
+
+<div>
+  <strong>Worker:</strong> {record.worker_name || "—"}
+</div>
+
+<div>
+  <strong>Risk:</strong> {record.critical_risk || "—"}
+</div>
+
+<div>
+  <strong>Task:</strong>{" "}
+  {record.task_description
+    ? record.task_description.slice(0, 120)
+    : "—"}
+  {record.task_description && record.task_description.length > 120 ? "..." : ""}
+</div>
+
+<div>
+  <strong>Submitted:</strong>{" "}
+  {record.submitted_at
+    ? new Date(record.submitted_at).toLocaleDateString()
+    : "—"}
+</div>
 
                           {record.reviewed_by && (
                             <div><strong>Reviewed By:</strong> {record.reviewed_by}</div>
