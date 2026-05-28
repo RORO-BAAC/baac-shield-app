@@ -2762,7 +2762,7 @@ const matchesDate =
                                       alt="Uploaded record"
                                       style={{
                                         width: "100%",
-                                        height: 110,
+                                        height: 80,
                                         objectFit: "cover",
                                         borderRadius: 8,
                                         border: "1px solid #cbd5e1",
