@@ -2718,11 +2718,7 @@ const matchesDate =
                             <div><strong>Comments:</strong> {record.supervisor_review_comments}</div>
                           )}
 
-                          {record.corrective_actions && (
-                            <div><strong>Corrective Actions:</strong> {record.corrective_actions}</div>
-                          )}
-
-                          {photoUrls.length > 0 && (
+                                 {photoUrls.length > 0 && (
                             <div style={{ marginTop: 12 }}>
                               <strong>Photos:</strong>
                               <div
