@@ -844,7 +844,7 @@ if (!emailRes.ok) {
     setReviewSupervisor(record.reviewed_by || record.supervisor_name || "");
     setReviewSupervisorSignature(record.supervisor_signature || "");
     setReviewComments(record.supervisor_review_comments || "");
-    setCorrectiveActions(record.corrective_actions || "");
+   setCorrectiveActionText(record.corrective_actions || "");
     setRectified(Boolean(record.rectified));
     setAssignedTo(record.assigned_to || "");
     setDueDate(record.due_date || "");
