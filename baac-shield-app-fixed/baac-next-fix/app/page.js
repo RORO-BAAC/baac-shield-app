@@ -2744,7 +2744,7 @@ const matchesDate =
                               <div
                                 style={{
                                   display: "grid",
-                                  gridTemplateColumns: "repeat(auto-fit, minmax(120px, 1fr))",
+                                 gridTemplateColumns: "repeat(auto-fit, minmax(90px, 120px))",
                                   gap: 10,
                                   marginTop: 8,
                                 }}
