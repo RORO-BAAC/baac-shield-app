@@ -147,8 +147,7 @@ const [dueDate, setDueDate] = useState("");
   const [reviewSupervisor, setReviewSupervisor] = useState("");
   const [reviewSupervisorSignature, setReviewSupervisorSignature] = useState("");
   const [reviewComments, setReviewComments] = useState("");
-  const [correctiveActions, setCorrectiveActions] = useState("");
-  const [rectified, setRectified] = useState(false);
+    const [rectified, setRectified] = useState(false);
 
   const fileRef = useRef(null);
   const workerSigRef = useRef(null);
