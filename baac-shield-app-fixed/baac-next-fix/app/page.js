@@ -1319,7 +1319,12 @@ const openCorrectiveActions = records.filter((record) => {
 
   const correctiveActionRegister = records
   .filter((record) => {
-    return record.corrective_actions || record.assigned_to || record.due_date;
+    return (
+      record.status !== "Approved" &&
+      (record.corrective_actions ||
+       record.assigned_to ||
+       record.due_date)
+    );
   })
   .sort((a, b) => {
     const aDate = a.due_date ? new Date(a.due_date) : new Date("9999-12-31");
