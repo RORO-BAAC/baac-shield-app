@@ -2589,24 +2589,7 @@ const matchesDate =
                   />
                 </div>
 
-                <div>
-                  <label>Corrective Actions</label>
-                  <br />
-                  <textarea
-                    value={correctiveActions}
-                    onChange={(e) => setCorrectiveActions(e.target.value)}
-                    rows="4"
-                    style={{
-                      width: "100%",
-                      padding: 12,
-                      marginTop: 6,
-                      borderRadius: 10,
-                      border: "1px solid #cbd5e1",
-                    }}
-                  />
-                </div>
-
-                <label>
+                 <label>
                   <input
                     type="checkbox"
                     checked={rectified}
