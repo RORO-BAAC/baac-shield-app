@@ -867,7 +867,7 @@ if (!emailRes.ok) {
       reviewed_by: reviewSupervisor,
       supervisor_signature: reviewSupervisorSignature,
       supervisor_review_comments: reviewComments,
-      corrective_actions: correctiveActions,
+     corrective_actions: correctiveActionText,
       rectified,
       reviewed_at: new Date().toISOString(),
       stop_work: reviewStatus === "Stop Work",
