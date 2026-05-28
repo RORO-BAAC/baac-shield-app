@@ -901,7 +901,7 @@ if (!emailRes.ok) {
       setReviewSupervisor("");
       setReviewSupervisorSignature("");
       setReviewComments("");
-      setCorrectiveActions("");
+   setCorrectiveActionText("");
 setAssignedTo("");
 setDueDate("");
 setRectified(false);
