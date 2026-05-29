@@ -3951,8 +3951,6 @@ Close Corrective Action
   )}
 </div>
     
-)}
-
 {message && (
         <div
           style={{
