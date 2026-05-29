@@ -3958,21 +3958,6 @@ Close Corrective Action
 </div>
 )}
     
-{message && (
-        <div
-          style={{
-            marginTop: 20,
-            padding: 16,
-         background: "#fff7ed",
-            borderRadius: 12,
-            border: "1px solid #fdba74",
-            whiteSpace: "pre-wrap",
-            wordBreak: "break-word",
-          }}
-        >
-          {message}
-        </div>
-      )}
     </main>
   );
 }
