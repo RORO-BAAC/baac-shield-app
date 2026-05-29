@@ -3561,11 +3561,8 @@ Close Corrective Action
                 ))}
               </div>
             )}
-          </div>
-        </div>
-      )}
-
-      {showPinPrompt && (
+       
+          {showPinPrompt && (
         <div
           style={{
             position: "fixed",
