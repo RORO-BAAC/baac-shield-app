@@ -3189,11 +3189,15 @@ Close Corrective Action
   </div>
 </div>
 
-Records by Critical Risk
-  </h3>
+<h3 style={{ marginTop: 0, color: "#0f2f66" }}>
+  Top Risk Categories
+</h3>
 
-  <div style={{ display: "grid", gap: 8 }}>
-    {Object.entries(riskCounts).map(([risk, count]) => (
+<div style={{ display: "grid", gap: 8 }}>
+  {Object.entries(riskCounts)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 5)
+    .map(([risk, count]) => (
       <div
         key={risk}
         style={{
@@ -3208,7 +3212,7 @@ Records by Critical Risk
         <strong>{count}</strong>
       </div>
     ))}
-  </div>
+</div>
 </div>
       
 <div
