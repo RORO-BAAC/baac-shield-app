@@ -2302,12 +2302,29 @@ const matchesDate =
             padding: 12,
           }}
         >
-          <div><strong>Worker:</strong> {record.worker_name || "—"}</div>
-          <div><strong>Project:</strong> {record.project_name || "—"}</div>
-          <div><strong>Risk:</strong> {record.critical_risk || "—"}</div>
-          <div><strong>Assigned To:</strong> {record.assigned_to || "—"}</div>
-          <div><strong>Due Date:</strong> {record.due_date || "—"}</div>
-          <div><strong>Status:</strong> {record.status || "Pending Review"}</div>
+      <div style={{ fontSize: 18, fontWeight: "bold", color: "#0f2f66" }}>
+  {record.project_name || "No Project"}
+</div>
+
+<div>
+  <strong>Status:</strong> {record.status || "Pending Review"}
+</div>
+
+<div>
+  <strong>Due Date:</strong> {record.due_date || "—"}
+</div>
+
+<div>
+  <strong>Worker:</strong> {record.worker_name || "—"}
+</div>
+
+<div>
+  <strong>Assigned To:</strong> {record.assigned_to || "—"}
+</div>
+
+<div>
+  <strong>Risk:</strong> {record.critical_risk || "—"}
+</div>
           <button
   type="button"
   onClick={() => markRecordApproved(record.id)}
@@ -2323,7 +2340,7 @@ const matchesDate =
     fontWeight: "bold",
   }}
 >
-  Mark Approved / Closed
+Close Corrective Action
 </button>
         </div>
       ))}
