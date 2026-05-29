@@ -2778,14 +2778,32 @@ const matchesDate =
 
                         <div style={{ minWidth: 150 }}>
                           <div
-                            style={{
-                              color: statusColor(record.status || "Pending Review"),
-                              fontWeight: "bold",
-                              marginBottom: 10,
-                            }}
-                          >
-                            {record.status || "Pending Review"}
-                          </div>
+  style={{
+    display: "inline-block",
+    padding: "6px 10px",
+    borderRadius: 999,
+    background:
+      record.status === "Approved"
+        ? "#dcfce7"
+        : record.status === "Needs Correction"
+        ? "#fef3c7"
+        : record.status === "Stop Work"
+        ? "#fee2e2"
+        : "#dbeafe",
+    color:
+      record.status === "Approved"
+        ? "#166534"
+        : record.status === "Needs Correction"
+        ? "#92400e"
+        : record.status === "Stop Work"
+        ? "#991b1b"
+        : "#1d4ed8",
+    fontWeight: "bold",
+    marginBottom: 10,
+  }}
+>
+  {record.status || "Pending Review"}
+</div>
 
                           <button
                             onClick={() => startReview(record)}
