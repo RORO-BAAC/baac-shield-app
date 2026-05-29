@@ -3515,7 +3515,6 @@ Close Corrective Action
     ))
     )}
   </div>
-</div>
           <div
             style={{
               background: "#f8fafc",
