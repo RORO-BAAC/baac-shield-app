@@ -3215,7 +3215,6 @@ Close Corrective Action
 </div>
 </div>
       
-<div
   style={{
     background: "white",
     padding: 16,
