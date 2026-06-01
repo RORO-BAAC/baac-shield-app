@@ -3944,19 +3944,20 @@ Close Corrective Action
   }}
 >
   Reactivate
-</button>
-          </div>
-            ))}
-      </div>
-    )}
-  </div>
+          </button>
+        </div>
+      ))}
+    </div>
+  )}
+</div>
+
 </div>
 </div>
 </div>
 </div>
 </div>
 )}
-
+    
     </main>
   );
 }
