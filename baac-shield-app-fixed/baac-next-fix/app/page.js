@@ -3946,22 +3946,17 @@ Close Corrective Action
   Reactivate
 </button>
           </div>
-        ))}
-    </div>
-)}
+            ))}
+      </div>
+    )}
   </div>
-
-    </div>
-
 </div>
 </div>
 </div>
 </div>
 </div>
 )}
-  
-    </main>
-  
+
     </main>
   );
 }
