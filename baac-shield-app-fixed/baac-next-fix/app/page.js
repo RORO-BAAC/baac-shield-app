@@ -3540,7 +3540,12 @@ Close Corrective Action
                 ))}
               </div>
             )}
-       
+
+          </div>
+        </div>
+      </div>
+      )}
+
           {showPinPrompt && (
         <div
           style={{
