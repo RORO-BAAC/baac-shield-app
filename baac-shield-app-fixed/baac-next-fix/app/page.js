@@ -3148,6 +3148,21 @@ Close Corrective Action
   
   </h3>
 
+ </div>    
+
+<div
+  style={{
+    background: "white",
+    padding: 16,
+    borderRadius: 12,
+    border: "1px solid #dbe4ee",
+    marginBottom: 20,
+  }}
+>
+  <h3 style={{ marginTop: 0, color: "#0f2f66" }}>
+    Records by Project
+  </h3>
+
   <div style={{ display: "grid", gap: 8 }}>
     {Object.entries(projectCounts).map(([project, count]) => (
       <div
