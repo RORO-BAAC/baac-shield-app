@@ -3515,8 +3515,7 @@ Close Corrective Action
             {records.length === 0 ? (
               <p>No records yet.</p>
             ) : (
-              </div>
-              <div style={{ display: "grid", gap: 10 }}>
+            <div style={{ display: "grid", gap: 10 }}>
                 {records.slice(0, 5).map((record) => (
                   <div
                     key={record.id}
