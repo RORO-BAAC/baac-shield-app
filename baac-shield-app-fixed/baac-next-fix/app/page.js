@@ -3145,18 +3145,7 @@ Close Corrective Action
     Clear Dates
   </button>
 </div>    
-
-<div
-  style={{
-    background: "white",
-    padding: 16,
-    borderRadius: 12,
-    border: "1px solid #dbe4ee",
-    marginBottom: 20,
-  }}
->
-  <h3 style={{ marginTop: 0, color: "#0f2f66" }}>
-   
+  
 <div
   style={{
     background: "white",
