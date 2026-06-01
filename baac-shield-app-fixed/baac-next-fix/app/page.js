@@ -3146,17 +3146,6 @@ Close Corrective Action
   </button>
 </div>    
   
-<div
-  style={{
-    background: "white",
-    padding: 16,
-    borderRadius: 12,
-    border: "1px solid #dbe4ee",
-    marginBottom: 20,
-  }}
->
-  <h3 style={{ marginTop: 0, color: "#0f2f66" }}>
-    Records by Project
   </h3>
 
   <div style={{ display: "grid", gap: 8 }}>
@@ -3526,6 +3515,7 @@ Close Corrective Action
             {records.length === 0 ? (
               <p>No records yet.</p>
             ) : (
+              </div>
               <div style={{ display: "grid", gap: 10 }}>
                 {records.slice(0, 5).map((record) => (
                   <div
