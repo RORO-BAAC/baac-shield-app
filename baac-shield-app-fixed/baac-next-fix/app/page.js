@@ -3997,13 +3997,42 @@ Close Corrective Action
     >
       <h2>Submission Details</h2>
 
-      <p><strong>Type:</strong> {selectedRecord.type}</p>
-      <p><strong>Submitted By:</strong> {selectedRecord.title}</p>
-      <p><strong>Project:</strong> {selectedRecord.project}</p>
-      <p>
-        <strong>Date:</strong>{" "}
-        {new Date(selectedRecord.time).toLocaleString()}
-      </p>
+     <h2>Submission Details</h2>
+
+<p><strong>Type:</strong> {selectedRecord.type}</p>
+<p><strong>Project:</strong> {selectedRecord.project}</p>
+<p><strong>Submitted By:</strong> {selectedRecord.title}</p>
+<p><strong>Date:</strong> {new Date(selectedRecord.time).toLocaleString()}</p>
+
+{selectedRecord.record && (
+  <>
+    <p><strong>Worker:</strong> {selectedRecord.record.worker_name || "—"}</p>
+    <p><strong>Supervisor:</strong> {selectedRecord.record.supervisor_name || "—"}</p>
+    <p><strong>Risk:</strong> {selectedRecord.record.critical_risk || "—"}</p>
+    <p><strong>Task:</strong> {selectedRecord.record.task_description || "—"}</p>
+    <p><strong>Shield Controls:</strong> {selectedRecord.record.shield_control || "—"}</p>
+    <p><strong>Notes:</strong> {selectedRecord.record.notes || "—"}</p>
+    <p><strong>Status:</strong> {selectedRecord.record.status || "—"}</p>
+    <p><strong>Corrective Actions:</strong> {selectedRecord.record.corrective_actions || "—"}</p>
+    <p><strong>Assigned To:</strong> {selectedRecord.record.assigned_to || "—"}</p>
+    <p><strong>Due Date:</strong> {selectedRecord.record.due_date || "—"}</p>
+    <p><strong>Rectified:</strong> {selectedRecord.record.rectified ? "Yes" : "No"}</p>
+  </>
+)}
+
+{selectedRecord.report && (
+  <>
+    <p><strong>Reported By:</strong> {selectedRecord.report.reported_by || "—"}</p>
+    <p><strong>Category:</strong> {selectedRecord.report.hazard_category || "—"}</p>
+    <p><strong>Risk Level:</strong> {selectedRecord.report.risk_level || "—"}</p>
+    <p><strong>Description:</strong> {selectedRecord.report.hazard_description || "—"}</p>
+    <p><strong>Immediate Action:</strong> {selectedRecord.report.immediate_action || "—"}</p>
+    <p><strong>Status:</strong> {selectedRecord.report.action_status || selectedRecord.report.status || "—"}</p>
+    <p><strong>Corrective Action:</strong> {selectedRecord.report.corrective_action || "—"}</p>
+    <p><strong>Supervisor Comments:</strong> {selectedRecord.report.supervisor_review_comments || "—"}</p>
+    <p><strong>Closed Date:</strong> {selectedRecord.report.closed_date || "—"}</p>
+  </>
+)}
 
       <button
         onClick={() => setSelectedRecord(null)}
