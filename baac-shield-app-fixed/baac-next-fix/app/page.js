@@ -3969,7 +3969,57 @@ Close Corrective Action
 </div>
 </div>
 )}
-    
+
+{selectedRecord && (
+  <div
+    onClick={() => setSelectedRecord(null)}
+    style={{
+      position: "fixed",
+      inset: 0,
+      background: "rgba(0,0,0,0.5)",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      zIndex: 9999,
+    }}
+  >
+    <div
+      onClick={(e) => e.stopPropagation()}
+      style={{
+        background: "white",
+        padding: 20,
+        borderRadius: 12,
+        width: "90%",
+        maxWidth: 600,
+      }}
+    >
+      <h2>Submission Details</h2>
+
+      <p><strong>Type:</strong> {selectedRecord.type}</p>
+      <p><strong>Submitted By:</strong> {selectedRecord.title}</p>
+      <p><strong>Project:</strong> {selectedRecord.project}</p>
+      <p>
+        <strong>Date:</strong>{" "}
+        {new Date(selectedRecord.time).toLocaleString()}
+      </p>
+
+      <button
+        onClick={() => setSelectedRecord(null)}
+        style={{
+          padding: "8px 12px",
+          borderRadius: 8,
+          border: "none",
+          background: "#123d82",
+          color: "white",
+          cursor: "pointer",
+        }}
+      >
+        Close
+      </button>
+    </div>
+  </div>
+)}
+  
     </main>
   );
 }
