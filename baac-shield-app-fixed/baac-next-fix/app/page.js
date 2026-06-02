@@ -140,6 +140,7 @@ const [dueDate, setDueDate] = useState("");
   const [companyName, setCompanyName] = useState("BAAC Construction");
   const [pinInput, setPinInput] = useState("");
   const [showPinPrompt, setShowPinPrompt] = useState(false);
+  const [selectedRecord, setSelectedRecord] = useState(null);
   const [pendingTab, setPendingTab] = useState("");
 
   const [reviewingId, setReviewingId] = useState(null);
