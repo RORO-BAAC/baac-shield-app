@@ -3145,8 +3145,6 @@ Close Corrective Action
     Clear Dates
   </button>
 </div>    
-  
- </div>    
 
 <div
   style={{
