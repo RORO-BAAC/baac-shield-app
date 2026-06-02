@@ -3947,13 +3947,9 @@ Close Corrective Action
     </div>
   )}
 
-</div>   {/* Project Management */}
-</div>   {/* Alert Email */}
-</div>   {/* Inner settings container */}
-</div>   {/* Admin Settings card */}
-
-    )}   {/* closes activeTab === "admin" */}
-    
-    </main>
-  );
-}
+</div>
+</div>
+</div>
+</div>
+</div>
+)}
