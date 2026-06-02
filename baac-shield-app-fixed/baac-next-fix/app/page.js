@@ -3946,7 +3946,6 @@ Close Corrective Action
       ))}
     </div>
   )}
-</div>
 
 </div>   {/* Project Management */}
 </div>   {/* Alert Email */}
