@@ -3043,6 +3043,21 @@ Close Corrective Action
           </div>
           <div style={{ color: "#64748b", fontSize: 13 }}>
             {new Date(item.time).toLocaleString()}
+<button
+  type="button"
+  onClick={() => setSelectedRecord(item)}
+  style={{
+    marginTop: 10,
+    padding: "8px 12px",
+    borderRadius: 8,
+    border: "1px solid #cbd5e1",
+    background: "white",
+    cursor: "pointer",
+    fontWeight: "bold",
+  }}
+>
+  View
+</button>
           </div>
         </div>
       ))}
