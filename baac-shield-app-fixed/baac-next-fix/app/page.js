@@ -3146,8 +3146,6 @@ Close Corrective Action
   </button>
 </div>    
   
-  </h3>
-
  </div>    
 
 <div
