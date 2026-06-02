@@ -1339,6 +1339,7 @@ const openCorrectiveActions = records.filter((record) => {
     title: record.worker_name || "Unknown worker",
     project: record.project_name || "Unknown project",
     time: record.submitted_at,
+    record,
   })),
   ...hazardReports.map((report) => ({
     id: `hazard-${report.id}`,
