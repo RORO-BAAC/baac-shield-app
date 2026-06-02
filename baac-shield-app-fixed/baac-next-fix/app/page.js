@@ -3700,6 +3700,9 @@ Close Corrective Action
 >
   Save PIN
 </button>
+
+</div>
+    
     <div
   style={{
     marginTop: 18,
