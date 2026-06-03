@@ -973,7 +973,7 @@ async function saveHazardReview() {
   }
 }
   
-  function downloadPdf(record) {
+ async function downloadPdf(record) {
     const doc = new jsPDF();
 
     doc.setFillColor(15, 47, 102);
@@ -1040,26 +1040,47 @@ async function saveHazardReview() {
       y += 38;
     }
 
-    const photoUrls = record.photos
-      ? String(record.photos)
-          .split(",")
-          .map((p) => p.trim())
-          .filter(Boolean)
-      : [];
+   const photoUrls = record.photos
+  ? String(record.photos)
+      .split(",")
+      .map((p) => p.trim())
+      .filter(Boolean)
+  : [];
 
-    if (photoUrls.length > 0) {
-      if (y > 240) {
+if (photoUrls.length > 0) {
+  if (y > 220) {
+    doc.addPage();
+    y = 20;
+  }
+
+  doc.setFontSize(14);
+  doc.text("Photos:", 14, y);
+  y += 10;
+
+  for (const url of photoUrls) {
+    try {
+      const response = await fetch(url);
+      const blob = await response.blob();
+
+      const base64 = await new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.onloadend = () => resolve(reader.result);
+        reader.readAsDataURL(blob);
+      });
+
+      if (y > 220) {
         doc.addPage();
         y = 20;
       }
-      doc.text("Photo Links:", 14, y);
-      y += 6;
-      photoUrls.forEach((url) => {
-        const split = doc.splitTextToSize(url, 180);
-        doc.text(split, 14, y);
-        y += split.length * 6 + 2;
-      });
+
+      doc.addImage(base64, "JPEG", 14, y, 80, 60);
+      y += 70;
+    } catch (err) {
+      doc.text("Photo failed to load", 14, y);
+      y += 8;
     }
+  }
+}
 
     doc.save(`baac-shield-record-${record.id}.pdf`);
   }
