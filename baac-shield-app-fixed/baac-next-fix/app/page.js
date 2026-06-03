@@ -4107,7 +4107,7 @@ Close Corrective Action
   </>
 )}
 
-{selectedRecord?.report?.photos || ""photos && (
+{selectedRecord?.report?.photos && (
   <>
     <h3>Photos</h3>
 
