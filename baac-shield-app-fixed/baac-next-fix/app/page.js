@@ -4063,6 +4063,35 @@ Close Corrective Action
   </>
 )}
 
+{selectedRecord.record.photos && (
+  <>
+    <h3>Photos</h3>
+
+    <div
+      style={{
+        display: "flex",
+        flexWrap: "wrap",
+        gap: 10,
+      }}
+    >
+      {String(selectedRecord.record.photos)
+        .split(",")
+        .map((photo, index) => (
+          <img
+            key={index}
+            src={photo.trim()}
+            alt={`Worker Photo ${index + 1}`}
+            style={{
+              width: 180,
+              borderRadius: 8,
+              border: "1px solid #cbd5e1",
+            }}
+          />
+        ))}
+    </div>
+  </>
+)}
+
 {selectedRecord.report && (
   <>
     <p><strong>Reported By:</strong> {selectedRecord.report.reported_by || "—"}</p>
@@ -4074,6 +4103,35 @@ Close Corrective Action
     <p><strong>Corrective Action:</strong> {selectedRecord.report.corrective_action || "—"}</p>
     <p><strong>Supervisor Comments:</strong> {selectedRecord.report.supervisor_review_comments || "—"}</p>
     <p><strong>Closed Date:</strong> {selectedRecord.report.closed_date || "—"}</p>
+  </>
+)}
+
+{selectedRecord.report.photos && (
+  <>
+    <h3>Photos</h3>
+
+    <div
+      style={{
+        display: "flex",
+        flexWrap: "wrap",
+        gap: 10,
+      }}
+    >
+      {String(selectedRecord.report.photos)
+        .split(",")
+        .map((photo, index) => (
+          <img
+            key={index}
+            src={photo.trim()}
+            alt={`Hazard Photo ${index + 1}`}
+            style={{
+              width: 180,
+              borderRadius: 8,
+              border: "1px solid #cbd5e1",
+            }}
+          />
+        ))}
+    </div>
   </>
 )}
 
