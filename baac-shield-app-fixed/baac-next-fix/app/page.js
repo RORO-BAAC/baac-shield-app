@@ -4063,7 +4063,7 @@ Close Corrective Action
   </>
 )}
 
-{selectedRecord.record.photos && (
+{selectedRecord.record?.photos && (
   <>
     <h3>Photos</h3>
 
@@ -4074,7 +4074,7 @@ Close Corrective Action
         gap: 10,
       }}
     >
-      {String(selectedRecord.record.photos)
+      {String(selectedRecord.report?.photos)
         .split(",")
         .map((photo, index) => (
           <img
