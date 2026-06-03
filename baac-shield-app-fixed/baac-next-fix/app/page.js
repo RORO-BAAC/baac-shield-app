@@ -4074,9 +4074,10 @@ Close Corrective Action
         gap: 10,
       }}
     >
-      {String(selectedRecord.report?.photos)
-        .split(",")
-        .map((photo, index) => (
+     {(selectedRecord?.report?.photos || "")
+  .split(",")
+  .filter(Boolean)
+  .map((photo, index) => (
           <img
             key={index}
             src={photo.trim()}
@@ -4117,9 +4118,10 @@ Close Corrective Action
         gap: 10,
       }}
     >
-      {String(selectedRecord.report.photos)
-        .split(",")
-        .map((photo, index) => (
+     {(selectedRecord?.report?.photos || "")
+  .split(",")
+  .filter(Boolean)
+  .map((photo, index) => (
           <img
             key={index}
             src={photo.trim()}
