@@ -4074,7 +4074,7 @@ Close Corrective Action
         gap: 10,
       }}
     >
-     {(selectedRecord?.report?.photos || "")
+   {(selectedRecord?.record?.photos || "")
   .split(",")
   .filter(Boolean)
   .map((photo, index) => (
