@@ -1245,8 +1245,42 @@ doc.setFontSize(10);
 addLine("Assigned To", record.assigned_to);
 addLine("Due Date", record.due_date);
 addLine("Submitted", record.submitted_at);
+const photoUrls = record.photos
+  ? String(record.photos)
+      .split(",")
+      .map((p) => p.trim())
+      .filter(Boolean)
+  : [];
+
+if (photoUrls.length > 0) {
+  addLine("Photos", `${photoUrls.length} attached`);
+
+  for (const url of photoUrls) {
+    try {
+      const response = await fetch(url);
+      const blob = await response.blob();
+
+      const base64 = await new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.onloadend = () => resolve(reader.result);
+        reader.readAsDataURL(blob);
+      });
+
+      if (y > 200) {
+        doc.addPage();
+        y = 20;
+      }
+
+      doc.addImage(base64, "JPEG", 14, y, 80, 60);
+      y += 70;
+    } catch (err) {
+      addLine("Photo", "Failed to load");
+    }
+  }
+}
+   
     y += 5;
-  });
+  }
 
   if (y > 240) {
     doc.addPage();
