@@ -2841,6 +2841,30 @@ Close Corrective Action
                             Review
                           </button>
 
+<button
+  type="button"
+  onClick={() =>
+    setSelectedRecord({
+      id: `record-${record.id}`,
+      type: "Worker Form",
+      title: record.worker_name || "Unknown worker",
+      project: record.project_name || "Unknown project",
+      time: record.submitted_at,
+      record,
+    })
+  }
+  style={{
+    padding: "8px 12px",
+    borderRadius: 8,
+    border: "1px solid #cbd5e1",
+    background: "white",
+    cursor: "pointer",
+    fontWeight: "bold",
+  }}
+>
+  View Full Record
+</button>
+                              
                           <button
                             onClick={() => downloadPdf(record)}
                             style={{
