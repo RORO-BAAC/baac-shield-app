@@ -1172,7 +1172,7 @@ link.download = `baac-shield-audit-report-${today}-${safeDateFilter}-${safeProje
   document.body.removeChild(link);
 }
 
-  function exportAuditPDF() {
+async function exportAuditPDF() {
   const doc = new jsPDF();
 
  doc.setFillColor(15, 47, 102);
