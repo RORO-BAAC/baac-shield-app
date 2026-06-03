@@ -1231,7 +1231,7 @@ doc.setFontSize(10);
     y += 5;
   }
     
-  filteredRecords.forEach((record) => {
+ for (const record of filteredRecords) {
     addLine("Record Type", "Worker Form");
     addLine("Project", record.project_name);
     addLine("Worker", record.worker_name);
