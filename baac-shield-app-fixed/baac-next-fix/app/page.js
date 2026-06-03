@@ -1245,6 +1245,8 @@ doc.setFontSize(10);
 addLine("Assigned To", record.assigned_to);
 addLine("Due Date", record.due_date);
 addLine("Submitted", record.submitted_at);
+   
+   addLine("DEBUG PHOTOS", String(record.photos));
 const photoUrls = record.photos
   ? String(record.photos)
       .split(",")
