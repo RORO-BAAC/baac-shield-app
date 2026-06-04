@@ -1654,7 +1654,88 @@ const matchesDate =
     </main>
   );
 }
-  
+
+if (!user) {
+  return (
+    <main
+      style={{
+        minHeight: "100vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        background: "#f8fafc",
+      }}
+    >
+      <div
+        style={{
+          width: "100%",
+          maxWidth: 400,
+          background: "white",
+          padding: 24,
+          borderRadius: 12,
+          boxShadow: "0 2px 12px rgba(0,0,0,0.1)",
+        }}
+      >
+        <h2>BAAC Shield Login</h2>
+
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          style={{
+            width: "100%",
+            padding: 12,
+            marginBottom: 10,
+            border: "1px solid #cbd5e1",
+            borderRadius: 8,
+          }}
+        />
+
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          style={{
+            width: "100%",
+            padding: 12,
+            marginBottom: 10,
+            border: "1px solid #cbd5e1",
+            borderRadius: 8,
+          }}
+        />
+
+        <button
+          onClick={async () => {
+            const { error } = await supabase.auth.signInWithPassword({
+              email,
+              password,
+            });
+
+            if (error) {
+              alert(error.message);
+            } else {
+              window.location.reload();
+            }
+          }}
+          style={{
+            width: "100%",
+            padding: 12,
+            background: "#123d82",
+            color: "white",
+            border: "none",
+            borderRadius: 8,
+            fontWeight: "bold",
+          }}
+        >
+          Login
+        </button>
+      </div>
+    </main>
+  );
+}
+
   return (
     <main
       style={{
