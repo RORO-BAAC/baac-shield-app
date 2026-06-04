@@ -241,7 +241,12 @@ const [dueDate, setDueDate] = useState("");
     };
     return map[risk] || [];
   }, [risk]);
-
+useEffect(() => {
+  supabase.auth.getUser().then(({ data }) => {
+    setUser(data.user);
+  });
+}, []);
+  
   useEffect(() => {
     loadRecords();
     loadProjects();
