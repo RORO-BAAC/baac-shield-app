@@ -1735,6 +1735,37 @@ if (!user) {
 
 <button
   onClick={async () => {
+    if (!email) {
+      alert("Enter your email address first.");
+      return;
+    }
+
+    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: window.location.origin,
+    });
+
+    if (error) {
+      alert(error.message);
+    } else {
+      alert("Password reset email sent.");
+    }
+  }}
+  style={{
+    width: "100%",
+    padding: 12,
+    marginTop: 10,
+    background: "#64748b",
+    color: "white",
+    border: "none",
+    borderRadius: 8,
+    fontWeight: "bold",
+  }}
+>
+  Forgot Password
+</button>
+            
+<button
+  onClick={async () => {
     if (!email.endsWith("@baacconstruction.com")) {
       alert("Use your BAAC company email.");
       return;
