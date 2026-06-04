@@ -1732,6 +1732,39 @@ if (!user) {
           Login
         </button>
       </div>
+
+<button
+  onClick={async () => {
+    if (!email.endsWith("@baacconstruction.com")) {
+      alert("Use your BAAC company email.");
+      return;
+    }
+
+    const { error } = await supabase.auth.signUp({
+      email,
+      password,
+    });
+
+    if (error) {
+      alert(error.message);
+    } else {
+      alert("Account created. Check your email to confirm.");
+    }
+  }}
+  style={{
+    width: "100%",
+    padding: 12,
+    marginTop: 10,
+    background: "#f59e0b",
+    color: "white",
+    border: "none",
+    borderRadius: 8,
+    fontWeight: "bold",
+  }}
+>
+  Create Account
+</button>
+            
     </main>
   );
 }
