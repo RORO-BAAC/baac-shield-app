@@ -1,11 +1,13 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { createClient } from "@supabase/supabase-js";
 import jsPDF from "jspdf";
 import SignatureCanvas from "react-signature-canvas";
 
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const SUPABASE_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
 function SignatureBox({ sigRef, onSave }) {
   return (
@@ -89,6 +91,9 @@ const [corAssignedTo, setCorAssignedTo] = useState("");
 const [corTargetFixDate, setCorTargetFixDate] = useState("");
 
 const [corFixedBy, setCorFixedBy] = useState("");
+  const [user, setUser] = useState(null);
+const [email, setEmail] = useState("");
+const [password, setPassword] = useState("");
 const [corClosedDate, setCorClosedDate] = useState("");
 const [corCloseoutNotes, setCorCloseoutNotes] = useState("");
 
