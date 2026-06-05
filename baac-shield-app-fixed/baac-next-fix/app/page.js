@@ -1731,9 +1731,7 @@ if (!user) {
         >
           Login
         </button>
-      </div>
-
-<button
+   <button
   onClick={async () => {
     if (!email) {
       alert("Enter your email address first.");
@@ -1754,7 +1752,7 @@ if (!user) {
     width: "100%",
     padding: 12,
     marginTop: 10,
-   background: "#123d82",
+    background: "#123d82",
     color: "white",
     border: "none",
     borderRadius: 8,
@@ -1763,7 +1761,7 @@ if (!user) {
 >
   Forgot Password
 </button>
-            
+
 <button
   onClick={async () => {
     if (!email.endsWith("@baacconstruction.com")) {
@@ -1786,7 +1784,7 @@ if (!user) {
     width: "100%",
     padding: 12,
     marginTop: 10,
-  background: "#123d82",
+    background: "#123d82",
     color: "white",
     border: "none",
     borderRadius: 8,
@@ -1795,6 +1793,8 @@ if (!user) {
 >
   Create Account
 </button>
+
+      </div>
             
     </main>
   );
