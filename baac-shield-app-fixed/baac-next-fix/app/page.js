@@ -1841,9 +1841,15 @@ if (!user) {
           </div>
         </div>
 
-        <p style={{ marginTop: 8, marginBottom: 0, opacity: 0.95 }}>
-          Worker submission and supervisor review workflow
-        </p>
+       <div style={{ marginTop: 10, display: "flex", justifyContent: "space-between", gap: 12, flexWrap: "wrap" }}>
+  <div style={{ opacity: 0.95 }}>
+    Worker submission and supervisor review workflow
+  </div>
+
+  <div style={{ fontSize: 12, opacity: 0.95 }}>
+    Signed in as: {user?.email}
+  </div>
+</div>
       </div>
 
       <div style={{ display: "flex", gap: 10, marginBottom: 18, flexWrap: "wrap" }}>
