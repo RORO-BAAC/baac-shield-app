@@ -1754,7 +1754,7 @@ if (!user) {
     width: "100%",
     padding: 12,
     marginTop: 10,
-    background: "#64748b",
+   background: "#123d82",
     color: "white",
     border: "none",
     borderRadius: 8,
@@ -1786,7 +1786,7 @@ if (!user) {
     width: "100%",
     padding: 12,
     marginTop: 10,
-    background: "#f59e0b",
+  background: "#123d82",
     color: "white",
     border: "none",
     borderRadius: 8,
@@ -1807,7 +1807,7 @@ if (!user) {
         fontFamily: "Arial, sans-serif",
         maxWidth: 860,
         margin: "0 auto",
-        background: "#f8fafc",
+      background: "#123d82",
         minHeight: "100vh",
       }}
     >
