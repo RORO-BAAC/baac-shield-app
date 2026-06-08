@@ -65,11 +65,6 @@ function SignatureBox({ sigRef, onSave }) {
 
 export default function Home() {
   const [worker, setWorker] = useState("");
-  useEffect(() => {
-  if (user?.email && !worker) {
-    setWorker(user.email);
-  }
-}, [user]);
   const [workerSignature, setWorkerSignature] = useState("");
   const [supervisor, setSupervisor] = useState("");
   const [projectName, setProjectName] = useState("");
@@ -97,6 +92,13 @@ const [corTargetFixDate, setCorTargetFixDate] = useState("");
 
 const [corFixedBy, setCorFixedBy] = useState("");
   const [user, setUser] = useState(null);
+
+    useEffect(() => {
+  if (user?.email && !worker) {
+    setWorker(user.email);
+  }
+}, [user]);
+  
 const [email, setEmail] = useState("");
 const [password, setPassword] = useState("");
 const [corClosedDate, setCorClosedDate] = useState("");
