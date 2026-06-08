@@ -2043,7 +2043,7 @@ if (!user) {
             <br />
             <input
               value={supervisor}
-             readOnly
+           onChange={(e) => setSupervisor(e.target.value)}
               type="text"
               style={{
                 width: "100%",
