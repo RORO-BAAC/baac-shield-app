@@ -65,6 +65,11 @@ function SignatureBox({ sigRef, onSave }) {
 
 export default function Home() {
   const [worker, setWorker] = useState("");
+  useEffect(() => {
+  if (user?.email && !worker) {
+    setWorker(user.email);
+  }
+}, [user]);
   const [workerSignature, setWorkerSignature] = useState("");
   const [supervisor, setSupervisor] = useState("");
   const [projectName, setProjectName] = useState("");
