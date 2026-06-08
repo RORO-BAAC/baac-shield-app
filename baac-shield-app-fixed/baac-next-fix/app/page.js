@@ -1998,7 +1998,7 @@ if (!user) {
             <br />
             <input
               value={worker}
-              onChange={(e) => setWorker(e.target.value)}
+            readOnly
               type="text"
               style={{
                 width: "100%",
