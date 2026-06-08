@@ -91,11 +91,10 @@ const [corAssignedTo, setCorAssignedTo] = useState("");
 const [corTargetFixDate, setCorTargetFixDate] = useState("");
 
 const [corFixedBy, setCorFixedBy] = useState("");
-  const [user, setUser] = useState(null);
-
-    useEffect(() => {
-  if (user?.email && !worker) {
-    setWorker(user.email);
+useEffect(() => {
+  if (user?.email) {
+    if (!worker) setWorker(user.email);
+    if (!supervisor) setSupervisor(user.email);
   }
 }, [user]);
   
