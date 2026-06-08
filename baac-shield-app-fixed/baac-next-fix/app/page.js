@@ -1846,9 +1846,30 @@ if (!user) {
     Worker submission and supervisor review workflow
   </div>
 
+ <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
   <div style={{ fontSize: 12, opacity: 0.95 }}>
     Signed in as: {user?.email}
   </div>
+
+  <button
+    type="button"
+    onClick={async () => {
+      await supabase.auth.signOut();
+      window.location.reload();
+    }}
+    style={{
+      padding: "6px 10px",
+      borderRadius: 8,
+      border: "1px solid rgba(255,255,255,0.6)",
+      background: "white",
+      color: "#123d82",
+      fontWeight: "bold",
+      cursor: "pointer",
+    }}
+  >
+    Logout
+  </button>
+</div>
 </div>
       </div>
 
