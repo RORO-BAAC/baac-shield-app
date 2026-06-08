@@ -91,7 +91,8 @@ const [corAssignedTo, setCorAssignedTo] = useState("");
 const [corTargetFixDate, setCorTargetFixDate] = useState("");
 
 const [corFixedBy, setCorFixedBy] = useState("");
-const [email, setEmail] = useState("");
+const [user, setUser] = useState(null);
+  const [email, setEmail] = useState("");
 const [password, setPassword] = useState("");
 const [corClosedDate, setCorClosedDate] = useState("");
 const [corCloseoutNotes, setCorCloseoutNotes] = useState("");
