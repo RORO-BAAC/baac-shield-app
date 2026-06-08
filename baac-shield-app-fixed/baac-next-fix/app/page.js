@@ -94,7 +94,6 @@ const [corFixedBy, setCorFixedBy] = useState("");
 useEffect(() => {
   if (user?.email) {
     if (!worker) setWorker(user.email);
-    if (!supervisor) setSupervisor(user.email);
   }
 }, [user]);
   
