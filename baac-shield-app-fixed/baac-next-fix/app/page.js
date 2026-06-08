@@ -93,6 +93,13 @@ const [corTargetFixDate, setCorTargetFixDate] = useState("");
 const [corFixedBy, setCorFixedBy] = useState("");
 const [user, setUser] = useState(null);
   const [email, setEmail] = useState("");
+
+useEffect(() => {
+  if (user?.email && !worker) {
+    setWorker(user.email);
+  }
+}, [user]);
+  
 const [password, setPassword] = useState("");
 const [corClosedDate, setCorClosedDate] = useState("");
 const [corCloseoutNotes, setCorCloseoutNotes] = useState("");
