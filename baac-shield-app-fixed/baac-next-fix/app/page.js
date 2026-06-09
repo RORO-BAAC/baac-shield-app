@@ -92,6 +92,7 @@ const [corTargetFixDate, setCorTargetFixDate] = useState("");
 
 const [corFixedBy, setCorFixedBy] = useState("");
 const [user, setUser] = useState(null);
+  const [role, setRole] = useState("worker");
   const [email, setEmail] = useState("");
 
 useEffect(() => {
