@@ -93,6 +93,7 @@ const [corTargetFixDate, setCorTargetFixDate] = useState("");
 const [corFixedBy, setCorFixedBy] = useState("");
 const [user, setUser] = useState(null);
   const [role, setRole] = useState("worker");
+  const [users, setUsers] = useState([]);
   const [email, setEmail] = useState("");
 
 useEffect(() => {
@@ -270,6 +271,20 @@ useEffect(() => {
   if (roles[0]?.active && roles[0]?.role) {
     setRole(roles[0].role);
   }
+      const usersRes = await fetch(
+  `${SUPABASE_URL}/rest/v1/user_roles?select=email,role,active`,
+  {
+    headers: {
+      apikey: SUPABASE_KEY,
+      Authorization: `Bearer ${SUPABASE_KEY}`,
+    },
+  }
+);
+
+if (usersRes.ok) {
+  const usersData = await usersRes.json();
+  setUsers(usersData);
+}
 }
     }
   });
