@@ -4021,10 +4021,24 @@ Close Corrective Action
       }}
     >
       <span>{u.email}</span>
-    <div>
-  <strong>{u.role}</strong>
-  {" • "}
-  {u.active ? "Active" : "Disabled"}
+  <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
+  <span>
+    <strong>{u.role}</strong>
+    {" • "}
+    {u.active ? "Active" : "Disabled"}
+  </span>
+
+  <button
+    onClick={() => alert("Disable feature coming next")}
+    style={{
+      padding: "4px 8px",
+      borderRadius: 6,
+      border: "1px solid #cbd5e1",
+      cursor: "pointer",
+    }}
+  >
+    Disable
+  </button>
 </div>
     </div>
   ))}
