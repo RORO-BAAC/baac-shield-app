@@ -269,9 +269,13 @@ useEffect(() => {
     if (res.ok) {
   const roles = await res.json();
 
-  if (roles[0]?.active && roles[0]?.role) {
+ if (roles[0]) {
+  setAccountActive(roles[0].active);
+
+  if (roles[0]?.role) {
     setRole(roles[0].role);
   }
+}
       const usersRes = await fetch(
   `${SUPABASE_URL}/rest/v1/user_roles?select=email,role,active`,
   {
