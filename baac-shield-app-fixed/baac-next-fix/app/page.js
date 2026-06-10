@@ -4000,6 +4000,32 @@ Close Corrective Action
       Manage BAAC SHIELD settings, supervisor access, projects, and reporting options.
     </p>
 
+<h3>User Management</h3>
+
+<div
+  style={{
+    border: "1px solid #dbe4ee",
+    borderRadius: 12,
+    padding: 12,
+    marginBottom: 16,
+  }}
+>
+  {users.map((u) => (
+    <div
+      key={u.email}
+      style={{
+        display: "flex",
+        justifyContent: "space-between",
+        padding: "8px 0",
+        borderBottom: "1px solid #eee",
+      }}
+    >
+      <span>{u.email}</span>
+      <strong>{u.role}</strong>
+    </div>
+  ))}
+</div>
+        
     <div
       style={{
         padding: 16,
