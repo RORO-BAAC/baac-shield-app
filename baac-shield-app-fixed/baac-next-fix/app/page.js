@@ -4074,7 +4074,7 @@ Close Corrective Action
       cursor: "pointer",
     }}
   >
-    Disable
+{u.active ? "Disable" : "Enable"}
   </button>
 </div>
     </div>
