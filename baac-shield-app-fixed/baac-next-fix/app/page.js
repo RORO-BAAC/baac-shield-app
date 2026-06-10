@@ -4029,7 +4029,7 @@ Close Corrective Action
   </span>
 
   <button
-    onClick={() => alert("Disable feature coming next")}
+   onClick={() => alert(`Disable ${u.email}?`)}
     style={{
       padding: "4px 8px",
       borderRadius: 6,
