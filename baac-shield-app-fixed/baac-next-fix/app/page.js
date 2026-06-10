@@ -1703,6 +1703,38 @@ const matchesDate =
   );
 }
 
+if (!accountActive) {
+  return (
+    <main
+      style={{
+        minHeight: "100vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        background: "#f8fafc",
+      }}
+    >
+      <div
+        style={{
+          width: "100%",
+          maxWidth: 500,
+          background: "white",
+          padding: 24,
+          borderRadius: 12,
+          boxShadow: "0 2px 12px rgba(0,0,0,0.1)",
+          textAlign: "center",
+        }}
+      >
+        <h2>Account Disabled</h2>
+
+        <p>
+          Your account has been disabled. Please contact your administrator.
+        </p>
+      </div>
+    </main>
+  );
+}
+
 if (!user) {
   return (
     <main
