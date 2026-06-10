@@ -1876,7 +1876,7 @@ if (!user) {
 
  <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
   <div style={{ fontSize: 12, opacity: 0.95 }}>
-    Signed in as: {user?.email}
+   Signed in as: {user?.email} · Role: {role}
   </div>
 
   <button
