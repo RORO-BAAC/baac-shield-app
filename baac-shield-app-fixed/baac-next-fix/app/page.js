@@ -250,8 +250,28 @@ const [dueDate, setDueDate] = useState("");
     return map[risk] || [];
   }, [risk]);
 useEffect(() => {
-  supabase.auth.getUser().then(({ data }) => {
+  supabase.auth.getUser().then(async ({ data }) => {
     setUser(data.user);
+
+    if (data.user?.email) {
+      const res = await fetch(
+        `${SUPABASE_URL}/rest/v1/user_roles?email=eq.${data.user.email}&select=role,active`,
+        {
+          headers: {
+            apikey: SUPABASE_KEY,
+            Authorization: `Bearer ${SUPABASE_KEY}`,
+          },
+        }
+      );
+
+      if (res.ok) {
+        const roles = await res.json();
+
+        if (roles[0]?.active && roles[0]?.role) {
+          setRole(roles[0].role);
+        }
+      }
+    }
   });
 }, []);
   
