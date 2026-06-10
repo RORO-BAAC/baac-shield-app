@@ -94,6 +94,7 @@ const [corFixedBy, setCorFixedBy] = useState("");
 const [user, setUser] = useState(null);
   const [role, setRole] = useState("worker");
   const [users, setUsers] = useState([]);
+  const [accountActive, setAccountActive] = useState(true);
   const [email, setEmail] = useState("");
 
 useEffect(() => {
