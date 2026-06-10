@@ -1983,7 +1983,7 @@ if (!user) {
     Safety Dashboard
   </button>
 
-{role === "admin" && (
+{(role === "admin" || role === "supervisor") && (
       
   <button
     type="button"
