@@ -4021,7 +4021,11 @@ Close Corrective Action
       }}
     >
       <span>{u.email}</span>
-      <strong>{u.role}</strong>
+    <div>
+  <strong>{u.role}</strong>
+  {" • "}
+  {u.active ? "Active" : "Disabled"}
+</div>
     </div>
   ))}
 </div>
