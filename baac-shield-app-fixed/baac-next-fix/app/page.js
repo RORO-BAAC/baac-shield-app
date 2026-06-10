@@ -1983,6 +1983,8 @@ if (!user) {
     Safety Dashboard
   </button>
 
+{role === "admin" && (
+      
   <button
     type="button"
     onClick={() => requestProtectedTab("admin")}
@@ -1998,6 +2000,8 @@ if (!user) {
   >
     Admin Settings
   </button>
+)}
+      
 </div>
 
       {activeTab === "worker" && (
