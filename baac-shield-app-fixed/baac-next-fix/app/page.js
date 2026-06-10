@@ -264,13 +264,15 @@ useEffect(() => {
         }
       );
 
-      if (res.ok) {
-        const roles = await res.json();
+    if (res.ok) {
+  const roles = await res.json();
 
-        if (roles[0]?.active && roles[0]?.role) {
-          setRole(roles[0].role);
-        }
-      }
+  console.log("ROLES:", roles);
+
+  if (roles[0]?.active && roles[0]?.role) {
+    setRole(roles[0].role);
+  }
+}
     }
   });
 }, []);
