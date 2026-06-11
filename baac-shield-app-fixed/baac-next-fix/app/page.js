@@ -4072,7 +4072,7 @@ Close Corrective Action
   </span>
 
   <button
-   onClick={() => alert(`Disable ${u.email}?`)}
+onClick={() => toggleUserStatus(u.email, u.active)}
     style={{
       padding: "4px 8px",
       borderRadius: 6,
