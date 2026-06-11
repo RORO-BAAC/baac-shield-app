@@ -542,9 +542,28 @@ async function loadSettings() {
 }
 
 async function toggleUserStatus(email, active) {
-  alert(
-    `${active ? "Disable" : "Enable"} ${email} feature coming next`
+  const res = await fetch(
+    `${SUPABASE_URL}/rest/v1/user_roles?email=eq.${email}`,
+    {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        apikey: SUPABASE_KEY,
+        Authorization: `Bearer ${SUPABASE_KEY}`,
+        Prefer: "return=representation",
+      },
+      body: JSON.stringify({
+        active: !active,
+      }),
+    }
   );
+
+  if (res.ok) {
+    alert(`${email} updated successfully`);
+    window.location.reload();
+  } else {
+    alert("Update failed");
+  }
 }
   
 async function saveSupervisorPin() {
