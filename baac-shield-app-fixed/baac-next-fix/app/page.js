@@ -541,6 +541,12 @@ async function loadSettings() {
   }
 }
 
+async function toggleUserStatus(email, active) {
+  alert(
+    `${active ? "Disable" : "Enable"} ${email} feature coming next`
+  );
+}
+  
 async function saveSupervisorPin() {
   try {
     const res = await fetch(
