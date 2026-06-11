@@ -542,6 +542,12 @@ async function loadSettings() {
 }
 
 async function toggleUserStatus(email, active) {
+  const confirmed = window.confirm(
+  `${active ? "Disable" : "Enable"} ${email}?`
+);
+
+if (!confirmed) return;
+  
   const res = await fetch(
     `${SUPABASE_URL}/rest/v1/user_roles?email=eq.${email}`,
     {
