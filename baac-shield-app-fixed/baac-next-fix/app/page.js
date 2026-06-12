@@ -3353,6 +3353,135 @@ Close Corrective Action
   }}
 >
   <h3 style={{ marginTop: 0, color: "#0f2f66" }}>
+    Hazard Analytics
+  </h3>
+
+  <div style={{ marginBottom: 20 }}>
+    <strong>Hazard IDs vs Observations</strong>
+
+    {Object.entries(hazardTypeCounts).map(([type, count]) => (
+      <div key={type} style={{ marginTop: 10 }}>
+        <div>{type} ({count})</div>
+
+        <div
+          style={{
+            height: 18,
+            background: "#e2e8f0",
+            borderRadius: 8,
+            overflow: "hidden",
+          }}
+        >
+          <div
+            style={{
+              width: `${(count / totalHazards) * 100}%`,
+              height: "100%",
+              background: "#2563eb",
+            }}
+          />
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <div style={{ marginBottom: 20 }}>
+    <strong>Risk Levels</strong>
+
+    {Object.entries(hazardRiskCounts).map(([level, count]) => (
+      <div key={level} style={{ marginTop: 10 }}>
+        <div>{level} ({count})</div>
+
+        <div
+          style={{
+            height: 18,
+            background: "#e2e8f0",
+            borderRadius: 8,
+            overflow: "hidden",
+          }}
+        >
+          <div
+            style={{
+              width: `${(count / totalHazards) * 100}%`,
+              height: "100%",
+              background:
+                level === "Critical"
+                  ? "#dc2626"
+                  : level === "High"
+                  ? "#ea580c"
+                  : level === "Medium"
+                  ? "#ca8a04"
+                  : "#16a34a",
+            }}
+          />
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <h3 style={{ marginTop: 24, color: "#0f2f66" }}>
+    Hazard History
+  </h3>
+
+  <div style={{ overflowX: "auto" }}>
+    <table
+      style={{
+        width: "100%",
+        borderCollapse: "collapse",
+      }}
+    >
+      <thead>
+        <tr style={{ background: "#f1f5f9" }}>
+          <th style={{ padding: 8 }}>Date</th>
+          <th style={{ padding: 8 }}>Type</th>
+          <th style={{ padding: 8 }}>Project</th>
+          <th style={{ padding: 8 }}>Category</th>
+          <th style={{ padding: 8 }}>Risk</th>
+          <th style={{ padding: 8 }}>Status</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {sortedHazards.slice(0, 20).map((report) => (
+          <tr key={report.id}>
+            <td style={{ padding: 8 }}>
+              {new Date(report.created_at).toLocaleDateString()}
+            </td>
+
+            <td style={{ padding: 8 }}>
+              {report.report_type}
+            </td>
+
+            <td style={{ padding: 8 }}>
+              {report.project_name}
+            </td>
+
+            <td style={{ padding: 8 }}>
+              {report.hazard_category}
+            </td>
+
+            <td style={{ padding: 8 }}>
+              {report.risk_level}
+            </td>
+
+            <td style={{ padding: 8 }}>
+              {report.action_status || report.status}
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</div>
+        
+<div
+  style={{
+    background: "white",
+    padding: 16,
+    borderRadius: 12,
+    border: "1px solid #dbe4ee",
+    marginBottom: 20,
+  }}
+>
+  <h3 style={{ marginTop: 0, color: "#0f2f66" }}>
     Open Corrective Action Register
   </h3>
 
