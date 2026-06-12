@@ -3422,6 +3422,35 @@ Close Corrective Action
     ))}
   </div>
 
+<div style={{ marginBottom: 20 }}>
+  <strong>Top Hazard Categories</strong>
+
+  {sortedHazardCategories.map(([category, count]) => (
+    <div key={category} style={{ marginTop: 10 }}>
+      <div>
+        {category} ({count})
+      </div>
+
+      <div
+        style={{
+          height: 18,
+          background: "#e2e8f0",
+          borderRadius: 8,
+          overflow: "hidden",
+        }}
+      >
+        <div
+          style={{
+            width: `${(count / totalHazards) * 100}%`,
+            height: "100%",
+            background: "#16a34a",
+          }}
+        />
+      </div>
+    </div>
+  ))}
+</div>
+      
   <h3 style={{ marginTop: 24, color: "#0f2f66" }}>
     Hazard History
   </h3>
