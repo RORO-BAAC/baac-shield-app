@@ -1532,8 +1532,6 @@ const criticalHazardCount = hazardReports.filter(
   (a, b) => new Date(b.created_at) - new Date(a.created_at)
 );
 
-<div
-  
  const filteredRecords = records.filter((record) => {
   const matchesSearch =
   !searchTerm ||
