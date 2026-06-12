@@ -1516,6 +1516,11 @@ const hazardCategoryCounts = hazardReports.reduce((acc, report) => {
   acc[category] = (acc[category] || 0) + 1;
   return acc;
 }, {});
+
+const sortedHazardCategories = Object.entries(hazardCategoryCounts)
+  .sort((a, b) => b[1] - a[1])
+  .slice(0, 12);
+  
 const hazardIdCount = hazardReports.filter(
   (r) => r.report_type === "Hazard ID"
 ).length;
