@@ -4079,17 +4079,33 @@ Close Corrective Action
   }}
 >
   {users.map((u) => (
-    <div
-      key={u.email}
-      style={{
-        display: "flex",
-        justifyContent: "space-between",
-        padding: "8px 0",
-        borderBottom: "1px solid #eee",
-      }}
-    >
-      <span>{u.email}</span>
-  <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
+  <div
+  key={u.email}
+  style={{
+    display: "flex",
+    justifyContent: "space-between",
+    flexWrap: "wrap",
+    gap: 8,
+    padding: "8px 0",
+    borderBottom: "1px solid #eee",
+  }}
+>
+   <span
+  style={{
+    wordBreak: "break-word",
+    maxWidth: "100%",
+  }}
+>
+  {u.email}
+</span>
+<div
+  style={{
+    display: "flex",
+    gap: 10,
+    alignItems: "center",
+    flexWrap: "wrap",
+  }}
+>
   <span>
     <strong>{u.role}</strong>
     {" • "}
