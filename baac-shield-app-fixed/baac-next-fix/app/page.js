@@ -1528,6 +1528,10 @@ const criticalHazardCount = hazardReports.filter(
   (r) => r.risk_level === "Critical"
 ).length;
 
+  const sortedHazards = [...hazardReports].sort(
+  (a, b) => new Date(b.created_at) - new Date(a.created_at)
+);
+
  const filteredRecords = records.filter((record) => {
   const matchesSearch =
   !searchTerm ||
