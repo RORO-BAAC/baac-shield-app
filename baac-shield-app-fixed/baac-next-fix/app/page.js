@@ -3306,13 +3306,13 @@ Close Corrective Action
 >
   <h2 style={{ marginTop: 0, color: "#0f2f66" }}>Today’s Activity</h2>
 
-  <div
-    style={{
-      display: "grid",
- gridTemplateColumns: "repeat(auto-fit, minmax(130px, 1fr))",
-      gap: 12,
-    }}
-  >
+<div
+  style={{
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))",
+    gap: 12,
+  }}
+>
     <div>
       <div style={{ color: "#64748b", fontSize: 12 }}>Worker Forms Today</div>
       <div style={{ fontSize: 28, fontWeight: "bold" }}>
