@@ -112,7 +112,8 @@ const [corAfterPhotos, setCorAfterPhotos] = useState([]);
   const [hazardActionId, setHazardActionId] = useState(null);
 const [correctiveActionText, setCorrectiveActionText] = useState("");
 const [assignedTo, setAssignedTo] = useState("");
-  
+  const [hazardActionOwner, setHazardActionOwner] = useState("");
+const [hazardDueDate, setHazardDueDate] = useState("");
   const [task, setTask] = useState("");
   const [risk, setRisk] = useState("");
   const [selectedShields, setSelectedShields] = useState([]);
