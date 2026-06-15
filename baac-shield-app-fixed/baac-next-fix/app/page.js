@@ -2764,6 +2764,8 @@ Close Corrective Action
     type="button"
     onClick={() => {
       setHazardActionId(report.id);
+      setHazardActionOwner(report.action_owner || "");
+setHazardDueDate(report.due_date || "");
       setReviewStatus(report.action_status || "Open");
       setReviewSupervisor(report.reviewed_by || "");
       setReviewComments(report.supervisor_review_comments || "");
