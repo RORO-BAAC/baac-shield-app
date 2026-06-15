@@ -3459,55 +3459,43 @@ Close Corrective Action
     Hazard History
   </h3>
 
-  <div style={{ overflowX: "auto" }}>
-    <table
+<div style={{ display: "grid", gap: 10 }}>
+  {sortedHazards.slice(0, 20).map((report) => (
+    <div
+      key={report.id}
       style={{
-        width: "100%",
-        borderCollapse: "collapse",
+        background: "#f8fafc",
+        border: "1px solid #dbe4ee",
+        borderRadius: 10,
+        padding: 12,
       }}
     >
-      <thead>
-        <tr style={{ background: "#f1f5f9" }}>
-          <th style={{ padding: 8 }}>Date</th>
-          <th style={{ padding: 8 }}>Type</th>
-          <th style={{ padding: 8 }}>Project</th>
-          <th style={{ padding: 8 }}>Category</th>
-          <th style={{ padding: 8 }}>Risk</th>
-          <th style={{ padding: 8 }}>Status</th>
-        </tr>
-      </thead>
+      <div>
+        <strong>{report.report_type}</strong>
+      </div>
 
-      <tbody>
-        {sortedHazards.slice(0, 20).map((report) => (
-          <tr key={report.id}>
-            <td style={{ padding: 8 }}>
-              {new Date(report.created_at).toLocaleDateString()}
-            </td>
+      <div>
+        Project: {report.project_name}
+      </div>
 
-            <td style={{ padding: 8 }}>
-              {report.report_type}
-            </td>
+      <div>
+        Category: {report.hazard_category}
+      </div>
 
-            <td style={{ padding: 8 }}>
-              {report.project_name}
-            </td>
+      <div>
+        Risk Level: {report.risk_level}
+      </div>
 
-            <td style={{ padding: 8 }}>
-              {report.hazard_category}
-            </td>
+      <div>
+        Status: {report.action_status || report.status}
+      </div>
 
-            <td style={{ padding: 8 }}>
-              {report.risk_level}
-            </td>
-
-            <td style={{ padding: 8 }}>
-              {report.action_status || report.status}
-            </td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  </div>
+      <div>
+        Date: {new Date(report.created_at).toLocaleDateString()}
+      </div>
+    </div>
+  ))}
+</div>
 </div>
         
 <div
