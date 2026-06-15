@@ -3279,16 +3279,20 @@ Close Corrective Action
                     )}
 
       {activeTab === "dashboard" && (
-        <div
-          style={{
-            background: "white",
-            padding: 20,
-            borderRadius: 16,
-            boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
-            display: "grid",
-            gap: 16,
-          }}
-        >
+      <div
+  style={{
+    background: "white",
+    padding: 20,
+    borderRadius: 16,
+    boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
+    display: "grid",
+    gap: 16,
+    width: "100%",
+    maxWidth: "100%",
+    overflowX: "hidden",
+    boxSizing: "border-box",
+  }}
+>
           <h2 style={{ margin: 0 }}>Safety Dashboard</h2>
 
              <div
