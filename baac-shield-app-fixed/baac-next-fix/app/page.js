@@ -2853,6 +2853,33 @@ setHazardDueDate(report.due_date || "");
       }}
     />
 
+<label>Action Owner</label>
+<input
+  value={hazardActionOwner}
+  onChange={(e) => setHazardActionOwner(e.target.value)}
+  style={{
+    width: "100%",
+    padding: 10,
+    marginTop: 6,
+    marginBottom: 12,
+    borderRadius: 8,
+  }}
+/>
+
+<label>Due Date</label>
+<input
+  type="date"
+  value={hazardDueDate}
+  onChange={(e) => setHazardDueDate(e.target.value)}
+  style={{
+    width: "100%",
+    padding: 10,
+    marginTop: 6,
+    marginBottom: 12,
+    borderRadius: 8,
+  }}
+/>
+      
     <button
       type="button"
       onClick={saveHazardReview}
