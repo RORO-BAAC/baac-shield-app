@@ -1015,7 +1015,7 @@ async function saveHazardReview() {
     reviewed_by: reviewSupervisor,
     supervisor_review_comments: reviewComments,
     corrective_action: correctiveActionText,
-    action_owner: hazardActionOwner,
+  assigned_to: hazardActionOwner,
 due_date: hazardDueDate,
     closed_date:
       reviewStatus === "Closed"
