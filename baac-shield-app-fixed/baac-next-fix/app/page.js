@@ -1465,20 +1465,29 @@ const openCorrectiveActions = records.filter((record) => {
   );
 });
 
-  const correctiveActionRegister = records
-  .filter((record) => {
+ const correctiveActionRegister = [
+  ...records.filter((record) => {
     return (
       record.status !== "Approved" &&
       (record.corrective_actions ||
        record.assigned_to ||
        record.due_date)
     );
+  }),
+
+  ...hazardReports.filter((report) => {
+    return (
+      report.action_status !== "Closed" &&
+      (report.corrective_action ||
+       report.assigned_to ||
+       report.due_date)
+    );
   })
-  .sort((a, b) => {
-    const aDate = a.due_date ? new Date(a.due_date) : new Date("9999-12-31");
-    const bDate = b.due_date ? new Date(b.due_date) : new Date("9999-12-31");
-    return aDate - bDate;
-  });
+].sort((a, b) => {
+  const aDate = a.due_date ? new Date(a.due_date) : new Date("9999-12-31");
+  const bDate = b.due_date ? new Date(b.due_date) : new Date("9999-12-31");
+  return aDate - bDate;
+});
 
   const recentActivity = [
   ...records.map((record) => ({
