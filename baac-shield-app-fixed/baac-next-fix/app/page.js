@@ -1015,6 +1015,8 @@ async function saveHazardReview() {
     reviewed_by: reviewSupervisor,
     supervisor_review_comments: reviewComments,
     corrective_action: correctiveActionText,
+    action_owner: hazardActionOwner,
+due_date: hazardDueDate,
     closed_date:
       reviewStatus === "Closed"
         ? new Date().toISOString().split("T")[0]
