@@ -2593,18 +2593,7 @@ Signed in as: {user?.email} · Role: {role}
         </select>
       </div>
 
-      <div>
-        <label>Photos</label>
-        <br />
-        <input
-          type="file"
-          multiple
-          accept="image/*"
-          onChange={(e) => setHazardPhotos(Array.from(e.target.files))}
-        />
-      </div>
-
-      <button
+           <button
         type="button"
          onClick={submitHazardReport}
         style={{
