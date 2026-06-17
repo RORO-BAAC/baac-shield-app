@@ -2526,6 +2526,52 @@ Signed in as: {user?.email} · Role: {role}
         />
       </div>
 
+<div
+  style={{
+    border: "1px solid #d1d5db",
+    borderRadius: 14,
+    padding: 16,
+    background: "#f8fafc",
+  }}
+>
+  <h3 style={{ marginTop: 0 }}>Hazard Photos</h3>
+
+  <input
+    type="file"
+    multiple
+    accept="image/*"
+    style={{ display: "none" }}
+    onChange={(e) => setHazardPhotos(Array.from(e.target.files || []))}
+    id="hazard-photo-upload"
+  />
+
+  <button
+    type="button"
+    onClick={() => document.getElementById("hazard-photo-upload")?.click()}
+    style={{
+      padding: 12,
+      border: "1px solid #94a3b8",
+      borderRadius: 10,
+      background: "white",
+      cursor: "pointer",
+      fontWeight: "bold",
+    }}
+  >
+    Upload Hazard Photos
+  </button>
+
+  {hazardPhotos.length > 0 && (
+    <div style={{ marginTop: 12 }}>
+      <strong>Selected files:</strong>
+      <ul style={{ marginTop: 8, paddingLeft: 18 }}>
+        {hazardPhotos.map((file) => (
+          <li key={file.name}>{file.name}</li>
+        ))}
+      </ul>
+    </div>
+  )}
+</div>
+          
       <div>
         <label>Risk Level</label>
         <br />
