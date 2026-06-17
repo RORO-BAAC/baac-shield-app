@@ -3571,16 +3571,33 @@ setHazardDueDate(report.due_date || "");
           }}
         >
           <div>
-            <strong>{record.worker_name || "Unknown Worker"}</strong>
+       <strong>
+  {record.worker_name ||
+   record.reported_by ||
+   "Unknown Reporter"}
+</strong>
           </div>
 
-          <div>Project: {record.project_name || "—"}</div>
-          <div>Assigned To: {record.assigned_to || "—"}</div>
-          <div>Due Date: {record.due_date || "—"}</div>
-          <div>Status: {record.status || "Pending Review"}</div>
-          <div>
-            Corrective Action: {record.corrective_actions || "—"}
-          </div>
+      <div>Project: {record.project_name || "-"}</div>
+
+<div>
+  Assigned To: {record.assigned_to || "-"}
+</div>
+
+<div>
+  Due Date: {record.due_date || "-"}
+</div>
+
+<div>
+  Status: {record.status || record.action_status || "Pending Review"}
+</div>
+
+<div>
+  Corrective Action:{" "}
+  {record.corrective_actions ||
+   record.corrective_action ||
+   "-"}
+</div>
         </div>
       ))
     )}
