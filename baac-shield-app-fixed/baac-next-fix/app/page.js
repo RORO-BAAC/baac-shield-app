@@ -799,6 +799,7 @@ async function saveCompanyName() {
   }
 
 async function submitHazardReport() {
+  console.log("submitHazardReport called");
   setLoading(true);
   setMessage("");
 
