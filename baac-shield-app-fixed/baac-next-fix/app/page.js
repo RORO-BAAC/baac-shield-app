@@ -685,7 +685,7 @@ async function saveCompanyName() {
       const fileName = `${Date.now()}-${safeName}`;
 
       const uploadRes = await fetch(
- `${SUPABASE_URL}/storage/v1/object/HAZARD-PHOTOS/${fileName}`,
+`${SUPABASE_URL}/storage/v1/object/hazard-photos/${fileName}`,
         {
           method: "POST",
           headers: {
@@ -705,7 +705,7 @@ async function saveCompanyName() {
 }
 
       uploadedUrls.push(
-`${SUPABASE_URL}/storage/v1/object/public/HAZARD-PHOTOS/${fileName}`
+`${SUPABASE_URL}/storage/v1/object/public/hazard-photos/${fileName}`
       );
     }
 
