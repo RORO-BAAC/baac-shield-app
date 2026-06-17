@@ -698,10 +698,11 @@ async function saveCompanyName() {
         }
       );
 
-      if (!uploadRes.ok) {
-        const text = await uploadRes.text();
-        throw new Error(text || "Photo upload failed");
-      }
+   if (!uploadRes.ok) {
+  const text = await uploadRes.text();
+  alert(text);
+  throw new Error(text || "Photo upload failed");
+}
 
       uploadedUrls.push(
 `${SUPABASE_URL}/storage/v1/object/public/HAZARD-PHOTOS/${fileName}`
