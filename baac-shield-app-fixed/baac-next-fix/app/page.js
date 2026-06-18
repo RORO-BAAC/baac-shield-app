@@ -676,41 +676,30 @@ async function saveCompanyName() {
   }
 
   async function uploadPhotosToSupabase(files) {
-    if (!files || files.length === 0) return [];
+  if (!files || files.length === 0) return [];
 
-    const uploadedUrls = [];
+  const uploadedUrls = [];
 
-    for (const file of files) {
-      const safeName = file.name.replace(/\s+/g, "-");
-      const fileName = `${Date.now()}-${safeName}`;
+  for (const file of files) {
+    const formData = new FormData();
+    formData.append("file", file);
 
-      const uploadRes = await fetch(
-`${SUPABASE_URL}/storage/v1/object/hazard-photos/${fileName}`,
-        {
-          method: "POST",
-          headers: {
-            apikey: SUPABASE_KEY,
-            Authorization: `Bearer ${SUPABASE_KEY}`,
-            "Content-Type": file.type || "application/octet-stream",
-            "x-upsert": "true",
-          },
-          body: file,
-        }
-      );
+    const uploadRes = await fetch("/api/upload-photo", {
+      method: "POST",
+      body: formData,
+    });
 
-   if (!uploadRes.ok) {
-  const text = await uploadRes.text();
-  alert(text);
-  throw new Error(text || "Photo upload failed");
-}
+    const result = await uploadRes.json();
 
-      uploadedUrls.push(
-`${SUPABASE_URL}/storage/v1/object/public/hazard-photos/${fileName}`
-      );
+    if (!uploadRes.ok) {
+      throw new Error(result.error || "Photo upload failed");
     }
 
-    return uploadedUrls;
+    uploadedUrls.push(result.url);
   }
+
+  return uploadedUrls;
+}
 
   function clearForm() {
     setWorker("");
