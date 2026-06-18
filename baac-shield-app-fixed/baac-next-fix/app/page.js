@@ -2795,6 +2795,47 @@ Close Corrective Action
         <div><strong>Risk:</strong> {report.risk_level}</div>
         <div><strong>Status:</strong> {report.action_status || "Open"}</div>
 
+{report.photos && String(report.photos).trim() !== "" && (
+  <div style={{ marginTop: 12 }}>
+    <strong>Photos:</strong>
+
+    <div
+      style={{
+        display: "flex",
+        gap: 10,
+        flexWrap: "wrap",
+        marginTop: 8,
+      }}
+    >
+      {String(report.photos)
+        .split(",")
+        .map((photo) => photo.trim())
+        .filter(Boolean)
+        .map((photoUrl, index) => (
+          <a
+            key={`${report.id}-hazard-photo-${index}`}
+            href={photoUrl}
+            target="_blank"
+            rel="noreferrer"
+            style={{ display: "inline-block" }}
+          >
+            <img
+              src={photoUrl}
+              alt={`Hazard photo ${index + 1}`}
+              style={{
+                width: 120,
+                height: 90,
+                objectFit: "cover",
+                borderRadius: 8,
+                border: "1px solid #cbd5e1",
+              }}
+            />
+          </a>
+        ))}
+    </div>
+  </div>
+)}
+          
         <div style={{ marginTop: 10 }}>
           <strong>Description:</strong>
           <div>{report.hazard_description}</div>
