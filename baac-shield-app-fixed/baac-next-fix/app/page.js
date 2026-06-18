@@ -2794,7 +2794,9 @@ Close Corrective Action
         <div><strong>Category:</strong> {report.hazard_category}</div>
         <div><strong>Risk:</strong> {report.risk_level}</div>
         <div><strong>Status:</strong> {report.action_status || "Open"}</div>
-
+<div style={{ marginTop: 10 }}>
+  <strong>Photos value:</strong> {report.photos || "No photos found"}
+</div>
           <div style={{ marginTop: 10 }}>
   <strong>Photos value:</strong> {report.photos || "No photos found"}
 </div>
