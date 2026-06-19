@@ -2382,6 +2382,212 @@ Signed in as: {user?.email} · Role: {role}
         </form>
       )}
 
+{activeTab === "cor" && (
+  <div
+    style={{
+      background: "white",
+      padding: 20,
+      borderRadius: 12,
+      border: "1px solid #dbe4ee",
+      marginTop: 20,
+    }}
+  >
+    <h2 style={{ marginTop: 0 }}>COR Corrective Actions</h2>
+
+    <p style={{ color: "#64748b", marginTop: -4 }}>
+      Create and track audit corrective actions by element, owner, due date, and status.
+    </p>
+
+    <div style={{ display: "grid", gap: 14 }}>
+      <div>
+        <label>Audit Element</label>
+        <br />
+        <select
+          value={corCategory}
+          onChange={(e) => setCorCategory(e.target.value)}
+          style={{
+            width: "100%",
+            padding: 12,
+            marginTop: 6,
+            borderRadius: 10,
+            border: "1px solid #cbd5e1",
+          }}
+        >
+          <option value="">Select an audit element</option>
+          <option>Documentation / Records</option>
+          <option>Training / Competency</option>
+          <option>Equipment / Tools</option>
+          <option>Vehicles / Mobile Equipment</option>
+          <option>PPE</option>
+          <option>Housekeeping</option>
+          <option>Hazard ID / Observation</option>
+          <option>Worker Form / FLRA</option>
+          <option>Emergency Preparedness</option>
+          <option>Environmental</option>
+          <option>Subcontractor / Visitor Control</option>
+          <option>Supervision / Leadership</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Project / Field Job Number</label>
+        <br />
+        <input
+          value={corFieldJobNumber}
+          onChange={(e) => setCorFieldJobNumber(e.target.value)}
+          placeholder="Example: FOX CREEK / Job 1234"
+          style={{
+            width: "100%",
+            padding: 12,
+            marginTop: 6,
+            borderRadius: 10,
+            border: "1px solid #cbd5e1",
+          }}
+        />
+      </div>
+
+      <div>
+        <label>Location</label>
+        <br />
+        <input
+          value={corFieldLocation}
+          onChange={(e) => setCorFieldLocation(e.target.value)}
+          placeholder="Field location, shop, office, yard, etc."
+          style={{
+            width: "100%",
+            padding: 12,
+            marginTop: 6,
+            borderRadius: 10,
+            border: "1px solid #cbd5e1",
+          }}
+        />
+      </div>
+
+      <div>
+        <label>Finding / Issue</label>
+        <br />
+        <textarea
+          value={corIssueDescription}
+          onChange={(e) => setCorIssueDescription(e.target.value)}
+          rows="4"
+          placeholder="Describe the audit finding or issue."
+          style={{
+            width: "100%",
+            padding: 12,
+            marginTop: 6,
+            borderRadius: 10,
+            border: "1px solid #cbd5e1",
+          }}
+        />
+      </div>
+
+      <div>
+        <label>Corrective Action Required</label>
+        <br />
+        <textarea
+          value={correctiveActionText}
+          onChange={(e) => setCorrectiveActionText(e.target.value)}
+          rows="4"
+          placeholder="Describe what must be done to correct the finding."
+          style={{
+            width: "100%",
+            padding: 12,
+            marginTop: 6,
+            borderRadius: 10,
+            border: "1px solid #cbd5e1",
+          }}
+        />
+      </div>
+
+      <div>
+        <label>Assigned To</label>
+        <br />
+        <input
+          value={corAssignedTo}
+          onChange={(e) => setCorAssignedTo(e.target.value)}
+          style={{
+            width: "100%",
+            padding: 12,
+            marginTop: 6,
+            borderRadius: 10,
+            border: "1px solid #cbd5e1",
+          }}
+        />
+      </div>
+
+      <div>
+        <label>Due Date</label>
+        <br />
+        <input
+          type="date"
+          value={corTargetFixDate}
+          onChange={(e) => setCorTargetFixDate(e.target.value)}
+          style={{
+            width: "100%",
+            padding: 12,
+            marginTop: 6,
+            borderRadius: 10,
+            border: "1px solid #cbd5e1",
+          }}
+        />
+      </div>
+
+      <div>
+        <label>Priority</label>
+        <br />
+        <select
+          value={corEquipmentDescription}
+          onChange={(e) => setCorEquipmentDescription(e.target.value)}
+          style={{
+            width: "100%",
+            padding: 12,
+            marginTop: 6,
+            borderRadius: 10,
+            border: "1px solid #cbd5e1",
+          }}
+        >
+          <option value="">Select priority</option>
+          <option>Low</option>
+          <option>Medium</option>
+          <option>High</option>
+          <option>Critical</option>
+        </select>
+      </div>
+
+      <div
+        style={{
+          border: "1px solid #d1d5db",
+          borderRadius: 14,
+          padding: 16,
+          background: "#f8fafc",
+        }}
+      >
+        <h3 style={{ marginTop: 0 }}>Before / Evidence Photos</h3>
+        <p style={{ color: "#64748b", marginTop: -4 }}>
+          Photo upload will be connected in the next step.
+        </p>
+      </div>
+
+      <button
+        type="button"
+        disabled={loading}
+        style={{
+          padding: 14,
+          border: "none",
+          borderRadius: 12,
+          background: "#123d82",
+          color: "white",
+          fontWeight: "bold",
+          fontSize: 16,
+          cursor: "pointer",
+        }}
+      >
+        Submit COR
+      </button>
+    </div>
+  </div>
+)}
 
 {activeTab === "hazard" && (
   <div
