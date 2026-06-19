@@ -902,6 +902,7 @@ if (!emailRes.ok) {
 }
 
 async function submitCorAction() {
+  alert("COR submit clicked");
   setLoading(true);
   setMessage("");
 
