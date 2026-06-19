@@ -124,6 +124,7 @@ const [hazardDueDate, setHazardDueDate] = useState("");
 const [dueDate, setDueDate] = useState("");
   const [records, setRecords] = useState([]);
   const [hazardReports, setHazardReports] = useState([]);
+  const [corActions, setCorActions] = useState([]);
   const projectCounts = records.reduce((acc, record) => {
   const project = record.project_name || "Unknown";
   acc[project] = (acc[project] || 0) + 1;
