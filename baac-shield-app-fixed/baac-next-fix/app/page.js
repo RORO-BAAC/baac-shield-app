@@ -791,7 +791,6 @@ async function saveCompanyName() {
 async function submitHazardReport() {
   console.log("submitHazardReport called");
   console.log("submitHazardReport started");
-alert("submit started");
   setLoading(true);
   setMessage("");
 
