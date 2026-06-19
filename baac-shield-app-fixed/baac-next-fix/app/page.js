@@ -2919,6 +2919,49 @@ setHazardDueDate(report.due_date || "");
       }}
     />
 
+{hazardActionId === report.id &&
+  report.photos &&
+  String(report.photos).trim() !== "" && (
+    <div style={{ marginTop: 14, marginBottom: 14 }}>
+      <strong>Photos:</strong>
+
+      <div
+        style={{
+          display: "flex",
+          gap: 10,
+          flexWrap: "wrap",
+          marginTop: 8,
+        }}
+      >
+        {String(report.photos)
+          .split(",")
+          .map((photo) => photo.trim())
+          .filter(Boolean)
+          .map((photoUrl, index) => (
+            <a
+              key={`${report.id}-expanded-hazard-photo-${index}`}
+              href={photoUrl}
+              target="_blank"
+              rel="noreferrer"
+              style={{ display: "inline-block" }}
+            >
+              <img
+                src={photoUrl}
+                alt={`Hazard photo ${index + 1}`}
+                style={{
+                  width: 140,
+                  height: 100,
+                  objectFit: "cover",
+                  borderRadius: 8,
+                  border: "1px solid #cbd5e1",
+                }}
+              />
+            </a>
+          ))}
+      </div>
+    </div>
+  )}
+      
     <label>Corrective Action / Resolution</label>
     <textarea
       value={correctiveActionText}
