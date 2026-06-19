@@ -2382,24 +2382,6 @@ Signed in as: {user?.email} · Role: {role}
         </form>
       )}
 
-{activeTab === "cor" && (
-  <div
-    style={{
-      background: "white",
-      padding: 20,
-      borderRadius: 12,
-      border: "1px solid #dbe4ee",
-      marginTop: 20,
-    }}
-  >
-    <h2 style={{ marginTop: 0 }}>COR Corrective Actions</h2>
-
-    <p style={{ color: "#64748b" }}>
-      Corrective action form coming next: equipment, unit numbers, issue details,
-      assigned person, due date, before/after photos, closeout, and signature.
-    </p>
-  </div>
-)}
 
 {activeTab === "hazard" && (
   <div
