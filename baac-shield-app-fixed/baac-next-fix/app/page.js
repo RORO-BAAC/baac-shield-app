@@ -929,6 +929,7 @@ alert("Starting COR photo upload");
   uploadedBeforePhotoUrls = await uploadPhotosToSupabase(corBeforePhotos);
 
   setMessage("COR before photos uploaded. Saving corrective action...");
+  alert("COR photo upload finished");
 }
     
     const payload = {
