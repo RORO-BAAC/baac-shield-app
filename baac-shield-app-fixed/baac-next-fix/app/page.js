@@ -2634,9 +2634,40 @@ Signed in as: {user?.email} · Role: {role}
         }}
       >
         <h3 style={{ marginTop: 0 }}>Before / Evidence Photos</h3>
-        <p style={{ color: "#64748b", marginTop: -4 }}>
-          Photo upload will be connected in the next step.
-        </p>
+        <input
+  ref={corBeforeFileRef}
+  type="file"
+  multiple
+  accept="image/*"
+  style={{ display: "none" }}
+  onChange={(e) => setCorBeforePhotos(Array.from(e.target.files || []))}
+/>
+
+<button
+  type="button"
+  onClick={() => corBeforeFileRef.current?.click()}
+  style={{
+    padding: 12,
+    border: "1px solid #94a3b8",
+    borderRadius: 10,
+    background: "white",
+    cursor: "pointer",
+    fontWeight: "bold",
+  }}
+>
+  Upload Before Photos
+</button>
+
+{corBeforePhotos.length > 0 && (
+  <div style={{ marginTop: 12 }}>
+    <strong>Selected files:</strong>
+    <ul style={{ marginTop: 8, paddingLeft: 18 }}>
+      {corBeforePhotos.map((file) => (
+        <li key={file.name}>{file.name}</li>
+      ))}
+    </ul>
+  </div>
+)}
       </div>
 
       <button
