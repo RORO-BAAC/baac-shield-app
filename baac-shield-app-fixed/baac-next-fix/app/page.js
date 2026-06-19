@@ -913,7 +913,15 @@ async function submitCorAction() {
     !corTargetFixDate
   ) {
     setMessage(
-      "Please complete required fields: Audit Element, Finding / Issue, Corrective Action Required, Assigned To, and Due Date."
+   let uploadedBeforePhotoUrls = [];
+
+if (corBeforePhotos.length > 0) {
+  setMessage("Uploading COR before photos...");
+
+  uploadedBeforePhotoUrls = await uploadPhotosToSupabase(corBeforePhotos);
+
+  setMessage("COR before photos uploaded. Saving corrective action...");
+}
     );
     setLoading(false);
     return;
