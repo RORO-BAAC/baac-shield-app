@@ -920,6 +920,8 @@ async function submitCorAction() {
   }
 
   try {
+    const uploadedBeforePhotoUrls = await uploadPhotosToSupabase(corBeforePhotos);
+    
     const payload = {
       category: corCategory,
       field_job_number: corFieldJobNumber,
@@ -928,8 +930,9 @@ async function submitCorAction() {
       corrective_action_required: correctiveActionText,
       assigned_to: corAssignedTo,
       target_fix_date: corTargetFixDate,
-      priority: corEquipmentDescription,
-      status: "Open",
+     priority: corEquipmentDescription,
+before_photos: uploadedBeforePhotoUrls.join(", "),
+status: "Open",
     };
 
     const res = await fetch(`${SUPABASE_URL}/rest/v1/cor_corrective_actions`, {
