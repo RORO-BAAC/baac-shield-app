@@ -967,6 +967,7 @@ status: "Open",
     setCorAssignedTo("");
     setCorTargetFixDate("");
     setCorEquipmentDescription("");
+    setCorBeforePhotos([]);
 
     setMessage("COR corrective action submitted.");
     await loadRecords();
