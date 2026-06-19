@@ -2839,6 +2839,19 @@ Close Corrective Action
         <div style={{ marginTop: 10 }}>
           <strong>Description:</strong>
           <div>{report.hazard_description}</div>
+  <div
+  style={{
+    marginTop: 12,
+    padding: 10,
+    background: "#fff7ed",
+    border: "2px solid #f97316",
+    borderRadius: 8,
+    color: "#7c2d12",
+    fontWeight: "bold",
+  }}
+>
+  DEBUG HAZARD PHOTOS: {String(report.photos || "NO PHOTO VALUE")}
+</div>
           <div style={{ marginTop: 14 }}>
   <button
     type="button"
