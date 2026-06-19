@@ -925,7 +925,7 @@ async function submitCorAction() {
 
 if (corBeforePhotos.length > 0) {
   setMessage("Uploading COR before photos...");
-
+alert("Starting COR photo upload");
   uploadedBeforePhotoUrls = await uploadPhotosToSupabase(corBeforePhotos);
 
   setMessage("COR before photos uploaded. Saving corrective action...");
