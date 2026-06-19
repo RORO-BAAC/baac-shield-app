@@ -342,6 +342,22 @@ if (hazardRes.ok) {
   const hazardData = await hazardRes.json();
   setHazardReports(hazardData);
 }
+      
+const corRes = await fetch(
+  `${SUPABASE_URL}/rest/v1/cor_corrective_actions?select=*&order=created_at.desc`,
+  {
+    headers: {
+      apikey: SUPABASE_KEY,
+      Authorization: `Bearer ${SUPABASE_KEY}`,
+    },
+  }
+);
+
+if (corRes.ok) {
+  const corData = await corRes.json();
+  setCorActions(corData);
+}
+      
     } catch (error) {
       setMessage(`Could not load records from database: ${error.message}`);
     }
