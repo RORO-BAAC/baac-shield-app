@@ -899,6 +899,72 @@ if (!emailRes.ok) {
     setLoading(false);
   }
 }
+
+async function submitCorAction() {
+  setLoading(true);
+  setMessage("");
+
+  if (
+    !corCategory ||
+    !corIssueDescription ||
+    !correctiveActionText ||
+    !corAssignedTo ||
+    !corTargetFixDate
+  ) {
+    setMessage(
+      "Please complete required fields: Audit Element, Finding / Issue, Corrective Action Required, Assigned To, and Due Date."
+    );
+    setLoading(false);
+    return;
+  }
+
+  try {
+    const payload = {
+      category: corCategory,
+      field_job_number: corFieldJobNumber,
+      field_location: corFieldLocation,
+      issue_description: corIssueDescription,
+      corrective_action_required: correctiveActionText,
+      assigned_to: corAssignedTo,
+      target_fix_date: corTargetFixDate,
+      priority: corEquipmentDescription,
+      status: "Open",
+    };
+
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/cor_corrective_actions`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        apikey: SUPABASE_KEY,
+        Authorization: `Bearer ${SUPABASE_KEY}`,
+        Prefer: "return=representation",
+      },
+      body: JSON.stringify(payload),
+    });
+
+    if (!res.ok) {
+      const text = await res.text();
+      throw new Error(text || "COR insert failed");
+    }
+
+    setCorCategory("");
+    setCorFieldJobNumber("");
+    setCorFieldLocation("");
+    setCorIssueDescription("");
+    setCorrectiveActionText("");
+    setCorAssignedTo("");
+    setCorTargetFixDate("");
+    setCorEquipmentDescription("");
+
+    setMessage("COR corrective action submitted.");
+    await loadRecords();
+  } catch (error) {
+    setMessage(`Could not save COR corrective action: ${error.message}`);
+  } finally {
+    setLoading(false);
+  }
+}
+  
   async function markRecordApproved(recordId) {
   setLoading(true);
   setMessage("");
