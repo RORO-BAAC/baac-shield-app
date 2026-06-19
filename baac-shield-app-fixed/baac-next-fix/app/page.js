@@ -2653,6 +2653,76 @@ onClick={submitCorAction}
         Submit COR
       </button>
     </div>
+
+       <div style={{ marginTop: 28 }}>
+  <h3 style={{ marginBottom: 8 }}>Open COR Register</h3>
+
+  {corActions.length === 0 ? (
+    <div
+      style={{
+        padding: 14,
+        border: "1px solid #dbe4ee",
+        borderRadius: 10,
+        background: "#f8fafc",
+        color: "#64748b",
+      }}
+    >
+      No COR corrective actions submitted yet.
+    </div>
+  ) : (
+    <div style={{ display: "grid", gap: 12 }}>
+      {corActions.map((cor) => (
+        <div
+          key={cor.id}
+          style={{
+            padding: 14,
+            border: "1px solid #dbe4ee",
+            borderRadius: 12,
+            background: "#f8fafc",
+          }}
+        >
+          <div style={{ fontWeight: "bold", fontSize: 16, marginBottom: 6 }}>
+            {cor.category || "Corrective Action"}
+          </div>
+
+          <div>
+            <strong>Project / Job:</strong> {cor.field_job_number || "-"}
+          </div>
+
+          <div>
+            <strong>Location:</strong> {cor.field_location || "-"}
+          </div>
+
+          <div>
+            <strong>Finding / Issue:</strong> {cor.issue_description || "-"}
+          </div>
+
+          <div>
+            <strong>Corrective Action Required:</strong>{" "}
+            {cor.corrective_action_required || "-"}
+          </div>
+
+          <div>
+            <strong>Assigned To:</strong> {cor.assigned_to || "-"}
+          </div>
+
+          <div>
+            <strong>Due Date:</strong> {cor.target_fix_date || "-"}
+          </div>
+
+          <div>
+            <strong>Priority:</strong> {cor.priority || "-"}
+          </div>
+
+          <div>
+            <strong>Status:</strong> {cor.status || "Open"}
+          </div>
+        </div>
+      ))}
+    </div>
+  )}
+</div>   
+        
   </div>
 )}
 
