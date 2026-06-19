@@ -168,6 +168,7 @@ const [dueDate, setDueDate] = useState("");
     const [rectified, setRectified] = useState(false);
 
   const fileRef = useRef(null);
+  const corBeforeFileRef = useRef(null);
   const workerSigRef = useRef(null);
   const supervisorSigRef = useRef(null);
 
