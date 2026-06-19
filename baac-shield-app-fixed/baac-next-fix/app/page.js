@@ -2637,6 +2637,7 @@ Signed in as: {user?.email} · Role: {role}
 
       <button
         type="button"
+onClick={submitCorAction}
         disabled={loading}
         style={{
           padding: 14,
