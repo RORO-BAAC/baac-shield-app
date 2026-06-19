@@ -2797,6 +2797,10 @@ Close Corrective Action
 <div style={{ marginTop: 10 }}>
   <strong>Photos value:</strong> {report.photos || "No photos found"}
 </div>
+
+          <div style={{ marginTop: 10 }}>
+  <strong>Photos value:</strong> {report.photos || "No photos found"}
+</div>
           <div style={{ marginTop: 10 }}>
   <strong>Photos value:</strong> {report.photos || "No photos found"}
 </div>
