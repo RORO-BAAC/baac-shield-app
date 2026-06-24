@@ -902,7 +902,6 @@ if (!emailRes.ok) {
 }
 
 async function submitCorAction() {
-  alert("COR submit clicked");
   setLoading(true);
   setMessage("");
 
@@ -925,11 +924,8 @@ async function submitCorAction() {
 
 if (corBeforePhotos.length > 0) {
   setMessage("Uploading COR before photos...");
-alert("Starting COR photo upload");
   uploadedBeforePhotoUrls = await uploadPhotosToSupabase(corBeforePhotos);
-
   setMessage("COR before photos uploaded. Saving corrective action...");
-  alert("COR photo upload finished");
 }
     
     const payload = {
