@@ -2763,6 +2763,35 @@ onClick={submitCorAction}
           <div>
             <strong>Status:</strong> {cor.status || "Open"}
           </div>
+
+{cor.before_photos && String(cor.before_photos).trim() !== "" && (
+  <div style={{ marginTop: 12 }}>
+    <strong>Before Photos:</strong>
+
+    <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginTop: 8 }}>
+      {String(cor.before_photos)
+        .split(",")
+        .map((url) => url.trim())
+        .filter(Boolean)
+        .map((url, index) => (
+          <a key={index} href={url} target="_blank" rel="noreferrer">
+            <img
+              src={url}
+              alt={`COR before photo ${index + 1}`}
+              style={{
+                width: 90,
+                height: 90,
+                objectFit: "cover",
+                borderRadius: 8,
+                border: "1px solid #cbd5e1",
+              }}
+            />
+          </a>
+        ))}
+    </div>
+  </div>
+)}
+            
             <div style={{ marginTop: 8, color: "#64748b", fontSize: 13 }}>
   Photo URL: {cor.before_photos || "No before photo found"}
 </div>
