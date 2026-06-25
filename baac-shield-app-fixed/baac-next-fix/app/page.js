@@ -3115,6 +3115,40 @@ onClick={submitCorAction}
       />
     </div>
 
+<div>
+  <label>Time</label>
+  <br />
+  <input
+    type="time"
+    value={toolboxTime}
+    onChange={(e) => setToolboxTime(e.target.value)}
+    style={{
+      width: "100%",
+      padding: 12,
+      marginTop: 6,
+      borderRadius: 10,
+      border: "1px solid #cbd5e1",
+    }}
+  />
+</div>
+
+<div>
+  <label>Weather</label>
+  <br />
+  <input
+    value={toolboxWeather}
+    onChange={(e) => setToolboxWeather(e.target.value)}
+    placeholder="Example: Clear, rain, snow, windy"
+    style={{
+      width: "100%",
+      padding: 12,
+      marginTop: 6,
+      borderRadius: 10,
+      border: "1px solid #cbd5e1",
+    }}
+  />
+</div>
+        
     <div>
       <label>Location</label>
       <br />
