@@ -210,6 +210,7 @@ const [toolboxAttendees, setToolboxAttendees] = useState([
   { name: "", signature: "" },
 ]);
 const [toolboxPhotos, setToolboxPhotos] = useState([]);
+ const [toolboxResetKey, setToolboxResetKey] = useState(0);
   const projectCounts = records.reduce((acc, record) => {
   const project = record.project_name || "Unknown";
   acc[project] = (acc[project] || 0) + 1;
