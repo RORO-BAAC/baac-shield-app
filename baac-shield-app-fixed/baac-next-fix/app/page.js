@@ -1163,7 +1163,7 @@ async function saveToolboxTalk(statusValue = "Draft") {
     setToolboxAdditionalHazards("");
     setToolboxOtherConsiderations("");
     setToolboxSupervisorRemarks("");
-    setToolboxAttendees([{ name: "", signature: "" }]);
+   setToolboxAttendees([{ name: "", role: "", signature: "", signedAt: "" }]);
     setToolboxPhotos([]);
 setToolboxResetKey((prev) => prev + 1);
     setMessage(
