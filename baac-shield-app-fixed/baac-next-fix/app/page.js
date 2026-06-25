@@ -3565,7 +3565,7 @@ onClick={submitCorAction}
   <strong>3 Basic Rights:</strong> Right to Know, Right to Participate, and Right to Refuse Unsafe Work.
 </div>
       
-      <h3 style={{ marginTop: 0 }}>Workers Present</h3>
+<h3 style={{ marginTop: 18 }}>Workers Present</h3>
 
       {toolboxAttendees.map((attendee, index) => (
         <div key={index} style={{ marginBottom: 12 }}>
