@@ -3584,8 +3584,6 @@ onClick={submitCorAction}
               border: "1px solid #cbd5e1",
             }}
           />
-        </div>
-
 <div style={{ marginTop: 8 }}>
   <label>Worker Signature</label>
 
@@ -3601,6 +3599,8 @@ onClick={submitCorAction}
       setToolboxAttendees(updated);
     }}
   />
+      
+        </div>
 
   {attendee.signature && (
     <div style={{ marginTop: 6, color: "#166534", fontSize: 13 }}>
