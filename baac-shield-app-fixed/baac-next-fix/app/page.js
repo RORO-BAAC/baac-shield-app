@@ -3081,13 +3081,13 @@ onClick={submitCorAction}
       </select>
     </div>
 
-       <div>
-  <label>Guest / Subcontractor / Visitor</label>
+<div>
+  <label>Superintendent</label>
   <br />
   <input
-    value={toolboxGuestVisitor}
-    onChange={(e) => setToolboxGuestVisitor(e.target.value)}
-    placeholder="List any guests, subcontractors, or visitors"
+    value={toolboxSuperintendent}
+    onChange={(e) => setToolboxSuperintendent(e.target.value)}
+    placeholder="Superintendent name"
     style={{
       width: "100%",
       padding: 12,
@@ -3096,25 +3096,27 @@ onClick={submitCorAction}
       border: "1px solid #cbd5e1",
     }}
   />
-</div>   
+</div>
 
-    <div>
-      <label>Date</label>
-      <br />
-      <input
-        type="date"
-        value={toolboxDate}
-        onChange={(e) => setToolboxDate(e.target.value)}
-        style={{
-          width: "100%",
-          padding: 12,
-          marginTop: 6,
-          borderRadius: 10,
-          border: "1px solid #cbd5e1",
-        }}
-      />
-    </div>
-
+<div>
+  <label>Job #</label>
+  <br />
+  <input
+    value={toolboxJobNumber}
+    onChange={(e) => setToolboxJobNumber(e.target.value)}
+    placeholder="Job number"
+    style={{
+      width: "100%",
+      padding: 12,
+      marginTop: 6,
+      borderRadius: 10,
+      border: "1px solid #cbd5e1",
+    }}
+  />
+</div>
+          
+       <div>
+ 
 <div>
   <label>Time</label>
   <br />
