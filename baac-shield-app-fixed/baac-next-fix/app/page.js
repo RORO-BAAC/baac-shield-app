@@ -1021,6 +1021,109 @@ status: "Open",
   }
 }
 
+async function saveToolboxTalk(statusValue = "Draft") {
+  setLoading(true);
+  setMessage("");
+
+  if (!toolboxProject || !toolboxDate || !toolboxSupervisor || !toolboxTopic) {
+    setMessage(
+      "Please complete required fields: Project, Date, Supervisor / Lead, and Toolbox Topics."
+    );
+    setLoading(false);
+    return;
+  }
+
+  try {
+    const uploadedPhotoUrls = await uploadPhotosToSupabase(toolboxPhotos);
+
+    const payload = {
+      project_name: toolboxProject,
+      superintendent: toolboxSuperintendent,
+      guest_visitor: toolboxGuestVisitor,
+      job_number: toolboxJobNumber,
+      talk_date: toolboxDate,
+      talk_time: toolboxTime,
+      weather: toolboxWeather,
+      location: toolboxLocation,
+      supervisor_name: toolboxSupervisor,
+      topic: toolboxTopic,
+      discussion_notes: toolboxDiscussionNotes,
+      daily_scope: toolboxDailyScope,
+      locates: toolboxLocates,
+      workers_fit_for_duty: toolboxWorkersFitForDuty,
+      workers_aware_rights: toolboxWorkersAwareRights,
+      muster_point: toolboxMusterPoint,
+      emergency_number: toolboxEmergencyNumber,
+      nearest_hospital: toolboxNearestHospital,
+      first_aid_attendants: toolboxFirstAidAttendants,
+      hazards_reviewed: toolboxHazardsReviewed,
+      controls_reviewed: toolboxControlsReviewed,
+      additional_hazards: toolboxAdditionalHazards,
+      other_considerations: toolboxOtherConsiderations,
+      supervisor_remarks: toolboxSupervisorRemarks,
+      attendees: toolboxAttendees,
+      photos: uploadedPhotoUrls.join(", "),
+      status: statusValue,
+      submitted_at: statusValue === "Submitted" ? new Date().toISOString() : null,
+    };
+
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/toolbox_talks`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        apikey: SUPABASE_KEY,
+        Authorization: `Bearer ${SUPABASE_KEY}`,
+        Prefer: "return=representation",
+      },
+      body: JSON.stringify(payload),
+    });
+
+    if (!res.ok) {
+      const text = await res.text();
+      throw new Error(text || "Toolbox talk save failed");
+    }
+
+    setToolboxProject("");
+    setToolboxSuperintendent("");
+    setToolboxGuestVisitor("");
+    setToolboxJobNumber("");
+    setToolboxDate("");
+    setToolboxTime("");
+    setToolboxWeather("");
+    setToolboxLocation("");
+    setToolboxSupervisor("");
+    setToolboxTopic("");
+    setToolboxDiscussionNotes("");
+    setToolboxDailyScope("");
+    setToolboxLocates("");
+    setToolboxWorkersFitForDuty("");
+    setToolboxWorkersAwareRights("");
+    setToolboxMusterPoint("");
+    setToolboxEmergencyNumber("");
+    setToolboxNearestHospital("");
+    setToolboxFirstAidAttendants("");
+    setToolboxHazardsReviewed("");
+    setToolboxControlsReviewed("");
+    setToolboxAdditionalHazards("");
+    setToolboxOtherConsiderations("");
+    setToolboxSupervisorRemarks("");
+    setToolboxAttendees([{ name: "", signature: "" }]);
+    setToolboxPhotos([]);
+
+    setMessage(
+      statusValue === "Submitted"
+        ? "Toolbox talk submitted."
+        : "Toolbox talk saved as draft."
+    );
+
+    await loadRecords();
+  } catch (error) {
+    setMessage(`Could not save toolbox talk: ${error.message}`);
+  } finally {
+    setLoading(false);
+  }
+}
+  
 async function closeCorAction(corId) {
   setLoading(true);
   setMessage("");
