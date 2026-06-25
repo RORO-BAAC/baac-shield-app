@@ -3081,6 +3081,23 @@ onClick={submitCorAction}
       </select>
     </div>
 
+       <div>
+  <label>Guest / Subcontractor / Visitor</label>
+  <br />
+  <input
+    value={toolboxGuestVisitor}
+    onChange={(e) => setToolboxGuestVisitor(e.target.value)}
+    placeholder="List any guests, subcontractors, or visitors"
+    style={{
+      width: "100%",
+      padding: 12,
+      marginTop: 6,
+      borderRadius: 10,
+      border: "1px solid #cbd5e1",
+    }}
+  />
+</div>   
+
     <div>
       <label>Date</label>
       <br />
