@@ -3027,6 +3027,237 @@ onClick={submitCorAction}
   </div>
 )}
 
+{activeTab === "toolbox" && (
+  <div
+    style={{
+      display: "grid",
+      gap: 14,
+      background: "white",
+      padding: 18,
+      borderRadius: 16,
+      boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
+    }}
+  >
+    <h2 style={{ marginTop: 0, marginBottom: 6 }}>
+      Tailgate / Toolbox Talk
+    </h2>
+
+    <div>
+      <label>Project</label>
+      <br />
+      <select
+        value={toolboxProject}
+        onChange={(e) => setToolboxProject(e.target.value)}
+        style={{
+          width: "100%",
+          padding: 12,
+          marginTop: 6,
+          borderRadius: 10,
+          border: "1px solid #cbd5e1",
+        }}
+      >
+        <option value="">Select a project</option>
+        {projects.map((project) => (
+          <option key={project.id} value={project.name}>
+            {project.name}
+          </option>
+        ))}
+      </select>
+    </div>
+
+    <div>
+      <label>Date</label>
+      <br />
+      <input
+        type="date"
+        value={toolboxDate}
+        onChange={(e) => setToolboxDate(e.target.value)}
+        style={{
+          width: "100%",
+          padding: 12,
+          marginTop: 6,
+          borderRadius: 10,
+          border: "1px solid #cbd5e1",
+        }}
+      />
+    </div>
+
+    <div>
+      <label>Location</label>
+      <br />
+      <input
+        value={toolboxLocation}
+        onChange={(e) => setToolboxLocation(e.target.value)}
+        placeholder="Site, yard, shop, or meeting location"
+        style={{
+          width: "100%",
+          padding: 12,
+          marginTop: 6,
+          borderRadius: 10,
+          border: "1px solid #cbd5e1",
+        }}
+      />
+    </div>
+
+    <div>
+      <label>Supervisor / Lead</label>
+      <br />
+      <input
+        value={toolboxSupervisor}
+        onChange={(e) => setToolboxSupervisor(e.target.value)}
+        placeholder="Person leading the talk"
+        style={{
+          width: "100%",
+          padding: 12,
+          marginTop: 6,
+          borderRadius: 10,
+          border: "1px solid #cbd5e1",
+        }}
+      />
+    </div>
+
+    <div>
+      <label>Topic</label>
+      <br />
+      <input
+        value={toolboxTopic}
+        onChange={(e) => setToolboxTopic(e.target.value)}
+        placeholder="Example: Line of fire, lifting, driving, PPE"
+        style={{
+          width: "100%",
+          padding: 12,
+          marginTop: 6,
+          borderRadius: 10,
+          border: "1px solid #cbd5e1",
+        }}
+      />
+    </div>
+
+    <div>
+      <label>Discussion Notes</label>
+      <br />
+      <textarea
+        value={toolboxDiscussionNotes}
+        onChange={(e) => setToolboxDiscussionNotes(e.target.value)}
+        rows="4"
+        placeholder="What was discussed?"
+        style={{
+          width: "100%",
+          padding: 12,
+          marginTop: 6,
+          borderRadius: 10,
+          border: "1px solid #cbd5e1",
+        }}
+      />
+    </div>
+
+    <div>
+      <label>Hazards Reviewed</label>
+      <br />
+      <textarea
+        value={toolboxHazardsReviewed}
+        onChange={(e) => setToolboxHazardsReviewed(e.target.value)}
+        rows="3"
+        placeholder="List hazards discussed with the crew"
+        style={{
+          width: "100%",
+          padding: 12,
+          marginTop: 6,
+          borderRadius: 10,
+          border: "1px solid #cbd5e1",
+        }}
+      />
+    </div>
+
+    <div>
+      <label>Controls Reviewed</label>
+      <br />
+      <textarea
+        value={toolboxControlsReviewed}
+        onChange={(e) => setToolboxControlsReviewed(e.target.value)}
+        rows="3"
+        placeholder="List controls, permits, PPE, procedures, or critical risk shields reviewed"
+        style={{
+          width: "100%",
+          padding: 12,
+          marginTop: 6,
+          borderRadius: 10,
+          border: "1px solid #cbd5e1",
+        }}
+      />
+    </div>
+
+    <div
+      style={{
+        padding: 14,
+        border: "1px solid #e2e8f0",
+        borderRadius: 12,
+        background: "#f8fafc",
+      }}
+    >
+      <h3 style={{ marginTop: 0 }}>Workers Present</h3>
+
+      {toolboxAttendees.map((attendee, index) => (
+        <div key={index} style={{ marginBottom: 12 }}>
+          <label>Worker {index + 1}</label>
+          <input
+            value={attendee.name}
+            onChange={(e) => {
+              const updated = [...toolboxAttendees];
+              updated[index].name = e.target.value;
+              setToolboxAttendees(updated);
+            }}
+            placeholder="Worker name"
+            style={{
+              width: "100%",
+              padding: 12,
+              marginTop: 6,
+              borderRadius: 10,
+              border: "1px solid #cbd5e1",
+            }}
+          />
+        </div>
+      ))}
+
+      <button
+        type="button"
+        onClick={() =>
+          setToolboxAttendees((prev) => [
+            ...prev,
+            { name: "", signature: "" },
+          ])
+        }
+        style={{
+          padding: 10,
+          border: "1px solid #94a3b8",
+          borderRadius: 8,
+          background: "white",
+          cursor: "pointer",
+          fontWeight: "bold",
+        }}
+      >
+        Add Worker
+      </button>
+    </div>
+
+    <button
+      type="button"
+      disabled={loading}
+      style={{
+        padding: 12,
+        background: "#123d82",
+        color: "white",
+        border: "none",
+        borderRadius: 10,
+        fontWeight: "bold",
+        cursor: "pointer",
+      }}
+    >
+      Save Toolbox Talk
+    </button>
+  </div>
+)}
+
 {activeTab === "hazard" && (
   <div
     style={{
