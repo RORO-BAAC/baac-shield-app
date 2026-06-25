@@ -3585,6 +3585,30 @@ onClick={submitCorAction}
             }}
           />
         </div>
+
+<div style={{ marginTop: 8 }}>
+  <label>Worker Signature</label>
+
+  <AttendeeSignatureBox
+    onSave={(signatureData) => {
+      const updated = [...toolboxAttendees];
+      updated[index].signature = signatureData;
+      setToolboxAttendees(updated);
+    }}
+    onClear={() => {
+      const updated = [...toolboxAttendees];
+      updated[index].signature = "";
+      setToolboxAttendees(updated);
+    }}
+  />
+
+  {attendee.signature && (
+    <div style={{ marginTop: 6, color: "#166534", fontSize: 13 }}>
+      Signature captured
+    </div>
+  )}
+</div>
+
       ))}
 
       <button
