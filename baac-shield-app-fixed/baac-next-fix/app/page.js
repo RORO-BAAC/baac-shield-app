@@ -1165,7 +1165,7 @@ async function saveToolboxTalk(statusValue = "Draft") {
     setToolboxSupervisorRemarks("");
     setToolboxAttendees([{ name: "", signature: "" }]);
     setToolboxPhotos([]);
-
+setToolboxResetKey((prev) => prev + 1);
     setMessage(
       statusValue === "Submitted"
         ? "Toolbox talk submitted."
