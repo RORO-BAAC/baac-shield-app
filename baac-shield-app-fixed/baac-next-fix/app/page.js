@@ -4966,6 +4966,8 @@ setHazardDueDate(report.due_date || "");
 >
           <h2 style={{ margin: 0 }}>Safety Dashboard</h2>
 
+ <h3 style={{ marginTop: 0 }}>Toolbox Talks Register</h3>
+
              <div
   style={{
     background: "white",
