@@ -977,6 +977,63 @@ status: "Open",
     setLoading(false);
   }
 }
+
+async function closeCorAction(corId) {
+  setLoading(true);
+  setMessage("");
+
+  try {
+    let uploadedAfterPhotoUrls = [];
+
+    if (corAfterPhotos[corId] && corAfterPhotos[corId].length > 0) {
+      setMessage("Uploading COR closeout photos...");
+      uploadedAfterPhotoUrls = await uploadPhotosToSupabase(corAfterPhotos[corId]);
+    }
+
+    const payload = {
+      status: "Closed",
+      closeout_notes: corCloseoutNotes[corId] || "",
+      after_photos: uploadedAfterPhotoUrls.join(", "),
+      closed_date: new Date().toISOString().split("T")[0],
+    };
+
+    const res = await fetch(
+      `${SUPABASE_URL}/rest/v1/cor_corrective_actions?id=eq.${corId}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          apikey: SUPABASE_KEY,
+          Authorization: `Bearer ${SUPABASE_KEY}`,
+          Prefer: "return=representation",
+        },
+        body: JSON.stringify(payload),
+      }
+    );
+
+    if (!res.ok) {
+      const text = await res.text();
+      throw new Error(text || "COR closeout failed");
+    }
+
+    setCorAfterPhotos((prev) => ({
+      ...prev,
+      [corId]: [],
+    }));
+
+    setCorCloseoutNotes((prev) => ({
+      ...prev,
+      [corId]: "",
+    }));
+
+    setMessage("COR corrective action closed.");
+    await loadRecords();
+  } catch (error) {
+    setMessage(`Could not close COR corrective action: ${error.message}`);
+  } finally {
+    setLoading(false);
+  }
+}
   
   async function markRecordApproved(recordId) {
   setLoading(true);
