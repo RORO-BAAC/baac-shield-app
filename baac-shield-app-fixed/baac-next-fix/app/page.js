@@ -63,6 +63,61 @@ function SignatureBox({ sigRef, onSave }) {
   );
 }
 
+function AttendeeSignatureBox({ onSave, onClear }) {
+  const attendeeSigRef = useRef(null);
+
+  return (
+    <div style={{ marginTop: 8 }}>
+      <div
+        style={{
+          border: "2px solid #cbd5e1",
+          borderRadius: 10,
+          background: "white",
+          overflow: "hidden",
+        }}
+      >
+        <SignatureCanvas
+          ref={attendeeSigRef}
+          penColor="black"
+          onEnd={() => {
+            if (attendeeSigRef.current && !attendeeSigRef.current.isEmpty()) {
+              onSave(attendeeSigRef.current.toDataURL("image/png"));
+            }
+          }}
+          canvasProps={{
+            width: 350,
+            height: 140,
+            style: {
+              width: "100%",
+              maxWidth: 350,
+              height: 140,
+              display: "block",
+            },
+          }}
+        />
+      </div>
+
+      <button
+        type="button"
+        onClick={() => {
+          attendeeSigRef.current?.clear();
+          onClear();
+        }}
+        style={{
+          marginTop: 8,
+          padding: "8px 12px",
+          borderRadius: 8,
+          border: "1px solid #cbd5e1",
+          background: "white",
+          cursor: "pointer",
+        }}
+      >
+        Clear Worker Signature
+      </button>
+    </div>
+  );
+}
+
 export default function Home() {
   const [worker, setWorker] = useState("");
   const [workerSignature, setWorkerSignature] = useState("");
