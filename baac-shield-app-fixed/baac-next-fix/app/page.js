@@ -3305,7 +3305,7 @@ onClick={submitCorAction}
 </div>
         
     <div>
-      <label>Topic</label>
+<label>Toolbox Topics</label>
       <br />
       <input
         value={toolboxTopic}
@@ -3340,7 +3340,7 @@ onClick={submitCorAction}
     </div>
 
     <div>
-      <label>Hazards Reviewed</label>
+   <label>Hazards On Site</label>
       <br />
       <textarea
         value={toolboxHazardsReviewed}
@@ -3358,7 +3358,7 @@ onClick={submitCorAction}
     </div>
 
     <div>
-      <label>Controls Reviewed</label>
+ <label>Hazard Controls</label>
       <br />
       <textarea
         value={toolboxControlsReviewed}
@@ -3375,6 +3375,60 @@ onClick={submitCorAction}
       />
     </div>
 
+<div>
+  <label>Additional Hazards</label>
+  <br />
+  <textarea
+    value={toolboxAdditionalHazards}
+    onChange={(e) => setToolboxAdditionalHazards(e.target.value)}
+    rows="3"
+    placeholder="List any additional hazards identified during the meeting"
+    style={{
+      width: "100%",
+      padding: 12,
+      marginTop: 6,
+      borderRadius: 10,
+      border: "1px solid #cbd5e1",
+    }}
+  />
+</div>
+
+<div>
+  <label>Other Considerations to Review</label>
+  <br />
+  <textarea
+    value={toolboxOtherConsiderations}
+    onChange={(e) => setToolboxOtherConsiderations(e.target.value)}
+    rows="3"
+    placeholder="Permits, equipment, access, traffic, environment, public safety, subcontractors, or other items"
+    style={{
+      width: "100%",
+      padding: 12,
+      marginTop: 6,
+      borderRadius: 10,
+      border: "1px solid #cbd5e1",
+    }}
+  />
+</div>
+
+<div>
+  <label>Supervisor Remarks</label>
+  <br />
+  <textarea
+    value={toolboxSupervisorRemarks}
+    onChange={(e) => setToolboxSupervisorRemarks(e.target.value)}
+    rows="3"
+    placeholder="Supervisor remarks or follow-up notes"
+    style={{
+      width: "100%",
+      padding: 12,
+      marginTop: 6,
+      borderRadius: 10,
+      border: "1px solid #cbd5e1",
+    }}
+  />
+</div>
+        
     <div
       style={{
         padding: 14,
