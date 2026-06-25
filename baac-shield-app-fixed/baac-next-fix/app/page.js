@@ -2930,35 +2930,25 @@ onClick={submitCorAction}
       }}
     />
 
-    <input
-      ref={corAfterFileRef}
-      type="file"
-      multiple
-      accept="image/*"
-      style={{ display: "none" }}
-      onChange={(e) =>
-        setCorAfterPhotos((prev) => ({
-          ...prev,
-          [cor.id]: Array.from(e.target.files || []),
-        }))
-      }
-    />
+   <label style={{ display: "block", fontWeight: "bold", marginBottom: 6 }}>
+  After / Closeout Photos
+</label>
 
-    <button
-      type="button"
-      onClick={() => corAfterFileRef.current?.click()}
-      style={{
-        padding: 10,
-        border: "1px solid #94a3b8",
-        borderRadius: 8,
-        background: "white",
-        cursor: "pointer",
-        fontWeight: "bold",
-        marginRight: 10,
-      }}
-    >
-      Upload After Photos
-    </button>
+<input
+  type="file"
+  multiple
+  accept="image/*"
+  onChange={(e) =>
+    setCorAfterPhotos((prev) => ({
+      ...prev,
+      [cor.id]: Array.from(e.target.files || []),
+    }))
+  }
+  style={{
+    display: "block",
+    marginBottom: 10,
+  }}
+/>
 
     <button
       type="button"
