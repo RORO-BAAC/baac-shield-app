@@ -3646,7 +3646,6 @@ onClick={() => saveToolboxTalk("Draft")}
         cursor: "pointer",
       }}
     >
-
 <div
   style={{
     padding: 14,
@@ -3675,7 +3674,6 @@ onClick={() => saveToolboxTalk("Draft")}
     </div>
   )}
 </div>
-
       Save Toolbox Talk
     </button>
   </div>
