@@ -2846,6 +2846,92 @@ onClick={submitCorAction}
     </div>
   </div>
 )}
+
+  {(cor.status || "Open") !== "Closed" && (
+  <div
+    style={{
+      marginTop: 16,
+      paddingTop: 12,
+      borderTop: "1px solid #e2e8f0",
+    }}
+  >
+    <label style={{ display: "block", fontWeight: "bold", marginBottom: 6 }}>
+      Closeout Notes
+    </label>
+
+    <textarea
+      value={corCloseoutNotes[cor.id] || ""}
+      onChange={(e) =>
+        setCorCloseoutNotes((prev) => ({
+          ...prev,
+          [cor.id]: e.target.value,
+        }))
+      }
+      placeholder="Describe how this corrective action was completed..."
+      style={{
+        width: "100%",
+        minHeight: 80,
+        padding: 10,
+        borderRadius: 8,
+        border: "1px solid #cbd5e1",
+        marginBottom: 10,
+      }}
+    />
+
+    <input
+      ref={corAfterFileRef}
+      type="file"
+      multiple
+      accept="image/*"
+      style={{ display: "none" }}
+      onChange={(e) =>
+        setCorAfterPhotos((prev) => ({
+          ...prev,
+          [cor.id]: Array.from(e.target.files || []),
+        }))
+      }
+    />
+
+    <button
+      type="button"
+      onClick={() => corAfterFileRef.current?.click()}
+      style={{
+        padding: 10,
+        border: "1px solid #94a3b8",
+        borderRadius: 8,
+        background: "white",
+        cursor: "pointer",
+        fontWeight: "bold",
+        marginRight: 10,
+      }}
+    >
+      Upload After Photos
+    </button>
+
+    <button
+      type="button"
+      onClick={() => closeCorAction(cor.id)}
+      disabled={loading}
+      style={{
+        padding: 10,
+        border: "none",
+        borderRadius: 8,
+        background: "#16a34a",
+        color: "white",
+        cursor: "pointer",
+        fontWeight: "bold",
+      }}
+    >
+      Close COR
+    </button>
+
+    {corAfterPhotos[cor.id] && corAfterPhotos[cor.id].length > 0 && (
+      <div style={{ marginTop: 10, color: "#475569", fontSize: 13 }}>
+        Selected after photos: {corAfterPhotos[cor.id].length}
+      </div>
+    )}
+  </div>
+)}
             
             <div style={{ marginTop: 8, color: "#64748b", fontSize: 13 }}>
   Photo URL: {cor.before_photos || "No before photo found"}
