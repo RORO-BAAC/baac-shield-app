@@ -125,6 +125,20 @@ const [dueDate, setDueDate] = useState("");
   const [records, setRecords] = useState([]);
   const [hazardReports, setHazardReports] = useState([]);
   const [corActions, setCorActions] = useState([]);
+  
+  const [toolboxTalks, setToolboxTalks] = useState([]);
+const [toolboxProject, setToolboxProject] = useState("");
+const [toolboxDate, setToolboxDate] = useState("");
+const [toolboxLocation, setToolboxLocation] = useState("");
+const [toolboxSupervisor, setToolboxSupervisor] = useState("");
+const [toolboxTopic, setToolboxTopic] = useState("");
+const [toolboxDiscussionNotes, setToolboxDiscussionNotes] = useState("");
+const [toolboxHazardsReviewed, setToolboxHazardsReviewed] = useState("");
+const [toolboxControlsReviewed, setToolboxControlsReviewed] = useState("");
+const [toolboxAttendees, setToolboxAttendees] = useState([
+  { name: "", signature: "" },
+]);
+const [toolboxPhotos, setToolboxPhotos] = useState([]);
   const projectCounts = records.reduce((acc, record) => {
   const project = record.project_name || "Unknown";
   acc[project] = (acc[project] || 0) + 1;
