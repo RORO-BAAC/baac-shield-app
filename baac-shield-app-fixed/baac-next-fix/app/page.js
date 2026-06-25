@@ -372,6 +372,21 @@ if (corRes.ok) {
   const corData = await corRes.json();
   setCorActions(corData);
 }
+
+const toolboxRes = await fetch(
+  `${SUPABASE_URL}/rest/v1/toolbox_talks?select=*&order=created_at.desc`,
+  {
+    headers: {
+      apikey: SUPABASE_KEY,
+      Authorization: `Bearer ${SUPABASE_KEY}`,
+    },
+  }
+);
+
+if (toolboxRes.ok) {
+  const toolboxData = await toolboxRes.json();
+  setToolboxTalks(toolboxData);
+}
       
     } catch (error) {
       setMessage(`Could not load records from database: ${error.message}`);
