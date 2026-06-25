@@ -4966,6 +4966,118 @@ setHazardDueDate(report.due_date || "");
 >
           <h2 style={{ margin: 0 }}>Safety Dashboard</h2>
 
+ {(role === "admin" || role === "supervisor") && (
+  <div
+    style={{
+      marginTop: 18,
+      marginBottom: 18,
+      padding: 16,
+      border: "1px solid #e2e8f0",
+      borderRadius: 12,
+      background: "#f8fafc",
+    }}
+  >
+    <h3 style={{ marginTop: 0 }}>Toolbox Talks Register</h3>
+
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr",
+        gap: 12,
+        marginBottom: 14,
+      }}
+    >
+      <div>
+        <label>Start Date</label>
+        <input
+          type="date"
+          value={toolboxStartDateFilter}
+          onChange={(e) => setToolboxStartDateFilter(e.target.value)}
+          style={{
+            width: "100%",
+            padding: 10,
+            borderRadius: 8,
+            border: "1px solid #cbd5e1",
+            marginTop: 4,
+          }}
+        />
+      </div>
+
+      <div>
+        <label>End Date</label>
+        <input
+          type="date"
+          value={toolboxEndDateFilter}
+          onChange={(e) => setToolboxEndDateFilter(e.target.value)}
+          style={{
+            width: "100%",
+            padding: 10,
+            borderRadius: 8,
+            border: "1px solid #cbd5e1",
+            marginTop: 4,
+          }}
+        />
+      </div>
+    </div>
+
+    {filteredToolboxTalks.length === 0 ? (
+      <p style={{ color: "#475569", marginBottom: 0 }}>
+        No toolbox talks found for this date range.
+      </p>
+    ) : (
+      <div style={{ display: "grid", gap: 12 }}>
+        {filteredToolboxTalks.map((talk) => (
+          <div
+            key={talk.id}
+            style={{
+              padding: 12,
+              border: "1px solid #cbd5e1",
+              borderRadius: 10,
+              background: "white",
+            }}
+          >
+            <div style={{ fontWeight: "bold", marginBottom: 4 }}>
+              {talk.project_name || "Unknown Project"}
+            </div>
+
+            <div style={{ fontSize: 13, color: "#475569", marginBottom: 4 }}>
+              Date: {talk.talk_date || "-"} | Time: {talk.talk_time || "-"}
+            </div>
+
+            <div style={{ fontSize: 13, color: "#475569", marginBottom: 4 }}>
+              Supervisor: {talk.supervisor_name || "-"}
+            </div>
+
+            <div style={{ fontSize: 13, color: "#475569", marginBottom: 4 }}>
+              Location: {talk.location || "-"}
+            </div>
+
+            <div style={{ fontSize: 13, color: "#475569", marginBottom: 8 }}>
+              Topic: {talk.topic || "-"}
+            </div>
+
+            <button
+              type="button"
+              onClick={() => downloadToolboxPdf(talk)}
+              style={{
+                padding: "8px 12px",
+                background: "#123d82",
+                color: "white",
+                border: "none",
+                borderRadius: 8,
+                fontWeight: "bold",
+                cursor: "pointer",
+              }}
+            >
+              Download PDF
+            </button>
+          </div>
+        ))}
+      </div>
+    )}
+  </div>
+)}
+
  <h3 style={{ marginTop: 0 }}>Toolbox Talks Register</h3>
 
              <div
