@@ -108,6 +108,8 @@ const [corClosedDate, setCorClosedDate] = useState("");
 const [corCloseoutNotes, setCorCloseoutNotes] = useState("");
 
 const [corBeforePhotos, setCorBeforePhotos] = useState([]);
+ const [corAfterPhotos, setCorAfterPhotos] = useState({});
+const [corCloseoutNotes, setCorCloseoutNotes] = useState({}); 
 const [corAfterPhotos, setCorAfterPhotos] = useState([]);
   const [hazardActionId, setHazardActionId] = useState(null);
 const [correctiveActionText, setCorrectiveActionText] = useState("");
