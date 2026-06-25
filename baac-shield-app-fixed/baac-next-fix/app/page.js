@@ -3611,11 +3611,13 @@ onClick={submitCorAction}
     onSave={(signatureData) => {
       const updated = [...toolboxAttendees];
       updated[index].signature = signatureData;
+     updated[index].signedAt = new Date().toISOString();
       setToolboxAttendees(updated);
     }}
     onClear={() => {
       const updated = [...toolboxAttendees];
       updated[index].signature = "";
+     updated[index].signedAt = "";
       setToolboxAttendees(updated);
     }}
   />
