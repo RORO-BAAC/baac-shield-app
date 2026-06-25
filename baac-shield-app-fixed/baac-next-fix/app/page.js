@@ -3217,7 +3217,24 @@ onClick={submitCorAction}
     }}
   />
 </div>
-          
+
+<div>
+  <label>Date</label>
+  <br />
+  <input
+    type="date"
+    value={toolboxDate}
+    onChange={(e) => setToolboxDate(e.target.value)}
+    style={{
+      width: "100%",
+      padding: 12,
+      marginTop: 6,
+      borderRadius: 10,
+      border: "1px solid #cbd5e1",
+    }}
+  />
+</div>
+    
     <div>
   <label>Time</label>
   <br />
