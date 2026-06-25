@@ -3586,6 +3586,24 @@ onClick={submitCorAction}
               border: "1px solid #cbd5e1",
             }}
           />
+
+<input
+  value={attendee.role || ""}
+  onChange={(e) => {
+    const updated = [...toolboxAttendees];
+    updated[index].role = e.target.value;
+    setToolboxAttendees(updated);
+  }}
+  placeholder="Worker role / position"
+  style={{
+    width: "100%",
+    padding: 12,
+    marginTop: 8,
+    borderRadius: 10,
+    border: "1px solid #cbd5e1",
+  }}
+/>
+           
 <div style={{ marginTop: 8 }}>
   <label>Worker Signature</label>
 
