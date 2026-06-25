@@ -3646,6 +3646,36 @@ onClick={() => saveToolboxTalk("Draft")}
         cursor: "pointer",
       }}
     >
+
+<div
+  style={{
+    padding: 14,
+    border: "1px solid #e2e8f0",
+    borderRadius: 12,
+    background: "#f8fafc",
+  }}
+>
+  <h3 style={{ marginTop: 0 }}>Toolbox Photos / Attachments</h3>
+
+  <input
+    type="file"
+    multiple
+    accept="image/*"
+    onChange={(e) => setToolboxPhotos(Array.from(e.target.files || []))}
+    style={{
+      display: "block",
+      marginTop: 8,
+      marginBottom: 10,
+    }}
+  />
+
+  {toolboxPhotos.length > 0 && (
+    <div style={{ color: "#475569", fontSize: 13 }}>
+      Selected toolbox photos: {toolboxPhotos.length}
+    </div>
+  )}
+</div>
+
       Save Toolbox Talk
     </button>
   </div>
