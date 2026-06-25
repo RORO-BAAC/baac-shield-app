@@ -3631,21 +3631,6 @@ onClick={submitCorAction}
         Add Worker
       </button>
     </div>
-
-    <button
-      type="button"
-onClick={() => saveToolboxTalk("Draft")}
-      disabled={loading}
-      style={{
-        padding: 12,
-        background: "#123d82",
-        color: "white",
-        border: "none",
-        borderRadius: 10,
-        fontWeight: "bold",
-        cursor: "pointer",
-      }}
-    >
 <div
   style={{
     padding: 14,
@@ -3674,6 +3659,21 @@ onClick={() => saveToolboxTalk("Draft")}
     </div>
   )}
 </div>
+    <button
+      type="button"
+onClick={() => saveToolboxTalk("Draft")}
+      disabled={loading}
+      style={{
+        padding: 12,
+        background: "#123d82",
+        color: "white",
+        border: "none",
+        borderRadius: 10,
+        fontWeight: "bold",
+        cursor: "pointer",
+      }}
+    >
+
       Save Toolbox Talk
     </button>
   </div>
