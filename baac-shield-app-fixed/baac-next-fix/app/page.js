@@ -2195,7 +2195,30 @@ const matchesDate =
       (dateFilter === "Last30" && submittedDate && submittedDate >= thirtyDaysAgo);
   return matchesSearch && matchesProject && matchesDate;
 });
-  
+ 
+  const filteredToolboxTalks = toolboxTalks.filter((talk) => {
+  const talkDate = talk.talk_date
+    ? new Date(`${talk.talk_date}T00:00:00`)
+    : talk.created_at
+    ? new Date(talk.created_at)
+    : null;
+
+  if (!talkDate) return false;
+
+  const startDate = toolboxStartDateFilter
+    ? new Date(`${toolboxStartDateFilter}T00:00:00`)
+    : null;
+
+  const endDate = toolboxEndDateFilter
+    ? new Date(`${toolboxEndDateFilter}T23:59:59`)
+    : null;
+
+  return (
+    (!startDate || talkDate >= startDate) &&
+    (!endDate || talkDate <= endDate)
+  );
+});
+ 
   if (showSplash) {
   return (
     <main
