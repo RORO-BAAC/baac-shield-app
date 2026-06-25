@@ -3383,6 +3383,61 @@ onClick={submitCorAction}
         background: "#f8fafc",
       }}
     >
+
+<div>
+  <label>Are Workers Fit For Duty?</label>
+  <br />
+  <select
+    value={toolboxWorkersFitForDuty}
+    onChange={(e) => setToolboxWorkersFitForDuty(e.target.value)}
+    style={{
+      width: "100%",
+      padding: 12,
+      marginTop: 6,
+      borderRadius: 10,
+      border: "1px solid #cbd5e1",
+    }}
+  >
+    <option value="">Select</option>
+    <option>Yes</option>
+    <option>No</option>
+    <option>N/A</option>
+  </select>
+</div>
+
+<div>
+  <label>Are Workers Aware of 3 Basic Rights?</label>
+  <br />
+  <select
+    value={toolboxWorkersAwareRights}
+    onChange={(e) => setToolboxWorkersAwareRights(e.target.value)}
+    style={{
+      width: "100%",
+      padding: 12,
+      marginTop: 6,
+      borderRadius: 10,
+      border: "1px solid #cbd5e1",
+    }}
+  >
+    <option value="">Select</option>
+    <option>Yes</option>
+    <option>No</option>
+    <option>N/A</option>
+  </select>
+</div>
+
+<div
+  style={{
+    padding: 12,
+    border: "1px solid #bfdbfe",
+    borderRadius: 10,
+    background: "#eff6ff",
+    color: "#0f172a",
+  }}
+>
+  <strong>3 Basic Rights:</strong> Right to Know, Right to Participate, and Right to Refuse Unsafe Work.
+</div>
+      
       <h3 style={{ marginTop: 0 }}>Workers Present</h3>
 
       {toolboxAttendees.map((attendee, index) => (
