@@ -2933,9 +2933,6 @@ onClick={submitCorAction}
   </div>
 )}
             
-            <div style={{ marginTop: 8, color: "#64748b", fontSize: 13 }}>
-  Photo URL: {cor.before_photos || "No before photo found"}
-</div>
         </div>
       ))}
     </div>
