@@ -2847,6 +2847,58 @@ onClick={submitCorAction}
   </div>
 )}
 
+{cor.status === "Closed" && (
+  <div
+    style={{
+      marginTop: 12,
+      paddingTop: 12,
+      borderTop: "1px solid #e2e8f0",
+    }}
+  >
+    <strong>Closeout Notes:</strong>{" "}
+    {cor.closeout_notes || "-"}
+
+    <div style={{ marginTop: 8 }}>
+      <strong>Closed Date:</strong> {cor.closed_date || "-"}
+    </div>
+
+    {cor.after_photos && String(cor.after_photos).trim() !== "" && (
+      <div style={{ marginTop: 12 }}>
+        <strong>After Photos:</strong>
+
+        <div
+          style={{
+            display: "flex",
+            gap: 10,
+            flexWrap: "wrap",
+            marginTop: 8,
+          }}
+        >
+          {String(cor.after_photos)
+            .split(",")
+            .map((url) => url.trim())
+            .filter(Boolean)
+            .map((url, index) => (
+              <a key={index} href={url} target="_blank" rel="noreferrer">
+                <img
+                  src={url}
+                  alt={`COR after photo ${index + 1}`}
+                  style={{
+                    width: 90,
+                    height: 90,
+                    objectFit: "cover",
+                    borderRadius: 8,
+                    border: "1px solid #cbd5e1",
+                  }}
+                />
+              </a>
+            ))}
+        </div>
+      </div>
+    )}
+  </div>
+)}
+
   {(cor.status || "Open") !== "Closed" && (
   <div
     style={{
