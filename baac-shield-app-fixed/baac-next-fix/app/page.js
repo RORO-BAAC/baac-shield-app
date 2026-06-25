@@ -3538,6 +3538,7 @@ onClick={submitCorAction}
 
     <button
       type="button"
+onClick={() => saveToolboxTalk("Draft")}
       disabled={loading}
       style={{
         padding: 12,
