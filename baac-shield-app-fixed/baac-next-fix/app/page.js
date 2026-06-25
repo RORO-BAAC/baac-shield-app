@@ -207,7 +207,7 @@ const [toolboxDiscussionNotes, setToolboxDiscussionNotes] = useState("");
 const [toolboxHazardsReviewed, setToolboxHazardsReviewed] = useState("");
 const [toolboxControlsReviewed, setToolboxControlsReviewed] = useState("");
 const [toolboxAttendees, setToolboxAttendees] = useState([
-  { name: "", signature: "" },
+{ name: "", role: "", signature: "", signedAt: "" },
 ]);
 const [toolboxPhotos, setToolboxPhotos] = useState([]);
  const [toolboxResetKey, setToolboxResetKey] = useState(0);
@@ -3618,7 +3618,7 @@ onClick={submitCorAction}
         onClick={() =>
           setToolboxAttendees((prev) => [
             ...prev,
-            { name: "", signature: "" },
+           { name: "", role: "", signature: "", signedAt: "" },
           ])
         }
         style={{
