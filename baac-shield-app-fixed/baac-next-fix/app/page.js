@@ -3204,6 +3204,7 @@ onClick={submitCorAction}
 
 {activeTab === "toolbox" && (
   <div
+   key={toolboxResetKey}
     style={{
       display: "grid",
       gap: 14,
