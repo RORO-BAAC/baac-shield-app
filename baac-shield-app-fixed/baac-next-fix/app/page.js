@@ -211,6 +211,12 @@ const [toolboxAttendees, setToolboxAttendees] = useState([
 ]);
 const [toolboxPhotos, setToolboxPhotos] = useState([]);
  const [toolboxResetKey, setToolboxResetKey] = useState(0);
+ const [toolboxStartDateFilter, setToolboxStartDateFilter] = useState(
+  new Date().toISOString().split("T")[0]
+);
+const [toolboxEndDateFilter, setToolboxEndDateFilter] = useState(
+  new Date().toISOString().split("T")[0]
+);
   const projectCounts = records.reduce((acc, record) => {
   const project = record.project_name || "Unknown";
   acc[project] = (acc[project] || 0) + 1;
