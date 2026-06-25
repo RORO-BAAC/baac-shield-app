@@ -2223,7 +2223,23 @@ Signed in as: {user?.email} · Role: {role}
 >
   COR Corrective Actions
 </button>
-      
+
+<button
+  type="button"
+  onClick={() => setActiveTab("toolbox")}
+  style={{
+    padding: "10px 14px",
+    borderRadius: 10,
+    border: "1px solid #cbd5e1",
+    background: activeTab === "toolbox" ? "#123d82" : "white",
+    color: activeTab === "toolbox" ? "white" : "#0f172a",
+    fontWeight: "bold",
+    cursor: "pointer",
+  }}
+>
+  Tailgate / Toolbox Talk
+</button>
+    
 <button
   type="button"
  onClick={() => requestProtectedTab("supervisor")}
