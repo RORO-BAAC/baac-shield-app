@@ -1125,6 +1125,116 @@ status: "Open",
   }
 }
 
+async function saveRpasOperation(statusValue = "Draft") {
+  setLoading(true);
+  setMessage("");
+
+  if (!rpasProject || !rpasDate || !rpasPilot || !rpasMakeModel || !rpasLocation) {
+    setMessage(
+      "Please complete required fields: Project, Date, Pilot in Command, RPAS Make / Model, and Flight Location."
+    );
+    setLoading(false);
+    return;
+  }
+
+  try {
+    const uploadedPhotoUrls = await uploadPhotosToSupabase(rpasPhotos);
+
+    const payload = {
+      project_name: rpasProject,
+      flight_date: rpasDate,
+      pilot_in_command: rpasPilot,
+      visual_observer: rpasObserver,
+
+      rpas_make_model: rpasMakeModel,
+      rpas_registration: rpasRegistration,
+      operation_type: rpasOperationType,
+      flight_location: rpasLocation,
+
+      airspace_checked: rpasAirspaceChecked,
+      weather_checked: rpasWeatherChecked,
+      site_survey_complete: rpasSiteSurveyComplete,
+      emergency_procedure_reviewed: rpasEmergencyReviewed,
+
+      battery_condition_checked: rpasBatteryChecked,
+      propellers_airframe_checked: rpasAirframeChecked,
+      controller_firmware_gps_checked: rpasControllerChecked,
+      crew_briefing_complete: rpasCrewBriefingComplete,
+
+      preflight_notes: rpasPreflightNotes,
+      preflight_signature: rpasPreflightSignature,
+
+      postflight_condition: rpasPostflightCondition,
+      incidents_damage_abnormalities: rpasIncidentsDamage,
+      battery_logs_maintenance_notes: rpasBatteryLogs,
+      postflight_notes: rpasPostflightNotes,
+      postflight_signature: rpasPostflightSignature,
+
+      photos: uploadedPhotoUrls.join(", "),
+      status: statusValue,
+      submitted_at: statusValue === "Submitted" ? new Date().toISOString() : null,
+    };
+
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/rpas_operations`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        apikey: SUPABASE_KEY,
+        Authorization: `Bearer ${SUPABASE_KEY}`,
+        Prefer: "return=representation",
+      },
+      body: JSON.stringify(payload),
+    });
+
+    if (!res.ok) {
+      const text = await res.text();
+      throw new Error(text || "RPAS operation save failed");
+    }
+
+    setRpasProject("");
+    setRpasDate("");
+    setRpasPilot("");
+    setRpasObserver("");
+    setRpasMakeModel("");
+    setRpasRegistration("");
+    setRpasOperationType("");
+    setRpasLocation("");
+
+    setRpasAirspaceChecked("");
+    setRpasWeatherChecked("");
+    setRpasSiteSurveyComplete("");
+    setRpasEmergencyReviewed("");
+
+    setRpasBatteryChecked("");
+    setRpasAirframeChecked("");
+    setRpasControllerChecked("");
+    setRpasCrewBriefingComplete("");
+
+    setRpasPreflightNotes("");
+    setRpasPreflightSignature("");
+
+    setRpasPostflightCondition("");
+    setRpasIncidentsDamage("");
+    setRpasBatteryLogs("");
+    setRpasPostflightNotes("");
+    setRpasPostflightSignature("");
+
+    setRpasPhotos([]);
+
+    setMessage(
+      statusValue === "Submitted"
+        ? "RPAS operation checklist submitted."
+        : "RPAS operation checklist saved as draft."
+    );
+
+    await loadRecords();
+  } catch (error) {
+    setMessage(`Could not save RPAS operation checklist: ${error.message}`);
+  } finally {
+    setLoading(false);
+  }
+}
+ 
 async function saveToolboxTalk(statusValue = "Draft") {
   setLoading(true);
   setMessage("");
