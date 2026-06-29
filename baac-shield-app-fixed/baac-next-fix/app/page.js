@@ -5221,7 +5221,23 @@ setHazardDueDate(report.due_date || "");
         />
       </div>
     </div>
-
+<button
+  type="button"
+  onClick={downloadFilteredToolboxPdfs}
+  disabled={filteredToolboxTalks.length === 0}
+  style={{
+    padding: "10px 12px",
+    background: filteredToolboxTalks.length === 0 ? "#94a3b8" : "#123d82",
+    color: "white",
+    border: "none",
+    borderRadius: 8,
+    fontWeight: "bold",
+    cursor: filteredToolboxTalks.length === 0 ? "not-allowed" : "pointer",
+    marginBottom: 14,
+  }}
+>
+  Download All Toolbox Talks in Date Range
+</button>
     {filteredToolboxTalks.length === 0 ? (
       <p style={{ color: "#475569", marginBottom: 0 }}>
         No toolbox talks found for this date range.
