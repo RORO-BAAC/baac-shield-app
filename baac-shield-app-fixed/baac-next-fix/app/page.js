@@ -479,7 +479,20 @@ if (corRes.ok) {
   const corData = await corRes.json();
   setCorActions(corData);
 }
+const rpasRes = await fetch(
+  `${SUPABASE_URL}/rest/v1/rpas_operations?select=*&order=created_at.desc`,
+  {
+    headers: {
+      apikey: SUPABASE_KEY,
+      Authorization: `Bearer ${SUPABASE_KEY}`,
+    },
+  }
+);
 
+if (rpasRes.ok) {
+  const rpasData = await rpasRes.json();
+  setRpasOperations(rpasData);
+}
 const toolboxRes = await fetch(
   `${SUPABASE_URL}/rest/v1/toolbox_talks?select=*&order=created_at.desc`,
   {
