@@ -6132,7 +6132,77 @@ setHazardDueDate(report.due_date || "");
   </div>
 )}
 
- <h3 style={{ marginTop: 0 }}>Toolbox Talks Register</h3>
+ {(role === "admin" || role === "supervisor") && (
+  <div
+    style={{
+      marginTop: 18,
+      marginBottom: 18,
+      padding: 16,
+      border: "1px solid #e2e8f0",
+      borderRadius: 12,
+      background: "#f8fafc",
+    }}
+  >
+    <h3 style={{ marginTop: 0 }}>RPAS Operations Register</h3>
+
+    {filteredRpasOperations.length === 0 ? (
+      <p style={{ color: "#475569", marginBottom: 0 }}>
+        No RPAS operations found for this date range.
+      </p>
+    ) : (
+      <div style={{ display: "grid", gap: 12 }}>
+        {filteredRpasOperations.map((operation) => (
+          <div
+            key={operation.id}
+            style={{
+              padding: 12,
+              border: "1px solid #cbd5e1",
+              borderRadius: 10,
+              background: "white",
+            }}
+          >
+            <div style={{ fontWeight: "bold", marginBottom: 4 }}>
+              {operation.project_name || "Unknown Project"}
+            </div>
+
+            <div style={{ fontSize: 13, color: "#475569", marginBottom: 4 }}>
+              Date: {operation.flight_date || "-"} | Type:{" "}
+              {operation.operation_type || "-"}
+            </div>
+
+            <div style={{ fontSize: 13, color: "#475569", marginBottom: 4 }}>
+              Pilot: {operation.pilot_in_command || "-"}
+            </div>
+
+            <div style={{ fontSize: 13, color: "#475569", marginBottom: 4 }}>
+              RPAS: {operation.rpas_make_model || "-"}
+            </div>
+
+            <div style={{ fontSize: 13, color: "#475569", marginBottom: 8 }}>
+              Location: {operation.flight_location || "-"}
+            </div>
+
+            <button
+              type="button"
+              onClick={() => downloadRpasPdf(operation)}
+              style={{
+                padding: "8px 12px",
+                background: "#123d82",
+                color: "white",
+                border: "none",
+                borderRadius: 8,
+                fontWeight: "bold",
+                cursor: "pointer",
+              }}
+            >
+              Download PDF
+            </button>
+          </div>
+        ))}
+      </div>
+    )}
+  </div>
+)}
 
              <div
   style={{
