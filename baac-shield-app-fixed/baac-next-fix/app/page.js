@@ -4301,6 +4301,155 @@ onClick={submitCorAction}
   <option value="Yes">Yes</option>
   <option value="No">No</option>
 </select>
+ <label>Separation From People / Workers Confirmed</label>
+<select
+  value={rpasSeparationFromPeopleConfirmed}
+  onChange={(e) => setRpasSeparationFromPeopleConfirmed(e.target.value)}
+  style={{
+    width: "100%",
+    padding: 12,
+    marginTop: 6,
+    marginBottom: 10,
+    borderRadius: 10,
+    border: "1px solid #cbd5e1",
+  }}
+>
+  <option value="">Select</option>
+  <option value="Yes">Yes</option>
+  <option value="No">No</option>
+  <option value="N/A">N/A</option>
+</select>
+
+<label>Takeoff / Landing Zone Confirmed Clear</label>
+<select
+  value={rpasTakeoffLandingZoneConfirmed}
+  onChange={(e) => setRpasTakeoffLandingZoneConfirmed(e.target.value)}
+  style={{
+    width: "100%",
+    padding: 12,
+    marginTop: 6,
+    marginBottom: 10,
+    borderRadius: 10,
+    border: "1px solid #cbd5e1",
+  }}
+>
+  <option value="">Select</option>
+  <option value="Yes">Yes</option>
+  <option value="No">No</option>
+  <option value="N/A">N/A</option>
+</select>
+
+<label>Communication Plan Confirmed</label>
+<select
+  value={rpasCommunicationPlanConfirmed}
+  onChange={(e) => setRpasCommunicationPlanConfirmed(e.target.value)}
+  style={{
+    width: "100%",
+    padding: 12,
+    marginTop: 6,
+    marginBottom: 10,
+    borderRadius: 10,
+    border: "1px solid #cbd5e1",
+  }}
+>
+  <option value="">Select</option>
+  <option value="Yes">Yes</option>
+  <option value="No">No</option>
+  <option value="N/A">N/A</option>
+</select>
+
+<h4 style={{ marginBottom: 0 }}>Post-Operation Records</h4>
+
+<label>Flight Log Recorded</label>
+<select
+  value={rpasFlightLogRecorded}
+  onChange={(e) => setRpasFlightLogRecorded(e.target.value)}
+  style={{
+    width: "100%",
+    padding: 12,
+    marginTop: 6,
+    marginBottom: 10,
+    borderRadius: 10,
+    border: "1px solid #cbd5e1",
+  }}
+>
+  <option value="">Select</option>
+  <option value="Yes">Yes</option>
+  <option value="No">No</option>
+  <option value="N/A">N/A</option>
+</select>
+
+<label>Imagery / Flight Data Backed Up</label>
+<select
+  value={rpasImageryBackedUp}
+  onChange={(e) => setRpasImageryBackedUp(e.target.value)}
+  style={{
+    width: "100%",
+    padding: 12,
+    marginTop: 6,
+    marginBottom: 10,
+    borderRadius: 10,
+    border: "1px solid #cbd5e1",
+  }}
+>
+  <option value="">Select</option>
+  <option value="Yes">Yes</option>
+  <option value="No">No</option>
+  <option value="N/A">N/A</option>
+</select>
+
+<label>Equipment Secured After Flight</label>
+<select
+  value={rpasEquipmentSecured}
+  onChange={(e) => setRpasEquipmentSecured(e.target.value)}
+  style={{
+    width: "100%",
+    padding: 12,
+    marginTop: 6,
+    marginBottom: 10,
+    borderRadius: 10,
+    border: "1px solid #cbd5e1",
+  }}
+>
+  <option value="">Select</option>
+  <option value="Yes">Yes</option>
+  <option value="No">No</option>
+  <option value="N/A">N/A</option>
+</select>
+
+<label>Supervisor Notified Flight Complete</label>
+<select
+  value={rpasSupervisorNotifiedComplete}
+  onChange={(e) => setRpasSupervisorNotifiedComplete(e.target.value)}
+  style={{
+    width: "100%",
+    padding: 12,
+    marginTop: 6,
+    marginBottom: 10,
+    borderRadius: 10,
+    border: "1px solid #cbd5e1",
+  }}
+>
+  <option value="">Select</option>
+  <option value="Yes">Yes</option>
+  <option value="No">No</option>
+  <option value="N/A">N/A</option>
+</select>
+
+<label>Battery IDs Used</label>
+<input
+  value={rpasBatteryIdsUsed}
+  onChange={(e) => setRpasBatteryIdsUsed(e.target.value)}
+  placeholder="Example: BATT-01, BATT-02"
+  style={{
+    width: "100%",
+    padding: 12,
+    marginTop: 6,
+    marginBottom: 10,
+    borderRadius: 10,
+    border: "1px solid #cbd5e1",
+  }}
+/>
       <label>Project</label>
       <select
         value={rpasProject}
