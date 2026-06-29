@@ -2725,7 +2725,28 @@ const matchesDate =
       (dateFilter === "Last30" && submittedDate && submittedDate >= thirtyDaysAgo);
   return matchesSearch && matchesProject && matchesDate;
 });
- 
+ const filteredRpasOperations = rpasOperations.filter((operation) => {
+  const operationDate = operation.flight_date
+    ? new Date(`${operation.flight_date}T00:00:00`)
+    : operation.created_at
+    ? new Date(operation.created_at)
+    : null;
+
+  if (!operationDate) return false;
+
+  const startDate = toolboxStartDateFilter
+    ? new Date(`${toolboxStartDateFilter}T00:00:00`)
+    : null;
+
+  const endDate = toolboxEndDateFilter
+    ? new Date(`${toolboxEndDateFilter}T23:59:59`)
+    : null;
+
+  return (
+    (!startDate || operationDate >= startDate) &&
+    (!endDate || operationDate <= endDate)
+  );
+});
   const filteredToolboxTalks = toolboxTalks.filter((talk) => {
   const talkDate = talk.talk_date
     ? new Date(`${talk.talk_date}T00:00:00`)
