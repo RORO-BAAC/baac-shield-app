@@ -1241,6 +1241,26 @@ battery_ids_used: rpasBatteryIdsUsed,
     setRpasOperationType("");
     setRpasLocation("");
 
+setRpasPilotCertificateType("");
+setRpasPilotCertificateNumber("");
+setRpasWeightCategory("");
+setRpasSiteAuthorizationConfirmed("");
+setRpasClientApprovalConfirmed("");
+setRpasControlledAirspace("");
+setRpasNavDroneAuthorization("");
+setRpasNotamsChecked("");
+setRpasNearbyAerodromesChecked("");
+setRpasMaxPlannedAltitude("");
+setRpasVlosConfirmed("");
+setRpasSeparationFromPeopleConfirmed("");
+setRpasTakeoffLandingZoneConfirmed("");
+setRpasCommunicationPlanConfirmed("");
+setRpasFlightLogRecorded("");
+setRpasImageryBackedUp("");
+setRpasEquipmentSecured("");
+setRpasSupervisorNotifiedComplete("");
+setRpasBatteryIdsUsed("");
+   
     setRpasAirspaceChecked("");
     setRpasWeatherChecked("");
     setRpasSiteSurveyComplete("");
