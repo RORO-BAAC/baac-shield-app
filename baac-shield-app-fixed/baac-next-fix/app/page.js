@@ -1701,6 +1701,209 @@ async function downloadToolboxPdf(talk) {
 
   doc.save(`baac-toolbox-talk-${talk.talk_date || "report"}.pdf`);
 }
+
+async function downloadFilteredToolboxPdfs() {
+  if (filteredToolboxTalks.length === 0) {
+    setMessage("No toolbox talks found for this date range.");
+    return;
+  }
+
+  const doc = new jsPDF();
+  let firstTalk = true;
+
+  const formatDateTime = (value) => {
+    if (!value) return "-";
+    try {
+      return new Date(value).toLocaleString();
+    } catch {
+      return value;
+    }
+  };
+
+  const getImageFormat = (base64) => {
+    return String(base64).startsWith("data:image/png") ? "PNG" : "JPEG";
+  };
+
+  for (const talk of filteredToolboxTalks) {
+    if (!firstTalk) {
+      doc.addPage();
+    }
+
+    firstTalk = false;
+
+    doc.setFillColor(15, 47, 102);
+    doc.rect(0, 0, 210, 32, "F");
+
+    doc.setTextColor(255, 255, 255);
+    doc.setFontSize(20);
+    doc.text(`${companyName} TOOLBOX TALK`, 14, 18);
+
+    doc.setFontSize(10);
+    doc.text("BAAC Shield Tailgate / Toolbox Meeting", 14, 25);
+
+    doc.setTextColor(0, 0, 0);
+
+    let y = 42;
+
+    const addSection = (title) => {
+      if (y > 260) {
+        doc.addPage();
+        y = 20;
+      }
+
+      doc.setFillColor(226, 232, 240);
+      doc.rect(14, y - 6, 182, 10, "F");
+      doc.setTextColor(15, 47, 102);
+      doc.setFontSize(13);
+      doc.text(title, 16, y);
+      doc.setTextColor(0, 0, 0);
+      y += 10;
+    };
+
+    const addLine = (label, value) => {
+      if (y > 270) {
+        doc.addPage();
+        y = 20;
+      }
+
+      const text = `${label}: ${value || "-"}`;
+      const lines = doc.splitTextToSize(text, 180);
+      doc.setFontSize(10);
+      doc.text(lines, 14, y);
+      y += lines.length * 6 + 3;
+    };
+
+    let attendees = [];
+
+    try {
+      attendees = Array.isArray(talk.attendees)
+        ? talk.attendees
+        : JSON.parse(talk.attendees || "[]");
+    } catch {
+      attendees = [];
+    }
+
+    addSection("Information");
+
+    addLine("Project", talk.project_name);
+    addLine("Job #", talk.job_number);
+    addLine("Date", talk.talk_date);
+    addLine("Time", talk.talk_time);
+    addLine("Weather", talk.weather);
+    addLine("Location", talk.location);
+    addLine("Superintendent", talk.superintendent);
+    addLine("Supervisor", talk.supervisor_name);
+    addLine("Guest / Subcontractor / Visitor", talk.guest_visitor);
+    addLine("Status", talk.status);
+    addLine("Created", formatDateTime(talk.created_at));
+
+    addSection("Work Plan");
+
+    addLine("Daily Job Scope / Work Plan", talk.daily_scope);
+    addLine("Locates # + Expiry Dates", talk.locates);
+    addLine("Workers Fit For Duty", talk.workers_fit_for_duty);
+    addLine("Workers Aware of 3 Basic Rights", talk.workers_aware_rights);
+    addLine(
+      "3 Basic Rights",
+      "Right to Know, Right to Participate, and Right to Refuse Unsafe Work"
+    );
+    addLine("Muster Point", talk.muster_point);
+    addLine("Emergency #", talk.emergency_number);
+    addLine("Nearest Hospital", talk.nearest_hospital);
+    addLine("# First Aid Attendants", talk.first_aid_attendants);
+
+    addSection("Topics, Hazards, and Controls");
+
+    addLine("Toolbox Topics", talk.topic);
+    addLine("Discussion Notes", talk.discussion_notes);
+    addLine("Hazards On Site", talk.hazards_reviewed);
+    addLine("Additional Hazards", talk.additional_hazards);
+    addLine("Hazard Controls", talk.controls_reviewed);
+    addLine("Other Considerations", talk.other_considerations);
+    addLine("Supervisor Remarks", talk.supervisor_remarks);
+
+    addSection("Workers / Signatures");
+
+    if (attendees.length === 0) {
+      addLine("Workers", "No workers listed.");
+    }
+
+    for (const attendee of attendees) {
+      if (y > 235) {
+        doc.addPage();
+        y = 20;
+      }
+
+      doc.setFontSize(11);
+      doc.setTextColor(0, 0, 0);
+      doc.text(
+        `${attendee.name || "Unnamed Worker"}${
+          attendee.role ? `, ${attendee.role}` : ""
+        }`,
+        14,
+        y
+      );
+      y += 7;
+
+      addLine("Signed", formatDateTime(attendee.signedAt));
+
+      if (
+        attendee.signature &&
+        String(attendee.signature).startsWith("data:image")
+      ) {
+        if (y > 230) {
+          doc.addPage();
+          y = 20;
+        }
+
+        doc.addImage(attendee.signature, "PNG", 120, y - 15, 65, 25);
+        y += 14;
+      }
+
+      y += 5;
+    }
+
+    const photoUrls = talk.photos
+      ? String(talk.photos)
+          .split(",")
+          .map((p) => p.trim())
+          .filter(Boolean)
+      : [];
+
+    if (photoUrls.length > 0) {
+      addSection("Photos");
+
+      for (const url of photoUrls) {
+        try {
+          const response = await fetch(url);
+          const blob = await response.blob();
+
+          const base64 = await new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.onloadend = () => resolve(reader.result);
+            reader.readAsDataURL(blob);
+          });
+
+          if (y > 200) {
+            doc.addPage();
+            y = 20;
+          }
+
+          doc.addImage(base64, getImageFormat(base64), 14, y, 90, 65);
+          y += 75;
+        } catch (err) {
+          addLine("Photo", "Failed to load");
+        }
+      }
+    }
+  }
+
+  doc.save(
+    `baac-toolbox-talks-${toolboxStartDateFilter || "start"}-to-${
+      toolboxEndDateFilter || "end"
+    }.pdf`
+  );
+}
  
 function exportCombinedCSV() {
   const headers = [
