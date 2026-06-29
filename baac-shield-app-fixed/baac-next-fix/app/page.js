@@ -4097,7 +4097,210 @@ onClick={submitCorAction}
       }}
     >
       <h3 style={{ marginTop: 0 }}>Flight Information</h3>
+<h4 style={{ marginBottom: 0 }}>Pilot / Authorization</h4>
 
+<label>Pilot Certificate Type</label>
+<select
+  value={rpasPilotCertificateType}
+  onChange={(e) => setRpasPilotCertificateType(e.target.value)}
+  style={{
+    width: "100%",
+    padding: 12,
+    marginTop: 6,
+    marginBottom: 10,
+    borderRadius: 10,
+    border: "1px solid #cbd5e1",
+  }}
+>
+  <option value="">Select certificate type</option>
+  <option value="Basic">Basic</option>
+  <option value="Advanced">Advanced</option>
+  <option value="Level 1 Complex">Level 1 Complex</option>
+  <option value="N/A">N/A</option>
+</select>
+
+<label>Pilot Certificate Number</label>
+<input
+  value={rpasPilotCertificateNumber}
+  onChange={(e) => setRpasPilotCertificateNumber(e.target.value)}
+  placeholder="Enter pilot certificate number"
+  style={{
+    width: "100%",
+    padding: 12,
+    marginTop: 6,
+    marginBottom: 10,
+    borderRadius: 10,
+    border: "1px solid #cbd5e1",
+  }}
+/>
+
+<label>RPAS Weight Category</label>
+<select
+  value={rpasWeightCategory}
+  onChange={(e) => setRpasWeightCategory(e.target.value)}
+  style={{
+    width: "100%",
+    padding: 12,
+    marginTop: 6,
+    marginBottom: 10,
+    borderRadius: 10,
+    border: "1px solid #cbd5e1",
+  }}
+>
+  <option value="">Select weight category</option>
+  <option value="Under 250 g">Under 250 g</option>
+  <option value="250 g to 25 kg">250 g to 25 kg</option>
+  <option value="Over 25 kg">Over 25 kg</option>
+</select>
+
+<label>Site Authorization Confirmed</label>
+<select
+  value={rpasSiteAuthorizationConfirmed}
+  onChange={(e) => setRpasSiteAuthorizationConfirmed(e.target.value)}
+  style={{
+    width: "100%",
+    padding: 12,
+    marginTop: 6,
+    marginBottom: 10,
+    borderRadius: 10,
+    border: "1px solid #cbd5e1",
+  }}
+>
+  <option value="">Select</option>
+  <option value="Yes">Yes</option>
+  <option value="No">No</option>
+  <option value="N/A">N/A</option>
+</select>
+
+<label>Client Approval Confirmed</label>
+<select
+  value={rpasClientApprovalConfirmed}
+  onChange={(e) => setRpasClientApprovalConfirmed(e.target.value)}
+  style={{
+    width: "100%",
+    padding: 12,
+    marginTop: 6,
+    marginBottom: 10,
+    borderRadius: 10,
+    border: "1px solid #cbd5e1",
+  }}
+>
+  <option value="">Select</option>
+  <option value="Yes">Yes</option>
+  <option value="No">No</option>
+  <option value="N/A">N/A</option>
+</select>
+
+<h4 style={{ marginBottom: 0 }}>Airspace / Flight Planning</h4>
+
+<label>Controlled Airspace?</label>
+<select
+  value={rpasControlledAirspace}
+  onChange={(e) => setRpasControlledAirspace(e.target.value)}
+  style={{
+    width: "100%",
+    padding: 12,
+    marginTop: 6,
+    marginBottom: 10,
+    borderRadius: 10,
+    border: "1px solid #cbd5e1",
+  }}
+>
+  <option value="">Select</option>
+  <option value="Yes">Yes</option>
+  <option value="No">No</option>
+  <option value="Unknown">Unknown</option>
+</select>
+
+<label>NAV Drone / Authorization Required?</label>
+<select
+  value={rpasNavDroneAuthorization}
+  onChange={(e) => setRpasNavDroneAuthorization(e.target.value)}
+  style={{
+    width: "100%",
+    padding: 12,
+    marginTop: 6,
+    marginBottom: 10,
+    borderRadius: 10,
+    border: "1px solid #cbd5e1",
+  }}
+>
+  <option value="">Select</option>
+  <option value="Yes">Yes</option>
+  <option value="No">No</option>
+  <option value="N/A">N/A</option>
+</select>
+
+<label>NOTAMs Checked</label>
+<select
+  value={rpasNotamsChecked}
+  onChange={(e) => setRpasNotamsChecked(e.target.value)}
+  style={{
+    width: "100%",
+    padding: 12,
+    marginTop: 6,
+    marginBottom: 10,
+    borderRadius: 10,
+    border: "1px solid #cbd5e1",
+  }}
+>
+  <option value="">Select</option>
+  <option value="Yes">Yes</option>
+  <option value="No">No</option>
+  <option value="N/A">N/A</option>
+</select>
+
+<label>Nearby Aerodromes / Heliports Checked</label>
+<select
+  value={rpasNearbyAerodromesChecked}
+  onChange={(e) => setRpasNearbyAerodromesChecked(e.target.value)}
+  style={{
+    width: "100%",
+    padding: 12,
+    marginTop: 6,
+    marginBottom: 10,
+    borderRadius: 10,
+    border: "1px solid #cbd5e1",
+  }}
+>
+  <option value="">Select</option>
+  <option value="Yes">Yes</option>
+  <option value="No">No</option>
+  <option value="N/A">N/A</option>
+</select>
+
+<label>Maximum Planned Altitude</label>
+<input
+  value={rpasMaxPlannedAltitude}
+  onChange={(e) => setRpasMaxPlannedAltitude(e.target.value)}
+  placeholder="Example: 120 m AGL"
+  style={{
+    width: "100%",
+    padding: 12,
+    marginTop: 6,
+    marginBottom: 10,
+    borderRadius: 10,
+    border: "1px solid #cbd5e1",
+  }}
+/>
+
+<label>VLOS Confirmed</label>
+<select
+  value={rpasVlosConfirmed}
+  onChange={(e) => setRpasVlosConfirmed(e.target.value)}
+  style={{
+    width: "100%",
+    padding: 12,
+    marginTop: 6,
+    marginBottom: 10,
+    borderRadius: 10,
+    border: "1px solid #cbd5e1",
+  }}
+>
+  <option value="">Select</option>
+  <option value="Yes">Yes</option>
+  <option value="No">No</option>
+</select>
       <label>Project</label>
       <select
         value={rpasProject}
