@@ -292,7 +292,9 @@ const [toolboxEndDateFilter, setToolboxEndDateFilter] = useState(
   const corBeforeFileRef = useRef(null);
   const workerSigRef = useRef(null);
   const supervisorSigRef = useRef(null);
-
+const rpasPreflightSigRef = useRef(null);
+const rpasPostflightSigRef = useRef(null);
+ 
   function requestProtectedTab(tabName) {
     setPendingTab(tabName);
     setPinInput("");
