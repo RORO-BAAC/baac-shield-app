@@ -3778,6 +3778,477 @@ onClick={submitCorAction}
   </div>
 )}
 
+{activeTab === "rpas" && (
+  <div
+    style={{
+      background: "white",
+      padding: 20,
+      borderRadius: 16,
+      boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
+      display: "grid",
+      gap: 14,
+    }}
+  >
+    <h2 style={{ marginTop: 0 }}>RPAS Operations</h2>
+
+    <div
+      style={{
+        padding: 14,
+        border: "1px solid #e2e8f0",
+        borderRadius: 12,
+        background: "#f8fafc",
+      }}
+    >
+      <h3 style={{ marginTop: 0 }}>Flight Information</h3>
+
+      <label>Project</label>
+      <select
+        value={rpasProject}
+        onChange={(e) => setRpasProject(e.target.value)}
+        style={{
+          width: "100%",
+          padding: 12,
+          marginTop: 6,
+          marginBottom: 10,
+          borderRadius: 10,
+          border: "1px solid #cbd5e1",
+        }}
+      >
+        <option value="">Select project</option>
+        {projects.map((project) => (
+          <option key={project.id} value={project.name}>
+            {project.name}
+          </option>
+        ))}
+      </select>
+
+      <label>Date</label>
+      <input
+        type="date"
+        value={rpasDate}
+        onChange={(e) => setRpasDate(e.target.value)}
+        style={{
+          width: "100%",
+          padding: 12,
+          marginTop: 6,
+          marginBottom: 10,
+          borderRadius: 10,
+          border: "1px solid #cbd5e1",
+        }}
+      />
+
+      <label>Pilot in Command</label>
+      <input
+        value={rpasPilot}
+        onChange={(e) => setRpasPilot(e.target.value)}
+        placeholder="Pilot in Command"
+        style={{
+          width: "100%",
+          padding: 12,
+          marginTop: 6,
+          marginBottom: 10,
+          borderRadius: 10,
+          border: "1px solid #cbd5e1",
+        }}
+      />
+
+      <label>Visual Observer</label>
+      <input
+        value={rpasObserver}
+        onChange={(e) => setRpasObserver(e.target.value)}
+        placeholder="Visual Observer"
+        style={{
+          width: "100%",
+          padding: 12,
+          marginTop: 6,
+          marginBottom: 10,
+          borderRadius: 10,
+          border: "1px solid #cbd5e1",
+        }}
+      />
+
+      <label>RPAS Make / Model</label>
+      <input
+        value={rpasMakeModel}
+        onChange={(e) => setRpasMakeModel(e.target.value)}
+        placeholder="Example: DJI Mavic 3 Enterprise"
+        style={{
+          width: "100%",
+          padding: 12,
+          marginTop: 6,
+          marginBottom: 10,
+          borderRadius: 10,
+          border: "1px solid #cbd5e1",
+        }}
+      />
+
+      <label>RPAS Registration #</label>
+      <input
+        value={rpasRegistration}
+        onChange={(e) => setRpasRegistration(e.target.value)}
+        placeholder="RPAS registration number"
+        style={{
+          width: "100%",
+          padding: 12,
+          marginTop: 6,
+          marginBottom: 10,
+          borderRadius: 10,
+          border: "1px solid #cbd5e1",
+        }}
+      />
+
+      <label>Operation Type</label>
+      <select
+        value={rpasOperationType}
+        onChange={(e) => setRpasOperationType(e.target.value)}
+        style={{
+          width: "100%",
+          padding: 12,
+          marginTop: 6,
+          marginBottom: 10,
+          borderRadius: 10,
+          border: "1px solid #cbd5e1",
+        }}
+      >
+        <option value="">Select</option>
+        <option value="Basic">Basic</option>
+        <option value="Advanced">Advanced</option>
+        <option value="Level 1 Complex">Level 1 Complex</option>
+        <option value="Other">Other</option>
+      </select>
+
+      <label>Flight Location</label>
+      <input
+        value={rpasLocation}
+        onChange={(e) => setRpasLocation(e.target.value)}
+        placeholder="Flight location / coordinates"
+        style={{
+          width: "100%",
+          padding: 12,
+          marginTop: 6,
+          borderRadius: 10,
+          border: "1px solid #cbd5e1",
+        }}
+      />
+    </div>
+
+    <div
+      style={{
+        padding: 14,
+        border: "1px solid #e2e8f0",
+        borderRadius: 12,
+        background: "#f8fafc",
+      }}
+    >
+      <h3 style={{ marginTop: 0 }}>Pre-Flight Checklist</h3>
+
+      <label>Airspace Checked</label>
+      <select
+        value={rpasAirspaceChecked}
+        onChange={(e) => setRpasAirspaceChecked(e.target.value)}
+        style={{
+          width: "100%",
+          padding: 12,
+          marginTop: 6,
+          marginBottom: 10,
+          borderRadius: 10,
+          border: "1px solid #cbd5e1",
+        }}
+      >
+        <option value="">Select</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+        <option value="N/A">N/A</option>
+      </select>
+
+      <label>Weather Checked</label>
+      <select
+        value={rpasWeatherChecked}
+        onChange={(e) => setRpasWeatherChecked(e.target.value)}
+        style={{
+          width: "100%",
+          padding: 12,
+          marginTop: 6,
+          marginBottom: 10,
+          borderRadius: 10,
+          border: "1px solid #cbd5e1",
+        }}
+      >
+        <option value="">Select</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+        <option value="N/A">N/A</option>
+      </select>
+
+      <label>Site Survey Complete</label>
+      <select
+        value={rpasSiteSurveyComplete}
+        onChange={(e) => setRpasSiteSurveyComplete(e.target.value)}
+        style={{
+          width: "100%",
+          padding: 12,
+          marginTop: 6,
+          marginBottom: 10,
+          borderRadius: 10,
+          border: "1px solid #cbd5e1",
+        }}
+      >
+        <option value="">Select</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+        <option value="N/A">N/A</option>
+      </select>
+
+      <label>Emergency / Flyaway Procedure Reviewed</label>
+      <select
+        value={rpasEmergencyReviewed}
+        onChange={(e) => setRpasEmergencyReviewed(e.target.value)}
+        style={{
+          width: "100%",
+          padding: 12,
+          marginTop: 6,
+          marginBottom: 10,
+          borderRadius: 10,
+          border: "1px solid #cbd5e1",
+        }}
+      >
+        <option value="">Select</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+        <option value="N/A">N/A</option>
+      </select>
+
+      <label>Battery Condition Checked</label>
+      <select
+        value={rpasBatteryChecked}
+        onChange={(e) => setRpasBatteryChecked(e.target.value)}
+        style={{
+          width: "100%",
+          padding: 12,
+          marginTop: 6,
+          marginBottom: 10,
+          borderRadius: 10,
+          border: "1px solid #cbd5e1",
+        }}
+      >
+        <option value="">Select</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+        <option value="N/A">N/A</option>
+      </select>
+
+      <label>Propellers / Airframe Checked</label>
+      <select
+        value={rpasAirframeChecked}
+        onChange={(e) => setRpasAirframeChecked(e.target.value)}
+        style={{
+          width: "100%",
+          padding: 12,
+          marginTop: 6,
+          marginBottom: 10,
+          borderRadius: 10,
+          border: "1px solid #cbd5e1",
+        }}
+      >
+        <option value="">Select</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+        <option value="N/A">N/A</option>
+      </select>
+
+      <label>Controller / Firmware / Compass / GPS Checked</label>
+      <select
+        value={rpasControllerChecked}
+        onChange={(e) => setRpasControllerChecked(e.target.value)}
+        style={{
+          width: "100%",
+          padding: 12,
+          marginTop: 6,
+          marginBottom: 10,
+          borderRadius: 10,
+          border: "1px solid #cbd5e1",
+        }}
+      >
+        <option value="">Select</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+        <option value="N/A">N/A</option>
+      </select>
+
+      <label>Crew Briefing Complete</label>
+      <select
+        value={rpasCrewBriefingComplete}
+        onChange={(e) => setRpasCrewBriefingComplete(e.target.value)}
+        style={{
+          width: "100%",
+          padding: 12,
+          marginTop: 6,
+          marginBottom: 10,
+          borderRadius: 10,
+          border: "1px solid #cbd5e1",
+        }}
+      >
+        <option value="">Select</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+        <option value="N/A">N/A</option>
+      </select>
+
+      <label>Pre-Flight Notes</label>
+      <textarea
+        value={rpasPreflightNotes}
+        onChange={(e) => setRpasPreflightNotes(e.target.value)}
+        placeholder="Pre-flight notes"
+        rows={4}
+        style={{
+          width: "100%",
+          padding: 12,
+          marginTop: 6,
+          marginBottom: 10,
+          borderRadius: 10,
+          border: "1px solid #cbd5e1",
+        }}
+      />
+
+      <label>Pre-Flight Pilot Signature</label>
+      <SignatureBox
+        sigRef={rpasPreflightSigRef}
+        onSave={setRpasPreflightSignature}
+      />
+    </div>
+
+    <div
+      style={{
+        padding: 14,
+        border: "1px solid #e2e8f0",
+        borderRadius: 12,
+        background: "#f8fafc",
+      }}
+    >
+      <h3 style={{ marginTop: 0 }}>Post-Flight Checklist</h3>
+
+      <label>Post-Flight Condition</label>
+      <select
+        value={rpasPostflightCondition}
+        onChange={(e) => setRpasPostflightCondition(e.target.value)}
+        style={{
+          width: "100%",
+          padding: 12,
+          marginTop: 6,
+          marginBottom: 10,
+          borderRadius: 10,
+          border: "1px solid #cbd5e1",
+        }}
+      >
+        <option value="">Select</option>
+        <option value="Acceptable">Acceptable</option>
+        <option value="Issue Found">Issue Found</option>
+        <option value="Grounded">Grounded</option>
+      </select>
+
+      <label>Incidents / Damage / Abnormalities</label>
+      <textarea
+        value={rpasIncidentsDamage}
+        onChange={(e) => setRpasIncidentsDamage(e.target.value)}
+        placeholder="Describe any incidents, damage, abnormalities, or near misses"
+        rows={4}
+        style={{
+          width: "100%",
+          padding: 12,
+          marginTop: 6,
+          marginBottom: 10,
+          borderRadius: 10,
+          border: "1px solid #cbd5e1",
+        }}
+      />
+
+      <label>Battery Logs / Maintenance Notes</label>
+      <textarea
+        value={rpasBatteryLogs}
+        onChange={(e) => setRpasBatteryLogs(e.target.value)}
+        placeholder="Battery cycles, charging notes, maintenance notes"
+        rows={4}
+        style={{
+          width: "100%",
+          padding: 12,
+          marginTop: 6,
+          marginBottom: 10,
+          borderRadius: 10,
+          border: "1px solid #cbd5e1",
+        }}
+      />
+
+      <label>Post-Flight Notes</label>
+      <textarea
+        value={rpasPostflightNotes}
+        onChange={(e) => setRpasPostflightNotes(e.target.value)}
+        placeholder="Post-flight notes"
+        rows={4}
+        style={{
+          width: "100%",
+          padding: 12,
+          marginTop: 6,
+          marginBottom: 10,
+          borderRadius: 10,
+          border: "1px solid #cbd5e1",
+        }}
+      />
+
+      <label>Post-Flight Pilot Signature</label>
+      <SignatureBox
+        sigRef={rpasPostflightSigRef}
+        onSave={setRpasPostflightSignature}
+      />
+    </div>
+
+    <div
+      style={{
+        padding: 14,
+        border: "1px solid #e2e8f0",
+        borderRadius: 12,
+        background: "#f8fafc",
+      }}
+    >
+      <h3 style={{ marginTop: 0 }}>Photos / Attachments</h3>
+
+      <input
+        type="file"
+        multiple
+        accept="image/*"
+        onChange={(e) => setRpasPhotos(Array.from(e.target.files || []))}
+        style={{
+          display: "block",
+          marginTop: 8,
+          marginBottom: 10,
+        }}
+      />
+
+      {rpasPhotos.length > 0 && (
+        <div style={{ color: "#475569", fontSize: 13 }}>
+          Selected RPAS photos: {rpasPhotos.length}
+        </div>
+      )}
+    </div>
+
+    <button
+      type="button"
+      onClick={() => saveRpasOperation("Draft")}
+      disabled={loading}
+      style={{
+        padding: 12,
+        background: "#123d82",
+        color: "white",
+        border: "none",
+        borderRadius: 10,
+        fontWeight: "bold",
+        cursor: "pointer",
+      }}
+    >
+      Save RPAS Operation Checklist
+    </button>
+  </div>
+)}
+
 {activeTab === "toolbox" && (
   <div
    key={toolboxResetKey}
