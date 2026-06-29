@@ -1807,6 +1807,45 @@ async function downloadRpasPdf(operation) {
   addLine("RPAS Registration #", operation.rpas_registration);
   addLine("Operation Type", operation.operation_type);
   addLine("Flight Location", operation.flight_location);
+ addSection("Pilot / Authorization");
+
+addLine("Pilot Certificate Type", operation.pilot_certificate_type);
+addLine("Pilot Certificate Number", operation.pilot_certificate_number);
+addLine("RPAS Weight Category", operation.rpas_weight_category);
+addLine("Site Authorization Confirmed", operation.site_authorization_confirmed);
+addLine("Client Approval Confirmed", operation.client_approval_confirmed);
+
+addSection("Airspace / Flight Planning");
+
+addLine("Controlled Airspace", operation.controlled_airspace);
+addLine("NAV Drone / Authorization Required", operation.nav_drone_authorization);
+addLine("NOTAMs Checked", operation.notams_checked);
+addLine(
+  "Nearby Aerodromes / Heliports Checked",
+  operation.nearby_aerodromes_checked
+);
+addLine("Maximum Planned Altitude", operation.max_planned_altitude);
+addLine("VLOS Confirmed", operation.vlos_confirmed);
+addLine(
+  "Separation From People / Workers Confirmed",
+  operation.separation_from_people_confirmed
+);
+addLine(
+  "Takeoff / Landing Zone Confirmed Clear",
+  operation.takeoff_landing_zone_confirmed
+);
+addLine("Communication Plan Confirmed", operation.communication_plan_confirmed);
+
+addSection("Post-Operation Records");
+
+addLine("Flight Log Recorded", operation.flight_log_recorded);
+addLine("Imagery / Flight Data Backed Up", operation.imagery_backed_up);
+addLine("Equipment Secured After Flight", operation.equipment_secured);
+addLine(
+  "Supervisor Notified Flight Complete",
+  operation.supervisor_notified_complete
+);
+addLine("Battery IDs Used", operation.battery_ids_used);
   addLine("Status", operation.status);
   addLine("Created", formatDateTime(operation.created_at));
 
