@@ -210,6 +210,7 @@ const [rpasPostflightNotes, setRpasPostflightNotes] = useState("");
 const [rpasPostflightSignature, setRpasPostflightSignature] = useState("");
 
 const [rpasPhotos, setRpasPhotos] = useState([]);
+ const [rpasResetKey, setRpasResetKey] = useState(0);
   const [toolboxTalks, setToolboxTalks] = useState([]);
 const [toolboxProject, setToolboxProject] = useState("");
   const [toolboxSuperintendent, setToolboxSuperintendent] = useState("");
