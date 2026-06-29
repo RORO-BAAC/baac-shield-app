@@ -3987,7 +3987,49 @@ onClick={submitCorAction}
     }}
   >
     <h2 style={{ marginTop: 0 }}>RPAS Operations</h2>
+<div
+  style={{
+    display: "flex",
+    flexWrap: "wrap",
+    gap: 10,
+    padding: 12,
+    border: "1px solid #cbd5e1",
+    borderRadius: 12,
+    background: "#f8fafc",
+  }}
+>
+  <a
+    href="/rpas-jha.pdf"
+    download
+    style={{
+      padding: "10px 14px",
+      background: "#123d82",
+      color: "white",
+      borderRadius: 8,
+      fontWeight: "bold",
+      textDecoration: "none",
+      display: "inline-block",
+    }}
+  >
+    Download RPAS JHA
+  </a>
 
+  <a
+    href="/rpas-sop.pdf"
+    download
+    style={{
+      padding: "10px 14px",
+      background: "#123d82",
+      color: "white",
+      borderRadius: 8,
+      fontWeight: "bold",
+      textDecoration: "none",
+      display: "inline-block",
+    }}
+  >
+    Download RPAS SOP
+  </a>
+</div>
     <div
       style={{
         padding: 14,
