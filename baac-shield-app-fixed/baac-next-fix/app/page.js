@@ -1682,6 +1682,10 @@ if (photoUrls.length > 0) {
     }
   }
 }
+  
+    doc.save(`baac-shield-record-${record.id}.pdf`);
+  }
+  
 async function downloadRpasPdf(operation) {
   const doc = new jsPDF();
 
@@ -1852,8 +1856,6 @@ async function downloadRpasPdf(operation) {
 
   doc.save(`baac-rpas-operation-${operation.flight_date || "report"}.pdf`);
 }
-    doc.save(`baac-shield-record-${record.id}.pdf`);
-  }
 
 async function downloadToolboxPdf(talk) {
   const doc = new jsPDF();
