@@ -3780,11 +3780,11 @@ onClick={submitCorAction}
 </div>   
         
   </div>
-  key={rpasResetKey}
 )}
 
 {activeTab === "rpas" && (
   <div
+    key={rpasResetKey}
     style={{
       background: "white",
       padding: 20,
