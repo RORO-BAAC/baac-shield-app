@@ -1223,6 +1223,9 @@ async function saveRpasOperation(statusValue = "Draft") {
     setRpasPostflightSignature("");
 
     setRpasPhotos([]);
+   setRpasResetKey((prev) => prev + 1);
+rpasPreflightSigRef.current?.clear();
+rpasPostflightSigRef.current?.clear();
 
     setMessage(
       statusValue === "Submitted"
