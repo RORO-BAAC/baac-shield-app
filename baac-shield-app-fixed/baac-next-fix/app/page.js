@@ -1682,7 +1682,176 @@ if (photoUrls.length > 0) {
     }
   }
 }
+async function downloadRpasPdf(operation) {
+  const doc = new jsPDF();
 
+  doc.setFillColor(15, 47, 102);
+  doc.rect(0, 0, 210, 32, "F");
+
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(20);
+  doc.text(`${companyName} RPAS OPERATIONS CHECKLIST`, 14, 18);
+
+  doc.setFontSize(10);
+  doc.text("Pre-Flight / Post-Flight Checklist", 14, 25);
+
+  doc.setTextColor(0, 0, 0);
+  let y = 42;
+
+  const addSection = (title) => {
+    if (y > 260) {
+      doc.addPage();
+      y = 20;
+    }
+
+    doc.setFillColor(226, 232, 240);
+    doc.rect(14, y - 6, 182, 10, "F");
+    doc.setTextColor(15, 47, 102);
+    doc.setFontSize(13);
+    doc.text(title, 16, y);
+    doc.setTextColor(0, 0, 0);
+    y += 10;
+  };
+
+  const addLine = (label, value) => {
+    if (y > 270) {
+      doc.addPage();
+      y = 20;
+    }
+
+    const text = `${label}: ${value || "-"}`;
+    const lines = doc.splitTextToSize(text, 180);
+    doc.setFontSize(10);
+    doc.text(lines, 14, y);
+    y += lines.length * 6 + 3;
+  };
+
+  const formatDateTime = (value) => {
+    if (!value) return "-";
+    try {
+      return new Date(value).toLocaleString();
+    } catch {
+      return value;
+    }
+  };
+
+  addSection("Flight Information");
+
+  addLine("Project", operation.project_name);
+  addLine("Flight Date", operation.flight_date);
+  addLine("Pilot in Command", operation.pilot_in_command);
+  addLine("Visual Observer", operation.visual_observer);
+  addLine("RPAS Make / Model", operation.rpas_make_model);
+  addLine("RPAS Registration #", operation.rpas_registration);
+  addLine("Operation Type", operation.operation_type);
+  addLine("Flight Location", operation.flight_location);
+  addLine("Status", operation.status);
+  addLine("Created", formatDateTime(operation.created_at));
+
+  addSection("Pre-Flight Checklist");
+
+  addLine("Airspace Checked", operation.airspace_checked);
+  addLine("Weather Checked", operation.weather_checked);
+  addLine("Site Survey Complete", operation.site_survey_complete);
+  addLine(
+    "Emergency / Flyaway Procedure Reviewed",
+    operation.emergency_procedure_reviewed
+  );
+  addLine("Battery Condition Checked", operation.battery_condition_checked);
+  addLine(
+    "Propellers / Airframe Checked",
+    operation.propellers_airframe_checked
+  );
+  addLine(
+    "Controller / Firmware / Compass / GPS Checked",
+    operation.controller_firmware_gps_checked
+  );
+  addLine("Crew Briefing Complete", operation.crew_briefing_complete);
+  addLine("Pre-Flight Notes", operation.preflight_notes);
+
+  if (
+    operation.preflight_signature &&
+    String(operation.preflight_signature).startsWith("data:image")
+  ) {
+    if (y > 230) {
+      doc.addPage();
+      y = 20;
+    }
+
+    doc.text("Pre-Flight Pilot Signature:", 14, y);
+    y += 5;
+    doc.addImage(operation.preflight_signature, "PNG", 14, y, 80, 30);
+    y += 40;
+  }
+
+  addSection("Post-Flight Checklist");
+
+  addLine("Post-Flight Condition", operation.postflight_condition);
+  addLine(
+    "Incidents / Damage / Abnormalities",
+    operation.incidents_damage_abnormalities
+  );
+  addLine(
+    "Battery Logs / Maintenance Notes",
+    operation.battery_logs_maintenance_notes
+  );
+  addLine("Post-Flight Notes", operation.postflight_notes);
+
+  if (
+    operation.postflight_signature &&
+    String(operation.postflight_signature).startsWith("data:image")
+  ) {
+    if (y > 230) {
+      doc.addPage();
+      y = 20;
+    }
+
+    doc.text("Post-Flight Pilot Signature:", 14, y);
+    y += 5;
+    doc.addImage(operation.postflight_signature, "PNG", 14, y, 80, 30);
+    y += 40;
+  }
+
+  const photoUrls = operation.photos
+    ? String(operation.photos)
+        .split(",")
+        .map((p) => p.trim())
+        .filter(Boolean)
+    : [];
+
+  if (photoUrls.length > 0) {
+    addSection("Photos / Attachments");
+
+    for (const url of photoUrls) {
+      try {
+        const response = await fetch(url);
+        const blob = await response.blob();
+
+        const base64 = await new Promise((resolve) => {
+          const reader = new FileReader();
+          reader.onloadend = () => resolve(reader.result);
+          reader.readAsDataURL(blob);
+        });
+
+        if (y > 200) {
+          doc.addPage();
+          y = 20;
+        }
+
+        const imageFormat = String(base64).startsWith("data:image/png")
+          ? "PNG"
+          : "JPEG";
+
+        doc.addImage(base64, imageFormat, 14, y, 90, 65);
+        y += 75;
+      } catch (err) {
+        addLine("Photo", "Failed to load");
+      }
+    }
+  }
+
+  doc.save(`baac-rpas-operation-${operation.flight_date || "report"}.pdf`);
+}
     doc.save(`baac-shield-record-${record.id}.pdf`);
   }
 
