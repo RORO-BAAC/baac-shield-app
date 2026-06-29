@@ -2820,7 +2820,23 @@ Signed in as: {user?.email} · Role: {role}
 >
   Tailgate / Toolbox Talk
 </button>
-    
+
+<button
+  type="button"
+  onClick={() => setActiveTab("rpas")}
+  style={{
+    padding: "10px 14px",
+    borderRadius: 10,
+    border: "1px solid #cbd5e1",
+    background: activeTab === "rpas" ? "#123d82" : "white",
+    color: activeTab === "rpas" ? "white" : "#0f172a",
+    fontWeight: "bold",
+    cursor: "pointer",
+  }}
+>
+  RPAS Operations
+</button>
+   
 <button
   type="button"
  onClick={() => requestProtectedTab("supervisor")}
