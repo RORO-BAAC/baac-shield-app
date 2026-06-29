@@ -4977,8 +4977,7 @@ setHazardDueDate(report.due_date || "");
       background: "#f8fafc",
     }}
   >
-    <h3 style={{ marginTop: 0 }}>Toolbox Talks Register</h3>
-
+    
     <div
       style={{
         display: "grid",
