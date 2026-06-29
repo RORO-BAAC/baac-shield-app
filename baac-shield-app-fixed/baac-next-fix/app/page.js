@@ -3780,6 +3780,7 @@ onClick={submitCorAction}
 </div>   
         
   </div>
+  key={rpasResetKey}
 )}
 
 {activeTab === "rpas" && (
