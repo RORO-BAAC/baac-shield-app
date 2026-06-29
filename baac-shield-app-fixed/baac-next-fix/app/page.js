@@ -180,7 +180,36 @@ const [dueDate, setDueDate] = useState("");
   const [records, setRecords] = useState([]);
   const [hazardReports, setHazardReports] = useState([]);
   const [corActions, setCorActions] = useState([]);
-  
+ const [rpasOperations, setRpasOperations] = useState([]);
+const [rpasProject, setRpasProject] = useState("");
+const [rpasDate, setRpasDate] = useState("");
+const [rpasPilot, setRpasPilot] = useState("");
+const [rpasObserver, setRpasObserver] = useState("");
+const [rpasMakeModel, setRpasMakeModel] = useState("");
+const [rpasRegistration, setRpasRegistration] = useState("");
+const [rpasOperationType, setRpasOperationType] = useState("");
+const [rpasLocation, setRpasLocation] = useState("");
+
+const [rpasAirspaceChecked, setRpasAirspaceChecked] = useState("");
+const [rpasWeatherChecked, setRpasWeatherChecked] = useState("");
+const [rpasSiteSurveyComplete, setRpasSiteSurveyComplete] = useState("");
+const [rpasEmergencyReviewed, setRpasEmergencyReviewed] = useState("");
+
+const [rpasBatteryChecked, setRpasBatteryChecked] = useState("");
+const [rpasAirframeChecked, setRpasAirframeChecked] = useState("");
+const [rpasControllerChecked, setRpasControllerChecked] = useState("");
+const [rpasCrewBriefingComplete, setRpasCrewBriefingComplete] = useState("");
+
+const [rpasPreflightNotes, setRpasPreflightNotes] = useState("");
+const [rpasPreflightSignature, setRpasPreflightSignature] = useState("");
+
+const [rpasPostflightCondition, setRpasPostflightCondition] = useState("");
+const [rpasIncidentsDamage, setRpasIncidentsDamage] = useState("");
+const [rpasBatteryLogs, setRpasBatteryLogs] = useState("");
+const [rpasPostflightNotes, setRpasPostflightNotes] = useState("");
+const [rpasPostflightSignature, setRpasPostflightSignature] = useState("");
+
+const [rpasPhotos, setRpasPhotos] = useState([]);
   const [toolboxTalks, setToolboxTalks] = useState([]);
 const [toolboxProject, setToolboxProject] = useState("");
   const [toolboxSuperintendent, setToolboxSuperintendent] = useState("");
