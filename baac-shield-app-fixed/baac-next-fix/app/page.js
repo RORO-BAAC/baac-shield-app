@@ -2682,9 +2682,7 @@ const todayWorkerRecords = records.filter((record) => {
 });
 
 const todayHazardReports = hazardReports.filter((report) => {
-  const submittedValue = report.created_at || report.submitted_at;
-  if (!submittedValue) return false;
-  return new Date(submittedValue) >= todayActivityStart;
+  return isWithinDailyActivityDate(report.created_at || report.submitted_at);
 });
 
 const todayStopWorkRecords = records.filter((record) => {
