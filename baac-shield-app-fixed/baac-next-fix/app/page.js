@@ -2688,10 +2688,10 @@ const todayHazardReports = hazardReports.filter((report) => {
 const todayStopWorkRecords = records.filter((record) => {
   return record.stop_work === true && isWithinDailyActivityDate(record.submitted_at);
 });
- const todayRpasOperations = rpasOperations.filter((operation) => {
-  const submittedValue = operation.created_at || operation.submitted_at || operation.flight_date;
-  if (!submittedValue) return false;
-  return new Date(submittedValue) >= todayActivityStart;
+const todayRpasOperations = rpasOperations.filter((operation) => {
+  return isWithinDailyActivityDate(
+    operation.created_at || operation.submitted_at || operation.flight_date
+  );
 });
 
 const openCorrectiveActions = records.filter((record) => {
