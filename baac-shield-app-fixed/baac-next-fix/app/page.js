@@ -2666,6 +2666,17 @@ doc.setFontSize(10);
 const todayActivityStart = new Date();
 todayActivityStart.setHours(0, 0, 0, 0);
 
+const dailyActivityStart = new Date(`${dailyActivityDate}T00:00:00`);
+const dailyActivityEnd = new Date(`${dailyActivityDate}T23:59:59`);
+
+const isWithinDailyActivityDate = (value) => {
+  if (!value) return false;
+
+  const date = new Date(value);
+
+  return date >= dailyActivityStart && date <= dailyActivityEnd;
+};
+ 
 const todayWorkerRecords = records.filter((record) => {
   if (!record.submitted_at) return false;
   return new Date(record.submitted_at) >= todayActivityStart;
