@@ -6778,6 +6778,22 @@ setHazardDueDate(report.due_date || "");
 >
   <h2 style={{ marginTop: 0, color: "#0f2f66" }}>Today’s Activity</h2>
 
+ <button
+  type="button"
+  onClick={downloadDailyActivityPdf}
+  style={{
+    padding: "10px 14px",
+    background: "#123d82",
+    color: "white",
+    border: "none",
+    borderRadius: 8,
+    fontWeight: "bold",
+    cursor: "pointer",
+    marginBottom: 12,
+  }}
+>
+  Download Daily Activity PDF
+</button>
 <div
   style={{
     display: "grid",
