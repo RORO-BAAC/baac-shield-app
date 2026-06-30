@@ -2694,6 +2694,12 @@ const todayRpasOperations = rpasOperations.filter((operation) => {
   );
 });
 
+const todayToolboxTalks = toolboxTalks.filter((talk) => {
+  return isWithinDailyActivityDate(
+    talk.talk_date || talk.created_at || talk.submitted_at
+  );
+});
+ 
 const openCorrectiveActions = records.filter((record) => {
   return (
     record.status !== "Approved" &&
