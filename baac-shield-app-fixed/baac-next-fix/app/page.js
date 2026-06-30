@@ -2678,8 +2678,7 @@ const isWithinDailyActivityDate = (value) => {
 };
  
 const todayWorkerRecords = records.filter((record) => {
-  if (!record.submitted_at) return false;
-  return new Date(record.submitted_at) >= todayActivityStart;
+  return isWithinDailyActivityDate(record.submitted_at);
 });
 
 const todayHazardReports = hazardReports.filter((report) => {
