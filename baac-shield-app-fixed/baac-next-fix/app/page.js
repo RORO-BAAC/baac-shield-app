@@ -6895,6 +6895,91 @@ setHazardDueDate(report.due_date || "");
 
 <div
   style={{
+    marginTop: 18,
+    marginBottom: 20,
+    padding: 16,
+    border: "1px solid #dbeafe",
+    borderRadius: 12,
+    background: "#f8fafc",
+  }}
+>
+  <h3 style={{ marginTop: 0, color: "#0f2f66" }}>
+    Daily Activity Register
+  </h3>
+
+  <p style={{ color: "#475569", marginTop: 0 }}>
+    Showing records for {dailyActivityDate}
+  </p>
+
+  <div style={{ display: "grid", gap: 14 }}>
+    <div
+      style={{
+        padding: 12,
+        border: "1px solid #cbd5e1",
+        borderRadius: 10,
+        background: "white",
+      }}
+    >
+      <h4 style={{ marginTop: 0 }}>Worker Forms</h4>
+
+      {todayWorkerRecords.length === 0 ? (
+        <p style={{ color: "#64748b", marginBottom: 0 }}>
+          No worker forms found for this date.
+        </p>
+      ) : (
+        <div style={{ display: "grid", gap: 10 }}>
+          {todayWorkerRecords.map((record) => (
+            <div
+              key={record.id}
+              style={{
+                padding: 10,
+                border: "1px solid #e2e8f0",
+                borderRadius: 8,
+                background: "#f8fafc",
+              }}
+            >
+              <div style={{ fontWeight: "bold" }}>
+                {record.worker_name || "Unknown Worker"}
+              </div>
+
+              <div style={{ fontSize: 13, color: "#475569" }}>
+                Project: {record.project_name || "-"}
+              </div>
+
+              <div style={{ fontSize: 13, color: "#475569" }}>
+                Risk: {record.critical_risk || "-"}
+              </div>
+
+              <div style={{ fontSize: 13, color: "#475569" }}>
+                Status: {record.status || "-"}
+              </div>
+
+              <button
+                type="button"
+                onClick={() => downloadPdf(record)}
+                style={{
+                  marginTop: 8,
+                  padding: "8px 12px",
+                  background: "#123d82",
+                  color: "white",
+                  border: "none",
+                  borderRadius: 8,
+                  fontWeight: "bold",
+                  cursor: "pointer",
+                }}
+              >
+                Download PDF
+              </button>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  </div>
+</div>
+       
+<div
+  style={{
     background: "white",
     padding: 16,
     borderRadius: 12,
