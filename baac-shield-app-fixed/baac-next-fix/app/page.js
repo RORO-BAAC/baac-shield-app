@@ -6790,6 +6790,27 @@ setHazardDueDate(report.due_date || "");
 >
   <h2 style={{ marginTop: 0, color: "#0f2f66" }}>Today’s Activity</h2>
 
+<div
+  style={{
+    display: "grid",
+    gap: 6,
+    marginBottom: 12,
+    maxWidth: 260,
+  }}
+>
+  <label style={{ fontWeight: "bold" }}>Daily Activity Date</label>
+  <input
+    type="date"
+    value={dailyActivityDate}
+    onChange={(e) => setDailyActivityDate(e.target.value)}
+    style={{
+      padding: 10,
+      borderRadius: 8,
+      border: "1px solid #cbd5e1",
+    }}
+  />
+</div>
+ 
  <button
   type="button"
   onClick={downloadDailyActivityPdf}
