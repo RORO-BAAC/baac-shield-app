@@ -7102,7 +7102,80 @@ setHazardDueDate(report.due_date || "");
     </div>
   )}
 </div>
-       
+
+<div
+  style={{
+    marginBottom: 18,
+    padding: 12,
+    border: "1px solid #cbd5e1",
+    borderRadius: 10,
+    background: "white",
+  }}
+>
+  <h4 style={{ marginTop: 0 }}>RPAS Operations</h4>
+
+  {todayRpasOperations.length === 0 ? (
+    <p style={{ color: "#64748b", marginBottom: 0 }}>
+      No RPAS operations found for this date.
+    </p>
+  ) : (
+    <div style={{ display: "grid", gap: 10 }}>
+      {todayRpasOperations.map((operation) => (
+        <div
+          key={operation.id}
+          style={{
+            padding: 10,
+            border: "1px solid #e2e8f0",
+            borderRadius: 8,
+            background: "#f8fafc",
+          }}
+        >
+          <div style={{ fontWeight: "bold" }}>
+            {operation.project_name || "Unknown Project"}
+          </div>
+
+          <div style={{ fontSize: 13, color: "#475569" }}>
+            Date: {operation.flight_date || "-"}
+          </div>
+
+          <div style={{ fontSize: 13, color: "#475569" }}>
+            Pilot: {operation.pilot_in_command || "-"}
+          </div>
+
+          <div style={{ fontSize: 13, color: "#475569" }}>
+            RPAS: {operation.rpas_make_model || "-"}
+          </div>
+
+          <div style={{ fontSize: 13, color: "#475569" }}>
+            Type: {operation.operation_type || "-"}
+          </div>
+
+          <div style={{ fontSize: 13, color: "#475569" }}>
+            Location: {operation.flight_location || "-"}
+          </div>
+
+          <button
+            type="button"
+            onClick={() => downloadRpasPdf(operation)}
+            style={{
+              marginTop: 8,
+              padding: "8px 12px",
+              background: "#123d82",
+              color: "white",
+              border: "none",
+              borderRadius: 8,
+              fontWeight: "bold",
+              cursor: "pointer",
+            }}
+          >
+            Download PDF
+          </button>
+        </div>
+      ))}
+    </div>
+  )}
+</div>
+   
 <div
   style={{
     background: "white",
