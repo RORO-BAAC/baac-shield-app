@@ -6978,6 +6978,76 @@ setHazardDueDate(report.due_date || "");
   </div>
 </div>
 
+
+<div
+  style={{
+    marginBottom: 18,
+    padding: 12,
+    border: "1px solid #cbd5e1",
+    borderRadius: 10,
+    background: "white",
+  }}
+>
+  <h4 style={{ marginTop: 0 }}>Toolbox Talks</h4>
+
+  {todayToolboxTalks.length === 0 ? (
+    <p style={{ color: "#64748b", marginBottom: 0 }}>
+      No toolbox talks found for this date.
+    </p>
+  ) : (
+    <div style={{ display: "grid", gap: 10 }}>
+      {todayToolboxTalks.map((talk) => (
+        <div
+          key={talk.id}
+          style={{
+            padding: 10,
+            border: "1px solid #e2e8f0",
+            borderRadius: 8,
+            background: "#f8fafc",
+          }}
+        >
+          <div style={{ fontWeight: "bold" }}>
+            {talk.project_name || "Unknown Project"}
+          </div>
+
+          <div style={{ fontSize: 13, color: "#475569" }}>
+            Date: {talk.talk_date || "-"}
+          </div>
+
+          <div style={{ fontSize: 13, color: "#475569" }}>
+            Supervisor: {talk.supervisor_name || "-"}
+          </div>
+
+          <div style={{ fontSize: 13, color: "#475569" }}>
+            Topic: {talk.topic || "-"}
+          </div>
+
+          <div style={{ fontSize: 13, color: "#475569" }}>
+            Location: {talk.location || "-"}
+          </div>
+
+          <button
+            type="button"
+            onClick={() => downloadToolboxPdf(talk)}
+            style={{
+              marginTop: 8,
+              padding: "8px 12px",
+              background: "#123d82",
+              color: "white",
+              border: "none",
+              borderRadius: 8,
+              fontWeight: "bold",
+              cursor: "pointer",
+            }}
+          >
+            Download PDF
+          </button>
+        </div>
+      ))}
+    </div>
+  )}
+</div>
+       
 <div
   style={{
     padding: 12,
