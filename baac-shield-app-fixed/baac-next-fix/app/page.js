@@ -2418,6 +2418,71 @@ link.download = `baac-shield-audit-report-${today}-${safeDateFilter}-${safeProje
   document.body.removeChild(link);
 }
 
+function downloadDailyActivityPdf() {
+  const doc = new jsPDF();
+
+  const today = new Date().toISOString().split("T")[0];
+
+  doc.setFillColor(15, 47, 102);
+  doc.rect(0, 0, 210, 32, "F");
+
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(20);
+  doc.text(`${companyName} DAILY ACTIVITY REPORT`, 14, 18);
+
+  doc.setFontSize(10);
+  doc.text(`Generated: ${new Date().toLocaleString()}`, 14, 25);
+
+  doc.setTextColor(0, 0, 0);
+
+  let y = 45;
+
+  const addSection = (title) => {
+    if (y > 260) {
+      doc.addPage();
+      y = 20;
+    }
+
+    doc.setFillColor(226, 232, 240);
+    doc.rect(14, y - 6, 182, 10, "F");
+    doc.setTextColor(15, 47, 102);
+    doc.setFontSize(13);
+    doc.text(title, 16, y);
+    doc.setTextColor(0, 0, 0);
+    y += 12;
+  };
+
+  const addLine = (label, value) => {
+    if (y > 270) {
+      doc.addPage();
+      y = 20;
+    }
+
+    doc.setFontSize(11);
+    doc.text(`${label}: ${value ?? "-"}`, 14, y);
+    y += 8;
+  };
+
+  addSection("Today’s Activity");
+
+  addLine("Date", today);
+  addLine("Worker Forms Today", todayWorkerRecords.length);
+  addLine("Hazards / Observations Today", todayHazardReports.length);
+  addLine("Stop Work Today", todayStopWorkRecords.length);
+  addLine("RPAS Operations Today", todayRpasOperations.length);
+  addLine("Open Corrective Actions", openCorrectiveActions.length);
+  addLine("Overdue Corrective Actions", overdueRecords.length);
+
+  addSection("Summary");
+
+  addLine(
+    "Report Notes",
+    "This report summarizes BAAC Shield activity recorded in the system for the current day."
+  );
+
+  doc.save(`baac-daily-activity-report-${today}.pdf`);
+}
+ 
 async function exportAuditPDF() {
   const doc = new jsPDF();
 
