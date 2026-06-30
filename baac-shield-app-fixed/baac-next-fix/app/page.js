@@ -6977,6 +6977,61 @@ setHazardDueDate(report.due_date || "");
     </div>
   </div>
 </div>
+
+<div
+  style={{
+    padding: 12,
+    border: "1px solid #cbd5e1",
+    borderRadius: 10,
+    background: "white",
+  }}
+>
+  <h4 style={{ marginTop: 0 }}>Hazards / Observations</h4>
+
+  {todayHazardReports.length === 0 ? (
+    <p style={{ color: "#64748b", marginBottom: 0 }}>
+      No hazards or observations found for this date.
+    </p>
+  ) : (
+    <div style={{ display: "grid", gap: 10 }}>
+      {todayHazardReports.map((report) => (
+        <div
+          key={report.id}
+          style={{
+            padding: 10,
+            border: "1px solid #e2e8f0",
+            borderRadius: 8,
+            background: "#f8fafc",
+          }}
+        >
+          <div style={{ fontWeight: "bold" }}>
+            {report.report_type || "Hazard / Observation"}
+          </div>
+
+          <div style={{ fontSize: 13, color: "#475569" }}>
+            Project: {report.project_name || "-"}
+          </div>
+
+          <div style={{ fontSize: 13, color: "#475569" }}>
+            Reported By: {report.reported_by || "-"}
+          </div>
+
+          <div style={{ fontSize: 13, color: "#475569" }}>
+            Risk Level: {report.risk_level || "-"}
+          </div>
+
+          <div style={{ fontSize: 13, color: "#475569" }}>
+            Status: {report.action_status || report.status || "-"}
+          </div>
+
+          <div style={{ fontSize: 13, color: "#475569", marginTop: 6 }}>
+            Description: {report.hazard_description || "-"}
+          </div>
+        </div>
+      ))}
+    </div>
+  )}
+</div>
        
 <div
   style={{
