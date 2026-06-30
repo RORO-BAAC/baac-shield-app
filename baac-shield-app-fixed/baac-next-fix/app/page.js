@@ -6741,6 +6741,13 @@ setHazardDueDate(report.due_date || "");
       </div>
     </div>
 
+       <div>
+  <div style={{ color: "#64748b", fontSize: 12 }}>RPAS Operations Today</div>
+  <div style={{ fontSize: 28, fontWeight: "bold" }}>
+    {todayRpasOperations.length}
+  </div>
+</div>
+   
     <div>
       <div style={{ color: "#64748b", fontSize: 12 }}>Open Corrective Actions</div>
       <div style={{ fontSize: 28, fontWeight: "bold" }}>
