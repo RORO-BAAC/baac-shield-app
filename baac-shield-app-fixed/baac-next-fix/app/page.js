@@ -4575,12 +4575,12 @@ onClick={submitCorAction}
         </div>
 
 <div>
-  <label>Photos</label>
+ <label>Photos - JPG or PNG only</label>
   <br />
   <input
     type="file"
     multiple
-    accept="image/*"
+accept="image/png,image/jpeg,image/jpg"
     onChange={(e) => setFleetPhotos(Array.from(e.target.files || []))}
     style={{
       width: "100%",
