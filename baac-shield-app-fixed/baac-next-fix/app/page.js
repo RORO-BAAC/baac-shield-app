@@ -4953,6 +4953,41 @@ accept="image/png,image/jpeg,image/jpg"
               <div style={{ fontSize: 13, color: "#475569" }}>
                 Status: {item.status || "-"}
               </div>
+
+<div style={{ fontSize: 13, color: "#475569", marginTop: 6 }}>
+  Assigned To: {item.assigned_to || "-"}
+</div>
+
+<div style={{ fontSize: 13, color: "#475569" }}>
+  Repair Vendor / Company: {item.repair_vendor || "-"}
+</div>
+
+<div style={{ fontSize: 13, color: "#475569" }}>
+  Fixed By: {item.fixed_by || "-"}
+</div>
+
+<div style={{ fontSize: 13, color: "#475569" }}>
+  Fixed Date: {item.fixed_date || "-"}
+</div>
+
+<div style={{ fontSize: 13, color: "#475569" }}>
+  Repair Cost: {item.repair_cost || "-"}
+</div>
+
+<div style={{ fontSize: 13, color: "#475569" }}>
+  Paid Status: {item.paid_status || "-"}
+</div>
+
+<div style={{ fontSize: 13, color: "#475569" }}>
+  Paid Date: {item.paid_date || "-"}
+</div>
+
+{item.repair_notes && (
+  <div style={{ fontSize: 13, color: "#475569", marginTop: 6 }}>
+    Repair Notes: {item.repair_notes}
+  </div>
+)}
+
                 {item.photos && (
   <div style={{ fontSize: 13, color: "#475569", marginTop: 6 }}>
     Photos:{" "}
