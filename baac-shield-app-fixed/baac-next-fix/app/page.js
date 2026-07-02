@@ -1342,6 +1342,91 @@ if (fleetPhotos.length > 0) {
     setLoading(false);
   }
 }
+
+async function updateFleetDefect(statusValue = fleetStatus || "In Progress") {
+  if (!editingFleetDefectId) {
+    setMessage("Please select a fleet defect to update first.");
+    return;
+  }
+
+  setLoading(true);
+  setMessage("");
+
+  try {
+    const payload = {
+      asset_type: fleetAssetType,
+      asset_description: fleetAssetDescription,
+
+      reported_by: fleetReportedBy,
+      driver_operator: fleetDriverOperator,
+      project_name: fleetProject,
+      job_number: fleetJobNumber,
+      location: fleetLocation,
+
+      defect_identified: fleetDefectIdentified,
+      defect_category: fleetDefectCategory,
+      priority: fleetPriority,
+      out_of_service: fleetOutOfService,
+
+      assigned_to: fleetAssignedTo,
+      due_date: fleetDueDate || null,
+
+      repair_vendor: fleetRepairVendor,
+      repair_contact: fleetRepairContact,
+      fixed_by: fleetFixedBy,
+      fixed_date: fleetFixedDate || null,
+      repair_notes: fleetRepairNotes,
+
+      invoice_number: fleetInvoiceNumber,
+      receipt_number: fleetReceiptNumber,
+      repair_cost: fleetRepairCost,
+      paid_status: fleetPaidStatus,
+      paid_date: fleetPaidDate || null,
+
+      supervisor_signoff_name: fleetSupervisorSignoffName,
+      supervisor_signature: fleetSupervisorSignature,
+
+      status: statusValue,
+      closed_date:
+        statusValue === "Closed"
+          ? new Date().toISOString().split("T")[0]
+          : null,
+    };
+
+    const res = await fetch(
+      `${SUPABASE_URL}/rest/v1/fleet_defects?id=eq.${editingFleetDefectId}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          apikey: SUPABASE_KEY,
+          Authorization: `Bearer ${SUPABASE_KEY}`,
+          Prefer: "return=representation",
+        },
+        body: JSON.stringify(payload),
+      }
+    );
+
+    if (!res.ok) {
+      const text = await res.text();
+      throw new Error(text || "Fleet defect update failed");
+    }
+
+    setEditingFleetDefectId(null);
+    setFleetStatus("Open");
+    setMessage(
+      statusValue === "Closed"
+        ? "Fleet defect closed."
+        : "Fleet defect updated."
+    );
+
+    await loadRecords();
+  } catch (error) {
+    setMessage(`Could not update fleet defect: ${error.message}`);
+  } finally {
+    setLoading(false);
+  }
+}
   
 async function saveRpasOperation(statusValue = "Draft") {
   setLoading(true);
