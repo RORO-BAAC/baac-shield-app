@@ -2025,6 +2025,152 @@ if (photoUrls.length > 0) {
   
     doc.save(`baac-shield-record-${record.id}.pdf`);
   }
+
+async function downloadFleetDefectPdf(item) {
+  const doc = new jsPDF();
+
+  doc.setFillColor(15, 47, 102);
+  doc.rect(0, 0, 210, 32, "F");
+
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(20);
+  doc.text(`${companyName} FLEET DEFECT REPORT`, 14, 18);
+
+  doc.setFontSize(10);
+  doc.text("Fleet Defect / Repair Closeout Record", 14, 25);
+
+  doc.setTextColor(0, 0, 0);
+  let y = 42;
+
+  const addSection = (title) => {
+    if (y > 260) {
+      doc.addPage();
+      y = 20;
+    }
+
+    doc.setFillColor(226, 232, 240);
+    doc.rect(14, y - 6, 182, 10, "F");
+    doc.setTextColor(15, 47, 102);
+    doc.setFontSize(13);
+    doc.text(title, 16, y);
+    doc.setTextColor(0, 0, 0);
+    y += 10;
+  };
+
+  const addLine = (label, value) => {
+    if (y > 270) {
+      doc.addPage();
+      y = 20;
+    }
+
+    const text = `${label}: ${value || "-"}`;
+    const lines = doc.splitTextToSize(text, 180);
+    doc.setFontSize(10);
+    doc.text(lines, 14, y);
+    y += lines.length * 6 + 3;
+  };
+
+  const formatDateTime = (value) => {
+    if (!value) return "-";
+    try {
+      return new Date(value).toLocaleString();
+    } catch {
+      return value;
+    }
+  };
+
+  addSection("Defect Information");
+
+  addLine("Unit #", item.unit_number);
+  addLine("Asset Type", item.asset_type);
+  addLine("Asset Description", item.asset_description);
+  addLine("Reported By", item.reported_by);
+  addLine("Driver / Operator", item.driver_operator);
+  addLine("Project / Job", item.project_name);
+  addLine("Job #", item.job_number);
+  addLine("Location", item.location);
+  addLine("Defect Identified", item.defect_identified);
+  addLine("Defect Category", item.defect_category);
+  addLine("Priority", item.priority);
+  addLine("Out of Service", item.out_of_service);
+  addLine("Status", item.status);
+  addLine("Created", formatDateTime(item.created_at));
+
+  addSection("Maintenance / Repair");
+
+  addLine("Assigned To", item.assigned_to);
+  addLine("Due Date", item.due_date);
+  addLine("Repair Vendor / Company", item.repair_vendor);
+  addLine("Repair Contact", item.repair_contact);
+  addLine("Fixed By", item.fixed_by);
+  addLine("Fixed Date", item.fixed_date);
+  addLine("Repair Notes", item.repair_notes);
+  addLine("Invoice #", item.invoice_number);
+  addLine("Receipt #", item.receipt_number);
+  addLine("Repair Cost", item.repair_cost);
+  addLine("Paid Status", item.paid_status);
+  addLine("Paid Date", item.paid_date);
+  addLine("Closed Date", item.closed_date);
+
+  addSection("Supervisor Sign-Off");
+
+  addLine("Supervisor Sign-Off Name", item.supervisor_signoff_name);
+
+  if (
+    item.supervisor_signature &&
+    String(item.supervisor_signature).startsWith("data:image")
+  ) {
+    if (y > 230) {
+      doc.addPage();
+      y = 20;
+    }
+
+    doc.text("Supervisor Signature:", 14, y);
+    y += 5;
+    doc.addImage(item.supervisor_signature, "PNG", 14, y, 80, 30);
+    y += 40;
+  }
+
+  const photoUrls = item.photos
+    ? String(item.photos)
+        .split(",")
+        .map((p) => p.trim())
+        .filter(Boolean)
+    : [];
+
+  if (photoUrls.length > 0) {
+    addSection("Photos");
+
+    for (const url of photoUrls) {
+      try {
+        const response = await fetch(url);
+        const blob = await response.blob();
+
+        const base64 = await new Promise((resolve) => {
+          const reader = new FileReader();
+          reader.onloadend = () => resolve(reader.result);
+          reader.readAsDataURL(blob);
+        });
+
+        if (y > 200) {
+          doc.addPage();
+          y = 20;
+        }
+
+        const imageFormat = String(base64).startsWith("data:image/png")
+          ? "PNG"
+          : "JPEG";
+
+        doc.addImage(base64, imageFormat, 14, y, 90, 65);
+        y += 75;
+      } catch (err) {
+        addLine("Photo", "Failed to load");
+      }
+    }
+  }
+
+  doc.save(`baac-fleet-defect-${item.unit_number || "report"}.pdf`);
+}
   
 async function downloadRpasPdf(operation) {
   const doc = new jsPDF();
