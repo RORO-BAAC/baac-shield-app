@@ -3541,6 +3541,22 @@ Signed in as: {user?.email} · Role: {role}
 
 <button
   type="button"
+  onClick={() => setActiveTab("fleet")}
+  style={{
+    padding: "10px 14px",
+    borderRadius: 10,
+    border: "1px solid #cbd5e1",
+    background: activeTab === "fleet" ? "#123d82" : "white",
+    color: activeTab === "fleet" ? "white" : "#0f172a",
+    fontWeight: "bold",
+    cursor: "pointer",
+  }}
+>
+  Fleet Dashboard
+</button>
+    
+<button
+  type="button"
   onClick={() => setActiveTab("rpas")}
   style={{
     padding: "10px 14px",
