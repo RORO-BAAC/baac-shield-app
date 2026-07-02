@@ -180,6 +180,43 @@ const [dueDate, setDueDate] = useState("");
   const [records, setRecords] = useState([]);
   const [hazardReports, setHazardReports] = useState([]);
   const [corActions, setCorActions] = useState([]);
+ const [fleetAssets, setFleetAssets] = useState([]);
+const [fleetDefects, setFleetDefects] = useState([]);
+
+const [fleetUnitNumber, setFleetUnitNumber] = useState("");
+const [fleetAssetType, setFleetAssetType] = useState("");
+const [fleetAssetDescription, setFleetAssetDescription] = useState("");
+
+const [fleetReportedBy, setFleetReportedBy] = useState("");
+const [fleetDriverOperator, setFleetDriverOperator] = useState("");
+const [fleetProject, setFleetProject] = useState("");
+const [fleetJobNumber, setFleetJobNumber] = useState("");
+const [fleetLocation, setFleetLocation] = useState("");
+
+const [fleetDefectIdentified, setFleetDefectIdentified] = useState("");
+const [fleetDefectCategory, setFleetDefectCategory] = useState("");
+const [fleetPriority, setFleetPriority] = useState("");
+const [fleetOutOfService, setFleetOutOfService] = useState("");
+
+const [fleetAssignedTo, setFleetAssignedTo] = useState("");
+const [fleetDueDate, setFleetDueDate] = useState("");
+
+const [fleetRepairVendor, setFleetRepairVendor] = useState("");
+const [fleetRepairContact, setFleetRepairContact] = useState("");
+const [fleetFixedBy, setFleetFixedBy] = useState("");
+const [fleetFixedDate, setFleetFixedDate] = useState("");
+const [fleetRepairNotes, setFleetRepairNotes] = useState("");
+
+const [fleetInvoiceNumber, setFleetInvoiceNumber] = useState("");
+const [fleetReceiptNumber, setFleetReceiptNumber] = useState("");
+const [fleetRepairCost, setFleetRepairCost] = useState("");
+const [fleetPaidStatus, setFleetPaidStatus] = useState("");
+const [fleetPaidDate, setFleetPaidDate] = useState("");
+
+const [fleetPhotos, setFleetPhotos] = useState([]);
+const [fleetSupervisorSignoffName, setFleetSupervisorSignoffName] = useState("");
+const [fleetSupervisorSignature, setFleetSupervisorSignature] = useState("");
+const [fleetStatus, setFleetStatus] = useState("Open");
  const [rpasOperations, setRpasOperations] = useState([]);
 const [rpasProject, setRpasProject] = useState("");
 const [rpasDate, setRpasDate] = useState("");
