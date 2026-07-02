@@ -543,6 +543,36 @@ if (corRes.ok) {
   const corData = await corRes.json();
   setCorActions(corData);
 }
+  const fleetAssetsRes = await fetch(
+  `${SUPABASE_URL}/rest/v1/fleet_assets?select=*&order=unit_number.asc`,
+  {
+    headers: {
+      apikey: SUPABASE_KEY,
+      Authorization: `Bearer ${SUPABASE_KEY}`,
+    },
+  }
+);
+
+if (fleetAssetsRes.ok) {
+  const fleetAssetsData = await fleetAssetsRes.json();
+  setFleetAssets(fleetAssetsData);
+}
+
+const fleetDefectsRes = await fetch(
+  `${SUPABASE_URL}/rest/v1/fleet_defects?select=*&order=created_at.desc`,
+  {
+    headers: {
+      apikey: SUPABASE_KEY,
+      Authorization: `Bearer ${SUPABASE_KEY}`,
+    },
+  }
+);
+
+if (fleetDefectsRes.ok) {
+  const fleetDefectsData = await fleetDefectsRes.json();
+  setFleetDefects(fleetDefectsData);
+}
+     
 const rpasRes = await fetch(
   `${SUPABASE_URL}/rest/v1/rpas_operations?select=*&order=created_at.desc`,
   {
