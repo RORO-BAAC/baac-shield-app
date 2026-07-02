@@ -4567,40 +4567,6 @@ onClick={submitCorAction}
           </select>
         </div>
 
-        <div>
-       <label>Assigned To</label>
-          <br />
-          <input
-            value={fleetAssignedTo}
-            onChange={(e) => setFleetAssignedTo(e.target.value)}
-            placeholder="Person responsible for follow-up"
-            style={{
-              width: "100%",
-              padding: 12,
-              marginTop: 6,
-              borderRadius: 10,
-              border: "1px solid #cbd5e1",
-            }}
-          />
-        </div>
-
-        <div>
-        <label>Due Date</label>
-          <br />
-          <input
-            type="date"
-            value={fleetDueDate}
-            onChange={(e) => setFleetDueDate(e.target.value)}
-            style={{
-              width: "100%",
-              padding: 12,
-              marginTop: 6,
-              borderRadius: 10,
-              border: "1px solid #cbd5e1",
-            }}
-          />
-        </div>
-
         <button
           type="button"
           onClick={() => saveFleetDefect("Open")}
