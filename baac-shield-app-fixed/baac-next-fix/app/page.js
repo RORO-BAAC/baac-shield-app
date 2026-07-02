@@ -5117,9 +5117,45 @@ accept="image/png,image/jpeg,image/jpg"
                 Due Date: {item.due_date || "-"}
               </div>
 
-              <div style={{ fontSize: 13, color: "#475569" }}>
-                Status: {item.status || "-"}
-              </div>
+              <div style={{ marginTop: 6 }}>
+  <span
+    style={{
+      display: "inline-block",
+      padding: "4px 10px",
+      borderRadius: 999,
+      fontSize: 12,
+      fontWeight: "bold",
+      color: "white",
+      background:
+        item.status === "Closed"
+          ? "#16a34a"
+          : item.status === "In Progress"
+          ? "#2563eb"
+          : item.out_of_service === "Yes"
+          ? "#dc2626"
+          : "#f97316",
+    }}
+  >
+    Status: {item.status || "Open"}
+  </span>
+
+  {item.out_of_service === "Yes" && (
+    <span
+      style={{
+        display: "inline-block",
+        padding: "4px 10px",
+        borderRadius: 999,
+        fontSize: 12,
+        fontWeight: "bold",
+        color: "white",
+        background: "#dc2626",
+        marginLeft: 8,
+      }}
+    >
+      Out of Service
+    </span>
+  )}
+</div>
 
 <div style={{ fontSize: 13, color: "#475569", marginTop: 6 }}>
   Assigned To: {item.assigned_to || "-"}
