@@ -4702,6 +4702,70 @@ accept="image/png,image/jpeg,image/jpg"
         >
           Save Fleet Defect
         </button>
+            {editingFleetDefectId && (
+  <div
+    style={{
+      display: "flex",
+      gap: 10,
+      flexWrap: "wrap",
+      marginTop: 10,
+    }}
+  >
+    <button
+      type="button"
+      onClick={() => updateFleetDefect("In Progress")}
+      disabled={loading}
+      style={{
+        padding: "12px 18px",
+        background: "#2563eb",
+        color: "white",
+        border: "none",
+        borderRadius: 10,
+        fontWeight: "bold",
+        cursor: "pointer",
+      }}
+    >
+      Save Update
+    </button>
+
+    <button
+      type="button"
+      onClick={() => updateFleetDefect("Closed")}
+      disabled={loading}
+      style={{
+        padding: "12px 18px",
+        background: "#16a34a",
+        color: "white",
+        border: "none",
+        borderRadius: 10,
+        fontWeight: "bold",
+        cursor: "pointer",
+      }}
+    >
+      Close Defect
+    </button>
+
+    <button
+      type="button"
+      onClick={() => {
+        setEditingFleetDefectId(null);
+        setFleetStatus("Open");
+        setMessage("Fleet update cancelled.");
+      }}
+      style={{
+        padding: "12px 18px",
+        background: "#64748b",
+        color: "white",
+        border: "none",
+        borderRadius: 10,
+        fontWeight: "bold",
+        cursor: "pointer",
+      }}
+    >
+      Cancel Update
+    </button>
+  </div>
+)}
       </div>
     </div>
 
