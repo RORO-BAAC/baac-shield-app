@@ -5202,6 +5202,25 @@ setEditingFleetDefectId(item.id);
     cursor: "pointer",
   }}
 >
+
+<button
+  type="button"
+  onClick={() => downloadFleetDefectPdf(item)}
+  style={{
+    marginTop: 10,
+    marginRight: 10,
+    padding: "8px 12px",
+    background: "#123d82",
+    color: "white",
+    border: "none",
+    borderRadius: 8,
+    fontWeight: "bold",
+    cursor: "pointer",
+  }}
+>
+  Download PDF
+</button>
+
   Update / Close
 </button>
     
