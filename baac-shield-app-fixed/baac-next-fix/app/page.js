@@ -4685,7 +4685,144 @@ accept="image/png,image/jpeg,image/jpg"
     </p>
   )}
 </div>
-            
+ <div
+  style={{
+    marginTop: 20,
+    padding: 14,
+    border: "1px solid #cbd5e1",
+    borderRadius: 12,
+    background: "#f8fafc",
+  }}
+>
+  <h3 style={{ marginTop: 0 }}>Maintenance / Repair Update</h3>
+
+  <div style={{ display: "grid", gap: 12 }}>
+    <div>
+      <label>Assigned To</label>
+      <input
+        value={fleetAssignedTo}
+        onChange={(e) => setFleetAssignedTo(e.target.value)}
+        style={{ width: "100%", padding: 10, marginTop: 4 }}
+      />
+    </div>
+
+    <div>
+      <label>Repair Vendor / Company</label>
+      <input
+        value={fleetRepairVendor}
+        onChange={(e) => setFleetRepairVendor(e.target.value)}
+        style={{ width: "100%", padding: 10, marginTop: 4 }}
+      />
+    </div>
+
+    <div>
+      <label>Repair Contact</label>
+      <input
+        value={fleetRepairContact}
+        onChange={(e) => setFleetRepairContact(e.target.value)}
+        style={{ width: "100%", padding: 10, marginTop: 4 }}
+      />
+    </div>
+
+    <div>
+      <label>Fixed By</label>
+      <input
+        value={fleetFixedBy}
+        onChange={(e) => setFleetFixedBy(e.target.value)}
+        style={{ width: "100%", padding: 10, marginTop: 4 }}
+      />
+    </div>
+
+    <div>
+      <label>Fixed Date</label>
+      <input
+        type="date"
+        value={fleetFixedDate}
+        onChange={(e) => setFleetFixedDate(e.target.value)}
+        style={{ width: "100%", padding: 10, marginTop: 4 }}
+      />
+    </div>
+
+    <div>
+      <label>Repair Notes</label>
+      <textarea
+        value={fleetRepairNotes}
+        onChange={(e) => setFleetRepairNotes(e.target.value)}
+        rows={4}
+        style={{ width: "100%", padding: 10, marginTop: 4 }}
+      />
+    </div>
+
+    <div>
+      <label>Invoice #</label>
+      <input
+        value={fleetInvoiceNumber}
+        onChange={(e) => setFleetInvoiceNumber(e.target.value)}
+        style={{ width: "100%", padding: 10, marginTop: 4 }}
+      />
+    </div>
+
+    <div>
+      <label>Receipt #</label>
+      <input
+        value={fleetReceiptNumber}
+        onChange={(e) => setFleetReceiptNumber(e.target.value)}
+        style={{ width: "100%", padding: 10, marginTop: 4 }}
+      />
+    </div>
+
+    <div>
+      <label>Repair Cost</label>
+      <input
+        value={fleetRepairCost}
+        onChange={(e) => setFleetRepairCost(e.target.value)}
+        placeholder="Example: 450.00"
+        style={{ width: "100%", padding: 10, marginTop: 4 }}
+      />
+    </div>
+
+    <div>
+      <label>Paid Status</label>
+      <select
+        value={fleetPaidStatus}
+        onChange={(e) => setFleetPaidStatus(e.target.value)}
+        style={{ width: "100%", padding: 10, marginTop: 4 }}
+      >
+        <option value="">Select</option>
+        <option value="Not Paid">Not Paid</option>
+        <option value="Pending">Pending</option>
+        <option value="Paid">Paid</option>
+      </select>
+    </div>
+
+    <div>
+      <label>Paid Date</label>
+      <input
+        type="date"
+        value={fleetPaidDate}
+        onChange={(e) => setFleetPaidDate(e.target.value)}
+        style={{ width: "100%", padding: 10, marginTop: 4 }}
+      />
+    </div>
+
+    <div>
+      <label>Supervisor Sign-Off Name</label>
+      <input
+        value={fleetSupervisorSignoffName}
+        onChange={(e) => setFleetSupervisorSignoffName(e.target.value)}
+        style={{ width: "100%", padding: 10, marginTop: 4 }}
+      />
+    </div>
+
+    <div>
+      <label>Supervisor Signature</label>
+      <SignatureBox
+        sigRef={fleetSupervisorSigRef}
+        onSave={setFleetSupervisorSignature}
+      />
+    </div>
+  </div>
+</div>           
         <button
           type="button"
           onClick={() => saveFleetDefect("Open")}
