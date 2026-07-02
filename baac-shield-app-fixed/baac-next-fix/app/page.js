@@ -4369,8 +4369,10 @@ onClick={submitCorAction}
       boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
     }}
   >
-    <h2 style={{ marginTop: 0, color: "#0f2f66" }}>Fleet Dashboard</h2>
-
+   <h2 style={{ marginTop: 0, color: "#0f2f66" }}>
+  Fleet Defect / Repair Report
+</h2>
+    
     <div
       style={{
         padding: 14,
