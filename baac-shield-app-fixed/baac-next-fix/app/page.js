@@ -4585,7 +4585,7 @@ onClick={submitCorAction}
         </div>
 
         <div>
-          <label>Due Date *</label>
+        <label>Due Date</label>
           <br />
           <input
             type="date"
