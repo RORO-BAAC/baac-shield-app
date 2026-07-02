@@ -3552,7 +3552,7 @@ Signed in as: {user?.email} · Role: {role}
     cursor: "pointer",
   }}
 >
-  Fleet Dashboard
+ Fleet Defect Report
 </button>
     
 <button
