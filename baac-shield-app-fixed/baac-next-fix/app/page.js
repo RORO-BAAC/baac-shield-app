@@ -4665,6 +4665,30 @@ accept="image/png,image/jpeg,image/jpg"
               <div style={{ fontSize: 13, color: "#475569" }}>
                 Status: {item.status || "-"}
               </div>
+                {item.photos && (
+  <div style={{ fontSize: 13, color: "#475569", marginTop: 6 }}>
+    Photos:{" "}
+    {String(item.photos)
+      .split(",")
+      .map((photo) => photo.trim())
+      .filter(Boolean)
+      .map((photo, index) => (
+        <a
+          key={photo}
+          href={photo}
+          target="_blank"
+          rel="noreferrer"
+          style={{
+            color: "#123d82",
+            fontWeight: "bold",
+            marginRight: 10,
+          }}
+        >
+          View Photo {index + 1}
+        </a>
+      ))}
+  </div>
+)}
             </div>
           ))}
         </div>
