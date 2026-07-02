@@ -353,6 +353,7 @@ const [dailyActivityDate, setDailyActivityDate] = useState(
   const corBeforeFileRef = useRef(null);
   const workerSigRef = useRef(null);
   const supervisorSigRef = useRef(null);
+ const fleetSupervisorSigRef = useRef(null);
 const rpasPreflightSigRef = useRef(null);
 const rpasPostflightSigRef = useRef(null);
  
