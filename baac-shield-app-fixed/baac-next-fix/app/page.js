@@ -4358,6 +4358,321 @@ onClick={submitCorAction}
   </div>
 )}
 
+{activeTab === "fleet" && (
+  <div
+    style={{
+      display: "grid",
+      gap: 16,
+      background: "white",
+      padding: 18,
+      borderRadius: 16,
+      boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
+    }}
+  >
+    <h2 style={{ marginTop: 0, color: "#0f2f66" }}>Fleet Dashboard</h2>
+
+    <div
+      style={{
+        padding: 14,
+        border: "1px solid #dbeafe",
+        borderRadius: 12,
+        background: "#f8fafc",
+      }}
+    >
+      <h3 style={{ marginTop: 0 }}>Fleet Defect / Repair Entry</h3>
+
+      <div style={{ display: "grid", gap: 12 }}>
+        <div>
+          <label>Unit # *</label>
+          <br />
+          <input
+            value={fleetUnitNumber}
+            onChange={(e) => setFleetUnitNumber(e.target.value)}
+            placeholder="Example: T-101, C-04, EX-02"
+            style={{
+              width: "100%",
+              padding: 12,
+              marginTop: 6,
+              borderRadius: 10,
+              border: "1px solid #cbd5e1",
+            }}
+          />
+        </div>
+
+        <div>
+          <label>Asset Type</label>
+          <br />
+          <select
+            value={fleetAssetType}
+            onChange={(e) => setFleetAssetType(e.target.value)}
+            style={{
+              width: "100%",
+              padding: 12,
+              marginTop: 6,
+              borderRadius: 10,
+              border: "1px solid #cbd5e1",
+            }}
+          >
+            <option value="">Select type</option>
+            <option value="Truck">Truck</option>
+            <option value="Trailer">Trailer</option>
+            <option value="Equipment">Equipment</option>
+            <option value="Compressor">Compressor</option>
+            <option value="Tool">Tool</option>
+            <option value="Heavy Machine">Heavy Machine</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Asset Description</label>
+          <br />
+          <input
+            value={fleetAssetDescription}
+            onChange={(e) => setFleetAssetDescription(e.target.value)}
+            placeholder="Example: Ford F-550 service truck"
+            style={{
+              width: "100%",
+              padding: 12,
+              marginTop: 6,
+              borderRadius: 10,
+              border: "1px solid #cbd5e1",
+            }}
+          />
+        </div>
+
+        <div>
+          <label>Reported By</label>
+          <br />
+          <input
+            value={fleetReportedBy}
+            onChange={(e) => setFleetReportedBy(e.target.value)}
+            style={{
+              width: "100%",
+              padding: 12,
+              marginTop: 6,
+              borderRadius: 10,
+              border: "1px solid #cbd5e1",
+            }}
+          />
+        </div>
+
+        <div>
+          <label>Driver / Operator</label>
+          <br />
+          <input
+            value={fleetDriverOperator}
+            onChange={(e) => setFleetDriverOperator(e.target.value)}
+            style={{
+              width: "100%",
+              padding: 12,
+              marginTop: 6,
+              borderRadius: 10,
+              border: "1px solid #cbd5e1",
+            }}
+          />
+        </div>
+
+        <div>
+          <label>Project / Job</label>
+          <br />
+          <input
+            value={fleetProject}
+            onChange={(e) => setFleetProject(e.target.value)}
+            style={{
+              width: "100%",
+              padding: 12,
+              marginTop: 6,
+              borderRadius: 10,
+              border: "1px solid #cbd5e1",
+            }}
+          />
+        </div>
+
+        <div>
+          <label>Location</label>
+          <br />
+          <input
+            value={fleetLocation}
+            onChange={(e) => setFleetLocation(e.target.value)}
+            style={{
+              width: "100%",
+              padding: 12,
+              marginTop: 6,
+              borderRadius: 10,
+              border: "1px solid #cbd5e1",
+            }}
+          />
+        </div>
+
+        <div>
+          <label>Defect Identified *</label>
+          <br />
+          <textarea
+            value={fleetDefectIdentified}
+            onChange={(e) => setFleetDefectIdentified(e.target.value)}
+            placeholder="Describe the defect, damage, repair needed, or issue."
+            rows={4}
+            style={{
+              width: "100%",
+              padding: 12,
+              marginTop: 6,
+              borderRadius: 10,
+              border: "1px solid #cbd5e1",
+            }}
+          />
+        </div>
+
+        <div>
+          <label>Priority</label>
+          <br />
+          <select
+            value={fleetPriority}
+            onChange={(e) => setFleetPriority(e.target.value)}
+            style={{
+              width: "100%",
+              padding: 12,
+              marginTop: 6,
+              borderRadius: 10,
+              border: "1px solid #cbd5e1",
+            }}
+          >
+            <option value="">Select priority</option>
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+            <option value="Critical">Critical</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Out of Service?</label>
+          <br />
+          <select
+            value={fleetOutOfService}
+            onChange={(e) => setFleetOutOfService(e.target.value)}
+            style={{
+              width: "100%",
+              padding: 12,
+              marginTop: 6,
+              borderRadius: 10,
+              border: "1px solid #cbd5e1",
+            }}
+          >
+            <option value="">Select</option>
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Assigned To *</label>
+          <br />
+          <input
+            value={fleetAssignedTo}
+            onChange={(e) => setFleetAssignedTo(e.target.value)}
+            placeholder="Person responsible for follow-up"
+            style={{
+              width: "100%",
+              padding: 12,
+              marginTop: 6,
+              borderRadius: 10,
+              border: "1px solid #cbd5e1",
+            }}
+          />
+        </div>
+
+        <div>
+          <label>Due Date *</label>
+          <br />
+          <input
+            type="date"
+            value={fleetDueDate}
+            onChange={(e) => setFleetDueDate(e.target.value)}
+            style={{
+              width: "100%",
+              padding: 12,
+              marginTop: 6,
+              borderRadius: 10,
+              border: "1px solid #cbd5e1",
+            }}
+          />
+        </div>
+
+        <button
+          type="button"
+          onClick={() => saveFleetDefect("Open")}
+          disabled={loading}
+          style={{
+            padding: "12px 16px",
+            background: "#123d82",
+            color: "white",
+            border: "none",
+            borderRadius: 10,
+            fontWeight: "bold",
+            cursor: "pointer",
+          }}
+        >
+          Save Fleet Defect
+        </button>
+      </div>
+    </div>
+
+    <div
+      style={{
+        padding: 14,
+        border: "1px solid #dbeafe",
+        borderRadius: 12,
+        background: "#f8fafc",
+      }}
+    >
+      <h3 style={{ marginTop: 0 }}>Fleet Defects Register</h3>
+
+      {fleetDefects.length === 0 ? (
+        <p style={{ color: "#64748b" }}>No fleet defects found.</p>
+      ) : (
+        <div style={{ display: "grid", gap: 10 }}>
+          {fleetDefects.map((item) => (
+            <div
+              key={item.id}
+              style={{
+                padding: 12,
+                border: "1px solid #cbd5e1",
+                borderRadius: 10,
+                background: "white",
+              }}
+            >
+              <div style={{ fontWeight: "bold" }}>
+                Unit #: {item.unit_number || "-"}
+              </div>
+
+              <div style={{ fontSize: 13, color: "#475569" }}>
+                Type: {item.asset_type || "-"}
+              </div>
+
+              <div style={{ fontSize: 13, color: "#475569" }}>
+                Defect: {item.defect_identified || "-"}
+              </div>
+
+              <div style={{ fontSize: 13, color: "#475569" }}>
+                Assigned To: {item.assigned_to || "-"}
+              </div>
+
+              <div style={{ fontSize: 13, color: "#475569" }}>
+                Due Date: {item.due_date || "-"}
+              </div>
+
+              <div style={{ fontSize: 13, color: "#475569" }}>
+                Status: {item.status || "-"}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  </div>
+)}
+
 {activeTab === "rpas" && (
   <div
     key={rpasResetKey}
