@@ -4567,6 +4567,31 @@ onClick={submitCorAction}
           </select>
         </div>
 
+<div>
+  <label>Photos</label>
+  <br />
+  <input
+    type="file"
+    multiple
+    accept="image/*"
+    onChange={(e) => setFleetPhotos(Array.from(e.target.files || []))}
+    style={{
+      width: "100%",
+      padding: 12,
+      marginTop: 6,
+      borderRadius: 10,
+      border: "1px solid #cbd5e1",
+      background: "white",
+    }}
+  />
+
+  {fleetPhotos.length > 0 && (
+    <p style={{ fontSize: 13, color: "#475569", marginTop: 6 }}>
+      {fleetPhotos.length} photo(s) selected.
+    </p>
+  )}
+</div>
+            
         <button
           type="button"
           onClick={() => saveFleetDefect("Open")}
