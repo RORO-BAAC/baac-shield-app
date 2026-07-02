@@ -5121,9 +5121,9 @@ accept="image/png,image/jpeg,image/jpg"
   <span
     style={{
       display: "inline-block",
-      padding: "4px 10px",
+      padding: "7px 14px",
       borderRadius: 999,
-      fontSize: 12,
+  fontSize: 14,
       fontWeight: "bold",
       color: "white",
       background:
