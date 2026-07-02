@@ -1331,6 +1331,7 @@ if (fleetPhotos.length > 0) {
     setFleetSupervisorSignoffName("");
     setFleetSupervisorSignature("");
     setFleetStatus("Open");
+    setEditingFleetDefectId(null);
     fleetSupervisorSigRef.current?.clear();
 
     setMessage("Fleet defect saved.");
