@@ -4719,7 +4719,8 @@ accept="image/png,image/jpeg,image/jpg"
     setFleetPaidStatus(item.paid_status || "");
     setFleetPaidDate(item.paid_date || "");
     setFleetStatus(item.status || "Open");
-
+setEditingFleetDefectId(item.id);
+    
     window.scrollTo({ top: 0, behavior: "smooth" });
   }}
   style={{
