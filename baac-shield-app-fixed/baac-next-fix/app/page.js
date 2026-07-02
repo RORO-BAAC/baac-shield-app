@@ -1220,6 +1220,8 @@ status: "Open",
 }
 
 async function saveFleetDefect(statusValue = "Open") {
+  alert("Fleet save button clicked");
+  
   setLoading(true);
   setMessage("");
 
