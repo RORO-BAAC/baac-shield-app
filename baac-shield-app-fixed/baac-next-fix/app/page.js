@@ -5159,70 +5159,68 @@ accept="image/png,image/jpeg,image/jpg"
   </div>
 )}
 
-<button
-  type="button"
-  onClick={() => {
-    setFleetUnitNumber(item.unit_number || "");
-    setFleetAssetType(item.asset_type || "");
-    setFleetAssetDescription(item.asset_description || "");
-    setFleetReportedBy(item.reported_by || "");
-    setFleetDriverOperator(item.driver_operator || "");
-    setFleetProject(item.project_name || "");
-    setFleetJobNumber(item.job_number || "");
-    setFleetLocation(item.location || "");
-    setFleetDefectIdentified(item.defect_identified || "");
-    setFleetDefectCategory(item.defect_category || "");
-    setFleetPriority(item.priority || "");
-    setFleetOutOfService(item.out_of_service || "");
-    setFleetAssignedTo(item.assigned_to || "");
-    setFleetDueDate(item.due_date || "");
-    setFleetRepairVendor(item.repair_vendor || "");
-    setFleetRepairContact(item.repair_contact || "");
-    setFleetFixedBy(item.fixed_by || "");
-    setFleetFixedDate(item.fixed_date || "");
-    setFleetRepairNotes(item.repair_notes || "");
-    setFleetInvoiceNumber(item.invoice_number || "");
-    setFleetReceiptNumber(item.receipt_number || "");
-    setFleetRepairCost(item.repair_cost || "");
-    setFleetPaidStatus(item.paid_status || "");
-    setFleetPaidDate(item.paid_date || "");
-    setFleetStatus(item.status || "Open");
-setEditingFleetDefectId(item.id);
-    
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }}
-  style={{
-    marginTop: 10,
-    padding: "8px 12px",
-    background: "#f97316",
-    color: "white",
-    border: "none",
-    borderRadius: 8,
-    fontWeight: "bold",
-    cursor: "pointer",
-  }}
->
+<div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginTop: 12 }}>
+  <button
+    type="button"
+    onClick={() => downloadFleetDefectPdf(item)}
+    style={{
+      padding: "8px 12px",
+      background: "#123d82",
+      color: "white",
+      border: "none",
+      borderRadius: 8,
+      fontWeight: "bold",
+      cursor: "pointer",
+    }}
+  >
+    Download PDF
+  </button>
 
-<button
-  type="button"
-  onClick={() => downloadFleetDefectPdf(item)}
-  style={{
-    marginTop: 10,
-    marginRight: 10,
-    padding: "8px 12px",
-    background: "#123d82",
-    color: "white",
-    border: "none",
-    borderRadius: 8,
-    fontWeight: "bold",
-    cursor: "pointer",
-  }}
->
-  Download PDF
-</button>
+  <button
+    type="button"
+    onClick={() => {
+      setFleetUnitNumber(item.unit_number || "");
+      setFleetAssetType(item.asset_type || "");
+      setFleetAssetDescription(item.asset_description || "");
+      setFleetReportedBy(item.reported_by || "");
+      setFleetDriverOperator(item.driver_operator || "");
+      setFleetProject(item.project_name || "");
+      setFleetJobNumber(item.job_number || "");
+      setFleetLocation(item.location || "");
+      setFleetDefectIdentified(item.defect_identified || "");
+      setFleetDefectCategory(item.defect_category || "");
+      setFleetPriority(item.priority || "");
+      setFleetOutOfService(item.out_of_service || "");
+      setFleetAssignedTo(item.assigned_to || "");
+      setFleetDueDate(item.due_date || "");
+      setFleetRepairVendor(item.repair_vendor || "");
+      setFleetRepairContact(item.repair_contact || "");
+      setFleetFixedBy(item.fixed_by || "");
+      setFleetFixedDate(item.fixed_date || "");
+      setFleetRepairNotes(item.repair_notes || "");
+      setFleetInvoiceNumber(item.invoice_number || "");
+      setFleetReceiptNumber(item.receipt_number || "");
+      setFleetRepairCost(item.repair_cost || "");
+      setFleetPaidStatus(item.paid_status || "");
+      setFleetPaidDate(item.paid_date || "");
+      setFleetStatus(item.status || "Open");
+      setEditingFleetDefectId(item.id);
 
-  Update / Close
-</button>
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }}
+    style={{
+      padding: "8px 12px",
+      background: "#f97316",
+      color: "white",
+      border: "none",
+      borderRadius: 8,
+      fontWeight: "bold",
+      cursor: "pointer",
+    }}
+  >
+    Update / Close
+  </button>
+</div>
     
             </div>
           ))}
