@@ -217,6 +217,7 @@ const [fleetPhotos, setFleetPhotos] = useState([]);
 const [fleetSupervisorSignoffName, setFleetSupervisorSignoffName] = useState("");
 const [fleetSupervisorSignature, setFleetSupervisorSignature] = useState("");
 const [fleetStatus, setFleetStatus] = useState("Open");
+  const [editingFleetDefectId, setEditingFleetDefectId] = useState(null);
  const [rpasOperations, setRpasOperations] = useState([]);
 const [rpasProject, setRpasProject] = useState("");
 const [rpasDate, setRpasDate] = useState("");
