@@ -1223,13 +1223,13 @@ async function saveFleetDefect(statusValue = "Open") {
   setLoading(true);
   setMessage("");
 
-  if (!fleetUnitNumber || !fleetDefectIdentified || !fleetAssignedTo || !fleetDueDate) {
-    setMessage(
-      "Please complete required fields: Unit #, Defect Identified, Assigned To, and Due Date."
-    );
-    setLoading(false);
-    return;
-  }
+ if (!fleetUnitNumber || !fleetReportedBy || !fleetDefectIdentified) {
+  setMessage(
+    "Please complete required fields: Unit #, Reported By, and Defect Identified."
+  );
+  setLoading(false);
+  return;
+}
 
   try {
     const uploadedPhotoUrls = await uploadPhotosToSupabase(fleetPhotos);
