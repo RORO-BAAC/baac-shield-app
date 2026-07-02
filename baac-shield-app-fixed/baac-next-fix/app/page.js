@@ -1219,6 +1219,121 @@ status: "Open",
   }
 }
 
+async function saveFleetDefect(statusValue = "Open") {
+  setLoading(true);
+  setMessage("");
+
+  if (!fleetUnitNumber || !fleetDefectIdentified || !fleetAssignedTo || !fleetDueDate) {
+    setMessage(
+      "Please complete required fields: Unit #, Defect Identified, Assigned To, and Due Date."
+    );
+    setLoading(false);
+    return;
+  }
+
+  try {
+    const uploadedPhotoUrls = await uploadPhotosToSupabase(fleetPhotos);
+
+    const payload = {
+      unit_number: fleetUnitNumber,
+      asset_type: fleetAssetType,
+      asset_description: fleetAssetDescription,
+
+      reported_by: fleetReportedBy,
+      driver_operator: fleetDriverOperator,
+      project_name: fleetProject,
+      job_number: fleetJobNumber,
+      location: fleetLocation,
+
+      defect_identified: fleetDefectIdentified,
+      defect_category: fleetDefectCategory,
+      priority: fleetPriority,
+      out_of_service: fleetOutOfService,
+
+      assigned_to: fleetAssignedTo,
+      due_date: fleetDueDate || null,
+
+      repair_vendor: fleetRepairVendor,
+      repair_contact: fleetRepairContact,
+      fixed_by: fleetFixedBy,
+      fixed_date: fleetFixedDate || null,
+      repair_notes: fleetRepairNotes,
+
+      invoice_number: fleetInvoiceNumber,
+      receipt_number: fleetReceiptNumber,
+      repair_cost: fleetRepairCost,
+      paid_status: fleetPaidStatus,
+      paid_date: fleetPaidDate || null,
+
+      photos: uploadedPhotoUrls.join(", "),
+      supervisor_signoff_name: fleetSupervisorSignoffName,
+      supervisor_signature: fleetSupervisorSignature,
+
+      status: statusValue,
+      closed_date: statusValue === "Closed" ? new Date().toISOString().split("T")[0] : null,
+    };
+
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/fleet_defects`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        apikey: SUPABASE_KEY,
+        Authorization: `Bearer ${SUPABASE_KEY}`,
+        Prefer: "return=representation",
+      },
+      body: JSON.stringify(payload),
+    });
+
+    if (!res.ok) {
+      const text = await res.text();
+      throw new Error(text || "Fleet defect save failed");
+    }
+
+    setFleetUnitNumber("");
+    setFleetAssetType("");
+    setFleetAssetDescription("");
+
+    setFleetReportedBy("");
+    setFleetDriverOperator("");
+    setFleetProject("");
+    setFleetJobNumber("");
+    setFleetLocation("");
+
+    setFleetDefectIdentified("");
+    setFleetDefectCategory("");
+    setFleetPriority("");
+    setFleetOutOfService("");
+
+    setFleetAssignedTo("");
+    setFleetDueDate("");
+
+    setFleetRepairVendor("");
+    setFleetRepairContact("");
+    setFleetFixedBy("");
+    setFleetFixedDate("");
+    setFleetRepairNotes("");
+
+    setFleetInvoiceNumber("");
+    setFleetReceiptNumber("");
+    setFleetRepairCost("");
+    setFleetPaidStatus("");
+    setFleetPaidDate("");
+
+    setFleetPhotos([]);
+    setFleetSupervisorSignoffName("");
+    setFleetSupervisorSignature("");
+    setFleetStatus("Open");
+    fleetSupervisorSigRef.current?.clear();
+
+    setMessage("Fleet defect saved.");
+    await loadRecords();
+  } catch (error) {
+    setMessage(`Could not save fleet defect: ${error.message}`);
+  } finally {
+    setLoading(false);
+  }
+}
+  
 async function saveRpasOperation(statusValue = "Draft") {
   setLoading(true);
   setMessage("");
