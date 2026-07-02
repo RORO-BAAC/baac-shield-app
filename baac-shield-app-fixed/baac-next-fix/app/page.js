@@ -1233,7 +1233,13 @@ async function saveFleetDefect(statusValue = "Open") {
 }
 
   try {
-    const uploadedPhotoUrls = await uploadPhotosToSupabase(fleetPhotos);
+   let uploadedPhotoUrls = [];
+
+if (fleetPhotos.length > 0) {
+  setMessage("Uploading fleet photo(s)...");
+  uploadedPhotoUrls = await uploadPhotosToSupabase(fleetPhotos);
+  setMessage("Fleet photo(s) uploaded. Saving defect report...");
+}
 
     const payload = {
       unit_number: fleetUnitNumber,
