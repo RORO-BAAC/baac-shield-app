@@ -4568,7 +4568,7 @@ onClick={submitCorAction}
         </div>
 
         <div>
-          <label>Assigned To *</label>
+       <label>Assigned To</label>
           <br />
           <input
             value={fleetAssignedTo}
