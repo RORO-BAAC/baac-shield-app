@@ -4625,21 +4625,42 @@ onClick={submitCorAction}
 
       <div style={{ display: "grid", gap: 12 }}>
         <div>
-          <label>Unit # *</label>
-          <br />
-          <input
-            value={fleetUnitNumber}
-            onChange={(e) => setFleetUnitNumber(e.target.value)}
-            placeholder="Example: T-101, C-04, EX-02"
-            style={{
-              width: "100%",
-              padding: 12,
-              marginTop: 6,
-              borderRadius: 10,
-              border: "1px solid #cbd5e1",
-            }}
-          />
-        </div>
+  <label>Unit # *</label>
+  <br />
+  <select
+    value={fleetUnitNumber}
+    onChange={(e) => {
+      const selectedUnit = e.target.value;
+      setFleetUnitNumber(selectedUnit);
+
+      const selectedAsset = fleetAssets.find(
+        (asset) => asset.unit_number === selectedUnit
+      );
+
+      if (selectedAsset) {
+        setFleetAssetType(selectedAsset.asset_type || "");
+        setFleetAssetDescription(selectedAsset.description || "");
+      }
+    }}
+    style={{
+      width: "100%",
+      padding: 12,
+      marginTop: 6,
+      borderRadius: 10,
+      border: "1px solid #cbd5e1",
+      background: "white",
+    }}
+  >
+    <option value="">Select unit</option>
+    {fleetAssets
+      .filter((asset) => asset.status !== "Inactive")
+      .map((asset) => (
+        <option key={asset.id} value={asset.unit_number}>
+          {asset.unit_number}
+        </option>
+      ))}
+  </select>
+</div>
 
         <div>
           <label>Asset Type</label>
