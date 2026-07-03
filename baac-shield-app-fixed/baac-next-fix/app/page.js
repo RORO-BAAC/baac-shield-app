@@ -5554,6 +5554,116 @@ onClick={submitCorAction}
           />
         </div>
 
+        <div style={{ marginTop: 20 }}>
+          <h4>Crew Sign-Off</h4>
+
+          {flraWorkerSignatures.map((worker, index) => (
+            <div
+              key={`${flraResetKey}-${index}`}
+              style={{
+                padding: 14,
+                borderRadius: 12,
+                border: "1px solid #e2e8f0",
+                background: "#f8fafc",
+                marginBottom: 12,
+              }}
+            >
+              <div style={{ display: "grid", gap: 12, gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))" }}>
+                <div>
+                  <label>Worker Name</label>
+                  <br />
+                  <input
+                    value={worker.name}
+                    onChange={(e) => {
+                      const updated = [...flraWorkerSignatures];
+                      updated[index].name = e.target.value;
+                      setFlraWorkerSignatures(updated);
+                    }}
+                    style={{ width: "100%", padding: 12, marginTop: 6, borderRadius: 10, border: "1px solid #cbd5e1" }}
+                  />
+                </div>
+
+                <div>
+                  <label>Role</label>
+                  <br />
+                  <input
+                    value={worker.role}
+                    onChange={(e) => {
+                      const updated = [...flraWorkerSignatures];
+                      updated[index].role = e.target.value;
+                      setFlraWorkerSignatures(updated);
+                    }}
+                    placeholder="Foreman, Labourer, Operator, Visitor"
+                    style={{ width: "100%", padding: 12, marginTop: 6, borderRadius: 10, border: "1px solid #cbd5e1" }}
+                  />
+                </div>
+              </div>
+
+              <div style={{ marginTop: 12 }}>
+                <label>Worker Signature</label>
+                <AttendeeSignatureBox
+                  onSave={(signature) => {
+                    const updated = [...flraWorkerSignatures];
+                    updated[index].signature = signature;
+                    updated[index].signedAt = new Date().toISOString();
+                    setFlraWorkerSignatures(updated);
+                  }}
+                  onClear={() => {
+                    const updated = [...flraWorkerSignatures];
+                    updated[index].signature = "";
+                    updated[index].signedAt = "";
+                    setFlraWorkerSignatures(updated);
+                  }}
+                />
+              </div>
+
+              {flraWorkerSignatures.length > 1 && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setFlraWorkerSignatures((prev) =>
+                      prev.filter((_, workerIndex) => workerIndex !== index)
+                    );
+                  }}
+                  style={{
+                    marginTop: 10,
+                    padding: "8px 12px",
+                    borderRadius: 10,
+                    border: "1px solid #fecaca",
+                    background: "#fee2e2",
+                    color: "#991b1b",
+                    fontWeight: "bold",
+                    cursor: "pointer",
+                  }}
+                >
+                  Remove Worker
+                </button>
+              )}
+            </div>
+          ))}
+
+          <button
+            type="button"
+            onClick={() =>
+              setFlraWorkerSignatures((prev) => [
+                ...prev,
+                { name: "", role: "", signature: "", signedAt: "" },
+              ])
+            }
+            style={{
+              padding: "10px 14px",
+              borderRadius: 10,
+              border: "1px solid #123d82",
+              background: "white",
+              color: "#123d82",
+              fontWeight: "bold",
+              cursor: "pointer",
+            }}
+          >
+            Add Worker
+          </button>
+        </div>
+            
         <div style={{ marginTop: 16 }}>
           <label>Supervisor Signature</label>
           <SignatureBox
