@@ -253,7 +253,15 @@ const [flraCriticalRisks, setFlraCriticalRisks] = useState("");
 const [flraControls, setFlraControls] = useState("");
 const [flraPpe, setFlraPpe] = useState("");
 const [flraEquipment, setFlraEquipment] = useState("");
+const [flraPreJobHazards, setFlraPreJobHazards] = useState([]);
+const [flraWorkersRightsReviewed, setFlraWorkersRightsReviewed] = useState("");
+const [flraGeneralHazards, setFlraGeneralHazards] = useState([]);
 
+const [flraHazardTask, setFlraHazardTask] = useState("");
+const [flraHazardHazard, setFlraHazardHazard] = useState("");
+const [flraHazardRisk, setFlraHazardRisk] = useState("");
+const [flraHazardControls, setFlraHazardControls] = useState("");
+const [flraSupervisorSignature, setFlraSupervisorSignature] = useState("");
 const [flraLocatesReviewed, setFlraLocatesReviewed] = useState("");
 const [flraPermitsReviewed, setFlraPermitsReviewed] = useState("");
 const [flraEmergencyPlanReviewed, setFlraEmergencyPlanReviewed] = useState("");
