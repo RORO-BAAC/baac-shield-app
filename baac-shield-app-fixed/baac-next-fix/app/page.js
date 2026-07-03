@@ -1389,6 +1389,12 @@ if (savedFlra && savedFlra[0]) {
   setFlraRecords((prev) => [savedFlra[0], ...prev]);
 }
     setFlraProject("");
+    setFlraWorkerName("");
+setFlraJobNumber("");
+setFlraGuestVisitorName("");
+setFlraFireRating("");
+setFlraWeather("");
+setFlraCountry("");
     setFlraDate("");
     setFlraTime("");
     setFlraLocation("");
