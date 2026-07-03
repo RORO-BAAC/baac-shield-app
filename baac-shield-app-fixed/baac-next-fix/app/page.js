@@ -219,6 +219,17 @@ const [fleetSupervisorSignature, setFleetSupervisorSignature] = useState("");
 const [fleetStatus, setFleetStatus] = useState("Open");
   const [editingFleetDefectId, setEditingFleetDefectId] = useState(null);
   const [fleetDefectFilter, setFleetDefectFilter] = useState("All");
+  
+  const [siteDocuments, setSiteDocuments] = useState([]);
+const [siteDocProject, setSiteDocProject] = useState("");
+const [siteDocTitle, setSiteDocTitle] = useState("");
+const [siteDocType, setSiteDocType] = useState("");
+const [siteDocDate, setSiteDocDate] = useState("");
+const [siteDocReviewDate, setSiteDocReviewDate] = useState("");
+const [siteDocExpiryDate, setSiteDocExpiryDate] = useState("");
+const [siteDocUploadedBy, setSiteDocUploadedBy] = useState("");
+const [siteDocNotes, setSiteDocNotes] = useState("");
+const [siteDocFile, setSiteDocFile] = useState(null);
  const [rpasOperations, setRpasOperations] = useState([]);
 const [rpasProject, setRpasProject] = useState("");
 const [rpasDate, setRpasDate] = useState("");
