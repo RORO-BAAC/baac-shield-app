@@ -5108,7 +5108,13 @@ accept="image/png,image/jpeg,image/jpg"
         <p style={{ color: "#64748b" }}>No fleet defects found.</p>
       ) : (
         <div style={{ display: "grid", gap: 10 }}>
-          {fleetDefects.map((item) => (
+          {fleetDefects.{fleetDefects
+  .filter((item) =>
+    fleetDefectFilter === "All"
+      ? true
+      : (item.status || "Open") === fleetDefectFilter
+  )
+  .map((item) => (map((item) => (
             <div
               key={item.id}
               style={{
