@@ -5402,6 +5402,57 @@ onClick={submitCorAction}
           </div>
         </div>
 
+        <h4 style={{ marginTop: 20 }}>Hazard Assessment</h4>
+
+        <div style={{ display: "grid", gap: 12, gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))" }}>
+          <div>
+            <label>Task *</label>
+            <br />
+            <input
+              value={flraHazardTask}
+              onChange={(e) => setFlraHazardTask(e.target.value)}
+              style={{ width: "100%", padding: 12, marginTop: 6, borderRadius: 10, border: "1px solid #cbd5e1" }}
+            />
+          </div>
+
+          <div>
+            <label>Hazard *</label>
+            <br />
+            <input
+              value={flraHazardHazard}
+              onChange={(e) => setFlraHazardHazard(e.target.value)}
+              style={{ width: "100%", padding: 12, marginTop: 6, borderRadius: 10, border: "1px solid #cbd5e1" }}
+            />
+          </div>
+
+          <div>
+            <label>Risk — Severity + Probability</label>
+            <br />
+            <select
+              value={flraHazardRisk}
+              onChange={(e) => setFlraHazardRisk(e.target.value)}
+              style={{ width: "100%", padding: 12, marginTop: 6, borderRadius: 10, border: "1px solid #cbd5e1", background: "white" }}
+            >
+              <option value="">Select</option>
+              <option>Low</option>
+              <option>Medium</option>
+              <option>High</option>
+              <option>Critical</option>
+            </select>
+          </div>
+        </div>
+
+        <div style={{ marginTop: 12 }}>
+          <label>Controls *</label>
+          <br />
+          <textarea
+            value={flraHazardControls}
+            onChange={(e) => setFlraHazardControls(e.target.value)}
+            rows={3}
+            style={{ width: "100%", padding: 12, marginTop: 6, borderRadius: 10, border: "1px solid #cbd5e1" }}
+          />
+        </div>
+            
         <div style={{ display: "grid", gap: 12, gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", marginTop: 12 }}>
           <div>
             <label>PPE Required</label>
