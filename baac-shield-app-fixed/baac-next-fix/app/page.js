@@ -1013,6 +1013,14 @@ async function saveCompanyName() {
     setPhotos(files);
   }
 
+function toggleFlraCheckbox(value, setter) {
+  setter((prev) =>
+    prev.includes(value)
+      ? prev.filter((item) => item !== value)
+      : [...prev, value]
+  );
+}
+  
   function toggleShield(shield) {
     setSelectedShields((prev) =>
       prev.includes(shield)
