@@ -5262,7 +5262,54 @@ onClick={submitCorAction}
             </label>
           ))}
         </div>
-            
+                    <h4 style={{ marginTop: 20 }}>General Hazards</h4>
+
+        <div style={{ display: "grid", gap: 8, gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))" }}>
+          {[
+            "Dry Conditions",
+            "Ground Workers",
+            "Open Excavation",
+            "New to Task",
+            "Repetitive Motion",
+            "Working in Congested Areas",
+            "Traffic Control",
+            "Poor Visibility",
+            "Flying Objects",
+            "Slips / Trips / Falls",
+            "Buried Utilities",
+            "Weather Conditions",
+            "Working from Heights",
+            "Smoke",
+            "Suspended Loads",
+            "Pinch / Crush Points",
+            "Fire Potential",
+            "Wildlife",
+            "Traffic",
+            "Moving Parts",
+            "Spills",
+            "Chemicals",
+            "Sharp Edges",
+            "Noise",
+            "Working with Chemicals",
+            "Extreme Temperatures",
+            "Electronic Distractions",
+            "Narrow Roads",
+            "Poor Road / Site Conditions",
+            "Congested Worksite",
+            "Condition of Tools / Equipment",
+            "Awkward Body Positions",
+            "Vehicle Walk Around Check",
+          ].map((hazard) => (
+            <label key={hazard} style={{ display: "flex", gap: 8, alignItems: "center" }}>
+              <input
+                type="checkbox"
+                checked={flraGeneralHazards.includes(hazard)}
+                onChange={() => toggleFlraCheckbox(hazard, setFlraGeneralHazards)}
+              />
+              {hazard}
+            </label>
+          ))}
+        </div>
         <div style={{ marginTop: 12 }}>
           <label>Work Scope *</label>
           <textarea
