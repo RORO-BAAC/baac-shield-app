@@ -1367,7 +1367,9 @@ hazard_hazard: flraHazardHazard,
 hazard_risk: flraHazardRisk,
 hazard_controls: flraHazardControls,
 supervisor_signature: flraSupervisorSignature,
-      
+      worker_signatures: flraWorkerSignatures.filter(
+  (worker) => worker.name || worker.role || worker.signature
+),
       locates_reviewed: flraLocatesReviewed,
       permits_reviewed: flraPermitsReviewed,
       emergency_plan_reviewed: flraEmergencyPlanReviewed,
