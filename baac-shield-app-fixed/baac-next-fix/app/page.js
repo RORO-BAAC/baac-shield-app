@@ -3897,7 +3897,7 @@ Signed in as: {user?.email} · Role: {role}
     cursor: "pointer",
   }}
 >
-  Site Docs
+  Field Docs
 </button>
 <button
   type="button"
