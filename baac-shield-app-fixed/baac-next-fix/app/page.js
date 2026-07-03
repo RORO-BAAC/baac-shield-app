@@ -4844,6 +4844,316 @@ onClick={submitCorAction}
   </div>
 )}
 
+{activeTab === "siteDocs" && (
+  <div
+    style={{
+      background: "white",
+      padding: 20,
+      borderRadius: 16,
+      marginBottom: 20,
+      boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
+    }}
+  >
+    <h2 style={{ marginTop: 0 }}>Field Docs</h2>
+    <p style={{ color: "#64748b", marginTop: -8 }}>
+      Choose a field safety form to complete.
+    </p>
+
+    <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginBottom: 20 }}>
+      {[
+        "FLRA / Daily Risk Assessment",
+        "Supervisor Site Inspection",
+        "Incident / Near Miss Report",
+        "Witness Statement",
+        "Equipment Inspection",
+        "Document / Audit Evidence",
+      ].map((type) => (
+        <button
+          key={type}
+          type="button"
+          onClick={() => setFieldDocType(type)}
+          style={{
+            padding: "10px 14px",
+            borderRadius: 999,
+            border: "none",
+            background: fieldDocType === type ? "#123d82" : "#e2e8f0",
+            color: fieldDocType === type ? "white" : "#0f172a",
+            fontWeight: "bold",
+            cursor: "pointer",
+          }}
+        >
+          {type}
+        </button>
+      ))}
+    </div>
+
+    {!fieldDocType && (
+      <div
+        style={{
+          padding: 16,
+          borderRadius: 12,
+          background: "#f8fafc",
+          border: "1px solid #e2e8f0",
+        }}
+      >
+        Select a form above to begin.
+      </div>
+    )}
+
+    {fieldDocType === "FLRA / Daily Risk Assessment" && (
+      <div>
+        <h3>FLRA / Daily Field Level Risk Assessment</h3>
+
+        <div style={{ display: "grid", gap: 12, gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))" }}>
+          <div>
+            <label>Project *</label>
+            <br />
+            <input
+              value={flraProject}
+              onChange={(e) => setFlraProject(e.target.value)}
+              style={{ width: "100%", padding: 12, marginTop: 6, borderRadius: 10, border: "1px solid #cbd5e1" }}
+            />
+          </div>
+
+          <div>
+            <label>Date *</label>
+            <br />
+            <input
+              type="date"
+              value={flraDate}
+              onChange={(e) => setFlraDate(e.target.value)}
+              style={{ width: "100%", padding: 12, marginTop: 6, borderRadius: 10, border: "1px solid #cbd5e1" }}
+            />
+          </div>
+
+          <div>
+            <label>Time</label>
+            <br />
+            <input
+              value={flraTime}
+              onChange={(e) => setFlraTime(e.target.value)}
+              placeholder="Example: 7:00 AM"
+              style={{ width: "100%", padding: 12, marginTop: 6, borderRadius: 10, border: "1px solid #cbd5e1" }}
+            />
+          </div>
+
+          <div>
+            <label>Location</label>
+            <br />
+            <input
+              value={flraLocation}
+              onChange={(e) => setFlraLocation(e.target.value)}
+              style={{ width: "100%", padding: 12, marginTop: 6, borderRadius: 10, border: "1px solid #cbd5e1" }}
+            />
+          </div>
+
+          <div>
+            <label>Supervisor / Lead *</label>
+            <br />
+            <input
+              value={flraSupervisor}
+              onChange={(e) => setFlraSupervisor(e.target.value)}
+              style={{ width: "100%", padding: 12, marginTop: 6, borderRadius: 10, border: "1px solid #cbd5e1" }}
+            />
+          </div>
+
+          <div>
+            <label>Completed By</label>
+            <br />
+            <input
+              value={flraCompletedBy}
+              onChange={(e) => setFlraCompletedBy(e.target.value)}
+              style={{ width: "100%", padding: 12, marginTop: 6, borderRadius: 10, border: "1px solid #cbd5e1" }}
+            />
+          </div>
+        </div>
+
+        <div style={{ marginTop: 12 }}>
+          <label>Crew Members</label>
+          <textarea
+            value={flraCrewMembers}
+            onChange={(e) => setFlraCrewMembers(e.target.value)}
+            placeholder="List crew members"
+            style={{ width: "100%", minHeight: 70, padding: 12, marginTop: 6, borderRadius: 10, border: "1px solid #cbd5e1" }}
+          />
+        </div>
+
+        <div style={{ marginTop: 12 }}>
+          <label>Work Scope *</label>
+          <textarea
+            value={flraWorkScope}
+            onChange={(e) => setFlraWorkScope(e.target.value)}
+            placeholder="Describe today's work"
+            style={{ width: "100%", minHeight: 80, padding: 12, marginTop: 6, borderRadius: 10, border: "1px solid #cbd5e1" }}
+          />
+        </div>
+
+        <div style={{ display: "grid", gap: 12, gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", marginTop: 12 }}>
+          <div>
+            <label>Task Steps</label>
+            <textarea
+              value={flraTaskSteps}
+              onChange={(e) => setFlraTaskSteps(e.target.value)}
+              style={{ width: "100%", minHeight: 90, padding: 12, marginTop: 6, borderRadius: 10, border: "1px solid #cbd5e1" }}
+            />
+          </div>
+
+          <div>
+            <label>Hazards Identified</label>
+            <textarea
+              value={flraHazards}
+              onChange={(e) => setFlraHazards(e.target.value)}
+              style={{ width: "100%", minHeight: 90, padding: 12, marginTop: 6, borderRadius: 10, border: "1px solid #cbd5e1" }}
+            />
+          </div>
+
+          <div>
+            <label>Critical Risks</label>
+            <textarea
+              value={flraCriticalRisks}
+              onChange={(e) => setFlraCriticalRisks(e.target.value)}
+              placeholder="Line of fire, mobile equipment, excavation, lifting, etc."
+              style={{ width: "100%", minHeight: 90, padding: 12, marginTop: 6, borderRadius: 10, border: "1px solid #cbd5e1" }}
+            />
+          </div>
+
+          <div>
+            <label>Controls Required</label>
+            <textarea
+              value={flraControls}
+              onChange={(e) => setFlraControls(e.target.value)}
+              placeholder="Exclusion zones, spotter, PPE, permits, locates, etc."
+              style={{ width: "100%", minHeight: 90, padding: 12, marginTop: 6, borderRadius: 10, border: "1px solid #cbd5e1" }}
+            />
+          </div>
+        </div>
+
+        <div style={{ display: "grid", gap: 12, gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", marginTop: 12 }}>
+          <div>
+            <label>PPE Required</label>
+            <textarea
+              value={flraPpe}
+              onChange={(e) => setFlraPpe(e.target.value)}
+              style={{ width: "100%", minHeight: 70, padding: 12, marginTop: 6, borderRadius: 10, border: "1px solid #cbd5e1" }}
+            />
+          </div>
+
+          <div>
+            <label>Equipment Used</label>
+            <textarea
+              value={flraEquipment}
+              onChange={(e) => setFlraEquipment(e.target.value)}
+              style={{ width: "100%", minHeight: 70, padding: 12, marginTop: 6, borderRadius: 10, border: "1px solid #cbd5e1" }}
+            />
+          </div>
+        </div>
+
+        <h4 style={{ marginTop: 20 }}>Pre-Job Review</h4>
+
+        <div style={{ display: "grid", gap: 12, gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))" }}>
+          <div>
+            <label>Locates Reviewed?</label>
+            <select
+              value={flraLocatesReviewed}
+              onChange={(e) => setFlraLocatesReviewed(e.target.value)}
+              style={{ width: "100%", padding: 12, marginTop: 6, borderRadius: 10, border: "1px solid #cbd5e1" }}
+            >
+              <option value="">Select</option>
+              <option>Yes</option>
+              <option>No</option>
+              <option>N/A</option>
+            </select>
+          </div>
+
+          <div>
+            <label>Permits Reviewed?</label>
+            <select
+              value={flraPermitsReviewed}
+              onChange={(e) => setFlraPermitsReviewed(e.target.value)}
+              style={{ width: "100%", padding: 12, marginTop: 6, borderRadius: 10, border: "1px solid #cbd5e1" }}
+            >
+              <option value="">Select</option>
+              <option>Yes</option>
+              <option>No</option>
+              <option>N/A</option>
+            </select>
+          </div>
+
+          <div>
+            <label>Emergency Plan Reviewed?</label>
+            <select
+              value={flraEmergencyPlanReviewed}
+              onChange={(e) => setFlraEmergencyPlanReviewed(e.target.value)}
+              style={{ width: "100%", padding: 12, marginTop: 6, borderRadius: 10, border: "1px solid #cbd5e1" }}
+            >
+              <option value="">Select</option>
+              <option>Yes</option>
+              <option>No</option>
+              <option>N/A</option>
+            </select>
+          </div>
+
+          <div>
+            <label>Muster Point</label>
+            <input
+              value={flraMusterPoint}
+              onChange={(e) => setFlraMusterPoint(e.target.value)}
+              style={{ width: "100%", padding: 12, marginTop: 6, borderRadius: 10, border: "1px solid #cbd5e1" }}
+            />
+          </div>
+
+          <div>
+            <label>Nearest Hospital</label>
+            <input
+              value={flraNearestHospital}
+              onChange={(e) => setFlraNearestHospital(e.target.value)}
+              style={{ width: "100%", padding: 12, marginTop: 6, borderRadius: 10, border: "1px solid #cbd5e1" }}
+            />
+          </div>
+        </div>
+
+        <div style={{ marginTop: 12 }}>
+          <label>Additional Notes</label>
+          <textarea
+            value={flraAdditionalNotes}
+            onChange={(e) => setFlraAdditionalNotes(e.target.value)}
+            style={{ width: "100%", minHeight: 80, padding: 12, marginTop: 6, borderRadius: 10, border: "1px solid #cbd5e1" }}
+          />
+        </div>
+
+        <div style={{ marginTop: 12 }}>
+          <label>Photos - JPG or PNG only</label>
+          <br />
+          <input
+            type="file"
+            multiple
+            accept="image/png,image/jpeg,image/jpg"
+            onChange={(e) => setFlraPhotos(Array.from(e.target.files || []))}
+          />
+        </div>
+
+        <button
+          type="button"
+          onClick={saveFlraRecord}
+          disabled={loading}
+          style={{
+            marginTop: 16,
+            padding: "12px 16px",
+            borderRadius: 10,
+            border: "none",
+            background: "#123d82",
+            color: "white",
+            fontWeight: "bold",
+            cursor: "pointer",
+          }}
+        >
+          Submit FLRA
+        </button>
+      </div>
+    )}
+  </div>
+)}
+
 {activeTab === "fleet" && (
   <div
     style={{
