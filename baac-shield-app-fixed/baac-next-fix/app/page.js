@@ -9044,1241 +9044,329 @@ setHazardDueDate(report.due_date || "");
           </div>
                     )}
 
-      {activeTab === "dashboard" && (
-      <div
-  style={{
-    background: "white",
-    padding: 20,
-    borderRadius: 16,
-    boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
-    display: "grid",
-    gap: 16,
-    width: "100%",
-    maxWidth: "100%",
-    overflowX: "hidden",
-    boxSizing: "border-box",
-  }}
->
-          <h2 style={{ margin: 0 }}>Safety Dashboard</h2>
-
- {(role === "admin" || role === "supervisor") && (
-  <div
-    style={{
-      marginTop: 18,
-      marginBottom: 18,
-      padding: 16,
-      border: "1px solid #e2e8f0",
-      borderRadius: 12,
-      background: "#f8fafc",
-    }}
-  >
-    
-    <div
-      style={{
-        display: "grid",
-        gridTemplateColumns: "1fr 1fr",
-        gap: 12,
-        marginBottom: 14,
-      }}
-    >
-      <div>
-        <label>Start Date</label>
-        <input
-          type="date"
-          value={toolboxStartDateFilter}
-          onChange={(e) => setToolboxStartDateFilter(e.target.value)}
+          {activeTab === "dashboard" && (
+        <div
           style={{
+            background: "white",
+            padding: 20,
+            borderRadius: 16,
+            boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
+            display: "grid",
+            gap: 20,
             width: "100%",
-            padding: 10,
-            borderRadius: 8,
-            border: "1px solid #cbd5e1",
-            marginTop: 4,
-          }}
-        />
-      </div>
-
-      <div>
-        <label>End Date</label>
-        <input
-          type="date"
-          value={toolboxEndDateFilter}
-          onChange={(e) => setToolboxEndDateFilter(e.target.value)}
-          style={{
-            width: "100%",
-            padding: 10,
-            borderRadius: 8,
-            border: "1px solid #cbd5e1",
-            marginTop: 4,
-          }}
-        />
-      </div>
-    </div>
-<button
-  type="button"
-  onClick={downloadFilteredToolboxPdfs}
-  disabled={filteredToolboxTalks.length === 0}
-  style={{
-    padding: "10px 12px",
-    background: filteredToolboxTalks.length === 0 ? "#94a3b8" : "#123d82",
-    color: "white",
-    border: "none",
-    borderRadius: 8,
-    fontWeight: "bold",
-    cursor: filteredToolboxTalks.length === 0 ? "not-allowed" : "pointer",
-    marginBottom: 14,
-  }}
->
-  Download All Toolbox Talks in Date Range
-</button>
-    {filteredToolboxTalks.length === 0 ? (
-      <p style={{ color: "#475569", marginBottom: 0 }}>
-        No toolbox talks found for this date range.
-      </p>
-    ) : (
-      <div style={{ display: "grid", gap: 12 }}>
-        {filteredToolboxTalks.map((talk) => (
-          <div
-            key={talk.id}
-            style={{
-              padding: 12,
-              border: "1px solid #cbd5e1",
-              borderRadius: 10,
-              background: "white",
-            }}
-          >
-            <div style={{ fontWeight: "bold", marginBottom: 4 }}>
-              {talk.project_name || "Unknown Project"}
-            </div>
-
-            <div style={{ fontSize: 13, color: "#475569", marginBottom: 4 }}>
-              Date: {talk.talk_date || "-"} | Time: {talk.talk_time || "-"}
-            </div>
-
-            <div style={{ fontSize: 13, color: "#475569", marginBottom: 4 }}>
-              Supervisor: {talk.supervisor_name || "-"}
-            </div>
-
-            <div style={{ fontSize: 13, color: "#475569", marginBottom: 4 }}>
-              Location: {talk.location || "-"}
-            </div>
-
-            <div style={{ fontSize: 13, color: "#475569", marginBottom: 8 }}>
-              Topic: {talk.topic || "-"}
-            </div>
-
-            <button
-              type="button"
-              onClick={() => downloadToolboxPdf(talk)}
-              style={{
-                padding: "8px 12px",
-                background: "#123d82",
-                color: "white",
-                border: "none",
-                borderRadius: 8,
-                fontWeight: "bold",
-                cursor: "pointer",
-              }}
-            >
-              Download PDF
-            </button>
-          </div>
-        ))}
-      </div>
-    )}
-  </div>
-)}
-
- {(role === "admin" || role === "supervisor") && (
-  <div
-    style={{
-      marginTop: 18,
-      marginBottom: 18,
-      padding: 16,
-      border: "1px solid #e2e8f0",
-      borderRadius: 12,
-      background: "#f8fafc",
-    }}
-  >
-    <h3 style={{ marginTop: 0 }}>RPAS Operations Register</h3>
-
-    {filteredRpasOperations.length === 0 ? (
-      <p style={{ color: "#475569", marginBottom: 0 }}>
-        No RPAS operations found for this date range.
-      </p>
-    ) : (
-      <div style={{ display: "grid", gap: 12 }}>
-        {filteredRpasOperations.map((operation) => (
-          <div
-            key={operation.id}
-            style={{
-              padding: 12,
-              border: "1px solid #cbd5e1",
-              borderRadius: 10,
-              background: "white",
-            }}
-          >
-            <div style={{ fontWeight: "bold", marginBottom: 4 }}>
-              {operation.project_name || "Unknown Project"}
-            </div>
-
-            <div style={{ fontSize: 13, color: "#475569", marginBottom: 4 }}>
-              Date: {operation.flight_date || "-"} | Type:{" "}
-              {operation.operation_type || "-"}
-            </div>
-
-            <div style={{ fontSize: 13, color: "#475569", marginBottom: 4 }}>
-              Pilot: {operation.pilot_in_command || "-"}
-            </div>
-
-            <div style={{ fontSize: 13, color: "#475569", marginBottom: 4 }}>
-              RPAS: {operation.rpas_make_model || "-"}
-            </div>
-
-            <div style={{ fontSize: 13, color: "#475569", marginBottom: 8 }}>
-              Location: {operation.flight_location || "-"}
-            </div>
-
-            <button
-              type="button"
-              onClick={() => downloadRpasPdf(operation)}
-              style={{
-                padding: "8px 12px",
-                background: "#123d82",
-                color: "white",
-                border: "none",
-                borderRadius: 8,
-                fontWeight: "bold",
-                cursor: "pointer",
-              }}
-            >
-              Download PDF
-            </button>
-          </div>
-        ))}
-      </div>
-    )}
-  </div>
-)}
-
-             <div
-  style={{
-    background: "white",
-    borderRadius: 16,
-   padding: 16,
-    boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
-    marginBottom: 18,
-  }}
->
-  <h2 style={{ marginTop: 0, color: "#0f2f66" }}>Today’s Activity</h2>
-
-<div
-  style={{
-    display: "grid",
-    gap: 6,
-    marginBottom: 12,
-    maxWidth: 260,
-  }}
->
-  <label style={{ fontWeight: "bold" }}>Daily Activity Date</label>
-  <input
-    type="date"
-    value={dailyActivityDate}
-    onChange={(e) => setDailyActivityDate(e.target.value)}
-    style={{
-      padding: 10,
-      borderRadius: 8,
-      border: "1px solid #cbd5e1",
-    }}
-  />
-</div>
- 
- <button
-  type="button"
-  onClick={downloadDailyActivityPdf}
-  style={{
-    padding: "10px 14px",
-    background: "#123d82",
-    color: "white",
-    border: "none",
-    borderRadius: 8,
-    fontWeight: "bold",
-    cursor: "pointer",
-    marginBottom: 12,
-  }}
->
-  Download Daily Activity PDF
-</button>
-<div
-  style={{
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))",
-    gap: 12,
-  }}
->
-    <div>
-      <div style={{ color: "#64748b", fontSize: 12 }}>Worker Forms Today</div>
-      <div style={{ fontSize: 28, fontWeight: "bold" }}>
-        {todayWorkerRecords.length}
-      </div>
-    </div>
-
-    <div>
-      <div style={{ color: "#64748b", fontSize: 12 }}>Hazards / Observations Today</div>
-      <div style={{ fontSize: 28, fontWeight: "bold" }}>
-        {todayHazardReports.length}
-      </div>
-    </div>
-
-    <div>
-      <div style={{ color: "#64748b", fontSize: 12 }}>Stop Work Today</div>
-      <div style={{ fontSize: 28, fontWeight: "bold" }}>
-        {todayStopWorkRecords.length}
-      </div>
-    </div>
-
-       <div>
-  <div style={{ color: "#64748b", fontSize: 12 }}>RPAS Operations Today</div>
-  <div style={{ fontSize: 28, fontWeight: "bold" }}>
-    {todayRpasOperations.length}
-  </div>
-</div>
-
-<div>
-  <div style={{ color: "#64748b", fontSize: 12 }}>Toolbox Talks Today</div>
-  <div style={{ fontSize: 28, fontWeight: "bold" }}>
-    {todayToolboxTalks.length}
-  </div>
-</div>
-   
-    <div>
-      <div style={{ color: "#64748b", fontSize: 12 }}>Open Corrective Actions</div>
-      <div style={{ fontSize: 28, fontWeight: "bold" }}>
-        {openCorrectiveActions.length}
-      </div>
-    </div>
-
-    <div>
-      <div style={{ color: "#991b1b", fontSize: 12, fontWeight: "bold" }}>
-        Overdue Corrective Actions
-      </div>
-      <div style={{ fontSize: 28, fontWeight: "bold" }}>
-        {overdueRecords.length}
-      </div>
-    </div>
-  </div>
-</div>
-
-<div
-  style={{
-    marginTop: 18,
-    marginBottom: 20,
-    padding: 16,
-    border: "1px solid #dbeafe",
-    borderRadius: 12,
-    background: "#f8fafc",
-  }}
->
-  <h3 style={{ marginTop: 0, color: "#0f2f66" }}>
-    Daily Activity Register
-  </h3>
-
-  <p style={{ color: "#475569", marginTop: 0 }}>
-    Showing records for {dailyActivityDate}
-  </p>
-
-  <div style={{ display: "grid", gap: 14 }}>
-    <div
-      style={{
-        padding: 12,
-        border: "1px solid #cbd5e1",
-        borderRadius: 10,
-        background: "white",
-      }}
-    >
-      <h4 style={{ marginTop: 0 }}>Worker Forms</h4>
-
-      {todayWorkerRecords.length === 0 ? (
-        <p style={{ color: "#64748b", marginBottom: 0 }}>
-          No worker forms found for this date.
-        </p>
-      ) : (
-        <div style={{ display: "grid", gap: 10 }}>
-          {todayWorkerRecords.map((record) => (
-            <div
-              key={record.id}
-              style={{
-                padding: 10,
-                border: "1px solid #e2e8f0",
-                borderRadius: 8,
-                background: "#f8fafc",
-              }}
-            >
-              <div style={{ fontWeight: "bold" }}>
-                {record.worker_name || "Unknown Worker"}
-              </div>
-
-              <div style={{ fontSize: 13, color: "#475569" }}>
-                Project: {record.project_name || "-"}
-              </div>
-
-              <div style={{ fontSize: 13, color: "#475569" }}>
-                Risk: {record.critical_risk || "-"}
-              </div>
-
-              <div style={{ fontSize: 13, color: "#475569" }}>
-                Status: {record.status || "-"}
-              </div>
-
-              <button
-                type="button"
-                onClick={() => downloadPdf(record)}
-                style={{
-                  marginTop: 8,
-                  padding: "8px 12px",
-                  background: "#123d82",
-                  color: "white",
-                  border: "none",
-                  borderRadius: 8,
-                  fontWeight: "bold",
-                  cursor: "pointer",
-                }}
-              >
-                Download PDF
-              </button>
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
-  </div>
-</div>
-
-
-<div
-  style={{
-    marginBottom: 18,
-    padding: 12,
-    border: "1px solid #cbd5e1",
-    borderRadius: 10,
-    background: "white",
-  }}
->
-  <h4 style={{ marginTop: 0 }}>Toolbox Talks</h4>
-
-  {todayToolboxTalks.length === 0 ? (
-    <p style={{ color: "#64748b", marginBottom: 0 }}>
-      No toolbox talks found for this date.
-    </p>
-  ) : (
-    <div style={{ display: "grid", gap: 10 }}>
-      {todayToolboxTalks.map((talk) => (
-        <div
-          key={talk.id}
-          style={{
-            padding: 10,
-            border: "1px solid #e2e8f0",
-            borderRadius: 8,
-            background: "#f8fafc",
-          }}
-        >
-          <div style={{ fontWeight: "bold" }}>
-            {talk.project_name || "Unknown Project"}
-          </div>
-
-          <div style={{ fontSize: 13, color: "#475569" }}>
-            Date: {talk.talk_date || "-"}
-          </div>
-
-          <div style={{ fontSize: 13, color: "#475569" }}>
-            Supervisor: {talk.supervisor_name || "-"}
-          </div>
-
-          <div style={{ fontSize: 13, color: "#475569" }}>
-            Topic: {talk.topic || "-"}
-          </div>
-
-          <div style={{ fontSize: 13, color: "#475569" }}>
-            Location: {talk.location || "-"}
-          </div>
-
-          <button
-            type="button"
-            onClick={() => downloadToolboxPdf(talk)}
-            style={{
-              marginTop: 8,
-              padding: "8px 12px",
-              background: "#123d82",
-              color: "white",
-              border: "none",
-              borderRadius: 8,
-              fontWeight: "bold",
-              cursor: "pointer",
-            }}
-          >
-            Download PDF
-          </button>
-        </div>
-      ))}
-    </div>
-  )}
-</div>
-       
-<div
-  style={{
-    padding: 12,
-    border: "1px solid #cbd5e1",
-    borderRadius: 10,
-    background: "white",
-  }}
->
-  <h4 style={{ marginTop: 0 }}>Hazards / Observations</h4>
-
-  {todayHazardReports.length === 0 ? (
-    <p style={{ color: "#64748b", marginBottom: 0 }}>
-      No hazards or observations found for this date.
-    </p>
-  ) : (
-    <div style={{ display: "grid", gap: 10 }}>
-      {todayHazardReports.map((report) => (
-        <div
-          key={report.id}
-          style={{
-            padding: 10,
-            border: "1px solid #e2e8f0",
-            borderRadius: 8,
-            background: "#f8fafc",
-          }}
-        >
-          <div style={{ fontWeight: "bold" }}>
-            {report.report_type || "Hazard / Observation"}
-          </div>
-
-          <div style={{ fontSize: 13, color: "#475569" }}>
-            Project: {report.project_name || "-"}
-          </div>
-
-          <div style={{ fontSize: 13, color: "#475569" }}>
-            Reported By: {report.reported_by || "-"}
-          </div>
-
-          <div style={{ fontSize: 13, color: "#475569" }}>
-            Risk Level: {report.risk_level || "-"}
-          </div>
-
-          <div style={{ fontSize: 13, color: "#475569" }}>
-            Status: {report.action_status || report.status || "-"}
-          </div>
-
-          <div style={{ fontSize: 13, color: "#475569", marginTop: 6 }}>
-            Description: {report.hazard_description || "-"}
-          </div>
-        </div>
-      ))}
-    </div>
-  )}
-</div>
-
-<div
-  style={{
-    marginBottom: 18,
-    padding: 12,
-    border: "1px solid #cbd5e1",
-    borderRadius: 10,
-    background: "white",
-  }}
->
-  <h4 style={{ marginTop: 0 }}>RPAS Operations</h4>
-
-  {todayRpasOperations.length === 0 ? (
-    <p style={{ color: "#64748b", marginBottom: 0 }}>
-      No RPAS operations found for this date.
-    </p>
-  ) : (
-    <div style={{ display: "grid", gap: 10 }}>
-      {todayRpasOperations.map((operation) => (
-        <div
-          key={operation.id}
-          style={{
-            padding: 10,
-            border: "1px solid #e2e8f0",
-            borderRadius: 8,
-            background: "#f8fafc",
-          }}
-        >
-          <div style={{ fontWeight: "bold" }}>
-            {operation.project_name || "Unknown Project"}
-          </div>
-
-          <div style={{ fontSize: 13, color: "#475569" }}>
-            Date: {operation.flight_date || "-"}
-          </div>
-
-          <div style={{ fontSize: 13, color: "#475569" }}>
-            Pilot: {operation.pilot_in_command || "-"}
-          </div>
-
-          <div style={{ fontSize: 13, color: "#475569" }}>
-            RPAS: {operation.rpas_make_model || "-"}
-          </div>
-
-          <div style={{ fontSize: 13, color: "#475569" }}>
-            Type: {operation.operation_type || "-"}
-          </div>
-
-          <div style={{ fontSize: 13, color: "#475569" }}>
-            Location: {operation.flight_location || "-"}
-          </div>
-
-          <button
-            type="button"
-            onClick={() => downloadRpasPdf(operation)}
-            style={{
-              marginTop: 8,
-              padding: "8px 12px",
-              background: "#123d82",
-              color: "white",
-              border: "none",
-              borderRadius: 8,
-              fontWeight: "bold",
-              cursor: "pointer",
-            }}
-          >
-            Download PDF
-          </button>
-        </div>
-      ))}
-    </div>
-  )}
-</div>
-   
-<div
-  style={{
-    background: "white",
-    padding: 16,
-    borderRadius: 12,
-    border: "1px solid #dbe4ee",
-    marginBottom: 20,
-  }}
->
-  <h3 style={{ marginTop: 0, color: "#0f2f66" }}>
-    Hazard Analytics
-  </h3>
-
-  <div style={{ marginBottom: 20 }}>
-    <strong>Hazard IDs vs Observations</strong>
-
-    {Object.entries(hazardTypeCounts).map(([type, count]) => (
-      <div key={type} style={{ marginTop: 10 }}>
-        <div>{type} ({count})</div>
-
-        <div
-          style={{
-            height: 18,
-            background: "#e2e8f0",
-            borderRadius: 8,
-            overflow: "hidden",
-          }}
-        >
-          <div
-            style={{
-              width: `${(count / totalHazards) * 100}%`,
-              height: "100%",
-              background: "#2563eb",
-            }}
-          />
-        </div>
-      </div>
-    ))}
-  </div>
-
-  <div style={{ marginBottom: 20 }}>
-    <strong>Risk Levels</strong>
-
-    {Object.entries(hazardRiskCounts).map(([level, count]) => (
-      <div key={level} style={{ marginTop: 10 }}>
-        <div>{level} ({count})</div>
-
-        <div
-          style={{
-            height: 18,
-            background: "#e2e8f0",
-            borderRadius: 8,
-            overflow: "hidden",
-          }}
-        >
-          <div
-            style={{
-              width: `${(count / totalHazards) * 100}%`,
-              height: "100%",
-              background:
-                level === "Critical"
-                  ? "#dc2626"
-                  : level === "High"
-                  ? "#ea580c"
-                  : level === "Medium"
-                  ? "#ca8a04"
-                  : "#16a34a",
-            }}
-          />
-        </div>
-      </div>
-    ))}
-  </div>
-
-<div style={{ marginBottom: 20 }}>
-  <strong>Top Hazard Categories</strong>
-
-  {sortedHazardCategories.map(([category, count]) => (
-    <div key={category} style={{ marginTop: 10 }}>
-      <div>
-        {category} ({count})
-      </div>
-
-      <div
-        style={{
-          height: 18,
-          background: "#e2e8f0",
-          borderRadius: 8,
-          overflow: "hidden",
-        }}
-      >
-        <div
-          style={{
-            width: `${(count / totalHazards) * 100}%`,
-            height: "100%",
-            background: "#16a34a",
-          }}
-        />
-      </div>
-    </div>
-  ))}
-</div>
-      
-  <h3 style={{ marginTop: 24, color: "#0f2f66" }}>
-    Hazard History
-  </h3>
-
-<div style={{ display: "grid", gap: 10 }}>
-  {sortedHazards.slice(0, 20).map((report) => (
-    <div
-      key={report.id}
-      style={{
-        background: "#f8fafc",
-        border: "1px solid #dbe4ee",
-        borderRadius: 10,
-        padding: 12,
-      }}
-    >
-      <div>
-        <strong>{report.report_type}</strong>
-      </div>
-
-      <div>
-        Project: {report.project_name}
-      </div>
-
-      <div>
-        Category: {report.hazard_category}
-      </div>
-
-      <div>
-        Risk Level: {report.risk_level}
-      </div>
-
-      <div>
-        Status: {report.action_status || report.status}
-      </div>
-
-      <div>
-        Date: {new Date(report.created_at).toLocaleDateString()}
-      </div>
-    </div>
-  ))}
-</div>
-</div>
-        
-<div
-  style={{
-    background: "white",
-    padding: 16,
-    borderRadius: 12,
-    border: "1px solid #dbe4ee",
-    marginBottom: 20,
-  }}
->
-  <h3 style={{ marginTop: 0, color: "#0f2f66" }}>
-    Open Corrective Action Register
-  </h3>
-
-  <p style={{ marginTop: -4, color: "#64748b", fontSize: 13 }}>
-    Active corrective actions requiring follow-up.
-  </p>
-
-  <div style={{ display: "grid", gap: 10 }}>
-    {correctiveActionRegister.length === 0 ? (
-      <div>No corrective actions found.</div>
-    ) : (
-      correctiveActionRegister.map((record) => (
-        <div
-          key={record.id}
-          style={{
-            background: "#f8fafc",
-            border: "1px solid #dbe4ee",
-            borderRadius: 8,
-            padding: 12,
+            maxWidth: "100%",
+            overflowX: "hidden",
+            boxSizing: "border-box",
           }}
         >
           <div>
-       <strong>
-  {record.worker_name ||
-   record.reported_by ||
-   "Unknown Reporter"}
-</strong>
+            <h2 style={{ margin: 0 }}>Safety Dashboard</h2>
+            <p style={{ marginTop: 6, color: "#64748b" }}>
+              Clean overview of field safety activity, open actions, and recent safety documents.
+            </p>
           </div>
 
-      <div>Project: {record.project_name || "-"}</div>
-
-<div>
-  Assigned To: {record.assigned_to || "-"}
-</div>
-
-<div>
-  Due Date: {record.due_date || "-"}
-</div>
-
-<div>
-  Status: {record.status || record.action_status || "Pending Review"}
-</div>
-
-<div>
-  Corrective Action:{" "}
-  {record.corrective_actions ||
-   record.corrective_action ||
-   "-"}
-</div>
-        </div>
-      ))
-    )}
-  </div>
-</div>
-        <div
-  style={{
-    background: "white",
-    borderRadius: 16,
-    padding: 16,
-    boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
-    marginBottom: 18,
-  }}
->
-  <h2 style={{ marginTop: 0, color: "#0f2f66" }}>Recent Activity</h2>
-
-  {recentActivity.length === 0 ? (
-    <p style={{ color: "#64748b", marginBottom: 0 }}>No recent activity yet.</p>
-  ) : (
-    <div style={{ display: "grid", gap: 10 }}>
-      {recentActivity.map((item) => (
-        <div
-          key={item.id}
-          style={{
-            padding: 12,
-            border: "1px solid #dbe4ee",
-            borderRadius: 10,
-            background: "#f8fafc",
-          }}
-        >
-          <div style={{ fontWeight: "bold", color: "#0f2f66" }}>
-            {item.type}
-          </div>
-          <div>
-            <strong>Submitted By:</strong> {item.title}
-          </div>
-          <div>
-            <strong>Project:</strong> {item.project}
-          </div>
-          <div style={{ color: "#64748b", fontSize: 13 }}>
-            {new Date(item.time).toLocaleString()}
-<div style={{ display: "flex", gap: 8, marginTop: 10 }}>
-  <button
-    type="button"
-    onClick={() => setSelectedRecord(item)}
-    style={{
-      padding: "8px 12px",
-      borderRadius: 8,
-      border: "1px solid #cbd5e1",
-      background: "white",
-      cursor: "pointer",
-      fontWeight: "bold",
-    }}
-  >
-    View
-  </button>
-
-  <button
-    type="button"
-    onClick={() => {
-      setSelectedRecord(item);
-      setActiveTab("supervisor");
-    }}
-    style={{
-      padding: "8px 12px",
-      borderRadius: 8,
-      border: "1px solid #cbd5e1",
-      background: "#f8fafc",
-      cursor: "pointer",
-      fontWeight: "bold",
-    }}
-  >
-    Open Full Record
-  </button>
-</div>
-          </div>
-        </div>
-      ))}
-    </div>
-  )}
-</div>
-          <div
-  style={{
-    background: "#f8fafc",
-    padding: 16,
-    borderRadius: 12,
-    border: "1px solid #dbe4ee",
-    marginBottom: 20,
-  }}
->
-  <h3 style={{ marginTop: 0, color: "#0f2f66" }}>
-    Audit Exports
-  </h3>
-
-  <p style={{ marginTop: 0, color: "#64748b", fontSize: 13 }}>
-    Download filtered worker records, hazard IDs, observations, corrective actions, and closeouts.
-  </p>
-
-  <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
-    <button
-      type="button"
-      onClick={exportCombinedCSV}
-      style={{
-        padding: "10px 14px",
-        borderRadius: 8,
-        border: "1px solid #cbd5e1",
-        background: "#fff",
-        cursor: "pointer",
-        fontWeight: "bold",
-      }}
-    >
-      Export AUDIT CSV
-    </button>
-
-    <button
-      type="button"
-      onClick={exportAuditPDF}
-      style={{
-        padding: "10px 14px",
-        borderRadius: 8,
-        border: "1px solid #cbd5e1",
-        background: "#fff",
-        cursor: "pointer",
-        fontWeight: "bold",
-      }}
-    >
-      Export AUDIT PDF
-    </button>
-  </div>
-</div>
-
-    <div
-  style={{
-    display: "flex",
-    gap: 10,
-    flexWrap: "wrap",
-    marginTop: 12,
-  }}
->
-  <input
-    type="date"
-    value={startDateFilter}
-    onChange={(e) => setStartDateFilter(e.target.value)}
-    style={{
-      padding: 10,
-      borderRadius: 8,
-      border: "1px solid #cbd5e1",
-    }}
-  />
-
-  <input
-    type="date"
-    value={endDateFilter}
-    onChange={(e) => setEndDateFilter(e.target.value)}
-    style={{
-      padding: 10,
-      borderRadius: 8,
-      border: "1px solid #cbd5e1",
-    }}
-  />
-
-  <button
-    type="button"
-    onClick={() => {
-      setStartDateFilter("");
-      setEndDateFilter("");
-    }}
-    style={{
-      padding: "10px 14px",
-      borderRadius: 8,
-      border: "1px solid #cbd5e1",
-      background: "#fff",
-      cursor: "pointer",
-    }}
-  >
-    Clear Dates
-  </button>
-</div>    
-
-<div
-  style={{
-    background: "white",
-    padding: 16,
-    borderRadius: 12,
-    border: "1px solid #dbe4ee",
-    marginBottom: 20,
-  }}
->
-  <h3 style={{ marginTop: 0, color: "#0f2f66" }}>
-    Records by Project
-  </h3>
-
-  <div style={{ display: "grid", gap: 8 }}>
-    {Object.entries(projectCounts).map(([project, count]) => (
-      <div
-        key={project}
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          padding: 10,
-          background: "#f8fafc",
-          borderRadius: 8,
-        }}
-      >
-        <span>{project}</span>
-        <strong>{count}</strong>
-      </div>
-    ))}
-  </div>
-</div>
-
-<h3 style={{ marginTop: 0, color: "#0f2f66" }}>
-  Top Risk Categories
-</h3>
-
-<div style={{ display: "grid", gap: 8 }}>
-  {Object.entries(riskCounts)
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 5)
-    .map(([risk, count]) => (
-      <div
-        key={risk}
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          padding: 10,
-          background: "#f8fafc",
-          borderRadius: 8,
-        }}
-      >
-        <span>{risk}</span>
-        <strong>{count}</strong>
-      </div>
-    ))}
-</div>
-
-<div
-  style={{
-    background: "white",
-    padding: 16,
-    borderRadius: 12,
-    border: "1px solid #dbe4ee",
-    marginBottom: 20,
-  }}
->
-  <h3 style={{ marginTop: 0, color: "#0f2f66" }}>
-    Full Records History
-  </h3>
-
-  <p style={{ marginTop: -4, color: "#64748b", fontSize: 13 }}>
-    Approved, closed, and historical records available for audit review.
-  </p>
-
-  <div style={{ display: "grid", gap: 10 }}>
-    {closedRecords.slice(0, 20).map((record) => (
-      <div
-        key={record.id}
-        style={{
-          padding: 12,
-          background: "#f8fafc",
-          borderRadius: 8,
-          border: "1px solid #dbe4ee",
-        }}
-      >
-        <div>
-          <strong>{record.worker_name}</strong>
-        </div>
-
-        <div>Project: {record.project_name}</div>
-        <div>Risk: {record.critical_risk}</div>
-        <div>Status: {record.status}</div>
-        <div>Reviewed By: {record.reviewed_by || "—"}</div>
-      </div>
-    ))}
-  </div>
-</div>
-     
-  <div style={{ marginTop: 20, display: "grid", gap: 20 }}>
-
-<div
-  style={{
-    padding: 18,
-    borderRadius: 14,
-    border: "1px solid #e2e8f0",
-    background: "white",
-    marginTop: 18,
-  }}
->
-  <h3 style={{ marginTop: 0 }}>FLRA / Daily Risk Assessments</h3>
-
-  <div style={{ display: "grid", gap: 12, gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", marginBottom: 16 }}>
-    <div style={{ padding: 14, borderRadius: 12, background: "#f8fafc", border: "1px solid #e2e8f0" }}>
-      <div style={{ fontSize: 13, color: "#64748b" }}>Total FLRAs</div>
-      <div style={{ fontSize: 28, fontWeight: "bold", color: "#123d82" }}>
-        {flraRecords.length}
-      </div>
-    </div>
-
-    <div style={{ padding: 14, borderRadius: 12, background: "#f8fafc", border: "1px solid #e2e8f0" }}>
-      <div style={{ fontSize: 13, color: "#64748b" }}>Submitted Today</div>
-      <div style={{ fontSize: 28, fontWeight: "bold", color: "#123d82" }}>
-        {
-          flraRecords.filter(
-            (item) =>
-              item.flra_date === new Date().toISOString().split("T")[0]
-          ).length
-        }
-      </div>
-    </div>
-
-    <div style={{ padding: 14, borderRadius: 12, background: "#f8fafc", border: "1px solid #e2e8f0" }}>
-      <div style={{ fontSize: 13, color: "#64748b" }}>With Critical Risk</div>
-      <div style={{ fontSize: 28, fontWeight: "bold", color: "#123d82" }}>
-        {flraRecords.filter((item) => item.critical_risks).length}
-      </div>
-    </div>
-  </div>
-
-  {flraRecords.length === 0 ? (
-    <p style={{ color: "#64748b" }}>No FLRA records found.</p>
-  ) : (
-    <div style={{ display: "grid", gap: 10 }}>
-      {flraRecords.slice(0, 5).map((item) => (
-        <div
-          key={item.id}
-          style={{
-            padding: 14,
-            borderRadius: 12,
-            border: "1px solid #e2e8f0",
-            background: "#f8fafc",
-          }}
-        >
-          <div style={{ fontWeight: "bold", color: "#0f172a" }}>
-            {item.project_name || "No Project"} — {item.flra_date || "-"}
-          </div>
-
-          <div style={{ fontSize: 13, color: "#475569", marginTop: 4 }}>
-            Supervisor / Foreman: {item.supervisor_name || "-"}
-          </div>
-
-          <div style={{ fontSize: 13, color: "#475569", marginTop: 4 }}>
-            Location: {item.location || "-"}
-          </div>
-
-          <div style={{ fontSize: 13, color: "#475569", marginTop: 4 }}>
-            Critical Risk: {item.critical_risks || "-"}
-          </div>
-
-          <div style={{ marginTop: 10 }}>
-            <button
-              type="button"
-              onClick={() => downloadFlraPdf(item)}
-              style={{
-                padding: "8px 12px",
-                borderRadius: 10,
-                border: "none",
-                background: "#123d82",
-                color: "white",
-                fontWeight: "bold",
-                cursor: "pointer",
-              }}
-            >
-              Download PDF
-            </button>
-          </div>
-        </div>
-      ))}
-    </div>
-  )}
-</div>
-    
           <div
             style={{
-              background: "#f8fafc",
-              borderRadius: 12,
-              padding: 16,
-              border: "1px solid #dbe4ee",
+              display: "grid",
+              gap: 12,
+              gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
             }}
           >
-           <h3
-  style={{
-    marginTop: 0,
-    marginBottom: 12,
-    color: "#0f2f66",
-    borderBottom: "1px solid #dbe4ee",
-    paddingBottom: 8,
-  }}
->
-  Recent Records
-</h3>
-            {records.length === 0 ? (
-              <p>No records yet.</p>
+            <div style={{ padding: 16, borderRadius: 14, background: "#f8fafc", border: "1px solid #e2e8f0" }}>
+              <div style={{ fontSize: 13, color: "#64748b" }}>Worker Forms</div>
+              <div style={{ fontSize: 30, fontWeight: "bold", color: "#123d82" }}>{records.length}</div>
+            </div>
+
+            <div style={{ padding: 16, borderRadius: 14, background: "#f8fafc", border: "1px solid #e2e8f0" }}>
+              <div style={{ fontSize: 13, color: "#64748b" }}>FLRAs Today</div>
+              <div style={{ fontSize: 30, fontWeight: "bold", color: "#123d82" }}>
+                {
+                  flraRecords.filter(
+                    (item) => item.flra_date === new Date().toISOString().split("T")[0]
+                  ).length
+                }
+              </div>
+            </div>
+
+            <div style={{ padding: 16, borderRadius: 14, background: "#f8fafc", border: "1px solid #e2e8f0" }}>
+              <div style={{ fontSize: 13, color: "#64748b" }}>Open Hazards</div>
+              <div style={{ fontSize: 30, fontWeight: "bold", color: "#dc2626" }}>
+                {
+                  hazardReports.filter(
+                    (item) => (item.action_status || item.status || "Open") !== "Closed"
+                  ).length
+                }
+              </div>
+            </div>
+
+            <div style={{ padding: 16, borderRadius: 14, background: "#f8fafc", border: "1px solid #e2e8f0" }}>
+              <div style={{ fontSize: 13, color: "#64748b" }}>Open COR Actions</div>
+              <div style={{ fontSize: 30, fontWeight: "bold", color: "#dc2626" }}>
+                {corActions.filter((item) => (item.status || "Open") !== "Closed").length}
+              </div>
+            </div>
+
+            <div style={{ padding: 16, borderRadius: 14, background: "#f8fafc", border: "1px solid #e2e8f0" }}>
+              <div style={{ fontSize: 13, color: "#64748b" }}>Open Fleet Defects</div>
+              <div style={{ fontSize: 30, fontWeight: "bold", color: "#dc2626" }}>
+                {fleetDefects.filter((item) => (item.status || "Open") !== "Closed").length}
+              </div>
+            </div>
+          </div>
+
+          <div
+            style={{
+              padding: 18,
+              borderRadius: 16,
+              border: "1px solid #dbeafe",
+              background: "#eff6ff",
+            }}
+          >
+            <h3 style={{ marginTop: 0 }}>Field Safety Documents</h3>
+
+            <div style={{ display: "grid", gap: 12, gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))" }}>
+              <div style={{ padding: 14, borderRadius: 12, background: "white", border: "1px solid #dbeafe" }}>
+                <div style={{ fontWeight: "bold", color: "#0f172a" }}>FLRA / Daily Risk Assessments</div>
+                <div style={{ marginTop: 6, color: "#475569", fontSize: 13 }}>
+                  Total: {flraRecords.length} | Today: {
+                    flraRecords.filter(
+                      (item) => item.flra_date === new Date().toISOString().split("T")[0]
+                    ).length
+                  }
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setActiveTab("siteDocs")}
+                  style={{ marginTop: 10, padding: "8px 12px", borderRadius: 10, border: "none", background: "#123d82", color: "white", fontWeight: "bold", cursor: "pointer" }}
+                >
+                  Open Field Docs
+                </button>
+              </div>
+
+              <div style={{ padding: 14, borderRadius: 12, background: "white", border: "1px solid #dbeafe" }}>
+                <div style={{ fontWeight: "bold", color: "#0f172a" }}>Toolbox / Tailgate Meetings</div>
+                <div style={{ marginTop: 6, color: "#475569", fontSize: 13 }}>
+                  Total: {toolboxTalks.length}
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setActiveTab("toolbox")}
+                  style={{ marginTop: 10, padding: "8px 12px", borderRadius: 10, border: "none", background: "#123d82", color: "white", fontWeight: "bold", cursor: "pointer" }}
+                >
+                  Open Toolbox
+                </button>
+              </div>
+
+              <div style={{ padding: 14, borderRadius: 12, background: "white", border: "1px solid #dbeafe" }}>
+                <div style={{ fontWeight: "bold", color: "#0f172a" }}>Upcoming Field Docs</div>
+                <div style={{ marginTop: 6, color: "#475569", fontSize: 13 }}>
+                  Site Inspections, Incident Reports, Witness Statements, Equipment Inspections.
+                </div>
+              </div>
+            </div>
+
+            <h4 style={{ marginBottom: 8 }}>Recent FLRAs</h4>
+
+            {flraRecords.length === 0 ? (
+              <p style={{ color: "#64748b" }}>No FLRA records found.</p>
             ) : (
-            <div style={{ display: "grid", gap: 10 }}>
-                {records.slice(0, 5).map((record) => (
+              <div style={{ display: "grid", gap: 10 }}>
+                {flraRecords.slice(0, 3).map((item) => (
                   <div
-                    key={record.id}
+                    key={item.id}
                     style={{
-                      padding: 12,
-                      background: "white",
-                      borderRadius: 10,
+                      padding: 14,
+                      borderRadius: 12,
                       border: "1px solid #e2e8f0",
+                      background: "white",
                     }}
                   >
-                    <div><strong>Worker:</strong> {record.worker_name}</div>
-                    <div><strong>Project:</strong> {record.project_name || "—"}</div>
-                    <div><strong>Risk:</strong> {record.critical_risk}</div>
-                    <div>
-                      <strong>Status:</strong>{" "}
-                      <span style={{ color: statusColor(record.status || "Pending Review"), fontWeight: "bold" }}>
-                        {record.status || "Pending Review"}
-                      </span>
+                    <div style={{ fontWeight: "bold", color: "#0f172a" }}>
+                      {item.project_name || "No Project"} — {item.flra_date || "-"}
                     </div>
+                    <div style={{ fontSize: 13, color: "#475569", marginTop: 4 }}>
+                      Supervisor / Foreman: {item.supervisor_name || "-"}
+                    </div>
+                    <div style={{ fontSize: 13, color: "#475569", marginTop: 4 }}>
+                      Critical Risk: {item.critical_risks || "-"}
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => downloadFlraPdf(item)}
+                      style={{ marginTop: 10, padding: "8px 12px", borderRadius: 10, border: "none", background: "#123d82", color: "white", fontWeight: "bold", cursor: "pointer" }}
+                    >
+                      Download PDF
+                    </button>
                   </div>
                 ))}
               </div>
             )}
+          </div>
 
+          <div
+            style={{
+              padding: 18,
+              borderRadius: 16,
+              border: "1px solid #fee2e2",
+              background: "#fff7ed",
+            }}
+          >
+            <h3 style={{ marginTop: 0 }}>Action Tracking</h3>
+
+            <div style={{ display: "grid", gap: 12, gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))" }}>
+              <div style={{ padding: 14, borderRadius: 12, background: "white", border: "1px solid #fed7aa" }}>
+                <div style={{ fontWeight: "bold" }}>Hazard IDs / Observations</div>
+                <div style={{ marginTop: 6, color: "#475569", fontSize: 13 }}>
+                  Open: {
+                    hazardReports.filter(
+                      (item) => (item.action_status || item.status || "Open") !== "Closed"
+                    ).length
+                  } | Total: {hazardReports.length}
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setActiveTab("hazard")}
+                  style={{ marginTop: 10, padding: "8px 12px", borderRadius: 10, border: "none", background: "#ea580c", color: "white", fontWeight: "bold", cursor: "pointer" }}
+                >
+                  Open Hazards
+                </button>
+              </div>
+
+              <div style={{ padding: 14, borderRadius: 12, background: "white", border: "1px solid #fed7aa" }}>
+                <div style={{ fontWeight: "bold" }}>COR Corrective Actions</div>
+                <div style={{ marginTop: 6, color: "#475569", fontSize: 13 }}>
+                  Open: {corActions.filter((item) => (item.status || "Open") !== "Closed").length} | Total: {corActions.length}
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setActiveTab("cor")}
+                  style={{ marginTop: 10, padding: "8px 12px", borderRadius: 10, border: "none", background: "#ea580c", color: "white", fontWeight: "bold", cursor: "pointer" }}
+                >
+                  Open COR Actions
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div
+            style={{
+              padding: 18,
+              borderRadius: 16,
+              border: "1px solid #e2e8f0",
+              background: "#f8fafc",
+            }}
+          >
+            <h3 style={{ marginTop: 0 }}>Equipment / Fleet</h3>
+
+            <div style={{ display: "grid", gap: 12, gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))" }}>
+              <div style={{ padding: 14, borderRadius: 12, background: "white", border: "1px solid #e2e8f0" }}>
+                <div style={{ fontWeight: "bold" }}>Fleet Defects</div>
+                <div style={{ marginTop: 6, color: "#475569", fontSize: 13 }}>
+                  Open: {fleetDefects.filter((item) => (item.status || "Open") !== "Closed").length} | Total: {fleetDefects.length}
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setActiveTab("fleet")}
+                  style={{ marginTop: 10, padding: "8px 12px", borderRadius: 10, border: "none", background: "#123d82", color: "white", fontWeight: "bold", cursor: "pointer" }}
+                >
+                  Open Fleet
+                </button>
+              </div>
+
+              <div style={{ padding: 14, borderRadius: 12, background: "white", border: "1px solid #e2e8f0" }}>
+                <div style={{ fontWeight: "bold" }}>Equipment Inspections</div>
+                <div style={{ marginTop: 6, color: "#475569", fontSize: 13 }}>
+                  Coming soon under Field Docs.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            style={{
+              padding: 18,
+              borderRadius: 16,
+              border: "1px solid #dcfce7",
+              background: "#f0fdf4",
+            }}
+          >
+            <h3 style={{ marginTop: 0 }}>Specialty Operations</h3>
+
+            <div style={{ display: "grid", gap: 12, gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))" }}>
+              <div style={{ padding: 14, borderRadius: 12, background: "white", border: "1px solid #bbf7d0" }}>
+                <div style={{ fontWeight: "bold" }}>RPAS Operations</div>
+                <div style={{ marginTop: 6, color: "#475569", fontSize: 13 }}>
+                  Total: {rpasOperations.length}
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setActiveTab("rpas")}
+                  style={{ marginTop: 10, padding: "8px 12px", borderRadius: 10, border: "none", background: "#16a34a", color: "white", fontWeight: "bold", cursor: "pointer" }}
+                >
+                  Open RPAS
+                </button>
+              </div>
+
+              <div style={{ padding: 14, borderRadius: 12, background: "white", border: "1px solid #bbf7d0" }}>
+                <div style={{ fontWeight: "bold" }}>Document / Audit Evidence</div>
+                <div style={{ marginTop: 6, color: "#475569", fontSize: 13 }}>
+                  Coming soon under Field Docs.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            style={{
+              padding: 18,
+              borderRadius: 16,
+              border: "1px solid #e2e8f0",
+              background: "white",
+            }}
+          >
+            <h3 style={{ marginTop: 0 }}>Recent Worker Forms</h3>
+
+            {records.length === 0 ? (
+              <p style={{ color: "#64748b" }}>No worker forms found.</p>
+            ) : (
+              <div style={{ display: "grid", gap: 10 }}>
+                {records.slice(0, 3).map((record) => (
+                  <div
+                    key={record.id}
+                    style={{
+                      padding: 14,
+                      borderRadius: 12,
+                      background: "#f8fafc",
+                      border: "1px solid #e2e8f0",
+                    }}
+                  >
+                    <div style={{ fontWeight: "bold" }}>
+                      {record.worker_name || "Unknown Worker"} — {record.project_name || "No Project"}
+                    </div>
+                    <div style={{ fontSize: 13, color: "#475569", marginTop: 4 }}>
+                      Critical Risk: {record.critical_risk || "-"}
+                    </div>
+                    <div style={{ fontSize: 13, marginTop: 4 }}>
+                      Status:{" "}
+                      <span style={{ color: statusColor(record.status || "Pending Review"), fontWeight: "bold" }}>
+                        {record.status || "Pending Review"}
+                      </span>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => downloadPdf(record)}
+                      style={{ marginTop: 10, padding: "8px 12px", borderRadius: 10, border: "none", background: "#123d82", color: "white", fontWeight: "bold", cursor: "pointer" }}
+                    >
+                      Download PDF
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
-      </div>
       )}
-
           {showPinPrompt && (
         <div
           style={{
