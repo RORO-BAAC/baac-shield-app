@@ -5090,7 +5090,15 @@ onClick={submitCorAction}
               style={{ width: "100%", padding: 12, marginTop: 6, borderRadius: 10, border: "1px solid #cbd5e1" }}
             />
           </div>
-
+<div>
+  <label>Worker Name *</label>
+  <br />
+  <input
+    value={flraWorkerName}
+    onChange={(e) => setFlraWorkerName(e.target.value)}
+    style={{ width: "100%", padding: 12, marginTop: 6, borderRadius: 10, border: "1px solid #cbd5e1" }}
+  />
+</div>
           <div>
             <label>Date *</label>
             <br />
@@ -5122,7 +5130,25 @@ onClick={submitCorAction}
               style={{ width: "100%", padding: 12, marginTop: 6, borderRadius: 10, border: "1px solid #cbd5e1" }}
             />
           </div>
+<div>
+  <label>Job # *</label>
+  <br />
+  <input
+    value={flraJobNumber}
+    onChange={(e) => setFlraJobNumber(e.target.value)}
+    style={{ width: "100%", padding: 12, marginTop: 6, borderRadius: 10, border: "1px solid #cbd5e1" }}
+  />
+</div>
 
+<div>
+  <label>Guest / Subcontractor / Visitor Name</label>
+  <br />
+  <input
+    value={flraGuestVisitorName}
+    onChange={(e) => setFlraGuestVisitorName(e.target.value)}
+    style={{ width: "100%", padding: 12, marginTop: 6, borderRadius: 10, border: "1px solid #cbd5e1" }}
+  />
+</div>
           <div>
             <label>Supervisor / Lead *</label>
             <br />
@@ -5143,7 +5169,56 @@ onClick={submitCorAction}
             />
           </div>
         </div>
+<div>
+  <label>Nearest Medical Facility *</label>
+  <br />
+  <input
+    value={flraNearestHospital}
+    onChange={(e) => setFlraNearestHospital(e.target.value)}
+    style={{ width: "100%", padding: 12, marginTop: 6, borderRadius: 10, border: "1px solid #cbd5e1" }}
+  />
+</div>
 
+<div>
+  <label>Muster Location *</label>
+  <br />
+  <input
+    value={flraMusterPoint}
+    onChange={(e) => setFlraMusterPoint(e.target.value)}
+    style={{ width: "100%", padding: 12, marginTop: 6, borderRadius: 10, border: "1px solid #cbd5e1" }}
+  />
+</div>
+
+<div>
+  <label>Fire Rating</label>
+  <br />
+  <input
+    value={flraFireRating}
+    onChange={(e) => setFlraFireRating(e.target.value)}
+    style={{ width: "100%", padding: 12, marginTop: 6, borderRadius: 10, border: "1px solid #cbd5e1" }}
+  />
+</div>
+
+<div>
+  <label>Weather *</label>
+  <br />
+  <input
+    value={flraWeather}
+    onChange={(e) => setFlraWeather(e.target.value)}
+    style={{ width: "100%", padding: 12, marginTop: 6, borderRadius: 10, border: "1px solid #cbd5e1" }}
+  />
+</div>
+
+<div>
+  <label>Country *</label>
+  <br />
+  <input
+    value={flraCountry}
+    onChange={(e) => setFlraCountry(e.target.value)}
+    placeholder="Canada"
+    style={{ width: "100%", padding: 12, marginTop: 6, borderRadius: 10, border: "1px solid #cbd5e1" }}
+  />
+</div>
         <div style={{ marginTop: 12 }}>
           <label>Crew Members</label>
           <textarea
