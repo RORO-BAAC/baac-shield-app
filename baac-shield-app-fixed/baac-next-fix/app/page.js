@@ -1408,7 +1408,15 @@ setFlraCountry("");
     setFlraControls("");
     setFlraPpe("");
     setFlraEquipment("");
-
+setFlraPreJobHazards([]);
+setFlraWorkersRightsReviewed("");
+setFlraGeneralHazards([]);
+setFlraHazardTask("");
+setFlraHazardHazard("");
+setFlraHazardRisk("");
+setFlraHazardControls("");
+setFlraSupervisorSignature("");
+flraSupervisorSigRef.current?.clear();
     setFlraLocatesReviewed("");
     setFlraPermitsReviewed("");
     setFlraEmergencyPlanReviewed("");
