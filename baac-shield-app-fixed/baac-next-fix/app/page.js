@@ -262,6 +262,10 @@ const [flraHazardHazard, setFlraHazardHazard] = useState("");
 const [flraHazardRisk, setFlraHazardRisk] = useState("");
 const [flraHazardControls, setFlraHazardControls] = useState("");
 const [flraSupervisorSignature, setFlraSupervisorSignature] = useState("");
+ const [flraWorkerSignatures, setFlraWorkerSignatures] = useState([
+  { name: "", role: "", signature: "", signedAt: "" },
+]);
+const [flraResetKey, setFlraResetKey] = useState(0); 
 const [flraLocatesReviewed, setFlraLocatesReviewed] = useState("");
 const [flraPermitsReviewed, setFlraPermitsReviewed] = useState("");
 const [flraEmergencyPlanReviewed, setFlraEmergencyPlanReviewed] = useState("");
