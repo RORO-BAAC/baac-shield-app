@@ -627,6 +627,21 @@ if (siteDocsRes.ok) {
   const siteDocsData = await siteDocsRes.json();
   setSiteDocuments(siteDocsData);
 }   
+
+      const flraRes = await fetch(
+  `${SUPABASE_URL}/rest/v1/field_flras?select=*&order=created_at.desc`,
+  {
+    headers: {
+      apikey: SUPABASE_KEY,
+      Authorization: `Bearer ${SUPABASE_KEY}`,
+    },
+  }
+);
+
+if (flraRes.ok) {
+  const flraData = await flraRes.json();
+  setFlraRecords(flraData);
+}
      
 const rpasRes = await fetch(
   `${SUPABASE_URL}/rest/v1/rpas_operations?select=*&order=created_at.desc`,
