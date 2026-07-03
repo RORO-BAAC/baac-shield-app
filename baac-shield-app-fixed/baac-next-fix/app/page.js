@@ -5114,7 +5114,7 @@ accept="image/png,image/jpeg,image/jpg"
       ? true
       : (item.status || "Open") === fleetDefectFilter
   )
-  .map((item) => (map((item) => (
+ .map((item) => (
             <div
               key={item.id}
               style={{
