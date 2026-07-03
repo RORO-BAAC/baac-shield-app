@@ -1326,13 +1326,19 @@ async function saveFlraRecord() {
     }
 
     const payload = {
-      project_name: flraProject,
-      flra_date: flraDate || null,
-      flra_time: flraTime,
-      location: flraLocation,
-      supervisor_name: flraSupervisor,
-      crew_members: flraCrewMembers,
-
+     project_name: flraProject,
+worker_name: flraWorkerName,
+flra_date: flraDate || null,
+flra_time: flraTime,
+location: flraLocation,
+supervisor_name: flraSupervisor,
+job_number: flraJobNumber,
+guest_visitor_name: flraGuestVisitorName,
+crew_members: flraCrewMembers,
+fire_rating: flraFireRating,
+weather: flraWeather,
+country: flraCountry,
+      
       work_scope: flraWorkScope,
       task_steps: flraTaskSteps,
       hazards_identified: flraHazards,
