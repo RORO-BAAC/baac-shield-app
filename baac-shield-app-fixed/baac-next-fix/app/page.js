@@ -10298,7 +10298,99 @@ setHazardDueDate(report.due_date || "");
 </h2>
   
   <div style={{ marginTop: 20, display: "grid", gap: 20 }}>
-  
+
+<div
+  style={{
+    padding: 18,
+    borderRadius: 14,
+    border: "1px solid #e2e8f0",
+    background: "white",
+    marginTop: 18,
+  }}
+>
+  <h3 style={{ marginTop: 0 }}>FLRA / Daily Risk Assessments</h3>
+
+  <div style={{ display: "grid", gap: 12, gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", marginBottom: 16 }}>
+    <div style={{ padding: 14, borderRadius: 12, background: "#f8fafc", border: "1px solid #e2e8f0" }}>
+      <div style={{ fontSize: 13, color: "#64748b" }}>Total FLRAs</div>
+      <div style={{ fontSize: 28, fontWeight: "bold", color: "#123d82" }}>
+        {flraRecords.length}
+      </div>
+    </div>
+
+    <div style={{ padding: 14, borderRadius: 12, background: "#f8fafc", border: "1px solid #e2e8f0" }}>
+      <div style={{ fontSize: 13, color: "#64748b" }}>Submitted Today</div>
+      <div style={{ fontSize: 28, fontWeight: "bold", color: "#123d82" }}>
+        {
+          flraRecords.filter(
+            (item) =>
+              item.flra_date === new Date().toISOString().split("T")[0]
+          ).length
+        }
+      </div>
+    </div>
+
+    <div style={{ padding: 14, borderRadius: 12, background: "#f8fafc", border: "1px solid #e2e8f0" }}>
+      <div style={{ fontSize: 13, color: "#64748b" }}>With Critical Risk</div>
+      <div style={{ fontSize: 28, fontWeight: "bold", color: "#123d82" }}>
+        {flraRecords.filter((item) => item.critical_risks).length}
+      </div>
+    </div>
+  </div>
+
+  {flraRecords.length === 0 ? (
+    <p style={{ color: "#64748b" }}>No FLRA records found.</p>
+  ) : (
+    <div style={{ display: "grid", gap: 10 }}>
+      {flraRecords.slice(0, 5).map((item) => (
+        <div
+          key={item.id}
+          style={{
+            padding: 14,
+            borderRadius: 12,
+            border: "1px solid #e2e8f0",
+            background: "#f8fafc",
+          }}
+        >
+          <div style={{ fontWeight: "bold", color: "#0f172a" }}>
+            {item.project_name || "No Project"} — {item.flra_date || "-"}
+          </div>
+
+          <div style={{ fontSize: 13, color: "#475569", marginTop: 4 }}>
+            Supervisor / Foreman: {item.supervisor_name || "-"}
+          </div>
+
+          <div style={{ fontSize: 13, color: "#475569", marginTop: 4 }}>
+            Location: {item.location || "-"}
+          </div>
+
+          <div style={{ fontSize: 13, color: "#475569", marginTop: 4 }}>
+            Critical Risk: {item.critical_risks || "-"}
+          </div>
+
+          <div style={{ marginTop: 10 }}>
+            <button
+              type="button"
+              onClick={() => downloadFlraPdf(item)}
+              style={{
+                padding: "8px 12px",
+                borderRadius: 10,
+                border: "none",
+                background: "#123d82",
+                color: "white",
+                fontWeight: "bold",
+                cursor: "pointer",
+              }}
+            >
+              Download PDF
+            </button>
+          </div>
+        </div>
+      ))}
+    </div>
+  )}
+</div>
+    
           <div
             style={{
               background: "#f8fafc",
