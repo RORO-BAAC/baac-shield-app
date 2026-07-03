@@ -5237,6 +5237,32 @@ onClick={submitCorAction}
           />
         </div>
 
+        <h4 style={{ marginTop: 20 }}>Pre-Job Hazards</h4>
+
+        <div style={{ display: "grid", gap: 8, gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))" }}>
+          {[
+            "Overhead power",
+            "Underground facilities",
+            "Locked/tagged out",
+            "Working Alone",
+            "Ground Disturbance",
+            "New/Young Worker",
+            "H2S",
+            "Confined Space",
+            "Driving to/from Site",
+            "Facilities",
+          ].map((hazard) => (
+            <label key={hazard} style={{ display: "flex", gap: 8, alignItems: "center" }}>
+              <input
+                type="checkbox"
+                checked={flraPreJobHazards.includes(hazard)}
+                onChange={() => toggleFlraCheckbox(hazard, setFlraPreJobHazards)}
+              />
+              {hazard}
+            </label>
+          ))}
+        </div>
+            
         <div style={{ marginTop: 12 }}>
           <label>Work Scope *</label>
           <textarea
