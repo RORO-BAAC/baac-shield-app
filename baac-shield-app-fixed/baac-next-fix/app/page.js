@@ -1246,7 +1246,70 @@ status: "Open",
     setLoading(false);
   }
 }
+async function saveSiteDocument() {
+  setLoading(true);
+  setMessage("");
 
+  if (!siteDocTitle || !siteDocType || !siteDocFile) {
+    setMessage("Please complete required fields: Document Title, Document Type, and File.");
+    setLoading(false);
+    return;
+  }
+
+  try {
+    setMessage("Uploading site document...");
+
+    const uploadedUrls = await uploadPhotosToSupabase([siteDocFile]);
+    const fileUrl = uploadedUrls[0] || "";
+
+    const payload = {
+      project_name: siteDocProject,
+      document_title: siteDocTitle,
+      document_type: siteDocType,
+      document_date: siteDocDate || null,
+      review_date: siteDocReviewDate || null,
+      expiry_date: siteDocExpiryDate || null,
+      uploaded_by: siteDocUploadedBy,
+      notes: siteDocNotes,
+      file_name: siteDocFile.name,
+      file_url: fileUrl,
+      status: "Active",
+    };
+
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/site_documents`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        apikey: SUPABASE_KEY,
+        Authorization: `Bearer ${SUPABASE_KEY}`,
+        Prefer: "return=representation",
+      },
+      body: JSON.stringify(payload),
+    });
+
+    if (!res.ok) {
+      const text = await res.text();
+      throw new Error(text || "Site document save failed");
+    }
+
+    setSiteDocProject("");
+    setSiteDocTitle("");
+    setSiteDocType("");
+    setSiteDocDate("");
+    setSiteDocReviewDate("");
+    setSiteDocExpiryDate("");
+    setSiteDocUploadedBy("");
+    setSiteDocNotes("");
+    setSiteDocFile(null);
+
+    setMessage("Site document saved.");
+    await loadRecords();
+  } catch (error) {
+    setMessage(`Could not save site document: ${error.message}`);
+  } finally {
+    setLoading(false);
+  }
+}
 async function saveFleetDefect(statusValue = "Open") {
   
   setLoading(true);
