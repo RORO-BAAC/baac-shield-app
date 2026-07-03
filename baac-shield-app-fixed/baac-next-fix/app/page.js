@@ -234,6 +234,12 @@ const [siteDocFile, setSiteDocFile] = useState(null);
 
 const [flraRecords, setFlraRecords] = useState([]);
 const [flraProject, setFlraProject] = useState("");
+  const [flraWorkerName, setFlraWorkerName] = useState("");
+const [flraJobNumber, setFlraJobNumber] = useState("");
+const [flraGuestVisitorName, setFlraGuestVisitorName] = useState("");
+const [flraFireRating, setFlraFireRating] = useState("");
+const [flraWeather, setFlraWeather] = useState("");
+const [flraCountry, setFlraCountry] = useState("");
 const [flraDate, setFlraDate] = useState("");
 const [flraTime, setFlraTime] = useState("");
 const [flraLocation, setFlraLocation] = useState("");
