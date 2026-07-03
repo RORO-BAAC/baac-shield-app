@@ -230,6 +230,33 @@ const [siteDocExpiryDate, setSiteDocExpiryDate] = useState("");
 const [siteDocUploadedBy, setSiteDocUploadedBy] = useState("");
 const [siteDocNotes, setSiteDocNotes] = useState("");
 const [siteDocFile, setSiteDocFile] = useState(null);
+  const [fieldDocType, setFieldDocType] = useState("");
+
+const [flraRecords, setFlraRecords] = useState([]);
+const [flraProject, setFlraProject] = useState("");
+const [flraDate, setFlraDate] = useState("");
+const [flraTime, setFlraTime] = useState("");
+const [flraLocation, setFlraLocation] = useState("");
+const [flraSupervisor, setFlraSupervisor] = useState("");
+const [flraCrewMembers, setFlraCrewMembers] = useState("");
+
+const [flraWorkScope, setFlraWorkScope] = useState("");
+const [flraTaskSteps, setFlraTaskSteps] = useState("");
+const [flraHazards, setFlraHazards] = useState("");
+const [flraCriticalRisks, setFlraCriticalRisks] = useState("");
+const [flraControls, setFlraControls] = useState("");
+const [flraPpe, setFlraPpe] = useState("");
+const [flraEquipment, setFlraEquipment] = useState("");
+
+const [flraLocatesReviewed, setFlraLocatesReviewed] = useState("");
+const [flraPermitsReviewed, setFlraPermitsReviewed] = useState("");
+const [flraEmergencyPlanReviewed, setFlraEmergencyPlanReviewed] = useState("");
+const [flraMusterPoint, setFlraMusterPoint] = useState("");
+const [flraNearestHospital, setFlraNearestHospital] = useState("");
+
+const [flraAdditionalNotes, setFlraAdditionalNotes] = useState("");
+const [flraCompletedBy, setFlraCompletedBy] = useState("");
+const [flraPhotos, setFlraPhotos] = useState([]);
  const [rpasOperations, setRpasOperations] = useState([]);
 const [rpasProject, setRpasProject] = useState("");
 const [rpasDate, setRpasDate] = useState("");
