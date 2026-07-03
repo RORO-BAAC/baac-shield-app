@@ -1353,7 +1353,11 @@ async function saveFlraRecord() {
       const text = await res.text();
       throw new Error(text || "FLRA save failed");
     }
+const savedFlra = await res.json();
 
+if (savedFlra && savedFlra[0]) {
+  setFlraRecords((prev) => [savedFlra[0], ...prev]);
+}
     setFlraProject("");
     setFlraDate("");
     setFlraTime("");
