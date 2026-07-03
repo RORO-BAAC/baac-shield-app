@@ -2338,11 +2338,15 @@ async function downloadFlraPdf(item) {
   doc.setTextColor(0, 0, 0);
   let y = 42;
 
-  const addSection = (title) => {
-    if (y > 260) {
+  const checkPage = (neededSpace = 20) => {
+    if (y + neededSpace > 280) {
       doc.addPage();
       y = 20;
     }
+  };
+
+  const addSection = (title) => {
+    checkPage(18);
 
     doc.setFillColor(226, 232, 240);
     doc.rect(14, y - 6, 182, 10, "F");
@@ -2354,10 +2358,7 @@ async function downloadFlraPdf(item) {
   };
 
   const addLine = (label, value) => {
-    if (y > 270) {
-      doc.addPage();
-      y = 20;
-    }
+    checkPage(12);
 
     const text = `${label}: ${value || "-"}`;
     const lines = doc.splitTextToSize(text, 180);
@@ -2375,39 +2376,133 @@ async function downloadFlraPdf(item) {
     }
   };
 
-  addSection("Project / Crew Information");
+  const getImageFormat = (base64) => {
+    if (String(base64).startsWith("data:image/png")) return "PNG";
+    return "JPEG";
+  };
+
+  const parseSignatures = (value) => {
+    if (!value) return [];
+
+    if (Array.isArray(value)) return value;
+
+    try {
+      const parsed = JSON.parse(value);
+      return Array.isArray(parsed) ? parsed : [];
+    } catch {
+      return [];
+    }
+  };
+
+  addSection("General Information");
 
   addLine("Project", item.project_name);
+  addLine("Worker Name", item.worker_name);
+  addLine("Supervisor / Foreman", item.supervisor_name);
   addLine("Date", item.flra_date);
   addLine("Time", item.flra_time);
   addLine("Location", item.location);
-  addLine("Supervisor / Lead", item.supervisor_name);
+  addLine("Job #", item.job_number);
+  addLine("Guest / Subcontractor / Visitor", item.guest_visitor_name);
+  addLine("Scope of Work for Today", item.work_scope);
+  addLine("Nearest Medical Facility", item.nearest_hospital);
+  addLine("Muster Location", item.muster_point);
+  addLine("Fire Rating", item.fire_rating);
+  addLine("Weather", item.weather);
+  addLine("Country", item.country);
   addLine("Completed By", item.completed_by);
-  addLine("Crew Members", item.crew_members);
   addLine("Created", formatDateTime(item.created_at));
 
-  addSection("Work Scope / Hazard Assessment");
+  addSection("Pre-Job Hazards");
 
-  addLine("Work Scope", item.work_scope);
+  addLine("Pre-Job Hazards Selected", item.pre_job_hazards);
+
+  addSection("Workers Rights");
+
+  addLine(
+    "Workers have reviewed Right to Know, Right to Participate, and Right to Refuse Unsafe Work",
+    item.workers_rights_reviewed
+  );
+
+  addSection("General Hazards");
+
+  addLine("General Hazards Selected", item.general_hazards);
+
+  addSection("Critical Risk / Controls");
+
+  addLine("Critical Risk Category", item.critical_risks);
   addLine("Task Steps", item.task_steps);
   addLine("Hazards Identified", item.hazards_identified);
-  addLine("Critical Risks", item.critical_risks);
   addLine("Controls Required", item.controls_required);
   addLine("PPE Required", item.ppe_required);
   addLine("Equipment Used", item.equipment_used);
+
+  addSection("Hazard Assessment");
+
+  addLine("Task", item.hazard_task);
+  addLine("Hazard", item.hazard_hazard);
+  addLine("Risk — Severity + Probability", item.hazard_risk);
+  addLine("Controls", item.hazard_controls);
 
   addSection("Pre-Job Review");
 
   addLine("Locates Reviewed", item.locates_reviewed);
   addLine("Permits Reviewed", item.permits_reviewed);
   addLine("Emergency Plan Reviewed", item.emergency_plan_reviewed);
-  addLine("Muster Point", item.muster_point);
-  addLine("Nearest Hospital", item.nearest_hospital);
 
-  addSection("Additional Information");
+  addSection("Additional Notes");
 
   addLine("Additional Notes", item.additional_notes);
   addLine("Status", item.status);
+
+  const workerSignatures = parseSignatures(item.worker_signatures);
+
+  addSection("Crew Sign-Off");
+
+  if (workerSignatures.length === 0) {
+    addLine("Crew Sign-Off", "No worker signatures recorded.");
+  }
+
+  for (const worker of workerSignatures) {
+    checkPage(35);
+
+    doc.setFontSize(10);
+    doc.setTextColor(0, 0, 0);
+
+    addLine("Worker", worker.name);
+    addLine("Role", worker.role);
+    addLine("Signed At", formatDateTime(worker.signedAt));
+
+    if (
+      worker.signature &&
+      String(worker.signature).startsWith("data:image")
+    ) {
+      checkPage(40);
+      doc.text("Signature:", 14, y);
+      y += 4;
+      doc.addImage(worker.signature, "PNG", 14, y, 75, 28);
+      y += 36;
+    }
+
+    y += 4;
+  }
+
+  addSection("Supervisor / Foreman Sign-Off");
+
+  addLine("Supervisor / Foreman", item.supervisor_name);
+
+  if (
+    item.supervisor_signature &&
+    String(item.supervisor_signature).startsWith("data:image")
+  ) {
+    checkPage(45);
+    doc.text("Supervisor Signature:", 14, y);
+    y += 4;
+    doc.addImage(item.supervisor_signature, "PNG", 14, y, 80, 30);
+    y += 38;
+  } else {
+    addLine("Supervisor Signature", "No supervisor signature recorded.");
+  }
 
   const photoUrls = item.photos
     ? String(item.photos)
@@ -2430,16 +2525,9 @@ async function downloadFlraPdf(item) {
           reader.readAsDataURL(blob);
         });
 
-        if (y > 200) {
-          doc.addPage();
-          y = 20;
-        }
+        checkPage(80);
 
-        const imageFormat = String(base64).startsWith("data:image/png")
-          ? "PNG"
-          : "JPEG";
-
-        doc.addImage(base64, imageFormat, 14, y, 90, 65);
+        doc.addImage(base64, getImageFormat(base64), 14, y, 90, 65);
         y += 75;
       } catch (err) {
         addLine("Photo", "Failed to load");
@@ -2447,7 +2535,9 @@ async function downloadFlraPdf(item) {
     }
   }
 
-  doc.save(`baac-flra-${item.project_name || "record"}-${item.flra_date || "date"}.pdf`);
+  doc.save(
+    `baac-flra-${item.project_name || "record"}-${item.flra_date || "date"}.pdf`
+  );
 }
   
 async function downloadFleetDefectPdf(item) {
