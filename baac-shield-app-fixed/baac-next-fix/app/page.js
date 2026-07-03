@@ -5149,6 +5149,92 @@ onClick={submitCorAction}
         >
           Submit FLRA
         </button>
+
+        <div style={{ marginTop: 24 }}>
+          <h3>Submitted FLRAs</h3>
+
+          {flraRecords.length === 0 ? (
+            <p style={{ color: "#64748b" }}>No FLRA records found.</p>
+          ) : (
+            <div style={{ display: "grid", gap: 10 }}>
+              {flraRecords.map((item) => (
+                <div
+                  key={item.id}
+                  style={{
+                    padding: 14,
+                    borderRadius: 12,
+                    border: "1px solid #e2e8f0",
+                    background: "#f8fafc",
+                  }}
+                >
+                  <div style={{ fontWeight: "bold", color: "#0f172a" }}>
+                    {item.project_name || "No Project"} — {item.flra_date || "-"}
+                  </div>
+
+                  <div style={{ fontSize: 13, color: "#475569", marginTop: 4 }}>
+                    Supervisor / Lead: {item.supervisor_name || "-"}
+                  </div>
+
+                  <div style={{ fontSize: 13, color: "#475569", marginTop: 4 }}>
+                    Location: {item.location || "-"}
+                  </div>
+
+                  <div style={{ fontSize: 13, color: "#475569", marginTop: 4 }}>
+                    Work Scope: {item.work_scope || "-"}
+                  </div>
+
+                  <div style={{ fontSize: 13, color: "#475569", marginTop: 4 }}>
+                    Critical Risks: {item.critical_risks || "-"}
+                  </div>
+
+                  <div style={{ fontSize: 13, color: "#475569", marginTop: 4 }}>
+                    Controls: {item.controls_required || "-"}
+                  </div>
+
+                  {item.photos && (
+                    <div style={{ marginTop: 8 }}>
+                      {String(item.photos)
+                        .split(",")
+                        .map((url, index) => (
+                          <a
+                            key={url}
+                            href={url.trim()}
+                            target="_blank"
+                            rel="noreferrer"
+                            style={{
+                              display: "inline-block",
+                              marginRight: 10,
+                              color: "#123d82",
+                              fontWeight: "bold",
+                            }}
+                          >
+                            View Photo {index + 1}
+                          </a>
+                        ))}
+                    </div>
+                  )}
+
+                  <div style={{ marginTop: 8 }}>
+                    <span
+                      style={{
+                        display: "inline-block",
+                        padding: "5px 10px",
+                        borderRadius: 999,
+                        background: "#16a34a",
+                        color: "white",
+                        fontSize: 12,
+                        fontWeight: "bold",
+                      }}
+                    >
+                      {item.status || "Submitted"}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+            
       </div>
     )}
   </div>
