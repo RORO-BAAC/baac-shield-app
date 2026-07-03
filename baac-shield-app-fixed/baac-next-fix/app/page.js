@@ -408,6 +408,7 @@ const [dailyActivityDate, setDailyActivityDate] = useState(
   const workerSigRef = useRef(null);
   const supervisorSigRef = useRef(null);
  const fleetSupervisorSigRef = useRef(null);
+  const flraSupervisorSigRef = useRef(null);
 const rpasPreflightSigRef = useRef(null);
 const rpasPostflightSigRef = useRef(null);
  
