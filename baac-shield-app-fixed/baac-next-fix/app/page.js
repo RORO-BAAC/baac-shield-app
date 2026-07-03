@@ -5083,6 +5083,26 @@ accept="image/png,image/jpeg,image/jpg"
       }}
     >
       <h3 style={{ marginTop: 0 }}>Fleet Defects Register</h3>
+<div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 12 }}>
+  {["All", "Open", "In Progress", "Closed"].map((filter) => (
+    <button
+      key={filter}
+      type="button"
+      onClick={() => setFleetDefectFilter(filter)}
+      style={{
+        padding: "8px 12px",
+        borderRadius: 999,
+        border: "none",
+        background: fleetDefectFilter === filter ? "#123d82" : "#e2e8f0",
+        color: fleetDefectFilter === filter ? "white" : "#0f172a",
+        fontWeight: "bold",
+        cursor: "pointer",
+      }}
+    >
+      {filter}
+    </button>
+  ))}
+</div>
 
       {fleetDefects.length === 0 ? (
         <p style={{ color: "#64748b" }}>No fleet defects found.</p>
