@@ -5389,15 +5389,36 @@ onClick={submitCorAction}
             />
           </div>
 
-          <div>
-            <label>Critical Risks</label>
-            <textarea
-              value={flraCriticalRisks}
-              onChange={(e) => setFlraCriticalRisks(e.target.value)}
-              placeholder="Line of fire, mobile equipment, excavation, lifting, etc."
-              style={{ width: "100%", minHeight: 90, padding: 12, marginTop: 6, borderRadius: 10, border: "1px solid #cbd5e1" }}
-            />
-          </div>
+         <div>
+  <label>Critical Risk Category</label>
+  <br />
+  <select
+    value={flraCriticalRisks}
+    onChange={(e) => setFlraCriticalRisks(e.target.value)}
+    style={{
+      width: "100%",
+      padding: 12,
+      marginTop: 6,
+      borderRadius: 10,
+      border: "1px solid #cbd5e1",
+      background: "white",
+    }}
+  >
+    <option value="">Select Critical Risk</option>
+    <option>Breaking Containment</option>
+    <option>Bypassing Safety Controls</option>
+    <option>Confined Space Entry</option>
+    <option>Driving</option>
+    <option>Energy Isolation</option>
+    <option>Excavation</option>
+    <option>Hot Work</option>
+    <option>Line of Fire</option>
+    <option>Safe Mechanical Lifting</option>
+    <option>Working at Height</option>
+    <option>Working Around Mobile Equipment</option>
+    <option>Work Authorization</option>
+  </select>
+</div>
 
           <div>
             <label>Controls Required</label>
