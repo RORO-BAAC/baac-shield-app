@@ -3884,7 +3884,21 @@ Signed in as: {user?.email} · Role: {role}
 >
  Fleet Defect Report
 </button>
-    
+    <button
+  type="button"
+  onClick={() => setActiveTab("siteDocs")}
+  style={{
+    padding: "10px 14px",
+    borderRadius: 10,
+    border: "1px solid #cbd5e1",
+    background: activeTab === "siteDocs" ? "#123d82" : "white",
+    color: activeTab === "siteDocs" ? "white" : "#0f172a",
+    fontWeight: "bold",
+    cursor: "pointer",
+  }}
+>
+  Site Docs
+</button>
 <button
   type="button"
   onClick={() => setActiveTab("rpas")}
