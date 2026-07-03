@@ -5546,6 +5546,14 @@ onClick={submitCorAction}
           />
         </div>
 
+        <div style={{ marginTop: 16 }}>
+          <label>Supervisor Signature</label>
+          <SignatureBox
+            sigRef={flraSupervisorSigRef}
+            onSave={setFlraSupervisorSignature}
+          />
+        </div>
+            
         <div style={{ marginTop: 12 }}>
           <label>Photos - JPG or PNG only</label>
           <br />
