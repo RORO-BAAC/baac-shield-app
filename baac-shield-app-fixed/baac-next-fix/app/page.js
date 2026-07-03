@@ -5310,6 +5310,48 @@ onClick={submitCorAction}
             </label>
           ))}
         </div>
+
+        <h4 style={{ marginTop: 20 }}>Workers Rights</h4>
+
+        <div
+          style={{
+            padding: 14,
+            borderRadius: 12,
+            background: "#f8fafc",
+            border: "1px solid #e2e8f0",
+            marginBottom: 12,
+          }}
+        >
+          <div style={{ fontWeight: "bold", marginBottom: 8 }}>
+            Workers have reviewed and understand:
+          </div>
+
+          <ul style={{ marginTop: 0 }}>
+            <li>Right to KNOW about workplace hazards</li>
+            <li>Right to PARTICIPATE in the safety program</li>
+            <li>Right to REFUSE unsafe work</li>
+          </ul>
+
+          <label>Workers Rights Reviewed? *</label>
+          <br />
+          <select
+            value={flraWorkersRightsReviewed}
+            onChange={(e) => setFlraWorkersRightsReviewed(e.target.value)}
+            style={{
+              width: "100%",
+              padding: 12,
+              marginTop: 6,
+              borderRadius: 10,
+              border: "1px solid #cbd5e1",
+              background: "white",
+            }}
+          >
+            <option value="">Select</option>
+            <option>Yes</option>
+            <option>No</option>
+          </select>
+        </div>
+            
         <div style={{ marginTop: 12 }}>
           <label>Work Scope *</label>
           <textarea
