@@ -5108,7 +5108,7 @@ accept="image/png,image/jpeg,image/jpg"
         <p style={{ color: "#64748b" }}>No fleet defects found.</p>
       ) : (
         <div style={{ display: "grid", gap: 10 }}>
-          {fleetDefects.{fleetDefects
+      {fleetDefects
   .filter((item) =>
     fleetDefectFilter === "All"
       ? true
