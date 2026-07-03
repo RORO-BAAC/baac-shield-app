@@ -585,6 +585,21 @@ if (fleetDefectsRes.ok) {
   const fleetDefectsData = await fleetDefectsRes.json();
   setFleetDefects(fleetDefectsData);
 }
+
+   const siteDocsRes = await fetch(
+  `${SUPABASE_URL}/rest/v1/site_documents?select=*&order=created_at.desc`,
+  {
+    headers: {
+      apikey: SUPABASE_KEY,
+      Authorization: `Bearer ${SUPABASE_KEY}`,
+    },
+  }
+);
+
+if (siteDocsRes.ok) {
+  const siteDocsData = await siteDocsRes.json();
+  setSiteDocuments(siteDocsData);
+}   
      
 const rpasRes = await fetch(
   `${SUPABASE_URL}/rest/v1/rpas_operations?select=*&order=created_at.desc`,
