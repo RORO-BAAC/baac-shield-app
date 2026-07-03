@@ -5361,6 +5361,23 @@ onClick={submitCorAction}
                       {item.status || "Submitted"}
                     </span>
                   </div>
+                      <div style={{ marginTop: 10 }}>
+  <button
+    type="button"
+    onClick={() => downloadFlraPdf(item)}
+    style={{
+      padding: "8px 12px",
+      borderRadius: 10,
+      border: "none",
+      background: "#123d82",
+      color: "white",
+      fontWeight: "bold",
+      cursor: "pointer",
+    }}
+  >
+    Download PDF
+  </button>
+</div>
                 </div>
               ))}
             </div>
