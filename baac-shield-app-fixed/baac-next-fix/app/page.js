@@ -1430,6 +1430,8 @@ setFlraHazardHazard("");
 setFlraHazardRisk("");
 setFlraHazardControls("");
 setFlraSupervisorSignature("");
+    setFlraWorkerSignatures([{ name: "", role: "", signature: "", signedAt: "" }]);
+setFlraResetKey((prev) => prev + 1);
 flraSupervisorSigRef.current?.clear();
     setFlraLocatesReviewed("");
     setFlraPermitsReviewed("");
