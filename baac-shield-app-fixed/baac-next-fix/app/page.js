@@ -2262,6 +2262,134 @@ if (photoUrls.length > 0) {
     doc.save(`baac-shield-record-${record.id}.pdf`);
   }
 
+async function downloadFlraPdf(item) {
+  const doc = new jsPDF();
+
+  doc.setFillColor(15, 47, 102);
+  doc.rect(0, 0, 210, 32, "F");
+
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(20);
+  doc.text(`${companyName} FLRA`, 14, 18);
+
+  doc.setFontSize(10);
+  doc.text("Field Level Risk Assessment / Daily Hazard Assessment", 14, 25);
+
+  doc.setTextColor(0, 0, 0);
+  let y = 42;
+
+  const addSection = (title) => {
+    if (y > 260) {
+      doc.addPage();
+      y = 20;
+    }
+
+    doc.setFillColor(226, 232, 240);
+    doc.rect(14, y - 6, 182, 10, "F");
+    doc.setTextColor(15, 47, 102);
+    doc.setFontSize(13);
+    doc.text(title, 16, y);
+    doc.setTextColor(0, 0, 0);
+    y += 10;
+  };
+
+  const addLine = (label, value) => {
+    if (y > 270) {
+      doc.addPage();
+      y = 20;
+    }
+
+    const text = `${label}: ${value || "-"}`;
+    const lines = doc.splitTextToSize(text, 180);
+    doc.setFontSize(10);
+    doc.text(lines, 14, y);
+    y += lines.length * 6 + 3;
+  };
+
+  const formatDateTime = (value) => {
+    if (!value) return "-";
+    try {
+      return new Date(value).toLocaleString();
+    } catch {
+      return value;
+    }
+  };
+
+  addSection("Project / Crew Information");
+
+  addLine("Project", item.project_name);
+  addLine("Date", item.flra_date);
+  addLine("Time", item.flra_time);
+  addLine("Location", item.location);
+  addLine("Supervisor / Lead", item.supervisor_name);
+  addLine("Completed By", item.completed_by);
+  addLine("Crew Members", item.crew_members);
+  addLine("Created", formatDateTime(item.created_at));
+
+  addSection("Work Scope / Hazard Assessment");
+
+  addLine("Work Scope", item.work_scope);
+  addLine("Task Steps", item.task_steps);
+  addLine("Hazards Identified", item.hazards_identified);
+  addLine("Critical Risks", item.critical_risks);
+  addLine("Controls Required", item.controls_required);
+  addLine("PPE Required", item.ppe_required);
+  addLine("Equipment Used", item.equipment_used);
+
+  addSection("Pre-Job Review");
+
+  addLine("Locates Reviewed", item.locates_reviewed);
+  addLine("Permits Reviewed", item.permits_reviewed);
+  addLine("Emergency Plan Reviewed", item.emergency_plan_reviewed);
+  addLine("Muster Point", item.muster_point);
+  addLine("Nearest Hospital", item.nearest_hospital);
+
+  addSection("Additional Information");
+
+  addLine("Additional Notes", item.additional_notes);
+  addLine("Status", item.status);
+
+  const photoUrls = item.photos
+    ? String(item.photos)
+        .split(",")
+        .map((p) => p.trim())
+        .filter(Boolean)
+    : [];
+
+  if (photoUrls.length > 0) {
+    addSection("Photos");
+
+    for (const url of photoUrls) {
+      try {
+        const response = await fetch(url);
+        const blob = await response.blob();
+
+        const base64 = await new Promise((resolve) => {
+          const reader = new FileReader();
+          reader.onloadend = () => resolve(reader.result);
+          reader.readAsDataURL(blob);
+        });
+
+        if (y > 200) {
+          doc.addPage();
+          y = 20;
+        }
+
+        const imageFormat = String(base64).startsWith("data:image/png")
+          ? "PNG"
+          : "JPEG";
+
+        doc.addImage(base64, imageFormat, 14, y, 90, 65);
+        y += 75;
+      } catch (err) {
+        addLine("Photo", "Failed to load");
+      }
+    }
+  }
+
+  doc.save(`baac-flra-${item.project_name || "record"}-${item.flra_date || "date"}.pdf`);
+}
+  
 async function downloadFleetDefectPdf(item) {
   const doc = new jsPDF();
 
