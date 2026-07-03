@@ -1288,6 +1288,106 @@ status: "Open",
     setLoading(false);
   }
 }
+
+async function saveFlraRecord() {
+  setLoading(true);
+  setMessage("");
+
+  if (!flraProject || !flraDate || !flraSupervisor || !flraWorkScope) {
+    setMessage(
+      "Please complete required fields: Project, Date, Supervisor / Lead, and Work Scope."
+    );
+    setLoading(false);
+    return;
+  }
+
+  try {
+    let uploadedPhotoUrls = [];
+
+    if (flraPhotos.length > 0) {
+      setMessage("Uploading FLRA photo(s)...");
+      uploadedPhotoUrls = await uploadPhotosToSupabase(flraPhotos);
+      setMessage("FLRA photo(s) uploaded. Saving FLRA...");
+    }
+
+    const payload = {
+      project_name: flraProject,
+      flra_date: flraDate || null,
+      flra_time: flraTime,
+      location: flraLocation,
+      supervisor_name: flraSupervisor,
+      crew_members: flraCrewMembers,
+
+      work_scope: flraWorkScope,
+      task_steps: flraTaskSteps,
+      hazards_identified: flraHazards,
+      critical_risks: flraCriticalRisks,
+      controls_required: flraControls,
+      ppe_required: flraPpe,
+      equipment_used: flraEquipment,
+
+      locates_reviewed: flraLocatesReviewed,
+      permits_reviewed: flraPermitsReviewed,
+      emergency_plan_reviewed: flraEmergencyPlanReviewed,
+      muster_point: flraMusterPoint,
+      nearest_hospital: flraNearestHospital,
+
+      additional_notes: flraAdditionalNotes,
+      completed_by: flraCompletedBy,
+      photos: uploadedPhotoUrls.join(", "),
+      status: "Submitted",
+    };
+
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/field_flras`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        apikey: SUPABASE_KEY,
+        Authorization: `Bearer ${SUPABASE_KEY}`,
+        Prefer: "return=representation",
+      },
+      body: JSON.stringify(payload),
+    });
+
+    if (!res.ok) {
+      const text = await res.text();
+      throw new Error(text || "FLRA save failed");
+    }
+
+    setFlraProject("");
+    setFlraDate("");
+    setFlraTime("");
+    setFlraLocation("");
+    setFlraSupervisor("");
+    setFlraCrewMembers("");
+
+    setFlraWorkScope("");
+    setFlraTaskSteps("");
+    setFlraHazards("");
+    setFlraCriticalRisks("");
+    setFlraControls("");
+    setFlraPpe("");
+    setFlraEquipment("");
+
+    setFlraLocatesReviewed("");
+    setFlraPermitsReviewed("");
+    setFlraEmergencyPlanReviewed("");
+    setFlraMusterPoint("");
+    setFlraNearestHospital("");
+
+    setFlraAdditionalNotes("");
+    setFlraCompletedBy("");
+    setFlraPhotos([]);
+
+    setMessage("FLRA submitted.");
+    await loadRecords();
+  } catch (error) {
+    setMessage(`Could not save FLRA: ${error.message}`);
+  } finally {
+    setLoading(false);
+  }
+}
+  
 async function saveSiteDocument() {
   setLoading(true);
   setMessage("");
