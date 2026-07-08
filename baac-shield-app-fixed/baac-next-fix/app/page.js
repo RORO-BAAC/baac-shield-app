@@ -4497,7 +4497,23 @@ Signed in as: {user?.email} · Role: {role}
   Records Center
 </button>
 {(role === "admin" || role === "supervisor") && (
-      
+
+<button
+  type="button"
+  onClick={() => requestProtectedTab("crm")}
+  style={{
+    padding: "10px 14px",
+    borderRadius: 10,
+    border: "1px solid #cbd5e1",
+    background: activeTab === "crm" ? "#123d82" : "white",
+    color: activeTab === "crm" ? "white" : "#0f172a",
+    fontWeight: "bold",
+    cursor: "pointer",
+  }}
+>
+  CRM
+</button>
+ 
   <button
     type="button"
     onClick={() => requestProtectedTab("admin")}
