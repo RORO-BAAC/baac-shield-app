@@ -10970,20 +10970,455 @@ setHazardDueDate(report.due_date || "");
   </div>
 )}
 
-{crmSection !== "dashboard" && crmSection !== "customers" && (
+{crmSection === "subcontractors" && (
   <div
     style={{
-      border: "1px dashed #cbd5e1",
-      borderRadius: 14,
-      padding: 18,
-      background: "#f8fafc",
-      color: "#475569",
+      display: "grid",
+      gridTemplateColumns: "minmax(300px, 420px) 1fr",
+      gap: 18,
+      alignItems: "start",
     }}
   >
-    <strong>{crmSection}</strong> section is ready. Forms and lists will be
-    added next.
+    <div
+      style={{
+        border: "1px solid #e2e8f0",
+        borderRadius: 14,
+        padding: 16,
+        background: "#f8fafc",
+      }}
+    >
+      <h3 style={{ marginTop: 0 }}>Add Subcontractor</h3>
+
+      <label style={{ display: "block", marginBottom: 12 }}>
+        <strong>Company Name *</strong>
+        <input
+          value={crmSubCompany}
+          onChange={(e) => setCrmSubCompany(e.target.value)}
+          placeholder="Subcontractor company name"
+          style={{
+            width: "100%",
+            marginTop: 5,
+            padding: 10,
+            borderRadius: 8,
+            border: "1px solid #cbd5e1",
+            boxSizing: "border-box",
+          }}
+        />
+      </label>
+
+      <label style={{ display: "block", marginBottom: 12 }}>
+        <strong>Trade / Service</strong>
+        <input
+          value={crmSubTrade}
+          onChange={(e) => setCrmSubTrade(e.target.value)}
+          placeholder="Electrical, excavation, trucking..."
+          style={{
+            width: "100%",
+            marginTop: 5,
+            padding: 10,
+            borderRadius: 8,
+            border: "1px solid #cbd5e1",
+            boxSizing: "border-box",
+          }}
+        />
+      </label>
+
+      <label style={{ display: "block", marginBottom: 12 }}>
+        <strong>Primary Contact</strong>
+        <input
+          value={crmSubContact}
+          onChange={(e) => setCrmSubContact(e.target.value)}
+          placeholder="Contact name"
+          style={{
+            width: "100%",
+            marginTop: 5,
+            padding: 10,
+            borderRadius: 8,
+            border: "1px solid #cbd5e1",
+            boxSizing: "border-box",
+          }}
+        />
+      </label>
+
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr",
+          gap: 10,
+          marginBottom: 12,
+        }}
+      >
+        <label>
+          <strong>Phone</strong>
+          <input
+            value={crmSubPhone}
+            onChange={(e) => setCrmSubPhone(e.target.value)}
+            placeholder="Phone"
+            style={{
+              width: "100%",
+              marginTop: 5,
+              padding: 10,
+              borderRadius: 8,
+              border: "1px solid #cbd5e1",
+              boxSizing: "border-box",
+            }}
+          />
+        </label>
+
+        <label>
+          <strong>Email</strong>
+          <input
+            type="email"
+            value={crmSubEmail}
+            onChange={(e) => setCrmSubEmail(e.target.value)}
+            placeholder="Email"
+            style={{
+              width: "100%",
+              marginTop: 5,
+              padding: 10,
+              borderRadius: 8,
+              border: "1px solid #cbd5e1",
+              boxSizing: "border-box",
+            }}
+          />
+        </label>
+      </div>
+
+      <label style={{ display: "block", marginBottom: 12 }}>
+        <strong>Service Area</strong>
+        <input
+          value={crmSubServiceArea}
+          onChange={(e) => setCrmSubServiceArea(e.target.value)}
+          placeholder="Calgary, Alberta-wide, Western Canada..."
+          style={{
+            width: "100%",
+            marginTop: 5,
+            padding: 10,
+            borderRadius: 8,
+            border: "1px solid #cbd5e1",
+            boxSizing: "border-box",
+          }}
+        />
+      </label>
+
+      <label style={{ display: "block", marginBottom: 12 }}>
+        <strong>Status</strong>
+        <select
+          value={crmSubStatus}
+          onChange={(e) => setCrmSubStatus(e.target.value)}
+          style={{
+            width: "100%",
+            marginTop: 5,
+            padding: 10,
+            borderRadius: 8,
+            border: "1px solid #cbd5e1",
+          }}
+        >
+          <option>Pending Review</option>
+          <option>Approved</option>
+          <option>Preferred</option>
+          <option>Inactive</option>
+          <option>Do Not Use</option>
+        </select>
+      </label>
+
+      <label style={{ display: "block", marginBottom: 12 }}>
+        <strong>WCB Number</strong>
+        <input
+          value={crmSubWcbNumber}
+          onChange={(e) => setCrmSubWcbNumber(e.target.value)}
+          placeholder="WCB account number"
+          style={{
+            width: "100%",
+            marginTop: 5,
+            padding: 10,
+            borderRadius: 8,
+            border: "1px solid #cbd5e1",
+            boxSizing: "border-box",
+          }}
+        />
+      </label>
+
+      <label style={{ display: "block", marginBottom: 12 }}>
+        <strong>Insurance Expiry</strong>
+        <input
+          type="date"
+          value={crmSubInsuranceExpiry}
+          onChange={(e) => setCrmSubInsuranceExpiry(e.target.value)}
+          style={{
+            width: "100%",
+            marginTop: 5,
+            padding: 10,
+            borderRadius: 8,
+            border: "1px solid #cbd5e1",
+            boxSizing: "border-box",
+          }}
+        />
+      </label>
+
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr",
+          gap: 10,
+          marginBottom: 12,
+        }}
+      >
+        <label>
+          <strong>COR Status</strong>
+          <select
+            value={crmSubCorStatus}
+            onChange={(e) => setCrmSubCorStatus(e.target.value)}
+            style={{
+              width: "100%",
+              marginTop: 5,
+              padding: 10,
+              borderRadius: 8,
+              border: "1px solid #cbd5e1",
+            }}
+          >
+            <option value="">Select</option>
+            <option>COR</option>
+            <option>SECOR</option>
+            <option>In Progress</option>
+            <option>Expired</option>
+            <option>Not Certified</option>
+            <option>Not Provided</option>
+          </select>
+        </label>
+
+        <label>
+          <strong>COR Expiry</strong>
+          <input
+            type="date"
+            value={crmSubCorExpiry}
+            onChange={(e) => setCrmSubCorExpiry(e.target.value)}
+            style={{
+              width: "100%",
+              marginTop: 5,
+              padding: 10,
+              borderRadius: 8,
+              border: "1px solid #cbd5e1",
+              boxSizing: "border-box",
+            }}
+          />
+        </label>
+      </div>
+
+      <label
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: 8,
+          marginBottom: 12,
+        }}
+      >
+        <input
+          type="checkbox"
+          checked={crmSubApproved}
+          onChange={(e) => setCrmSubApproved(e.target.checked)}
+        />
+        <strong>Approved for Work</strong>
+      </label>
+
+      <label style={{ display: "block" }}>
+        <strong>Notes</strong>
+        <textarea
+          value={crmSubNotes}
+          onChange={(e) => setCrmSubNotes(e.target.value)}
+          placeholder="Qualifications, pricing, performance, restrictions..."
+          rows={4}
+          style={{
+            width: "100%",
+            marginTop: 5,
+            padding: 10,
+            borderRadius: 8,
+            border: "1px solid #cbd5e1",
+            boxSizing: "border-box",
+            resize: "vertical",
+          }}
+        />
+      </label>
+
+      <button
+        type="button"
+        onClick={saveCrmSubcontractor}
+        disabled={loading}
+        style={{
+          width: "100%",
+          marginTop: 14,
+          padding: "11px 14px",
+          borderRadius: 10,
+          border: "none",
+          background: "#123d82",
+          color: "white",
+          fontWeight: "bold",
+          cursor: loading ? "not-allowed" : "pointer",
+        }}
+      >
+        {loading ? "Saving..." : "Save Subcontractor"}
+      </button>
+    </div>
+
+    <div>
+      <h3 style={{ marginTop: 0 }}>
+        Subcontractors ({crmSubcontractors.length})
+      </h3>
+
+      {crmSubcontractors
+        .filter((sub) => {
+          const search = crmSearch.toLowerCase().trim();
+
+          if (!search) return true;
+
+          return [
+            sub.company_name,
+            sub.trade_service,
+            sub.primary_contact_name,
+            sub.email,
+            sub.phone,
+            sub.service_area,
+            sub.status,
+            sub.wcb_number,
+            sub.cor_status,
+          ]
+            .filter(Boolean)
+            .join(" ")
+            .toLowerCase()
+            .includes(search);
+        })
+        .map((sub) => (
+          <div
+            key={sub.id}
+            style={{
+              border: "1px solid #e2e8f0",
+              borderRadius: 14,
+              padding: 14,
+              marginBottom: 12,
+              background: "white",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                gap: 10,
+                flexWrap: "wrap",
+              }}
+            >
+              <div>
+                <div style={{ fontSize: 18, fontWeight: "bold" }}>
+                  {sub.company_name}
+                </div>
+
+                <div style={{ color: "#64748b", marginTop: 3 }}>
+                  {sub.trade_service || "Trade not entered"} ·{" "}
+                  {sub.status || "Pending Review"}
+                </div>
+              </div>
+
+              <div
+                style={{
+                  background: sub.approved_for_work ? "#dcfce7" : "#fef3c7",
+                  color: sub.approved_for_work ? "#166534" : "#92400e",
+                  borderRadius: 20,
+                  padding: "6px 10px",
+                  fontSize: 13,
+                  height: "fit-content",
+                }}
+              >
+                {sub.approved_for_work ? "Approved for Work" : "Not Approved"}
+              </div>
+            </div>
+
+            <div style={{ marginTop: 10, lineHeight: 1.6 }}>
+              {sub.primary_contact_name && (
+                <div>
+                  <strong>Contact:</strong> {sub.primary_contact_name}
+                </div>
+              )}
+
+              {sub.phone && (
+                <div>
+                  <strong>Phone:</strong> {sub.phone}
+                </div>
+              )}
+
+              {sub.email && (
+                <div>
+                  <strong>Email:</strong> {sub.email}
+                </div>
+              )}
+
+              {sub.service_area && (
+                <div>
+                  <strong>Service Area:</strong> {sub.service_area}
+                </div>
+              )}
+
+              {sub.wcb_number && (
+                <div>
+                  <strong>WCB:</strong> {sub.wcb_number}
+                </div>
+              )}
+
+              {sub.insurance_expiry_date && (
+                <div>
+                  <strong>Insurance Expiry:</strong>{" "}
+                  {sub.insurance_expiry_date}
+                </div>
+              )}
+
+              {sub.cor_status && (
+                <div>
+                  <strong>COR Status:</strong> {sub.cor_status}
+                  {sub.cor_expiry_date
+                    ? ` — Expires ${sub.cor_expiry_date}`
+                    : ""}
+                </div>
+              )}
+
+              {sub.notes && (
+                <div style={{ marginTop: 8 }}>
+                  <strong>Notes:</strong> {sub.notes}
+                </div>
+              )}
+            </div>
+          </div>
+        ))}
+
+      {crmSubcontractors.length === 0 && (
+        <div
+          style={{
+            border: "1px dashed #cbd5e1",
+            borderRadius: 14,
+            padding: 18,
+            color: "#64748b",
+          }}
+        >
+          No subcontractors entered yet.
+        </div>
+      )}
+    </div>
   </div>
 )}
+
+{crmSection !== "dashboard" &&
+  crmSection !== "customers" &&
+  crmSection !== "subcontractors" && (
+    <div
+      style={{
+        border: "1px dashed #cbd5e1",
+        borderRadius: 14,
+        padding: 18,
+        background: "#f8fafc",
+        color: "#475569",
+      }}
+    >
+      <strong>{crmSection}</strong> section is ready. Forms and lists will be
+      added next.
+    </div>
+  )}
   </div>
 )}
 {showPinPrompt && (
