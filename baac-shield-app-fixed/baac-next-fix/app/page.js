@@ -899,6 +899,61 @@ async function saveCrmCustomer() {
     setLoading(false);
   }
 }
+
+async function saveCrmSubcontractor() {
+  if (!crmSubCompany.trim()) {
+    setMessage("Please enter the subcontractor company name.");
+    return;
+  }
+
+  setLoading(true);
+  setMessage("");
+
+  try {
+    const { error } = await supabase.from("crm_subcontractors").insert([
+      {
+        company_name: crmSubCompany.trim(),
+        trade_service: crmSubTrade,
+        primary_contact_name: crmSubContact,
+        phone: crmSubPhone,
+        email: crmSubEmail,
+        service_area: crmSubServiceArea,
+        status: crmSubStatus,
+        wcb_number: crmSubWcbNumber,
+        insurance_expiry_date: crmSubInsuranceExpiry || null,
+        cor_status: crmSubCorStatus || null,
+        cor_expiry_date: crmSubCorExpiry || null,
+        approved_for_work: crmSubApproved,
+        safety_documents_complete: crmSubApproved,
+        notes: crmSubNotes,
+        created_by: user?.email || "",
+      },
+    ]);
+
+    if (error) throw error;
+
+    setCrmSubCompany("");
+    setCrmSubTrade("");
+    setCrmSubContact("");
+    setCrmSubPhone("");
+    setCrmSubEmail("");
+    setCrmSubServiceArea("");
+    setCrmSubStatus("Pending Review");
+    setCrmSubWcbNumber("");
+    setCrmSubInsuranceExpiry("");
+    setCrmSubCorStatus("");
+    setCrmSubCorExpiry("");
+    setCrmSubApproved(false);
+    setCrmSubNotes("");
+
+    setMessage("Subcontractor saved.");
+    await loadCrmData();
+  } catch (error) {
+    setMessage(`Could not save subcontractor: ${error.message}`);
+  } finally {
+    setLoading(false);
+  }
+}
  
   async function addProject() {
   const cleanName = newProjectName.trim();
