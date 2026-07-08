@@ -9455,19 +9455,246 @@ setHazardDueDate(report.due_date || "");
       ))}
     </div>
 
-    <div
-      style={{
-        padding: 18,
-        borderRadius: 14,
-        border: "1px dashed #cbd5e1",
-        background: "#f8fafc",
-        textAlign: "center",
-        color: "#64748b",
-      }}
-    >
-      Record lists and download controls will be added next.
+   <div style={{ display: "grid", gap: 18 }}>
+  <section>
+    <h3 style={{ marginBottom: 10 }}>Worker Forms</h3>
+
+    <div style={{ display: "grid", gap: 10 }}>
+      {records
+        .filter((record) => {
+          const q = recordsCenterSearch.trim().toLowerCase();
+
+          return (
+            !q ||
+            record.worker_name?.toLowerCase().includes(q) ||
+            record.supervisor_name?.toLowerCase().includes(q) ||
+            record.project_name?.toLowerCase().includes(q) ||
+            record.task_description?.toLowerCase().includes(q) ||
+            record.critical_risk?.toLowerCase().includes(q) ||
+            record.status?.toLowerCase().includes(q)
+          );
+        })
+        .slice(0, 10)
+        .map((record) => (
+          <div
+            key={`record-${record.id}`}
+            style={{
+              padding: 14,
+              borderRadius: 12,
+              border: "1px solid #e2e8f0",
+              background: "#f8fafc",
+            }}
+          >
+            <div style={{ fontWeight: "bold" }}>
+              {record.project_name || "No Project"}
+            </div>
+
+            <div style={{ marginTop: 4, fontSize: 13, color: "#475569" }}>
+              Worker: {record.worker_name || "-"} | Supervisor:{" "}
+              {record.supervisor_name || "-"}
+            </div>
+
+            <div style={{ marginTop: 4, fontSize: 13, color: "#475569" }}>
+              Risk: {record.critical_risk || "-"} | Status:{" "}
+              {record.status || "Pending Review"}
+            </div>
+
+            <button
+              type="button"
+              onClick={() => downloadPdf(record)}
+              style={{
+                marginTop: 10,
+                padding: "8px 12px",
+                borderRadius: 10,
+                border: "none",
+                background: "#123d82",
+                color: "white",
+                fontWeight: "bold",
+                cursor: "pointer",
+              }}
+            >
+              Download PDF
+            </button>
+          </div>
+        ))}
+
+      {records.filter((record) => {
+        const q = recordsCenterSearch.trim().toLowerCase();
+
+        return (
+          !q ||
+          record.worker_name?.toLowerCase().includes(q) ||
+          record.supervisor_name?.toLowerCase().includes(q) ||
+          record.project_name?.toLowerCase().includes(q) ||
+          record.task_description?.toLowerCase().includes(q) ||
+          record.critical_risk?.toLowerCase().includes(q) ||
+          record.status?.toLowerCase().includes(q)
+        );
+      }).length === 0 && (
+        <div style={{ color: "#64748b" }}>No worker forms found.</div>
+      )}
     </div>
-  </div>
+  </section>
+
+  <section>
+    <h3 style={{ marginBottom: 10 }}>FLRA / Daily Risk Assessments</h3>
+
+    <div style={{ display: "grid", gap: 10 }}>
+      {flraRecords
+        .filter((item) => {
+          const q = recordsCenterSearch.trim().toLowerCase();
+
+          return (
+            !q ||
+            item.project_name?.toLowerCase().includes(q) ||
+            item.worker_name?.toLowerCase().includes(q) ||
+            item.supervisor_name?.toLowerCase().includes(q) ||
+            item.location?.toLowerCase().includes(q) ||
+            item.work_scope?.toLowerCase().includes(q) ||
+            item.critical_risks?.toLowerCase().includes(q)
+          );
+        })
+        .slice(0, 10)
+        .map((item) => (
+          <div
+            key={`flra-${item.id}`}
+            style={{
+              padding: 14,
+              borderRadius: 12,
+              border: "1px solid #bfdbfe",
+              background: "#eff6ff",
+            }}
+          >
+            <div style={{ fontWeight: "bold" }}>
+              {item.project_name || "No Project"} — {item.flra_date || "-"}
+            </div>
+
+            <div style={{ marginTop: 4, fontSize: 13, color: "#475569" }}>
+              Worker: {item.worker_name || "-"} | Supervisor:{" "}
+              {item.supervisor_name || "-"}
+            </div>
+
+            <div style={{ marginTop: 4, fontSize: 13, color: "#475569" }}>
+              Location: {item.location || "-"} | Risk:{" "}
+              {item.critical_risks || "-"}
+            </div>
+
+            <button
+              type="button"
+              onClick={() => downloadFlraPdf(item)}
+              style={{
+                marginTop: 10,
+                padding: "8px 12px",
+                borderRadius: 10,
+                border: "none",
+                background: "#123d82",
+                color: "white",
+                fontWeight: "bold",
+                cursor: "pointer",
+              }}
+            >
+              Download PDF
+            </button>
+          </div>
+        ))}
+
+      {flraRecords.filter((item) => {
+        const q = recordsCenterSearch.trim().toLowerCase();
+
+        return (
+          !q ||
+          item.project_name?.toLowerCase().includes(q) ||
+          item.worker_name?.toLowerCase().includes(q) ||
+          item.supervisor_name?.toLowerCase().includes(q) ||
+          item.location?.toLowerCase().includes(q) ||
+          item.work_scope?.toLowerCase().includes(q) ||
+          item.critical_risks?.toLowerCase().includes(q)
+        );
+      }).length === 0 && (
+        <div style={{ color: "#64748b" }}>No FLRA records found.</div>
+      )}
+    </div>
+  </section>
+
+  <section>
+    <h3 style={{ marginBottom: 10 }}>Tailgate / Toolbox Talks</h3>
+
+    <div style={{ display: "grid", gap: 10 }}>
+      {toolboxTalks
+        .filter((talk) => {
+          const q = recordsCenterSearch.trim().toLowerCase();
+
+          return (
+            !q ||
+            talk.project_name?.toLowerCase().includes(q) ||
+            talk.supervisor_name?.toLowerCase().includes(q) ||
+            talk.location?.toLowerCase().includes(q) ||
+            talk.topic?.toLowerCase().includes(q) ||
+            talk.discussion_notes?.toLowerCase().includes(q) ||
+            talk.status?.toLowerCase().includes(q)
+          );
+        })
+        .slice(0, 10)
+        .map((talk) => (
+          <div
+            key={`toolbox-${talk.id}`}
+            style={{
+              padding: 14,
+              borderRadius: 12,
+              border: "1px solid #bbf7d0",
+              background: "#f0fdf4",
+            }}
+          >
+            <div style={{ fontWeight: "bold" }}>
+              {talk.project_name || "No Project"} — {talk.talk_date || "-"}
+            </div>
+
+            <div style={{ marginTop: 4, fontSize: 13, color: "#475569" }}>
+              Supervisor: {talk.supervisor_name || "-"} | Location:{" "}
+              {talk.location || "-"}
+            </div>
+
+            <div style={{ marginTop: 4, fontSize: 13, color: "#475569" }}>
+              Topic: {talk.topic || "-"} | Status: {talk.status || "-"}
+            </div>
+
+            <button
+              type="button"
+              onClick={() => downloadToolboxPdf(talk)}
+              style={{
+                marginTop: 10,
+                padding: "8px 12px",
+                borderRadius: 10,
+                border: "none",
+                background: "#16a34a",
+                color: "white",
+                fontWeight: "bold",
+                cursor: "pointer",
+              }}
+            >
+              Download PDF
+            </button>
+          </div>
+        ))}
+
+      {toolboxTalks.filter((talk) => {
+        const q = recordsCenterSearch.trim().toLowerCase();
+
+        return (
+          !q ||
+          talk.project_name?.toLowerCase().includes(q) ||
+          talk.supervisor_name?.toLowerCase().includes(q) ||
+          talk.location?.toLowerCase().includes(q) ||
+          talk.topic?.toLowerCase().includes(q) ||
+          talk.discussion_notes?.toLowerCase().includes(q) ||
+          talk.status?.toLowerCase().includes(q)
+        );
+      }).length === 0 && (
+        <div style={{ color: "#64748b" }}>No toolbox talks found.</div>
+      )}
+    </div>
+  </section>
+</div>
 )}
 
 {showPinPrompt && (
