@@ -11459,9 +11459,432 @@ setHazardDueDate(report.due_date || "");
   </div>
 )}
 
+{crmSection === "activities" && (
+  <div
+    style={{
+      display: "grid",
+      gridTemplateColumns: "minmax(300px, 420px) 1fr",
+      gap: 18,
+      alignItems: "start",
+    }}
+  >
+    <div
+      style={{
+        border: "1px solid #e2e8f0",
+        borderRadius: 14,
+        padding: 16,
+        background: "#f8fafc",
+      }}
+    >
+      <h3 style={{ marginTop: 0 }}>Add Sales Activity</h3>
+
+      <label style={{ display: "block", marginBottom: 12 }}>
+        <strong>Customer</strong>
+        <select
+          value={crmActivityCustomerId}
+          onChange={(e) => {
+            setCrmActivityCustomerId(e.target.value);
+
+            if (e.target.value) {
+              setCrmActivitySubcontractorId("");
+            }
+          }}
+          style={{
+            width: "100%",
+            marginTop: 5,
+            padding: 10,
+            borderRadius: 8,
+            border: "1px solid #cbd5e1",
+          }}
+        >
+          <option value="">Select customer</option>
+
+          {crmCustomers.map((customer) => (
+            <option key={customer.id} value={customer.id}>
+              {customer.company_name}
+            </option>
+          ))}
+        </select>
+      </label>
+
+      <label style={{ display: "block", marginBottom: 12 }}>
+        <strong>Subcontractor</strong>
+        <select
+          value={crmActivitySubcontractorId}
+          onChange={(e) => {
+            setCrmActivitySubcontractorId(e.target.value);
+
+            if (e.target.value) {
+              setCrmActivityCustomerId("");
+            }
+          }}
+          style={{
+            width: "100%",
+            marginTop: 5,
+            padding: 10,
+            borderRadius: 8,
+            border: "1px solid #cbd5e1",
+          }}
+        >
+          <option value="">Select subcontractor</option>
+
+          {crmSubcontractors.map((sub) => (
+            <option key={sub.id} value={sub.id}>
+              {sub.company_name}
+            </option>
+          ))}
+        </select>
+      </label>
+
+      <label style={{ display: "block", marginBottom: 12 }}>
+        <strong>Contact Person</strong>
+        <input
+          value={crmActivityContact}
+          onChange={(e) => setCrmActivityContact(e.target.value)}
+          placeholder="Person contacted"
+          style={{
+            width: "100%",
+            marginTop: 5,
+            padding: 10,
+            borderRadius: 8,
+            border: "1px solid #cbd5e1",
+            boxSizing: "border-box",
+          }}
+        />
+      </label>
+
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr",
+          gap: 10,
+          marginBottom: 12,
+        }}
+      >
+        <label>
+          <strong>Activity Type</strong>
+          <select
+            value={crmActivityType}
+            onChange={(e) => setCrmActivityType(e.target.value)}
+            style={{
+              width: "100%",
+              marginTop: 5,
+              padding: 10,
+              borderRadius: 8,
+              border: "1px solid #cbd5e1",
+            }}
+          >
+            <option>Call</option>
+            <option>Email</option>
+            <option>Meeting</option>
+            <option>Site Visit</option>
+            <option>Quote</option>
+            <option>Proposal</option>
+            <option>Follow-up</option>
+            <option>Networking</option>
+            <option>Other</option>
+          </select>
+        </label>
+
+        <label>
+          <strong>Activity Date</strong>
+          <input
+            type="date"
+            value={crmActivityDate}
+            onChange={(e) => setCrmActivityDate(e.target.value)}
+            style={{
+              width: "100%",
+              marginTop: 5,
+              padding: 10,
+              borderRadius: 8,
+              border: "1px solid #cbd5e1",
+              boxSizing: "border-box",
+            }}
+          />
+        </label>
+      </div>
+
+      <label style={{ display: "block", marginBottom: 12 }}>
+        <strong>Subject *</strong>
+        <input
+          value={crmActivitySubject}
+          onChange={(e) => setCrmActivitySubject(e.target.value)}
+          placeholder="Discussed upcoming tender"
+          style={{
+            width: "100%",
+            marginTop: 5,
+            padding: 10,
+            borderRadius: 8,
+            border: "1px solid #cbd5e1",
+            boxSizing: "border-box",
+          }}
+        />
+      </label>
+
+      <label style={{ display: "block", marginBottom: 12 }}>
+        <strong>Notes</strong>
+        <textarea
+          value={crmActivityNotes}
+          onChange={(e) => setCrmActivityNotes(e.target.value)}
+          placeholder="Conversation details, pricing discussed, concerns, commitments..."
+          rows={5}
+          style={{
+            width: "100%",
+            marginTop: 5,
+            padding: 10,
+            borderRadius: 8,
+            border: "1px solid #cbd5e1",
+            boxSizing: "border-box",
+            resize: "vertical",
+          }}
+        />
+      </label>
+
+      <label style={{ display: "block", marginBottom: 12 }}>
+        <strong>Outcome</strong>
+        <input
+          value={crmActivityOutcome}
+          onChange={(e) => setCrmActivityOutcome(e.target.value)}
+          placeholder="Send estimate, call again, meeting booked..."
+          style={{
+            width: "100%",
+            marginTop: 5,
+            padding: 10,
+            borderRadius: 8,
+            border: "1px solid #cbd5e1",
+            boxSizing: "border-box",
+          }}
+        />
+      </label>
+
+      <label style={{ display: "block", marginBottom: 12 }}>
+        <strong>Assigned To</strong>
+        <input
+          value={crmActivityAssignedTo}
+          onChange={(e) => setCrmActivityAssignedTo(e.target.value)}
+          placeholder="Person responsible for next action"
+          style={{
+            width: "100%",
+            marginTop: 5,
+            padding: 10,
+            borderRadius: 8,
+            border: "1px solid #cbd5e1",
+            boxSizing: "border-box",
+          }}
+        />
+      </label>
+
+      <label
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: 8,
+          marginBottom: 12,
+        }}
+      >
+        <input
+          type="checkbox"
+          checked={crmActivityFollowUpRequired}
+          onChange={(e) => {
+            setCrmActivityFollowUpRequired(e.target.checked);
+
+            if (!e.target.checked) {
+              setCrmActivityFollowUpDate("");
+            }
+          }}
+        />
+        <strong>Follow-up Required</strong>
+      </label>
+
+      {crmActivityFollowUpRequired && (
+        <label style={{ display: "block", marginBottom: 12 }}>
+          <strong>Follow-up Date</strong>
+          <input
+            type="date"
+            value={crmActivityFollowUpDate}
+            onChange={(e) => setCrmActivityFollowUpDate(e.target.value)}
+            style={{
+              width: "100%",
+              marginTop: 5,
+              padding: 10,
+              borderRadius: 8,
+              border: "1px solid #cbd5e1",
+              boxSizing: "border-box",
+            }}
+          />
+        </label>
+      )}
+
+      <button
+        type="button"
+        onClick={saveCrmActivity}
+        disabled={loading}
+        style={{
+          width: "100%",
+          marginTop: 8,
+          padding: "11px 14px",
+          borderRadius: 10,
+          border: "none",
+          background: "#123d82",
+          color: "white",
+          fontWeight: "bold",
+          cursor: loading ? "not-allowed" : "pointer",
+        }}
+      >
+        {loading ? "Saving..." : "Save Sales Activity"}
+      </button>
+    </div>
+
+    <div>
+      <h3 style={{ marginTop: 0 }}>
+        Sales Activities ({crmActivities.length})
+      </h3>
+
+      {crmActivities
+        .filter((activity) => {
+          const customer = crmCustomers.find(
+            (item) => item.id === activity.customer_id
+          );
+
+          const subcontractor = crmSubcontractors.find(
+            (item) => item.id === activity.subcontractor_id
+          );
+
+          const search = crmSearch.toLowerCase().trim();
+
+          if (!search) return true;
+
+          return [
+            customer?.company_name,
+            subcontractor?.company_name,
+            activity.contact_name,
+            activity.activity_type,
+            activity.subject,
+            activity.notes,
+            activity.outcome,
+            activity.assigned_to,
+          ]
+            .filter(Boolean)
+            .join(" ")
+            .toLowerCase()
+            .includes(search);
+        })
+        .map((activity) => {
+          const customer = crmCustomers.find(
+            (item) => item.id === activity.customer_id
+          );
+
+          const subcontractor = crmSubcontractors.find(
+            (item) => item.id === activity.subcontractor_id
+          );
+
+          const companyName =
+            customer?.company_name ||
+            subcontractor?.company_name ||
+            "Unassigned company";
+
+          const followUpOverdue =
+            activity.follow_up_required &&
+            activity.follow_up_date &&
+            activity.follow_up_date <
+              new Date().toISOString().split("T")[0];
+
+          return (
+            <div
+              key={activity.id}
+              style={{
+                border: "1px solid #e2e8f0",
+                borderRadius: 14,
+                padding: 14,
+                marginBottom: 12,
+                background: "white",
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  gap: 10,
+                  flexWrap: "wrap",
+                }}
+              >
+                <div>
+                  <div style={{ fontSize: 18, fontWeight: "bold" }}>
+                    {activity.subject}
+                  </div>
+
+                  <div style={{ color: "#64748b", marginTop: 3 }}>
+                    {companyName} · {activity.activity_type} ·{" "}
+                    {activity.activity_date || "No date"}
+                  </div>
+                </div>
+
+                {activity.follow_up_required && (
+                  <div
+                    style={{
+                      background: followUpOverdue ? "#fee2e2" : "#fef3c7",
+                      color: followUpOverdue ? "#991b1b" : "#92400e",
+                      borderRadius: 20,
+                      padding: "6px 10px",
+                      fontSize: 13,
+                      height: "fit-content",
+                    }}
+                  >
+                    {followUpOverdue ? "Overdue: " : "Follow-up: "}
+                    {activity.follow_up_date || "Date not set"}
+                  </div>
+                )}
+              </div>
+
+              <div style={{ marginTop: 10, lineHeight: 1.6 }}>
+                {activity.contact_name && (
+                  <div>
+                    <strong>Contact:</strong> {activity.contact_name}
+                  </div>
+                )}
+
+                {activity.notes && (
+                  <div>
+                    <strong>Notes:</strong> {activity.notes}
+                  </div>
+                )}
+
+                {activity.outcome && (
+                  <div>
+                    <strong>Outcome:</strong> {activity.outcome}
+                  </div>
+                )}
+
+                {activity.assigned_to && (
+                  <div>
+                    <strong>Assigned To:</strong> {activity.assigned_to}
+                  </div>
+                )}
+              </div>
+            </div>
+          );
+        })}
+
+      {crmActivities.length === 0 && (
+        <div
+          style={{
+            border: "1px dashed #cbd5e1",
+            borderRadius: 14,
+            padding: 18,
+            color: "#64748b",
+          }}
+        >
+          No sales activities entered yet.
+        </div>
+      )}
+    </div>
+  </div>
+)}
+
 {crmSection !== "dashboard" &&
   crmSection !== "customers" &&
-  crmSection !== "subcontractors" && (
+  crmSection !== "subcontractors" &&
+  crmSection !== "activities" && (
     <div
       style={{
         border: "1px dashed #cbd5e1",
@@ -11471,8 +11894,8 @@ setHazardDueDate(report.due_date || "");
         color: "#475569",
       }}
     >
-      <strong>{crmSection}</strong> section is ready. Forms and lists will be
-      added next.
+      <strong>{crmSection}</strong> section is ready. The opportunity pipeline
+      will be added next.
     </div>
   )}
   </div>
