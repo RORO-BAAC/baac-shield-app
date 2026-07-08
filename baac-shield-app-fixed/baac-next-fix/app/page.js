@@ -9695,6 +9695,7 @@ setHazardDueDate(report.due_date || "");
     </div>
   </section>
 </div>
+</div>
 )}
 
 {showPinPrompt && (
