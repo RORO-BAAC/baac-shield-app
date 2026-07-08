@@ -954,7 +954,63 @@ async function saveCrmSubcontractor() {
     setLoading(false);
   }
 }
- 
+ async function saveCrmActivity() {
+  if (!crmActivitySubject.trim()) {
+    setMessage("Please enter an activity subject.");
+    return;
+  }
+
+  if (!crmActivityCustomerId && !crmActivitySubcontractorId) {
+    setMessage("Please select a customer or subcontractor.");
+    return;
+  }
+
+  setLoading(true);
+  setMessage("");
+
+  try {
+    const { error } = await supabase.from("crm_activities").insert([
+      {
+        customer_id: crmActivityCustomerId || null,
+        subcontractor_id: crmActivitySubcontractorId || null,
+        contact_name: crmActivityContact,
+        activity_type: crmActivityType,
+        activity_date: crmActivityDate || null,
+        subject: crmActivitySubject.trim(),
+        notes: crmActivityNotes,
+        outcome: crmActivityOutcome,
+        follow_up_required: crmActivityFollowUpRequired,
+        follow_up_date:
+          crmActivityFollowUpRequired && crmActivityFollowUpDate
+            ? crmActivityFollowUpDate
+            : null,
+        assigned_to: crmActivityAssignedTo,
+        created_by: user?.email || "",
+      },
+    ]);
+
+    if (error) throw error;
+
+    setCrmActivityCustomerId("");
+    setCrmActivitySubcontractorId("");
+    setCrmActivityContact("");
+    setCrmActivityType("Call");
+    setCrmActivityDate(new Date().toISOString().split("T")[0]);
+    setCrmActivitySubject("");
+    setCrmActivityNotes("");
+    setCrmActivityOutcome("");
+    setCrmActivityFollowUpRequired(false);
+    setCrmActivityFollowUpDate("");
+    setCrmActivityAssignedTo("");
+
+    setMessage("Sales activity saved.");
+    await loadCrmData();
+  } catch (error) {
+    setMessage(`Could not save sales activity: ${error.message}`);
+  } finally {
+    setLoading(false);
+  }
+}
   async function addProject() {
   const cleanName = newProjectName.trim();
 
