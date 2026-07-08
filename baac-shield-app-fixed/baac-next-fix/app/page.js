@@ -381,6 +381,7 @@ const [dailyActivityDate, setDailyActivityDate] = useState(
   const [showSplash, setShowSplash] = useState(true);
   
   const [searchTerm, setSearchTerm] = useState("");
+  const [recordsCenterSearch, setRecordsCenterSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("All");
   const [riskFilter, setRiskFilter] = useState("All");
   const [stopWorkOnly, setStopWorkOnly] = useState(false);
