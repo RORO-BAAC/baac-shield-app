@@ -10170,7 +10170,280 @@ setHazardDueDate(report.due_date || "");
 </div>
 </div>
 )}
+{activeTab === "crm" && (
+  <div
+    style={{
+      background: "white",
+      padding: 20,
+      borderRadius: 16,
+      boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
+      marginBottom: 20,
+    }}
+  >
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "space-between",
+        gap: 12,
+        alignItems: "flex-start",
+        flexWrap: "wrap",
+        marginBottom: 16,
+      }}
+    >
+      <div>
+        <h2 style={{ margin: 0 }}>CRM</h2>
+        <p style={{ margin: "6px 0 0", color: "#64748b" }}>
+          Track customers, subcontractors, sales calls, follow-ups, and
+          opportunities.
+        </p>
+      </div>
 
+      <input
+        value={crmSearch}
+        onChange={(e) => setCrmSearch(e.target.value)}
+        placeholder="Search CRM..."
+        style={{
+          padding: 10,
+          borderRadius: 10,
+          border: "1px solid #cbd5e1",
+          minWidth: 260,
+        }}
+      />
+    </div>
+
+    <div
+      style={{
+        display: "flex",
+        gap: 10,
+        flexWrap: "wrap",
+        marginBottom: 18,
+      }}
+    >
+      {[
+        ["dashboard", "Dashboard"],
+        ["customers", "Customers"],
+        ["subcontractors", "Subcontractors"],
+        ["activities", "Sales Activities"],
+        ["opportunities", "Opportunities"],
+      ].map(([sectionKey, label]) => (
+        <button
+          key={sectionKey}
+          type="button"
+          onClick={() => setCrmSection(sectionKey)}
+          style={{
+            padding: "9px 12px",
+            borderRadius: 10,
+            border: "1px solid #cbd5e1",
+            background: crmSection === sectionKey ? "#123d82" : "white",
+            color: crmSection === sectionKey ? "white" : "#0f172a",
+            fontWeight: "bold",
+            cursor: "pointer",
+          }}
+        >
+          {label}
+        </button>
+      ))}
+    </div>
+
+    {crmSection === "dashboard" && (
+      <div>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
+            gap: 12,
+            marginBottom: 18,
+          }}
+        >
+          <div
+            style={{
+              border: "1px solid #e2e8f0",
+              borderRadius: 14,
+              padding: 14,
+              background: "#f8fafc",
+            }}
+          >
+            <div style={{ color: "#64748b", fontSize: 13 }}>
+              Active Customers
+            </div>
+            <div style={{ fontSize: 28, fontWeight: "bold" }}>
+              {
+                crmCustomers.filter(
+                  (customer) => customer.status !== "Inactive"
+                ).length
+              }
+            </div>
+          </div>
+
+          <div
+            style={{
+              border: "1px solid #e2e8f0",
+              borderRadius: 14,
+              padding: 14,
+              background: "#f8fafc",
+            }}
+          >
+            <div style={{ color: "#64748b", fontSize: 13 }}>
+              Approved Subs
+            </div>
+            <div style={{ fontSize: 28, fontWeight: "bold" }}>
+              {
+                crmSubcontractors.filter(
+                  (sub) => sub.status === "Approved" || sub.status === "Preferred"
+                ).length
+              }
+            </div>
+          </div>
+
+          <div
+            style={{
+              border: "1px solid #e2e8f0",
+              borderRadius: 14,
+              padding: 14,
+              background: "#f8fafc",
+            }}
+          >
+            <div style={{ color: "#64748b", fontSize: 13 }}>
+              Open Opportunities
+            </div>
+            <div style={{ fontSize: 28, fontWeight: "bold" }}>
+              {
+                crmOpportunities.filter(
+                  (opp) => opp.sales_stage !== "Won" && opp.sales_stage !== "Lost"
+                ).length
+              }
+            </div>
+          </div>
+
+          <div
+            style={{
+              border: "1px solid #e2e8f0",
+              borderRadius: 14,
+              padding: 14,
+              background: "#f8fafc",
+            }}
+          >
+            <div style={{ color: "#64748b", fontSize: 13 }}>
+              Pipeline Value
+            </div>
+            <div style={{ fontSize: 28, fontWeight: "bold" }}>
+              $
+              {crmOpportunities
+                .filter(
+                  (opp) => opp.sales_stage !== "Won" && opp.sales_stage !== "Lost"
+                )
+                .reduce(
+                  (sum, opp) => sum + Number(opp.estimated_value || 0),
+                  0
+                )
+                .toLocaleString()}
+            </div>
+          </div>
+        </div>
+
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+            gap: 14,
+          }}
+        >
+          <div
+            style={{
+              border: "1px solid #e2e8f0",
+              borderRadius: 14,
+              padding: 14,
+            }}
+          >
+            <h3 style={{ marginTop: 0 }}>Recent Sales Activities</h3>
+
+            {crmActivities.slice(0, 5).map((activity) => (
+              <div
+                key={activity.id}
+                style={{
+                  borderTop: "1px solid #e2e8f0",
+                  paddingTop: 10,
+                  marginTop: 10,
+                }}
+              >
+                <strong>{activity.activity_type}</strong>
+                <div style={{ color: "#64748b", fontSize: 13 }}>
+                  {activity.activity_date || "No date"} —{" "}
+                  {activity.subject || activity.contact_name || "No subject"}
+                </div>
+                {activity.outcome && (
+                  <div style={{ marginTop: 4 }}>{activity.outcome}</div>
+                )}
+              </div>
+            ))}
+
+            {crmActivities.length === 0 && (
+              <div style={{ color: "#64748b" }}>
+                No CRM activities entered yet.
+              </div>
+            )}
+          </div>
+
+          <div
+            style={{
+              border: "1px solid #e2e8f0",
+              borderRadius: 14,
+              padding: 14,
+            }}
+          >
+            <h3 style={{ marginTop: 0 }}>Open Opportunities</h3>
+
+            {crmOpportunities
+              .filter(
+                (opp) => opp.sales_stage !== "Won" && opp.sales_stage !== "Lost"
+              )
+              .slice(0, 5)
+              .map((opp) => (
+                <div
+                  key={opp.id}
+                  style={{
+                    borderTop: "1px solid #e2e8f0",
+                    paddingTop: 10,
+                    marginTop: 10,
+                  }}
+                >
+                  <strong>{opp.opportunity_name}</strong>
+                  <div style={{ color: "#64748b", fontSize: 13 }}>
+                    {opp.sales_stage} — $
+                    {Number(opp.estimated_value || 0).toLocaleString()}
+                  </div>
+                  {opp.project_location && (
+                    <div style={{ marginTop: 4 }}>{opp.project_location}</div>
+                  )}
+                </div>
+              ))}
+
+            {crmOpportunities.length === 0 && (
+              <div style={{ color: "#64748b" }}>
+                No opportunities entered yet.
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    )}
+
+    {crmSection !== "dashboard" && (
+      <div
+        style={{
+          border: "1px dashed #cbd5e1",
+          borderRadius: 14,
+          padding: 18,
+          background: "#f8fafc",
+          color: "#475569",
+        }}
+      >
+        <strong>{crmSection}</strong> section is ready. Forms and lists will be
+        added in the next step.
+      </div>
+    )}
+  </div>
+)}
 {showPinPrompt && (
         <div
           style={{
