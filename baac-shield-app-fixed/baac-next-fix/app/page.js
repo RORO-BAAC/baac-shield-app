@@ -4497,7 +4497,7 @@ Signed in as: {user?.email} · Role: {role}
   Records Center
 </button>
 {(role === "admin" || role === "supervisor") && (
-
+<>
 <button
   type="button"
   onClick={() => requestProtectedTab("crm")}
@@ -4529,6 +4529,7 @@ Signed in as: {user?.email} · Role: {role}
   >
     Admin Settings
   </button>
+</>
 )}
       
 </div>
