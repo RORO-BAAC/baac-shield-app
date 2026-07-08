@@ -4372,7 +4372,21 @@ Signed in as: {user?.email} · Role: {role}
   >
     Safety Dashboard
   </button>
-
+<button
+  type="button"
+  onClick={() => requestProtectedTab("recordsCenter")}
+  style={{
+    padding: "10px 14px",
+    borderRadius: 10,
+    border: "1px solid #cbd5e1",
+    background: activeTab === "recordsCenter" ? "#123d82" : "white",
+    color: activeTab === "recordsCenter" ? "white" : "#0f172a",
+    fontWeight: "bold",
+    cursor: "pointer",
+  }}
+>
+  Records Center
+</button>
 {(role === "admin" || role === "supervisor") && (
       
   <button
