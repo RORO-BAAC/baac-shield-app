@@ -845,6 +845,61 @@ async function loadCrmData() {
     setMessage(`Could not load CRM records: ${error.message}`);
   }
 }
+
+async function saveCrmCustomer() {
+  if (!crmCustomerCompany.trim()) {
+    setMessage("Please enter the customer company name.");
+    return;
+  }
+
+  setLoading(true);
+  setMessage("");
+
+  try {
+    const { error } = await supabase.from("crm_customers").insert([
+      {
+        company_name: crmCustomerCompany.trim(),
+        customer_type: crmCustomerType,
+        primary_contact_name: crmCustomerContact,
+        primary_contact_title: crmCustomerTitle,
+        phone: crmCustomerPhone,
+        email: crmCustomerEmail,
+        city: crmCustomerCity,
+        province_state: crmCustomerProvince,
+        industry: crmCustomerIndustry,
+        status: crmCustomerStatus,
+        assigned_to: crmCustomerAssignedTo,
+        next_follow_up_date: crmCustomerFollowUp || null,
+        notes: crmCustomerNotes,
+        created_by: user?.email || "",
+      },
+    ]);
+
+    if (error) throw error;
+
+    setCrmCustomerCompany("");
+    setCrmCustomerType("Customer");
+    setCrmCustomerContact("");
+    setCrmCustomerTitle("");
+    setCrmCustomerPhone("");
+    setCrmCustomerEmail("");
+    setCrmCustomerCity("");
+    setCrmCustomerProvince("");
+    setCrmCustomerIndustry("");
+    setCrmCustomerStatus("Active");
+    setCrmCustomerAssignedTo("");
+    setCrmCustomerFollowUp("");
+    setCrmCustomerNotes("");
+
+    setMessage("Customer saved.");
+    await loadCrmData();
+  } catch (error) {
+    setMessage(`Could not save customer: ${error.message}`);
+  } finally {
+    setLoading(false);
+  }
+}
+ 
   async function addProject() {
   const cleanName = newProjectName.trim();
 
