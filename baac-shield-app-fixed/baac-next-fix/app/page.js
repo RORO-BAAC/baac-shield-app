@@ -10484,20 +10484,451 @@ setHazardDueDate(report.due_date || "");
       </div>
     )}
 
-    {crmSection !== "dashboard" && (
+   {crmSection === "customers" && (
+  <div
+    style={{
+      display: "grid",
+      gridTemplateColumns: "minmax(300px, 420px) 1fr",
+      gap: 18,
+      alignItems: "start",
+    }}
+  >
+    <div
+      style={{
+        border: "1px solid #e2e8f0",
+        borderRadius: 14,
+        padding: 16,
+        background: "#f8fafc",
+      }}
+    >
+      <h3 style={{ marginTop: 0 }}>Add Customer</h3>
+
+      <label style={{ display: "block", marginBottom: 12 }}>
+        <strong>Company Name *</strong>
+        <input
+          value={crmCustomerCompany}
+          onChange={(e) => setCrmCustomerCompany(e.target.value)}
+          placeholder="Customer company name"
+          style={{
+            width: "100%",
+            marginTop: 5,
+            padding: 10,
+            borderRadius: 8,
+            border: "1px solid #cbd5e1",
+            boxSizing: "border-box",
+          }}
+        />
+      </label>
+
       <div
         style={{
-          border: "1px dashed #cbd5e1",
-          borderRadius: 14,
-          padding: 18,
-          background: "#f8fafc",
-          color: "#475569",
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr",
+          gap: 10,
         }}
       >
-        <strong>{crmSection}</strong> section is ready. Forms and lists will be
-        added in the next step.
+        <label>
+          <strong>Customer Type</strong>
+          <select
+            value={crmCustomerType}
+            onChange={(e) => setCrmCustomerType(e.target.value)}
+            style={{
+              width: "100%",
+              marginTop: 5,
+              padding: 10,
+              borderRadius: 8,
+              border: "1px solid #cbd5e1",
+            }}
+          >
+            <option>Customer</option>
+            <option>Prospect</option>
+            <option>General Contractor</option>
+            <option>Developer</option>
+            <option>Government</option>
+            <option>Consultant</option>
+            <option>Other</option>
+          </select>
+        </label>
+
+        <label>
+          <strong>Status</strong>
+          <select
+            value={crmCustomerStatus}
+            onChange={(e) => setCrmCustomerStatus(e.target.value)}
+            style={{
+              width: "100%",
+              marginTop: 5,
+              padding: 10,
+              borderRadius: 8,
+              border: "1px solid #cbd5e1",
+            }}
+          >
+            <option>Active</option>
+            <option>Inactive</option>
+            <option>Prospect</option>
+            <option>Former Customer</option>
+          </select>
+        </label>
       </div>
-    )}
+
+      <label style={{ display: "block", marginTop: 12 }}>
+        <strong>Primary Contact</strong>
+        <input
+          value={crmCustomerContact}
+          onChange={(e) => setCrmCustomerContact(e.target.value)}
+          placeholder="Contact name"
+          style={{
+            width: "100%",
+            marginTop: 5,
+            padding: 10,
+            borderRadius: 8,
+            border: "1px solid #cbd5e1",
+            boxSizing: "border-box",
+          }}
+        />
+      </label>
+
+      <label style={{ display: "block", marginTop: 12 }}>
+        <strong>Contact Title</strong>
+        <input
+          value={crmCustomerTitle}
+          onChange={(e) => setCrmCustomerTitle(e.target.value)}
+          placeholder="Project Manager, Owner, Estimator..."
+          style={{
+            width: "100%",
+            marginTop: 5,
+            padding: 10,
+            borderRadius: 8,
+            border: "1px solid #cbd5e1",
+            boxSizing: "border-box",
+          }}
+        />
+      </label>
+
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr",
+          gap: 10,
+          marginTop: 12,
+        }}
+      >
+        <label>
+          <strong>Phone</strong>
+          <input
+            value={crmCustomerPhone}
+            onChange={(e) => setCrmCustomerPhone(e.target.value)}
+            placeholder="Phone"
+            style={{
+              width: "100%",
+              marginTop: 5,
+              padding: 10,
+              borderRadius: 8,
+              border: "1px solid #cbd5e1",
+              boxSizing: "border-box",
+            }}
+          />
+        </label>
+
+        <label>
+          <strong>Email</strong>
+          <input
+            type="email"
+            value={crmCustomerEmail}
+            onChange={(e) => setCrmCustomerEmail(e.target.value)}
+            placeholder="Email"
+            style={{
+              width: "100%",
+              marginTop: 5,
+              padding: 10,
+              borderRadius: 8,
+              border: "1px solid #cbd5e1",
+              boxSizing: "border-box",
+            }}
+          />
+        </label>
+      </div>
+
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr",
+          gap: 10,
+          marginTop: 12,
+        }}
+      >
+        <label>
+          <strong>City</strong>
+          <input
+            value={crmCustomerCity}
+            onChange={(e) => setCrmCustomerCity(e.target.value)}
+            placeholder="City"
+            style={{
+              width: "100%",
+              marginTop: 5,
+              padding: 10,
+              borderRadius: 8,
+              border: "1px solid #cbd5e1",
+              boxSizing: "border-box",
+            }}
+          />
+        </label>
+
+        <label>
+          <strong>Province</strong>
+          <input
+            value={crmCustomerProvince}
+            onChange={(e) => setCrmCustomerProvince(e.target.value)}
+            placeholder="Province"
+            style={{
+              width: "100%",
+              marginTop: 5,
+              padding: 10,
+              borderRadius: 8,
+              border: "1px solid #cbd5e1",
+              boxSizing: "border-box",
+            }}
+          />
+        </label>
+      </div>
+
+      <label style={{ display: "block", marginTop: 12 }}>
+        <strong>Industry</strong>
+        <input
+          value={crmCustomerIndustry}
+          onChange={(e) => setCrmCustomerIndustry(e.target.value)}
+          placeholder="Construction, utilities, oil and gas..."
+          style={{
+            width: "100%",
+            marginTop: 5,
+            padding: 10,
+            borderRadius: 8,
+            border: "1px solid #cbd5e1",
+            boxSizing: "border-box",
+          }}
+        />
+      </label>
+
+      <label style={{ display: "block", marginTop: 12 }}>
+        <strong>Assigned To</strong>
+        <input
+          value={crmCustomerAssignedTo}
+          onChange={(e) => setCrmCustomerAssignedTo(e.target.value)}
+          placeholder="Employee responsible"
+          style={{
+            width: "100%",
+            marginTop: 5,
+            padding: 10,
+            borderRadius: 8,
+            border: "1px solid #cbd5e1",
+            boxSizing: "border-box",
+          }}
+        />
+      </label>
+
+      <label style={{ display: "block", marginTop: 12 }}>
+        <strong>Next Follow-up</strong>
+        <input
+          type="date"
+          value={crmCustomerFollowUp}
+          onChange={(e) => setCrmCustomerFollowUp(e.target.value)}
+          style={{
+            width: "100%",
+            marginTop: 5,
+            padding: 10,
+            borderRadius: 8,
+            border: "1px solid #cbd5e1",
+            boxSizing: "border-box",
+          }}
+        />
+      </label>
+
+      <label style={{ display: "block", marginTop: 12 }}>
+        <strong>Notes</strong>
+        <textarea
+          value={crmCustomerNotes}
+          onChange={(e) => setCrmCustomerNotes(e.target.value)}
+          placeholder="Customer notes"
+          rows={4}
+          style={{
+            width: "100%",
+            marginTop: 5,
+            padding: 10,
+            borderRadius: 8,
+            border: "1px solid #cbd5e1",
+            boxSizing: "border-box",
+            resize: "vertical",
+          }}
+        />
+      </label>
+
+      <button
+        type="button"
+        onClick={saveCrmCustomer}
+        disabled={loading}
+        style={{
+          width: "100%",
+          marginTop: 14,
+          padding: "11px 14px",
+          borderRadius: 10,
+          border: "none",
+          background: "#123d82",
+          color: "white",
+          fontWeight: "bold",
+          cursor: loading ? "not-allowed" : "pointer",
+        }}
+      >
+        {loading ? "Saving..." : "Save Customer"}
+      </button>
+    </div>
+
+    <div>
+      <h3 style={{ marginTop: 0 }}>
+        Customers ({crmCustomers.length})
+      </h3>
+
+      {crmCustomers
+        .filter((customer) => {
+          const search = crmSearch.toLowerCase().trim();
+
+          if (!search) return true;
+
+          return [
+            customer.company_name,
+            customer.primary_contact_name,
+            customer.email,
+            customer.phone,
+            customer.city,
+            customer.industry,
+            customer.status,
+          ]
+            .filter(Boolean)
+            .join(" ")
+            .toLowerCase()
+            .includes(search);
+        })
+        .map((customer) => (
+          <div
+            key={customer.id}
+            style={{
+              border: "1px solid #e2e8f0",
+              borderRadius: 14,
+              padding: 14,
+              marginBottom: 12,
+              background: "white",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                gap: 10,
+                flexWrap: "wrap",
+              }}
+            >
+              <div>
+                <div style={{ fontSize: 18, fontWeight: "bold" }}>
+                  {customer.company_name}
+                </div>
+
+                <div style={{ color: "#64748b", marginTop: 3 }}>
+                  {customer.customer_type || "Customer"} ·{" "}
+                  {customer.status || "Active"}
+                </div>
+              </div>
+
+              {customer.next_follow_up_date && (
+                <div
+                  style={{
+                    background: "#eff6ff",
+                    color: "#1d4ed8",
+                    borderRadius: 20,
+                    padding: "6px 10px",
+                    fontSize: 13,
+                    height: "fit-content",
+                  }}
+                >
+                  Follow-up: {customer.next_follow_up_date}
+                </div>
+              )}
+            </div>
+
+            <div style={{ marginTop: 10, lineHeight: 1.6 }}>
+              {customer.primary_contact_name && (
+                <div>
+                  <strong>Contact:</strong> {customer.primary_contact_name}
+                  {customer.primary_contact_title
+                    ? ` — ${customer.primary_contact_title}`
+                    : ""}
+                </div>
+              )}
+
+              {customer.phone && (
+                <div>
+                  <strong>Phone:</strong> {customer.phone}
+                </div>
+              )}
+
+              {customer.email && (
+                <div>
+                  <strong>Email:</strong> {customer.email}
+                </div>
+              )}
+
+              {(customer.city || customer.province_state) && (
+                <div>
+                  <strong>Location:</strong>{" "}
+                  {[customer.city, customer.province_state]
+                    .filter(Boolean)
+                    .join(", ")}
+                </div>
+              )}
+
+              {customer.assigned_to && (
+                <div>
+                  <strong>Assigned To:</strong> {customer.assigned_to}
+                </div>
+              )}
+
+              {customer.notes && (
+                <div style={{ marginTop: 8 }}>
+                  <strong>Notes:</strong> {customer.notes}
+                </div>
+              )}
+            </div>
+          </div>
+        ))}
+
+      {crmCustomers.length === 0 && (
+        <div
+          style={{
+            border: "1px dashed #cbd5e1",
+            borderRadius: 14,
+            padding: 18,
+            color: "#64748b",
+          }}
+        >
+          No customers entered yet.
+        </div>
+      )}
+    </div>
+  </div>
+)}
+
+{crmSection !== "dashboard" && crmSection !== "customers" && (
+  <div
+    style={{
+      border: "1px dashed #cbd5e1",
+      borderRadius: 14,
+      padding: 18,
+      background: "#f8fafc",
+      color: "#475569",
+    }}
+  >
+    <strong>{crmSection}</strong> section is ready. Forms and lists will be
+    added next.
+  </div>
+)}
   </div>
 )}
 {showPinPrompt && (
