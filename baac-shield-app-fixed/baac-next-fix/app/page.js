@@ -392,7 +392,74 @@ const [dailyActivityDate, setDailyActivityDate] = useState(
   const [allProjects, setAllProjects] = useState([]);
   const [newProjectName, setNewProjectName] = useState("");
   const [projectFilter, setProjectFilter] = useState("All");
-  
+  // CRM records
+const [crmCustomers, setCrmCustomers] = useState([]);
+const [crmSubcontractors, setCrmSubcontractors] = useState([]);
+const [crmActivities, setCrmActivities] = useState([]);
+const [crmOpportunities, setCrmOpportunities] = useState([]);
+
+// CRM navigation and search
+const [crmSection, setCrmSection] = useState("dashboard");
+const [crmSearch, setCrmSearch] = useState("");
+
+// Customer form
+const [crmCustomerCompany, setCrmCustomerCompany] = useState("");
+const [crmCustomerType, setCrmCustomerType] = useState("Customer");
+const [crmCustomerContact, setCrmCustomerContact] = useState("");
+const [crmCustomerTitle, setCrmCustomerTitle] = useState("");
+const [crmCustomerPhone, setCrmCustomerPhone] = useState("");
+const [crmCustomerEmail, setCrmCustomerEmail] = useState("");
+const [crmCustomerCity, setCrmCustomerCity] = useState("");
+const [crmCustomerProvince, setCrmCustomerProvince] = useState("");
+const [crmCustomerIndustry, setCrmCustomerIndustry] = useState("");
+const [crmCustomerStatus, setCrmCustomerStatus] = useState("Active");
+const [crmCustomerAssignedTo, setCrmCustomerAssignedTo] = useState("");
+const [crmCustomerFollowUp, setCrmCustomerFollowUp] = useState("");
+const [crmCustomerNotes, setCrmCustomerNotes] = useState("");
+
+// Subcontractor form
+const [crmSubCompany, setCrmSubCompany] = useState("");
+const [crmSubTrade, setCrmSubTrade] = useState("");
+const [crmSubContact, setCrmSubContact] = useState("");
+const [crmSubPhone, setCrmSubPhone] = useState("");
+const [crmSubEmail, setCrmSubEmail] = useState("");
+const [crmSubServiceArea, setCrmSubServiceArea] = useState("");
+const [crmSubStatus, setCrmSubStatus] = useState("Pending Review");
+const [crmSubWcbNumber, setCrmSubWcbNumber] = useState("");
+const [crmSubInsuranceExpiry, setCrmSubInsuranceExpiry] = useState("");
+const [crmSubCorStatus, setCrmSubCorStatus] = useState("");
+const [crmSubCorExpiry, setCrmSubCorExpiry] = useState("");
+const [crmSubApproved, setCrmSubApproved] = useState(false);
+const [crmSubNotes, setCrmSubNotes] = useState("");
+
+// Activity form
+const [crmActivityCustomerId, setCrmActivityCustomerId] = useState("");
+const [crmActivitySubcontractorId, setCrmActivitySubcontractorId] = useState("");
+const [crmActivityContact, setCrmActivityContact] = useState("");
+const [crmActivityType, setCrmActivityType] = useState("Call");
+const [crmActivityDate, setCrmActivityDate] = useState(
+  new Date().toISOString().split("T")[0]
+);
+const [crmActivitySubject, setCrmActivitySubject] = useState("");
+const [crmActivityNotes, setCrmActivityNotes] = useState("");
+const [crmActivityOutcome, setCrmActivityOutcome] = useState("");
+const [crmActivityFollowUpRequired, setCrmActivityFollowUpRequired] =
+  useState(false);
+const [crmActivityFollowUpDate, setCrmActivityFollowUpDate] = useState("");
+const [crmActivityAssignedTo, setCrmActivityAssignedTo] = useState("");
+
+// Opportunity form
+const [crmOpportunityCustomerId, setCrmOpportunityCustomerId] = useState("");
+const [crmOpportunityName, setCrmOpportunityName] = useState("");
+const [crmOpportunityProject, setCrmOpportunityProject] = useState("");
+const [crmOpportunityLocation, setCrmOpportunityLocation] = useState("");
+const [crmOpportunityValue, setCrmOpportunityValue] = useState("");
+const [crmOpportunityProbability, setCrmOpportunityProbability] =
+  useState("10");
+const [crmOpportunityStage, setCrmOpportunityStage] = useState("New Lead");
+const [crmOpportunityAwardDate, setCrmOpportunityAwardDate] = useState("");
+const [crmOpportunityAssignedTo, setCrmOpportunityAssignedTo] = useState("");
+const [crmOpportunityNotes, setCrmOpportunityNotes] = useState("");
   const [supervisorPin, setSupervisorPin] = useState("1234");
   const [alertEmail, setAlertEmail] = useState("rod.gonzalez@baacconstruction.com");
   const [companyName, setCompanyName] = useState("BAAC Construction");
