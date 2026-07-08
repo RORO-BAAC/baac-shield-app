@@ -613,7 +613,8 @@ if (usersRes.ok) {
   useEffect(() => {
     loadRecords();
     loadProjects();
-      
+      loadCrmData();
+    
     const timer = setTimeout(() => {
     setShowSplash(false);
   }, 1800);
@@ -802,7 +803,48 @@ if (allRes.ok) {
       setMessage(`Could not load projects: ${error.message}`);
     }
   }
+async function loadCrmData() {
+  try {
+    const [
+      customersResult,
+      subcontractorsResult,
+      activitiesResult,
+      opportunitiesResult,
+    ] = await Promise.all([
+      supabase
+        .from("crm_customers")
+        .select("*")
+        .order("company_name", { ascending: true }),
 
+      supabase
+        .from("crm_subcontractors")
+        .select("*")
+        .order("company_name", { ascending: true }),
+
+      supabase
+        .from("crm_activities")
+        .select("*")
+        .order("activity_date", { ascending: false }),
+
+      supabase
+        .from("crm_opportunities")
+        .select("*")
+        .order("created_at", { ascending: false }),
+    ]);
+
+    if (customersResult.error) throw customersResult.error;
+    if (subcontractorsResult.error) throw subcontractorsResult.error;
+    if (activitiesResult.error) throw activitiesResult.error;
+    if (opportunitiesResult.error) throw opportunitiesResult.error;
+
+    setCrmCustomers(customersResult.data || []);
+    setCrmSubcontractors(subcontractorsResult.data || []);
+    setCrmActivities(activitiesResult.data || []);
+    setCrmOpportunities(opportunitiesResult.data || []);
+  } catch (error) {
+    setMessage(`Could not load CRM records: ${error.message}`);
+  }
+}
   async function addProject() {
   const cleanName = newProjectName.trim();
 
