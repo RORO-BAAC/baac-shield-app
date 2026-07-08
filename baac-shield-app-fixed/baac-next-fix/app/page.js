@@ -4662,11 +4662,9 @@ Signed in as: {user?.email} · Role: {role}
 >
   Records Center
 </button>
-{(role === "admin" || role === "supervisor") && (
-<>
 <button
   type="button"
-  onClick={() => requestProtectedTab("crm")}
+  onClick={() => setActiveTab("crm")}
   style={{
     padding: "10px 14px",
     borderRadius: 10,
@@ -4679,7 +4677,8 @@ Signed in as: {user?.email} · Role: {role}
 >
   CRM
 </button>
- 
+
+{(role === "admin" || role === "supervisor") && (
   <button
     type="button"
     onClick={() => requestProtectedTab("admin")}
@@ -4695,7 +4694,6 @@ Signed in as: {user?.email} · Role: {role}
   >
     Admin Settings
   </button>
-</>
 )}
       
 </div>
