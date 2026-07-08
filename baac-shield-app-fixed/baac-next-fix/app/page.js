@@ -9694,6 +9694,354 @@ setHazardDueDate(report.due_date || "");
       )}
     </div>
   </section>
+        <section>
+    <h3 style={{ marginBottom: 10 }}>Hazard Reports</h3>
+
+    <div style={{ display: "grid", gap: 10 }}>
+      {hazardReports
+        .filter((report) => {
+          const q = recordsCenterSearch.trim().toLowerCase();
+
+          return (
+            !q ||
+            report.project_name?.toLowerCase().includes(q) ||
+            report.reported_by?.toLowerCase().includes(q) ||
+            report.hazard_category?.toLowerCase().includes(q) ||
+            report.hazard_description?.toLowerCase().includes(q) ||
+            report.risk_level?.toLowerCase().includes(q) ||
+            report.action_status?.toLowerCase().includes(q)
+          );
+        })
+        .slice(0, 10)
+        .map((report) => (
+          <div
+            key={`hazard-${report.id}`}
+            style={{
+              padding: 14,
+              borderRadius: 12,
+              border: "1px solid #fed7aa",
+              background: "#fff7ed",
+            }}
+          >
+            <div style={{ fontWeight: "bold" }}>
+              {report.project_name || "No Project"} —{" "}
+              {report.report_type || "Hazard Report"}
+            </div>
+
+            <div style={{ marginTop: 4, fontSize: 13, color: "#475569" }}>
+              Reported By: {report.reported_by || "-"} | Category:{" "}
+              {report.hazard_category || "-"}
+            </div>
+
+            <div style={{ marginTop: 4, fontSize: 13, color: "#475569" }}>
+              Risk: {report.risk_level || "-"} | Status:{" "}
+              {report.action_status || report.status || "Open"}
+            </div>
+
+            <div style={{ marginTop: 6, fontSize: 13, color: "#475569" }}>
+              {report.hazard_description || "No description"}
+            </div>
+
+            <button
+              type="button"
+              onClick={() => setActiveTab("hazard")}
+              style={{
+                marginTop: 10,
+                padding: "8px 12px",
+                borderRadius: 10,
+                border: "none",
+                background: "#ea580c",
+                color: "white",
+                fontWeight: "bold",
+                cursor: "pointer",
+              }}
+            >
+              Open Hazard Module
+            </button>
+          </div>
+        ))}
+
+      {hazardReports.filter((report) => {
+        const q = recordsCenterSearch.trim().toLowerCase();
+
+        return (
+          !q ||
+          report.project_name?.toLowerCase().includes(q) ||
+          report.reported_by?.toLowerCase().includes(q) ||
+          report.hazard_category?.toLowerCase().includes(q) ||
+          report.hazard_description?.toLowerCase().includes(q) ||
+          report.risk_level?.toLowerCase().includes(q) ||
+          report.action_status?.toLowerCase().includes(q)
+        );
+      }).length === 0 && (
+        <div style={{ color: "#64748b" }}>No hazard reports found.</div>
+      )}
+    </div>
+  </section>
+
+  <section>
+    <h3 style={{ marginBottom: 10 }}>COR Corrective Actions</h3>
+
+    <div style={{ display: "grid", gap: 10 }}>
+      {corActions
+        .filter((item) => {
+          const q = recordsCenterSearch.trim().toLowerCase();
+
+          return (
+            !q ||
+            item.category?.toLowerCase().includes(q) ||
+            item.field_job_number?.toLowerCase().includes(q) ||
+            item.field_location?.toLowerCase().includes(q) ||
+            item.issue_description?.toLowerCase().includes(q) ||
+            item.corrective_action_required?.toLowerCase().includes(q) ||
+            item.assigned_to?.toLowerCase().includes(q) ||
+            item.status?.toLowerCase().includes(q)
+          );
+        })
+        .slice(0, 10)
+        .map((item) => (
+          <div
+            key={`cor-${item.id}`}
+            style={{
+              padding: 14,
+              borderRadius: 12,
+              border: "1px solid #ddd6fe",
+              background: "#f5f3ff",
+            }}
+          >
+            <div style={{ fontWeight: "bold" }}>
+              {item.category || "COR Corrective Action"}
+            </div>
+
+            <div style={{ marginTop: 4, fontSize: 13, color: "#475569" }}>
+              Job #: {item.field_job_number || "-"} | Location:{" "}
+              {item.field_location || "-"}
+            </div>
+
+            <div style={{ marginTop: 4, fontSize: 13, color: "#475569" }}>
+              Assigned To: {item.assigned_to || "-"} | Due:{" "}
+              {item.target_fix_date || "-"} | Status: {item.status || "Open"}
+            </div>
+
+            <div style={{ marginTop: 6, fontSize: 13, color: "#475569" }}>
+              {item.issue_description || "No issue description"}
+            </div>
+
+            <button
+              type="button"
+              onClick={() => setActiveTab("cor")}
+              style={{
+                marginTop: 10,
+                padding: "8px 12px",
+                borderRadius: 10,
+                border: "none",
+                background: "#7c3aed",
+                color: "white",
+                fontWeight: "bold",
+                cursor: "pointer",
+              }}
+            >
+              Open COR Module
+            </button>
+          </div>
+        ))}
+
+      {corActions.filter((item) => {
+        const q = recordsCenterSearch.trim().toLowerCase();
+
+        return (
+          !q ||
+          item.category?.toLowerCase().includes(q) ||
+          item.field_job_number?.toLowerCase().includes(q) ||
+          item.field_location?.toLowerCase().includes(q) ||
+          item.issue_description?.toLowerCase().includes(q) ||
+          item.corrective_action_required?.toLowerCase().includes(q) ||
+          item.assigned_to?.toLowerCase().includes(q) ||
+          item.status?.toLowerCase().includes(q)
+        );
+      }).length === 0 && (
+        <div style={{ color: "#64748b" }}>
+          No COR corrective actions found.
+        </div>
+      )}
+    </div>
+  </section>
+
+  <section>
+    <h3 style={{ marginBottom: 10 }}>Fleet Defects</h3>
+
+    <div style={{ display: "grid", gap: 10 }}>
+      {fleetDefects
+        .filter((item) => {
+          const q = recordsCenterSearch.trim().toLowerCase();
+
+          return (
+            !q ||
+            item.unit_number?.toLowerCase().includes(q) ||
+            item.asset_type?.toLowerCase().includes(q) ||
+            item.reported_by?.toLowerCase().includes(q) ||
+            item.project_name?.toLowerCase().includes(q) ||
+            item.location?.toLowerCase().includes(q) ||
+            item.defect_identified?.toLowerCase().includes(q) ||
+            item.priority?.toLowerCase().includes(q) ||
+            item.status?.toLowerCase().includes(q)
+          );
+        })
+        .slice(0, 10)
+        .map((item) => (
+          <div
+            key={`fleet-${item.id}`}
+            style={{
+              padding: 14,
+              borderRadius: 12,
+              border: "1px solid #fecaca",
+              background: "#fef2f2",
+            }}
+          >
+            <div style={{ fontWeight: "bold" }}>
+              Unit {item.unit_number || "-"} — {item.asset_type || "Fleet Asset"}
+            </div>
+
+            <div style={{ marginTop: 4, fontSize: 13, color: "#475569" }}>
+              Reported By: {item.reported_by || "-"} | Project:{" "}
+              {item.project_name || "-"}
+            </div>
+
+            <div style={{ marginTop: 4, fontSize: 13, color: "#475569" }}>
+              Priority: {item.priority || "-"} | Status:{" "}
+              {item.status || "Open"}
+            </div>
+
+            <div style={{ marginTop: 6, fontSize: 13, color: "#475569" }}>
+              {item.defect_identified || "No defect description"}
+            </div>
+
+            <button
+              type="button"
+              onClick={() => downloadFleetDefectPdf(item)}
+              style={{
+                marginTop: 10,
+                padding: "8px 12px",
+                borderRadius: 10,
+                border: "none",
+                background: "#dc2626",
+                color: "white",
+                fontWeight: "bold",
+                cursor: "pointer",
+              }}
+            >
+              Download PDF
+            </button>
+          </div>
+        ))}
+
+      {fleetDefects.filter((item) => {
+        const q = recordsCenterSearch.trim().toLowerCase();
+
+        return (
+          !q ||
+          item.unit_number?.toLowerCase().includes(q) ||
+          item.asset_type?.toLowerCase().includes(q) ||
+          item.reported_by?.toLowerCase().includes(q) ||
+          item.project_name?.toLowerCase().includes(q) ||
+          item.location?.toLowerCase().includes(q) ||
+          item.defect_identified?.toLowerCase().includes(q) ||
+          item.priority?.toLowerCase().includes(q) ||
+          item.status?.toLowerCase().includes(q)
+        );
+      }).length === 0 && (
+        <div style={{ color: "#64748b" }}>No fleet defects found.</div>
+      )}
+    </div>
+  </section>
+
+  <section>
+    <h3 style={{ marginBottom: 10 }}>RPAS Operations</h3>
+
+    <div style={{ display: "grid", gap: 10 }}>
+      {rpasOperations
+        .filter((operation) => {
+          const q = recordsCenterSearch.trim().toLowerCase();
+
+          return (
+            !q ||
+            operation.project_name?.toLowerCase().includes(q) ||
+            operation.pilot_in_command?.toLowerCase().includes(q) ||
+            operation.visual_observer?.toLowerCase().includes(q) ||
+            operation.rpas_make_model?.toLowerCase().includes(q) ||
+            operation.operation_type?.toLowerCase().includes(q) ||
+            operation.flight_location?.toLowerCase().includes(q) ||
+            operation.status?.toLowerCase().includes(q)
+          );
+        })
+        .slice(0, 10)
+        .map((operation) => (
+          <div
+            key={`rpas-${operation.id}`}
+            style={{
+              padding: 14,
+              borderRadius: 12,
+              border: "1px solid #bae6fd",
+              background: "#f0f9ff",
+            }}
+          >
+            <div style={{ fontWeight: "bold" }}>
+              {operation.project_name || "No Project"} —{" "}
+              {operation.flight_date || "-"}
+            </div>
+
+            <div style={{ marginTop: 4, fontSize: 13, color: "#475569" }}>
+              Pilot: {operation.pilot_in_command || "-"} | Observer:{" "}
+              {operation.visual_observer || "-"}
+            </div>
+
+            <div style={{ marginTop: 4, fontSize: 13, color: "#475569" }}>
+              RPAS: {operation.rpas_make_model || "-"} | Location:{" "}
+              {operation.flight_location || "-"}
+            </div>
+
+            <div style={{ marginTop: 4, fontSize: 13, color: "#475569" }}>
+              Operation: {operation.operation_type || "-"} | Status:{" "}
+              {operation.status || "-"}
+            </div>
+
+            <button
+              type="button"
+              onClick={() => downloadRpasPdf(operation)}
+              style={{
+                marginTop: 10,
+                padding: "8px 12px",
+                borderRadius: 10,
+                border: "none",
+                background: "#0284c7",
+                color: "white",
+                fontWeight: "bold",
+                cursor: "pointer",
+              }}
+            >
+              Download PDF
+            </button>
+          </div>
+        ))}
+
+      {rpasOperations.filter((operation) => {
+        const q = recordsCenterSearch.trim().toLowerCase();
+
+        return (
+          !q ||
+          operation.project_name?.toLowerCase().includes(q) ||
+          operation.pilot_in_command?.toLowerCase().includes(q) ||
+          operation.visual_observer?.toLowerCase().includes(q) ||
+          operation.rpas_make_model?.toLowerCase().includes(q) ||
+          operation.operation_type?.toLowerCase().includes(q) ||
+          operation.flight_location?.toLowerCase().includes(q) ||
+          operation.status?.toLowerCase().includes(q)
+        );
+      }).length === 0 && (
+        <div style={{ color: "#64748b" }}>No RPAS records found.</div>
+      )}
+    </div>
+  </section>
 </div>
 </div>
 )}
