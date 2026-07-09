@@ -11158,6 +11158,24 @@ setHazardDueDate(report.due_date || "");
                   <strong>Notes:</strong> {customer.notes}
                 </div>
               )}
+
+<button
+  type="button"
+  onClick={() => editCrmCustomer(customer)}
+  style={{
+    marginTop: 12,
+    padding: "8px 12px",
+    borderRadius: 8,
+    border: "1px solid #123d82",
+    background: "white",
+    color: "#123d82",
+    fontWeight: "bold",
+    cursor: "pointer",
+  }}
+>
+  Edit Customer
+</button>
+               
             </div>
           </div>
         ))}
