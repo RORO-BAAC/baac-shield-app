@@ -402,6 +402,7 @@ const [crmOpportunities, setCrmOpportunities] = useState([]);
 const [crmSection, setCrmSection] = useState("dashboard");
 const [crmSearch, setCrmSearch] = useState("");
 const [editingCrmCustomerId, setEditingCrmCustomerId] = useState(null);
+ const [selectedCrmCustomerId, setSelectedCrmCustomerId] = useState(null);
 // Customer form
 const [crmCustomerCompany, setCrmCustomerCompany] = useState("");
 const [crmCustomerType, setCrmCustomerType] = useState("Customer");
