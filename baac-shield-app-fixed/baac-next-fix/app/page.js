@@ -401,7 +401,7 @@ const [crmOpportunities, setCrmOpportunities] = useState([]);
 // CRM navigation and search
 const [crmSection, setCrmSection] = useState("dashboard");
 const [crmSearch, setCrmSearch] = useState("");
-
+const [editingCrmCustomerId, setEditingCrmCustomerId] = useState(null);
 // Customer form
 const [crmCustomerCompany, setCrmCustomerCompany] = useState("");
 const [crmCustomerType, setCrmCustomerType] = useState("Customer");
@@ -846,6 +846,45 @@ async function loadCrmData() {
   }
 }
 
+function clearCrmCustomerForm() {
+  setEditingCrmCustomerId(null);
+  setCrmCustomerCompany("");
+  setCrmCustomerType("Customer");
+  setCrmCustomerContact("");
+  setCrmCustomerTitle("");
+  setCrmCustomerPhone("");
+  setCrmCustomerEmail("");
+  setCrmCustomerCity("");
+  setCrmCustomerProvince("");
+  setCrmCustomerIndustry("");
+  setCrmCustomerStatus("Active");
+  setCrmCustomerAssignedTo("");
+  setCrmCustomerFollowUp("");
+  setCrmCustomerNotes("");
+}
+
+function editCrmCustomer(customer) {
+  setEditingCrmCustomerId(customer.id);
+  setCrmCustomerCompany(customer.company_name || "");
+  setCrmCustomerType(customer.customer_type || "Customer");
+  setCrmCustomerContact(customer.primary_contact_name || "");
+  setCrmCustomerTitle(customer.primary_contact_title || "");
+  setCrmCustomerPhone(customer.phone || "");
+  setCrmCustomerEmail(customer.email || "");
+  setCrmCustomerCity(customer.city || "");
+  setCrmCustomerProvince(customer.province_state || "");
+  setCrmCustomerIndustry(customer.industry || "");
+  setCrmCustomerStatus(customer.status || "Active");
+  setCrmCustomerAssignedTo(customer.assigned_to || "");
+  setCrmCustomerFollowUp(customer.next_follow_up_date || "");
+  setCrmCustomerNotes(customer.notes || "");
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+}
+
 async function saveCrmCustomer() {
   if (!crmCustomerCompany.trim()) {
     setMessage("Please enter the customer company name.");
@@ -855,43 +894,47 @@ async function saveCrmCustomer() {
   setLoading(true);
   setMessage("");
 
+  const payload = {
+    company_name: crmCustomerCompany.trim(),
+    customer_type: crmCustomerType,
+    primary_contact_name: crmCustomerContact,
+    primary_contact_title: crmCustomerTitle,
+    phone: crmCustomerPhone,
+    email: crmCustomerEmail,
+    city: crmCustomerCity,
+    province_state: crmCustomerProvince,
+    industry: crmCustomerIndustry,
+    status: crmCustomerStatus,
+    assigned_to: crmCustomerAssignedTo,
+    next_follow_up_date: crmCustomerFollowUp || null,
+    notes: crmCustomerNotes,
+    updated_at: new Date().toISOString(),
+  };
+
   try {
-    const { error } = await supabase.from("crm_customers").insert([
-      {
-        company_name: crmCustomerCompany.trim(),
-        customer_type: crmCustomerType,
-        primary_contact_name: crmCustomerContact,
-        primary_contact_title: crmCustomerTitle,
-        phone: crmCustomerPhone,
-        email: crmCustomerEmail,
-        city: crmCustomerCity,
-        province_state: crmCustomerProvince,
-        industry: crmCustomerIndustry,
-        status: crmCustomerStatus,
-        assigned_to: crmCustomerAssignedTo,
-        next_follow_up_date: crmCustomerFollowUp || null,
-        notes: crmCustomerNotes,
-        created_by: user?.email || "",
-      },
-    ]);
+    if (editingCrmCustomerId) {
+      const { error } = await supabase
+        .from("crm_customers")
+        .update(payload)
+        .eq("id", editingCrmCustomerId);
 
-    if (error) throw error;
+      if (error) throw error;
 
-    setCrmCustomerCompany("");
-    setCrmCustomerType("Customer");
-    setCrmCustomerContact("");
-    setCrmCustomerTitle("");
-    setCrmCustomerPhone("");
-    setCrmCustomerEmail("");
-    setCrmCustomerCity("");
-    setCrmCustomerProvince("");
-    setCrmCustomerIndustry("");
-    setCrmCustomerStatus("Active");
-    setCrmCustomerAssignedTo("");
-    setCrmCustomerFollowUp("");
-    setCrmCustomerNotes("");
+      setMessage("Customer record updated.");
+    } else {
+      const { error } = await supabase.from("crm_customers").insert([
+        {
+          ...payload,
+          created_by: user?.email || "",
+        },
+      ]);
 
-    setMessage("Customer saved.");
+      if (error) throw error;
+
+      setMessage("Customer saved.");
+    }
+
+    clearCrmCustomerForm();
     await loadCrmData();
   } catch (error) {
     setMessage(`Could not save customer: ${error.message}`);
