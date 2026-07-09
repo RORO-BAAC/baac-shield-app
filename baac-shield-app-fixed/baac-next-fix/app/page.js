@@ -11959,23 +11959,497 @@ setHazardDueDate(report.due_date || "");
   </div>
 )}
 
-{crmSection !== "dashboard" &&
-  crmSection !== "customers" &&
-  crmSection !== "subcontractors" &&
-  crmSection !== "activities" && (
+{crmSection === "opportunities" && (
+  <div
+    style={{
+      display: "grid",
+      gridTemplateColumns: "minmax(300px, 420px) 1fr",
+      gap: 18,
+      alignItems: "start",
+    }}
+  >
     <div
       style={{
-        border: "1px dashed #cbd5e1",
+        border: "1px solid #e2e8f0",
         borderRadius: 14,
-        padding: 18,
+        padding: 16,
         background: "#f8fafc",
-        color: "#475569",
       }}
     >
-      <strong>{crmSection}</strong> section is ready. The opportunity pipeline
-      will be added next.
+      <h3 style={{ marginTop: 0 }}>Add Opportunity</h3>
+
+      <label style={{ display: "block", marginBottom: 12 }}>
+        <strong>Customer *</strong>
+        <select
+          value={crmOpportunityCustomerId}
+          onChange={(e) => setCrmOpportunityCustomerId(e.target.value)}
+          style={{
+            width: "100%",
+            marginTop: 5,
+            padding: 10,
+            borderRadius: 8,
+            border: "1px solid #cbd5e1",
+          }}
+        >
+          <option value="">Select customer</option>
+
+          {crmCustomers.map((customer) => (
+            <option key={customer.id} value={customer.id}>
+              {customer.company_name}
+            </option>
+          ))}
+        </select>
+      </label>
+
+      <label style={{ display: "block", marginBottom: 12 }}>
+        <strong>Opportunity Name *</strong>
+        <input
+          value={crmOpportunityName}
+          onChange={(e) => setCrmOpportunityName(e.target.value)}
+          placeholder="Project, tender, or opportunity name"
+          style={{
+            width: "100%",
+            marginTop: 5,
+            padding: 10,
+            borderRadius: 8,
+            border: "1px solid #cbd5e1",
+            boxSizing: "border-box",
+          }}
+        />
+      </label>
+
+      <label style={{ display: "block", marginBottom: 12 }}>
+        <strong>Project / Tender Name</strong>
+        <input
+          value={crmOpportunityProject}
+          onChange={(e) => setCrmOpportunityProject(e.target.value)}
+          placeholder="Project or tender reference"
+          style={{
+            width: "100%",
+            marginTop: 5,
+            padding: 10,
+            borderRadius: 8,
+            border: "1px solid #cbd5e1",
+            boxSizing: "border-box",
+          }}
+        />
+      </label>
+
+      <label style={{ display: "block", marginBottom: 12 }}>
+        <strong>Location</strong>
+        <input
+          value={crmOpportunityLocation}
+          onChange={(e) => setCrmOpportunityLocation(e.target.value)}
+          placeholder="City, site, region..."
+          style={{
+            width: "100%",
+            marginTop: 5,
+            padding: 10,
+            borderRadius: 8,
+            border: "1px solid #cbd5e1",
+            boxSizing: "border-box",
+          }}
+        />
+      </label>
+
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr",
+          gap: 10,
+          marginBottom: 12,
+        }}
+      >
+        <label>
+          <strong>Estimated Value</strong>
+          <input
+            type="number"
+            value={crmOpportunityValue}
+            onChange={(e) => setCrmOpportunityValue(e.target.value)}
+            placeholder="250000"
+            style={{
+              width: "100%",
+              marginTop: 5,
+              padding: 10,
+              borderRadius: 8,
+              border: "1px solid #cbd5e1",
+              boxSizing: "border-box",
+            }}
+          />
+        </label>
+
+        <label>
+          <strong>Probability %</strong>
+          <input
+            type="number"
+            value={crmOpportunityProbability}
+            onChange={(e) => setCrmOpportunityProbability(e.target.value)}
+            placeholder="10"
+            min="0"
+            max="100"
+            style={{
+              width: "100%",
+              marginTop: 5,
+              padding: 10,
+              borderRadius: 8,
+              border: "1px solid #cbd5e1",
+              boxSizing: "border-box",
+            }}
+          />
+        </label>
+      </div>
+
+      <label style={{ display: "block", marginBottom: 12 }}>
+        <strong>Sales Stage</strong>
+        <select
+          value={crmOpportunityStage}
+          onChange={(e) => setCrmOpportunityStage(e.target.value)}
+          style={{
+            width: "100%",
+            marginTop: 5,
+            padding: 10,
+            borderRadius: 8,
+            border: "1px solid #cbd5e1",
+          }}
+        >
+          <option>New Lead</option>
+          <option>Contacted</option>
+          <option>Qualified</option>
+          <option>Estimating</option>
+          <option>Proposal Submitted</option>
+          <option>Negotiation</option>
+          <option>Won</option>
+          <option>Lost</option>
+        </select>
+      </label>
+
+      <label style={{ display: "block", marginBottom: 12 }}>
+        <strong>Expected Award Date</strong>
+        <input
+          type="date"
+          value={crmOpportunityAwardDate}
+          onChange={(e) => setCrmOpportunityAwardDate(e.target.value)}
+          style={{
+            width: "100%",
+            marginTop: 5,
+            padding: 10,
+            borderRadius: 8,
+            border: "1px solid #cbd5e1",
+            boxSizing: "border-box",
+          }}
+        />
+      </label>
+
+      <label style={{ display: "block", marginBottom: 12 }}>
+        <strong>Assigned To</strong>
+        <input
+          value={crmOpportunityAssignedTo}
+          onChange={(e) => setCrmOpportunityAssignedTo(e.target.value)}
+          placeholder="Estimator, sales lead, manager..."
+          style={{
+            width: "100%",
+            marginTop: 5,
+            padding: 10,
+            borderRadius: 8,
+            border: "1px solid #cbd5e1",
+            boxSizing: "border-box",
+          }}
+        />
+      </label>
+
+      <label style={{ display: "block" }}>
+        <strong>Notes</strong>
+        <textarea
+          value={crmOpportunityNotes}
+          onChange={(e) => setCrmOpportunityNotes(e.target.value)}
+          placeholder="Scope, pricing notes, competition, client needs, next steps..."
+          rows={5}
+          style={{
+            width: "100%",
+            marginTop: 5,
+            padding: 10,
+            borderRadius: 8,
+            border: "1px solid #cbd5e1",
+            boxSizing: "border-box",
+            resize: "vertical",
+          }}
+        />
+      </label>
+
+      <button
+        type="button"
+        onClick={saveCrmOpportunity}
+        disabled={loading}
+        style={{
+          width: "100%",
+          marginTop: 14,
+          padding: "11px 14px",
+          borderRadius: 10,
+          border: "none",
+          background: "#123d82",
+          color: "white",
+          fontWeight: "bold",
+          cursor: loading ? "not-allowed" : "pointer",
+        }}
+      >
+        {loading ? "Saving..." : "Save Opportunity"}
+      </button>
     </div>
-  )}
+
+    <div>
+      <h3 style={{ marginTop: 0 }}>
+        Opportunities ({crmOpportunities.length})
+      </h3>
+
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
+          gap: 10,
+          marginBottom: 14,
+        }}
+      >
+        {[
+          "New Lead",
+          "Contacted",
+          "Qualified",
+          "Estimating",
+          "Proposal Submitted",
+          "Negotiation",
+          "Won",
+          "Lost",
+        ].map((stage) => {
+          const stageOpps = crmOpportunities.filter(
+            (opp) => opp.sales_stage === stage
+          );
+
+          const stageValue = stageOpps.reduce(
+            (sum, opp) => sum + Number(opp.estimated_value || 0),
+            0
+          );
+
+          return (
+            <div
+              key={stage}
+              style={{
+                border: "1px solid #e2e8f0",
+                borderRadius: 12,
+                padding: 10,
+                background: "white",
+              }}
+            >
+              <div style={{ fontWeight: "bold" }}>{stage}</div>
+              <div style={{ color: "#64748b", fontSize: 13 }}>
+                {stageOpps.length} opps
+              </div>
+              <div style={{ marginTop: 4, fontWeight: "bold" }}>
+                ${stageValue.toLocaleString()}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {crmOpportunities
+        .filter((opp) => {
+          const customer = crmCustomers.find(
+            (item) => item.id === opp.customer_id
+          );
+
+          const search = crmSearch.toLowerCase().trim();
+
+          if (!search) return true;
+
+          return [
+            customer?.company_name,
+            opp.opportunity_name,
+            opp.project_name,
+            opp.project_location,
+            opp.sales_stage,
+            opp.assigned_to,
+            opp.notes,
+          ]
+            .filter(Boolean)
+            .join(" ")
+            .toLowerCase()
+            .includes(search);
+        })
+        .map((opp) => {
+          const customer = crmCustomers.find(
+            (item) => item.id === opp.customer_id
+          );
+
+          const weightedValue =
+            (Number(opp.estimated_value || 0) *
+              Number(opp.probability_percent || 0)) /
+            100;
+
+          return (
+            <div
+              key={opp.id}
+              style={{
+                border: "1px solid #e2e8f0",
+                borderRadius: 14,
+                padding: 14,
+                marginBottom: 12,
+                background: "white",
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  gap: 10,
+                  flexWrap: "wrap",
+                }}
+              >
+                <div>
+                  <div style={{ fontSize: 18, fontWeight: "bold" }}>
+                    {opp.opportunity_name}
+                  </div>
+
+                  <div style={{ color: "#64748b", marginTop: 3 }}>
+                    {customer?.company_name || "Customer not found"} ·{" "}
+                    {opp.sales_stage || "New Lead"}
+                  </div>
+                </div>
+
+                <div
+                  style={{
+                    background:
+                      opp.sales_stage === "Won"
+                        ? "#dcfce7"
+                        : opp.sales_stage === "Lost"
+                        ? "#fee2e2"
+                        : "#eff6ff",
+                    color:
+                      opp.sales_stage === "Won"
+                        ? "#166534"
+                        : opp.sales_stage === "Lost"
+                        ? "#991b1b"
+                        : "#1d4ed8",
+                    borderRadius: 20,
+                    padding: "6px 10px",
+                    fontSize: 13,
+                    height: "fit-content",
+                  }}
+                >
+                  {opp.sales_stage || "New Lead"}
+                </div>
+              </div>
+
+              <div style={{ marginTop: 10, lineHeight: 1.6 }}>
+                {opp.project_name && (
+                  <div>
+                    <strong>Project:</strong> {opp.project_name}
+                  </div>
+                )}
+
+                {opp.project_location && (
+                  <div>
+                    <strong>Location:</strong> {opp.project_location}
+                  </div>
+                )}
+
+                <div>
+                  <strong>Estimated Value:</strong> $
+                  {Number(opp.estimated_value || 0).toLocaleString()}
+                </div>
+
+                <div>
+                  <strong>Probability:</strong>{" "}
+                  {Number(opp.probability_percent || 0)}%
+                </div>
+
+                <div>
+                  <strong>Weighted Value:</strong> $
+                  {Math.round(weightedValue).toLocaleString()}
+                </div>
+
+                {opp.expected_award_date && (
+                  <div>
+                    <strong>Expected Award:</strong>{" "}
+                    {opp.expected_award_date}
+                  </div>
+                )}
+
+                {opp.assigned_to && (
+                  <div>
+                    <strong>Assigned To:</strong> {opp.assigned_to}
+                  </div>
+                )}
+
+                {opp.notes && (
+                  <div style={{ marginTop: 8 }}>
+                    <strong>Notes:</strong> {opp.notes}
+                  </div>
+                )}
+              </div>
+
+              <div
+                style={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  gap: 8,
+                  marginTop: 12,
+                }}
+              >
+                {[
+                  "New Lead",
+                  "Contacted",
+                  "Qualified",
+                  "Estimating",
+                  "Proposal Submitted",
+                  "Negotiation",
+                  "Won",
+                  "Lost",
+                ].map((stage) => (
+                  <button
+                    key={stage}
+                    type="button"
+                    onClick={() => updateCrmOpportunityStage(opp.id, stage)}
+                    disabled={loading || opp.sales_stage === stage}
+                    style={{
+                      padding: "7px 10px",
+                      borderRadius: 8,
+                      border:
+                        opp.sales_stage === stage
+                          ? "1px solid #123d82"
+                          : "1px solid #cbd5e1",
+                      background:
+                        opp.sales_stage === stage ? "#123d82" : "white",
+                      color: opp.sales_stage === stage ? "white" : "#0f172a",
+                      cursor:
+                        loading || opp.sales_stage === stage
+                          ? "not-allowed"
+                          : "pointer",
+                      fontSize: 12,
+                      fontWeight: "bold",
+                    }}
+                  >
+                    {stage}
+                  </button>
+                ))}
+              </div>
+            </div>
+          );
+        })}
+
+      {crmOpportunities.length === 0 && (
+        <div
+          style={{
+            border: "1px dashed #cbd5e1",
+            borderRadius: 14,
+            padding: 18,
+            color: "#64748b",
+          }}
+        >
+          No opportunities entered yet.
+        </div>
+      )}
+    </div>
+  </div>
+)}
   </div>
 )}
 {showPinPrompt && (
