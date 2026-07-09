@@ -11044,7 +11044,9 @@ setHazardDueDate(report.due_date || "");
     </button>
   )}
 </div>
-
+   
+</div>
+   
     <div>
       <h3 style={{ marginTop: 0 }}>
         Customers ({crmCustomers.length})
