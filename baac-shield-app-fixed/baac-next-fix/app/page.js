@@ -1011,6 +1011,86 @@ async function saveCrmSubcontractor() {
     setLoading(false);
   }
 }
+
+async function saveCrmOpportunity() {
+  if (!crmOpportunityCustomerId) {
+    setMessage("Please select a customer for this opportunity.");
+    return;
+  }
+
+  if (!crmOpportunityName.trim()) {
+    setMessage("Please enter the opportunity name.");
+    return;
+  }
+
+  setLoading(true);
+  setMessage("");
+
+  try {
+    const { error } = await supabase.from("crm_opportunities").insert([
+      {
+        customer_id: crmOpportunityCustomerId,
+        opportunity_name: crmOpportunityName.trim(),
+        project_name: crmOpportunityProject,
+        project_location: crmOpportunityLocation,
+        estimated_value: crmOpportunityValue ? Number(crmOpportunityValue) : 0,
+        probability_percent: crmOpportunityProbability
+          ? Number(crmOpportunityProbability)
+          : 0,
+        sales_stage: crmOpportunityStage,
+        expected_award_date: crmOpportunityAwardDate || null,
+        assigned_to: crmOpportunityAssignedTo,
+        notes: crmOpportunityNotes,
+        created_by: user?.email || "",
+      },
+    ]);
+
+    if (error) throw error;
+
+    setCrmOpportunityCustomerId("");
+    setCrmOpportunityName("");
+    setCrmOpportunityProject("");
+    setCrmOpportunityLocation("");
+    setCrmOpportunityValue("");
+    setCrmOpportunityProbability("10");
+    setCrmOpportunityStage("New Lead");
+    setCrmOpportunityAwardDate("");
+    setCrmOpportunityAssignedTo("");
+    setCrmOpportunityNotes("");
+
+    setMessage("Opportunity saved.");
+    await loadCrmData();
+  } catch (error) {
+    setMessage(`Could not save opportunity: ${error.message}`);
+  } finally {
+    setLoading(false);
+  }
+}
+
+async function updateCrmOpportunityStage(opportunityId, newStage) {
+  setLoading(true);
+  setMessage("");
+
+  try {
+    const { error } = await supabase
+      .from("crm_opportunities")
+      .update({
+        sales_stage: newStage,
+        updated_at: new Date().toISOString(),
+      })
+      .eq("id", opportunityId);
+
+    if (error) throw error;
+
+    setMessage(`Opportunity moved to ${newStage}.`);
+    await loadCrmData();
+  } catch (error) {
+    setMessage(`Could not update opportunity: ${error.message}`);
+  } finally {
+    setLoading(false);
+  }
+}
+ 
   async function addProject() {
   const cleanName = newProjectName.trim();
 
