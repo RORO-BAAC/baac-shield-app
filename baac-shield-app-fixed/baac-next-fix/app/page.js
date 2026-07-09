@@ -10733,7 +10733,9 @@ setHazardDueDate(report.due_date || "");
         background: "#f8fafc",
       }}
     >
-      <h3 style={{ marginTop: 0 }}>Add Customer</h3>
+     <h3 style={{ marginTop: 0 }}>
+  {editingCrmCustomerId ? "Edit Customer" : "Add Customer"}
+</h3>
 
       <label style={{ display: "block", marginBottom: 12 }}>
         <strong>Company Name *</strong>
