@@ -11222,7 +11222,462 @@ setHazardDueDate(report.due_date || "");
     </div>
   </div>
 )}
+{selectedCrmCustomerId &&
+  crmCustomers
+    .filter((customer) => customer.id === selectedCrmCustomerId)
+    .map((customer) => (
+      <div
+        key={`customer-record-${customer.id}`}
+        style={{
+          position: "fixed",
+          inset: 0,
+          background: "rgba(15, 23, 42, 0.72)",
+          zIndex: 9999,
+          overflowY: "auto",
+          padding: 20,
+        }}
+      >
+        <div
+          style={{
+            width: "100%",
+            maxWidth: 1050,
+            margin: "20px auto",
+            background: "white",
+            borderRadius: 16,
+            padding: 20,
+            boxSizing: "border-box",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "flex-start",
+              gap: 12,
+              flexWrap: "wrap",
+              borderBottom: "1px solid #e2e8f0",
+              paddingBottom: 14,
+              marginBottom: 16,
+            }}
+          >
+            <div>
+              <h2 style={{ margin: 0 }}>{customer.company_name}</h2>
 
+              <div style={{ color: "#64748b", marginTop: 5 }}>
+                {customer.customer_type || "Customer"} ·{" "}
+                {customer.status || "Active"}
+              </div>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => setSelectedCrmCustomerId(null)}
+              style={{
+                padding: "8px 12px",
+                borderRadius: 8,
+                border: "1px solid #cbd5e1",
+                background: "white",
+                fontWeight: "bold",
+                cursor: "pointer",
+              }}
+            >
+              Close
+            </button>
+          </div>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+              gap: 16,
+            }}
+          >
+            <div
+              style={{
+                border: "1px solid #e2e8f0",
+                borderRadius: 12,
+                padding: 15,
+                background: "#f8fafc",
+              }}
+            >
+              <h3 style={{ marginTop: 0 }}>Customer Information</h3>
+
+              <div style={{ lineHeight: 1.7 }}>
+                <div>
+                  <strong>Contact:</strong>{" "}
+                  {customer.primary_contact_name || "—"}
+                </div>
+
+                <div>
+                  <strong>Title:</strong>{" "}
+                  {customer.primary_contact_title || "—"}
+                </div>
+
+                <div>
+                  <strong>Phone:</strong> {customer.phone || "—"}
+                </div>
+
+                <div>
+                  <strong>Email:</strong> {customer.email || "—"}
+                </div>
+
+                <div>
+                  <strong>Location:</strong>{" "}
+                  {[customer.city, customer.province_state]
+                    .filter(Boolean)
+                    .join(", ") || "—"}
+                </div>
+
+                <div>
+                  <strong>Industry:</strong> {customer.industry || "—"}
+                </div>
+
+                <div>
+                  <strong>Assigned To:</strong>{" "}
+                  {customer.assigned_to || "—"}
+                </div>
+
+                <div>
+                  <strong>Next Follow-up:</strong>{" "}
+                  {customer.next_follow_up_date || "—"}
+                </div>
+              </div>
+
+              {customer.notes && (
+                <div
+                  style={{
+                    marginTop: 12,
+                    padding: 12,
+                    background: "white",
+                    borderRadius: 8,
+                    whiteSpace: "pre-wrap",
+                  }}
+                >
+                  <strong>Customer Notes</strong>
+                  <div style={{ marginTop: 5 }}>{customer.notes}</div>
+                </div>
+              )}
+
+              <div
+                style={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  gap: 8,
+                  marginTop: 14,
+                }}
+              >
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSelectedCrmCustomerId(null);
+                    editCrmCustomer(customer);
+                  }}
+                  style={{
+                    padding: "8px 12px",
+                    borderRadius: 8,
+                    border: "1px solid #123d82",
+                    background: "white",
+                    color: "#123d82",
+                    fontWeight: "bold",
+                    cursor: "pointer",
+                  }}
+                >
+                  Edit Customer
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    setCrmActivityCustomerId(customer.id);
+                    setCrmActivitySubcontractorId("");
+                    setCrmActivityContact(
+                      customer.primary_contact_name || ""
+                    );
+                    setCrmActivityType("Note");
+                    setCrmActivitySubject("");
+                    setCrmActivityNotes("");
+                    setCrmActivityOutcome("");
+                    setCrmActivityFollowUpRequired(false);
+                    setCrmActivityFollowUpDate("");
+                    setSelectedCrmCustomerId(null);
+                    setCrmSection("activities");
+                  }}
+                  style={{
+                    padding: "8px 12px",
+                    borderRadius: 8,
+                    border: "none",
+                    background: "#123d82",
+                    color: "white",
+                    fontWeight: "bold",
+                    cursor: "pointer",
+                  }}
+                >
+                  Add Note
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    setCrmActivityCustomerId(customer.id);
+                    setCrmActivitySubcontractorId("");
+                    setCrmActivityContact(
+                      customer.primary_contact_name || ""
+                    );
+                    setCrmActivityType("Email");
+                    setCrmActivitySubject("");
+                    setCrmActivityNotes("");
+                    setCrmActivityOutcome("");
+                    setCrmActivityFollowUpRequired(false);
+                    setCrmActivityFollowUpDate("");
+                    setSelectedCrmCustomerId(null);
+                    setCrmSection("activities");
+                  }}
+                  style={{
+                    padding: "8px 12px",
+                    borderRadius: 8,
+                    border: "none",
+                    background: "#0f766e",
+                    color: "white",
+                    fontWeight: "bold",
+                    cursor: "pointer",
+                  }}
+                >
+                  Paste Email
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    setCrmActivityCustomerId(customer.id);
+                    setCrmActivitySubcontractorId("");
+                    setCrmActivityContact(
+                      customer.primary_contact_name || ""
+                    );
+                    setCrmActivityType("Follow-up");
+                    setCrmActivitySubject("");
+                    setCrmActivityNotes("");
+                    setCrmActivityOutcome("");
+                    setCrmActivityFollowUpRequired(true);
+                    setCrmActivityFollowUpDate("");
+                    setSelectedCrmCustomerId(null);
+                    setCrmSection("activities");
+                  }}
+                  style={{
+                    padding: "8px 12px",
+                    borderRadius: 8,
+                    border: "none",
+                    background: "#b45309",
+                    color: "white",
+                    fontWeight: "bold",
+                    cursor: "pointer",
+                  }}
+                >
+                  Add Follow-up
+                </button>
+              </div>
+            </div>
+
+            <div
+              style={{
+                border: "1px solid #e2e8f0",
+                borderRadius: 12,
+                padding: 15,
+              }}
+            >
+              <h3 style={{ marginTop: 0 }}>
+                Opportunities (
+                {
+                  crmOpportunities.filter(
+                    (opportunity) =>
+                      opportunity.customer_id === customer.id
+                  ).length
+                }
+                )
+              </h3>
+
+              {crmOpportunities
+                .filter(
+                  (opportunity) =>
+                    opportunity.customer_id === customer.id
+                )
+                .map((opportunity) => (
+                  <div
+                    key={opportunity.id}
+                    style={{
+                      border: "1px solid #e2e8f0",
+                      borderRadius: 10,
+                      padding: 12,
+                      marginBottom: 10,
+                    }}
+                  >
+                    <div style={{ fontWeight: "bold" }}>
+                      {opportunity.opportunity_name}
+                    </div>
+
+                    <div style={{ color: "#64748b", marginTop: 3 }}>
+                      {opportunity.sales_stage || "New Lead"}
+                    </div>
+
+                    <div style={{ marginTop: 7 }}>
+                      <strong>Value:</strong> $
+                      {Number(
+                        opportunity.estimated_value || 0
+                      ).toLocaleString()}
+                    </div>
+
+                    <div>
+                      <strong>Probability:</strong>{" "}
+                      {Number(opportunity.probability_percent || 0)}%
+                    </div>
+
+                    {opportunity.expected_award_date && (
+                      <div>
+                        <strong>Expected Award:</strong>{" "}
+                        {opportunity.expected_award_date}
+                      </div>
+                    )}
+
+                    {opportunity.notes && (
+                      <div
+                        style={{
+                          marginTop: 7,
+                          whiteSpace: "pre-wrap",
+                        }}
+                      >
+                        {opportunity.notes}
+                      </div>
+                    )}
+                  </div>
+                ))}
+
+              {crmOpportunities.filter(
+                (opportunity) =>
+                  opportunity.customer_id === customer.id
+              ).length === 0 && (
+                <div style={{ color: "#64748b" }}>
+                  No opportunities recorded.
+                </div>
+              )}
+            </div>
+          </div>
+
+          <div
+            style={{
+              border: "1px solid #e2e8f0",
+              borderRadius: 12,
+              padding: 15,
+              marginTop: 16,
+            }}
+          >
+            <h3 style={{ marginTop: 0 }}>
+              Activity and Communication History (
+              {
+                crmActivities.filter(
+                  (activity) => activity.customer_id === customer.id
+                ).length
+              }
+              )
+            </h3>
+
+            {crmActivities
+              .filter(
+                (activity) => activity.customer_id === customer.id
+              )
+              .map((activity) => (
+                <div
+                  key={activity.id}
+                  style={{
+                    borderLeft: "4px solid #123d82",
+                    background: "#f8fafc",
+                    borderRadius: 8,
+                    padding: 12,
+                    marginBottom: 10,
+                  }}
+                >
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      gap: 10,
+                      flexWrap: "wrap",
+                    }}
+                  >
+                    <div style={{ fontWeight: "bold" }}>
+                      {activity.activity_type || "Activity"} —{" "}
+                      {activity.subject}
+                    </div>
+
+                    <div style={{ color: "#64748b", fontSize: 13 }}>
+                      {activity.activity_date || activity.created_at}
+                    </div>
+                  </div>
+
+                  {activity.contact_name && (
+                    <div style={{ marginTop: 5 }}>
+                      <strong>Contact:</strong> {activity.contact_name}
+                    </div>
+                  )}
+
+                  {activity.notes && (
+                    <div
+                      style={{
+                        marginTop: 8,
+                        whiteSpace: "pre-wrap",
+                      }}
+                    >
+                      {activity.notes}
+                    </div>
+                  )}
+
+                  {activity.outcome && (
+                    <div style={{ marginTop: 8 }}>
+                      <strong>Outcome:</strong> {activity.outcome}
+                    </div>
+                  )}
+
+                  {activity.follow_up_required && (
+                    <div
+                      style={{
+                        marginTop: 8,
+                        color:
+                          activity.follow_up_date &&
+                          activity.follow_up_date <
+                            new Date().toISOString().split("T")[0]
+                            ? "#b91c1c"
+                            : "#b45309",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      Follow-up required
+                      {activity.follow_up_date
+                        ? `: ${activity.follow_up_date}`
+                        : ""}
+                    </div>
+                  )}
+
+                  <div
+                    style={{
+                      marginTop: 8,
+                      color: "#64748b",
+                      fontSize: 12,
+                    }}
+                  >
+                    Added by {activity.created_by || "Unknown user"}
+                  </div>
+                </div>
+              ))}
+
+            {crmActivities.filter(
+              (activity) => activity.customer_id === customer.id
+            ).length === 0 && (
+              <div style={{ color: "#64748b" }}>
+                No emails, notes, calls, meetings, or follow-ups recorded.
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    ))}
 {crmSection === "subcontractors" && (
   <div
     style={{
