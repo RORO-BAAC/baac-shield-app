@@ -10996,25 +10996,54 @@ setHazardDueDate(report.due_date || "");
         />
       </label>
 
-      <button
-        type="button"
-        onClick={saveCrmCustomer}
-        disabled={loading}
-        style={{
-          width: "100%",
-          marginTop: 14,
-          padding: "11px 14px",
-          borderRadius: 10,
-          border: "none",
-          background: "#123d82",
-          color: "white",
-          fontWeight: "bold",
-          cursor: loading ? "not-allowed" : "pointer",
-        }}
-      >
-        {loading ? "Saving..." : "Save Customer"}
-      </button>
-    </div>
+      <div
+  style={{
+    display: "flex",
+    gap: 8,
+    marginTop: 14,
+  }}
+>
+  <button
+    type="button"
+    onClick={saveCrmCustomer}
+    disabled={loading}
+    style={{
+      flex: 1,
+      padding: "11px 14px",
+      borderRadius: 10,
+      border: "none",
+      background: "#123d82",
+      color: "white",
+      fontWeight: "bold",
+      cursor: loading ? "not-allowed" : "pointer",
+    }}
+  >
+    {loading
+      ? "Saving..."
+      : editingCrmCustomerId
+      ? "Update Customer"
+      : "Save Customer"}
+  </button>
+
+  {editingCrmCustomerId && (
+    <button
+      type="button"
+      onClick={clearCrmCustomerForm}
+      disabled={loading}
+      style={{
+        padding: "11px 14px",
+        borderRadius: 10,
+        border: "1px solid #cbd5e1",
+        background: "white",
+        color: "#0f172a",
+        fontWeight: "bold",
+        cursor: loading ? "not-allowed" : "pointer",
+      }}
+    >
+      Cancel
+    </button>
+  )}
+</div>
 
     <div>
       <h3 style={{ marginTop: 0 }}>
