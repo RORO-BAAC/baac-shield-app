@@ -11162,22 +11162,46 @@ setHazardDueDate(report.due_date || "");
                 </div>
               )}
 
-<button
-  type="button"
-  onClick={() => editCrmCustomer(customer)}
+<div
   style={{
+    display: "flex",
+    flexWrap: "wrap",
+    gap: 8,
     marginTop: 12,
-    padding: "8px 12px",
-    borderRadius: 8,
-    border: "1px solid #123d82",
-    background: "white",
-    color: "#123d82",
-    fontWeight: "bold",
-    cursor: "pointer",
   }}
 >
-  Edit Customer
-</button>
+  <button
+    type="button"
+    onClick={() => setSelectedCrmCustomerId(customer.id)}
+    style={{
+      padding: "8px 12px",
+      borderRadius: 8,
+      border: "none",
+      background: "#123d82",
+      color: "white",
+      fontWeight: "bold",
+      cursor: "pointer",
+    }}
+  >
+    Open Customer Record
+  </button>
+
+  <button
+    type="button"
+    onClick={() => editCrmCustomer(customer)}
+    style={{
+      padding: "8px 12px",
+      borderRadius: 8,
+      border: "1px solid #123d82",
+      background: "white",
+      color: "#123d82",
+      fontWeight: "bold",
+      cursor: "pointer",
+    }}
+  >
+    Edit Customer
+  </button>
+</div>
                
             </div>
           </div>
