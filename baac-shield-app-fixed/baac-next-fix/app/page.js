@@ -4867,6 +4867,21 @@ Signed in as: {user?.email} · Role: {role}
 >
   Records Center
 </button>
+  <button
+  type="button"
+  onClick={() => setActiveTab("qaqc")}
+  style={{
+    padding: "10px 14px",
+    borderRadius: 10,
+    border: "1px solid #cbd5e1",
+    background: activeTab === "qaqc" ? "#123d82" : "white",
+    color: activeTab === "qaqc" ? "white" : "#0f172a",
+    fontWeight: "bold",
+    cursor: "pointer",
+  }}
+>
+  QA/QC
+</button> 
 <button
   type="button"
   onClick={() => setActiveTab("crm")}
