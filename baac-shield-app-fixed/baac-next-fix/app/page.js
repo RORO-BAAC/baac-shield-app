@@ -998,14 +998,22 @@ async function saveCrmSubcontractor() {
     setLoading(false);
   }
 }
- async function saveCrmActivity() {
+async function saveCrmActivity() {
   if (!crmActivitySubject.trim()) {
     setMessage("Please enter an activity subject.");
+    alert("Please enter an activity subject.");
     return;
   }
 
   if (!crmActivityCustomerId && !crmActivitySubcontractorId) {
     setMessage("Please select a customer or subcontractor.");
+    alert("Please select a customer or subcontractor.");
+    return;
+  }
+
+  if (crmActivityFollowUpRequired && !crmActivityFollowUpDate) {
+    setMessage("Please enter a follow-up date or uncheck Follow-up Required.");
+    alert("Please enter a follow-up date or uncheck Follow-up Required.");
     return;
   }
 
@@ -1013,27 +1021,32 @@ async function saveCrmSubcontractor() {
   setMessage("");
 
   try {
-    const { error } = await supabase.from("crm_activities").insert([
-      {
-        customer_id: crmActivityCustomerId || null,
-        subcontractor_id: crmActivitySubcontractorId || null,
-        contact_name: crmActivityContact,
-        activity_type: crmActivityType,
-        activity_date: crmActivityDate || null,
-        subject: crmActivitySubject.trim(),
-        notes: crmActivityNotes,
-        outcome: crmActivityOutcome,
-        follow_up_required: crmActivityFollowUpRequired,
-        follow_up_date:
-          crmActivityFollowUpRequired && crmActivityFollowUpDate
-            ? crmActivityFollowUpDate
-            : null,
-        assigned_to: crmActivityAssignedTo,
-        created_by: user?.email || "",
-      },
-    ]);
+    const payload = {
+      customer_id: crmActivityCustomerId || null,
+      subcontractor_id: crmActivitySubcontractorId || null,
+      contact_name: crmActivityContact,
+      activity_type: crmActivityType,
+      activity_date: crmActivityDate || null,
+      subject: crmActivitySubject.trim(),
+      notes: crmActivityNotes,
+      outcome: crmActivityOutcome,
+      follow_up_required: crmActivityFollowUpRequired,
+      follow_up_date: crmActivityFollowUpRequired
+        ? crmActivityFollowUpDate
+        : null,
+      assigned_to: crmActivityAssignedTo,
+      created_by: user?.email || "",
+    };
 
-    if (error) throw error;
+    const { error } = await supabase
+      .from("crm_activities")
+      .insert([payload]);
+
+    if (error) {
+      console.error("CRM activity save error:", error);
+      alert(`Could not save sales activity: ${error.message}`);
+      throw error;
+    }
 
     setCrmActivityCustomerId("");
     setCrmActivitySubcontractorId("");
@@ -1047,8 +1060,10 @@ async function saveCrmSubcontractor() {
     setCrmActivityFollowUpDate("");
     setCrmActivityAssignedTo("");
 
-    setMessage("Sales activity saved.");
     await loadCrmData();
+
+    setMessage("Sales activity saved.");
+    alert("Sales activity saved.");
   } catch (error) {
     setMessage(`Could not save sales activity: ${error.message}`);
   } finally {
