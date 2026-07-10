@@ -10587,7 +10587,7 @@ setHazardDueDate(report.due_date || "");
 </div>
 )}
 
-{activeTab === "qaqc" && (
+{activeTab === "qaqc" && qaqcSection === "dashboard" && (
   <div
     style={{
       display: "grid",
