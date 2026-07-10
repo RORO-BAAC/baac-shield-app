@@ -1149,7 +1149,73 @@ async function updateCrmOpportunityStage(opportunityId, newStage) {
     setLoading(false);
   }
 }
- 
+ async function deleteWorkerRecord(record) {
+  const authorizedEmails = [
+    "yycrgonzalez@gmail.com",
+    "rod.gonzalez@baac.com",
+    "rod.gonzalez@baacconstruction.com",
+  ];
+
+  const currentEmail = (user?.email || "").toLowerCase();
+
+  if (!authorizedEmails.includes(currentEmail)) {
+    alert("You are not authorized to delete records.");
+    return;
+  }
+
+  const password = window.prompt(
+    `Enter the login password for ${currentEmail} to permanently delete this record.`
+  );
+
+  if (!password) return;
+
+  const confirmed = window.confirm(
+    `Permanently delete this worker form?\n\nProject: ${
+      record.project_name || "No Project"
+    }\nWorker: ${
+      record.worker_name || "Unknown"
+    }\n\nThis cannot be undone.`
+  );
+
+  if (!confirmed) return;
+
+  setLoading(true);
+  setMessage("");
+
+  try {
+    const { error: signInError } =
+      await supabase.auth.signInWithPassword({
+        email: currentEmail,
+        password,
+      });
+
+    if (signInError) {
+      alert("Incorrect password. The record was not deleted.");
+      return;
+    }
+
+    const { error: deleteError } = await supabase
+      .from("records")
+      .delete()
+      .eq("id", record.id);
+
+    if (deleteError) throw deleteError;
+
+    setRecords((previous) =>
+      previous.filter((item) => item.id !== record.id)
+    );
+
+    setSelectedRecord(null);
+    setMessage("Worker record permanently deleted.");
+    alert("Worker record permanently deleted.");
+  } catch (error) {
+    console.error("Delete worker record error:", error);
+    setMessage(`Could not delete record: ${error.message}`);
+    alert(`Could not delete record: ${error.message}`);
+  } finally {
+    setLoading(false);
+  }
+}
   async function addProject() {
   const cleanName = newProjectName.trim();
 
