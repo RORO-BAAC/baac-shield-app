@@ -9954,6 +9954,7 @@ setHazardDueDate(report.due_date || "");
   {[
     "yycrgonzalez@gmail.com",
     "rod.gonzalez@baac.com",
+    "rod.gonzalez@baacconstruction.com",
   ].includes((user?.email || "").toLowerCase()) && (
     <button
       type="button"
