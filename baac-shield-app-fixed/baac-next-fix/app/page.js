@@ -9973,22 +9973,6 @@ setHazardDueDate(report.due_date || "");
               {record.status || "Pending Review"}
             </div>
 
-            <button
-              type="button"
-              onClick={() => downloadPdf(record)}
-              style={{
-                marginTop: 10,
-                padding: "8px 12px",
-                borderRadius: 10,
-                border: "none",
-                background: "#123d82",
-                color: "white",
-                fontWeight: "bold",
-                cursor: "pointer",
-              }}
-            >
-              Download PDF
-            </button>
           </div>
         ))}
 
