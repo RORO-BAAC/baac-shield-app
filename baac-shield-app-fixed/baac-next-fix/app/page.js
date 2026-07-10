@@ -10808,9 +10808,7 @@ setHazardDueDate(report.due_date || "");
 
         <button
           type="button"
-          onClick={() =>
-          onClick={() => setQaqcSection("civil")}
-          }
+         onClick={() => setQaqcSection("civil")}
           style={{
             textAlign: "left",
             padding: 22,
