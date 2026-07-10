@@ -1149,52 +1149,7 @@ async function updateCrmOpportunityStage(opportunityId, newStage) {
     setLoading(false);
   }
 }
- <div
-  style={{
-    display: "flex",
-    flexWrap: "wrap",
-    gap: 8,
-    marginTop: 10,
-  }}
->
-  <button
-    type="button"
-    onClick={() => downloadPdf(record)}
-    style={{
-      padding: "8px 12px",
-      borderRadius: 10,
-      border: "none",
-      background: "#123d82",
-      color: "white",
-      fontWeight: "bold",
-      cursor: "pointer",
-    }}
-  >
-    Download PDF
-  </button>
-
-  {[
-    "yycrgonzalez@gmail.com",
-    "rod.gonzalez@baac.com",
-  ].includes((user?.email || "").toLowerCase()) && (
-    <button
-      type="button"
-      onClick={() => deleteWorkerRecord(record)}
-      disabled={loading}
-      style={{
-        padding: "8px 12px",
-        borderRadius: 10,
-        border: "1px solid #dc2626",
-        background: "#fff1f2",
-        color: "#b91c1c",
-        fontWeight: "bold",
-        cursor: loading ? "not-allowed" : "pointer",
-      }}
-    >
-      Delete Record
-    </button>
-  )}
-</div>
+ 
   async function addProject() {
   const cleanName = newProjectName.trim();
 
