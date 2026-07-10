@@ -1149,70 +1149,52 @@ async function updateCrmOpportunityStage(opportunityId, newStage) {
     setLoading(false);
   }
 }
- async function deleteWorkerRecord(record) {
-  const authorizedEmails = [
+ <div
+  style={{
+    display: "flex",
+    flexWrap: "wrap",
+    gap: 8,
+    marginTop: 10,
+  }}
+>
+  <button
+    type="button"
+    onClick={() => downloadPdf(record)}
+    style={{
+      padding: "8px 12px",
+      borderRadius: 10,
+      border: "none",
+      background: "#123d82",
+      color: "white",
+      fontWeight: "bold",
+      cursor: "pointer",
+    }}
+  >
+    Download PDF
+  </button>
+
+  {[
     "yycrgonzalez@gmail.com",
     "rod.gonzalez@baac.com",
-  ];
-
-  const currentEmail = (user?.email || "").toLowerCase();
-
-  if (!authorizedEmails.includes(currentEmail)) {
-    alert("You are not authorized to delete records.");
-    return;
-  }
-
-  const password = window.prompt(
-    `Enter the login password for ${currentEmail} to permanently delete this record.`
-  );
-
-  if (!password) return;
-
-  const confirmed = window.confirm(
-    `Permanently delete this worker form?\n\nProject: ${
-      record.project_name || "No Project"
-    }\nWorker: ${record.worker_name || "Unknown"}\n\nThis cannot be undone.`
-  );
-
-  if (!confirmed) return;
-
-  setLoading(true);
-  setMessage("");
-
-  try {
-    const { error: signInError } =
-      await supabase.auth.signInWithPassword({
-        email: currentEmail,
-        password,
-      });
-
-    if (signInError) {
-      alert("Incorrect password. The record was not deleted.");
-      return;
-    }
-
-    const { error: deleteError } = await supabase
-      .from("records")
-      .delete()
-      .eq("id", record.id);
-
-    if (deleteError) throw deleteError;
-
-    setRecords((previous) =>
-      previous.filter((item) => item.id !== record.id)
-    );
-
-    setSelectedRecord(null);
-    setMessage("Worker record permanently deleted.");
-    alert("Worker record permanently deleted.");
-  } catch (error) {
-    console.error("Delete worker record error:", error);
-    setMessage(`Could not delete record: ${error.message}`);
-    alert(`Could not delete record: ${error.message}`);
-  } finally {
-    setLoading(false);
-  }
-}
+  ].includes((user?.email || "").toLowerCase()) && (
+    <button
+      type="button"
+      onClick={() => deleteWorkerRecord(record)}
+      disabled={loading}
+      style={{
+        padding: "8px 12px",
+        borderRadius: 10,
+        border: "1px solid #dc2626",
+        background: "#fff1f2",
+        color: "#b91c1c",
+        fontWeight: "bold",
+        cursor: loading ? "not-allowed" : "pointer",
+      }}
+    >
+      Delete Record
+    </button>
+  )}
+</div>
   async function addProject() {
   const cleanName = newProjectName.trim();
 
