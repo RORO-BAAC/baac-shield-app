@@ -10809,7 +10809,7 @@ setHazardDueDate(report.due_date || "");
         <button
           type="button"
           onClick={() =>
-            alert("Civil QA/QC forms are the next build step.")
+          onClick={() => setQaqcSection("civil")}
           }
           style={{
             textAlign: "left",
