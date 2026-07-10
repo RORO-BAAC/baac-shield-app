@@ -10774,9 +10774,7 @@ setHazardDueDate(report.due_date || "");
       >
         <button
           type="button"
-          onClick={() =>
-            alert("Telecom & Fibre QA/QC forms are the next build step.")
-          }
+         onClick={() => setQaqcSection("telecom")}
           style={{
             textAlign: "left",
             padding: 22,
