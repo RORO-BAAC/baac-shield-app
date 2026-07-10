@@ -10585,6 +10585,315 @@ setHazardDueDate(report.due_date || "");
 </div>
 </div>
 )}
+
+{activeTab === "qaqc" && (
+  <div
+    style={{
+      display: "grid",
+      gap: 18,
+      marginBottom: 24,
+    }}
+  >
+    <section
+      style={{
+        background: "linear-gradient(135deg, #0f2f63, #123d82)",
+        color: "white",
+        padding: 24,
+        borderRadius: 18,
+        boxShadow: "0 4px 18px rgba(15, 47, 99, 0.22)",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "flex-start",
+          gap: 16,
+          flexWrap: "wrap",
+        }}
+      >
+        <div>
+          <div
+            style={{
+              fontSize: 13,
+              fontWeight: "bold",
+              letterSpacing: 1.2,
+              opacity: 0.85,
+              textTransform: "uppercase",
+            }}
+          >
+            BAAC Shield
+          </div>
+
+          <h1
+            style={{
+              margin: "6px 0 8px",
+              fontSize: 30,
+            }}
+          >
+            Quality Assurance / Quality Control
+          </h1>
+
+          <div
+            style={{
+              maxWidth: 760,
+              lineHeight: 1.6,
+              opacity: 0.92,
+            }}
+          >
+            Project-controlled inspections, testing, deficiencies, approvals,
+            client acceptance and invoice-ready quality packages.
+          </div>
+        </div>
+
+        <div
+          style={{
+            padding: "8px 12px",
+            borderRadius: 999,
+            background: "rgba(255,255,255,0.14)",
+            border: "1px solid rgba(255,255,255,0.25)",
+            fontWeight: "bold",
+          }}
+        >
+          QA/QC Management System
+        </div>
+      </div>
+    </section>
+
+    <section
+      style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fit, minmax(210px, 1fr))",
+        gap: 14,
+      }}
+    >
+      {[
+        {
+          title: "Open Inspections",
+          value: "0",
+          description: "Draft and active inspections",
+        },
+        {
+          title: "Hold Points",
+          value: "0",
+          description: "Work waiting for release",
+        },
+        {
+          title: "Open Deficiencies",
+          value: "0",
+          description: "Deficiencies and NCRs",
+        },
+        {
+          title: "Client Review",
+          value: "0",
+          description: "Awaiting client acceptance",
+        },
+        {
+          title: "Invoice Ready",
+          value: "0",
+          description: "Approved quality packages",
+        },
+      ].map((card) => (
+        <div
+          key={card.title}
+          style={{
+            background: "white",
+            padding: 18,
+            borderRadius: 16,
+            border: "1px solid #e2e8f0",
+            boxShadow: "0 2px 10px rgba(15,23,42,0.06)",
+          }}
+        >
+          <div
+            style={{
+              fontSize: 13,
+              color: "#64748b",
+              fontWeight: "bold",
+              textTransform: "uppercase",
+              letterSpacing: 0.5,
+            }}
+          >
+            {card.title}
+          </div>
+
+          <div
+            style={{
+              fontSize: 32,
+              fontWeight: "bold",
+              color: "#123d82",
+              marginTop: 8,
+            }}
+          >
+            {card.value}
+          </div>
+
+          <div
+            style={{
+              color: "#64748b",
+              fontSize: 13,
+              marginTop: 4,
+            }}
+          >
+            {card.description}
+          </div>
+        </div>
+      ))}
+    </section>
+
+    <section
+      style={{
+        background: "white",
+        padding: 20,
+        borderRadius: 16,
+        border: "1px solid #e2e8f0",
+        boxShadow: "0 2px 12px rgba(15,23,42,0.06)",
+      }}
+    >
+      <h2 style={{ marginTop: 0, color: "#0f2f63" }}>
+        Start a QA/QC Record
+      </h2>
+
+      <p
+        style={{
+          color: "#64748b",
+          marginTop: -4,
+          marginBottom: 18,
+        }}
+      >
+        Select the construction discipline to open its inspection and testing
+        workflow.
+      </p>
+
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+          gap: 16,
+        }}
+      >
+        <button
+          type="button"
+          onClick={() =>
+            alert("Telecom & Fibre QA/QC forms are the next build step.")
+          }
+          style={{
+            textAlign: "left",
+            padding: 22,
+            borderRadius: 16,
+            border: "2px solid #2563eb",
+            background: "#eff6ff",
+            cursor: "pointer",
+          }}
+        >
+          <div
+            style={{
+              fontSize: 21,
+              fontWeight: "bold",
+              color: "#123d82",
+            }}
+          >
+            Telecom & Fibre
+          </div>
+
+          <div
+            style={{
+              marginTop: 8,
+              color: "#475569",
+              lineHeight: 1.5,
+            }}
+          >
+            Material receiving, pathways, cable placement, splicing, OTDR,
+            OLTS, equipment installation, testing and closeout.
+          </div>
+        </button>
+
+        <button
+          type="button"
+          onClick={() =>
+            alert("Civil QA/QC forms are the next build step.")
+          }
+          style={{
+            textAlign: "left",
+            padding: 22,
+            borderRadius: 16,
+            border: "2px solid #b45309",
+            background: "#fff7ed",
+            cursor: "pointer",
+          }}
+        >
+          <div
+            style={{
+              fontSize: 21,
+              fontWeight: "bold",
+              color: "#92400e",
+            }}
+          >
+            Civil Construction
+          </div>
+
+          <div
+            style={{
+              marginTop: 8,
+              color: "#475569",
+              lineHeight: 1.5,
+            }}
+          >
+            Excavation, duct banks, structures, backfill, compaction, concrete,
+            restoration and testing.
+          </div>
+        </button>
+      </div>
+    </section>
+
+    <section
+      style={{
+        background: "white",
+        padding: 20,
+        borderRadius: 16,
+        border: "1px solid #e2e8f0",
+        boxShadow: "0 2px 12px rgba(15,23,42,0.06)",
+      }}
+    >
+      <h2 style={{ marginTop: 0, color: "#0f2f63" }}>
+        QA/QC Workflow
+      </h2>
+
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(170px, 1fr))",
+          gap: 10,
+        }}
+      >
+        {[
+          "Draft",
+          "Internal Review",
+          "Deficiency Correction",
+          "BAAC Approval",
+          "Client Acceptance",
+          "Invoice Ready",
+          "Closed",
+        ].map((stage, index) => (
+          <div
+            key={stage}
+            style={{
+              padding: 14,
+              borderRadius: 12,
+              background: index === 0 ? "#dbeafe" : "#f8fafc",
+              border: "1px solid #cbd5e1",
+              textAlign: "center",
+              fontWeight: "bold",
+              color: "#334155",
+            }}
+          >
+            {index + 1}. {stage}
+          </div>
+        ))}
+      </div>
+    </section>
+  </div>
+)}
+
 {activeTab === "crm" && (
   <div
     style={{
