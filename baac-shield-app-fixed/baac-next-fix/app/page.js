@@ -11086,6 +11086,134 @@ setHazardDueDate(report.due_date || "");
           condition, specifications, documentation and acceptance status.
         </p>
       </section>
+           <section
+  style={{
+    background: "white",
+    padding: 20,
+    borderRadius: 16,
+    border: "1px solid #e2e8f0",
+    boxShadow: "0 2px 12px rgba(15,23,42,0.06)",
+  }}
+>
+  <h2 style={{ marginTop: 0, color: "#0f2f63" }}>
+    Project and Delivery Details
+  </h2>
+
+  <div
+    style={{
+      display: "grid",
+      gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
+      gap: 14,
+    }}
+  >
+    <label style={{ display: "grid", gap: 6 }}>
+      <span style={{ fontWeight: "bold", color: "#334155" }}>
+        Project
+      </span>
+      <select
+        value={qaqcProjectId}
+        onChange={(e) => setQaqcProjectId(e.target.value)}
+        style={{
+          padding: 11,
+          borderRadius: 10,
+          border: "1px solid #cbd5e1",
+          background: "white",
+        }}
+      >
+        <option value="">Select project</option>
+        {projects.map((project) => (
+          <option key={project.id} value={project.id}>
+            {project.name}
+          </option>
+        ))}
+      </select>
+    </label>
+
+    <label style={{ display: "grid", gap: 6 }}>
+      <span style={{ fontWeight: "bold", color: "#334155" }}>
+        Worksite / Location
+      </span>
+      <input
+        type="text"
+        value={qaqcWorksite}
+        onChange={(e) => setQaqcWorksite(e.target.value)}
+        placeholder="Enter worksite or delivery location"
+        style={{
+          padding: 11,
+          borderRadius: 10,
+          border: "1px solid #cbd5e1",
+        }}
+      />
+    </label>
+
+    <label style={{ display: "grid", gap: 6 }}>
+      <span style={{ fontWeight: "bold", color: "#334155" }}>
+        Work Package
+      </span>
+      <input
+        type="text"
+        value={qaqcWorkPackage}
+        onChange={(e) => setQaqcWorkPackage(e.target.value)}
+        placeholder="Enter work package or scope"
+        style={{
+          padding: 11,
+          borderRadius: 10,
+          border: "1px solid #cbd5e1",
+        }}
+      />
+    </label>
+
+    <label style={{ display: "grid", gap: 6 }}>
+      <span style={{ fontWeight: "bold", color: "#334155" }}>
+        Supplier
+      </span>
+      <input
+        type="text"
+        value={qaqcSupplier}
+        onChange={(e) => setQaqcSupplier(e.target.value)}
+        placeholder="Enter supplier name"
+        style={{
+          padding: 11,
+          borderRadius: 10,
+          border: "1px solid #cbd5e1",
+        }}
+      />
+    </label>
+
+    <label style={{ display: "grid", gap: 6 }}>
+      <span style={{ fontWeight: "bold", color: "#334155" }}>
+        Delivery Date
+      </span>
+      <input
+        type="date"
+        value={qaqcDeliveryDate}
+        onChange={(e) => setQaqcDeliveryDate(e.target.value)}
+        style={{
+          padding: 11,
+          borderRadius: 10,
+          border: "1px solid #cbd5e1",
+        }}
+      />
+    </label>
+
+    <label style={{ display: "grid", gap: 6 }}>
+      <span style={{ fontWeight: "bold", color: "#334155" }}>
+        Received By
+      </span>
+      <input
+        type="text"
+        value={qaqcReceivedBy}
+        onChange={(e) => setQaqcReceivedBy(e.target.value)}
+        placeholder="Enter receiver name"
+        style={{
+          padding: 11,
+          borderRadius: 10,
+          border: "1px solid #cbd5e1",
+        }}
+      />
+    </label>
+  </div>
+</section>
     </div>
 )}
 
