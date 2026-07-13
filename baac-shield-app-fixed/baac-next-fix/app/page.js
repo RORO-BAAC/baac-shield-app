@@ -10890,7 +10890,14 @@ setHazardDueDate(report.due_date || "");
     </section>
   </div>
 )}
-
+{activeTab === "qaqc" && qaqcSection === "telecom" && (
+  <div
+    style={{
+      display: "grid",
+      gap: 18,
+      marginBottom: 24,
+    }}
+  >
 {activeTab === "crm" && (
   <div
     style={{
