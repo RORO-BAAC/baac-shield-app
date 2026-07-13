@@ -386,6 +386,12 @@ const [qaqcWorkPackage, setQaqcWorkPackage] = useState("");
 const [qaqcSupplier, setQaqcSupplier] = useState("");
 const [qaqcDeliveryDate, setQaqcDeliveryDate] = useState("");
 const [qaqcReceivedBy, setQaqcReceivedBy] = useState("");
+ const [qaqcPoNumber, setQaqcPoNumber] = useState("");
+const [qaqcPackingSlip, setQaqcPackingSlip] = useState("");
+const [qaqcDeliveryTicket, setQaqcDeliveryTicket] = useState("");
+const [qaqcCarrierDriver, setQaqcCarrierDriver] = useState("");
+const [qaqcManufacturer, setQaqcManufacturer] = useState("");
+const [qaqcStorageLocation, setQaqcStorageLocation] = useState("");
   const [showSplash, setShowSplash] = useState(true);
   
   const [searchTerm, setSearchTerm] = useState("");
