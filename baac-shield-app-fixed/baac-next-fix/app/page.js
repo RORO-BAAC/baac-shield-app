@@ -10931,7 +10931,9 @@ setHazardDueDate(report.due_date || "");
     </section>
   </div>
 )}
-{activeTab === "qaqc" && qaqcSection === "telecom" && (
+{activeTab === "qaqc" &&
+  qaqcSection === "telecom" &&
+  qaqcInspectionType === "" && (
   <div
     style={{
       display: "grid",
