@@ -10974,6 +10974,57 @@ setHazardDueDate(report.due_date || "");
         deficiencies and closeout records.
       </p>
     </section>
+         <section
+  style={{
+    background: "white",
+    padding: 20,
+    borderRadius: 16,
+    border: "1px solid #e2e8f0",
+    boxShadow: "0 2px 12px rgba(15,23,42,0.06)",
+  }}
+>
+  <h2 style={{ marginTop: 0, color: "#0f2f63" }}>
+    Start a Telecom & Fibre Inspection
+  </h2>
+
+  <div
+    style={{
+      display: "grid",
+      gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+      gap: 12,
+    }}
+  >
+    {[
+      "Material Receiving",
+      "Duct / Pathway Inspection",
+      "Cable Placement",
+      "Splicing Record",
+      "Fibre Testing",
+      "Equipment Installation",
+      "As-Built / Closeout",
+    ].map((inspectionType) => (
+      <button
+        key={inspectionType}
+        type="button"
+        onClick={() =>
+          alert(`${inspectionType} form is the next build step.`)
+        }
+        style={{
+          textAlign: "left",
+          padding: 16,
+          borderRadius: 12,
+          border: "1px solid #bfdbfe",
+          background: "#eff6ff",
+          color: "#123d82",
+          fontWeight: "bold",
+          cursor: "pointer",
+        }}
+      >
+        {inspectionType}
+      </button>
+    ))}
+  </div>
+</section>
   </div>
 )}
 
