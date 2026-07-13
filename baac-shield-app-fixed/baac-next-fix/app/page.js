@@ -485,6 +485,46 @@ const [crmOpportunityNotes, setCrmOpportunityNotes] = useState("");
   const flraSupervisorSigRef = useRef(null);
 const rpasPreflightSigRef = useRef(null);
 const rpasPostflightSigRef = useRef(null);
+
+function navigateQaqc(section) {
+  window.history.pushState(
+    {
+      activeTab: "qaqc",
+      qaqcSection: section,
+    },
+    ""
+  );
+
+  setActiveTab("qaqc");
+  setQaqcSection(section);
+}
+
+useEffect(() => {
+  function handleBrowserBack(event) {
+    if (event.state?.activeTab) {
+      setActiveTab(event.state.activeTab);
+    }
+
+    if (event.state?.qaqcSection) {
+      setQaqcSection(event.state.qaqcSection);
+    }
+  }
+
+  window.history.replaceState(
+    {
+      activeTab,
+      qaqcSection,
+    },
+    ""
+  );
+
+  window.addEventListener("popstate", handleBrowserBack);
+
+  return () => {
+    window.removeEventListener("popstate", handleBrowserBack);
+  };
+}, []);
+
  
   function requestProtectedTab(tabName) {
     setPendingTab(tabName);
