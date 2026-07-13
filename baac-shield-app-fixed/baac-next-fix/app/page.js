@@ -11007,8 +11007,7 @@ setHazardDueDate(report.due_date || "");
       <button
         key={inspectionType}
         type="button"
-        onClick={() =>
-      onClick={() => {
+          onClick={() => {
   if (inspectionType === "Material Receiving") {
     setQaqcInspectionType("material-receiving");
   } else {
