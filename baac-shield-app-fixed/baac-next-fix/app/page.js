@@ -11008,8 +11008,13 @@ setHazardDueDate(report.due_date || "");
         key={inspectionType}
         type="button"
         onClick={() =>
-          alert(`${inspectionType} form is the next build step.`)
-        }
+      onClick={() => {
+  if (inspectionType === "Material Receiving") {
+    setQaqcInspectionType("material-receiving");
+  } else {
+    alert(`${inspectionType} form is the next build step.`);
+  }
+}}
         style={{
           textAlign: "left",
           padding: 16,
