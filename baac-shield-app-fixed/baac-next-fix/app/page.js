@@ -10814,7 +10814,7 @@ setHazardDueDate(report.due_date || "");
       >
         <button
           type="button"
-         onClick={() => setQaqcSection("telecom")}
+        onClick={() => navigateQaqc("telecom")}
           style={{
             textAlign: "left",
             padding: 22,
@@ -10848,7 +10848,7 @@ setHazardDueDate(report.due_date || "");
 
         <button
           type="button"
-         onClick={() => setQaqcSection("civil")}
+       onClick={() => navigateQaqc("civil")}
           style={{
             textAlign: "left",
             padding: 22,
