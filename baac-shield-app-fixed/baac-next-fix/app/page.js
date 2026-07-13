@@ -379,6 +379,7 @@ const [dailyActivityDate, setDailyActivityDate] = useState(
   const [message, setMessage] = useState("");
   const [activeTab, setActiveTab] = useState("worker");
  const [qaqcSection, setQaqcSection] = useState("dashboard");
+ const [qaqcInspectionType, setQaqcInspectionType] = useState("");
   const [showSplash, setShowSplash] = useState(true);
   
   const [searchTerm, setSearchTerm] = useState("");
