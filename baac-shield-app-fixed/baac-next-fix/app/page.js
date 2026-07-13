@@ -380,6 +380,12 @@ const [dailyActivityDate, setDailyActivityDate] = useState(
   const [activeTab, setActiveTab] = useState("worker");
  const [qaqcSection, setQaqcSection] = useState("dashboard");
  const [qaqcInspectionType, setQaqcInspectionType] = useState("");
+ const [qaqcProjectId, setQaqcProjectId] = useState("");
+const [qaqcWorksite, setQaqcWorksite] = useState("");
+const [qaqcWorkPackage, setQaqcWorkPackage] = useState("");
+const [qaqcSupplier, setQaqcSupplier] = useState("");
+const [qaqcDeliveryDate, setQaqcDeliveryDate] = useState("");
+const [qaqcReceivedBy, setQaqcReceivedBy] = useState("");
   const [showSplash, setShowSplash] = useState(true);
   
   const [searchTerm, setSearchTerm] = useState("");
