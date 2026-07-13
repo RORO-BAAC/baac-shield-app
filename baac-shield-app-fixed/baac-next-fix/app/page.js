@@ -10898,6 +10898,45 @@ setHazardDueDate(report.due_date || "");
       marginBottom: 24,
     }}
   >
+
+    <section
+      style={{
+        background: "white",
+        padding: 20,
+        borderRadius: 16,
+        border: "1px solid #e2e8f0",
+        boxShadow: "0 2px 12px rgba(15,23,42,0.06)",
+      }}
+    >
+      <button
+        type="button"
+        onClick={() => setQaqcSection("dashboard")}
+        style={{
+          padding: "9px 13px",
+          borderRadius: 10,
+          border: "1px solid #cbd5e1",
+          background: "white",
+          color: "#123d82",
+          fontWeight: "bold",
+          cursor: "pointer",
+          marginBottom: 16,
+        }}
+      >
+        ← Back to QA/QC Dashboard
+      </button>
+
+      <h1 style={{ margin: "0 0 8px", color: "#0f2f63" }}>
+        Telecom & Fibre QA/QC
+      </h1>
+
+      <p style={{ color: "#64748b", margin: 0, lineHeight: 1.6 }}>
+        Create and manage telecom and fibre inspections, testing, approvals,
+        deficiencies and closeout records.
+      </p>
+    </section>
+  </div>
+)}
+
 {activeTab === "crm" && (
   <div
     style={{
