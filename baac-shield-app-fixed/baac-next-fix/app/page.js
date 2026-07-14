@@ -11166,7 +11166,7 @@ Project and Inspection Details
         type="text"
         value={qaqcWorkPackage}
        onChange={(e) => setQaqcWorkPackage(e.target.value)}
-        placeholder="Enter work package or scope"
+       placeholder="Enter work type or scope inspected"
         style={{
           padding: 11,
           borderRadius: 10,
@@ -11198,7 +11198,7 @@ Project and Inspection Details
       </span>
       <input
         type="date"
-        value={qaqcDeliveryDate}
+       value={qaqcDeliveryDate}
         onChange={(e) => setQaqcDeliveryDate(e.target.value)}
         style={{
           padding: 11,
