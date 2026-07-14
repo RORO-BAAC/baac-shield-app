@@ -11377,7 +11377,9 @@ Inspection Notes / Corrective Action
   type="file"
   accept="image/*"
   multiple
-  onChange={(e) => setQaqcItemDescription(Array.from(e.target.files || []))}
+onChange={(e) =>
+  setQaqcInspectionPhotos(Array.from(e.target.files || []))
+}
 />
 </section>
     </div>
