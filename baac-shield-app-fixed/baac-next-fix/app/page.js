@@ -11340,17 +11340,22 @@ Inspector Notes
       <span style={{ fontWeight: "bold", color: "#334155" }}>
        Inspection Status
       </span>
-      <input
-        type="text"
-        value={qaqcStorageLocation}
-        onChange={(e) => setQaqcStorageLocation(e.target.value)}
-      placeholder="Enter Pass, Deficiency, or Pending"
-        style={{
-          padding: 11,
-          borderRadius: 10,
-          border: "1px solid #cbd5e1",
-        }}
-      />
+     <select
+  value={qaqcStorageLocation}
+  onChange={(e) => setQaqcStorageLocation(e.target.value)}
+  style={{
+    padding: 11,
+    borderRadius: 10,
+    border: "1px solid #cbd5e1",
+    background: "white",
+  }}
+>
+  <option value="">Select status</option>
+  <option value="Open">Open</option>
+  <option value="Corrective Action Required">Corrective Action Required</option>
+  <option value="Ready for Reinspection">Ready for Reinspection</option>
+  <option value="Closed">Closed</option>
+</select>
     </label>
   </div>
 </section>
