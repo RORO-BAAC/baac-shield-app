@@ -4729,6 +4729,21 @@ async function submitQaqcInspection() {
     if (error) throw error;
 
    setMessage("QA/QC work inspection submitted successfully.");
+    setQaqcProjectId("");
+setQaqcWorksite("");
+setQaqcWorkPackage("");
+setQaqcSupplier("");
+setQaqcDeliveryDate("");
+setQaqcReceivedBy("");
+setQaqcPoNumber("");
+setQaqcPackingSlip("");
+setQaqcDeliveryTicket("");
+setQaqcCarrierDriver("");
+setQaqcManufacturer("");
+setQaqcStorageLocation("");
+setQaqcInspectionPhotos([]);
+setReviewSupervisorSignature("");
+supervisorSigRef.current?.clear();
 alert("QA/QC work inspection submitted successfully.");
   } catch (error) {
 setMessage(`Could not submit inspection: ${error.message}`);
