@@ -11108,7 +11108,7 @@ identify deficiencies, and attach supporting photos.
   }}
 >
   <h2 style={{ marginTop: 0, color: "#0f2f63" }}>
-    Project and Delivery Details
+Project and Inspection Details
   </h2>
 
   <div
