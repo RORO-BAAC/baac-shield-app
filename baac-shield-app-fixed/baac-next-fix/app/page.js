@@ -11177,7 +11177,7 @@ Project and Inspection Details
 
     <label style={{ display: "grid", gap: 6 }}>
       <span style={{ fontWeight: "bold", color: "#334155" }}>
-        Supplier
+       Contractor / Crew
       </span>
       <input
         type="text"
