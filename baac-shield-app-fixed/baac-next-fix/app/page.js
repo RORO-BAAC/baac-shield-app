@@ -11265,7 +11265,7 @@ Project and Inspection Details
 
     <label style={{ display: "grid", gap: 6 }}>
       <span style={{ fontWeight: "bold", color: "#334155" }}>
-        Packing Slip Number
+   Work Inspected
       </span>
       <input
         type="text"
