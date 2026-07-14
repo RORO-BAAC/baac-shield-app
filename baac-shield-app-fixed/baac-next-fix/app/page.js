@@ -11248,7 +11248,7 @@ Project and Inspection Details
   >
     <label style={{ display: "grid", gap: 6 }}>
       <span style={{ fontWeight: "bold", color: "#334155" }}>
-        Purchase Order / PO Number
+       Inspection Result
       </span>
       <input
         type="text"
