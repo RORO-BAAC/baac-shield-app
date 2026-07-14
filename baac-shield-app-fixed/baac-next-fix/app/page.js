@@ -11405,6 +11405,21 @@ onChange={(e) =>
     onSave={setReviewSupervisorSignature}
   />
 </section>
+      <button
+  type="button"
+  style={{
+    padding: "14px 20px",
+    borderRadius: 10,
+    border: "none",
+    background: "#0f2f63",
+    color: "white",
+    fontWeight: "bold",
+    fontSize: 16,
+    cursor: "pointer",
+  }}
+>
+  Submit Inspection
+</button>
     </div>
 )}
 
