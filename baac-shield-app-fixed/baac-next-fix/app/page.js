@@ -11381,6 +11381,11 @@ onChange={(e) =>
   setQaqcInspectionPhotos(Array.from(e.target.files || []))
 }
 />
+  {qaqcInspectionPhotos.length > 0 && (
+  <p style={{ marginBottom: 0, color: "#475569" }}>
+    {qaqcInspectionPhotos.length} photo(s) selected
+  </p>
+)}
 </section>
     </div>
 )}
