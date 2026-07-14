@@ -11220,6 +11220,129 @@ setHazardDueDate(report.due_date || "");
     </label>
   </div>
 </section>
+       <section
+  style={{
+    background: "white",
+    padding: 20,
+    borderRadius: 16,
+    border: "1px solid #e2e8f0",
+    boxShadow: "0 2px 12px rgba(15,23,42,0.06)",
+  }}
+>
+  <h2 style={{ marginTop: 0, color: "#0f2f63" }}>
+    Delivery References
+  </h2>
+
+  <div
+    style={{
+      display: "grid",
+      gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
+      gap: 14,
+    }}
+  >
+    <label style={{ display: "grid", gap: 6 }}>
+      <span style={{ fontWeight: "bold", color: "#334155" }}>
+        Purchase Order / PO Number
+      </span>
+      <input
+        type="text"
+        value={qaqcPoNumber}
+        onChange={(e) => setQaqcPoNumber(e.target.value)}
+        placeholder="Enter PO number"
+        style={{
+          padding: 11,
+          borderRadius: 10,
+          border: "1px solid #cbd5e1",
+        }}
+      />
+    </label>
+
+    <label style={{ display: "grid", gap: 6 }}>
+      <span style={{ fontWeight: "bold", color: "#334155" }}>
+        Packing Slip Number
+      </span>
+      <input
+        type="text"
+        value={qaqcPackingSlip}
+        onChange={(e) => setQaqcPackingSlip(e.target.value)}
+        placeholder="Enter packing slip number"
+        style={{
+          padding: 11,
+          borderRadius: 10,
+          border: "1px solid #cbd5e1",
+        }}
+      />
+    </label>
+
+    <label style={{ display: "grid", gap: 6 }}>
+      <span style={{ fontWeight: "bold", color: "#334155" }}>
+        Delivery Ticket Number
+      </span>
+      <input
+        type="text"
+        value={qaqcDeliveryTicket}
+        onChange={(e) => setQaqcDeliveryTicket(e.target.value)}
+        placeholder="Enter delivery ticket number"
+        style={{
+          padding: 11,
+          borderRadius: 10,
+          border: "1px solid #cbd5e1",
+        }}
+      />
+    </label>
+
+    <label style={{ display: "grid", gap: 6 }}>
+      <span style={{ fontWeight: "bold", color: "#334155" }}>
+        Carrier / Driver
+      </span>
+      <input
+        type="text"
+        value={qaqcCarrierDriver}
+        onChange={(e) => setQaqcCarrierDriver(e.target.value)}
+        placeholder="Enter carrier or driver"
+        style={{
+          padding: 11,
+          borderRadius: 10,
+          border: "1px solid #cbd5e1",
+        }}
+      />
+    </label>
+
+    <label style={{ display: "grid", gap: 6 }}>
+      <span style={{ fontWeight: "bold", color: "#334155" }}>
+        Manufacturer
+      </span>
+      <input
+        type="text"
+        value={qaqcManufacturer}
+        onChange={(e) => setQaqcManufacturer(e.target.value)}
+        placeholder="Enter manufacturer"
+        style={{
+          padding: 11,
+          borderRadius: 10,
+          border: "1px solid #cbd5e1",
+        }}
+      />
+    </label>
+
+    <label style={{ display: "grid", gap: 6 }}>
+      <span style={{ fontWeight: "bold", color: "#334155" }}>
+        Storage Location
+      </span>
+      <input
+        type="text"
+        value={qaqcStorageLocation}
+        onChange={(e) => setQaqcStorageLocation(e.target.value)}
+        placeholder="Enter storage location"
+        style={{
+          padding: 11,
+          borderRadius: 10,
+          border: "1px solid #cbd5e1",
+        }}
+      />
+    </label>
+  </div>
+</section>
     </div>
 )}
 
