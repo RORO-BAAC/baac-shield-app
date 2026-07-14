@@ -11327,7 +11327,7 @@ Inspection Notes / Corrective Action
         type="text"
         value={qaqcManufacturer}
         onChange={(e) => setQaqcManufacturer(e.target.value)}
-    placeholder="Enter inspection notes"
+ placeholder="Enter inspection notes and required corrective action"
         style={{
           padding: 11,
           borderRadius: 10,
