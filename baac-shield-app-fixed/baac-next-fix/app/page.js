@@ -11090,12 +11090,12 @@ setHazardDueDate(report.due_date || "");
         </button>
 
         <h1 style={{ margin: "0 0 8px", color: "#0f2f63" }}>
-          Material Receiving Inspection
+       Telecom Work Inspection
         </h1>
 
         <p style={{ color: "#64748b", margin: 0, lineHeight: 1.6 }}>
-          Record delivered telecom and fibre materials, verify quantities,
-          condition, specifications, documentation and acceptance status.
+          Inspect completed telecom and fibre work, record the result,
+identify deficiencies, and attach supporting photos.
         </p>
       </section>
            <section
