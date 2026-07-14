@@ -11194,7 +11194,7 @@ Project and Inspection Details
 
     <label style={{ display: "grid", gap: 6 }}>
       <span style={{ fontWeight: "bold", color: "#334155" }}>
-        Delivery Date
+      Inspection Date
       </span>
       <input
         type="date"
