@@ -4728,9 +4728,11 @@ async function submitQaqcInspection() {
 
     if (error) throw error;
 
-    setMessage("QA/QC work inspection submitted successfully.");
+   setMessage("QA/QC work inspection submitted successfully.");
+alert("QA/QC work inspection submitted successfully.");
   } catch (error) {
-    setMessage(`Could not submit inspection: ${error.message}`);
+setMessage(`Could not submit inspection: ${error.message}`);
+alert(`Could not submit inspection: ${error.message}`);
   } finally {
     setLoading(false);
   }
