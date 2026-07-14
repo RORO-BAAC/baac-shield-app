@@ -11254,7 +11254,7 @@ Project and Inspection Details
         type="text"
         value={qaqcPoNumber}
         onChange={(e) => setQaqcPoNumber(e.target.value)}
-        placeholder="Enter PO number"
+   placeholder="Enter Pass, Deficiency, or Not Applicable"
         style={{
           padding: 11,
           borderRadius: 10,
