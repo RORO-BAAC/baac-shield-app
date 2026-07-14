@@ -11165,7 +11165,7 @@ Project and Inspection Details
       <input
         type="text"
         value={qaqcWorkPackage}
-        onChange={(e) => setQaqcWorkType(e.target.value)}
+       onChange={(e) => setQaqcWorkPackage(e.target.value)}
         placeholder="Enter work package or scope"
         style={{
           padding: 11,
