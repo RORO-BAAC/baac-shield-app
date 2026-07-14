@@ -11250,17 +11250,22 @@ Project and Inspection Details
       <span style={{ fontWeight: "bold", color: "#334155" }}>
        Inspection Result
       </span>
-      <input
-        type="text"
-        value={qaqcPoNumber}
-        onChange={(e) => setQaqcPoNumber(e.target.value)}
-   placeholder="Enter Pass, Deficiency, or Not Applicable" 
-        style={{
-          padding: 11,
-          borderRadius: 10,
-          border: "1px solid #cbd5e1",
-        }}
-      />
+    <select
+  value={qaqcPoNumber}
+  onChange={(e) => setQaqcPoNumber(e.target.value)}
+  style={{
+    padding: 11,
+    borderRadius: 10,
+    border: "1px solid #cbd5e1",
+    background: "white",
+  }}
+>
+  <option value="">Select result</option>
+  <option value="Pass">Pass</option>
+  <option value="Deficiency">Deficiency</option>
+  <option value="Pending">Pending</option>
+  <option value="Not Applicable">Not Applicable</option>
+</select>
     </label>
 
     <label style={{ display: "grid", gap: 6 }}>
