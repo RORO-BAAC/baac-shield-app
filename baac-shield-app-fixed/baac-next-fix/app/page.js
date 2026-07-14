@@ -11055,7 +11055,7 @@ setHazardDueDate(report.due_date || "");
 
 {activeTab === "qaqc" &&
   qaqcSection === "telecom" &&
-  qaqcInspectionType === "material-receiving" && (
+ qaqcInspectionType === "work-inspection"
     <div
       style={{
         display: "grid",
