@@ -11160,12 +11160,12 @@ Project and Inspection Details
 
     <label style={{ display: "grid", gap: 6 }}>
       <span style={{ fontWeight: "bold", color: "#334155" }}>
-        Work Package
+      Work Type
       </span>
       <input
         type="text"
         value={qaqcWorkPackage}
-        onChange={(e) => setQaqcWorkPackage(e.target.value)}
+        onChange={(e) => setQaqcWorkType(e.target.value)}
         placeholder="Enter work package or scope"
         style={{
           padding: 11,
