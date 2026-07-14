@@ -11236,7 +11236,7 @@ Project and Inspection Details
   }}
 >
   <h2 style={{ marginTop: 0, color: "#0f2f63" }}>
-    Delivery References
+   Work Inspection Results
   </h2>
 
   <div
