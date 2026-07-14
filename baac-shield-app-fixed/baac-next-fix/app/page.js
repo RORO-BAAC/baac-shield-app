@@ -11305,7 +11305,7 @@ placeholder="Describe any deficiency or corrective work required"
         type="text"
         value={qaqcCarrierDriver}
         onChange={(e) => setQaqcCarrierDriver(e.target.value)}
-        placeholder="Enter carrier or driver"
+       placeholder="Enter responsible crew or contractor"
         style={{
           padding: 11,
           borderRadius: 10,
