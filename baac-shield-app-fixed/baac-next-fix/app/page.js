@@ -11143,7 +11143,7 @@ Project and Inspection Details
 
     <label style={{ display: "grid", gap: 6 }}>
       <span style={{ fontWeight: "bold", color: "#334155" }}>
-        Worksite / Location
+      Inspection Location
       </span>
       <input
         type="text"
