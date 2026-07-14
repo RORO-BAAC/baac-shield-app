@@ -11216,7 +11216,7 @@ Project and Inspection Details
         type="text"
         value={qaqcReceivedBy}
         onChange={(e) => setQaqcReceivedBy(e.target.value)}
-        placeholder="Enter receiver name"
+   placeholder="Enter inspector name"
         style={{
           padding: 11,
           borderRadius: 10,
