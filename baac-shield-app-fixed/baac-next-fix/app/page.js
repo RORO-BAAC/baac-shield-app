@@ -4696,7 +4696,45 @@ if (!user) {
     </main>
   );
 }
+async function submitQaqcInspection() {
+  setLoading(true);
+  setMessage("");
 
+  try {
+    const uploadedPhotoUrls = await uploadPhotosToSupabase(
+      qaqcInspectionPhotos
+    );
+
+    const { error } = await supabase
+      .from("qaqc_work_inspections")
+      .insert([
+        {
+          project_id: qaqcProjectId,
+          inspection_location: qaqcWorksite,
+          work_type: qaqcWorkPackage,
+          contractor_crew: qaqcSupplier,
+          inspection_date: qaqcDeliveryDate || null,
+          inspector_name: qaqcReceivedBy,
+          inspection_result: qaqcPoNumber,
+          work_inspected: qaqcPackingSlip,
+          deficiency_details: qaqcDeliveryTicket,
+          corrective_action_assigned_to: qaqcCarrierDriver,
+          inspection_notes: qaqcManufacturer,
+          inspection_status: qaqcStorageLocation,
+          photo_urls: uploadedPhotoUrls.join(", "),
+          inspector_signature: reviewSupervisorSignature,
+        },
+      ]);
+
+    if (error) throw error;
+
+    setMessage("QA/QC work inspection submitted successfully.");
+  } catch (error) {
+    setMessage(`Could not submit inspection: ${error.message}`);
+  } finally {
+    setLoading(false);
+  }
+}
   return (
     <main
       style={{
