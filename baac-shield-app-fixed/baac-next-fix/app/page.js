@@ -11333,7 +11333,7 @@ Inspector Notes
 
     <label style={{ display: "grid", gap: 6 }}>
       <span style={{ fontWeight: "bold", color: "#334155" }}>
-        Storage Location
+       Inspection Status
       </span>
       <input
         type="text"
