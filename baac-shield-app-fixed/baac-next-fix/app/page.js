@@ -11271,7 +11271,7 @@ Project and Inspection Details
         type="text"
         value={qaqcPackingSlip}
         onChange={(e) => setQaqcPackingSlip(e.target.value)}
-        placeholder="Enter packing slip number"
+placeholder="Describe the work inspected"
         style={{
           padding: 11,
           borderRadius: 10,
