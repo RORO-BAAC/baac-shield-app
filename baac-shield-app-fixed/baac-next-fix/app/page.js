@@ -11443,8 +11443,9 @@ onChange={(e) =>
     onSave={setReviewSupervisorSignature}
   />
 </section>
-      <button
+    <button
   type="button"
+  onClick={submitQaqcInspection}
   style={{
     padding: "14px 20px",
     borderRadius: 10,
