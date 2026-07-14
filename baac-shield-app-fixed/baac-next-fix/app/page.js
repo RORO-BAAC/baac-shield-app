@@ -11339,7 +11339,7 @@ Inspector Notes
         type="text"
         value={qaqcStorageLocation}
         onChange={(e) => setQaqcStorageLocation(e.target.value)}
-        placeholder="Enter storage location"
+      placeholder="Enter Pass, Deficiency, or Pending"
         style={{
           padding: 11,
           borderRadius: 10,
