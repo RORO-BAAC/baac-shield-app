@@ -11359,6 +11359,25 @@ Inspection Notes / Corrective Action
     </label>
   </div>
 </section>
+  <section
+  style={{
+    background: "white",
+    padding: 20,
+    borderRadius: 16,
+    border: "1px solid #e2e8f0",
+    boxShadow: "0 2px 12px rgba(15,23,42,0.06)",
+  }}
+>
+  <h2 style={{ marginTop: 0, color: "#0f2f63" }}>
+    Inspection Photos
+  </h2>
+
+  <input
+    type="file"
+    accept="image/*"
+    multiple
+  />
+</section>
     </div>
 )}
 
