@@ -11373,10 +11373,11 @@ Inspection Notes / Corrective Action
   </h2>
 
   <input
-    type="file"
-    accept="image/*"
-    multiple
-  />
+  type="file"
+  accept="image/*"
+  multiple
+  onChange={(e) => setQaqcItemDescription(Array.from(e.target.files || []))}
+/>
 </section>
     </div>
 )}
