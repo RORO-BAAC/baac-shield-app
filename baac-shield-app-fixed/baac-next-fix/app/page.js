@@ -11282,13 +11282,13 @@ placeholder="Describe the work inspected"
 
     <label style={{ display: "grid", gap: 6 }}>
       <span style={{ fontWeight: "bold", color: "#334155" }}>
-        Delivery Ticket Number
+      Deficiency Details
       </span>
       <input
         type="text"
         value={qaqcDeliveryTicket}
         onChange={(e) => setQaqcDeliveryTicket(e.target.value)}
-        placeholder="Enter delivery ticket number"
+placeholder="Describe any deficiency or corrective work required"
         style={{
           padding: 11,
           borderRadius: 10,
