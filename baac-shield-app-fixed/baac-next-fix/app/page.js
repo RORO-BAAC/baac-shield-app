@@ -11183,7 +11183,7 @@ Project and Inspection Details
         type="text"
         value={qaqcSupplier}
         onChange={(e) => setQaqcSupplier(e.target.value)}
-        placeholder="Enter supplier name"
+       placeholder="Enter contractor or crew name"
         style={{
           padding: 11,
           borderRadius: 10,
