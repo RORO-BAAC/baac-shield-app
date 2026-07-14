@@ -11322,7 +11322,7 @@ Inspector Notes
         type="text"
         value={qaqcManufacturer}
         onChange={(e) => setQaqcManufacturer(e.target.value)}
-        placeholder="Enter manufacturer"
+      placeholder="Enter inspection notes"
         style={{
           padding: 11,
           borderRadius: 10,
