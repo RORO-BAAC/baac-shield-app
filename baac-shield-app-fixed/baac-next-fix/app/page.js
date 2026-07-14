@@ -11016,7 +11016,7 @@ setHazardDueDate(report.due_date || "");
     }}
   >
     {[
-      "Material Receiving",
+     "Work Inspection",
       "Duct / Pathway Inspection",
       "Cable Placement",
       "Splicing Record",
@@ -11028,8 +11028,8 @@ setHazardDueDate(report.due_date || "");
         key={inspectionType}
         type="button"
           onClick={() => {
-  if (inspectionType === "Material Receiving") {
-    setQaqcInspectionType("material-receiving");
+ if (inspectionType === "Work Inspection") {
+  setQaqcInspectionType("work-inspection");
   } else {
     alert(`${inspectionType} form is the next build step.`);
   }
