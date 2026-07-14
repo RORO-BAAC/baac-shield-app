@@ -392,6 +392,12 @@ const [qaqcDeliveryTicket, setQaqcDeliveryTicket] = useState("");
 const [qaqcCarrierDriver, setQaqcCarrierDriver] = useState("");
 const [qaqcManufacturer, setQaqcManufacturer] = useState("");
 const [qaqcStorageLocation, setQaqcStorageLocation] = useState("");
+ const [qaqcItemDescription, setQaqcItemDescription] = useState("");
+const [qaqcItemCode, setQaqcItemCode] = useState("");
+const [qaqcQuantityOrdered, setQaqcQuantityOrdered] = useState("");
+const [qaqcQuantityReceived, setQaqcQuantityReceived] = useState("");
+const [qaqcMaterialCondition, setQaqcMaterialCondition] = useState("");
+const [qaqcAcceptanceStatus, setQaqcAcceptanceStatus] = useState("");
   const [showSplash, setShowSplash] = useState(true);
   
   const [searchTerm, setSearchTerm] = useState("");
