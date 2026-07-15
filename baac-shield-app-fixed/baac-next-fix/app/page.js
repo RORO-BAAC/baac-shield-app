@@ -11560,7 +11560,9 @@ onChange={(e) =>
       }}
     >
       <strong style={{ color: "#0f2f63" }}>
-        {inspection.project_id || "No Project"}
+{projects.find(
+  (project) => String(project.id) === String(inspection.project_id)
+)?.name || inspection.project_id || "No Project"}
       </strong>
 
       <div style={{ marginTop: 8, color: "#334155" }}>
