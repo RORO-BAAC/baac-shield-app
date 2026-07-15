@@ -11546,6 +11546,45 @@ onChange={(e) =>
         <p style={{ color: "#64748b", margin: 0 }}>
           {qaqcWorkInspections.length} inspection record(s)
         </p>
+            <div
+  style={{
+    display: "grid",
+    gap: 14,
+    marginTop: 20,
+  }}
+>
+  {qaqcWorkInspections.map((inspection) => (
+    <div
+      key={inspection.id}
+      style={{
+        border: "1px solid #e2e8f0",
+        borderRadius: 12,
+        padding: 16,
+        background: "#f8fafc",
+      }}
+    >
+      <strong style={{ color: "#0f2f63" }}>
+        {inspection.project_id || "No Project"}
+      </strong>
+
+      <div style={{ marginTop: 8, color: "#334155" }}>
+        Date: {inspection.inspection_date || "-"}
+      </div>
+
+      <div style={{ color: "#334155" }}>
+        Inspector: {inspection.inspector_name || "-"}
+      </div>
+
+      <div style={{ color: "#334155" }}>
+        Result: {inspection.inspection_result || "-"}
+      </div>
+
+      <div style={{ color: "#334155" }}>
+        Status: {inspection.inspection_status || "-"}
+      </div>
+    </div>
+  ))}
+</div>
       </section>
     </div>
 )}
