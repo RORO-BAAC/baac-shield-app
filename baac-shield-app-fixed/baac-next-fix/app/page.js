@@ -11094,12 +11094,13 @@ setHazardDueDate(report.due_date || "");
   >
     {[
      "Work Inspection",
-      "Duct / Pathway Inspection",
-      "Cable Placement",
-      "Splicing Record",
-      "Fibre Testing",
-      "Equipment Installation",
-      "As-Built / Closeout",
+  "Work Inspection Records",
+  "Duct / Pathway Inspection",
+  "Cable Placement",
+  "Splicing Record",
+  "Fibre Testing",
+  "Equipment Installation",
+  "As-Built / Closeout",
     ].map((inspectionType) => (
       <button
         key={inspectionType}
