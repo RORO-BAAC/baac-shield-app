@@ -1575,27 +1575,31 @@ function toggleFlraCheckbox(value, setter) {
     );
   }
 
-  async function uploadPhotosToSupabase(files) {
+ async function uploadPhotosToSupabase(files) {
   if (!files || files.length === 0) return [];
 
   const uploadedUrls = [];
 
   for (const file of files) {
-    const formData = new FormData();
-    formData.append("file", file);
+    const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, "-");
+    const fileName = `${Date.now()}-${safeName}`;
 
-    const uploadRes = await fetch("/api/upload-photo", {
-      method: "POST",
-      body: formData,
-    });
+    const { error: uploadError } = await supabase.storage
+      .from("hazard-photos")
+      .upload(fileName, file, {
+        contentType: file.type || "application/octet-stream",
+        upsert: true,
+      });
 
-    const result = await uploadRes.json();
-
-    if (!uploadRes.ok) {
-      throw new Error(result.error || "Photo upload failed");
+    if (uploadError) {
+      throw new Error(uploadError.message || "Photo upload failed");
     }
 
-    uploadedUrls.push(result.url);
+    const { data } = supabase.storage
+      .from("hazard-photos")
+      .getPublicUrl(fileName);
+
+    uploadedUrls.push(data.publicUrl);
   }
 
   return uploadedUrls;
