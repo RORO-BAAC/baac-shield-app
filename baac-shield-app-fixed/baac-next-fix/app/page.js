@@ -393,6 +393,7 @@ const [qaqcCarrierDriver, setQaqcCarrierDriver] = useState("");
 const [qaqcManufacturer, setQaqcManufacturer] = useState("");
 const [qaqcStorageLocation, setQaqcStorageLocation] = useState("");
   const [qaqcInspectionPhotos, setQaqcInspectionPhotos] = useState([]);
+  const [qaqcWorkInspections, setQaqcWorkInspections] = useState([]);
  const [qaqcItemDescription, setQaqcItemDescription] = useState("");
 const [qaqcItemCode, setQaqcItemCode] = useState("");
 const [qaqcQuantityOrdered, setQaqcQuantityOrdered] = useState("");
