@@ -11564,7 +11564,9 @@ onChange={(e) =>
   (project) => String(project.id) === String(inspection.project_id)
 )?.name || inspection.project_id || "No Project"}
       </strong>
-
+<div style={{ marginTop: 8, color: "#334155" }}>
+  Worksite: {inspection.inspection_location || "-"}
+</div>
       <div style={{ marginTop: 8, color: "#334155" }}>
         Date: {inspection.inspection_date || "-"}
       </div>
