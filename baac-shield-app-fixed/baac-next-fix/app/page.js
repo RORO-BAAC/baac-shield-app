@@ -4764,6 +4764,7 @@ setQaqcStorageLocation("");
 setQaqcInspectionPhotos([]);
 setReviewSupervisorSignature("");
 supervisorSigRef.current?.clear();
+    await loadRecords();
 alert("QA/QC work inspection submitted successfully.");
   } catch (error) {
 setMessage(`Could not submit inspection: ${error.message}`);
