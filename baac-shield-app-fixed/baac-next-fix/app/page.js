@@ -823,20 +823,16 @@ if (toolboxRes.ok) {
   setToolboxTalks(toolboxData);
 }
 
-const qaqcRes = await fetch(
-  `${SUPABASE_URL}/rest/v1/qaqc_work_inspections?select=*&order=created_at.desc`,
-  {
-    headers: {
-      apikey: SUPABASE_KEY,
-      Authorization: `Bearer ${SUPABASE_KEY}`,
-    },
-  }
-);
+const { data: qaqcData, error: qaqcError } = await supabase
+  .from("qaqc_work_inspections")
+  .select("*")
+  .order("created_at", { ascending: false });
 
-if (qaqcRes.ok) {
-  const qaqcData = await qaqcRes.json();
-  setQaqcWorkInspections(qaqcData);
+if (qaqcError) {
+  throw qaqcError;
 }
+
+setQaqcWorkInspections(qaqcData || []);
             
     } catch (error) {
       setMessage(`Could not load records from database: ${error.message}`);
