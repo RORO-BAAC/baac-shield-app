@@ -11105,9 +11105,11 @@ setHazardDueDate(report.due_date || "");
       <button
         key={inspectionType}
         type="button"
-          onClick={() => {
- if (inspectionType === "Work Inspection") {
-  setQaqcInspectionType("work-inspection");
+         onClick={() => {
+  if (inspectionType === "Work Inspection") {
+    setQaqcInspectionType("work-inspection");
+  } else if (inspectionType === "Work Inspection Records") {
+    setQaqcInspectionType("work-inspection-records");
   } else {
     alert(`${inspectionType} form is the next build step.`);
   }
