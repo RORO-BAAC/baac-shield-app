@@ -11567,6 +11567,9 @@ onChange={(e) =>
 <div style={{ marginTop: 8, color: "#334155" }}>
   Worksite: {inspection.inspection_location || "-"}
 </div>
+  <div style={{ color: "#334155" }}>
+  Work Type: {inspection.work_type || "-"}
+</div>
       <div style={{ marginTop: 8, color: "#334155" }}>
         Date: {inspection.inspection_date || "-"}
       </div>
