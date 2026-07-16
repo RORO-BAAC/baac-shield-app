@@ -394,6 +394,7 @@ const [qaqcManufacturer, setQaqcManufacturer] = useState("");
 const [qaqcStorageLocation, setQaqcStorageLocation] = useState("");
   const [qaqcInspectionPhotos, setQaqcInspectionPhotos] = useState([]);
   const [qaqcWorkInspections, setQaqcWorkInspections] = useState([]);
+  const [selectedQaqcInspection, setSelectedQaqcInspection] = useState(null);
  const [qaqcItemDescription, setQaqcItemDescription] = useState("");
 const [qaqcItemCode, setQaqcItemCode] = useState("");
 const [qaqcQuantityOrdered, setQaqcQuantityOrdered] = useState("");
