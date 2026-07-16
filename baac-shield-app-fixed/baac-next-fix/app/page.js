@@ -11637,7 +11637,26 @@ onChange={(e) =>
   <strong>Inspection Notes:</strong>{" "}
   {selectedQaqcInspection.inspection_notes || "-"}
 </p>
-  {selectedQaqcInspection.photo_urls && (
+  {selectedQaqcInspection.inspector_signature && (
+  <div style={{ marginTop: 16 }}>
+    <strong>Inspector Signature:</strong>
+
+    <div style={{ marginTop: 10 }}>
+      <img
+        src={selectedQaqcInspection.inspector_signature}
+        alt="Inspector signature"
+        style={{
+          width: "100%",
+          maxWidth: 360,
+          borderRadius: 10,
+          border: "1px solid #cbd5e1",
+          background: "white",
+        }}
+      />
+    </div>
+  </div>
+)}
+{selectedQaqcInspection.photo_urls && (
   <div style={{ marginTop: 16 }}>
     <strong>Inspection Photos:</strong>
 
