@@ -11603,7 +11603,12 @@ onChange={(e) =>
       <strong>Date:</strong>{" "}
       {selectedQaqcInspection.inspection_date || "-"}
     </p>
-
+<p>
+  <strong>Submitted:</strong>{" "}
+  {selectedQaqcInspection.created_at
+    ? new Date(selectedQaqcInspection.created_at).toLocaleString()
+    : "-"}
+</p>
     <p>
       <strong>Inspection Result:</strong>{" "}
       {selectedQaqcInspection.inspection_result || "-"}
