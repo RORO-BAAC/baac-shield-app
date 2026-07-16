@@ -11543,6 +11543,78 @@ onChange={(e) =>
         <p style={{ color: "#64748b", margin: 0 }}>
           {qaqcWorkInspections.length} inspection record(s)
         </p>
+            {selectedQaqcInspection && (
+  <div
+    style={{
+      marginTop: 20,
+      padding: 18,
+      borderRadius: 14,
+      border: "2px solid #123d82",
+      background: "#f8fafc",
+    }}
+  >
+    <button
+      type="button"
+      onClick={() => setSelectedQaqcInspection(null)}
+      style={{
+        padding: "8px 12px",
+        borderRadius: 8,
+        border: "1px solid #cbd5e1",
+        background: "white",
+        color: "#123d82",
+        fontWeight: "bold",
+        cursor: "pointer",
+        marginBottom: 14,
+      }}
+    >
+      Close Full Report
+    </button>
+
+    <h2 style={{ margin: "0 0 12px", color: "#0f2f63" }}>
+      Full Work Inspection Report
+    </h2>
+
+    <p>
+      <strong>Project:</strong>{" "}
+      {projects.find(
+        (project) =>
+          String(project.id) === String(selectedQaqcInspection.project_id)
+      )?.name ||
+        selectedQaqcInspection.project_id ||
+        "-"}
+    </p>
+
+    <p>
+      <strong>Worksite:</strong>{" "}
+      {selectedQaqcInspection.inspection_location || "-"}
+    </p>
+
+    <p>
+      <strong>Work Type:</strong>{" "}
+      {selectedQaqcInspection.work_type || "-"}
+    </p>
+
+    <p>
+      <strong>Inspector:</strong>{" "}
+      {selectedQaqcInspection.inspector_name || "-"}
+    </p>
+
+    <p>
+      <strong>Date:</strong>{" "}
+      {selectedQaqcInspection.inspection_date || "-"}
+    </p>
+
+    <p>
+      <strong>Inspection Result:</strong>{" "}
+      {selectedQaqcInspection.inspection_result || "-"}
+    </p>
+
+    <p>
+      <strong>Status:</strong>{" "}
+      {selectedQaqcInspection.inspection_status || "-"}
+    </p>
+  </div>
+)}
             <div
   style={{
     display: "grid",
