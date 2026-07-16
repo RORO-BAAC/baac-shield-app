@@ -11551,15 +11551,17 @@ onChange={(e) =>
   }}
 >
   {qaqcWorkInspections.map((inspection) => (
-    <div
-      key={inspection.id}
-      style={{
-        border: "1px solid #e2e8f0",
-        borderRadius: 12,
-        padding: 16,
-        background: "#f8fafc",
-      }}
-    >
+  <div
+  key={inspection.id}
+  onClick={() => setSelectedQaqcInspection(inspection)}
+  style={{
+    border: "1px solid #e2e8f0",
+    borderRadius: 12,
+    padding: 16,
+    background: "#f8fafc",
+    cursor: "pointer",
+  }}
+>
       <strong style={{ color: "#0f2f63" }}>
 {projects.find(
   (project) => String(project.id) === String(inspection.project_id)
