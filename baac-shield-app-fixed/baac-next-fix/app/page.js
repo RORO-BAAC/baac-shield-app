@@ -11637,6 +11637,37 @@ onChange={(e) =>
   <strong>Inspection Notes:</strong>{" "}
   {selectedQaqcInspection.inspection_notes || "-"}
 </p>
+  {selectedQaqcInspection.photo_urls && (
+  <div style={{ marginTop: 16 }}>
+    <strong>Inspection Photos:</strong>
+
+    <div
+      style={{
+        display: "grid",
+        gap: 12,
+        marginTop: 10,
+      }}
+    >
+      {selectedQaqcInspection.photo_urls
+        .split(",")
+        .map((photoUrl) => photoUrl.trim())
+        .filter(Boolean)
+        .map((photoUrl, index) => (
+          <img
+            key={index}
+            src={photoUrl}
+            alt={`Inspection photo ${index + 1}`}
+            style={{
+              width: "100%",
+              maxWidth: 420,
+              borderRadius: 12,
+              border: "1px solid #cbd5e1",
+            }}
+          />
+        ))}
+    </div>
+  </div>
+)}
   </div>
 )}
             <div
