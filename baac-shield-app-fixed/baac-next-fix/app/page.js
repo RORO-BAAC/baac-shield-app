@@ -10122,12 +10122,13 @@ setHazardDueDate(report.due_date || "");
     >
       {[
         ["Worker Forms", records.length],
-        ["FLRAs", flraRecords.length],
-        ["Toolbox Talks", toolboxTalks.length],
-        ["Hazard Reports", hazardReports.length],
-        ["COR Actions", corActions.length],
-        ["Fleet Defects", fleetDefects.length],
-        ["RPAS Records", rpasOperations.length],
+  ["FLRAs", flraRecords.length],
+  ["Toolbox Talks", toolboxTalks.length],
+  ["Hazard Reports", hazardReports.length],
+  ["COR Actions", corActions.length],
+  ["Fleet Defects", fleetDefects.length],
+  ["RPAS Records", rpasOperations.length],
+  ["QA/QC Work Inspections", qaqcWorkInspections.length],
       ].map(([label, count]) => (
         <div
           key={label}
