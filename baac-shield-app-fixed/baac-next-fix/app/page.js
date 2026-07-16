@@ -11626,7 +11626,22 @@ onChange={(e) =>
     <h2 style={{ margin: "0 0 12px", color: "#0f2f63" }}>
       Full Work Inspection Report
     </h2>
-
+<button
+  type="button"
+  onClick={() => downloadQaqcInspectionPdf(selectedQaqcInspection)}
+  style={{
+    padding: "10px 14px",
+    borderRadius: 10,
+    border: "none",
+    background: "#123d82",
+    color: "white",
+    fontWeight: "bold",
+    cursor: "pointer",
+    marginBottom: 16,
+  }}
+>
+  Download PDF
+</button>
     <p>
       <strong>Project:</strong>{" "}
       {projects.find(
