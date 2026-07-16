@@ -11613,6 +11613,30 @@ onChange={(e) =>
       <strong>Status:</strong>{" "}
       {selectedQaqcInspection.inspection_status || "-"}
     </p>
+      <p>
+  <strong>Contractor / Crew:</strong>{" "}
+  {selectedQaqcInspection.contractor_crew || "-"}
+</p>
+
+<p>
+  <strong>Work Inspected:</strong>{" "}
+  {selectedQaqcInspection.work_inspected || "-"}
+</p>
+
+<p>
+  <strong>Deficiency Details:</strong>{" "}
+  {selectedQaqcInspection.deficiency_details || "-"}
+</p>
+
+<p>
+  <strong>Corrective Action Assigned To:</strong>{" "}
+  {selectedQaqcInspection.corrective_action_assigned_to || "-"}
+</p>
+
+<p>
+  <strong>Inspection Notes:</strong>{" "}
+  {selectedQaqcInspection.inspection_notes || "-"}
+</p>
   </div>
 )}
             <div
