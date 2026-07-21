@@ -405,6 +405,8 @@ const [qaqcAcceptanceStatus, setQaqcAcceptanceStatus] = useState("");
   
   const [searchTerm, setSearchTerm] = useState("");
   const [recordsCenterSearch, setRecordsCenterSearch] = useState("");
+  const [qaqcStartDateFilter, setQaqcStartDateFilter] = useState("");
+const [qaqcEndDateFilter, setQaqcEndDateFilter] = useState("");
   const [statusFilter, setStatusFilter] = useState("All");
   const [riskFilter, setRiskFilter] = useState("All");
   const [stopWorkOnly, setStopWorkOnly] = useState(false);
