@@ -870,6 +870,17 @@ if (qaqcError) {
 }
 
 setQaqcWorkInspections(qaqcData || []);
+
+      const { data: qaqcDuctData, error: qaqcDuctError } = await supabase
+  .from("qaqc_duct_pathway_inspections")
+  .select("*")
+  .order("created_at", { ascending: false });
+
+if (qaqcDuctError) {
+  throw qaqcDuctError;
+}
+
+setQaqcDuctInspections(qaqcDuctData || []);
             
     } catch (error) {
       setMessage(`Could not load records from database: ${error.message}`);
