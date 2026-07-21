@@ -395,6 +395,40 @@ const [qaqcStorageLocation, setQaqcStorageLocation] = useState("");
   const [qaqcInspectionPhotos, setQaqcInspectionPhotos] = useState([]);
   const [qaqcWorkInspections, setQaqcWorkInspections] = useState([]);
   const [selectedQaqcInspection, setSelectedQaqcInspection] = useState(null);
+  const [qaqcDuctInspections, setQaqcDuctInspections] = useState([]);
+const [selectedQaqcDuctInspection, setSelectedQaqcDuctInspection] = useState(null);
+
+const [qaqcDuctProjectId, setQaqcDuctProjectId] = useState("");
+const [qaqcDuctLocation, setQaqcDuctLocation] = useState("");
+const [qaqcDuctDate, setQaqcDuctDate] = useState("");
+const [qaqcDuctInspector, setQaqcDuctInspector] = useState("");
+
+const [qaqcDuctRunId, setQaqcDuctRunId] = useState("");
+const [qaqcPathwayType, setQaqcPathwayType] = useState("");
+const [qaqcConduitSize, setQaqcConduitSize] = useState("");
+const [qaqcConduitQuantity, setQaqcConduitQuantity] = useState("");
+const [qaqcFromLocation, setQaqcFromLocation] = useState("");
+const [qaqcToLocation, setQaqcToLocation] = useState("");
+
+const [qaqcTrenchDepth, setQaqcTrenchDepth] = useState("");
+const [qaqcTrenchWidth, setQaqcTrenchWidth] = useState("");
+const [qaqcBeddingMaterial, setQaqcBeddingMaterial] = useState("");
+const [qaqcWarningTapeInstalled, setQaqcWarningTapeInstalled] = useState("");
+const [qaqcTracerWireInstalled, setQaqcTracerWireInstalled] = useState("");
+
+const [qaqcBendsSweepsAcceptable, setQaqcBendsSweepsAcceptable] = useState("");
+const [qaqcMandrelTestCompleted, setQaqcMandrelTestCompleted] = useState("");
+const [qaqcPullStringInstalled, setQaqcPullStringInstalled] = useState("");
+const [qaqcDuctPlugsInstalled, setQaqcDuctPlugsInstalled] = useState("");
+const [qaqcVaultPullboxCondition, setQaqcVaultPullboxCondition] = useState("");
+
+const [qaqcDuctResult, setQaqcDuctResult] = useState("");
+const [qaqcDuctDeficiencies, setQaqcDuctDeficiencies] = useState("");
+const [qaqcDuctCorrectiveActionAssignedTo, setQaqcDuctCorrectiveActionAssignedTo] = useState("");
+const [qaqcDuctNotes, setQaqcDuctNotes] = useState("");
+const [qaqcDuctStatus, setQaqcDuctStatus] = useState("");
+
+const [qaqcDuctPhotos, setQaqcDuctPhotos] = useState([]);
  const [qaqcItemDescription, setQaqcItemDescription] = useState("");
 const [qaqcItemCode, setQaqcItemCode] = useState("");
 const [qaqcQuantityOrdered, setQaqcQuantityOrdered] = useState("");
