@@ -10838,6 +10838,46 @@ setHazardDueDate(report.due_date || "");
   </section>
    <section>
     <h3 style={{ marginBottom: 10 }}>QA/QC Work Inspections</h3>
+      <div
+  style={{
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
+    gap: 10,
+    marginBottom: 12,
+  }}
+>
+  <label>
+    Start Date
+    <input
+      type="date"
+      value={qaqcStartDateFilter}
+      onChange={(e) => setQaqcStartDateFilter(e.target.value)}
+      style={{
+        width: "100%",
+        padding: 10,
+        borderRadius: 10,
+        border: "1px solid #cbd5e1",
+        marginTop: 4,
+      }}
+    />
+  </label>
+
+  <label>
+    End Date
+    <input
+      type="date"
+      value={qaqcEndDateFilter}
+      onChange={(e) => setQaqcEndDateFilter(e.target.value)}
+      style={{
+        width: "100%",
+        padding: 10,
+        borderRadius: 10,
+        border: "1px solid #cbd5e1",
+        marginTop: 4,
+      }}
+    />
+  </label>
+</div>
 <button
   type="button"
   onClick={exportQaqcInspectionsCsv}
