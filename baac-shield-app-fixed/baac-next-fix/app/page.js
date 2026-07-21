@@ -10837,7 +10837,22 @@ setHazardDueDate(report.due_date || "");
   </section>
    <section>
     <h3 style={{ marginBottom: 10 }}>QA/QC Work Inspections</h3>
-
+<button
+  type="button"
+  onClick={exportQaqcInspectionsCsv}
+  style={{
+    padding: "10px 14px",
+    borderRadius: 10,
+    border: "none",
+    background: "#123d82",
+    color: "white",
+    fontWeight: "bold",
+    cursor: "pointer",
+    marginBottom: 12,
+  }}
+>
+  Export QA/QC CSV
+</button>
     <div style={{ display: "grid", gap: 10 }}>
       {qaqcWorkInspections
         .filter((inspection) => {
