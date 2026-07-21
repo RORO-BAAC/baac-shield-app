@@ -10770,6 +10770,109 @@ setHazardDueDate(report.due_date || "");
       )}
     </div>
   </section>
+   <section>
+    <h3 style={{ marginBottom: 10 }}>QA/QC Work Inspections</h3>
+
+    <div style={{ display: "grid", gap: 10 }}>
+      {qaqcWorkInspections
+        .filter((inspection) => {
+          const q = recordsCenterSearch.trim().toLowerCase();
+
+          const projectName =
+            projects.find(
+              (project) => String(project.id) === String(inspection.project_id)
+            )?.name || "";
+
+          return (
+            !q ||
+            projectName.toLowerCase().includes(q) ||
+            inspection.inspection_location?.toLowerCase().includes(q) ||
+            inspection.work_type?.toLowerCase().includes(q) ||
+            inspection.contractor_crew?.toLowerCase().includes(q) ||
+            inspection.inspector_name?.toLowerCase().includes(q) ||
+            inspection.inspection_result?.toLowerCase().includes(q) ||
+            inspection.inspection_status?.toLowerCase().includes(q)
+          );
+        })
+        .slice(0, 10)
+        .map((inspection) => {
+          const projectName =
+            projects.find(
+              (project) => String(project.id) === String(inspection.project_id)
+            )?.name ||
+            inspection.project_id ||
+            "No Project";
+
+          return (
+            <div
+              key={`qaqc-${inspection.id}`}
+              style={{
+                padding: 14,
+                borderRadius: 12,
+                border: "1px solid #bfdbfe",
+                background: "#eff6ff",
+              }}
+            >
+              <div style={{ fontWeight: "bold" }}>
+                {projectName} — {inspection.inspection_date || "-"}
+              </div>
+
+              <div style={{ marginTop: 4, fontSize: 13, color: "#475569" }}>
+                Worksite: {inspection.inspection_location || "-"} | Work Type:{" "}
+                {inspection.work_type || "-"}
+              </div>
+
+              <div style={{ marginTop: 4, fontSize: 13, color: "#475569" }}>
+                Inspector: {inspection.inspector_name || "-"} | Result:{" "}
+                {inspection.inspection_result || "-"} | Status:{" "}
+                {inspection.inspection_status || "-"}
+              </div>
+
+              <button
+                type="button"
+                onClick={() => downloadQaqcInspectionPdf(inspection)}
+                style={{
+                  marginTop: 10,
+                  padding: "8px 12px",
+                  borderRadius: 10,
+                  border: "none",
+                  background: "#123d82",
+                  color: "white",
+                  fontWeight: "bold",
+                  cursor: "pointer",
+                }}
+              >
+                Download PDF
+              </button>
+            </div>
+          );
+        })}
+
+      {qaqcWorkInspections.filter((inspection) => {
+        const q = recordsCenterSearch.trim().toLowerCase();
+
+        const projectName =
+          projects.find(
+            (project) => String(project.id) === String(inspection.project_id)
+          )?.name || "";
+
+        return (
+          !q ||
+          projectName.toLowerCase().includes(q) ||
+          inspection.inspection_location?.toLowerCase().includes(q) ||
+          inspection.work_type?.toLowerCase().includes(q) ||
+          inspection.contractor_crew?.toLowerCase().includes(q) ||
+          inspection.inspector_name?.toLowerCase().includes(q) ||
+          inspection.inspection_result?.toLowerCase().includes(q) ||
+          inspection.inspection_status?.toLowerCase().includes(q)
+        );
+      }).length === 0 && (
+        <div style={{ color: "#64748b" }}>
+          No QA/QC work inspection records found.
+        </div>
+      )}
+    </div>
+  </section>     
 </div>
 </div>
 )}
