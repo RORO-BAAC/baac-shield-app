@@ -3949,6 +3949,71 @@ function downloadQaqcInspectionPdf(inspection) {
       y = 20;
     }
 
+    function exportQaqcInspectionsCsv() {
+  const rows = [
+    [
+      "ID",
+      "Project",
+      "Worksite",
+      "Work Type",
+      "Contractor / Crew",
+      "Inspection Date",
+      "Submitted",
+      "Inspector",
+      "Result",
+      "Status",
+      "Work Inspected",
+      "Deficiency Details",
+      "Corrective Action Assigned To",
+      "Inspection Notes",
+    ],
+    ...qaqcWorkInspections.map((inspection) => {
+      const projectName =
+        projects.find(
+          (project) => String(project.id) === String(inspection.project_id)
+        )?.name ||
+        inspection.project_id ||
+        "";
+
+      return [
+        inspection.id,
+        projectName,
+        inspection.inspection_location,
+        inspection.work_type,
+        inspection.contractor_crew,
+        inspection.inspection_date,
+        inspection.created_at
+          ? new Date(inspection.created_at).toLocaleString()
+          : "",
+        inspection.inspector_name,
+        inspection.inspection_result,
+        inspection.inspection_status,
+        inspection.work_inspected,
+        inspection.deficiency_details,
+        inspection.corrective_action_assigned_to,
+        inspection.inspection_notes,
+      ];
+    }),
+  ];
+
+  const escapeCsv = (value) =>
+    `"${String(value ?? "").replace(/"/g, '""')}"`;
+
+  const csv = rows
+    .map((row) => row.map(escapeCsv).join(","))
+    .join("\n");
+
+  const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+  const url = URL.createObjectURL(blob);
+
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = "qaqc-work-inspections.csv";
+  link.click();
+
+  URL.revokeObjectURL(url);
+}
+
     doc.setFontSize(11);
     const text = `${label}: ${value || "-"}`;
     const lines = doc.splitTextToSize(text, 180);
