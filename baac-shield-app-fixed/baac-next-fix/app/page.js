@@ -10896,25 +10896,32 @@ setHazardDueDate(report.due_date || "");
 </button>
     <div style={{ display: "grid", gap: 10 }}>
       {qaqcWorkInspections
-        .filter((inspection) => {
-          const q = recordsCenterSearch.trim().toLowerCase();
+       .filter((inspection) => {
+  const q = recordsCenterSearch.trim().toLowerCase();
 
-          const projectName =
-            projects.find(
-              (project) => String(project.id) === String(inspection.project_id)
-            )?.name || "";
+  const projectName =
+    projects.find(
+      (project) => String(project.id) === String(inspection.project_id)
+    )?.name || "";
 
-          return (
-            !q ||
-            projectName.toLowerCase().includes(q) ||
-            inspection.inspection_location?.toLowerCase().includes(q) ||
-            inspection.work_type?.toLowerCase().includes(q) ||
-            inspection.contractor_crew?.toLowerCase().includes(q) ||
-            inspection.inspector_name?.toLowerCase().includes(q) ||
-            inspection.inspection_result?.toLowerCase().includes(q) ||
-            inspection.inspection_status?.toLowerCase().includes(q)
-          );
-        })
+  const inspectionDate = inspection.inspection_date || "";
+  const matchesStartDate =
+    !qaqcStartDateFilter || inspectionDate >= qaqcStartDateFilter;
+  const matchesEndDate =
+    !qaqcEndDateFilter || inspectionDate <= qaqcEndDateFilter;
+
+  const matchesSearch =
+    !q ||
+    projectName.toLowerCase().includes(q) ||
+    inspection.inspection_location?.toLowerCase().includes(q) ||
+    inspection.work_type?.toLowerCase().includes(q) ||
+    inspection.contractor_crew?.toLowerCase().includes(q) ||
+    inspection.inspector_name?.toLowerCase().includes(q) ||
+    inspection.inspection_result?.toLowerCase().includes(q) ||
+    inspection.inspection_status?.toLowerCase().includes(q);
+
+  return matchesStartDate && matchesEndDate && matchesSearch;
+})
         .slice(0, 10)
         .map((inspection) => {
           const projectName =
