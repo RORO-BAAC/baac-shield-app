@@ -3992,7 +3992,17 @@ function downloadQaqcInspectionPdf(inspection) {
       "Corrective Action Assigned To",
       "Inspection Notes",
     ],
-    ...qaqcWorkInspections.map((inspection) => {
+...qaqcWorkInspections
+  .filter((inspection) => {
+    const inspectionDate = inspection.inspection_date || "";
+    const matchesStartDate =
+      !qaqcStartDateFilter || inspectionDate >= qaqcStartDateFilter;
+    const matchesEndDate =
+      !qaqcEndDateFilter || inspectionDate <= qaqcEndDateFilter;
+
+    return matchesStartDate && matchesEndDate;
+  })
+  .map((inspection) => {
       const projectName =
         projects.find(
           (project) => String(project.id) === String(inspection.project_id)
