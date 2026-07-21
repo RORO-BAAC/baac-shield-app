@@ -10904,6 +10904,25 @@ setHazardDueDate(report.due_date || "");
 >
   Export QA/QC CSV
 </button>
+    <button
+  type="button"
+  onClick={() => {
+    setQaqcStartDateFilter("");
+    setQaqcEndDateFilter("");
+  }}
+  style={{
+    padding: "10px 14px",
+    borderRadius: 10,
+    border: "1px solid #cbd5e1",
+    background: "white",
+    color: "#123d82",
+    fontWeight: "bold",
+    cursor: "pointer",
+    marginBottom: 12,
+  }}
+>
+  Clear QA/QC Filters
+</button>
     <div style={{ display: "grid", gap: 10 }}>
       {qaqcWorkInspections
        .filter((inspection) => {
