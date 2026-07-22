@@ -4950,6 +4950,96 @@ alert(`Could not submit inspection: ${error.message}`);
     setLoading(false);
   }
 }
+
+async function submitQaqcDuctInspection() {
+  setLoading(true);
+  setMessage("");
+
+  try {
+    const uploadedPhotoUrls = await uploadPhotosToSupabase(qaqcDuctPhotos);
+
+    const { error } = await supabase
+      .from("qaqc_duct_pathway_inspections")
+      .insert([
+        {
+          project_id: qaqcDuctProjectId,
+          inspection_location: qaqcDuctLocation,
+          inspection_date: qaqcDuctDate || null,
+          inspector_name: qaqcDuctInspector,
+
+          duct_run_id: qaqcDuctRunId,
+          pathway_type: qaqcPathwayType,
+          conduit_size: qaqcConduitSize,
+          conduit_quantity: qaqcConduitQuantity,
+          from_location: qaqcFromLocation,
+          to_location: qaqcToLocation,
+
+          trench_depth: qaqcTrenchDepth,
+          trench_width: qaqcTrenchWidth,
+          bedding_material: qaqcBeddingMaterial,
+          warning_tape_installed: qaqcWarningTapeInstalled,
+          tracer_wire_installed: qaqcTracerWireInstalled,
+
+          bends_sweeps_acceptable: qaqcBendsSweepsAcceptable,
+          mandrel_test_completed: qaqcMandrelTestCompleted,
+          pull_string_installed: qaqcPullStringInstalled,
+          duct_plugs_installed: qaqcDuctPlugsInstalled,
+          vault_pullbox_condition: qaqcVaultPullboxCondition,
+
+          inspection_result: qaqcDuctResult,
+          deficiency_details: qaqcDuctDeficiencies,
+          corrective_action_assigned_to: qaqcDuctCorrectiveActionAssignedTo,
+          inspection_notes: qaqcDuctNotes,
+          inspection_status: qaqcDuctStatus,
+
+          photo_urls: uploadedPhotoUrls.join(", "),
+          inspector_signature: reviewSupervisorSignature,
+        },
+      ]);
+
+    if (error) throw error;
+
+    setQaqcDuctProjectId("");
+    setQaqcDuctLocation("");
+    setQaqcDuctDate("");
+    setQaqcDuctInspector("");
+    setQaqcDuctRunId("");
+    setQaqcPathwayType("");
+    setQaqcConduitSize("");
+    setQaqcConduitQuantity("");
+    setQaqcFromLocation("");
+    setQaqcToLocation("");
+    setQaqcTrenchDepth("");
+    setQaqcTrenchWidth("");
+    setQaqcBeddingMaterial("");
+    setQaqcWarningTapeInstalled("");
+    setQaqcTracerWireInstalled("");
+    setQaqcBendsSweepsAcceptable("");
+    setQaqcMandrelTestCompleted("");
+    setQaqcPullStringInstalled("");
+    setQaqcDuctPlugsInstalled("");
+    setQaqcVaultPullboxCondition("");
+    setQaqcDuctResult("");
+    setQaqcDuctDeficiencies("");
+    setQaqcDuctCorrectiveActionAssignedTo("");
+    setQaqcDuctNotes("");
+    setQaqcDuctStatus("");
+    setQaqcDuctPhotos([]);
+    setReviewSupervisorSignature("");
+    supervisorSigRef.current?.clear();
+
+    await loadRecords();
+
+    setMessage("Duct / pathway inspection submitted successfully.");
+    alert("Duct / pathway inspection submitted successfully.");
+  } catch (error) {
+    setMessage(`Could not submit duct / pathway inspection: ${error.message}`);
+    alert(`Could not submit duct / pathway inspection: ${error.message}`);
+  } finally {
+    setLoading(false);
+  }
+}
+
   return (
     <main
       style={{
