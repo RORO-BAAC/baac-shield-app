@@ -12261,6 +12261,84 @@ onChange={(e) =>
           QA/QC inspection for duct runs, conduit pathways, trenching, pull boxes,
           vaults, mandrel testing, tracer wire, and installation deficiencies.
         </p>
+            <div
+  style={{
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+    gap: 14,
+    marginTop: 20,
+  }}
+>
+  <label>
+    Project
+    <select
+      value={qaqcDuctProjectId}
+      onChange={(e) => setQaqcDuctProjectId(e.target.value)}
+      style={{
+        width: "100%",
+        padding: 10,
+        borderRadius: 10,
+        border: "1px solid #cbd5e1",
+        marginTop: 4,
+      }}
+    >
+      <option value="">Select project</option>
+      {projects.map((project) => (
+        <option key={project.id} value={project.id}>
+          {project.name}
+        </option>
+      ))}
+    </select>
+  </label>
+
+  <label>
+    Inspection Location
+    <input
+      value={qaqcDuctLocation}
+      onChange={(e) => setQaqcDuctLocation(e.target.value)}
+      placeholder="e.g. 12 Street SW / MH-04 to PB-06"
+      style={{
+        width: "100%",
+        padding: 10,
+        borderRadius: 10,
+        border: "1px solid #cbd5e1",
+        marginTop: 4,
+      }}
+    />
+  </label>
+
+  <label>
+    Inspection Date
+    <input
+      type="date"
+      value={qaqcDuctDate}
+      onChange={(e) => setQaqcDuctDate(e.target.value)}
+      style={{
+        width: "100%",
+        padding: 10,
+        borderRadius: 10,
+        border: "1px solid #cbd5e1",
+        marginTop: 4,
+      }}
+    />
+  </label>
+
+  <label>
+    Inspector Name
+    <input
+      value={qaqcDuctInspector}
+      onChange={(e) => setQaqcDuctInspector(e.target.value)}
+      placeholder="Inspector name"
+      style={{
+        width: "100%",
+        padding: 10,
+        borderRadius: 10,
+        border: "1px solid #cbd5e1",
+        marginTop: 4,
+      }}
+    />
+  </label>
+</div>
       </section>
     </div>
 )}
