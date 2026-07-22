@@ -12669,7 +12669,112 @@ onChange={(e) =>
     </select>
   </label>
 </div>
-      
+      <h2 style={{ marginTop: 24, color: "#0f2f63" }}>
+  Inspection Result / Deficiencies
+</h2>
+
+<div
+  style={{
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+    gap: 14,
+    marginTop: 12,
+  }}
+>
+  <label>
+    Inspection Result
+    <select
+      value={qaqcDuctResult}
+      onChange={(e) => setQaqcDuctResult(e.target.value)}
+      style={{
+        width: "100%",
+        padding: 10,
+        borderRadius: 10,
+        border: "1px solid #cbd5e1",
+        marginTop: 4,
+      }}
+    >
+      <option value="">Select result</option>
+      <option value="Pass">Pass</option>
+      <option value="Pass with Deficiencies">Pass with Deficiencies</option>
+      <option value="Fail">Fail</option>
+      <option value="Reinspection Required">Reinspection Required</option>
+    </select>
+  </label>
+
+  <label>
+    Inspection Status
+    <select
+      value={qaqcDuctStatus}
+      onChange={(e) => setQaqcDuctStatus(e.target.value)}
+      style={{
+        width: "100%",
+        padding: 10,
+        borderRadius: 10,
+        border: "1px solid #cbd5e1",
+        marginTop: 4,
+      }}
+    >
+      <option value="">Select status</option>
+      <option value="Open">Open</option>
+      <option value="Needs Correction">Needs Correction</option>
+      <option value="Corrected">Corrected</option>
+      <option value="Closed">Closed</option>
+    </select>
+  </label>
+
+  <label>
+    Corrective Action Assigned To
+    <input
+      value={qaqcDuctCorrectiveActionAssignedTo}
+      onChange={(e) =>
+        setQaqcDuctCorrectiveActionAssignedTo(e.target.value)
+      }
+      placeholder="Name / crew / subcontractor"
+      style={{
+        width: "100%",
+        padding: 10,
+        borderRadius: 10,
+        border: "1px solid #cbd5e1",
+        marginTop: 4,
+      }}
+    />
+  </label>
+</div>
+
+<label style={{ display: "block", marginTop: 14 }}>
+  Deficiency Details
+  <textarea
+    value={qaqcDuctDeficiencies}
+    onChange={(e) => setQaqcDuctDeficiencies(e.target.value)}
+    placeholder="Describe any deficiencies, failed checks, damaged duct, missing tracer wire, failed mandrel test, pull box issues, etc."
+    rows={4}
+    style={{
+      width: "100%",
+      padding: 10,
+      borderRadius: 10,
+      border: "1px solid #cbd5e1",
+      marginTop: 4,
+    }}
+  />
+</label>
+
+<label style={{ display: "block", marginTop: 14 }}>
+  Inspection Notes
+  <textarea
+    value={qaqcDuctNotes}
+    onChange={(e) => setQaqcDuctNotes(e.target.value)}
+    placeholder="Additional QA/QC notes, observations, measurements, or client comments."
+    rows={4}
+    style={{
+      width: "100%",
+      padding: 10,
+      borderRadius: 10,
+      border: "1px solid #cbd5e1",
+      marginTop: 4,
+    }}
+  />
+</label>
       </section>
     </div>
 )}
