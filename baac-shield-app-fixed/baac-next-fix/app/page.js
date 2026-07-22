@@ -12339,6 +12339,123 @@ onChange={(e) =>
     />
   </label>
 </div>
+   
+  <h2 style={{ marginTop: 24, color: "#0f2f63" }}>
+  Duct / Pathway Details
+</h2>
+
+<div
+  style={{
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+    gap: 14,
+    marginTop: 12,
+  }}
+>
+  <label>
+    Duct Run ID / Segment
+    <input
+      value={qaqcDuctRunId}
+      onChange={(e) => setQaqcDuctRunId(e.target.value)}
+      placeholder="e.g. DR-001 / MH-04 to PB-06"
+      style={{
+        width: "100%",
+        padding: 10,
+        borderRadius: 10,
+        border: "1px solid #cbd5e1",
+        marginTop: 4,
+      }}
+    />
+  </label>
+
+  <label>
+    Pathway Type
+    <select
+      value={qaqcPathwayType}
+      onChange={(e) => setQaqcPathwayType(e.target.value)}
+      style={{
+        width: "100%",
+        padding: 10,
+        borderRadius: 10,
+        border: "1px solid #cbd5e1",
+        marginTop: 4,
+      }}
+    >
+      <option value="">Select type</option>
+      <option value="Underground Duct">Underground Duct</option>
+      <option value="Conduit">Conduit</option>
+      <option value="Innerduct">Innerduct</option>
+      <option value="Aerial Pathway">Aerial Pathway</option>
+      <option value="Building Pathway">Building Pathway</option>
+      <option value="Other">Other</option>
+    </select>
+  </label>
+
+  <label>
+    Conduit Size
+    <input
+      value={qaqcConduitSize}
+      onChange={(e) => setQaqcConduitSize(e.target.value)}
+      placeholder="e.g. 2 inch / 50 mm"
+      style={{
+        width: "100%",
+        padding: 10,
+        borderRadius: 10,
+        border: "1px solid #cbd5e1",
+        marginTop: 4,
+      }}
+    />
+  </label>
+
+  <label>
+    Conduit Quantity
+    <input
+      value={qaqcConduitQuantity}
+      onChange={(e) => setQaqcConduitQuantity(e.target.value)}
+      placeholder="e.g. 4 ducts"
+      style={{
+        width: "100%",
+        padding: 10,
+        borderRadius: 10,
+        border: "1px solid #cbd5e1",
+        marginTop: 4,
+      }}
+    />
+  </label>
+
+  <label>
+    From Location
+    <input
+      value={qaqcFromLocation}
+      onChange={(e) => setQaqcFromLocation(e.target.value)}
+      placeholder="Start point"
+      style={{
+        width: "100%",
+        padding: 10,
+        borderRadius: 10,
+        border: "1px solid #cbd5e1",
+        marginTop: 4,
+      }}
+    />
+  </label>
+
+  <label>
+    To Location
+    <input
+      value={qaqcToLocation}
+      onChange={(e) => setQaqcToLocation(e.target.value)}
+      placeholder="End point"
+      style={{
+        width: "100%",
+        padding: 10,
+        borderRadius: 10,
+        border: "1px solid #cbd5e1",
+        marginTop: 4,
+      }}
+    />
+  </label>
+</div>    
+      
       </section>
     </div>
 )}
