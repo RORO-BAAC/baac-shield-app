@@ -12455,7 +12455,106 @@ onChange={(e) =>
     />
   </label>
 </div>    
-      
+      <h2 style={{ marginTop: 24, color: "#0f2f63" }}>
+  Trenching / Installation Checks
+</h2>
+
+<div
+  style={{
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+    gap: 14,
+    marginTop: 12,
+  }}
+>
+  <label>
+    Trench Depth
+    <input
+      value={qaqcTrenchDepth}
+      onChange={(e) => setQaqcTrenchDepth(e.target.value)}
+      placeholder="e.g. 900 mm / 36 in"
+      style={{
+        width: "100%",
+        padding: 10,
+        borderRadius: 10,
+        border: "1px solid #cbd5e1",
+        marginTop: 4,
+      }}
+    />
+  </label>
+
+  <label>
+    Trench Width
+    <input
+      value={qaqcTrenchWidth}
+      onChange={(e) => setQaqcTrenchWidth(e.target.value)}
+      placeholder="e.g. 300 mm / 12 in"
+      style={{
+        width: "100%",
+        padding: 10,
+        borderRadius: 10,
+        border: "1px solid #cbd5e1",
+        marginTop: 4,
+      }}
+    />
+  </label>
+
+  <label>
+    Bedding Material
+    <input
+      value={qaqcBeddingMaterial}
+      onChange={(e) => setQaqcBeddingMaterial(e.target.value)}
+      placeholder="e.g. sand / screened material"
+      style={{
+        width: "100%",
+        padding: 10,
+        borderRadius: 10,
+        border: "1px solid #cbd5e1",
+        marginTop: 4,
+      }}
+    />
+  </label>
+
+  <label>
+    Warning Tape Installed
+    <select
+      value={qaqcWarningTapeInstalled}
+      onChange={(e) => setQaqcWarningTapeInstalled(e.target.value)}
+      style={{
+        width: "100%",
+        padding: 10,
+        borderRadius: 10,
+        border: "1px solid #cbd5e1",
+        marginTop: 4,
+      }}
+    >
+      <option value="">Select</option>
+      <option value="Yes">Yes</option>
+      <option value="No">No</option>
+      <option value="N/A">N/A</option>
+    </select>
+  </label>
+
+  <label>
+    Tracer Wire Installed
+    <select
+      value={qaqcTracerWireInstalled}
+      onChange={(e) => setQaqcTracerWireInstalled(e.target.value)}
+      style={{
+        width: "100%",
+        padding: 10,
+        borderRadius: 10,
+        border: "1px solid #cbd5e1",
+        marginTop: 4,
+      }}
+    >
+      <option value="">Select</option>
+      <option value="Yes">Yes</option>
+      <option value="No">No</option>
+      <option value="N/A">N/A</option>
+    </select>
+  </label>
+</div>
       </section>
     </div>
 )}
