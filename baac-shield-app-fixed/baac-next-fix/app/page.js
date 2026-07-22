@@ -12555,6 +12555,121 @@ onChange={(e) =>
     </select>
   </label>
 </div>
+
+<h2 style={{ marginTop: 24, color: "#0f2f63" }}>
+  Duct Acceptance Checks
+</h2>
+
+<div
+  style={{
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+    gap: 14,
+    marginTop: 12,
+  }}
+>
+  <label>
+    Bends / Sweeps Acceptable
+    <select
+      value={qaqcBendsSweepsAcceptable}
+      onChange={(e) => setQaqcBendsSweepsAcceptable(e.target.value)}
+      style={{
+        width: "100%",
+        padding: 10,
+        borderRadius: 10,
+        border: "1px solid #cbd5e1",
+        marginTop: 4,
+      }}
+    >
+      <option value="">Select</option>
+      <option value="Yes">Yes</option>
+      <option value="No">No</option>
+      <option value="N/A">N/A</option>
+    </select>
+  </label>
+
+  <label>
+    Mandrel Test Completed
+    <select
+      value={qaqcMandrelTestCompleted}
+      onChange={(e) => setQaqcMandrelTestCompleted(e.target.value)}
+      style={{
+        width: "100%",
+        padding: 10,
+        borderRadius: 10,
+        border: "1px solid #cbd5e1",
+        marginTop: 4,
+      }}
+    >
+      <option value="">Select</option>
+      <option value="Yes">Yes</option>
+      <option value="No">No</option>
+      <option value="N/A">N/A</option>
+    </select>
+  </label>
+
+  <label>
+    Pull String Installed
+    <select
+      value={qaqcPullStringInstalled}
+      onChange={(e) => setQaqcPullStringInstalled(e.target.value)}
+      style={{
+        width: "100%",
+        padding: 10,
+        borderRadius: 10,
+        border: "1px solid #cbd5e1",
+        marginTop: 4,
+      }}
+    >
+      <option value="">Select</option>
+      <option value="Yes">Yes</option>
+      <option value="No">No</option>
+      <option value="N/A">N/A</option>
+    </select>
+  </label>
+
+  <label>
+    Duct Plugs Installed
+    <select
+      value={qaqcDuctPlugsInstalled}
+      onChange={(e) => setQaqcDuctPlugsInstalled(e.target.value)}
+      style={{
+        width: "100%",
+        padding: 10,
+        borderRadius: 10,
+        border: "1px solid #cbd5e1",
+        marginTop: 4,
+      }}
+    >
+      <option value="">Select</option>
+      <option value="Yes">Yes</option>
+      <option value="No">No</option>
+      <option value="N/A">N/A</option>
+    </select>
+  </label>
+
+  <label>
+    Vault / Pull Box Condition
+    <select
+      value={qaqcVaultPullboxCondition}
+      onChange={(e) => setQaqcVaultPullboxCondition(e.target.value)}
+      style={{
+        width: "100%",
+        padding: 10,
+        borderRadius: 10,
+        border: "1px solid #cbd5e1",
+        marginTop: 4,
+      }}
+    >
+      <option value="">Select</option>
+      <option value="Acceptable">Acceptable</option>
+      <option value="Deficiency Found">Deficiency Found</option>
+      <option value="Not Inspected">Not Inspected</option>
+      <option value="N/A">N/A</option>
+    </select>
+  </label>
+</div>
+      
       </section>
     </div>
 )}
