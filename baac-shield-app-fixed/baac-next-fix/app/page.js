@@ -4852,10 +4852,16 @@ if (!user) {
 
 <button
   onClick={async () => {
-    if (!email.endsWith("@baacconstruction.com")) {
-      alert("Use your BAAC company email.");
-      return;
-    }
+   const allowedSignupDomains = ["@baacconstruction.com", "@baac.com"];
+
+if (
+  !allowedSignupDomains.some((domain) =>
+    email.toLowerCase().endsWith(domain)
+  )
+) {
+  alert("Use your BAAC company email.");
+  return;
+}
 
     const { error } = await supabase.auth.signUp({
       email,
