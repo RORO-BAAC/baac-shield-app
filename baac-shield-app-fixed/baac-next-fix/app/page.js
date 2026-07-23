@@ -12881,10 +12881,7 @@ onChange={(e) =>
     {loading ? "Submitting..." : "Submit Duct / Pathway Inspection"}
   </button>
 </div>
-      </section>
-    </div>
-)}
-
+     )}
 {activeTab === "crm" && (
   <div
     style={{
