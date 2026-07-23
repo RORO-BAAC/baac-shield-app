@@ -12803,28 +12803,86 @@ onChange={(e) =>
 
 <SignatureBox
   sigRef={supervisorSigRef}
-  onSave={setReviewSupervisorSignature}
-/>
-
-<button
-  type="button"
-  disabled={loading}
-  onClick={submitQaqcDuctInspection}
+<div
   style={{
-    marginTop: 24,
-    width: "100%",
-    padding: "14px 16px",
-    borderRadius: 12,
-    border: "none",
-    background: "#123d82",
-    color: "white",
-    fontWeight: "bold",
-    cursor: "pointer",
+    marginTop: 28,
+    padding: 18,
+    background: "#f8fafc",
+    border: "1px solid #cbd5e1",
+    borderRadius: 14,
+    color: "#0f172a",
   }}
 >
-  {loading ? "Submitting..." : "Submit Duct / Pathway Inspection"}
-</button>
-    </div>
+  <h2 style={{ marginTop: 0, color: "#0f2f63" }}>
+    Photos
+  </h2>
+
+  <label
+    style={{
+      display: "block",
+      marginTop: 12,
+      fontWeight: "bold",
+      color: "#0f172a",
+    }}
+  >
+    Upload Inspection Photos
+    <input
+      type="file"
+      multiple
+      accept="image/*"
+      onChange={(e) => setQaqcDuctPhotos(Array.from(e.target.files || []))}
+      style={{
+        display: "block",
+        marginTop: 8,
+        color: "#0f172a",
+      }}
+    />
+  </label>
+
+  {qaqcDuctPhotos.length > 0 && (
+    <p style={{ marginTop: 8, color: "#475569" }}>
+      {qaqcDuctPhotos.length} photo(s) selected.
+    </p>
+  )}
+
+  <h2 style={{ marginTop: 24, color: "#0f2f63" }}>
+    Inspector Signature
+  </h2>
+
+  <div
+    style={{
+      maxWidth: 420,
+      background: "white",
+      padding: 12,
+      borderRadius: 12,
+      border: "1px solid #cbd5e1",
+    }}
+  >
+    <SignatureBox
+      sigRef={supervisorSigRef}
+      onSave={setReviewSupervisorSignature}
+    />
+  </div>
+
+  <button
+    type="button"
+    disabled={loading}
+    onClick={submitQaqcDuctInspection}
+    style={{
+      marginTop: 24,
+      padding: "14px 18px",
+      borderRadius: 12,
+      border: "none",
+      background: "#0f2f63",
+      color: "white",
+      fontWeight: "bold",
+      cursor: "pointer",
+      fontSize: 15,
+    }}
+  >
+    {loading ? "Submitting..." : "Submit Duct / Pathway Inspection"}
+  </button>
+</div>
 )}
 
 {activeTab === "crm" && (
