@@ -12801,8 +12801,6 @@ onChange={(e) =>
   Inspector Signature
 </h2>
 
-<SignatureBox
-  sigRef={supervisorSigRef}
 <div
   style={{
     marginTop: 28,
