@@ -12776,6 +12776,54 @@ onChange={(e) =>
   />
 </label>
       </section>
+    <h2 style={{ marginTop: 24, color: "#0f2f63" }}>
+  Photos
+</h2>
+
+<label style={{ display: "block", marginTop: 12 }}>
+  Upload Inspection Photos
+  <input
+    type="file"
+    multiple
+    accept="image/*"
+    onChange={(e) => setQaqcDuctPhotos(Array.from(e.target.files || []))}
+    style={{ display: "block", marginTop: 8 }}
+  />
+</label>
+
+{qaqcDuctPhotos.length > 0 && (
+  <p style={{ marginTop: 8, color: "#475569" }}>
+    {qaqcDuctPhotos.length} photo(s) selected.
+  </p>
+)}
+
+<h2 style={{ marginTop: 24, color: "#0f2f63" }}>
+  Inspector Signature
+</h2>
+
+<SignatureBox
+  sigRef={supervisorSigRef}
+  onSave={setReviewSupervisorSignature}
+/>
+
+<button
+  type="button"
+  disabled={loading}
+  onClick={submitQaqcDuctInspection}
+  style={{
+    marginTop: 24,
+    width: "100%",
+    padding: "14px 16px",
+    borderRadius: 12,
+    border: "none",
+    background: "#123d82",
+    color: "white",
+    fontWeight: "bold",
+    cursor: "pointer",
+  }}
+>
+  {loading ? "Submitting..." : "Submit Duct / Pathway Inspection"}
+</button>
     </div>
 )}
 
