@@ -12291,7 +12291,21 @@ onChange={(e) =>
       ))}
     </select>
   </label>
-
+<label>
+  Client / Owner
+  <input
+    value={qaqcDuctClientOwner}
+    onChange={(e) => setQaqcDuctClientOwner(e.target.value)}
+    placeholder="e.g. TELUS, Rogers, Bell, City of Calgary, developer, owner"
+    style={{
+      width: "100%",
+      padding: 10,
+      borderRadius: 10,
+      border: "1px solid #cbd5e1",
+      marginTop: 4,
+    }}
+  />
+</label>
   <label>
     Inspection Location
     <input
