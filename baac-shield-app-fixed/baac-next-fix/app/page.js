@@ -4964,6 +4964,7 @@ async function submitQaqcDuctInspection() {
       .insert([
         {
           project_id: qaqcDuctProjectId,
+          client_owner: qaqcDuctClientOwner,
           inspection_location: qaqcDuctLocation,
           inspection_date: qaqcDuctDate || null,
           inspector_name: qaqcDuctInspector,
