@@ -5002,6 +5002,7 @@ async function submitQaqcDuctInspection() {
     if (error) throw error;
 
     setQaqcDuctProjectId("");
+    setQaqcDuctClientOwner("");
     setQaqcDuctLocation("");
     setQaqcDuctDate("");
     setQaqcDuctInspector("");
