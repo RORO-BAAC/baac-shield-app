@@ -12266,6 +12266,61 @@ onChange={(e) =>
         <p style={{ color: "#64748b", margin: 0 }}>
           {qaqcDuctInspections.length} duct / pathway record(s)
         </p>
+            <div
+  style={{
+    display: "grid",
+    gap: 14,
+    marginTop: 20,
+  }}
+>
+  {qaqcDuctInspections.map((inspection) => (
+    <div
+      key={inspection.id}
+      onClick={() => setSelectedQaqcDuctInspection(inspection)}
+      style={{
+        border: "1px solid #e2e8f0",
+        borderRadius: 12,
+        padding: 16,
+        background: "#f8fafc",
+        cursor: "pointer",
+      }}
+    >
+      <strong style={{ color: "#0f2f63" }}>
+        {projects.find(
+          (project) => String(project.id) === String(inspection.project_id)
+        )?.name || inspection.project_id || "No Project"}
+      </strong>
+
+      <div style={{ marginTop: 8, color: "#334155" }}>
+        Client / Owner: {inspection.client_owner || "-"}
+      </div>
+
+      <div style={{ color: "#334155" }}>
+        Location: {inspection.inspection_location || "-"}
+      </div>
+
+      <div style={{ color: "#334155" }}>
+        Duct Run: {inspection.duct_run_id || "-"}
+      </div>
+
+      <div style={{ color: "#334155" }}>
+        Date: {inspection.inspection_date || "-"}
+      </div>
+
+      <div style={{ color: "#334155" }}>
+        Inspector: {inspection.inspector_name || "-"}
+      </div>
+
+      <div style={{ color: "#334155" }}>
+        Result: {inspection.inspection_result || "-"}
+      </div>
+
+      <div style={{ color: "#334155" }}>
+        Status: {inspection.inspection_status || "-"}
+      </div>
+    </div>
+  ))}
+</div>
       </section>
     </div>
 )}
