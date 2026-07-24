@@ -399,6 +399,7 @@ const [qaqcStorageLocation, setQaqcStorageLocation] = useState("");
 const [selectedQaqcDuctInspection, setSelectedQaqcDuctInspection] = useState(null);
 
 const [qaqcDuctProjectId, setQaqcDuctProjectId] = useState("");
+  const [qaqcDuctClientOwner, setQaqcDuctClientOwner] = useState("");
 const [qaqcDuctLocation, setQaqcDuctLocation] = useState("");
 const [qaqcDuctDate, setQaqcDuctDate] = useState("");
 const [qaqcDuctInspector, setQaqcDuctInspector] = useState("");
