@@ -11566,11 +11566,13 @@ setHazardDueDate(report.due_date || "");
     setQaqcInspectionType("work-inspection");
   } else if (inspectionType === "Work Inspection Records") {
     setQaqcInspectionType("work-inspection-records");
-  } else if (inspectionType === "Duct / Pathway Inspection") {
-    setQaqcInspectionType("duct-pathway-inspection");
-  } else {
-    alert(`${inspectionType} form is the next build step.`);
-  }
+ } else if (inspectionType === "Duct / Pathway Inspection") {
+  setQaqcInspectionType("duct-pathway-inspection");
+} else if (inspectionType === "Duct / Pathway Records") {
+  setQaqcInspectionType("duct-pathway-records");
+} else {
+  alert(`${inspectionType} form is the next build step.`);
+}
 }}
         style={{
           textAlign: "left",
