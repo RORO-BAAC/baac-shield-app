@@ -12432,7 +12432,64 @@ onChange={(e) =>
     <p><strong>Deficiency Details:</strong> {selectedQaqcDuctInspection.deficiency_details || "-"}</p>
     <p><strong>Corrective Action Assigned To:</strong> {selectedQaqcDuctInspection.corrective_action_assigned_to || "-"}</p>
     <p><strong>Inspection Notes:</strong> {selectedQaqcDuctInspection.inspection_notes || "-"}</p>
+{selectedQaqcDuctInspection.photo_urls && (
+  <div style={{ marginTop: 18 }}>
+    <h3 style={{ color: "#0f2f63" }}>Inspection Photos</h3>
+
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
+        gap: 12,
+      }}
+    >
+      {selectedQaqcDuctInspection.photo_urls
+        .split(",")
+        .map((url) => url.trim())
+        .filter(Boolean)
+        .map((url, index) => (
+          <a
+            key={index}
+            href={url}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img
+              src={url}
+              alt={`Duct inspection photo ${index + 1}`}
+              style={{
+                width: "100%",
+                maxHeight: 180,
+                objectFit: "cover",
+                borderRadius: 10,
+                border: "1px solid #cbd5e1",
+              }}
+            />
+          </a>
+        ))}
+    </div>
   </div>
+)}
+
+{selectedQaqcDuctInspection.inspector_signature && (
+  <div style={{ marginTop: 18 }}>
+    <h3 style={{ color: "#0f2f63" }}>Inspector Signature</h3>
+    <img
+      src={selectedQaqcDuctInspection.inspector_signature}
+      alt="Inspector signature"
+      style={{
+        maxWidth: 360,
+        width: "100%",
+        background: "white",
+        border: "1px solid #cbd5e1",
+        borderRadius: 10,
+        padding: 10,
+      }}
+    />
+  </div>
+)}
+      </div>
+
 )}
   {qaqcDuctInspections.map((inspection) => (
     <div
