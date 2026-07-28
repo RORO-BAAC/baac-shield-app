@@ -430,6 +430,38 @@ const [qaqcDuctNotes, setQaqcDuctNotes] = useState("");
 const [qaqcDuctStatus, setQaqcDuctStatus] = useState("");
 
 const [qaqcDuctPhotos, setQaqcDuctPhotos] = useState([]);
+  const [qaqcCableInspections, setQaqcCableInspections] = useState([]);
+const [selectedQaqcCableInspection, setSelectedQaqcCableInspection] = useState(null);
+
+const [qaqcCableProjectId, setQaqcCableProjectId] = useState("");
+const [qaqcCableClientOwner, setQaqcCableClientOwner] = useState("");
+const [qaqcCableLocation, setQaqcCableLocation] = useState("");
+const [qaqcCableDate, setQaqcCableDate] = useState("");
+const [qaqcCableInspector, setQaqcCableInspector] = useState("");
+
+const [qaqcCableRunId, setQaqcCableRunId] = useState("");
+const [qaqcCableType, setQaqcCableType] = useState("");
+const [qaqcCableSizeCount, setQaqcCableSizeCount] = useState("");
+const [qaqcCableLength, setQaqcCableLength] = useState("");
+const [qaqcCableFromLocation, setQaqcCableFromLocation] = useState("");
+const [qaqcCableToLocation, setQaqcCableToLocation] = useState("");
+
+const [qaqcCablePlacementMethod, setQaqcCablePlacementMethod] = useState("");
+const [qaqcCablePathwayUsed, setQaqcCablePathwayUsed] = useState("");
+const [qaqcCableCondition, setQaqcCableCondition] = useState("");
+const [qaqcCableBendRadiusAcceptable, setQaqcCableBendRadiusAcceptable] = useState("");
+const [qaqcCableMarkingComplete, setQaqcCableMarkingComplete] = useState("");
+const [qaqcCableSlackLoopInstalled, setQaqcCableSlackLoopInstalled] = useState("");
+const [qaqcCableSupportsAcceptable, setQaqcCableSupportsAcceptable] = useState("");
+const [qaqcCablePullTensionIssue, setQaqcCablePullTensionIssue] = useState("");
+
+const [qaqcCableResult, setQaqcCableResult] = useState("");
+const [qaqcCableDeficiencies, setQaqcCableDeficiencies] = useState("");
+const [qaqcCableCorrectiveActionAssignedTo, setQaqcCableCorrectiveActionAssignedTo] = useState("");
+const [qaqcCableNotes, setQaqcCableNotes] = useState("");
+const [qaqcCableStatus, setQaqcCableStatus] = useState("");
+
+const [qaqcCablePhotos, setQaqcCablePhotos] = useState([]);
  const [qaqcItemDescription, setQaqcItemDescription] = useState("");
 const [qaqcItemCode, setQaqcItemCode] = useState("");
 const [qaqcQuantityOrdered, setQaqcQuantityOrdered] = useState("");
