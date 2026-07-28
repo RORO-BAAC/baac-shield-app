@@ -5157,7 +5157,91 @@ async function submitQaqcDuctInspection() {
     setLoading(false);
   }
 }
+async function submitQaqcCableInspection() {
+  setLoading(true);
+  setMessage("");
 
+  try {
+    const uploadedPhotoUrls = await uploadPhotosToSupabase(qaqcCablePhotos);
+
+    const { error } = await supabase
+      .from("qaqc_cable_placement_inspections")
+      .insert([
+        {
+          project_id: qaqcCableProjectId,
+          client_owner: qaqcCableClientOwner,
+          inspection_location: qaqcCableLocation,
+          inspection_date: qaqcCableDate || null,
+          inspector_name: qaqcCableInspector,
+
+          cable_run_id: qaqcCableRunId,
+          cable_type: qaqcCableType,
+          cable_size_count: qaqcCableSizeCount,
+          cable_length: qaqcCableLength,
+          from_location: qaqcCableFromLocation,
+          to_location: qaqcCableToLocation,
+
+          placement_method: qaqcCablePlacementMethod,
+          pathway_used: qaqcCablePathwayUsed,
+          cable_condition: qaqcCableCondition,
+          bend_radius_acceptable: qaqcCableBendRadiusAcceptable,
+          cable_marking_complete: qaqcCableMarkingComplete,
+          slack_loop_installed: qaqcCableSlackLoopInstalled,
+          cable_supports_acceptable: qaqcCableSupportsAcceptable,
+          pull_tension_issue: qaqcCablePullTensionIssue,
+
+          inspection_result: qaqcCableResult,
+          deficiency_details: qaqcCableDeficiencies,
+          corrective_action_assigned_to: qaqcCableCorrectiveActionAssignedTo,
+          inspection_notes: qaqcCableNotes,
+          inspection_status: qaqcCableStatus,
+
+          photo_urls: uploadedPhotoUrls.join(", "),
+          inspector_signature: reviewSupervisorSignature,
+        },
+      ]);
+
+    if (error) throw error;
+
+    setQaqcCableProjectId("");
+    setQaqcCableClientOwner("");
+    setQaqcCableLocation("");
+    setQaqcCableDate("");
+    setQaqcCableInspector("");
+    setQaqcCableRunId("");
+    setQaqcCableType("");
+    setQaqcCableSizeCount("");
+    setQaqcCableLength("");
+    setQaqcCableFromLocation("");
+    setQaqcCableToLocation("");
+    setQaqcCablePlacementMethod("");
+    setQaqcCablePathwayUsed("");
+    setQaqcCableCondition("");
+    setQaqcCableBendRadiusAcceptable("");
+    setQaqcCableMarkingComplete("");
+    setQaqcCableSlackLoopInstalled("");
+    setQaqcCableSupportsAcceptable("");
+    setQaqcCablePullTensionIssue("");
+    setQaqcCableResult("");
+    setQaqcCableDeficiencies("");
+    setQaqcCableCorrectiveActionAssignedTo("");
+    setQaqcCableNotes("");
+    setQaqcCableStatus("");
+    setQaqcCablePhotos([]);
+    setReviewSupervisorSignature("");
+    supervisorSigRef.current?.clear();
+
+    await loadRecords();
+
+    setMessage("Cable placement inspection submitted successfully.");
+    alert("Cable placement inspection submitted successfully.");
+  } catch (error) {
+    setMessage(`Could not submit cable placement inspection: ${error.message}`);
+    alert(`Could not submit cable placement inspection: ${error.message}`);
+  } finally {
+    setLoading(false);
+  }
+}
   return (
     <main
       style={{
