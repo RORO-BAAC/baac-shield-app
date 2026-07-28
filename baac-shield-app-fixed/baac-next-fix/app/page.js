@@ -11861,6 +11861,7 @@ setHazardDueDate(report.due_date || "");
   "Duct / Pathway Inspection",
         "Duct / Pathway Records",
   "Cable Placement",
+      "Cable Placement Records",
   "Splicing Record",
   "Fibre Testing",
   "Equipment Installation",
