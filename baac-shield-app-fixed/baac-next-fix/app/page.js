@@ -12706,48 +12706,7 @@ onChange={(e) =>
         marginBottom: 24,
       }}
     >
-
-      {activeTab === "qaqc" &&
-  qaqcSection === "telecom" &&
-  qaqcInspectionType === "cable-placement-inspection" && (
-    <div
-      style={{
-        background: "white",
-        padding: 20,
-        borderRadius: 16,
-        border: "1px solid #e2e8f0",
-        boxShadow: "0 2px 10px rgba(15,23,42,0.06)",
-        display: "grid",
-        gap: 14,
-      }}
-    >
-      <button
-        type="button"
-        onClick={() => setQaqcInspectionType("")}
-        style={{
-          width: "fit-content",
-          padding: "8px 12px",
-          borderRadius: 10,
-          border: "1px solid #cbd5e1",
-          background: "white",
-          cursor: "pointer",
-        }}
-      >
-        ← Back to Telecom Inspections
-      </button>
-
-      <h2 style={{ margin: 0, color: "#0f2f63" }}>
-        Cable Placement Inspection
-      </h2>
-
-      <p style={{ marginTop: 0, color: "#64748b" }}>
-        This inspection will track fibre/cable placement, pull/blow method,
-        cable condition, bend radius, slack loops, supports, markings,
-        deficiencies, photos and inspector sign-off.
-      </p>
-    </div>
-  )}
-      
+         
       <section
         style={{
           background: "white",
