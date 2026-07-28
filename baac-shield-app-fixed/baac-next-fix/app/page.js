@@ -13380,6 +13380,24 @@ onChange={(e) =>
                 Full Cable Placement Inspection Report
               </h2>
 
+<button
+  type="button"
+  onClick={() => downloadQaqcCableInspectionPdf(selectedQaqcCableInspection)}
+  style={{
+    padding: "10px 14px",
+    borderRadius: 10,
+    border: "none",
+    background: "#123d82",
+    color: "white",
+    fontWeight: "bold",
+    cursor: "pointer",
+    marginBottom: 16,
+  }}
+>
+  Download PDF
+</button>
+                  
+
               <p>
                 <strong>Project:</strong>{" "}
                 {projects.find(
@@ -13594,6 +13612,25 @@ onChange={(e) =>
               <div style={{ color: "#334155" }}>
                 Status: {inspection.inspection_status || "-"}
               </div>
+                <button
+  type="button"
+  onClick={(event) => {
+    event.stopPropagation();
+    downloadQaqcCableInspectionPdf(inspection);
+  }}
+  style={{
+    marginTop: 10,
+    padding: "8px 12px",
+    borderRadius: 10,
+    border: "none",
+    background: "#123d82",
+    color: "white",
+    fontWeight: "bold",
+    cursor: "pointer",
+  }}
+>
+  Download PDF
+</button>
             </div>
           ))}
         </div>
