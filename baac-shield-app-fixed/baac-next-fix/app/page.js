@@ -914,6 +914,17 @@ if (qaqcDuctError) {
 }
 
 setQaqcDuctInspections(qaqcDuctData || []);
+
+   const { data: qaqcCableData, error: qaqcCableError } = await supabase
+  .from("qaqc_cable_placement_inspections")
+  .select("*")
+  .order("created_at", { ascending: false });
+
+if (qaqcCableError) {
+  throw qaqcCableError;
+}
+
+setQaqcCableInspections(qaqcCableData || []);   
             
     } catch (error) {
       setMessage(`Could not load records from database: ${error.message}`);
