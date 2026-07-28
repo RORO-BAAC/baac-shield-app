@@ -12273,6 +12273,77 @@ onChange={(e) =>
     marginTop: 20,
   }}
 >
+{selectedQaqcDuctInspection && (
+  <div
+    style={{
+      marginTop: 20,
+      padding: 18,
+      borderRadius: 14,
+      border: "2px solid #123d82",
+      background: "#f8fafc",
+    }}
+  >
+    <button
+      type="button"
+      onClick={() => setSelectedQaqcDuctInspection(null)}
+      style={{
+        padding: "8px 12px",
+        borderRadius: 8,
+        border: "1px solid #cbd5e1",
+        background: "white",
+        color: "#123d82",
+        fontWeight: "bold",
+        cursor: "pointer",
+        marginBottom: 14,
+      }}
+    >
+      Close Full Report
+    </button>
+
+    <h2 style={{ margin: "0 0 12px", color: "#0f2f63" }}>
+      Full Duct / Pathway Inspection Report
+    </h2>
+
+    <p><strong>Project:</strong>{" "}
+      {projects.find(
+        (project) =>
+          String(project.id) === String(selectedQaqcDuctInspection.project_id)
+      )?.name ||
+        selectedQaqcDuctInspection.project_id ||
+        "-"}
+    </p>
+
+    <p><strong>Client / Owner:</strong> {selectedQaqcDuctInspection.client_owner || "-"}</p>
+    <p><strong>Location:</strong> {selectedQaqcDuctInspection.inspection_location || "-"}</p>
+    <p><strong>Inspection Date:</strong> {selectedQaqcDuctInspection.inspection_date || "-"}</p>
+    <p><strong>Inspector:</strong> {selectedQaqcDuctInspection.inspector_name || "-"}</p>
+
+    <p><strong>Duct Run / Segment:</strong> {selectedQaqcDuctInspection.duct_run_id || "-"}</p>
+    <p><strong>Pathway Type:</strong> {selectedQaqcDuctInspection.pathway_type || "-"}</p>
+    <p><strong>Conduit Size:</strong> {selectedQaqcDuctInspection.conduit_size || "-"}</p>
+    <p><strong>Conduit Quantity:</strong> {selectedQaqcDuctInspection.conduit_quantity || "-"}</p>
+    <p><strong>From Location:</strong> {selectedQaqcDuctInspection.from_location || "-"}</p>
+    <p><strong>To Location:</strong> {selectedQaqcDuctInspection.to_location || "-"}</p>
+
+    <p><strong>Trench Depth:</strong> {selectedQaqcDuctInspection.trench_depth || "-"}</p>
+    <p><strong>Trench Width:</strong> {selectedQaqcDuctInspection.trench_width || "-"}</p>
+    <p><strong>Bedding Material:</strong> {selectedQaqcDuctInspection.bedding_material || "-"}</p>
+    <p><strong>Warning Tape Installed:</strong> {selectedQaqcDuctInspection.warning_tape_installed || "-"}</p>
+    <p><strong>Tracer Wire Installed:</strong> {selectedQaqcDuctInspection.tracer_wire_installed || "-"}</p>
+
+    <p><strong>Bends / Sweeps Acceptable:</strong> {selectedQaqcDuctInspection.bends_sweeps_acceptable || "-"}</p>
+    <p><strong>Mandrel Test Completed:</strong> {selectedQaqcDuctInspection.mandrel_test_completed || "-"}</p>
+    <p><strong>Pull String Installed:</strong> {selectedQaqcDuctInspection.pull_string_installed || "-"}</p>
+    <p><strong>Duct Plugs Installed:</strong> {selectedQaqcDuctInspection.duct_plugs_installed || "-"}</p>
+    <p><strong>Vault / Pull Box Condition:</strong> {selectedQaqcDuctInspection.vault_pullbox_condition || "-"}</p>
+
+    <p><strong>Inspection Result:</strong> {selectedQaqcDuctInspection.inspection_result || "-"}</p>
+    <p><strong>Status:</strong> {selectedQaqcDuctInspection.inspection_status || "-"}</p>
+    <p><strong>Deficiency Details:</strong> {selectedQaqcDuctInspection.deficiency_details || "-"}</p>
+    <p><strong>Corrective Action Assigned To:</strong> {selectedQaqcDuctInspection.corrective_action_assigned_to || "-"}</p>
+    <p><strong>Inspection Notes:</strong> {selectedQaqcDuctInspection.inspection_notes || "-"}</p>
+  </div>
+)}
   {qaqcDuctInspections.map((inspection) => (
     <div
       key={inspection.id}
