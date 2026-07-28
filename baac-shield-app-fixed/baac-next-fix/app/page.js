@@ -12785,39 +12785,439 @@ onChange={(e) =>
   qaqcInspectionType === "cable-placement-inspection" && (
     <div
       style={{
-        background: "white",
-        padding: 20,
-        borderRadius: 16,
-        border: "1px solid #e2e8f0",
-        boxShadow: "0 2px 10px rgba(15,23,42,0.06)",
         display: "grid",
-        gap: 14,
+        gap: 18,
+        marginBottom: 24,
       }}
     >
-      <button
-        type="button"
-        onClick={() => setQaqcInspectionType("")}
+      <section
         style={{
-          width: "fit-content",
-          padding: "8px 12px",
-          borderRadius: 10,
-          border: "1px solid #cbd5e1",
           background: "white",
-          cursor: "pointer",
+          padding: 20,
+          borderRadius: 16,
+          border: "1px solid #e2e8f0",
+          boxShadow: "0 2px 12px rgba(15,23,42,0.06)",
         }}
       >
-        ← Back to Telecom Inspections
-      </button>
+        <button
+          type="button"
+          onClick={() => setQaqcInspectionType("")}
+          style={{
+            padding: "9px 13px",
+            borderRadius: 10,
+            border: "1px solid #cbd5e1",
+            background: "white",
+            color: "#123d82",
+            fontWeight: "bold",
+            cursor: "pointer",
+            marginBottom: 16,
+          }}
+        >
+          ← Back to Telecom Inspections
+        </button>
 
-      <h2 style={{ margin: 0, color: "#0f2f63" }}>
-        Cable Placement Inspection
-      </h2>
+        <h1 style={{ margin: "0 0 8px", color: "#0f2f63" }}>
+          Cable Placement Inspection
+        </h1>
 
-      <p style={{ marginTop: 0, color: "#64748b" }}>
-        This inspection will track fibre/cable placement, pull/blow method,
-        cable condition, bend radius, slack loops, supports, markings,
-        deficiencies, photos and inspector sign-off.
-      </p>
+        <p style={{ color: "#64748b", marginTop: 0 }}>
+          Record cable placement quality, cable condition, route, installation checks,
+          deficiencies, photos and inspector sign-off.
+        </p>
+
+        <div style={{ display: "grid", gap: 18 }}>
+          <div
+            style={{
+              padding: 16,
+              borderRadius: 14,
+              border: "1px solid #dbeafe",
+              background: "#eff6ff",
+            }}
+          >
+            <h3 style={{ marginTop: 0, color: "#0f2f63" }}>
+              Project and Inspection Details
+            </h3>
+
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+                gap: 12,
+              }}
+            >
+              <select
+                value={qaqcCableProjectId}
+                onChange={(event) => setQaqcCableProjectId(event.target.value)}
+                style={{
+                  padding: 10,
+                  borderRadius: 10,
+                  border: "1px solid #cbd5e1",
+                }}
+              >
+                <option value="">Select Project</option>
+                {projects.map((project) => (
+                  <option key={project.id} value={project.id}>
+                    {project.name}
+                  </option>
+                ))}
+              </select>
+
+              <input
+                value={qaqcCableClientOwner}
+                onChange={(event) => setQaqcCableClientOwner(event.target.value)}
+                placeholder="Client / Owner"
+                style={{
+                  padding: 10,
+                  borderRadius: 10,
+                  border: "1px solid #cbd5e1",
+                }}
+              />
+
+              <input
+                value={qaqcCableLocation}
+                onChange={(event) => setQaqcCableLocation(event.target.value)}
+                placeholder="Inspection Location"
+                style={{
+                  padding: 10,
+                  borderRadius: 10,
+                  border: "1px solid #cbd5e1",
+                }}
+              />
+
+              <input
+                type="date"
+                value={qaqcCableDate}
+                onChange={(event) => setQaqcCableDate(event.target.value)}
+                style={{
+                  padding: 10,
+                  borderRadius: 10,
+                  border: "1px solid #cbd5e1",
+                }}
+              />
+
+              <input
+                value={qaqcCableInspector}
+                onChange={(event) => setQaqcCableInspector(event.target.value)}
+                placeholder="Inspector Name"
+                style={{
+                  padding: 10,
+                  borderRadius: 10,
+                  border: "1px solid #cbd5e1",
+                }}
+              />
+            </div>
+          </div>
+
+          <div
+            style={{
+              padding: 16,
+              borderRadius: 14,
+              border: "1px solid #e2e8f0",
+              background: "#f8fafc",
+            }}
+          >
+            <h3 style={{ marginTop: 0, color: "#0f2f63" }}>
+              Cable Run Details
+            </h3>
+
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+                gap: 12,
+              }}
+            >
+              <input
+                value={qaqcCableRunId}
+                onChange={(event) => setQaqcCableRunId(event.target.value)}
+                placeholder="Cable Run / Segment ID"
+                style={{
+                  padding: 10,
+                  borderRadius: 10,
+                  border: "1px solid #cbd5e1",
+                }}
+              />
+
+              <input
+                value={qaqcCableType}
+                onChange={(event) => setQaqcCableType(event.target.value)}
+                placeholder="Cable Type"
+                style={{
+                  padding: 10,
+                  borderRadius: 10,
+                  border: "1px solid #cbd5e1",
+                }}
+              />
+
+              <input
+                value={qaqcCableSizeCount}
+                onChange={(event) => setQaqcCableSizeCount(event.target.value)}
+                placeholder="Cable Size / Fibre Count"
+                style={{
+                  padding: 10,
+                  borderRadius: 10,
+                  border: "1px solid #cbd5e1",
+                }}
+              />
+
+              <input
+                value={qaqcCableLength}
+                onChange={(event) => setQaqcCableLength(event.target.value)}
+                placeholder="Cable Length"
+                style={{
+                  padding: 10,
+                  borderRadius: 10,
+                  border: "1px solid #cbd5e1",
+                }}
+              />
+
+              <input
+                value={qaqcCableFromLocation}
+                onChange={(event) => setQaqcCableFromLocation(event.target.value)}
+                placeholder="From Location"
+                style={{
+                  padding: 10,
+                  borderRadius: 10,
+                  border: "1px solid #cbd5e1",
+                }}
+              />
+
+              <input
+                value={qaqcCableToLocation}
+                onChange={(event) => setQaqcCableToLocation(event.target.value)}
+                placeholder="To Location"
+                style={{
+                  padding: 10,
+                  borderRadius: 10,
+                  border: "1px solid #cbd5e1",
+                }}
+              />
+            </div>
+          </div>
+
+          <div
+            style={{
+              padding: 16,
+              borderRadius: 14,
+              border: "1px solid #e2e8f0",
+              background: "white",
+            }}
+          >
+            <h3 style={{ marginTop: 0, color: "#0f2f63" }}>
+              Placement Checks
+            </h3>
+
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+                gap: 12,
+              }}
+            >
+              <input
+                value={qaqcCablePlacementMethod}
+                onChange={(event) => setQaqcCablePlacementMethod(event.target.value)}
+                placeholder="Placement Method"
+                style={{
+                  padding: 10,
+                  borderRadius: 10,
+                  border: "1px solid #cbd5e1",
+                }}
+              />
+
+              <input
+                value={qaqcCablePathwayUsed}
+                onChange={(event) => setQaqcCablePathwayUsed(event.target.value)}
+                placeholder="Pathway Used"
+                style={{
+                  padding: 10,
+                  borderRadius: 10,
+                  border: "1px solid #cbd5e1",
+                }}
+              />
+
+              <select
+                value={qaqcCableCondition}
+                onChange={(event) => setQaqcCableCondition(event.target.value)}
+                style={{
+                  padding: 10,
+                  borderRadius: 10,
+                  border: "1px solid #cbd5e1",
+                }}
+              >
+                <option value="">Cable Condition</option>
+                <option value="Acceptable">Acceptable</option>
+                <option value="Damaged">Damaged</option>
+                <option value="Needs Review">Needs Review</option>
+              </select>
+
+              {[
+                ["Bend Radius Acceptable", qaqcCableBendRadiusAcceptable, setQaqcCableBendRadiusAcceptable],
+                ["Cable Marking Complete", qaqcCableMarkingComplete, setQaqcCableMarkingComplete],
+                ["Slack Loop Installed", qaqcCableSlackLoopInstalled, setQaqcCableSlackLoopInstalled],
+                ["Cable Supports Acceptable", qaqcCableSupportsAcceptable, setQaqcCableSupportsAcceptable],
+                ["Pull Tension Issue", qaqcCablePullTensionIssue, setQaqcCablePullTensionIssue],
+              ].map(([label, value, setter]) => (
+                <select
+                  key={label}
+                  value={value}
+                  onChange={(event) => setter(event.target.value)}
+                  style={{
+                    padding: 10,
+                    borderRadius: 10,
+                    border: "1px solid #cbd5e1",
+                  }}
+                >
+                  <option value="">{label}</option>
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                  <option value="N/A">N/A</option>
+                </select>
+              ))}
+            </div>
+          </div>
+
+          <div
+            style={{
+              padding: 16,
+              borderRadius: 14,
+              border: "1px solid #e2e8f0",
+              background: "#f8fafc",
+            }}
+          >
+            <h3 style={{ marginTop: 0, color: "#0f2f63" }}>
+              Inspection Result / Deficiencies
+            </h3>
+
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+                gap: 12,
+              }}
+            >
+              <select
+                value={qaqcCableResult}
+                onChange={(event) => setQaqcCableResult(event.target.value)}
+                style={{
+                  padding: 10,
+                  borderRadius: 10,
+                  border: "1px solid #cbd5e1",
+                }}
+              >
+                <option value="">Inspection Result</option>
+                <option value="Pass">Pass</option>
+                <option value="Fail">Fail</option>
+                <option value="Conditional Pass">Conditional Pass</option>
+              </select>
+
+              <select
+                value={qaqcCableStatus}
+                onChange={(event) => setQaqcCableStatus(event.target.value)}
+                style={{
+                  padding: 10,
+                  borderRadius: 10,
+                  border: "1px solid #cbd5e1",
+                }}
+              >
+                <option value="">Inspection Status</option>
+                <option value="Open">Open</option>
+                <option value="Needs Correction">Needs Correction</option>
+                <option value="Approved">Approved</option>
+                <option value="Closed">Closed</option>
+              </select>
+
+              <input
+                value={qaqcCableCorrectiveActionAssignedTo}
+                onChange={(event) =>
+                  setQaqcCableCorrectiveActionAssignedTo(event.target.value)
+                }
+                placeholder="Corrective Action Assigned To"
+                style={{
+                  padding: 10,
+                  borderRadius: 10,
+                  border: "1px solid #cbd5e1",
+                }}
+              />
+            </div>
+
+            <textarea
+              value={qaqcCableDeficiencies}
+              onChange={(event) => setQaqcCableDeficiencies(event.target.value)}
+              placeholder="Deficiency Details"
+              rows={4}
+              style={{
+                marginTop: 12,
+                padding: 10,
+                borderRadius: 10,
+                border: "1px solid #cbd5e1",
+                width: "100%",
+              }}
+            />
+
+            <textarea
+              value={qaqcCableNotes}
+              onChange={(event) => setQaqcCableNotes(event.target.value)}
+              placeholder="Inspection Notes"
+              rows={4}
+              style={{
+                marginTop: 12,
+                padding: 10,
+                borderRadius: 10,
+                border: "1px solid #cbd5e1",
+                width: "100%",
+              }}
+            />
+          </div>
+
+          <div
+            style={{
+              padding: 16,
+              borderRadius: 14,
+              border: "1px solid #e2e8f0",
+              background: "white",
+            }}
+          >
+            <h3 style={{ marginTop: 0, color: "#0f2f63" }}>
+              Photos and Inspector Signature
+            </h3>
+
+            <input
+              type="file"
+              multiple
+              accept="image/*"
+              onChange={(event) =>
+                setQaqcCablePhotos(Array.from(event.target.files || []))
+              }
+            />
+
+            <div style={{ marginTop: 16 }}>
+              <SignatureBox
+                sigRef={supervisorSigRef}
+                onSave={setReviewSupervisorSignature}
+              />
+            </div>
+
+            <button
+              type="button"
+              onClick={submitQaqcCableInspection}
+              disabled={loading}
+              style={{
+                marginTop: 18,
+                padding: "12px 18px",
+                borderRadius: 12,
+                border: "none",
+                background: "#123d82",
+                color: "white",
+                fontWeight: "bold",
+                cursor: "pointer",
+              }}
+            >
+              Submit Cable Placement Inspection
+            </button>
+          </div>
+        </div>
+      </section>
     </div>
   )}
 {activeTab === "qaqc" &&
