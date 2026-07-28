@@ -11881,6 +11881,8 @@ setHazardDueDate(report.due_date || "");
   setQaqcInspectionType("duct-pathway-records");
 } else if (inspectionType === "Cable Placement") {
   setQaqcInspectionType("cable-placement-inspection");
+} else if (inspectionType === "Cable Placement Records") {
+  setQaqcInspectionType("cable-placement-records");
 } else {
   alert(`${inspectionType} form is the next build step.`);
 }
