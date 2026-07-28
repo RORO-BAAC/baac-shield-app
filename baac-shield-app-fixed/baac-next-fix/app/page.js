@@ -13223,6 +13223,310 @@ onChange={(e) =>
       </section>
     </div>
   )}
+
+{activeTab === "qaqc" &&
+  qaqcSection === "telecom" &&
+  qaqcInspectionType === "cable-placement-records" && (
+    <div
+      style={{
+        display: "grid",
+        gap: 18,
+        marginBottom: 24,
+      }}
+    >
+      <section
+        style={{
+          background: "white",
+          padding: 20,
+          borderRadius: 16,
+          border: "1px solid #e2e8f0",
+          boxShadow: "0 2px 12px rgba(15,23,42,0.06)",
+        }}
+      >
+        <button
+          type="button"
+          onClick={() => setQaqcInspectionType("")}
+          style={{
+            padding: "9px 13px",
+            borderRadius: 10,
+            border: "1px solid #cbd5e1",
+            background: "white",
+            color: "#123d82",
+            fontWeight: "bold",
+            cursor: "pointer",
+            marginBottom: 16,
+          }}
+        >
+          ← Back to Telecom Inspections
+        </button>
+
+        <h1 style={{ margin: "0 0 8px", color: "#0f2f63" }}>
+          Cable Placement Records
+        </h1>
+
+        <p style={{ color: "#64748b", margin: 0 }}>
+          {qaqcCableInspections.length} cable placement record(s)
+        </p>
+
+        <div
+          style={{
+            display: "grid",
+            gap: 14,
+            marginTop: 20,
+          }}
+        >
+          {selectedQaqcCableInspection && (
+            <div
+              style={{
+                marginTop: 20,
+                padding: 18,
+                borderRadius: 14,
+                border: "2px solid #123d82",
+                background: "#f8fafc",
+              }}
+            >
+              <button
+                type="button"
+                onClick={() => setSelectedQaqcCableInspection(null)}
+                style={{
+                  padding: "8px 12px",
+                  borderRadius: 8,
+                  border: "1px solid #cbd5e1",
+                  background: "white",
+                  color: "#123d82",
+                  fontWeight: "bold",
+                  cursor: "pointer",
+                  marginBottom: 14,
+                }}
+              >
+                Close Full Report
+              </button>
+
+              <h2 style={{ margin: "0 0 12px", color: "#0f2f63" }}>
+                Full Cable Placement Inspection Report
+              </h2>
+
+              <p>
+                <strong>Project:</strong>{" "}
+                {projects.find(
+                  (project) =>
+                    String(project.id) ===
+                    String(selectedQaqcCableInspection.project_id)
+                )?.name ||
+                  selectedQaqcCableInspection.project_id ||
+                  "-"}
+              </p>
+
+              <p>
+                <strong>Client / Owner:</strong>{" "}
+                {selectedQaqcCableInspection.client_owner || "-"}
+              </p>
+              <p>
+                <strong>Location:</strong>{" "}
+                {selectedQaqcCableInspection.inspection_location || "-"}
+              </p>
+              <p>
+                <strong>Inspection Date:</strong>{" "}
+                {selectedQaqcCableInspection.inspection_date || "-"}
+              </p>
+              <p>
+                <strong>Inspector:</strong>{" "}
+                {selectedQaqcCableInspection.inspector_name || "-"}
+              </p>
+
+              <p>
+                <strong>Cable Run / Segment:</strong>{" "}
+                {selectedQaqcCableInspection.cable_run_id || "-"}
+              </p>
+              <p>
+                <strong>Cable Type:</strong>{" "}
+                {selectedQaqcCableInspection.cable_type || "-"}
+              </p>
+              <p>
+                <strong>Cable Size / Fibre Count:</strong>{" "}
+                {selectedQaqcCableInspection.cable_size_count || "-"}
+              </p>
+              <p>
+                <strong>Cable Length:</strong>{" "}
+                {selectedQaqcCableInspection.cable_length || "-"}
+              </p>
+              <p>
+                <strong>From Location:</strong>{" "}
+                {selectedQaqcCableInspection.from_location || "-"}
+              </p>
+              <p>
+                <strong>To Location:</strong>{" "}
+                {selectedQaqcCableInspection.to_location || "-"}
+              </p>
+
+              <p>
+                <strong>Placement Method:</strong>{" "}
+                {selectedQaqcCableInspection.placement_method || "-"}
+              </p>
+              <p>
+                <strong>Pathway Used:</strong>{" "}
+                {selectedQaqcCableInspection.pathway_used || "-"}
+              </p>
+              <p>
+                <strong>Cable Condition:</strong>{" "}
+                {selectedQaqcCableInspection.cable_condition || "-"}
+              </p>
+              <p>
+                <strong>Bend Radius Acceptable:</strong>{" "}
+                {selectedQaqcCableInspection.bend_radius_acceptable || "-"}
+              </p>
+              <p>
+                <strong>Cable Marking Complete:</strong>{" "}
+                {selectedQaqcCableInspection.cable_marking_complete || "-"}
+              </p>
+              <p>
+                <strong>Slack Loop Installed:</strong>{" "}
+                {selectedQaqcCableInspection.slack_loop_installed || "-"}
+              </p>
+              <p>
+                <strong>Cable Supports Acceptable:</strong>{" "}
+                {selectedQaqcCableInspection.cable_supports_acceptable || "-"}
+              </p>
+              <p>
+                <strong>Pull Tension Issue:</strong>{" "}
+                {selectedQaqcCableInspection.pull_tension_issue || "-"}
+              </p>
+
+              <p>
+                <strong>Inspection Result:</strong>{" "}
+                {selectedQaqcCableInspection.inspection_result || "-"}
+              </p>
+              <p>
+                <strong>Status:</strong>{" "}
+                {selectedQaqcCableInspection.inspection_status || "-"}
+              </p>
+              <p>
+                <strong>Deficiency Details:</strong>{" "}
+                {selectedQaqcCableInspection.deficiency_details || "-"}
+              </p>
+              <p>
+                <strong>Corrective Action Assigned To:</strong>{" "}
+                {selectedQaqcCableInspection.corrective_action_assigned_to || "-"}
+              </p>
+              <p>
+                <strong>Inspection Notes:</strong>{" "}
+                {selectedQaqcCableInspection.inspection_notes || "-"}
+              </p>
+
+              {selectedQaqcCableInspection.photo_urls && (
+                <div style={{ marginTop: 18 }}>
+                  <h3 style={{ color: "#0f2f63" }}>Inspection Photos</h3>
+
+                  <div
+                    style={{
+                      display: "grid",
+                      gridTemplateColumns:
+                        "repeat(auto-fit, minmax(160px, 1fr))",
+                      gap: 12,
+                    }}
+                  >
+                    {selectedQaqcCableInspection.photo_urls
+                      .split(",")
+                      .map((url) => url.trim())
+                      .filter(Boolean)
+                      .map((url, index) => (
+                        <a
+                          key={index}
+                          href={url}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          <img
+                            src={url}
+                            alt={`Cable placement photo ${index + 1}`}
+                            style={{
+                              width: "100%",
+                              maxHeight: 180,
+                              objectFit: "cover",
+                              borderRadius: 10,
+                              border: "1px solid #cbd5e1",
+                            }}
+                          />
+                        </a>
+                      ))}
+                  </div>
+                </div>
+              )}
+
+              {selectedQaqcCableInspection.inspector_signature && (
+                <div style={{ marginTop: 18 }}>
+                  <h3 style={{ color: "#0f2f63" }}>Inspector Signature</h3>
+                  <img
+                    src={selectedQaqcCableInspection.inspector_signature}
+                    alt="Inspector signature"
+                    style={{
+                      maxWidth: 360,
+                      width: "100%",
+                      background: "white",
+                      border: "1px solid #cbd5e1",
+                      borderRadius: 10,
+                      padding: 10,
+                    }}
+                  />
+                </div>
+              )}
+            </div>
+          )}
+
+          {qaqcCableInspections.map((inspection) => (
+            <div
+              key={inspection.id}
+              onClick={() => setSelectedQaqcCableInspection(inspection)}
+              style={{
+                border: "1px solid #e2e8f0",
+                borderRadius: 12,
+                padding: 16,
+                background: "#f8fafc",
+                cursor: "pointer",
+              }}
+            >
+              <strong style={{ color: "#0f2f63" }}>
+                {projects.find(
+                  (project) => String(project.id) === String(inspection.project_id)
+                )?.name ||
+                  inspection.project_id ||
+                  "No Project"}
+              </strong>
+
+              <div style={{ marginTop: 8, color: "#334155" }}>
+                Client / Owner: {inspection.client_owner || "-"}
+              </div>
+
+              <div style={{ color: "#334155" }}>
+                Location: {inspection.inspection_location || "-"}
+              </div>
+
+              <div style={{ color: "#334155" }}>
+                Cable Run: {inspection.cable_run_id || "-"}
+              </div>
+
+              <div style={{ color: "#334155" }}>
+                Date: {inspection.inspection_date || "-"}
+              </div>
+
+              <div style={{ color: "#334155" }}>
+                Inspector: {inspection.inspector_name || "-"}
+              </div>
+
+              <div style={{ color: "#334155" }}>
+                Result: {inspection.inspection_result || "-"}
+              </div>
+
+              <div style={{ color: "#334155" }}>
+                Status: {inspection.inspection_status || "-"}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+    </div>
+  )}
+
 {activeTab === "qaqc" &&
   qaqcSection === "telecom" &&
   qaqcInspectionType === "duct-pathway-inspection" && (
