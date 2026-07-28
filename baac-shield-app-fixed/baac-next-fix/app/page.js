@@ -10622,7 +10622,8 @@ setHazardDueDate(report.due_date || "");
   ["Fleet Defects", fleetDefects.length],
   ["RPAS Records", rpasOperations.length],
   ["QA/QC Work Inspections", qaqcWorkInspections.length],
-        ["QA/QC Duct / Pathway", qaqcDuctInspections.length],
+  ["QA/QC Duct / Pathway", qaqcDuctInspections.length],
+   ["QA/QC Cable Placement", qaqcCableInspections.length],     
       ].map(([label, count]) => (
         <div
           key={label}
