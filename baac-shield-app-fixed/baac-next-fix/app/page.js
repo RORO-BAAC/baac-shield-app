@@ -10780,6 +10780,7 @@ setHazardDueDate(report.due_date || "");
         <div style={{ color: "#64748b" }}>No worker forms found.</div>
       )}
     </div>
+      )}  
   </section>
 
   <section>
