@@ -11988,7 +11988,7 @@ setHazardDueDate(report.due_date || "");
           );
         })}
 
-      {qaqcWorkInspections.filter((inspection) => {
+      {      {qaqcWorkInspections.filter((inspection) => {
         const q = recordsCenterSearch.trim().toLowerCase();
 
         const projectName =
@@ -11996,7 +11996,14 @@ setHazardDueDate(report.due_date || "");
             (project) => String(project.id) === String(inspection.project_id)
           )?.name || "";
 
-        return (
+        const inspectionDate = inspection.inspection_date || "";
+        const matchesStartDate =
+          !qaqcStartDateFilter || inspectionDate >= qaqcStartDateFilter;
+
+        const matchesEndDate =
+          !qaqcEndDateFilter || inspectionDate <= qaqcEndDateFilter;
+
+        const matchesSearch =
           !q ||
           projectName.toLowerCase().includes(q) ||
           inspection.inspection_location?.toLowerCase().includes(q) ||
@@ -12004,8 +12011,9 @@ setHazardDueDate(report.due_date || "");
           inspection.contractor_crew?.toLowerCase().includes(q) ||
           inspection.inspector_name?.toLowerCase().includes(q) ||
           inspection.inspection_result?.toLowerCase().includes(q) ||
-          inspection.inspection_status?.toLowerCase().includes(q)
-        );
+          inspection.inspection_status?.toLowerCase().includes(q);
+
+        return matchesStartDate && matchesEndDate && matchesSearch;
       }).length === 0 && (
         <div style={{ color: "#64748b" }}>
           No QA/QC work inspection records found.
