@@ -11407,6 +11407,7 @@ setHazardDueDate(report.due_date || "");
         </div>
       )}
     </div>
+      )}   
   </section>
 
   <section>
