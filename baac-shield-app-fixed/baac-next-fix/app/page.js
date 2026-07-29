@@ -12005,11 +12005,12 @@ setHazardDueDate(report.due_date || "");
           No QA/QC work inspection records found.
         </div>
       )}
-    </div>
-  </section>
-      <section>
-  <h3 style={{ marginBottom: 10 }}>QA/QC Duct / Pathway Records</h3>
+     </div>
+  )}
+</section>
 
+<section>
+  <h3 style={{ marginBottom: 10 }}>QA/QC Duct / Pathway Records</h3>
   <div style={{ display: "grid", gap: 10 }}>
     {qaqcDuctInspections
       .filter((inspection) => {
