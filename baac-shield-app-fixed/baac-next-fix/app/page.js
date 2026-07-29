@@ -11657,11 +11657,21 @@ setHazardDueDate(report.due_date || "");
 
   {openRecordsSection === "rpas-operations" && (
     <div style={{ display: "grid", gap: 10, marginTop: 10 }}>
-      {rpasOperations
+           {rpasOperations
         .filter((operation) => {
           const q = recordsCenterSearch.trim().toLowerCase();
+          const operationDate =
+            operation.flight_date ||
+            operation.created_at?.slice(0, 10) ||
+            "";
 
-          return (
+          const matchesStartDate =
+            !startDateFilter || operationDate >= startDateFilter;
+
+          const matchesEndDate =
+            !endDateFilter || operationDate <= endDateFilter;
+
+          const matchesSearch =
             !q ||
             operation.project_name?.toLowerCase().includes(q) ||
             operation.pilot_in_command?.toLowerCase().includes(q) ||
@@ -11669,9 +11679,15 @@ setHazardDueDate(report.due_date || "");
             operation.rpas_make_model?.toLowerCase().includes(q) ||
             operation.operation_type?.toLowerCase().includes(q) ||
             operation.flight_location?.toLowerCase().includes(q) ||
-            operation.status?.toLowerCase().includes(q)
-          );
+            operation.status?.toLowerCase().includes(q);
+
+          return matchesStartDate && matchesEndDate && matchesSearch;
         })
+        .sort(
+          (a, b) =>
+            new Date(b.flight_date || b.created_at || 0) -
+            new Date(a.flight_date || a.created_at || 0)
+        )
         .slice(0, 10)
         .map((operation) => (
           <div
