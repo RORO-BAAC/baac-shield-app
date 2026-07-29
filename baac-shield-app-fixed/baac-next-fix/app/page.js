@@ -11770,83 +11770,137 @@ setHazardDueDate(report.due_date || "");
 </section>
 
 <section>
-  <h3 style={{ marginBottom: 10 }}>QA/QC Work Inspections</h3>
-      <div
-  style={{
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
-    gap: 10,
-    marginBottom: 12,
-  }}
->
-  <label>
-    Start Date
-    <input
-      type="date"
-      value={qaqcStartDateFilter}
-      onChange={(e) => setQaqcStartDateFilter(e.target.value)}
-      style={{
-        width: "100%",
-        padding: 10,
-        borderRadius: 10,
-        border: "1px solid #cbd5e1",
-        marginTop: 4,
-      }}
-    />
-  </label>
+  <button
+    type="button"
+    onClick={() =>
+      setOpenRecordsSection(
+        openRecordsSection === "qaqc-work-inspections"
+          ? ""
+          : "qaqc-work-inspections"
+      )
+    }
+    style={{
+      width: "100%",
+      padding: 14,
+      borderRadius: 12,
+      border: "1px solid #cbd5e1",
+      background: "#f8fafc",
+      color: "#0f2f63",
+      fontWeight: "bold",
+      fontSize: 16,
+      textAlign: "left",
+      cursor: "pointer",
+    }}
+  >
+    {openRecordsSection === "qaqc-work-inspections" ? "▼" : "▶"} QA/QC Work Inspections ({
+      qaqcWorkInspections.filter((inspection) => {
+        const q = recordsCenterSearch.trim().toLowerCase();
 
-  <label>
-    End Date
-    <input
-      type="date"
-      value={qaqcEndDateFilter}
-      onChange={(e) => setQaqcEndDateFilter(e.target.value)}
-      style={{
-        width: "100%",
-        padding: 10,
-        borderRadius: 10,
-        border: "1px solid #cbd5e1",
-        marginTop: 4,
-      }}
-    />
-  </label>
-</div>
-<button
-  type="button"
-  onClick={exportQaqcInspectionsCsv}
-  style={{
-    padding: "10px 14px",
-    borderRadius: 10,
-    border: "none",
-    background: "#123d82",
-    color: "white",
-    fontWeight: "bold",
-    cursor: "pointer",
-    marginBottom: 12,
-  }}
->
-  Export QA/QC CSV
-</button>
-    <button
-  type="button"
-  onClick={() => {
-    setQaqcStartDateFilter("");
-    setQaqcEndDateFilter("");
-  }}
-  style={{
-    padding: "10px 14px",
-    borderRadius: 10,
-    border: "1px solid #cbd5e1",
-    background: "white",
-    color: "#123d82",
-    fontWeight: "bold",
-    cursor: "pointer",
-    marginBottom: 12,
-  }}
->
-  Clear QA/QC Filters
-</button>
-    <div style={{ display: "grid", gap: 10 }}>
+        const projectName =
+          projects.find(
+            (project) => String(project.id) === String(inspection.project_id)
+          )?.name || "";
+
+        const inspectionDate = inspection.inspection_date || "";
+        const matchesStartDate =
+          !qaqcStartDateFilter || inspectionDate >= qaqcStartDateFilter;
+
+        const matchesEndDate =
+          !qaqcEndDateFilter || inspectionDate <= qaqcEndDateFilter;
+
+        const matchesSearch =
+          !q ||
+          projectName.toLowerCase().includes(q) ||
+          inspection.inspection_location?.toLowerCase().includes(q) ||
+          inspection.work_type?.toLowerCase().includes(q) ||
+          inspection.contractor_crew?.toLowerCase().includes(q) ||
+          inspection.inspector_name?.toLowerCase().includes(q) ||
+          inspection.inspection_result?.toLowerCase().includes(q) ||
+          inspection.inspection_status?.toLowerCase().includes(q);
+
+        return matchesStartDate && matchesEndDate && matchesSearch;
+      }).length
+    })
+  </button>
+
+  {openRecordsSection === "qaqc-work-inspections" && (
+    <div style={{ display: "grid", gap: 10, marginTop: 10 }}>
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
+          gap: 10,
+        }}
+      >
+        <label>
+          Start Date
+          <input
+            type="date"
+            value={qaqcStartDateFilter}
+            onChange={(e) => setQaqcStartDateFilter(e.target.value)}
+            style={{
+              width: "100%",
+              padding: 10,
+              borderRadius: 10,
+              border: "1px solid #cbd5e1",
+              marginTop: 4,
+            }}
+          />
+        </label>
+
+        <label>
+          End Date
+          <input
+            type="date"
+            value={qaqcEndDateFilter}
+            onChange={(e) => setQaqcEndDateFilter(e.target.value)}
+            style={{
+              width: "100%",
+              padding: 10,
+              borderRadius: 10,
+              border: "1px solid #cbd5e1",
+              marginTop: 4,
+            }}
+          />
+        </label>
+      </div>
+
+      <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+        <button
+          type="button"
+          onClick={exportQaqcInspectionsCsv}
+          style={{
+            padding: "10px 14px",
+            borderRadius: 10,
+            border: "none",
+            background: "#123d82",
+            color: "white",
+            fontWeight: "bold",
+            cursor: "pointer",
+          }}
+        >
+          Export QA/QC CSV
+        </button>
+
+        <button
+          type="button"
+          onClick={() => {
+            setQaqcStartDateFilter("");
+            setQaqcEndDateFilter("");
+          }}
+          style={{
+            padding: "10px 14px",
+            borderRadius: 10,
+            border: "1px solid #cbd5e1",
+            background: "white",
+            color: "#123d82",
+            fontWeight: "bold",
+            cursor: "pointer",
+          }}
+        >
+          Clear QA/QC Filters
+        </button>
+      </div>
       {qaqcWorkInspections
        .filter((inspection) => {
   const q = recordsCenterSearch.trim().toLowerCase();
