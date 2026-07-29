@@ -11988,7 +11988,7 @@ setHazardDueDate(report.due_date || "");
           );
         })}
 
-      {      {qaqcWorkInspections.filter((inspection) => {
+           {qaqcWorkInspections.filter((inspection) => {
         const q = recordsCenterSearch.trim().toLowerCase();
 
         const projectName =
