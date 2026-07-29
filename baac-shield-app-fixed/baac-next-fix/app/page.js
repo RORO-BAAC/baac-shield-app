@@ -10863,10 +10863,55 @@ setHazardDueDate(report.due_date || "");
       )}  
   </section>
 
-  <section>
-    <h3 style={{ marginBottom: 10 }}>FLRA / Daily Risk Assessments</h3>
+ <section>
+  <button
+    type="button"
+    onClick={() =>
+      setOpenRecordsSection(
+        openRecordsSection === "flra-records" ? "" : "flra-records"
+      )
+    }
+    style={{
+      width: "100%",
+      padding: 14,
+      borderRadius: 12,
+      border: "1px solid #cbd5e1",
+      background: "#f8fafc",
+      color: "#0f2f63",
+      fontWeight: "bold",
+      fontSize: 16,
+      textAlign: "left",
+      cursor: "pointer",
+    }}
+  >
+    {openRecordsSection === "flra-records" ? "▼" : "▶"} FLRA / Daily Risk Assessments ({
+      flraRecords.filter((item) => {
+        const q = recordsCenterSearch.trim().toLowerCase();
 
-    <div style={{ display: "grid", gap: 10 }}>
+        const itemDate = item.flra_date || item.created_at?.slice(0, 10) || "";
+
+        const matchesStartDate =
+          !startDateFilter || itemDate >= startDateFilter;
+
+        const matchesEndDate =
+          !endDateFilter || itemDate <= endDateFilter;
+
+        const matchesSearch =
+          !q ||
+          item.project_name?.toLowerCase().includes(q) ||
+          item.worker_name?.toLowerCase().includes(q) ||
+          item.supervisor_name?.toLowerCase().includes(q) ||
+          item.location?.toLowerCase().includes(q) ||
+          item.work_scope?.toLowerCase().includes(q) ||
+          item.critical_risks?.toLowerCase().includes(q);
+
+        return matchesStartDate && matchesEndDate && matchesSearch;
+      }).length
+    })
+  </button>
+
+  {openRecordsSection === "flra-records" && (
+    <div style={{ display: "grid", gap: 10, marginTop: 10 }}>
       {flraRecords
         .filter((item) => {
           const q = recordsCenterSearch.trim().toLowerCase();
