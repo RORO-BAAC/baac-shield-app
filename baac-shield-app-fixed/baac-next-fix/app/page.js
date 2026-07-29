@@ -11325,11 +11325,21 @@ setHazardDueDate(report.due_date || "");
 
   {openRecordsSection === "cor-actions" && (
     <div style={{ display: "grid", gap: 10, marginTop: 10 }}>
-      {corActions
+            {corActions
         .filter((item) => {
           const q = recordsCenterSearch.trim().toLowerCase();
+          const itemDate =
+            item.target_fix_date ||
+            item.created_at?.slice(0, 10) ||
+            "";
 
-          return (
+          const matchesStartDate =
+            !startDateFilter || itemDate >= startDateFilter;
+
+          const matchesEndDate =
+            !endDateFilter || itemDate <= endDateFilter;
+
+          const matchesSearch =
             !q ||
             item.category?.toLowerCase().includes(q) ||
             item.field_job_number?.toLowerCase().includes(q) ||
@@ -11337,9 +11347,15 @@ setHazardDueDate(report.due_date || "");
             item.issue_description?.toLowerCase().includes(q) ||
             item.corrective_action_required?.toLowerCase().includes(q) ||
             item.assigned_to?.toLowerCase().includes(q) ||
-            item.status?.toLowerCase().includes(q)
-          );
+            item.status?.toLowerCase().includes(q);
+
+          return matchesStartDate && matchesEndDate && matchesSearch;
         })
+        .sort(
+          (a, b) =>
+            new Date(b.target_fix_date || b.created_at || 0) -
+            new Date(a.target_fix_date || a.created_at || 0)
+        )
         .slice(0, 10)
         .map((item) => (
           <div
