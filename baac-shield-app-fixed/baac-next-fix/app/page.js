@@ -10986,6 +10986,7 @@ setHazardDueDate(report.due_date || "");
         <div style={{ color: "#64748b" }}>No FLRA records found.</div>
       )}
     </div>
+        )}
   </section>
 
   <section>
