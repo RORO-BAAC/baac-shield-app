@@ -11243,21 +11243,32 @@ setHazardDueDate(report.due_date || "");
           </div>
         ))}
 
-      {hazardReports.filter((report) => {
-        const q = recordsCenterSearch.trim().toLowerCase();
+     {hazardReports.filter((report) => {
+  const q = recordsCenterSearch.trim().toLowerCase();
+  const reportDate =
+    report.report_date ||
+    report.created_at?.slice(0, 10) ||
+    "";
 
-        return (
-          !q ||
-          report.project_name?.toLowerCase().includes(q) ||
-          report.reported_by?.toLowerCase().includes(q) ||
-          report.hazard_category?.toLowerCase().includes(q) ||
-          report.hazard_description?.toLowerCase().includes(q) ||
-          report.risk_level?.toLowerCase().includes(q) ||
-          report.action_status?.toLowerCase().includes(q)
-        );
-      }).length === 0 && (
-        <div style={{ color: "#64748b" }}>No hazard reports found.</div>
-      )}
+  const matchesStartDate =
+    !startDateFilter || reportDate >= startDateFilter;
+
+  const matchesEndDate =
+    !endDateFilter || reportDate <= endDateFilter;
+
+  const matchesSearch =
+    !q ||
+    report.project_name?.toLowerCase().includes(q) ||
+    report.reported_by?.toLowerCase().includes(q) ||
+    report.hazard_category?.toLowerCase().includes(q) ||
+    report.hazard_description?.toLowerCase().includes(q) ||
+    report.risk_level?.toLowerCase().includes(q) ||
+    report.action_status?.toLowerCase().includes(q);
+
+  return matchesStartDate && matchesEndDate && matchesSearch;
+}).length === 0 && (
+  <div style={{ color: "#64748b" }}>No hazard reports found.</div>
+)}
     </div>
       )}
   </section>
