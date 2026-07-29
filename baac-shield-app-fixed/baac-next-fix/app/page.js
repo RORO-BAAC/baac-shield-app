@@ -11131,7 +11131,9 @@ setHazardDueDate(report.due_date || "");
         <div style={{ color: "#64748b" }}>No toolbox talks found.</div>
       )}
     </div>
+       )}
   </section>
+    
         <section>
     <h3 style={{ marginBottom: 10 }}>Hazard Reports</h3>
 
