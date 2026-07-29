@@ -11606,9 +11606,57 @@ setHazardDueDate(report.due_date || "");
 </section>
 
 <section>
-  <h3 style={{ marginBottom: 10 }}>RPAS Operations</h3>
+  <button
+    type="button"
+    onClick={() =>
+      setOpenRecordsSection(
+        openRecordsSection === "rpas-operations" ? "" : "rpas-operations"
+      )
+    }
+    style={{
+      width: "100%",
+      padding: 14,
+      borderRadius: 12,
+      border: "1px solid #cbd5e1",
+      background: "#f8fafc",
+      color: "#0f2f63",
+      fontWeight: "bold",
+      fontSize: 16,
+      textAlign: "left",
+      cursor: "pointer",
+    }}
+  >
+    {openRecordsSection === "rpas-operations" ? "▼" : "▶"} RPAS Operations ({
+      rpasOperations.filter((operation) => {
+        const q = recordsCenterSearch.trim().toLowerCase();
+        const operationDate =
+          operation.flight_date ||
+          operation.created_at?.slice(0, 10) ||
+          "";
 
-    <div style={{ display: "grid", gap: 10 }}>
+        const matchesStartDate =
+          !startDateFilter || operationDate >= startDateFilter;
+
+        const matchesEndDate =
+          !endDateFilter || operationDate <= endDateFilter;
+
+        const matchesSearch =
+          !q ||
+          operation.project_name?.toLowerCase().includes(q) ||
+          operation.pilot_in_command?.toLowerCase().includes(q) ||
+          operation.visual_observer?.toLowerCase().includes(q) ||
+          operation.rpas_make_model?.toLowerCase().includes(q) ||
+          operation.operation_type?.toLowerCase().includes(q) ||
+          operation.flight_location?.toLowerCase().includes(q) ||
+          operation.status?.toLowerCase().includes(q);
+
+        return matchesStartDate && matchesEndDate && matchesSearch;
+      }).length
+    })
+  </button>
+
+  {openRecordsSection === "rpas-operations" && (
+    <div style={{ display: "grid", gap: 10, marginTop: 10 }}>
       {rpasOperations
         .filter((operation) => {
           const q = recordsCenterSearch.trim().toLowerCase();
