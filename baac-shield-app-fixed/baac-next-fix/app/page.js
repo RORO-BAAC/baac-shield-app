@@ -11404,10 +11404,20 @@ setHazardDueDate(report.due_date || "");
           </div>
         ))}
 
-      {corActions.filter((item) => {
+           {corActions.filter((item) => {
         const q = recordsCenterSearch.trim().toLowerCase();
+        const itemDate =
+          item.target_fix_date ||
+          item.created_at?.slice(0, 10) ||
+          "";
 
-        return (
+        const matchesStartDate =
+          !startDateFilter || itemDate >= startDateFilter;
+
+        const matchesEndDate =
+          !endDateFilter || itemDate <= endDateFilter;
+
+        const matchesSearch =
           !q ||
           item.category?.toLowerCase().includes(q) ||
           item.field_job_number?.toLowerCase().includes(q) ||
@@ -11415,8 +11425,9 @@ setHazardDueDate(report.due_date || "");
           item.issue_description?.toLowerCase().includes(q) ||
           item.corrective_action_required?.toLowerCase().includes(q) ||
           item.assigned_to?.toLowerCase().includes(q) ||
-          item.status?.toLowerCase().includes(q)
-        );
+          item.status?.toLowerCase().includes(q);
+
+        return matchesStartDate && matchesEndDate && matchesSearch;
       }).length === 0 && (
         <div style={{ color: "#64748b" }}>
           No COR corrective actions found.
