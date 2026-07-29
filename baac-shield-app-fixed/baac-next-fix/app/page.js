@@ -12172,8 +12172,11 @@ setHazardDueDate(report.due_date || "");
     }).length === 0 && (
       <div style={{ color: "#64748b" }}>
         No QA/QC duct / pathway records found.
-          </div>
+                </div>
     )}
+
+    </div>
+  )}
 </section>
 
 <section>
