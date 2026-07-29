@@ -12202,7 +12202,31 @@ setHazardDueDate(report.due_date || "");
 </section>
 
 <section>
-  <h3 style={{ marginBottom: 10 }}>QA/QC Cable Placement Records</h3>
+  <button
+    type="button"
+    onClick={() =>
+      setOpenRecordsSection(
+        openRecordsSection === "qaqc-cable-placement"
+          ? ""
+          : "qaqc-cable-placement"
+      )
+    }
+    style={{
+      width: "100%",
+      padding: 14,
+      borderRadius: 12,
+      border: "1px solid #cbd5e1",
+      background: "#f8fafc",
+      color: "#0f2f63",
+      fontWeight: "bold",
+      fontSize: 16,
+      textAlign: "left",
+      cursor: "pointer",
+    }}
+  >
+    {openRecordsSection === "qaqc-cable-placement" ? "▼" : "▶"} QA/QC Cable
+    Placement Records ({qaqcCableInspections.length})
+  </button>
   <div style={{ display: "grid", gap: 10 }}>
     {qaqcCableInspections
       .filter((inspection) => {
