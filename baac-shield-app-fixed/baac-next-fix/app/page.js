@@ -12024,9 +12024,54 @@ setHazardDueDate(report.due_date || "");
 </section>
 
 <section>
-  <h3 style={{ marginBottom: 10 }}>QA/QC Duct / Pathway Records</h3>
-  <div style={{ display: "grid", gap: 10 }}>
-    {qaqcDuctInspections
+  <button
+    type="button"
+    onClick={() =>
+      setOpenRecordsSection(
+        openRecordsSection === "qaqc-duct-pathway"
+          ? ""
+          : "qaqc-duct-pathway"
+      )
+    }
+    style={{
+      width: "100%",
+      padding: 14,
+      borderRadius: 12,
+      border: "1px solid #cbd5e1",
+      background: "#f8fafc",
+      color: "#0f2f63",
+      fontWeight: "bold",
+      fontSize: 16,
+      textAlign: "left",
+      cursor: "pointer",
+    }}
+  >
+    {openRecordsSection === "qaqc-duct-pathway" ? "▼" : "▶"} QA/QC Duct / Pathway Records ({
+      qaqcDuctInspections.filter((inspection) => {
+        const q = recordsCenterSearch.trim().toLowerCase();
+
+        const projectName =
+          projects.find(
+            (project) => String(project.id) === String(inspection.project_id)
+          )?.name || "";
+
+        const matchesSearch =
+          !q ||
+          projectName.toLowerCase().includes(q) ||
+          inspection.client_owner?.toLowerCase().includes(q) ||
+          inspection.inspection_location?.toLowerCase().includes(q) ||
+          inspection.duct_run_id?.toLowerCase().includes(q) ||
+          inspection.inspector_name?.toLowerCase().includes(q) ||
+          inspection.inspection_result?.toLowerCase().includes(q) ||
+          inspection.inspection_status?.toLowerCase().includes(q);
+
+        return matchesSearch;
+      }).length
+    })
+  </button>
+
+  {openRecordsSection === "qaqc-duct-pathway" && (
+    <div style={{ display: "grid", gap: 10, marginTop: 10 }}>
       .filter((inspection) => {
         const q = recordsCenterSearch.trim().toLowerCase();
 
