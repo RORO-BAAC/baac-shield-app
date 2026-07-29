@@ -11273,10 +11273,58 @@ setHazardDueDate(report.due_date || "");
       )}
   </section>
 
-  <section>
-    <h3 style={{ marginBottom: 10 }}>COR Corrective Actions</h3>
+ <section>
+  <button
+    type="button"
+    onClick={() =>
+      setOpenRecordsSection(
+        openRecordsSection === "cor-actions" ? "" : "cor-actions"
+      )
+    }
+    style={{
+      width: "100%",
+      padding: 14,
+      borderRadius: 12,
+      border: "1px solid #cbd5e1",
+      background: "#f8fafc",
+      color: "#0f2f63",
+      fontWeight: "bold",
+      fontSize: 16,
+      textAlign: "left",
+      cursor: "pointer",
+    }}
+  >
+    {openRecordsSection === "cor-actions" ? "▼" : "▶"} COR Corrective Actions ({
+      corActions.filter((item) => {
+        const q = recordsCenterSearch.trim().toLowerCase();
+        const itemDate =
+          item.target_fix_date ||
+          item.created_at?.slice(0, 10) ||
+          "";
 
-    <div style={{ display: "grid", gap: 10 }}>
+        const matchesStartDate =
+          !startDateFilter || itemDate >= startDateFilter;
+
+        const matchesEndDate =
+          !endDateFilter || itemDate <= endDateFilter;
+
+        const matchesSearch =
+          !q ||
+          item.category?.toLowerCase().includes(q) ||
+          item.field_job_number?.toLowerCase().includes(q) ||
+          item.field_location?.toLowerCase().includes(q) ||
+          item.issue_description?.toLowerCase().includes(q) ||
+          item.corrective_action_required?.toLowerCase().includes(q) ||
+          item.assigned_to?.toLowerCase().includes(q) ||
+          item.status?.toLowerCase().includes(q);
+
+        return matchesStartDate && matchesEndDate && matchesSearch;
+      }).length
+    })
+  </button>
+
+  {openRecordsSection === "cor-actions" && (
+    <div style={{ display: "grid", gap: 10, marginTop: 10 }}>
       {corActions
         .filter((item) => {
           const q = recordsCenterSearch.trim().toLowerCase();
