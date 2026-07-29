@@ -10713,7 +10713,7 @@ setHazardDueDate(report.due_date || "");
       cursor: "pointer",
     }}
   >
-    {openRecordsSection === "worker-forms" ? "▼" : "▶"} {openRecordsSection === "worker-forms" ? "▼" : "▶"} Worker Forms ({
+{openRecordsSection === "worker-forms" ? "▼" : "▶"} Worker Forms ({
   records.filter((record) => {
     const q = recordsCenterSearch.trim().toLowerCase();
     const recordDate = record.submitted_at
