@@ -12229,7 +12229,7 @@ setHazardDueDate(report.due_date || "");
   </button>
   {openRecordsSection === "qaqc-cable-placement" && (
   <div style={{ display: "grid", gap: 10, marginTop: 10 }}>
-    {qaqcCableInspections
+        {qaqcCableInspections
       .filter((inspection) => {
         const q = recordsCenterSearch.trim().toLowerCase();
 
@@ -12237,6 +12237,14 @@ setHazardDueDate(report.due_date || "");
           projects.find(
             (project) => String(project.id) === String(inspection.project_id)
           )?.name || "";
+
+        const inspectionDate = inspection.inspection_date || "";
+
+        const matchesStartDate =
+          !qaqcStartDateFilter || inspectionDate >= qaqcStartDateFilter;
+
+        const matchesEndDate =
+          !qaqcEndDateFilter || inspectionDate <= qaqcEndDateFilter;
 
         const matchesSearch =
           !q ||
@@ -12249,8 +12257,13 @@ setHazardDueDate(report.due_date || "");
           inspection.inspection_result?.toLowerCase().includes(q) ||
           inspection.inspection_status?.toLowerCase().includes(q);
 
-        return matchesSearch;
+        return matchesStartDate && matchesEndDate && matchesSearch;
       })
+      .sort(
+        (a, b) =>
+          new Date(b.inspection_date || 0) -
+          new Date(a.inspection_date || 0)
+      )
       .slice(0, 10)
       .map((inspection) => {
         const projectName =
@@ -12318,7 +12331,15 @@ setHazardDueDate(report.due_date || "");
           (project) => String(project.id) === String(inspection.project_id)
         )?.name || "";
 
-      return (
+      const inspectionDate = inspection.inspection_date || "";
+
+      const matchesStartDate =
+        !qaqcStartDateFilter || inspectionDate >= qaqcStartDateFilter;
+
+      const matchesEndDate =
+        !qaqcEndDateFilter || inspectionDate <= qaqcEndDateFilter;
+
+      const matchesSearch =
         !q ||
         projectName.toLowerCase().includes(q) ||
         inspection.client_owner?.toLowerCase().includes(q) ||
@@ -12327,11 +12348,12 @@ setHazardDueDate(report.due_date || "");
         inspection.cable_type?.toLowerCase().includes(q) ||
         inspection.inspector_name?.toLowerCase().includes(q) ||
         inspection.inspection_result?.toLowerCase().includes(q) ||
-        inspection.inspection_status?.toLowerCase().includes(q)
-      );
+        inspection.inspection_status?.toLowerCase().includes(q);
+
+      return matchesStartDate && matchesEndDate && matchesSearch;
     }).length === 0 && (
       <div style={{ color: "#64748b" }}>
-        No QA/QC cable placement records found.
+        No QA/QC cable placement records match the selected filters.
       </div>
     )}
  </div>
