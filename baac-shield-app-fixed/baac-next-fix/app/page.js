@@ -12070,7 +12070,7 @@ setHazardDueDate(report.due_date || "");
     })
   </button>
 
-  {openRecordsSection === "qaqc-duct-pathway" && (
+ {openRecordsSection === "qaqc-duct-pathway" && (
      <div style={{ display: "grid", gap: 10, marginTop: 10 }}>
       {qaqcDuctInspections
         .filter((inspection) => {
