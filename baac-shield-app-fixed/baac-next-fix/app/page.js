@@ -472,6 +472,7 @@ const [qaqcAcceptanceStatus, setQaqcAcceptanceStatus] = useState("");
   
   const [searchTerm, setSearchTerm] = useState("");
   const [recordsCenterSearch, setRecordsCenterSearch] = useState("");
+  const [openRecordsSection, setOpenRecordsSection] = useState("");
   const [qaqcStartDateFilter, setQaqcStartDateFilter] = useState("");
 const [qaqcEndDateFilter, setQaqcEndDateFilter] = useState("");
   const [statusFilter, setStatusFilter] = useState("All");
