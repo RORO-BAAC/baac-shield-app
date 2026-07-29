@@ -11572,11 +11572,12 @@ setHazardDueDate(report.due_date || "");
       }).length === 0 && (
         <div style={{ color: "#64748b" }}>No fleet defects found.</div>
       )}
-    </div>
-  </section>
+      </div>
+  )}
+</section>
 
-  <section>
-    <h3 style={{ marginBottom: 10 }}>RPAS Operations</h3>
+<section>
+  <h3 style={{ marginBottom: 10 }}>RPAS Operations</h3>
 
     <div style={{ display: "grid", gap: 10 }}>
       {rpasOperations
