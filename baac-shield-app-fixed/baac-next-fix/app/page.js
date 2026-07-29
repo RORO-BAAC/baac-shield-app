@@ -11010,10 +11010,54 @@ setHazardDueDate(report.due_date || "");
         )}
   </section>
 
-  <section>
-    <h3 style={{ marginBottom: 10 }}>Tailgate / Toolbox Talks</h3>
+ <section>
+  <button
+    type="button"
+    onClick={() =>
+      setOpenRecordsSection(
+        openRecordsSection === "toolbox-talks" ? "" : "toolbox-talks"
+      )
+    }
+    style={{
+      width: "100%",
+      padding: 14,
+      borderRadius: 12,
+      border: "1px solid #cbd5e1",
+      background: "#f8fafc",
+      color: "#0f2f63",
+      fontWeight: "bold",
+      fontSize: 16,
+      textAlign: "left",
+      cursor: "pointer",
+    }}
+  >
+    {openRecordsSection === "toolbox-talks" ? "▼" : "▶"} Tailgate / Toolbox Talks ({
+      toolboxTalks.filter((talk) => {
+        const q = recordsCenterSearch.trim().toLowerCase();
+        const talkDate = talk.talk_date || talk.created_at?.slice(0, 10) || "";
 
-    <div style={{ display: "grid", gap: 10 }}>
+        const matchesStartDate =
+          !startDateFilter || talkDate >= startDateFilter;
+
+        const matchesEndDate =
+          !endDateFilter || talkDate <= endDateFilter;
+
+        const matchesSearch =
+          !q ||
+          talk.project_name?.toLowerCase().includes(q) ||
+          talk.supervisor_name?.toLowerCase().includes(q) ||
+          talk.location?.toLowerCase().includes(q) ||
+          talk.topic?.toLowerCase().includes(q) ||
+          talk.discussion_notes?.toLowerCase().includes(q) ||
+          talk.status?.toLowerCase().includes(q);
+
+        return matchesStartDate && matchesEndDate && matchesSearch;
+      }).length
+    })
+  </button>
+
+  {openRecordsSection === "toolbox-talks" && (
+    <div style={{ display: "grid", gap: 10, marginTop: 10 }}>
       {toolboxTalks
         .filter((talk) => {
           const q = recordsCenterSearch.trim().toLowerCase();
