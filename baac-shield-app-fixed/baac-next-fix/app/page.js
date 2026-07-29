@@ -11059,21 +11059,34 @@ setHazardDueDate(report.due_date || "");
   {openRecordsSection === "toolbox-talks" && (
     <div style={{ display: "grid", gap: 10, marginTop: 10 }}>
       {toolboxTalks
-        .filter((talk) => {
-          const q = recordsCenterSearch.trim().toLowerCase();
+  .filter((talk) => {
+    const q = recordsCenterSearch.trim().toLowerCase();
+    const talkDate = talk.talk_date || talk.created_at?.slice(0, 10) || "";
 
-          return (
-            !q ||
-            talk.project_name?.toLowerCase().includes(q) ||
-            talk.supervisor_name?.toLowerCase().includes(q) ||
-            talk.location?.toLowerCase().includes(q) ||
-            talk.topic?.toLowerCase().includes(q) ||
-            talk.discussion_notes?.toLowerCase().includes(q) ||
-            talk.status?.toLowerCase().includes(q)
-          );
-        })
-        .slice(0, 10)
-        .map((talk) => (
+    const matchesStartDate =
+      !startDateFilter || talkDate >= startDateFilter;
+
+    const matchesEndDate =
+      !endDateFilter || talkDate <= endDateFilter;
+
+    const matchesSearch =
+      !q ||
+      talk.project_name?.toLowerCase().includes(q) ||
+      talk.supervisor_name?.toLowerCase().includes(q) ||
+      talk.location?.toLowerCase().includes(q) ||
+      talk.topic?.toLowerCase().includes(q) ||
+      talk.discussion_notes?.toLowerCase().includes(q) ||
+      talk.status?.toLowerCase().includes(q);
+
+    return matchesStartDate && matchesEndDate && matchesSearch;
+  })
+  .sort(
+    (a, b) =>
+      new Date(b.talk_date || b.created_at || 0) -
+      new Date(a.talk_date || a.created_at || 0)
+  )
+  .slice(0, 10)
+  .map((talk) => (
           <div
             key={`toolbox-${talk.id}`}
             style={{
