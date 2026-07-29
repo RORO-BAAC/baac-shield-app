@@ -12334,7 +12334,8 @@ setHazardDueDate(report.due_date || "");
         No QA/QC cable placement records found.
       </div>
     )}
-  </div>
+ </div>
+)}
 </section>
 </div>
 </div>
