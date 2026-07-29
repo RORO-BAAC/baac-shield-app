@@ -10737,7 +10737,7 @@ setHazardDueDate(report.due_date || "");
 
     return matchesStartDate && matchesEndDate && matchesSearch;
   }).length
-})Worker Forms ({records.length})
+})
   </button>
 
   {openRecordsSection === "worker-forms" && (
