@@ -11155,10 +11155,57 @@ setHazardDueDate(report.due_date || "");
        )}
   </section>
     
-        <section>
-    <h3 style={{ marginBottom: 10 }}>Hazard Reports</h3>
+       <section>
+  <button
+    type="button"
+    onClick={() =>
+      setOpenRecordsSection(
+        openRecordsSection === "hazard-reports" ? "" : "hazard-reports"
+      )
+    }
+    style={{
+      width: "100%",
+      padding: 14,
+      borderRadius: 12,
+      border: "1px solid #cbd5e1",
+      background: "#f8fafc",
+      color: "#0f2f63",
+      fontWeight: "bold",
+      fontSize: 16,
+      textAlign: "left",
+      cursor: "pointer",
+    }}
+  >
+    {openRecordsSection === "hazard-reports" ? "▼" : "▶"} Hazard Reports ({
+      hazardReports.filter((report) => {
+        const q = recordsCenterSearch.trim().toLowerCase();
+        const reportDate =
+          report.report_date ||
+          report.created_at?.slice(0, 10) ||
+          "";
 
-    <div style={{ display: "grid", gap: 10 }}>
+        const matchesStartDate =
+          !startDateFilter || reportDate >= startDateFilter;
+
+        const matchesEndDate =
+          !endDateFilter || reportDate <= endDateFilter;
+
+        const matchesSearch =
+          !q ||
+          report.project_name?.toLowerCase().includes(q) ||
+          report.reported_by?.toLowerCase().includes(q) ||
+          report.hazard_category?.toLowerCase().includes(q) ||
+          report.hazard_description?.toLowerCase().includes(q) ||
+          report.risk_level?.toLowerCase().includes(q) ||
+          report.action_status?.toLowerCase().includes(q);
+
+        return matchesStartDate && matchesEndDate && matchesSearch;
+      }).length
+    })
+  </button>
+
+  {openRecordsSection === "hazard-reports" && (
+    <div style={{ display: "grid", gap: 10, marginTop: 10 }}>
       {hazardReports
         .filter((report) => {
           const q = recordsCenterSearch.trim().toLowerCase();
