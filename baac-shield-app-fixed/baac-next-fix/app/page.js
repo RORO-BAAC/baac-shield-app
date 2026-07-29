@@ -11738,10 +11738,20 @@ setHazardDueDate(report.due_date || "");
           </div>
         ))}
 
-      {rpasOperations.filter((operation) => {
+           {rpasOperations.filter((operation) => {
         const q = recordsCenterSearch.trim().toLowerCase();
+        const operationDate =
+          operation.flight_date ||
+          operation.created_at?.slice(0, 10) ||
+          "";
 
-        return (
+        const matchesStartDate =
+          !startDateFilter || operationDate >= startDateFilter;
+
+        const matchesEndDate =
+          !endDateFilter || operationDate <= endDateFilter;
+
+        const matchesSearch =
           !q ||
           operation.project_name?.toLowerCase().includes(q) ||
           operation.pilot_in_command?.toLowerCase().includes(q) ||
@@ -11749,8 +11759,9 @@ setHazardDueDate(report.due_date || "");
           operation.rpas_make_model?.toLowerCase().includes(q) ||
           operation.operation_type?.toLowerCase().includes(q) ||
           operation.flight_location?.toLowerCase().includes(q) ||
-          operation.status?.toLowerCase().includes(q)
-        );
+          operation.status?.toLowerCase().includes(q);
+
+        return matchesStartDate && matchesEndDate && matchesSearch;
       }).length === 0 && (
         <div style={{ color: "#64748b" }}>No RPAS records found.</div>
       )}
