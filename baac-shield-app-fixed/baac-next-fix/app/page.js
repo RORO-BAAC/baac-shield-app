@@ -10719,19 +10719,29 @@ setHazardDueDate(report.due_date || "");
   {openRecordsSection === "worker-forms" && (
     <div style={{ display: "grid", gap: 10, marginTop: 10 }}>
       {records
-        .filter((record) => {
-          const q = recordsCenterSearch.trim().toLowerCase();
+      .filter((record) => {
+  const q = recordsCenterSearch.trim().toLowerCase();
+  const recordDate = record.submitted_at
+    ? record.submitted_at.slice(0, 10)
+    : "";
 
-          return (
-            !q ||
+  const matchesStartDate =
+    !startDateFilter || recordDate >= startDateFilter;
+
+  const matchesEndDate =
+    !endDateFilter || recordDate <= endDateFilter;
+
+  const matchesSearch =
+    !q ||
             record.worker_name?.toLowerCase().includes(q) ||
             record.supervisor_name?.toLowerCase().includes(q) ||
             record.project_name?.toLowerCase().includes(q) ||
             record.task_description?.toLowerCase().includes(q) ||
             record.critical_risk?.toLowerCase().includes(q) ||
-            record.status?.toLowerCase().includes(q)
-          );
-        })
+              record.status?.toLowerCase().includes(q);
+
+  return matchesStartDate && matchesEndDate && matchesSearch;
+})
         .slice(0, 10)
         .map((record) => (
           <div
