@@ -11738,10 +11738,12 @@ setHazardDueDate(report.due_date || "");
       }).length === 0 && (
         <div style={{ color: "#64748b" }}>No RPAS records found.</div>
       )}
-    </div>
-  </section>
-   <section>
-    <h3 style={{ marginBottom: 10 }}>QA/QC Work Inspections</h3>
+      </div>
+  )}
+</section>
+
+<section>
+  <h3 style={{ marginBottom: 10 }}>QA/QC Work Inspections</h3>
       <div
   style={{
     display: "grid",
