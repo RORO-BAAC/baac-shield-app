@@ -12172,13 +12172,12 @@ setHazardDueDate(report.due_date || "");
     }).length === 0 && (
       <div style={{ color: "#64748b" }}>
         No QA/QC duct / pathway records found.
-      </div>
+          </div>
     )}
-  </div>
 </section>
-    <section>
-  <h3 style={{ marginBottom: 10 }}>QA/QC Cable Placement Records</h3>
 
+<section>
+  <h3 style={{ marginBottom: 10 }}>QA/QC Cable Placement Records</h3>
   <div style={{ display: "grid", gap: 10 }}>
     {qaqcCableInspections
       .filter((inspection) => {
