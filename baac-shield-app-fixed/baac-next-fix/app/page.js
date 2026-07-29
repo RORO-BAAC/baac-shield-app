@@ -11437,10 +11437,60 @@ setHazardDueDate(report.due_date || "");
       )}   
   </section>
 
-  <section>
-    <h3 style={{ marginBottom: 10 }}>Fleet Defects</h3>
+   <section>
+    <button
+      type="button"
+      onClick={() =>
+        setOpenRecordsSection(
+          openRecordsSection === "fleet-defects" ? "" : "fleet-defects"
+        )
+      }
+      style={{
+        width: "100%",
+        padding: 14,
+        borderRadius: 12,
+        border: "1px solid #cbd5e1",
+        background: "#f8fafc",
+        color: "#0f2f63",
+        fontWeight: "bold",
+        fontSize: 16,
+        textAlign: "left",
+        cursor: "pointer",
+      }}
+    >
+      {openRecordsSection === "fleet-defects" ? "▼" : "▶"} Fleet Defects ({
+        fleetDefects.filter((item) => {
+          const q = recordsCenterSearch.trim().toLowerCase();
+          const itemDate =
+            item.due_date ||
+            item.fixed_date ||
+            item.created_at?.slice(0, 10) ||
+            "";
 
-    <div style={{ display: "grid", gap: 10 }}>
+          const matchesStartDate =
+            !startDateFilter || itemDate >= startDateFilter;
+
+          const matchesEndDate =
+            !endDateFilter || itemDate <= endDateFilter;
+
+          const matchesSearch =
+            !q ||
+            item.unit_number?.toLowerCase().includes(q) ||
+            item.asset_type?.toLowerCase().includes(q) ||
+            item.reported_by?.toLowerCase().includes(q) ||
+            item.project_name?.toLowerCase().includes(q) ||
+            item.location?.toLowerCase().includes(q) ||
+            item.defect_identified?.toLowerCase().includes(q) ||
+            item.priority?.toLowerCase().includes(q) ||
+            item.status?.toLowerCase().includes(q);
+
+          return matchesStartDate && matchesEndDate && matchesSearch;
+        }).length
+      })
+    </button>
+
+    {openRecordsSection === "fleet-defects" && (
+      <div style={{ display: "grid", gap: 10, marginTop: 10 }}>
       {fleetDefects
         .filter((item) => {
           const q = recordsCenterSearch.trim().toLowerCase();
