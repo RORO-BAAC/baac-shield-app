@@ -10649,48 +10649,6 @@ setHazardDueDate(report.due_date || "");
   </label>
 </div>
       
-    <div
-      style={{
-        display: "grid",
-        gap: 12,
-        gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
-      }}
-    >
-      {[
-        ["Worker Forms", records.length],
-  ["FLRAs", flraRecords.length],
-  ["Toolbox Talks", toolboxTalks.length],
-  ["Hazard Reports", hazardReports.length],
-  ["COR Actions", corActions.length],
-  ["Fleet Defects", fleetDefects.length],
-  ["RPAS Records", rpasOperations.length],
-  ["QA/QC Work Inspections", qaqcWorkInspections.length],
-  ["QA/QC Duct / Pathway", qaqcDuctInspections.length],
-   ["QA/QC Cable Placement", qaqcCableInspections.length],     
-      ].map(([label, count]) => (
-        <div
-          key={label}
-          style={{
-            padding: 14,
-            borderRadius: 12,
-            background: "#f8fafc",
-            border: "1px solid #e2e8f0",
-          }}
-        >
-          <div style={{ fontSize: 13, color: "#64748b" }}>{label}</div>
-          <div
-            style={{
-              fontSize: 28,
-              fontWeight: "bold",
-              color: "#123d82",
-            }}
-          >
-            {count}
-          </div>
-        </div>
-      ))}
-    </div>
-
    <div style={{ display: "grid", gap: 18 }}>
   <section>
   <button
