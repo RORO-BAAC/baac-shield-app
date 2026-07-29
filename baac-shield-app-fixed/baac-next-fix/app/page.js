@@ -10766,8 +10766,12 @@ setHazardDueDate(report.due_date || "");
 
   return matchesStartDate && matchesEndDate && matchesSearch;
 })
-        .slice(0, 10)
-        .map((record) => (
+  .sort(
+    (a, b) =>
+      new Date(b.submitted_at || 0) - new Date(a.submitted_at || 0)
+  )
+  .slice(0, 10)
+  .map((record) => (
           <div
             key={`record-${record.id}`}
             style={{
