@@ -11128,21 +11128,29 @@ setHazardDueDate(report.due_date || "");
           </div>
         ))}
 
-      {toolboxTalks.filter((talk) => {
-        const q = recordsCenterSearch.trim().toLowerCase();
+     {toolboxTalks.filter((talk) => {
+  const q = recordsCenterSearch.trim().toLowerCase();
+  const talkDate = talk.talk_date || talk.created_at?.slice(0, 10) || "";
 
-        return (
-          !q ||
-          talk.project_name?.toLowerCase().includes(q) ||
-          talk.supervisor_name?.toLowerCase().includes(q) ||
-          talk.location?.toLowerCase().includes(q) ||
-          talk.topic?.toLowerCase().includes(q) ||
-          talk.discussion_notes?.toLowerCase().includes(q) ||
-          talk.status?.toLowerCase().includes(q)
-        );
-      }).length === 0 && (
-        <div style={{ color: "#64748b" }}>No toolbox talks found.</div>
-      )}
+  const matchesStartDate =
+    !startDateFilter || talkDate >= startDateFilter;
+
+  const matchesEndDate =
+    !endDateFilter || talkDate <= endDateFilter;
+
+  const matchesSearch =
+    !q ||
+    talk.project_name?.toLowerCase().includes(q) ||
+    talk.supervisor_name?.toLowerCase().includes(q) ||
+    talk.location?.toLowerCase().includes(q) ||
+    talk.topic?.toLowerCase().includes(q) ||
+    talk.discussion_notes?.toLowerCase().includes(q) ||
+    talk.status?.toLowerCase().includes(q);
+
+  return matchesStartDate && matchesEndDate && matchesSearch;
+}).length === 0 && (
+  <div style={{ color: "#64748b" }}>No toolbox talks found.</div>
+)}
     </div>
        )}
   </section>
