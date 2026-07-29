@@ -11901,33 +11901,39 @@ setHazardDueDate(report.due_date || "");
           Clear QA/QC Filters
         </button>
       </div>
-      {qaqcWorkInspections
-       .filter((inspection) => {
-  const q = recordsCenterSearch.trim().toLowerCase();
+           {qaqcWorkInspections
+        .filter((inspection) => {
+          const q = recordsCenterSearch.trim().toLowerCase();
 
-  const projectName =
-    projects.find(
-      (project) => String(project.id) === String(inspection.project_id)
-    )?.name || "";
+          const projectName =
+            projects.find(
+              (project) => String(project.id) === String(inspection.project_id)
+            )?.name || "";
 
-  const inspectionDate = inspection.inspection_date || "";
-  const matchesStartDate =
-    !qaqcStartDateFilter || inspectionDate >= qaqcStartDateFilter;
-  const matchesEndDate =
-    !qaqcEndDateFilter || inspectionDate <= qaqcEndDateFilter;
+          const inspectionDate = inspection.inspection_date || "";
+          const matchesStartDate =
+            !qaqcStartDateFilter || inspectionDate >= qaqcStartDateFilter;
 
-  const matchesSearch =
-    !q ||
-    projectName.toLowerCase().includes(q) ||
-    inspection.inspection_location?.toLowerCase().includes(q) ||
-    inspection.work_type?.toLowerCase().includes(q) ||
-    inspection.contractor_crew?.toLowerCase().includes(q) ||
-    inspection.inspector_name?.toLowerCase().includes(q) ||
-    inspection.inspection_result?.toLowerCase().includes(q) ||
-    inspection.inspection_status?.toLowerCase().includes(q);
+          const matchesEndDate =
+            !qaqcEndDateFilter || inspectionDate <= qaqcEndDateFilter;
 
-  return matchesStartDate && matchesEndDate && matchesSearch;
-})
+          const matchesSearch =
+            !q ||
+            projectName.toLowerCase().includes(q) ||
+            inspection.inspection_location?.toLowerCase().includes(q) ||
+            inspection.work_type?.toLowerCase().includes(q) ||
+            inspection.contractor_crew?.toLowerCase().includes(q) ||
+            inspection.inspector_name?.toLowerCase().includes(q) ||
+            inspection.inspection_result?.toLowerCase().includes(q) ||
+            inspection.inspection_status?.toLowerCase().includes(q);
+
+          return matchesStartDate && matchesEndDate && matchesSearch;
+        })
+        .sort(
+          (a, b) =>
+            new Date(b.inspection_date || b.created_at || 0) -
+            new Date(a.inspection_date || a.created_at || 0)
+        )
         .slice(0, 10)
         .map((inspection) => {
           const projectName =
