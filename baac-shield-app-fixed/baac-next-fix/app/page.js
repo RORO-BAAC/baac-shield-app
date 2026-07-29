@@ -11491,11 +11491,22 @@ setHazardDueDate(report.due_date || "");
 
     {openRecordsSection === "fleet-defects" && (
       <div style={{ display: "grid", gap: 10, marginTop: 10 }}>
-      {fleetDefects
+            {fleetDefects
         .filter((item) => {
           const q = recordsCenterSearch.trim().toLowerCase();
+          const itemDate =
+            item.due_date ||
+            item.fixed_date ||
+            item.created_at?.slice(0, 10) ||
+            "";
 
-          return (
+          const matchesStartDate =
+            !startDateFilter || itemDate >= startDateFilter;
+
+          const matchesEndDate =
+            !endDateFilter || itemDate <= endDateFilter;
+
+          const matchesSearch =
             !q ||
             item.unit_number?.toLowerCase().includes(q) ||
             item.asset_type?.toLowerCase().includes(q) ||
@@ -11504,9 +11515,15 @@ setHazardDueDate(report.due_date || "");
             item.location?.toLowerCase().includes(q) ||
             item.defect_identified?.toLowerCase().includes(q) ||
             item.priority?.toLowerCase().includes(q) ||
-            item.status?.toLowerCase().includes(q)
-          );
+            item.status?.toLowerCase().includes(q);
+
+          return matchesStartDate && matchesEndDate && matchesSearch;
         })
+        .sort(
+          (a, b) =>
+            new Date(b.due_date || b.fixed_date || b.created_at || 0) -
+            new Date(a.due_date || a.fixed_date || a.created_at || 0)
+        )
         .slice(0, 10)
         .map((item) => (
           <div
