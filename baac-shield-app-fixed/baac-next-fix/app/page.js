@@ -10607,6 +10607,48 @@ setHazardDueDate(report.due_date || "");
       }}
     />
 
+<div
+  style={{
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
+    gap: 10,
+  }}
+>
+  <label>
+    Start Date
+    <input
+      type="date"
+      value={startDateFilter}
+      onChange={(e) => setStartDateFilter(e.target.value)}
+      style={{
+        width: "100%",
+        padding: 10,
+        borderRadius: 10,
+        border: "1px solid #cbd5e1",
+        marginTop: 4,
+        boxSizing: "border-box",
+      }}
+    />
+  </label>
+
+  <label>
+    End Date
+    <input
+      type="date"
+      value={endDateFilter}
+      onChange={(e) => setEndDateFilter(e.target.value)}
+      style={{
+        width: "100%",
+        padding: 10,
+        borderRadius: 10,
+        border: "1px solid #cbd5e1",
+        marginTop: 4,
+        boxSizing: "border-box",
+      }}
+    />
+  </label>
+</div>
+      
     <div
       style={{
         display: "grid",
