@@ -12071,8 +12071,9 @@ setHazardDueDate(report.due_date || "");
   </button>
 
   {openRecordsSection === "qaqc-duct-pathway" && (
-    <div style={{ display: "grid", gap: 10, marginTop: 10 }}>
-      .filter((inspection) => {
+     <div style={{ display: "grid", gap: 10, marginTop: 10 }}>
+      {qaqcDuctInspections
+        .filter((inspection) => {
         const q = recordsCenterSearch.trim().toLowerCase();
 
         const projectName =
