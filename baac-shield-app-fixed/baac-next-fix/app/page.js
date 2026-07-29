@@ -12227,7 +12227,8 @@ setHazardDueDate(report.due_date || "");
     {openRecordsSection === "qaqc-cable-placement" ? "▼" : "▶"} QA/QC Cable
     Placement Records ({qaqcCableInspections.length})
   </button>
-  <div style={{ display: "grid", gap: 10 }}>
+  {openRecordsSection === "qaqc-cable-placement" && (
+  <div style={{ display: "grid", gap: 10, marginTop: 10 }}>
     {qaqcCableInspections
       .filter((inspection) => {
         const q = recordsCenterSearch.trim().toLowerCase();
