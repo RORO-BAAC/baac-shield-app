@@ -10651,9 +10651,31 @@ setHazardDueDate(report.due_date || "");
 
    <div style={{ display: "grid", gap: 18 }}>
   <section>
-    <h3 style={{ marginBottom: 10 }}>Worker Forms</h3>
+  <button
+    type="button"
+    onClick={() =>
+      setOpenRecordsSection(
+        openRecordsSection === "worker-forms" ? "" : "worker-forms"
+      )
+    }
+    style={{
+      width: "100%",
+      padding: 14,
+      borderRadius: 12,
+      border: "1px solid #cbd5e1",
+      background: "#f8fafc",
+      color: "#0f2f63",
+      fontWeight: "bold",
+      fontSize: 16,
+      textAlign: "left",
+      cursor: "pointer",
+    }}
+  >
+    {openRecordsSection === "worker-forms" ? "▼" : "▶"} Worker Forms ({records.length})
+  </button>
 
-    <div style={{ display: "grid", gap: 10 }}>
+  {openRecordsSection === "worker-forms" && (
+    <div style={{ display: "grid", gap: 10, marginTop: 10 }}>
       {records
         .filter((record) => {
           const q = recordsCenterSearch.trim().toLowerCase();
