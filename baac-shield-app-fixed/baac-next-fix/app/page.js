@@ -10983,21 +10983,29 @@ setHazardDueDate(report.due_date || "");
           </div>
         ))}
 
-      {flraRecords.filter((item) => {
-        const q = recordsCenterSearch.trim().toLowerCase();
+     {flraRecords.filter((item) => {
+  const q = recordsCenterSearch.trim().toLowerCase();
+  const itemDate = item.flra_date || item.created_at?.slice(0, 10) || "";
 
-        return (
-          !q ||
-          item.project_name?.toLowerCase().includes(q) ||
-          item.worker_name?.toLowerCase().includes(q) ||
-          item.supervisor_name?.toLowerCase().includes(q) ||
-          item.location?.toLowerCase().includes(q) ||
-          item.work_scope?.toLowerCase().includes(q) ||
-          item.critical_risks?.toLowerCase().includes(q)
-        );
-      }).length === 0 && (
-        <div style={{ color: "#64748b" }}>No FLRA records found.</div>
-      )}
+  const matchesStartDate =
+    !startDateFilter || itemDate >= startDateFilter;
+
+  const matchesEndDate =
+    !endDateFilter || itemDate <= endDateFilter;
+
+  const matchesSearch =
+    !q ||
+    item.project_name?.toLowerCase().includes(q) ||
+    item.worker_name?.toLowerCase().includes(q) ||
+    item.supervisor_name?.toLowerCase().includes(q) ||
+    item.location?.toLowerCase().includes(q) ||
+    item.work_scope?.toLowerCase().includes(q) ||
+    item.critical_risks?.toLowerCase().includes(q);
+
+  return matchesStartDate && matchesEndDate && matchesSearch;
+}).length === 0 && (
+  <div style={{ color: "#64748b" }}>No FLRA records found.</div>
+)}
     </div>
         )}
   </section>
