@@ -10713,7 +10713,31 @@ setHazardDueDate(report.due_date || "");
       cursor: "pointer",
     }}
   >
-    {openRecordsSection === "worker-forms" ? "▼" : "▶"} Worker Forms ({records.length})
+    {openRecordsSection === "worker-forms" ? "▼" : "▶"} {openRecordsSection === "worker-forms" ? "▼" : "▶"} Worker Forms ({
+  records.filter((record) => {
+    const q = recordsCenterSearch.trim().toLowerCase();
+    const recordDate = record.submitted_at
+      ? record.submitted_at.slice(0, 10)
+      : "";
+
+    const matchesStartDate =
+      !startDateFilter || recordDate >= startDateFilter;
+
+    const matchesEndDate =
+      !endDateFilter || recordDate <= endDateFilter;
+
+    const matchesSearch =
+      !q ||
+      record.worker_name?.toLowerCase().includes(q) ||
+      record.supervisor_name?.toLowerCase().includes(q) ||
+      record.project_name?.toLowerCase().includes(q) ||
+      record.task_description?.toLowerCase().includes(q) ||
+      record.critical_risk?.toLowerCase().includes(q) ||
+      record.status?.toLowerCase().includes(q);
+
+    return matchesStartDate && matchesEndDate && matchesSearch;
+  }).length
+})Worker Forms ({records.length})
   </button>
 
   {openRecordsSection === "worker-forms" && (
