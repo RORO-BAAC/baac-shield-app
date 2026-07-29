@@ -11572,10 +11572,21 @@ setHazardDueDate(report.due_date || "");
           </div>
         ))}
 
-      {fleetDefects.filter((item) => {
+            {fleetDefects.filter((item) => {
         const q = recordsCenterSearch.trim().toLowerCase();
+        const itemDate =
+          item.due_date ||
+          item.fixed_date ||
+          item.created_at?.slice(0, 10) ||
+          "";
 
-        return (
+        const matchesStartDate =
+          !startDateFilter || itemDate >= startDateFilter;
+
+        const matchesEndDate =
+          !endDateFilter || itemDate <= endDateFilter;
+
+        const matchesSearch =
           !q ||
           item.unit_number?.toLowerCase().includes(q) ||
           item.asset_type?.toLowerCase().includes(q) ||
@@ -11584,8 +11595,9 @@ setHazardDueDate(report.due_date || "");
           item.location?.toLowerCase().includes(q) ||
           item.defect_identified?.toLowerCase().includes(q) ||
           item.priority?.toLowerCase().includes(q) ||
-          item.status?.toLowerCase().includes(q)
-        );
+          item.status?.toLowerCase().includes(q);
+
+        return matchesStartDate && matchesEndDate && matchesSearch;
       }).length === 0 && (
         <div style={{ color: "#64748b" }}>No fleet defects found.</div>
       )}
