@@ -12072,7 +12072,7 @@ setHazardDueDate(report.due_date || "");
 
  {openRecordsSection === "qaqc-duct-pathway" && (
      <div style={{ display: "grid", gap: 10, marginTop: 10 }}>
-           {qaqcDuctInspections
+         {qaqcDuctInspections
         .filter((inspection) => {
           const q = recordsCenterSearch.trim().toLowerCase();
 
@@ -12082,6 +12082,7 @@ setHazardDueDate(report.due_date || "");
             )?.name || "";
 
           const inspectionDate = inspection.inspection_date || "";
+
           const matchesStartDate =
             !qaqcStartDateFilter || inspectionDate >= qaqcStartDateFilter;
 
@@ -12102,90 +12103,99 @@ setHazardDueDate(report.due_date || "");
         })
         .sort(
           (a, b) =>
-            new Date(b.inspection_date || b.created_at || 0) -
-            new Date(a.inspection_date || a.created_at || 0)
+            new Date(b.inspection_date || 0) -
+            new Date(a.inspection_date || 0)
         )
         .slice(0, 10)
         .map((inspection) => {
+          const projectName =
+            projects.find(
+              (project) => String(project.id) === String(inspection.project_id)
+            )?.name ||
+            inspection.project_id ||
+            "No Project";
+
+          return (
+            <div
+              key={`qaqc-duct-${inspection.id}`}
+              style={{
+                padding: 14,
+                borderRadius: 12,
+                border: "1px solid #bfdbfe",
+                background: "#eff6ff",
+              }}
+            >
+              <div style={{ fontWeight: "bold" }}>
+                {projectName} — {inspection.inspection_date || "-"}
+              </div>
+
+              <div style={{ marginTop: 4, fontSize: 13, color: "#475569" }}>
+                Client / Owner: {inspection.client_owner || "-"} | Location:{" "}
+                {inspection.inspection_location || "-"}
+              </div>
+
+              <div style={{ marginTop: 4, fontSize: 13, color: "#475569" }}>
+                Duct Run: {inspection.duct_run_id || "-"} | Inspector:{" "}
+                {inspection.inspector_name || "-"}
+              </div>
+
+              <div style={{ marginTop: 4, fontSize: 13, color: "#475569" }}>
+                Result: {inspection.inspection_result || "-"} | Status:{" "}
+                {inspection.inspection_status || "-"}
+              </div>
+
+              <button
+                type="button"
+                onClick={() => downloadQaqcDuctInspectionPdf(inspection)}
+                style={{
+                  marginTop: 10,
+                  padding: "8px 12px",
+                  borderRadius: 10,
+                  border: "none",
+                  background: "#123d82",
+                  color: "white",
+                  fontWeight: "bold",
+                  cursor: "pointer",
+                }}
+              >
+                Download PDF
+              </button>
+            </div>
+          );
+        })}
+
+      {qaqcDuctInspections.filter((inspection) => {
+        const q = recordsCenterSearch.trim().toLowerCase();
+
         const projectName =
           projects.find(
             (project) => String(project.id) === String(inspection.project_id)
-          )?.name ||
-          inspection.project_id ||
-          "No Project";
+          )?.name || "";
 
-        return (
-          <div
-            key={`qaqc-duct-${inspection.id}`}
-            style={{
-              padding: 14,
-              borderRadius: 12,
-              border: "1px solid #bfdbfe",
-              background: "#eff6ff",
-            }}
-          >
-            <div style={{ fontWeight: "bold" }}>
-              {projectName} — {inspection.inspection_date || "-"}
-            </div>
+        const inspectionDate = inspection.inspection_date || "";
 
-            <div style={{ marginTop: 4, fontSize: 13, color: "#475569" }}>
-              Client / Owner: {inspection.client_owner || "-"} | Location:{" "}
-              {inspection.inspection_location || "-"}
-            </div>
+        const matchesStartDate =
+          !qaqcStartDateFilter || inspectionDate >= qaqcStartDateFilter;
 
-            <div style={{ marginTop: 4, fontSize: 13, color: "#475569" }}>
-              Duct Run: {inspection.duct_run_id || "-"} | Inspector:{" "}
-              {inspection.inspector_name || "-"}
-            </div>
+        const matchesEndDate =
+          !qaqcEndDateFilter || inspectionDate <= qaqcEndDateFilter;
 
-            <div style={{ marginTop: 4, fontSize: 13, color: "#475569" }}>
-              Result: {inspection.inspection_result || "-"} | Status:{" "}
-              {inspection.inspection_status || "-"}
-            </div>
+        const matchesSearch =
+          !q ||
+          projectName.toLowerCase().includes(q) ||
+          inspection.client_owner?.toLowerCase().includes(q) ||
+          inspection.inspection_location?.toLowerCase().includes(q) ||
+          inspection.duct_run_id?.toLowerCase().includes(q) ||
+          inspection.inspector_name?.toLowerCase().includes(q) ||
+          inspection.inspection_result?.toLowerCase().includes(q) ||
+          inspection.inspection_status?.toLowerCase().includes(q);
 
-            <button
-              type="button"
-              onClick={() => downloadQaqcDuctInspectionPdf(inspection)}
-              style={{
-                marginTop: 10,
-                padding: "8px 12px",
-                borderRadius: 10,
-                border: "none",
-                background: "#123d82",
-                color: "white",
-                fontWeight: "bold",
-                cursor: "pointer",
-              }}
-            >
-              Download PDF
-            </button>
-          </div>
-        );
-      })}
-
-    {qaqcDuctInspections.filter((inspection) => {
-      const q = recordsCenterSearch.trim().toLowerCase();
-
-      const projectName =
-        projects.find(
-          (project) => String(project.id) === String(inspection.project_id)
-        )?.name || "";
-
-      return (
-        !q ||
-        projectName.toLowerCase().includes(q) ||
-        inspection.client_owner?.toLowerCase().includes(q) ||
-        inspection.inspection_location?.toLowerCase().includes(q) ||
-        inspection.duct_run_id?.toLowerCase().includes(q) ||
-        inspection.inspector_name?.toLowerCase().includes(q) ||
-        inspection.inspection_result?.toLowerCase().includes(q) ||
-        inspection.inspection_status?.toLowerCase().includes(q)
-      );
-    }).length === 0 && (
-      <div style={{ color: "#64748b" }}>
-        No QA/QC duct / pathway records found.
-                </div>
-    )}
+        return matchesStartDate && matchesEndDate && matchesSearch;
+      }).length === 0 && (
+        <div style={{ color: "#64748b" }}>
+          No QA/QC duct / pathway records match the selected filters.
+        </div>
+      )}
 
     </div>
   )}
