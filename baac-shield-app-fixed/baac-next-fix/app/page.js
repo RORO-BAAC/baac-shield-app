@@ -232,7 +232,7 @@ const [siteDocNotes, setSiteDocNotes] = useState("");
 const [siteDocFile, setSiteDocFile] = useState(null);
   const [fieldDocType, setFieldDocType] = useState("");
 
-// Vehicle / Driver Pre-Use Inspection
+// 2-Minute Light-Duty Vehicle Check
 const [vehiclePreUseInspections, setVehiclePreUseInspections] = useState([]);
 
 const [vehiclePreUseForm, setVehiclePreUseForm] = useState({
@@ -6735,7 +6735,7 @@ onClick={submitCorAction}
 
     <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginBottom: 20 }}>
       {[
-  "Vehicle / Driver Pre-Use Inspection",
+  "2-Minute Light-Duty Vehicle Check",
   "FLRA / Daily Risk Assessment",
   "Supervisor Site Inspection",
   "Incident / Near Miss Report",
@@ -6775,9 +6775,9 @@ onClick={submitCorAction}
       </div>
     )}
 
-{fieldDocType === "Vehicle / Driver Pre-Use Inspection" && (
+{fieldDocType === "2-Minute Light-Duty Vehicle Check" && (
   <div>
-    <h3>Vehicle / Driver Pre-Use Inspection</h3>
+    <h3>2-Minute Light-Duty Vehicle Check</h3>
 
     <p style={{ color: "#64748b", marginTop: -6 }}>
       Complete this inspection before operating the vehicle. Report defects and
