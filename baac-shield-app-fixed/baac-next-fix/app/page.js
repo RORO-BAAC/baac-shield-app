@@ -6914,31 +6914,7 @@ onClick={submitCorAction}
         </div>
       ))}
 
-      <div>
-        <label>Odometer Unit</label>
-        <br />
-        <select
-          value={vehiclePreUseForm.odometerUnit}
-          onChange={(e) =>
-            setVehiclePreUseForm((previous) => ({
-              ...previous,
-              odometerUnit: e.target.value,
-            }))
-          }
-          style={{
-            width: "100%",
-            padding: 12,
-            marginTop: 6,
-            borderRadius: 10,
-            border: "1px solid #cbd5e1",
-          }}
-        >
-          <option value="km">Kilometres</option>
-          <option value="miles">Miles</option>
-          <option value="hours">Hours</option>
-        </select>
-      </div>
-    </div>
+        </div>
 
    <h4
   style={{
