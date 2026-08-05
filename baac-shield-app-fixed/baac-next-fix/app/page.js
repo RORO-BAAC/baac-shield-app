@@ -712,6 +712,8 @@ const [crmOpportunityNotes, setCrmOpportunityNotes] = useState("");
   const flraSupervisorSigRef = useRef(null);
 const rpasPreflightSigRef = useRef(null);
 const rpasPostflightSigRef = useRef(null);
+const vehiclePreUseDriverSigRef = useRef(null);
+const vehiclePreUseSupervisorSigRef = useRef(null);
 
 function navigateQaqc(section) {
   window.history.pushState(
