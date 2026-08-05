@@ -7386,6 +7386,619 @@ onClick={submitCorAction}
     </div>
   </div>
 ))}
+
+<h4
+  style={{
+    marginTop: 24,
+    marginBottom: 12,
+    paddingBottom: 8,
+    borderBottom: "2px solid #e2e8f0",
+  }}
+>
+  Trailer Information
+</h4>
+
+<label
+  style={{
+    display: "flex",
+    alignItems: "center",
+    gap: 8,
+    fontWeight: "bold",
+    marginBottom: 12,
+  }}
+>
+  <input
+    type="checkbox"
+    checked={vehiclePreUseForm.trailerAttached}
+    onChange={(e) =>
+      setVehiclePreUseForm((previous) => ({
+        ...previous,
+        trailerAttached: e.target.checked,
+      }))
+    }
+  />
+  Trailer Attached
+</label>
+
+{vehiclePreUseForm.trailerAttached && (
+  <div
+    style={{
+      display: "grid",
+      gap: 12,
+      gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+    }}
+  >
+    {[
+      ["trailerUnitNumber", "Trailer Unit Number"],
+      ["trailerLicencePlate", "Trailer Licence Plate"],
+      ["trailerOdometerReading", "Trailer Odometer / Hubometer"],
+    ].map(([field, label]) => (
+      <div key={field}>
+        <label>{label}</label>
+        <br />
+        <input
+          type={
+            field === "trailerOdometerReading" ? "number" : "text"
+          }
+          value={vehiclePreUseForm[field]}
+          onChange={(e) =>
+            setVehiclePreUseForm((previous) => ({
+              ...previous,
+              [field]: e.target.value,
+            }))
+          }
+          style={{
+            width: "100%",
+            padding: 12,
+            marginTop: 6,
+            borderRadius: 10,
+            border: "1px solid #cbd5e1",
+          }}
+        />
+      </div>
+    ))}
+  </div>
+)}
+
+<h4
+  style={{
+    marginTop: 24,
+    marginBottom: 12,
+    paddingBottom: 8,
+    borderBottom: "2px solid #e2e8f0",
+  }}
+>
+  Defects and Operating Decision
+</h4>
+
+<label
+  style={{
+    display: "flex",
+    alignItems: "center",
+    gap: 8,
+    fontWeight: "bold",
+    marginBottom: 14,
+  }}
+>
+  <input
+    type="checkbox"
+    checked={vehiclePreUseForm.defectsFound}
+    onChange={(e) =>
+      setVehiclePreUseForm((previous) => ({
+        ...previous,
+        defectsFound: e.target.checked,
+        defectClassification: e.target.checked
+          ? previous.defectClassification
+          : "",
+        defectDescription: e.target.checked
+          ? previous.defectDescription
+          : "",
+        immediateActionTaken: e.target.checked
+          ? previous.immediateActionTaken
+          : "",
+      }))
+    }
+  />
+  One or More Defects Found
+</label>
+
+{vehiclePreUseForm.defectsFound && (
+  <div
+    style={{
+      padding: 16,
+      borderRadius: 12,
+      background: "#fef2f2",
+      border: "1px solid #fecaca",
+      marginBottom: 16,
+    }}
+  >
+    <div
+      style={{
+        display: "grid",
+        gap: 12,
+        gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
+      }}
+    >
+      <div>
+        <label>Defect Classification</label>
+        <br />
+        <select
+          value={vehiclePreUseForm.defectClassification}
+          onChange={(e) =>
+            setVehiclePreUseForm((previous) => ({
+              ...previous,
+              defectClassification: e.target.value,
+            }))
+          }
+          style={{
+            width: "100%",
+            padding: 12,
+            marginTop: 6,
+            borderRadius: 10,
+            border: "1px solid #cbd5e1",
+          }}
+        >
+          <option value="">Select Classification</option>
+          <option value="Minor Defect">Minor Defect</option>
+          <option value="Major Defect">Major Defect</option>
+          <option value="Out of Service">Out of Service</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Immediate Action Taken</label>
+        <br />
+        <input
+          value={vehiclePreUseForm.immediateActionTaken}
+          onChange={(e) =>
+            setVehiclePreUseForm((previous) => ({
+              ...previous,
+              immediateActionTaken: e.target.value,
+            }))
+          }
+          style={{
+            width: "100%",
+            padding: 12,
+            marginTop: 6,
+            borderRadius: 10,
+            border: "1px solid #cbd5e1",
+          }}
+        />
+      </div>
+    </div>
+
+    <div style={{ marginTop: 12 }}>
+      <label>Defect Description</label>
+      <br />
+      <textarea
+        value={vehiclePreUseForm.defectDescription}
+        onChange={(e) =>
+          setVehiclePreUseForm((previous) => ({
+            ...previous,
+            defectDescription: e.target.value,
+          }))
+        }
+        rows={4}
+        style={{
+          width: "100%",
+          padding: 12,
+          marginTop: 6,
+          borderRadius: 10,
+          border: "1px solid #cbd5e1",
+          resize: "vertical",
+        }}
+      />
+    </div>
+  </div>
+)}
+
+<div
+  style={{
+    display: "grid",
+    gap: 12,
+    gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
+  }}
+>
+  <div>
+    <label>Is the Vehicle Safe to Operate? *</label>
+    <br />
+    <select
+      value={vehiclePreUseForm.safeToOperate}
+      onChange={(e) =>
+        setVehiclePreUseForm((previous) => ({
+          ...previous,
+          safeToOperate: e.target.value,
+          vehicleOutOfService:
+            e.target.value === "No"
+              ? true
+              : previous.vehicleOutOfService,
+        }))
+      }
+      style={{
+        width: "100%",
+        padding: 12,
+        marginTop: 6,
+        borderRadius: 10,
+        border:
+          vehiclePreUseForm.safeToOperate === "No"
+            ? "2px solid #dc2626"
+            : "1px solid #cbd5e1",
+      }}
+    >
+      <option value="">Select</option>
+      <option value="Yes">Yes</option>
+      <option value="No">No</option>
+    </select>
+  </div>
+
+  <div
+    style={{
+      display: "flex",
+      alignItems: "center",
+      paddingTop: 28,
+    }}
+  >
+    <label
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: 8,
+        fontWeight: "bold",
+      }}
+    >
+      <input
+        type="checkbox"
+        checked={vehiclePreUseForm.vehicleOutOfService}
+        onChange={(e) =>
+          setVehiclePreUseForm((previous) => ({
+            ...previous,
+            vehicleOutOfService: e.target.checked,
+            safeToOperate: e.target.checked
+              ? "No"
+              : previous.safeToOperate,
+          }))
+        }
+      />
+      Vehicle Removed from Service
+    </label>
+  </div>
+</div>
+
+{vehiclePreUseForm.vehicleOutOfService && (
+  <div style={{ marginTop: 12 }}>
+    <label>Out-of-Service Reason</label>
+    <br />
+    <textarea
+      value={vehiclePreUseForm.outOfServiceReason}
+      onChange={(e) =>
+        setVehiclePreUseForm((previous) => ({
+          ...previous,
+          outOfServiceReason: e.target.value,
+        }))
+      }
+      rows={3}
+      style={{
+        width: "100%",
+        padding: 12,
+        marginTop: 6,
+        borderRadius: 10,
+        border: "2px solid #dc2626",
+        resize: "vertical",
+      }}
+    />
+  </div>
+)}
+
+<h4
+  style={{
+    marginTop: 24,
+    marginBottom: 12,
+    paddingBottom: 8,
+    borderBottom: "2px solid #e2e8f0",
+  }}
+>
+  Corrective Action and Repairs
+</h4>
+
+<label
+  style={{
+    display: "flex",
+    alignItems: "center",
+    gap: 8,
+    fontWeight: "bold",
+    marginBottom: 12,
+  }}
+>
+  <input
+    type="checkbox"
+    checked={vehiclePreUseForm.correctiveActionRequired}
+    onChange={(e) =>
+      setVehiclePreUseForm((previous) => ({
+        ...previous,
+        correctiveActionRequired: e.target.checked,
+      }))
+    }
+  />
+  Corrective Action Required
+</label>
+
+<div
+  style={{
+    display: "grid",
+    gap: 12,
+    gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+  }}
+>
+  {[
+    ["assignedTo", "Assigned To", "text"],
+    ["repairedBy", "Repaired By", "text"],
+    ["repairedDate", "Repair Date", "date"],
+    ["repairVerifiedBy", "Repair Verified By", "text"],
+  ].map(([field, label, type]) => (
+    <div key={field}>
+      <label>{label}</label>
+      <br />
+      <input
+        type={type}
+        value={vehiclePreUseForm[field]}
+        onChange={(e) =>
+          setVehiclePreUseForm((previous) => ({
+            ...previous,
+            [field]: e.target.value,
+          }))
+        }
+        style={{
+          width: "100%",
+          padding: 12,
+          marginTop: 6,
+          borderRadius: 10,
+          border: "1px solid #cbd5e1",
+        }}
+      />
+    </div>
+  ))}
+</div>
+
+<div style={{ marginTop: 12 }}>
+  <label>Repair / Corrective Action Description</label>
+  <br />
+  <textarea
+    value={vehiclePreUseForm.repairDescription}
+    onChange={(e) =>
+      setVehiclePreUseForm((previous) => ({
+        ...previous,
+        repairDescription: e.target.value,
+      }))
+    }
+    rows={3}
+    style={{
+      width: "100%",
+      padding: 12,
+      marginTop: 6,
+      borderRadius: 10,
+      border: "1px solid #cbd5e1",
+      resize: "vertical",
+    }}
+  />
+</div>
+
+<div
+  style={{
+    display: "flex",
+    flexWrap: "wrap",
+    gap: 20,
+    marginTop: 16,
+  }}
+>
+  <label
+    style={{
+      display: "flex",
+      alignItems: "center",
+      gap: 8,
+      fontWeight: "bold",
+    }}
+  >
+    <input
+      type="checkbox"
+      checked={vehiclePreUseForm.returnedToService}
+      onChange={(e) =>
+        setVehiclePreUseForm((previous) => ({
+          ...previous,
+          returnedToService: e.target.checked,
+        }))
+      }
+    />
+    Returned to Service
+  </label>
+
+  {vehiclePreUseForm.returnedToService && (
+    <div>
+      <label>Return-to-Service Date</label>
+      <br />
+      <input
+        type="date"
+        value={vehiclePreUseForm.returnToServiceDate}
+        onChange={(e) =>
+          setVehiclePreUseForm((previous) => ({
+            ...previous,
+            returnToServiceDate: e.target.value,
+          }))
+        }
+        style={{
+          padding: 10,
+          marginTop: 6,
+          borderRadius: 10,
+          border: "1px solid #cbd5e1",
+        }}
+      />
+    </div>
+  )}
+</div>
+
+<h4
+  style={{
+    marginTop: 24,
+    marginBottom: 12,
+    paddingBottom: 8,
+    borderBottom: "2px solid #e2e8f0",
+  }}
+>
+  Comments and Signatures
+</h4>
+
+<div
+  style={{
+    display: "grid",
+    gap: 12,
+    gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+  }}
+>
+  <div>
+    <label>Driver Comments</label>
+    <br />
+    <textarea
+      value={vehiclePreUseForm.driverComments}
+      onChange={(e) =>
+        setVehiclePreUseForm((previous) => ({
+          ...previous,
+          driverComments: e.target.value,
+        }))
+      }
+      rows={4}
+      style={{
+        width: "100%",
+        padding: 12,
+        marginTop: 6,
+        borderRadius: 10,
+        border: "1px solid #cbd5e1",
+        resize: "vertical",
+      }}
+    />
+  </div>
+
+  <div>
+    <label>Supervisor Comments</label>
+    <br />
+    <textarea
+      value={vehiclePreUseForm.supervisorComments}
+      onChange={(e) =>
+        setVehiclePreUseForm((previous) => ({
+          ...previous,
+          supervisorComments: e.target.value,
+        }))
+      }
+      rows={4}
+      style={{
+        width: "100%",
+        padding: 12,
+        marginTop: 6,
+        borderRadius: 10,
+        border: "1px solid #cbd5e1",
+        resize: "vertical",
+      }}
+    />
+  </div>
+</div>
+
+<div
+  style={{
+    display: "grid",
+    gap: 20,
+    gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+    marginTop: 20,
+  }}
+>
+  <div>
+    <label style={{ fontWeight: "bold" }}>Driver Signature *</label>
+
+    <SignatureBox
+      key={`vehicle-driver-${vehiclePreUseResetKey}`}
+      sigRef={vehiclePreUseDriverSigRef}
+      onSave={setVehiclePreUseDriverSignature}
+    />
+  </div>
+
+  <div>
+    <label>Supervisor Name</label>
+    <br />
+    <input
+      value={vehiclePreUseForm.supervisorName}
+      onChange={(e) =>
+        setVehiclePreUseForm((previous) => ({
+          ...previous,
+          supervisorName: e.target.value,
+        }))
+      }
+      style={{
+        width: "100%",
+        padding: 12,
+        marginTop: 6,
+        marginBottom: 10,
+        borderRadius: 10,
+        border: "1px solid #cbd5e1",
+      }}
+    />
+
+    <label style={{ fontWeight: "bold" }}>Supervisor Signature</label>
+
+    <SignatureBox
+      key={`vehicle-supervisor-${vehiclePreUseResetKey}`}
+      sigRef={vehiclePreUseSupervisorSigRef}
+      onSave={setVehiclePreUseSupervisorSignature}
+    />
+  </div>
+</div>
+
+<div style={{ marginTop: 20 }}>
+  <label>Inspection Status</label>
+  <br />
+  <select
+    value={vehiclePreUseForm.inspectionStatus}
+    onChange={(e) =>
+      setVehiclePreUseForm((previous) => ({
+        ...previous,
+        inspectionStatus: e.target.value,
+      }))
+    }
+    style={{
+      width: "100%",
+      maxWidth: 320,
+      padding: 12,
+      marginTop: 6,
+      borderRadius: 10,
+      border: "1px solid #cbd5e1",
+    }}
+  >
+    <option value="Completed">Completed</option>
+    <option value="Defect Reported">Defect Reported</option>
+    <option value="Out of Service">Out of Service</option>
+    <option value="Pending Repair">Pending Repair</option>
+    <option value="Returned to Service">Returned to Service</option>
+  </select>
+</div>
+
+<button
+  type="button"
+  onClick={saveVehiclePreUseInspection}
+  disabled={loading}
+  style={{
+    marginTop: 24,
+    width: "100%",
+    padding: 14,
+    borderRadius: 10,
+    border: "none",
+    background: loading ? "#94a3b8" : "#123d82",
+    color: "white",
+    fontWeight: "bold",
+    fontSize: 16,
+    cursor: loading ? "not-allowed" : "pointer",
+  }}
+>
+  {loading
+    ? "Submitting Inspection..."
+    : "Submit Vehicle Pre-Use Inspection"}
+</button>
+
   </div>
 )}
 
