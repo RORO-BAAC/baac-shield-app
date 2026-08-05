@@ -232,6 +232,141 @@ const [siteDocNotes, setSiteDocNotes] = useState("");
 const [siteDocFile, setSiteDocFile] = useState(null);
   const [fieldDocType, setFieldDocType] = useState("");
 
+// Vehicle / Driver Pre-Use Inspection
+const [vehiclePreUseInspections, setVehiclePreUseInspections] = useState([]);
+
+const [vehiclePreUseForm, setVehiclePreUseForm] = useState({
+  projectId: "",
+  projectName: "",
+  jobNumber: "",
+  inspectionLocation: "",
+  inspectionDate: new Date().toISOString().split("T")[0],
+  inspectionTime: "",
+  inspectedBy: "",
+  driverName: "",
+  driverEmail: "",
+  driverLicenceClass: "",
+
+  vehicleUnitNumber: "",
+  vehicleType: "",
+  year: "",
+  make: "",
+  model: "",
+  licencePlate: "",
+  vin: "",
+  odometerReading: "",
+  odometerUnit: "km",
+
+  trailerAttached: false,
+  trailerUnitNumber: "",
+  trailerLicencePlate: "",
+  trailerOdometerReading: "",
+
+  regulatedCommercialVehicle: false,
+  nscVehicle: false,
+  cvipRequired: false,
+  cvipExpiryDate: "",
+
+  defectsFound: false,
+  defectClassification: "",
+  defectDescription: "",
+  immediateActionTaken: "",
+  safeToOperate: "",
+  vehicleOutOfService: false,
+  outOfServiceReason: "",
+
+  correctiveActionRequired: false,
+  assignedTo: "",
+  repairDescription: "",
+  repairedBy: "",
+  repairedDate: "",
+  repairVerifiedBy: "",
+  returnedToService: false,
+  returnToServiceDate: "",
+
+  driverComments: "",
+  supervisorComments: "",
+  supervisorName: "",
+  inspectionStatus: "Completed",
+});
+
+const [vehiclePreUseChecks, setVehiclePreUseChecks] = useState({
+  registrationPresent: "",
+  insurancePresent: "",
+  tripInspectionSchedulePresent: "",
+
+  driverFitForDuty: "",
+  driverAuthorizedForVehicle: "",
+  seatAndMirrorsAdjusted: "",
+
+  seatbelts: "",
+  horn: "",
+  steering: "",
+  serviceBrakes: "",
+  parkingBrake: "",
+  dashboardWarningLights: "",
+  gauges: "",
+  heaterDefroster: "",
+  windshield: "",
+  windshieldWipers: "",
+  windshieldWasherFluid: "",
+  mirrors: "",
+
+  headlights: "",
+  tailLights: "",
+  brakeLights: "",
+  turnSignals: "",
+  hazardLights: "",
+  clearanceLights: "",
+  reflectors: "",
+  bodyDamage: "",
+  doorsLatches: "",
+  licencePlateSecure: "",
+
+  tiresCondition: "",
+  tirePressure: "",
+  wheelsRims: "",
+  lugNuts: "",
+  wheelFasteners: "",
+  mudflaps: "",
+
+  engineOilLevel: "",
+  coolantLevel: "",
+  brakeFluidLevel: "",
+  powerSteeringFluid: "",
+  transmissionFluid: "",
+  visibleFluidLeaks: "",
+  beltsHoses: "",
+  batteryCondition: "",
+  exhaustSystem: "",
+  suspension: "",
+
+  firstAidKit: "",
+  fireExtinguisher: "",
+  warningTriangles: "",
+  emergencyKit: "",
+  spillKit: "",
+  backupAlarm: "",
+  beaconWarningLight: "",
+
+  loadSecurement: "",
+  cargoAreaCondition: "",
+  hitchReceiver: "",
+  trailerCoupler: "",
+  safetyChains: "",
+  trailerBreakawayDevice: "",
+  trailerElectricalConnection: "",
+  trailerLights: "",
+  trailerBrakes: "",
+  trailerTiresWheels: "",
+});
+
+const [vehiclePreUsePhotos, setVehiclePreUsePhotos] = useState([]);
+const [vehiclePreUseDriverSignature, setVehiclePreUseDriverSignature] =
+  useState("");
+const [vehiclePreUseSupervisorSignature, setVehiclePreUseSupervisorSignature] =
+  useState("");
+const [vehiclePreUseResetKey, setVehiclePreUseResetKey] = useState(0);
 const [flraRecords, setFlraRecords] = useState([]);
 const [flraProject, setFlraProject] = useState("");
   const [flraWorkerName, setFlraWorkerName] = useState("");
