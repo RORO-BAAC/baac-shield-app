@@ -367,6 +367,15 @@ const [vehiclePreUseDriverSignature, setVehiclePreUseDriverSignature] =
 const [vehiclePreUseSupervisorSignature, setVehiclePreUseSupervisorSignature] =
   useState("");
 const [vehiclePreUseResetKey, setVehiclePreUseResetKey] = useState(0);
+
+useEffect(() => {
+  if (
+    fieldDocType === "Vehicle / Driver Pre-Use Inspection" &&
+    message
+  ) {
+    alert(message);
+  }
+}, [message, fieldDocType]);
 const [flraRecords, setFlraRecords] = useState([]);
 const [flraProject, setFlraProject] = useState("");
   const [flraWorkerName, setFlraWorkerName] = useState("");
