@@ -6934,17 +6934,10 @@ onClick={submitCorAction}
     gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
   }}
 >
-  {[
-    ["registrationPresent", "Registration Present"],
-    ["insurancePresent", "Insurance Present"],
-    [
-      "tripInspectionSchedulePresent",
-      "Applicable Trip Inspection Schedule Present",
-    ],
-    ["driverFitForDuty", "Driver Fit for Duty"],
-    ["driverAuthorizedForVehicle", "Driver Authorized for Vehicle"],
-    ["seatAndMirrorsAdjusted", "Seat and Mirrors Adjusted"],
-  ].map(([field, label]) => (
+ {[
+  ["registrationPresent", "Registration Present"],
+  ["insurancePresent", "Insurance Present"],
+].map(([field, label]) => (
     <div key={field}>
       <label>{label}</label>
       <br />
