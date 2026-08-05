@@ -6883,15 +6883,9 @@ onClick={submitCorAction}
         gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
       }}
     >
-      {[
-        ["vehicleUnitNumber", "Vehicle Unit Number *"],
-        ["vehicleType", "Vehicle Type"],
-        ["year", "Year"],
-        ["make", "Make"],
-        ["model", "Model"],
-        ["licencePlate", "Licence Plate"],
-        ["vin", "VIN"],
-        ["odometerReading", "Odometer Reading"],
+     {[
+  ["vehicleUnitNumber", "Vehicle Unit Number *"],
+  ["odometerReading", "Odometer Reading"],
       ].map(([field, label]) => (
         <div key={field}>
           <label>{label}</label>
