@@ -6801,38 +6801,6 @@ onClick={submitCorAction}
         gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
       }}
     >
-    
-      <div>
-        <label>Job Number</label>
-        <br />
-        <input
-          value={vehiclePreUseForm.jobNumber}
-          onChange={(e) =>
-            setVehiclePreUseForm((previous) => ({
-              ...previous,
-              jobNumber: e.target.value,
-            }))
-          }
-          style={{
-            width: "100%",
-            padding: 12,
-            marginTop: 6,
-            borderRadius: 10,
-            border: "1px solid #cbd5e1",
-          }}
-        />
-      </div>
-
-      <div>
-        <label>Inspection Location</label>
-        <br />
-        <input
-          value={vehiclePreUseForm.inspectionLocation}
-          onChange={(e) =>
-            setVehiclePreUseForm((previous) => ({
-              ...previous,
-              inspectionLocation: e.target.value,
-            }))
           }
           style={{
             width: "100%",
