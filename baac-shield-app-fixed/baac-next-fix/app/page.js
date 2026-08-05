@@ -983,7 +983,22 @@ if (fleetDefectsRes.ok) {
 if (siteDocsRes.ok) {
   const siteDocsData = await siteDocsRes.json();
   setSiteDocuments(siteDocsData);
-}   
+}
+
+const vehiclePreUseRes = await fetch(
+  `${SUPABASE_URL}/rest/v1/vehicle_pre_use_inspections?select=*&order=created_at.desc`,
+  {
+    headers: {
+      apikey: SUPABASE_KEY,
+      Authorization: `Bearer ${SUPABASE_KEY}`,
+    },
+  }
+);
+
+if (vehiclePreUseRes.ok) {
+  const vehiclePreUseData = await vehiclePreUseRes.json();
+  setVehiclePreUseInspections(vehiclePreUseData);
+}
 
       const flraRes = await fetch(
   `${SUPABASE_URL}/rest/v1/field_flras?select=*&order=created_at.desc`,
