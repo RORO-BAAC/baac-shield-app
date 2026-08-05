@@ -6864,28 +6864,6 @@ onClick={submitCorAction}
       </div>
 
       <div>
-        <label>Driver Email</label>
-        <br />
-        <input
-          type="email"
-          value={vehiclePreUseForm.driverEmail}
-          onChange={(e) =>
-            setVehiclePreUseForm((previous) => ({
-              ...previous,
-              driverEmail: e.target.value,
-            }))
-          }
-          style={{
-            width: "100%",
-            padding: 12,
-            marginTop: 6,
-            borderRadius: 10,
-            border: "1px solid #cbd5e1",
-          }}
-        />
-      </div>
-
-      <div>
         <label>Driver Licence Class</label>
         <br />
         <select
