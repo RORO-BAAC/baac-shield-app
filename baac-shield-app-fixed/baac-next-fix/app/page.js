@@ -6802,7 +6802,7 @@ onClick={submitCorAction}
       }}
     >
    
-      <div>
+         <div>
         <label>Inspection Date *</label>
         <br />
         <input
@@ -6812,39 +6812,6 @@ onClick={submitCorAction}
             setVehiclePreUseForm((previous) => ({
               ...previous,
               inspectionDate: e.target.value,
-            }))
-          
-             <div>
-        <label>Inspection Time</label>
-        <br />
-        <input
-          type="time"
-          value={vehiclePreUseForm.inspectionTime}
-          onChange={(e) =>
-            setVehiclePreUseForm((previous) => ({
-              ...previous,
-              inspectionTime: e.target.value,
-            }))
-          }
-          style={{
-            width: "100%",
-            padding: 12,
-            marginTop: 6,
-            borderRadius: 10,
-            border: "1px solid #cbd5e1",
-          }}
-        />
-      </div>
-
-      <div>
-        <label>Inspected By</label>
-        <br />
-        <input
-          value={vehiclePreUseForm.inspectedBy}
-          onChange={(e) =>
-            setVehiclePreUseForm((previous) => ({
-              ...previous,
-              inspectedBy: e.target.value,
             }))
           }
           style={{
@@ -6857,7 +6824,6 @@ onClick={submitCorAction}
         />
       </div>
     </div>
-
     <h4
       style={{
         marginTop: 24,
