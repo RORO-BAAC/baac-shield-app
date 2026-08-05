@@ -6791,7 +6791,7 @@ onClick={submitCorAction}
         borderBottom: "2px solid #e2e8f0",
       }}
     >
-      Inspection Information
+      Vehicle Details
     </h4>
 
     <div
