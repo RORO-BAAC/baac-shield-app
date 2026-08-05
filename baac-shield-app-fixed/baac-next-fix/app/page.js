@@ -6801,40 +6801,7 @@ onClick={submitCorAction}
         gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
       }}
     >
-      <div>
-        <label>Project</label>
-        <br />
-        <select
-          value={vehiclePreUseForm.projectId}
-          onChange={(e) => {
-            const selectedProject = projects.find(
-              (project) => String(project.id) === String(e.target.value)
-            );
-
-            setVehiclePreUseForm((previous) => ({
-              ...previous,
-              projectId: e.target.value,
-              projectName: selectedProject?.name || "",
-            }));
-          }}
-          style={{
-            width: "100%",
-            padding: 12,
-            marginTop: 6,
-            borderRadius: 10,
-            border: "1px solid #cbd5e1",
-          }}
-        >
-          <option value="">Select Project</option>
-
-          {projects.map((project) => (
-            <option key={project.id} value={project.id}>
-              {project.name}
-            </option>
-          ))}
-        </select>
-      </div>
-
+    
       <div>
         <label>Job Number</label>
         <br />
