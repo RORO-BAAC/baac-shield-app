@@ -2330,7 +2330,7 @@ async function saveVehiclePreUseInspection() {
 
     inspection_status:
       vehiclePreUseForm.inspectionStatus || "Completed",
-    created_by: user?.email || vehiclePreUseForm.driverEmail || "",
+   created_by: user?.id || null,
     updated_at: now,
   };
 
