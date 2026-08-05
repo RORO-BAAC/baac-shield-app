@@ -6779,10 +6779,9 @@ onClick={submitCorAction}
   <div>
     <h3>2-Minute Light-Duty Vehicle Check</h3>
 
-    <p style={{ color: "#64748b", marginTop: -6 }}>
-      Complete this inspection before operating the vehicle. Report defects and
-      remove the vehicle from service when it is unsafe to operate.
-    </p>
+   <p style={{ color: "#64748b", marginTop: -6 }}>
+  Complete this quick check before operating a light-duty vehicle.
+</p>
 
     <h4
       style={{
