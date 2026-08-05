@@ -6983,60 +6983,7 @@ onClick={submitCorAction}
       ["firstAidKit", "Emergency equipment"],
     ],
   },
-  {
-    title: "Tires and Wheels",
-    items: [
-      ["tiresCondition", "Tire Condition"],
-      ["tirePressure", "Tire Pressure"],
-      ["wheelsRims", "Wheels and Rims"],
-      ["lugNuts", "Lug Nuts"],
-      ["wheelFasteners", "Wheel Fasteners"],
-      ["mudflaps", "Mudflaps"],
-    ],
-  },
-  {
-    title: "Mechanical and Fluids",
-    items: [
-      ["engineOilLevel", "Engine Oil Level"],
-      ["coolantLevel", "Coolant Level"],
-      ["brakeFluidLevel", "Brake Fluid Level"],
-      ["powerSteeringFluid", "Power Steering Fluid"],
-      ["transmissionFluid", "Transmission Fluid"],
-      ["visibleFluidLeaks", "Visible Fluid Leaks"],
-      ["beltsHoses", "Belts and Hoses"],
-      ["batteryCondition", "Battery Condition"],
-      ["exhaustSystem", "Exhaust System"],
-      ["suspension", "Suspension"],
-    ],
-  },
-  {
-    title: "Emergency Equipment",
-    items: [
-      ["firstAidKit", "First Aid Kit"],
-      ["fireExtinguisher", "Fire Extinguisher"],
-      ["warningTriangles", "Warning Triangles"],
-      ["emergencyKit", "Emergency Kit"],
-      ["spillKit", "Spill Kit"],
-      ["backupAlarm", "Backup Alarm"],
-      ["beaconWarningLight", "Beacon / Warning Light"],
-    ],
-  },
-  {
-    title: "Load Securement and Towing",
-    items: [
-      ["loadSecurement", "Load Securement"],
-      ["cargoAreaCondition", "Cargo Area Condition"],
-      ["hitchReceiver", "Hitch / Receiver"],
-      ["trailerCoupler", "Trailer Coupler"],
-      ["safetyChains", "Safety Chains"],
-      ["trailerBreakawayDevice", "Trailer Breakaway Device"],
-      ["trailerElectricalConnection", "Trailer Electrical Connection"],
-      ["trailerLights", "Trailer Lights"],
-      ["trailerBrakes", "Trailer Brakes"],
-      ["trailerTiresWheels", "Trailer Tires and Wheels"],
-    ],
-  },
-].map((section) => (
+ ].map((section) => (
   <div key={section.title}>
     <h4
       style={{
