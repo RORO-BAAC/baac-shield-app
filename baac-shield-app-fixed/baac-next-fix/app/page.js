@@ -6735,13 +6735,14 @@ onClick={submitCorAction}
 
     <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginBottom: 20 }}>
       {[
-        "FLRA / Daily Risk Assessment",
-        "Supervisor Site Inspection",
-        "Incident / Near Miss Report",
-        "Witness Statement",
-        "Equipment Inspection",
-        "Document / Audit Evidence",
-      ].map((type) => (
+  "Vehicle / Driver Pre-Use Inspection",
+  "FLRA / Daily Risk Assessment",
+  "Supervisor Site Inspection",
+  "Incident / Near Miss Report",
+  "Witness Statement",
+  "Equipment Inspection",
+  "Document / Audit Evidence",
+].map((type) => (
         <button
           key={type}
           type="button"
