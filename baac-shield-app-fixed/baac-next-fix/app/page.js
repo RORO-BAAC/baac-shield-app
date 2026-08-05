@@ -6801,17 +6801,7 @@ onClick={submitCorAction}
         gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
       }}
     >
-          }
-          style={{
-            width: "100%",
-            padding: 12,
-            marginTop: 6,
-            borderRadius: 10,
-            border: "1px solid #cbd5e1",
-          }}
-        />
-      </div>
-
+   
       <div>
         <label>Inspection Date *</label>
         <br />
