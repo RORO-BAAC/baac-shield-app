@@ -6823,18 +6823,8 @@ onClick={submitCorAction}
               ...previous,
               inspectionDate: e.target.value,
             }))
-          }
-          style={{
-            width: "100%",
-            padding: 12,
-            marginTop: 6,
-            borderRadius: 10,
-            border: "1px solid #cbd5e1",
-          }}
-        />
-      </div>
-
-      <div>
+          
+             <div>
         <label>Inspection Time</label>
         <br />
         <input
