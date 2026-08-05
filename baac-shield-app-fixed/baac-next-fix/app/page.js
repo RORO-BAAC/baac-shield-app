@@ -7117,18 +7117,275 @@ onClick={submitCorAction}
       </div>
     </div>
 
-    <div
+   <h4
+  style={{
+    marginTop: 24,
+    marginBottom: 12,
+    paddingBottom: 8,
+    borderBottom: "2px solid #e2e8f0",
+  }}
+>
+  Regulatory and Driver Readiness
+</h4>
+
+<div
+  style={{
+    display: "grid",
+    gap: 12,
+    gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
+  }}
+>
+  {[
+    ["registrationPresent", "Registration Present"],
+    ["insurancePresent", "Insurance Present"],
+    [
+      "tripInspectionSchedulePresent",
+      "Applicable Trip Inspection Schedule Present",
+    ],
+    ["driverFitForDuty", "Driver Fit for Duty"],
+    ["driverAuthorizedForVehicle", "Driver Authorized for Vehicle"],
+    ["seatAndMirrorsAdjusted", "Seat and Mirrors Adjusted"],
+  ].map(([field, label]) => (
+    <div key={field}>
+      <label>{label}</label>
+      <br />
+
+      <select
+        value={vehiclePreUseChecks[field]}
+        onChange={(e) =>
+          setVehiclePreUseChecks((previous) => ({
+            ...previous,
+            [field]: e.target.value,
+          }))
+        }
+        style={{
+          width: "100%",
+          padding: 12,
+          marginTop: 6,
+          borderRadius: 10,
+          border: "1px solid #cbd5e1",
+        }}
+      >
+        <option value="">Select</option>
+        <option value="Pass">Pass</option>
+        <option value="Defect">Defect</option>
+        <option value="Not Applicable">Not Applicable</option>
+      </select>
+    </div>
+  ))}
+</div>
+
+<div
+  style={{
+    display: "flex",
+    flexWrap: "wrap",
+    gap: 18,
+    marginTop: 18,
+    padding: 16,
+    borderRadius: 12,
+    background: "#f8fafc",
+    border: "1px solid #e2e8f0",
+  }}
+>
+  {[
+    ["regulatedCommercialVehicle", "Regulated Commercial Vehicle"],
+    ["nscVehicle", "NSC Vehicle"],
+    ["cvipRequired", "CVIP Required"],
+  ].map(([field, label]) => (
+    <label
+      key={field}
       style={{
-        marginTop: 20,
-        padding: 16,
-        borderRadius: 12,
-        background: "#f8fafc",
-        border: "1px solid #e2e8f0",
+        display: "flex",
+        alignItems: "center",
+        gap: 8,
+        fontWeight: "bold",
       }}
     >
-      The inspection checklist, trailer information, defect classification,
-      corrective actions and signatures will appear in the next sections.
+      <input
+        type="checkbox"
+        checked={vehiclePreUseForm[field]}
+        onChange={(e) =>
+          setVehiclePreUseForm((previous) => ({
+            ...previous,
+            [field]: e.target.checked,
+          }))
+        }
+      />
+
+      {label}
+    </label>
+  ))}
+</div>
+
+{vehiclePreUseForm.cvipRequired && (
+  <div style={{ maxWidth: 320, marginTop: 12 }}>
+    <label>CVIP Expiry Date</label>
+    <br />
+
+    <input
+      type="date"
+      value={vehiclePreUseForm.cvipExpiryDate}
+      onChange={(e) =>
+        setVehiclePreUseForm((previous) => ({
+          ...previous,
+          cvipExpiryDate: e.target.value,
+        }))
+      }
+      style={{
+        width: "100%",
+        padding: 12,
+        marginTop: 6,
+        borderRadius: 10,
+        border: "1px solid #cbd5e1",
+      }}
+    />
+  </div>
+)}
+
+{[
+  {
+    title: "Cab and Controls",
+    items: [
+      ["seatbelts", "Seatbelts"],
+      ["horn", "Horn"],
+      ["steering", "Steering"],
+      ["serviceBrakes", "Service Brakes"],
+      ["parkingBrake", "Parking Brake"],
+      ["dashboardWarningLights", "Dashboard Warning Lights"],
+      ["gauges", "Gauges"],
+      ["heaterDefroster", "Heater / Defroster"],
+      ["windshield", "Windshield"],
+      ["windshieldWipers", "Windshield Wipers"],
+      ["windshieldWasherFluid", "Windshield Washer Fluid"],
+      ["mirrors", "Mirrors"],
+    ],
+  },
+  {
+    title: "Exterior and Lighting",
+    items: [
+      ["headlights", "Headlights"],
+      ["tailLights", "Tail Lights"],
+      ["brakeLights", "Brake Lights"],
+      ["turnSignals", "Turn Signals"],
+      ["hazardLights", "Hazard Lights"],
+      ["clearanceLights", "Clearance Lights"],
+      ["reflectors", "Reflectors"],
+      ["bodyDamage", "Body Damage"],
+      ["doorsLatches", "Doors and Latches"],
+      ["licencePlateSecure", "Licence Plate Secure"],
+    ],
+  },
+  {
+    title: "Tires and Wheels",
+    items: [
+      ["tiresCondition", "Tire Condition"],
+      ["tirePressure", "Tire Pressure"],
+      ["wheelsRims", "Wheels and Rims"],
+      ["lugNuts", "Lug Nuts"],
+      ["wheelFasteners", "Wheel Fasteners"],
+      ["mudflaps", "Mudflaps"],
+    ],
+  },
+  {
+    title: "Mechanical and Fluids",
+    items: [
+      ["engineOilLevel", "Engine Oil Level"],
+      ["coolantLevel", "Coolant Level"],
+      ["brakeFluidLevel", "Brake Fluid Level"],
+      ["powerSteeringFluid", "Power Steering Fluid"],
+      ["transmissionFluid", "Transmission Fluid"],
+      ["visibleFluidLeaks", "Visible Fluid Leaks"],
+      ["beltsHoses", "Belts and Hoses"],
+      ["batteryCondition", "Battery Condition"],
+      ["exhaustSystem", "Exhaust System"],
+      ["suspension", "Suspension"],
+    ],
+  },
+  {
+    title: "Emergency Equipment",
+    items: [
+      ["firstAidKit", "First Aid Kit"],
+      ["fireExtinguisher", "Fire Extinguisher"],
+      ["warningTriangles", "Warning Triangles"],
+      ["emergencyKit", "Emergency Kit"],
+      ["spillKit", "Spill Kit"],
+      ["backupAlarm", "Backup Alarm"],
+      ["beaconWarningLight", "Beacon / Warning Light"],
+    ],
+  },
+  {
+    title: "Load Securement and Towing",
+    items: [
+      ["loadSecurement", "Load Securement"],
+      ["cargoAreaCondition", "Cargo Area Condition"],
+      ["hitchReceiver", "Hitch / Receiver"],
+      ["trailerCoupler", "Trailer Coupler"],
+      ["safetyChains", "Safety Chains"],
+      ["trailerBreakawayDevice", "Trailer Breakaway Device"],
+      ["trailerElectricalConnection", "Trailer Electrical Connection"],
+      ["trailerLights", "Trailer Lights"],
+      ["trailerBrakes", "Trailer Brakes"],
+      ["trailerTiresWheels", "Trailer Tires and Wheels"],
+    ],
+  },
+].map((section) => (
+  <div key={section.title}>
+    <h4
+      style={{
+        marginTop: 24,
+        marginBottom: 12,
+        paddingBottom: 8,
+        borderBottom: "2px solid #e2e8f0",
+      }}
+    >
+      {section.title}
+    </h4>
+
+    <div
+      style={{
+        display: "grid",
+        gap: 12,
+        gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+      }}
+    >
+      {section.items.map(([field, label]) => (
+        <div key={field}>
+          <label>{label}</label>
+          <br />
+
+          <select
+            value={vehiclePreUseChecks[field]}
+            onChange={(e) =>
+              setVehiclePreUseChecks((previous) => ({
+                ...previous,
+                [field]: e.target.value,
+              }))
+            }
+            style={{
+              width: "100%",
+              padding: 12,
+              marginTop: 6,
+              borderRadius: 10,
+              border:
+                vehiclePreUseChecks[field] === "Defect"
+                  ? "2px solid #dc2626"
+                  : "1px solid #cbd5e1",
+              background:
+                vehiclePreUseChecks[field] === "Defect"
+                  ? "#fef2f2"
+                  : "white",
+            }}
+          >
+            <option value="">Select</option>
+            <option value="Pass">Pass</option>
+            <option value="Defect">Defect</option>
+            <option value="Not Applicable">Not Applicable</option>
+          </select>
+        </div>
+      ))}
     </div>
+  </div>
+))}
   </div>
 )}
 
