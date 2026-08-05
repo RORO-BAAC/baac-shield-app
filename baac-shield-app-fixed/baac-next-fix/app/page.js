@@ -2119,6 +2119,240 @@ status: "Open",
   }
 }
 
+async function saveVehiclePreUseInspection() {
+  if (
+    !vehiclePreUseForm.driverName.trim() ||
+    !vehiclePreUseForm.vehicleUnitNumber.trim() ||
+    !vehiclePreUseForm.inspectionDate
+  ) {
+    setMessage(
+      "Please complete required fields: Driver Name, Vehicle Unit Number, and Inspection Date."
+    );
+    return;
+  }
+
+  if (!vehiclePreUseDriverSignature) {
+    setMessage("The driver must sign the inspection before submitting.");
+    return;
+  }
+
+  if (!vehiclePreUseForm.safeToOperate) {
+    setMessage("Please confirm whether the vehicle is safe to operate.");
+    return;
+  }
+
+  setLoading(true);
+  setMessage("");
+
+  const selectedProject = projects.find(
+    (project) =>
+      String(project.id) === String(vehiclePreUseForm.projectId)
+  );
+
+  const now = new Date().toISOString();
+
+  const payload = {
+    company_name: companyName || "BAAC Construction",
+
+    project_id: vehiclePreUseForm.projectId || null,
+    project_name:
+      selectedProject?.name || vehiclePreUseForm.projectName || "",
+    job_number: vehiclePreUseForm.jobNumber,
+    inspection_location: vehiclePreUseForm.inspectionLocation,
+
+    inspection_date: vehiclePreUseForm.inspectionDate,
+    inspection_time: vehiclePreUseForm.inspectionTime || null,
+    inspection_type: "Pre-Use",
+    inspected_by:
+      vehiclePreUseForm.inspectedBy ||
+      vehiclePreUseForm.driverName ||
+      user?.email ||
+      "",
+    driver_name: vehiclePreUseForm.driverName,
+    driver_email:
+      vehiclePreUseForm.driverEmail || user?.email || "",
+    driver_licence_class: vehiclePreUseForm.driverLicenceClass,
+
+    vehicle_unit_number: vehiclePreUseForm.vehicleUnitNumber,
+    vehicle_type: vehiclePreUseForm.vehicleType,
+    year: vehiclePreUseForm.year,
+    make: vehiclePreUseForm.make,
+    model: vehiclePreUseForm.model,
+    licence_plate: vehiclePreUseForm.licencePlate,
+    vin: vehiclePreUseForm.vin,
+    odometer_reading: vehiclePreUseForm.odometerReading
+      ? Number(vehiclePreUseForm.odometerReading)
+      : null,
+    odometer_unit: vehiclePreUseForm.odometerUnit || "km",
+
+    trailer_attached: vehiclePreUseForm.trailerAttached,
+    trailer_unit_number: vehiclePreUseForm.trailerAttached
+      ? vehiclePreUseForm.trailerUnitNumber
+      : "",
+    trailer_licence_plate: vehiclePreUseForm.trailerAttached
+      ? vehiclePreUseForm.trailerLicencePlate
+      : "",
+    trailer_odometer_reading:
+      vehiclePreUseForm.trailerAttached &&
+      vehiclePreUseForm.trailerOdometerReading
+        ? Number(vehiclePreUseForm.trailerOdometerReading)
+        : null,
+
+    regulated_commercial_vehicle:
+      vehiclePreUseForm.regulatedCommercialVehicle,
+    nsc_vehicle: vehiclePreUseForm.nscVehicle,
+    cvip_required: vehiclePreUseForm.cvipRequired,
+    cvip_expiry_date:
+      vehiclePreUseForm.cvipRequired &&
+      vehiclePreUseForm.cvipExpiryDate
+        ? vehiclePreUseForm.cvipExpiryDate
+        : null,
+
+    registration_present: vehiclePreUseChecks.registrationPresent,
+    insurance_present: vehiclePreUseChecks.insurancePresent,
+    trip_inspection_schedule_present:
+      vehiclePreUseChecks.tripInspectionSchedulePresent,
+
+    driver_fit_for_duty: vehiclePreUseChecks.driverFitForDuty,
+    driver_authorized_for_vehicle:
+      vehiclePreUseChecks.driverAuthorizedForVehicle,
+    seat_and_mirrors_adjusted:
+      vehiclePreUseChecks.seatAndMirrorsAdjusted,
+
+    seatbelts: vehiclePreUseChecks.seatbelts,
+    horn: vehiclePreUseChecks.horn,
+    steering: vehiclePreUseChecks.steering,
+    service_brakes: vehiclePreUseChecks.serviceBrakes,
+    parking_brake: vehiclePreUseChecks.parkingBrake,
+    dashboard_warning_lights:
+      vehiclePreUseChecks.dashboardWarningLights,
+    gauges: vehiclePreUseChecks.gauges,
+    heater_defroster: vehiclePreUseChecks.heaterDefroster,
+    windshield: vehiclePreUseChecks.windshield,
+    windshield_wipers: vehiclePreUseChecks.windshieldWipers,
+    windshield_washer_fluid:
+      vehiclePreUseChecks.windshieldWasherFluid,
+    mirrors: vehiclePreUseChecks.mirrors,
+
+    headlights: vehiclePreUseChecks.headlights,
+    tail_lights: vehiclePreUseChecks.tailLights,
+    brake_lights: vehiclePreUseChecks.brakeLights,
+    turn_signals: vehiclePreUseChecks.turnSignals,
+    hazard_lights: vehiclePreUseChecks.hazardLights,
+    clearance_lights: vehiclePreUseChecks.clearanceLights,
+    reflectors: vehiclePreUseChecks.reflectors,
+    body_damage: vehiclePreUseChecks.bodyDamage,
+    doors_latches: vehiclePreUseChecks.doorsLatches,
+    licence_plate_secure: vehiclePreUseChecks.licencePlateSecure,
+
+    tires_condition: vehiclePreUseChecks.tiresCondition,
+    tire_pressure: vehiclePreUseChecks.tirePressure,
+    wheels_rims: vehiclePreUseChecks.wheelsRims,
+    lug_nuts: vehiclePreUseChecks.lugNuts,
+    wheel_fasteners: vehiclePreUseChecks.wheelFasteners,
+    mudflaps: vehiclePreUseChecks.mudflaps,
+
+    engine_oil_level: vehiclePreUseChecks.engineOilLevel,
+    coolant_level: vehiclePreUseChecks.coolantLevel,
+    brake_fluid_level: vehiclePreUseChecks.brakeFluidLevel,
+    power_steering_fluid: vehiclePreUseChecks.powerSteeringFluid,
+    transmission_fluid: vehiclePreUseChecks.transmissionFluid,
+    visible_fluid_leaks: vehiclePreUseChecks.visibleFluidLeaks,
+    belts_hoses: vehiclePreUseChecks.beltsHoses,
+    battery_condition: vehiclePreUseChecks.batteryCondition,
+    exhaust_system: vehiclePreUseChecks.exhaustSystem,
+    suspension: vehiclePreUseChecks.suspension,
+
+    first_aid_kit: vehiclePreUseChecks.firstAidKit,
+    fire_extinguisher: vehiclePreUseChecks.fireExtinguisher,
+    warning_triangles: vehiclePreUseChecks.warningTriangles,
+    emergency_kit: vehiclePreUseChecks.emergencyKit,
+    spill_kit: vehiclePreUseChecks.spillKit,
+    backup_alarm: vehiclePreUseChecks.backupAlarm,
+    beacon_warning_light: vehiclePreUseChecks.beaconWarningLight,
+
+    load_securement: vehiclePreUseChecks.loadSecurement,
+    cargo_area_condition: vehiclePreUseChecks.cargoAreaCondition,
+    hitch_receiver: vehiclePreUseChecks.hitchReceiver,
+    trailer_coupler: vehiclePreUseChecks.trailerCoupler,
+    safety_chains: vehiclePreUseChecks.safetyChains,
+    trailer_breakaway_device:
+      vehiclePreUseChecks.trailerBreakawayDevice,
+    trailer_electrical_connection:
+      vehiclePreUseChecks.trailerElectricalConnection,
+    trailer_lights: vehiclePreUseChecks.trailerLights,
+    trailer_brakes: vehiclePreUseChecks.trailerBrakes,
+    trailer_tires_wheels: vehiclePreUseChecks.trailerTiresWheels,
+
+    defects_found: vehiclePreUseForm.defectsFound,
+    defect_classification: vehiclePreUseForm.defectsFound
+      ? vehiclePreUseForm.defectClassification
+      : "",
+    defect_description: vehiclePreUseForm.defectsFound
+      ? vehiclePreUseForm.defectDescription
+      : "",
+    immediate_action_taken: vehiclePreUseForm.defectsFound
+      ? vehiclePreUseForm.immediateActionTaken
+      : "",
+    safe_to_operate: vehiclePreUseForm.safeToOperate,
+    vehicle_out_of_service: vehiclePreUseForm.vehicleOutOfService,
+    out_of_service_reason: vehiclePreUseForm.vehicleOutOfService
+      ? vehiclePreUseForm.outOfServiceReason
+      : "",
+
+    corrective_action_required:
+      vehiclePreUseForm.correctiveActionRequired,
+    assigned_to: vehiclePreUseForm.correctiveActionRequired
+      ? vehiclePreUseForm.assignedTo
+      : "",
+    repair_description: vehiclePreUseForm.repairDescription,
+    repaired_by: vehiclePreUseForm.repairedBy,
+    repaired_date: vehiclePreUseForm.repairedDate || null,
+    repair_verified_by: vehiclePreUseForm.repairVerifiedBy,
+    returned_to_service: vehiclePreUseForm.returnedToService,
+    return_to_service_date:
+      vehiclePreUseForm.returnedToService &&
+      vehiclePreUseForm.returnToServiceDate
+        ? vehiclePreUseForm.returnToServiceDate
+        : null,
+
+    driver_comments: vehiclePreUseForm.driverComments,
+    supervisor_comments: vehiclePreUseForm.supervisorComments,
+    photo_urls: [],
+
+    driver_signature: vehiclePreUseDriverSignature,
+    driver_signed_at: now,
+    supervisor_name: vehiclePreUseForm.supervisorName,
+    supervisor_signature: vehiclePreUseSupervisorSignature,
+    supervisor_signed_at: vehiclePreUseSupervisorSignature
+      ? now
+      : null,
+
+    inspection_status:
+      vehiclePreUseForm.inspectionStatus || "Completed",
+    created_by: user?.email || vehiclePreUseForm.driverEmail || "",
+    updated_at: now,
+  };
+
+  try {
+    const { error } = await supabase
+      .from("vehicle_pre_use_inspections")
+      .insert([payload]);
+
+    if (error) throw error;
+
+    setMessage("Vehicle pre-use inspection submitted successfully.");
+    await loadRecords();
+  } catch (error) {
+    console.error("Vehicle pre-use inspection save error:", error);
+    setMessage(
+      `Could not save vehicle pre-use inspection: ${error.message}`
+    );
+  } finally {
+    setLoading(false);
+  }
+}
+
 async function saveFlraRecord() {
   setLoading(true);
   setMessage("");
