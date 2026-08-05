@@ -6863,36 +6863,7 @@ onClick={submitCorAction}
         />
       </div>
 
-      <div>
-        <label>Driver Licence Class</label>
-        <br />
-        <select
-          value={vehiclePreUseForm.driverLicenceClass}
-          onChange={(e) =>
-            setVehiclePreUseForm((previous) => ({
-              ...previous,
-              driverLicenceClass: e.target.value,
-            }))
-          }
-          style={{
-            width: "100%",
-            padding: 12,
-            marginTop: 6,
-            borderRadius: 10,
-            border: "1px solid #cbd5e1",
-          }}
-        >
-          <option value="">Select Class</option>
-          <option value="Class 1">Class 1</option>
-          <option value="Class 2">Class 2</option>
-          <option value="Class 3">Class 3</option>
-          <option value="Class 4">Class 4</option>
-          <option value="Class 5">Class 5</option>
-          <option value="Class 6">Class 6</option>
-          <option value="Class 7">Class 7</option>
-        </select>
-      </div>
-    </div>
+         </div>
 
     <h4
       style={{
