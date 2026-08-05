@@ -6775,7 +6775,364 @@ onClick={submitCorAction}
       </div>
     )}
 
-    {fieldDocType === "FLRA / Daily Risk Assessment" && (
+{fieldDocType === "Vehicle / Driver Pre-Use Inspection" && (
+  <div>
+    <h3>Vehicle / Driver Pre-Use Inspection</h3>
+
+    <p style={{ color: "#64748b", marginTop: -6 }}>
+      Complete this inspection before operating the vehicle. Report defects and
+      remove the vehicle from service when it is unsafe to operate.
+    </p>
+
+    <h4
+      style={{
+        marginTop: 24,
+        marginBottom: 12,
+        paddingBottom: 8,
+        borderBottom: "2px solid #e2e8f0",
+      }}
+    >
+      Inspection Information
+    </h4>
+
+    <div
+      style={{
+        display: "grid",
+        gap: 12,
+        gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
+      }}
+    >
+      <div>
+        <label>Project</label>
+        <br />
+        <select
+          value={vehiclePreUseForm.projectId}
+          onChange={(e) => {
+            const selectedProject = projects.find(
+              (project) => String(project.id) === String(e.target.value)
+            );
+
+            setVehiclePreUseForm((previous) => ({
+              ...previous,
+              projectId: e.target.value,
+              projectName: selectedProject?.name || "",
+            }));
+          }}
+          style={{
+            width: "100%",
+            padding: 12,
+            marginTop: 6,
+            borderRadius: 10,
+            border: "1px solid #cbd5e1",
+          }}
+        >
+          <option value="">Select Project</option>
+
+          {projects.map((project) => (
+            <option key={project.id} value={project.id}>
+              {project.name}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <div>
+        <label>Job Number</label>
+        <br />
+        <input
+          value={vehiclePreUseForm.jobNumber}
+          onChange={(e) =>
+            setVehiclePreUseForm((previous) => ({
+              ...previous,
+              jobNumber: e.target.value,
+            }))
+          }
+          style={{
+            width: "100%",
+            padding: 12,
+            marginTop: 6,
+            borderRadius: 10,
+            border: "1px solid #cbd5e1",
+          }}
+        />
+      </div>
+
+      <div>
+        <label>Inspection Location</label>
+        <br />
+        <input
+          value={vehiclePreUseForm.inspectionLocation}
+          onChange={(e) =>
+            setVehiclePreUseForm((previous) => ({
+              ...previous,
+              inspectionLocation: e.target.value,
+            }))
+          }
+          style={{
+            width: "100%",
+            padding: 12,
+            marginTop: 6,
+            borderRadius: 10,
+            border: "1px solid #cbd5e1",
+          }}
+        />
+      </div>
+
+      <div>
+        <label>Inspection Date *</label>
+        <br />
+        <input
+          type="date"
+          value={vehiclePreUseForm.inspectionDate}
+          onChange={(e) =>
+            setVehiclePreUseForm((previous) => ({
+              ...previous,
+              inspectionDate: e.target.value,
+            }))
+          }
+          style={{
+            width: "100%",
+            padding: 12,
+            marginTop: 6,
+            borderRadius: 10,
+            border: "1px solid #cbd5e1",
+          }}
+        />
+      </div>
+
+      <div>
+        <label>Inspection Time</label>
+        <br />
+        <input
+          type="time"
+          value={vehiclePreUseForm.inspectionTime}
+          onChange={(e) =>
+            setVehiclePreUseForm((previous) => ({
+              ...previous,
+              inspectionTime: e.target.value,
+            }))
+          }
+          style={{
+            width: "100%",
+            padding: 12,
+            marginTop: 6,
+            borderRadius: 10,
+            border: "1px solid #cbd5e1",
+          }}
+        />
+      </div>
+
+      <div>
+        <label>Inspected By</label>
+        <br />
+        <input
+          value={vehiclePreUseForm.inspectedBy}
+          onChange={(e) =>
+            setVehiclePreUseForm((previous) => ({
+              ...previous,
+              inspectedBy: e.target.value,
+            }))
+          }
+          style={{
+            width: "100%",
+            padding: 12,
+            marginTop: 6,
+            borderRadius: 10,
+            border: "1px solid #cbd5e1",
+          }}
+        />
+      </div>
+    </div>
+
+    <h4
+      style={{
+        marginTop: 24,
+        marginBottom: 12,
+        paddingBottom: 8,
+        borderBottom: "2px solid #e2e8f0",
+      }}
+    >
+      Driver Information
+    </h4>
+
+    <div
+      style={{
+        display: "grid",
+        gap: 12,
+        gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
+      }}
+    >
+      <div>
+        <label>Driver Name *</label>
+        <br />
+        <input
+          value={vehiclePreUseForm.driverName}
+          onChange={(e) =>
+            setVehiclePreUseForm((previous) => ({
+              ...previous,
+              driverName: e.target.value,
+            }))
+          }
+          style={{
+            width: "100%",
+            padding: 12,
+            marginTop: 6,
+            borderRadius: 10,
+            border: "1px solid #cbd5e1",
+          }}
+        />
+      </div>
+
+      <div>
+        <label>Driver Email</label>
+        <br />
+        <input
+          type="email"
+          value={vehiclePreUseForm.driverEmail}
+          onChange={(e) =>
+            setVehiclePreUseForm((previous) => ({
+              ...previous,
+              driverEmail: e.target.value,
+            }))
+          }
+          style={{
+            width: "100%",
+            padding: 12,
+            marginTop: 6,
+            borderRadius: 10,
+            border: "1px solid #cbd5e1",
+          }}
+        />
+      </div>
+
+      <div>
+        <label>Driver Licence Class</label>
+        <br />
+        <select
+          value={vehiclePreUseForm.driverLicenceClass}
+          onChange={(e) =>
+            setVehiclePreUseForm((previous) => ({
+              ...previous,
+              driverLicenceClass: e.target.value,
+            }))
+          }
+          style={{
+            width: "100%",
+            padding: 12,
+            marginTop: 6,
+            borderRadius: 10,
+            border: "1px solid #cbd5e1",
+          }}
+        >
+          <option value="">Select Class</option>
+          <option value="Class 1">Class 1</option>
+          <option value="Class 2">Class 2</option>
+          <option value="Class 3">Class 3</option>
+          <option value="Class 4">Class 4</option>
+          <option value="Class 5">Class 5</option>
+          <option value="Class 6">Class 6</option>
+          <option value="Class 7">Class 7</option>
+        </select>
+      </div>
+    </div>
+
+    <h4
+      style={{
+        marginTop: 24,
+        marginBottom: 12,
+        paddingBottom: 8,
+        borderBottom: "2px solid #e2e8f0",
+      }}
+    >
+      Vehicle Information
+    </h4>
+
+    <div
+      style={{
+        display: "grid",
+        gap: 12,
+        gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+      }}
+    >
+      {[
+        ["vehicleUnitNumber", "Vehicle Unit Number *"],
+        ["vehicleType", "Vehicle Type"],
+        ["year", "Year"],
+        ["make", "Make"],
+        ["model", "Model"],
+        ["licencePlate", "Licence Plate"],
+        ["vin", "VIN"],
+        ["odometerReading", "Odometer Reading"],
+      ].map(([field, label]) => (
+        <div key={field}>
+          <label>{label}</label>
+          <br />
+          <input
+            type={
+              field === "year" || field === "odometerReading"
+                ? "number"
+                : "text"
+            }
+            value={vehiclePreUseForm[field]}
+            onChange={(e) =>
+              setVehiclePreUseForm((previous) => ({
+                ...previous,
+                [field]: e.target.value,
+              }))
+            }
+            style={{
+              width: "100%",
+              padding: 12,
+              marginTop: 6,
+              borderRadius: 10,
+              border: "1px solid #cbd5e1",
+            }}
+          />
+        </div>
+      ))}
+
+      <div>
+        <label>Odometer Unit</label>
+        <br />
+        <select
+          value={vehiclePreUseForm.odometerUnit}
+          onChange={(e) =>
+            setVehiclePreUseForm((previous) => ({
+              ...previous,
+              odometerUnit: e.target.value,
+            }))
+          }
+          style={{
+            width: "100%",
+            padding: 12,
+            marginTop: 6,
+            borderRadius: 10,
+            border: "1px solid #cbd5e1",
+          }}
+        >
+          <option value="km">Kilometres</option>
+          <option value="miles">Miles</option>
+          <option value="hours">Hours</option>
+        </select>
+      </div>
+    </div>
+
+    <div
+      style={{
+        marginTop: 20,
+        padding: 16,
+        borderRadius: 12,
+        background: "#f8fafc",
+        border: "1px solid #e2e8f0",
+      }}
+    >
+      The inspection checklist, trailer information, defect classification,
+      corrective actions and signatures will appear in the next sections.
+    </div>
+  </div>
+)}
+
+{fieldDocType === "FLRA / Daily Risk Assessment" && (
       <div>
         <h3>FLRA / Daily Field Level Risk Assessment</h3>
 
