@@ -271,6 +271,7 @@ const [vehiclePreUseForm, setVehiclePreUseForm] = useState({
   defectClassification: "",
   defectDescription: "",
   immediateActionTaken: "",
+ supervisorNotified: false,
   safeToOperate: "",
   vehicleOutOfService: false,
   outOfServiceReason: "",
