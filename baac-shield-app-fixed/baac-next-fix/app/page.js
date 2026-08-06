@@ -7246,35 +7246,6 @@ onClick={submitCorAction}
   </div>
 )}
 
-<div
-  style={{
-    display: "flex",
-    flexWrap: "wrap",
-    gap: 20,
-    marginTop: 16,
-  }}
->
-  <label
-    style={{
-      display: "flex",
-      alignItems: "center",
-      gap: 8,
-      fontWeight: "bold",
-    }}
-  >
-    <input
-      type="checkbox"
-      checked={vehiclePreUseForm.returnedToService}
-      onChange={(e) =>
-        setVehiclePreUseForm((previous) => ({
-          ...previous,
-          returnedToService: e.target.checked,
-        }))
-      }
-    />
-    Returned to Service
-  </label>
-
   {vehiclePreUseForm.returnedToService && (
     <div>
       <label>Return-to-Service Date</label>
