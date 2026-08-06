@@ -6087,8 +6087,8 @@ Signed in as: {user?.email} · Role: {role}
             <br />
             <input
               value={worker}
-            readOnly
-              type="text"
+onChange={(e) => setWorker(e.target.value)}
+                        type="text"
               style={{
                 width: "100%",
                 padding: 12,
