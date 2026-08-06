@@ -7246,39 +7246,6 @@ onClick={submitCorAction}
   </div>
 )}
 
-<div
-  style={{
-    display: "grid",
-    gap: 12,
-    gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-  }}
->
-  {[
-   ].map(([field, label, type]) => (
-    <div key={field}>
-      <label>{label}</label>
-      <br />
-      <input
-        type={type}
-        value={vehiclePreUseForm[field]}
-        onChange={(e) =>
-          setVehiclePreUseForm((previous) => ({
-            ...previous,
-            [field]: e.target.value,
-          }))
-        }
-        style={{
-          width: "100%",
-          padding: 12,
-          marginTop: 6,
-          borderRadius: 10,
-          border: "1px solid #cbd5e1",
-        }}
-      />
-    </div>
-  ))}
-</div>
-
 <div style={{ marginTop: 12 }}>
   <label>Repair / Corrective Action Description</label>
   <br />
