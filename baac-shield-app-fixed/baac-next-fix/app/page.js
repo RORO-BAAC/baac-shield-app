@@ -7043,36 +7043,7 @@ onClick={submitCorAction}
       marginBottom: 16,
     }}
   >
-    <div
-      style={{
-        display: "grid",
-        gap: 12,
-        gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
-      }}
-    >
-         
-      <div>
-      <label>Action Taken</label>
-        <br />
-        <input
-          value={vehiclePreUseForm.immediateActionTaken}
-          onChange={(e) =>
-            setVehiclePreUseForm((previous) => ({
-              ...previous,
-              immediateActionTaken: e.target.value,
-            }))
-          }
-          style={{
-            width: "100%",
-            padding: 12,
-            marginTop: 6,
-            borderRadius: 10,
-            border: "1px solid #cbd5e1",
-          }}
-        />
-      </div>
-    </div>
-
+    
     <div style={{ marginTop: 12 }}>
       <label>Defect Description</label>
       <br />
