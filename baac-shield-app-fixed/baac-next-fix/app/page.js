@@ -2389,8 +2389,43 @@ if (!emailRes.ok) {
 } else {
   setMessage("Vehicle pre-use inspection submitted successfully.");
 }
-
     await loadRecords();
+   setVehiclePreUseForm((previous) => ({
+  ...previous,
+  projectId: "",
+  projectName: "",
+  jobNumber: "",
+  inspectionLocation: "",
+  inspectionDate: new Date().toISOString().split("T")[0],
+  driverName: "",
+  vehicleUnitNumber: "",
+  odometerReading: "",
+  defectsFound: false,
+  defectDescription: "",
+  supervisorNotified: false,
+  safeToOperate: "",
+  vehicleOutOfService: false,
+  outOfServiceReason: "",
+}));
+
+setVehiclePreUseChecks((previous) => ({
+  ...previous,
+  bodyDamage: "",
+  seatbelts: "",
+  tiresCondition: "",
+  headlights: "",
+  windshield: "",
+  dashboardWarningLights: "",
+  serviceBrakes: "",
+  visibleFluidLeaks: "",
+  registrationPresent: "",
+  firstAidKit: "",
+}));
+
+setVehiclePreUsePhotos([]);
+setVehiclePreUseDriverSignature("");
+vehiclePreUseDriverSigRef.current?.clear();
+setVehiclePreUseResetKey((previous) => previous + 1);
   } catch (error) {
     console.error("Vehicle pre-use inspection save error:", error);
     setMessage(
