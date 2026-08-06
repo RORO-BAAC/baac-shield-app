@@ -7308,37 +7308,6 @@ onClick={submitCorAction}
     />
   </div>
 
-  <div>
-    <label>Supervisor Name</label>
-    <br />
-    <input
-      value={vehiclePreUseForm.supervisorName}
-      onChange={(e) =>
-        setVehiclePreUseForm((previous) => ({
-          ...previous,
-          supervisorName: e.target.value,
-        }))
-      }
-      style={{
-        width: "100%",
-        padding: 12,
-        marginTop: 6,
-        marginBottom: 10,
-        borderRadius: 10,
-        border: "1px solid #cbd5e1",
-      }}
-    />
-
-    <label style={{ fontWeight: "bold" }}>Supervisor Signature</label>
-
-    <SignatureBox
-      key={`vehicle-supervisor-${vehiclePreUseResetKey}`}
-      sigRef={vehiclePreUseSupervisorSigRef}
-      onSave={setVehiclePreUseSupervisorSignature}
-    />
-  </div>
-</div>
-
 <div style={{ marginTop: 20 }}>
   <label>Inspection Status</label>
   <br />
