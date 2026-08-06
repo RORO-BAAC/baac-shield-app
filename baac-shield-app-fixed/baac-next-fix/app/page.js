@@ -1948,6 +1948,7 @@ if (!emailRes.ok) {
       await loadRecords();
     } catch (error) {
       setMessage(`Could not save record: ${error.message}`);
+     alert(`Could not save record: ${error.message}`);
     } finally {
       setLoading(false);
     }
