@@ -7254,8 +7254,7 @@ onClick={submitCorAction}
   }}
 >
   {[
-    ["assignedTo", "Assigned To", "text"],
-    ["repairedBy", "Repaired By", "text"],
+      ["repairedBy", "Repaired By", "text"],
     ["repairedDate", "Repair Date", "date"],
     ["repairVerifiedBy", "Repair Verified By", "text"],
   ].map(([field, label, type]) => (
