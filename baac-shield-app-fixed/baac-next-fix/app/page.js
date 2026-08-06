@@ -7182,7 +7182,7 @@ onClick={submitCorAction}
             : "1px solid #cbd5e1",
       }}
     >
-      <option value="">Select</option>
+   <option value="">Select Yes or No</option>
       <option value="Yes">Yes</option>
       <option value="No">No</option>
     </select>
