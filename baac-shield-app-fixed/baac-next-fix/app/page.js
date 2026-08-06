@@ -7187,7 +7187,7 @@ onClick={submitCorAction}
     />
   </div>
 )}
-
+{vehiclePreUseForm.defectsFound && (
 <div
   style={{
     display: "grid",
@@ -7205,7 +7205,7 @@ onClick={submitCorAction}
       onSave={setVehiclePreUseDriverSignature}
     />
   </div>
-
+)}
 </div>
 
    <button
