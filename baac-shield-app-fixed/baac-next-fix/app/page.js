@@ -2383,10 +2383,13 @@ Removed from Service: ${
 });
 
 if (!emailRes.ok) {
-  console.error("Vehicle check email notification failed.");
+  const emailError = await emailRes.text();
+  console.error("Vehicle check email notification failed:", emailError);
+  setMessage(`Report saved, but email failed: ${emailError}`);
+} else {
+  setMessage("Vehicle pre-use inspection submitted successfully.");
 }
 
-    setMessage("Vehicle pre-use inspection submitted successfully.");
     await loadRecords();
   } catch (error) {
     console.error("Vehicle pre-use inspection save error:", error);
