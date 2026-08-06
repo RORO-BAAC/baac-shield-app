@@ -7335,8 +7335,9 @@ onClick={submitCorAction}
     <option value="Returned to Service">Returned to Service</option>
   </select>
 </div>
+</div>
 
-<button
+   <button
   type="button"
   onClick={saveVehiclePreUseInspection}
   disabled={loading}
