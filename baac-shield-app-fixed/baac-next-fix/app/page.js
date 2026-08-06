@@ -7288,28 +7288,6 @@ onClick={submitCorAction}
   }}
 >
 
-  <div>
-    <label>Supervisor Comments</label>
-    <br />
-    <textarea
-      value={vehiclePreUseForm.supervisorComments}
-      onChange={(e) =>
-        setVehiclePreUseForm((previous) => ({
-          ...previous,
-          supervisorComments: e.target.value,
-        }))
-      }
-      rows={4}
-      style={{
-        width: "100%",
-        padding: 12,
-        marginTop: 6,
-        borderRadius: 10,
-        border: "1px solid #cbd5e1",
-        resize: "vertical",
-      }}
-    />
-  </div>
 </div>
 
 <div
