@@ -7308,33 +7308,6 @@ onClick={submitCorAction}
     />
   </div>
 
-<div style={{ marginTop: 20 }}>
-  <label>Inspection Status</label>
-  <br />
-  <select
-    value={vehiclePreUseForm.inspectionStatus}
-    onChange={(e) =>
-      setVehiclePreUseForm((previous) => ({
-        ...previous,
-        inspectionStatus: e.target.value,
-      }))
-    }
-    style={{
-      width: "100%",
-      maxWidth: 320,
-      padding: 12,
-      marginTop: 6,
-      borderRadius: 10,
-      border: "1px solid #cbd5e1",
-    }}
-  >
-    <option value="Completed">Completed</option>
-    <option value="Defect Reported">Defect Reported</option>
-    <option value="Out of Service">Out of Service</option>
-    <option value="Pending Repair">Pending Repair</option>
-    <option value="Returned to Service">Returned to Service</option>
-  </select>
-</div>
 </div>
 
    <button
