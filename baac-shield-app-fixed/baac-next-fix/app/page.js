@@ -7157,7 +7157,7 @@ onClick={submitCorAction}
   }}
 >
   <div>
-   <label>Safe to Operate? *</label>
+  <label>Safe to Operate? *</label>
     <br />
     <select
       value={vehiclePreUseForm.safeToOperate}
