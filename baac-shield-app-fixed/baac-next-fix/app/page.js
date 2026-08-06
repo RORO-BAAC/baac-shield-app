@@ -6969,7 +6969,7 @@ onClick={submitCorAction}
 
 {[
   {
-    title: "Quick Vehicle Check",
+   title: "Vehicle Check",
     items: [
       ["bodyDamage", "Exterior condition"],
       ["seatbelts", "Interior condition"],
