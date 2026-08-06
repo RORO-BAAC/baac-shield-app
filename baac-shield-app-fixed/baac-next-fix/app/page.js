@@ -7246,28 +7246,6 @@ onClick={submitCorAction}
   </div>
 )}
 
-<label
-  style={{
-    display: "flex",
-    alignItems: "center",
-    gap: 8,
-    fontWeight: "bold",
-    marginBottom: 12,
-  }}
->
-  <input
-    type="checkbox"
-    checked={vehiclePreUseForm.correctiveActionRequired}
-    onChange={(e) =>
-      setVehiclePreUseForm((previous) => ({
-        ...previous,
-        correctiveActionRequired: e.target.checked,
-      }))
-    }
-  />
-  Corrective Action Required
-</label>
-
 <div
   style={{
     display: "grid",
