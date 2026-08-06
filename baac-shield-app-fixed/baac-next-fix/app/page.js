@@ -7283,16 +7283,6 @@ onClick={submitCorAction}
 <div
   style={{
     display: "grid",
-    gap: 12,
-    gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-  }}
->
-
-</div>
-
-<div
-  style={{
-    display: "grid",
     gap: 20,
     gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
     marginTop: 20,
