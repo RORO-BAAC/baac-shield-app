@@ -6916,57 +6916,6 @@ onClick={submitCorAction}
 
         </div>
 
-   <h4
-  style={{
-    marginTop: 24,
-    marginBottom: 12,
-    paddingBottom: 8,
-    borderBottom: "2px solid #e2e8f0",
-  }}
->
-  Regulatory and Driver Readiness
-</h4>
-
-<div
-  style={{
-    display: "grid",
-    gap: 12,
-    gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
-  }}
->
- {[
-  ["registrationPresent", "Registration Present"],
-  ["insurancePresent", "Insurance Present"],
-].map(([field, label]) => (
-    <div key={field}>
-      <label>{label}</label>
-      <br />
-
-      <select
-        value={vehiclePreUseChecks[field]}
-        onChange={(e) =>
-          setVehiclePreUseChecks((previous) => ({
-            ...previous,
-            [field]: e.target.value,
-          }))
-        }
-        style={{
-          width: "100%",
-          padding: 12,
-          marginTop: 6,
-          borderRadius: 10,
-          border: "1px solid #cbd5e1",
-        }}
-      >
-        <option value="">Select</option>
-      <option value="Acceptable">Acceptable</option>
-<option value="Defect">Defect</option>
-<option value="N/A">N/A</option>
-      </select>
-    </div>
-  ))}
-</div>
-
 {[
   {
    title: "Vehicle Check",
