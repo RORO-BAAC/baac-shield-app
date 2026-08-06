@@ -7246,29 +7246,6 @@ onClick={submitCorAction}
   </div>
 )}
 
-<div style={{ marginTop: 12 }}>
-  <label>Repair / Corrective Action Description</label>
-  <br />
-  <textarea
-    value={vehiclePreUseForm.repairDescription}
-    onChange={(e) =>
-      setVehiclePreUseForm((previous) => ({
-        ...previous,
-        repairDescription: e.target.value,
-      }))
-    }
-    rows={3}
-    style={{
-      width: "100%",
-      padding: 12,
-      marginTop: 6,
-      borderRadius: 10,
-      border: "1px solid #cbd5e1",
-      resize: "vertical",
-    }}
-  />
-</div>
-
 <div
   style={{
     display: "flex",
