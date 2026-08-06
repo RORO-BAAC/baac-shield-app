@@ -7246,17 +7246,6 @@ onClick={submitCorAction}
   </div>
 )}
 
-<h4
-  style={{
-    marginTop: 24,
-    marginBottom: 12,
-    paddingBottom: 8,
-    borderBottom: "2px solid #e2e8f0",
-  }}
->
-  Corrective Action and Repairs
-</h4>
-
 <label
   style={{
     display: "flex",
