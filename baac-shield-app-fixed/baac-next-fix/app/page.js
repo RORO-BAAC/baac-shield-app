@@ -7205,9 +7205,8 @@ onClick={submitCorAction}
       onSave={setVehiclePreUseDriverSignature}
     />
   </div>
-)}
 </div>
-
+)}
    <button
   type="button"
   onClick={saveVehiclePreUseInspection}
