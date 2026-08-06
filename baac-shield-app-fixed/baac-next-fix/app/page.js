@@ -7101,8 +7101,7 @@ onClick={submitCorAction}
         gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
       }}
     >
-      <div>
-       
+         
       <div>
         <label>Immediate Action Taken</label>
         <br />
