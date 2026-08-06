@@ -7103,7 +7103,7 @@ onClick={submitCorAction}
     >
          
       <div>
-       <label>Action Taken</label>
+      <label>Action Taken</label>
         <br />
         <input
           value={vehiclePreUseForm.immediateActionTaken}
