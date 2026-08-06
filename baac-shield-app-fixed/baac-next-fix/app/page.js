@@ -6780,7 +6780,7 @@ onClick={submitCorAction}
  <h3>Light-Duty Vehicle Check</h3>
 
    <p style={{ color: "#64748b", marginTop: -6 }}>
-  Complete this quick check before operating a light-duty vehicle.
+ Complete this check before operating a light-duty vehicle.
 </p>
 
     <h4
