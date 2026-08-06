@@ -1920,7 +1920,7 @@ function toggleFlraCheckbox(value, setter) {
         throw new Error(text || "Insert failed");
       }
 
-      await fetch("/api/send-alert", {
+  const emailRes = await fetch("/api/send-alert", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -1939,7 +1939,10 @@ function toggleFlraCheckbox(value, setter) {
           stopWork,
         }),
       });
-
+if (!emailRes.ok) {
+  const emailError = await emailRes.text();
+  throw new Error(emailError || "Email notification failed");
+}
       clearForm();
       setMessage("Record submitted to database.");
       await loadRecords();
