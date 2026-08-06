@@ -7254,10 +7254,7 @@ onClick={submitCorAction}
   }}
 >
   {[
-      ["repairedBy", "Repaired By", "text"],
-    ["repairedDate", "Repair Date", "date"],
-    ["repairVerifiedBy", "Repair Verified By", "text"],
-  ].map(([field, label, type]) => (
+   ].map(([field, label, type]) => (
     <div key={field}>
       <label>{label}</label>
       <br />
