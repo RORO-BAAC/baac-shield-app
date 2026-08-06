@@ -7032,9 +7032,9 @@ onClick={submitCorAction}
             }}
           >
             <option value="">Select</option>
-            <option value="Pass">Pass</option>
-            <option value="Defect">Defect</option>
-            <option value="Not Applicable">Not Applicable</option>
+            <option value="Acceptable">Acceptable</option>
+<option value="Defect">Defect</option>
+<option value="N/A">N/A</option>
           </select>
         </div>
       ))}
