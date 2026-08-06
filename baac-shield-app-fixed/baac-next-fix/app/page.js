@@ -2132,10 +2132,13 @@ async function saveVehiclePreUseInspection() {
     return;
   }
 
-  if (!vehiclePreUseDriverSignature) {
-    setMessage("The driver must sign the inspection before submitting.");
-    return;
-  }
+if (
+  vehiclePreUseForm.defectsFound &&
+  !vehiclePreUseDriverSignature
+) {
+  setMessage("The driver must sign when a defect is reported.");
+  return;
+}
 
   if (!vehiclePreUseForm.safeToOperate) {
     setMessage("Please confirm whether the vehicle is safe to operate.");
