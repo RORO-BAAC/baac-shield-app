@@ -2344,6 +2344,47 @@ if (
       .insert([payload]);
 
     if (error) throw error;
+   const emailRes = await fetch("/api/send-alert", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    to: alertEmail,
+    subject: "BAAC SHIELD - Light-Duty Vehicle Check Submitted",
+    worker: vehiclePreUseForm.driverName,
+    supervisor: vehiclePreUseForm.supervisorNotified
+      ? "Supervisor notified"
+      : "Supervisor not notified",
+    project:
+      selectedProject?.name ||
+      vehiclePreUseForm.projectName ||
+      "No project selected",
+    task: `Vehicle Unit: ${vehiclePreUseForm.vehicleUnitNumber}`,
+    risk: vehiclePreUseForm.defectsFound
+      ? "Defect Reported"
+      : "No Defects Reported",
+    notes: `Date: ${vehiclePreUseForm.inspectionDate}
+Location: ${vehiclePreUseForm.inspectionLocation || "Not provided"}
+Odometer: ${vehiclePreUseForm.odometerReading || "Not provided"} km
+Safe to Operate: ${vehiclePreUseForm.safeToOperate}
+Defect Description: ${
+      vehiclePreUseForm.defectsFound
+        ? vehiclePreUseForm.defectDescription || "Not provided"
+        : "None"
+    }
+Removed from Service: ${
+      vehiclePreUseForm.vehicleOutOfService ? "Yes" : "No"
+    }`,
+    stopWork:
+      vehiclePreUseForm.defectsFound ||
+      vehiclePreUseForm.safeToOperate === "No",
+  }),
+});
+
+if (!emailRes.ok) {
+  console.error("Vehicle check email notification failed.");
+}
 await fetch("/api/send-alert", {
   method: "POST",
   headers: {
