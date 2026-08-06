@@ -7067,6 +7067,27 @@ onClick={submitCorAction}
         }}
       />
     </div>
+       <label
+  style={{
+    display: "flex",
+    alignItems: "center",
+    gap: 8,
+    marginTop: 14,
+    fontWeight: "bold",
+  }}
+>
+  <input
+    type="checkbox"
+    checked={vehiclePreUseForm.supervisorNotified}
+    onChange={(e) =>
+      setVehiclePreUseForm((previous) => ({
+        ...previous,
+        supervisorNotified: e.target.checked,
+      }))
+    }
+  />
+  Supervisor Notified
+</label>
   </div>
 )}
 
