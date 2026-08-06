@@ -6735,7 +6735,7 @@ onClick={submitCorAction}
 
     <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginBottom: 20 }}>
       {[
-  "2-Minute Light-Duty Vehicle Check",
+ "Light-Duty Vehicle Check",
   "FLRA / Daily Risk Assessment",
   "Supervisor Site Inspection",
   "Incident / Near Miss Report",
