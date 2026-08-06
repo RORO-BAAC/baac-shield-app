@@ -7102,31 +7102,7 @@ onClick={submitCorAction}
       }}
     >
       <div>
-        <label>Defect Classification</label>
-        <br />
-        <select
-          value={vehiclePreUseForm.defectClassification}
-          onChange={(e) =>
-            setVehiclePreUseForm((previous) => ({
-              ...previous,
-              defectClassification: e.target.value,
-            }))
-          }
-          style={{
-            width: "100%",
-            padding: 12,
-            marginTop: 6,
-            borderRadius: 10,
-            border: "1px solid #cbd5e1",
-          }}
-        >
-          <option value="">Select Classification</option>
-          <option value="Minor Defect">Minor Defect</option>
-          <option value="Major Defect">Major Defect</option>
-          <option value="Out of Service">Out of Service</option>
-        </select>
-      </div>
-
+       
       <div>
         <label>Immediate Action Taken</label>
         <br />
