@@ -6776,7 +6776,7 @@ onClick={submitCorAction}
       </div>
     )}
 
-{fieldDocType === "2-Minute Light-Duty Vehicle Check" && (
+{fieldDocType === "Light-Duty Vehicle Check" && (
   <div>
  <h3>Light-Duty Vehicle Check</h3>
 
