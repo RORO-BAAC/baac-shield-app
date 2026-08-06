@@ -7287,28 +7287,6 @@ onClick={submitCorAction}
     gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
   }}
 >
-  <div>
-    <label>Driver Comments</label>
-    <br />
-    <textarea
-      value={vehiclePreUseForm.driverComments}
-      onChange={(e) =>
-        setVehiclePreUseForm((previous) => ({
-          ...previous,
-          driverComments: e.target.value,
-        }))
-      }
-      rows={4}
-      style={{
-        width: "100%",
-        padding: 12,
-        marginTop: 6,
-        borderRadius: 10,
-        border: "1px solid #cbd5e1",
-        resize: "vertical",
-      }}
-    />
-  </div>
 
   <div>
     <label>Supervisor Comments</label>
