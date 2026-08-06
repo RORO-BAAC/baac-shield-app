@@ -6777,7 +6777,7 @@ onClick={submitCorAction}
 
 {fieldDocType === "2-Minute Light-Duty Vehicle Check" && (
   <div>
-    <h3>2-Minute Light-Duty Vehicle Check</h3>
+ <h3>Light-Duty Vehicle Check</h3>
 
    <p style={{ color: "#64748b", marginTop: -6 }}>
   Complete this quick check before operating a light-duty vehicle.
