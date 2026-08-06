@@ -7268,7 +7268,6 @@ onClick={submitCorAction}
       />
     </div>
   )}
-</div>
 
 <h4
   style={{
