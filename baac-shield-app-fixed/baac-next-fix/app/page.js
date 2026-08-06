@@ -7216,7 +7216,7 @@ onClick={submitCorAction}
           }))
         }
       />
-      Vehicle Removed from Service
+   Removed from Service
     </label>
   </div>
 </div>
