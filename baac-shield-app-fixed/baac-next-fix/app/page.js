@@ -2386,6 +2386,7 @@ if (!emailRes.ok) {
   const emailError = await emailRes.text();
   console.error("Vehicle check email notification failed:", emailError);
   setMessage(`Report saved, but email failed: ${emailError}`);
+ alert(`Report saved, but email failed: ${emailError}`);
 } else {
   setMessage("Vehicle pre-use inspection submitted successfully.");
 }
