@@ -7166,29 +7166,6 @@ onClick={submitCorAction}
   </div>
 )}
 
-  {vehiclePreUseForm.returnedToService && (
-    <div>
-      <label>Return-to-Service Date</label>
-      <br />
-      <input
-        type="date"
-        value={vehiclePreUseForm.returnToServiceDate}
-        onChange={(e) =>
-          setVehiclePreUseForm((previous) => ({
-            ...previous,
-            returnToServiceDate: e.target.value,
-          }))
-        }
-        style={{
-          padding: 10,
-          marginTop: 6,
-          borderRadius: 10,
-          border: "1px solid #cbd5e1",
-        }}
-      />
-    </div>
-  )}
-
 <div
   style={{
     display: "grid",
