@@ -7294,6 +7294,31 @@ onClick={submitCorAction}
     />
   </div>
 )}
+<div style={{ marginTop: 16 }}>
+  <label style={{ fontWeight: "bold" }}>
+    Vehicle Inspection Photos
+  </label>
+  <br />
+
+  <input
+    type="file"
+    accept="image/*"
+    multiple
+    onChange={(e) =>
+      setVehiclePreUsePhotos(Array.from(e.target.files || []))
+    }
+    style={{
+      marginTop: 8,
+    }}
+  />
+
+  {vehiclePreUsePhotos.length > 0 && (
+    <div style={{ marginTop: 8, fontSize: 14 }}>
+      {vehiclePreUsePhotos.length} photo
+      {vehiclePreUsePhotos.length === 1 ? "" : "s"} selected
+    </div>
+  )}
+</div>
 {vehiclePreUseForm.defectsFound && (
 <div
   style={{
