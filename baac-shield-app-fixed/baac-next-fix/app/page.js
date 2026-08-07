@@ -989,25 +989,17 @@ if (siteDocsRes.ok) {
   setSiteDocuments(siteDocsData);
 }
 
-const vehiclePreUseRes = await fetch(
-  `${SUPABASE_URL}/rest/v1/vehicle_pre_use_inspections?select=*&order=created_at.desc`,
-  {
-    headers: {
-      apikey: SUPABASE_KEY,
-      Authorization: `Bearer ${SUPABASE_KEY}`,
-    },
-  }
-);
+const { data: vehiclePreUseData, error: vehiclePreUseError } =
+  await supabase
+    .from("vehicle_pre_use_inspections")
+    .select("*")
+    .order("created_at", { ascending: false });
 
-if (vehiclePreUseRes.ok) {
-  const vehiclePreUseData = await vehiclePreUseRes.json();
-  setVehiclePreUseInspections(vehiclePreUseData);
-}
-    else {
-  const vehiclePreUseError = await vehiclePreUseRes.text();
+if (vehiclePreUseError) {
   console.error("Vehicle inspection load failed:", vehiclePreUseError);
-  alert(`Vehicle inspection load failed: ${vehiclePreUseError}`);
-} 
+} else {
+  setVehiclePreUseInspections(vehiclePreUseData || []);
+}
 
       const flraRes = await fetch(
   `${SUPABASE_URL}/rest/v1/field_flras?select=*&order=created_at.desc`,
