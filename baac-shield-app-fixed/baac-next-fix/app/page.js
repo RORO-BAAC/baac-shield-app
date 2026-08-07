@@ -12003,6 +12003,41 @@ setHazardDueDate(report.due_date || "");
             {item.defect_description || "Not provided"}
           </div>
         )}
+{Array.isArray(item.photo_urls) && item.photo_urls.length > 0 && (
+  <div style={{ marginTop: 10 }}>
+    <strong>Photos:</strong>
+
+    <div
+      style={{
+        display: "flex",
+        gap: 10,
+        flexWrap: "wrap",
+        marginTop: 8,
+      }}
+    >
+      {item.photo_urls.map((url, index) => (
+        <a
+          key={`${item.id}-photo-${index}`}
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img
+            src={url}
+            alt={`Vehicle inspection photo ${index + 1}`}
+            style={{
+              width: 110,
+              height: 85,
+              objectFit: "cover",
+              borderRadius: 8,
+              border: "1px solid #cbd5e1",
+            }}
+          />
+        </a>
+      ))}
+    </div>
+  </div>
+)}
       </div>
     ))}
   </div>
