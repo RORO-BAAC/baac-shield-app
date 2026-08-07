@@ -11832,7 +11832,8 @@ setHazardDueDate(report.due_date || "");
     doc.text(`Total Records: ${filteredVehicleChecks.length}`, 14, y);
     y += 10;
 
-    filteredVehicleChecks.forEach((item, index) => {
+    for (let index = 0; index < filteredVehicleChecks.length; index++) {
+  const item = filteredVehicleChecks[index];
       if (y > 245) {
         doc.addPage();
         y = 20;
@@ -11910,7 +11911,7 @@ setHazardDueDate(report.due_date || "");
       doc.setDrawColor(200);
       doc.line(14, y, 196, y);
       y += 8;
-    });
+}
 
     const today = new Date().toISOString().split("T")[0];
 
