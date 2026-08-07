@@ -6090,6 +6090,19 @@ Signed in as: {user?.email} · Role: {role}
           }}
         >
           <h2 style={{ marginTop: 0, marginBottom: 6 }}>Worker Record</h2>
+         {message && (
+  <div
+    style={{
+      padding: 12,
+      borderRadius: 10,
+      background: "#f1f5f9",
+      border: "1px solid #cbd5e1",
+      fontWeight: "bold",
+    }}
+  >
+    {message}
+  </div>
+)}
 
           <div>
             <label>Worker Name</label>
