@@ -11623,6 +11623,61 @@ setHazardDueDate(report.due_date || "");
       vehiclePreUseInspections.length
     })
   </button>
+     {openRecordsSection === "vehicle-checks" && (
+  <div style={{ display: "grid", gap: 10, marginTop: 10 }}>
+    {vehiclePreUseInspections.map((item) => (
+      <div
+        key={item.id}
+        style={{
+          padding: 14,
+          borderRadius: 12,
+          border: "1px solid #cbd5e1",
+          background: "white",
+        }}
+      >
+        <div style={{ fontWeight: "bold", marginBottom: 6 }}>
+          Vehicle Unit: {item.vehicle_unit_number || "Not provided"}
+        </div>
+
+        <div>
+          <strong>Date:</strong>{" "}
+          {item.inspection_date || item.created_at?.slice(0, 10) || ""}
+        </div>
+
+        <div>
+          <strong>Driver:</strong> {item.driver_name || "Not provided"}
+        </div>
+
+        <div>
+          <strong>Location:</strong>{" "}
+          {item.inspection_location || "Not provided"}
+        </div>
+
+        <div>
+          <strong>Odometer:</strong>{" "}
+          {item.odometer_reading ?? "Not provided"} km
+        </div>
+
+        <div>
+          <strong>Defects Found:</strong>{" "}
+          {item.defects_found ? "Yes" : "No"}
+        </div>
+
+        <div>
+          <strong>Safe to Operate:</strong>{" "}
+          {item.safe_to_operate || "Not recorded"}
+        </div>
+
+        {item.defects_found && (
+          <div style={{ marginTop: 8 }}>
+            <strong>Defect Description:</strong>{" "}
+            {item.defect_description || "Not provided"}
+          </div>
+        )}
+      </div>
+    ))}
+  </div>
+)}
 </section>
   <section>
   <button
