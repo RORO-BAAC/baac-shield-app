@@ -2333,7 +2333,7 @@ if (vehiclePreUsePhotos.length > 0) {
 
     driver_comments: vehiclePreUseForm.driverComments,
     supervisor_comments: vehiclePreUseForm.supervisorComments,
-    photo_urls: [],
+   photo_urls: uploadedVehiclePhotoUrls,
 
     driver_signature: vehiclePreUseDriverSignature,
     driver_signed_at: now,
