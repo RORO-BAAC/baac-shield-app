@@ -11907,7 +11907,41 @@ setHazardDueDate(report.due_date || "");
       });
 
       y += 5;
+if (Array.isArray(item.photo_urls) && item.photo_urls.length > 0) {
+  doc.setFont(undefined, "bold");
+  doc.text("Inspection Photos:", 14, y);
+  doc.setFont(undefined, "normal");
+  y += 6;
 
+  for (const photoUrl of item.photo_urls) {
+    try {
+      const response = await fetch(photoUrl);
+      const blob = await response.blob();
+
+      const base64 = await new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onloadend = () => resolve(reader.result);
+        reader.onerror = reject;
+        reader.readAsDataURL(blob);
+      });
+
+      if (y > 210) {
+        doc.addPage();
+        y = 20;
+      }
+
+      const imageFormat = String(base64).startsWith("data:image/png")
+        ? "PNG"
+        : "JPEG";
+
+      doc.addImage(base64, imageFormat, 14, y, 80, 60);
+      y += 68;
+    } catch (error) {
+      doc.text("Photo failed to load", 14, y);
+      y += 6;
+    }
+  }
+}
       doc.setDrawColor(200);
       doc.line(14, y, 196, y);
       y += 8;
