@@ -11763,7 +11763,7 @@ setHazardDueDate(report.due_date || "");
 </button>
 <button
   type="button"
-  onClick={() => {
+ onClick={async () => {
     const q = recordsCenterSearch.trim().toLowerCase();
 
     const filteredVehicleChecks = vehiclePreUseInspections.filter((item) => {
