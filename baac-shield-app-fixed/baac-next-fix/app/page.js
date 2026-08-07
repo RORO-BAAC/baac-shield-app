@@ -11622,7 +11622,32 @@ setHazardDueDate(report.due_date || "");
   </button>
      {openRecordsSection === "vehicle-checks" && (
   <div style={{ display: "grid", gap: 10, marginTop: 10 }}>
-    {vehiclePreUseInspections.map((item) => (
+   {vehiclePreUseInspections
+  .filter((item) => {
+    const q = recordsCenterSearch.trim().toLowerCase();
+
+    const itemDate =
+      item.inspection_date ||
+      item.created_at?.slice(0, 10) ||
+      "";
+
+    const matchesStartDate =
+      !startDateFilter || itemDate >= startDateFilter;
+
+    const matchesEndDate =
+      !endDateFilter || itemDate <= endDateFilter;
+
+    const matchesSearch =
+      !q ||
+      item.vehicle_unit_number?.toLowerCase().includes(q) ||
+      item.driver_name?.toLowerCase().includes(q) ||
+      item.inspection_location?.toLowerCase().includes(q) ||
+      item.defect_description?.toLowerCase().includes(q) ||
+      item.safe_to_operate?.toLowerCase().includes(q);
+
+    return matchesStartDate && matchesEndDate && matchesSearch;
+  })
+  .map((item) => (
       <div
         key={item.id}
         style={{
