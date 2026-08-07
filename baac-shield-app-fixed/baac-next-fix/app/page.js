@@ -885,6 +885,7 @@ if (usersRes.ok) {
   useEffect(() => {
     loadRecords();
     loadProjects();
+   loadSettings();
       loadCrmData();
     
     const timer = setTimeout(() => {
