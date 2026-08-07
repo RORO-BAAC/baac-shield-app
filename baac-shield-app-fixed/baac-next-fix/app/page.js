@@ -1941,10 +1941,12 @@ function toggleFlraCheckbox(value, setter) {
       });
 if (!emailRes.ok) {
   const emailError = await emailRes.text();
-  throw new Error(emailError || "Email notification failed");
+  console.error("Worker record email failed:", emailError);
+  setMessage(`Record saved, but email failed: ${emailError}`);
+} else {
+  setMessage("Record submitted and email notification sent.");
 }
       clearForm();
-      setMessage("Record submitted to database.");
       await loadRecords();
     } catch (error) {
       setMessage(`Could not save record: ${error.message}`);
