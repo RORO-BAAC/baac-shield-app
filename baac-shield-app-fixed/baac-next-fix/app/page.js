@@ -11598,6 +11598,32 @@ setHazardDueDate(report.due_date || "");
 </div>
       
    <div style={{ display: "grid", gap: 18 }}>
+     <section>
+  <button
+    type="button"
+    onClick={() =>
+      setOpenRecordsSection(
+        openRecordsSection === "vehicle-checks" ? "" : "vehicle-checks"
+      )
+    }
+    style={{
+      width: "100%",
+      padding: 14,
+      borderRadius: 12,
+      border: "1px solid #cbd5e1",
+      background: "#f8fafc",
+      color: "#0f2f63",
+      fontWeight: "bold",
+      fontSize: 16,
+      textAlign: "left",
+      cursor: "pointer",
+    }}
+  >
+    {openRecordsSection === "vehicle-checks" ? "▼" : "▶"} Light-Duty Vehicle Checks ({
+      vehiclePreUseInspections.length
+    })
+  </button>
+</section>
   <section>
   <button
     type="button"
