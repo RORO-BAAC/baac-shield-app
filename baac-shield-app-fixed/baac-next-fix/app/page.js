@@ -11622,6 +11622,114 @@ setHazardDueDate(report.due_date || "");
   </button>
      {openRecordsSection === "vehicle-checks" && (
   <div style={{ display: "grid", gap: 10, marginTop: 10 }}>
+<button
+  type="button"
+  onClick={() => {
+    const q = recordsCenterSearch.trim().toLowerCase();
+
+    const filteredVehicleChecks = vehiclePreUseInspections.filter((item) => {
+      const itemDate =
+        item.inspection_date ||
+        item.created_at?.slice(0, 10) ||
+        "";
+
+      const matchesStartDate =
+        !startDateFilter || itemDate >= startDateFilter;
+
+      const matchesEndDate =
+        !endDateFilter || itemDate <= endDateFilter;
+
+      const matchesSearch =
+        !q ||
+        item.vehicle_unit_number?.toLowerCase().includes(q) ||
+        item.driver_name?.toLowerCase().includes(q) ||
+        item.inspection_location?.toLowerCase().includes(q) ||
+        item.defect_description?.toLowerCase().includes(q) ||
+        item.safe_to_operate?.toLowerCase().includes(q);
+
+      return matchesStartDate && matchesEndDate && matchesSearch;
+    });
+
+    const rows = [
+      [
+        "Date",
+        "Driver",
+        "Vehicle Unit",
+        "Odometer",
+        "Location",
+        "Exterior Condition",
+        "Interior Condition",
+        "Tires and Wheels",
+        "Lights and Signals",
+        "Windshield Mirrors and Wipers",
+        "Dashboard Warning Indicators",
+        "Brakes and Steering",
+        "Visible Leaks or Damage",
+        "Registration and Insurance",
+        "Emergency Equipment",
+        "Defects Found",
+        "Defect Description",
+        "Safe to Operate",
+        "Removed from Service",
+      ],
+      ...filteredVehicleChecks.map((item) => [
+        item.inspection_date || item.created_at?.slice(0, 10) || "",
+        item.driver_name || "",
+        item.vehicle_unit_number || "",
+        item.odometer_reading || "",
+        item.inspection_location || "",
+        item.body_damage || "",
+        item.seatbelts || "",
+        item.tires_condition || "",
+        item.headlights || "",
+        item.windshield || "",
+        item.dashboard_warning_lights || "",
+        item.service_brakes || "",
+        item.visible_fluid_leaks || "",
+        item.registration_present || "",
+        item.first_aid_kit || "",
+        item.defects_found ? "Yes" : "No",
+        item.defect_description || "",
+        item.safe_to_operate || "",
+        item.vehicle_out_of_service ? "Yes" : "No",
+      ]),
+    ];
+
+    const escapeCsv = (value) =>
+      `"${String(value ?? "").replace(/"/g, '""')}"`;
+
+    const csv = rows
+      .map((row) => row.map(escapeCsv).join(","))
+      .join("\n");
+
+    const blob = new Blob([csv], {
+      type: "text/csv;charset=utf-8;",
+    });
+
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+
+    link.href = url;
+    link.download = `light-duty-vehicle-checks-${
+      new Date().toISOString().split("T")[0]
+    }.csv`;
+
+    link.click();
+    URL.revokeObjectURL(url);
+  }}
+  style={{
+    justifySelf: "start",
+    padding: "10px 14px",
+    borderRadius: 10,
+    border: "none",
+    background: "#123d82",
+    color: "white",
+    fontWeight: "bold",
+    cursor: "pointer",
+  }}
+>
+  Export Vehicle Checks CSV
+</button>
    {vehiclePreUseInspections
   .filter((item) => {
     const q = recordsCenterSearch.trim().toLowerCase();
