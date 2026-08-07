@@ -2160,7 +2160,12 @@ if (
   );
 
   const now = new Date().toISOString();
+let uploadedVehiclePhotoUrls = [];
 
+if (vehiclePreUsePhotos.length > 0) {
+  setMessage("Uploading vehicle photos...");
+  uploadedVehiclePhotoUrls = await uploadPhotosToSupabase(vehiclePreUsePhotos);
+}
   const payload = {
     company_name: companyName || "BAAC Construction",
 
