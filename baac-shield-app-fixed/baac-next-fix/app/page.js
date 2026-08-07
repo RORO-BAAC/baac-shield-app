@@ -7319,7 +7319,6 @@ onClick={submitCorAction}
     </div>
   )}
 </div>
-{vehiclePreUseForm.defectsFound && (
 <div
   style={{
     display: "grid",
@@ -7338,7 +7337,6 @@ onClick={submitCorAction}
     />
   </div>
 </div>
-)}
    <button
   type="button"
   onClick={saveVehiclePreUseInspection}
