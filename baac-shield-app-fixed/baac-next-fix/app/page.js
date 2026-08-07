@@ -1945,10 +1945,12 @@ if (!emailRes.ok) {
   console.error("Worker record email failed:", emailError);
   setMessage(`Record saved, but email failed: ${emailError}`);
 } else {
-  setMessage("Record submitted and email notification sent.");
 }
       clearForm();
       await loadRecords();
+     if (emailRes.ok) {
+  setMessage("Record submitted and email notification sent.");
+}
     } catch (error) {
       setMessage(`Could not save record: ${error.message}`);
      alert(`Could not save record: ${error.message}`);
