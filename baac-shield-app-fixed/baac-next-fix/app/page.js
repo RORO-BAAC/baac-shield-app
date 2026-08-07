@@ -2309,7 +2309,8 @@ if (vehiclePreUsePhotos.length > 0) {
     immediate_action_taken: vehiclePreUseForm.defectsFound
       ? vehiclePreUseForm.immediateActionTaken
       : "",
-      safe_to_operate: vehiclePreUseForm.safeToOperate,
+     supervisor_notified: vehiclePreUseForm.supervisorNotified,
+   safe_to_operate: vehiclePreUseForm.safeToOperate,
     vehicle_out_of_service: vehiclePreUseForm.vehicleOutOfService,
     out_of_service_reason: vehiclePreUseForm.vehicleOutOfService
       ? vehiclePreUseForm.outOfServiceReason
