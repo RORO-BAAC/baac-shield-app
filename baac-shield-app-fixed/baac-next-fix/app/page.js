@@ -11730,6 +11730,174 @@ setHazardDueDate(report.due_date || "");
 >
   Export Vehicle Checks CSV
 </button>
+<button
+  type="button"
+  onClick={() => {
+    const q = recordsCenterSearch.trim().toLowerCase();
+
+    const filteredVehicleChecks = vehiclePreUseInspections.filter((item) => {
+      const itemDate =
+        item.inspection_date ||
+        item.created_at?.slice(0, 10) ||
+        "";
+
+      const matchesStartDate =
+        !startDateFilter || itemDate >= startDateFilter;
+
+      const matchesEndDate =
+        !endDateFilter || itemDate <= endDateFilter;
+
+      const matchesSearch =
+        !q ||
+        item.vehicle_unit_number?.toLowerCase().includes(q) ||
+        item.driver_name?.toLowerCase().includes(q) ||
+        item.inspection_location?.toLowerCase().includes(q) ||
+        item.defect_description?.toLowerCase().includes(q) ||
+        item.safe_to_operate?.toLowerCase().includes(q);
+
+      return matchesStartDate && matchesEndDate && matchesSearch;
+    });
+
+    if (!filteredVehicleChecks.length) {
+      alert("No vehicle checks match the current filters.");
+      return;
+    }
+
+    const doc = new jsPDF();
+
+    doc.setFillColor(15, 47, 102);
+    doc.rect(0, 0, 210, 30, "F");
+
+    doc.setTextColor(255, 255, 255);
+    doc.setFontSize(18);
+    doc.text(`${companyName} SHIELD`, 14, 14);
+
+    doc.setFontSize(13);
+    doc.text("Light-Duty Vehicle Check Audit Report", 14, 23);
+
+    doc.setTextColor(0, 0, 0);
+    doc.setFontSize(9);
+
+    let y = 39;
+
+    doc.text(`Generated: ${new Date().toLocaleString()}`, 14, y);
+    y += 6;
+
+    doc.text(
+      `Date Range: ${startDateFilter || "All"} to ${endDateFilter || "All"}`,
+      14,
+      y
+    );
+    y += 6;
+
+    doc.text(
+      `Search Filter: ${recordsCenterSearch || "None"}`,
+      14,
+      y
+    );
+    y += 8;
+
+    doc.setFontSize(11);
+    doc.text(`Total Records: ${filteredVehicleChecks.length}`, 14, y);
+    y += 10;
+
+    filteredVehicleChecks.forEach((item, index) => {
+      if (y > 245) {
+        doc.addPage();
+        y = 20;
+      }
+
+      doc.setFontSize(12);
+      doc.setFont(undefined, "bold");
+      doc.text(
+        `${index + 1}. Vehicle Unit: ${
+          item.vehicle_unit_number || "Not provided"
+        }`,
+        14,
+        y
+      );
+
+      doc.setFont(undefined, "normal");
+      doc.setFontSize(9);
+      y += 6;
+
+      const lines = [
+        `Date: ${
+          item.inspection_date ||
+          item.created_at?.slice(0, 10) ||
+          "Not provided"
+        }`,
+        `Driver: ${item.driver_name || "Not provided"}`,
+        `Location: ${item.inspection_location || "Not provided"}`,
+        `Odometer: ${item.odometer_reading ?? "Not provided"} km`,
+        `Exterior Condition: ${item.body_damage || "Not recorded"}`,
+        `Interior Condition: ${item.seatbelts || "Not recorded"}`,
+        `Tires and Wheels: ${item.tires_condition || "Not recorded"}`,
+        `Lights and Signals: ${item.headlights || "Not recorded"}`,
+        `Windshield, Mirrors and Wipers: ${
+          item.windshield || "Not recorded"
+        }`,
+        `Dashboard Warning Indicators: ${
+          item.dashboard_warning_lights || "Not recorded"
+        }`,
+        `Brakes and Steering: ${item.service_brakes || "Not recorded"}`,
+        `Visible Leaks or Damage: ${
+          item.visible_fluid_leaks || "Not recorded"
+        }`,
+        `Registration and Insurance: ${
+          item.registration_present || "Not recorded"
+        }`,
+        `Emergency Equipment: ${item.first_aid_kit || "Not recorded"}`,
+        `Defects Found: ${item.defects_found ? "Yes" : "No"}`,
+        `Safe to Operate: ${item.safe_to_operate || "Not recorded"}`,
+        `Removed from Service: ${
+          item.vehicle_out_of_service ? "Yes" : "No"
+        }`,
+      ];
+
+      if (item.defects_found) {
+        lines.push(
+          `Defect Description: ${
+            item.defect_description || "Not provided"
+          }`
+        );
+      }
+
+      lines.forEach((line) => {
+        if (y > 275) {
+          doc.addPage();
+          y = 20;
+        }
+
+        const wrapped = doc.splitTextToSize(line, 180);
+        doc.text(wrapped, 14, y);
+        y += wrapped.length * 5;
+      });
+
+      y += 5;
+
+      doc.setDrawColor(200);
+      doc.line(14, y, 196, y);
+      y += 8;
+    });
+
+    const today = new Date().toISOString().split("T")[0];
+
+    doc.save(`light-duty-vehicle-check-audit-${today}.pdf`);
+  }}
+  style={{
+    justifySelf: "start",
+    padding: "10px 14px",
+    borderRadius: 10,
+    border: "none",
+    background: "#123d82",
+    color: "white",
+    fontWeight: "bold",
+    cursor: "pointer",
+  }}
+>
+  Export Vehicle Checks PDF
+</button>
    {vehiclePreUseInspections
   .filter((item) => {
     const q = recordsCenterSearch.trim().toLowerCase();
