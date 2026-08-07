@@ -1003,6 +1003,11 @@ if (vehiclePreUseRes.ok) {
   const vehiclePreUseData = await vehiclePreUseRes.json();
   setVehiclePreUseInspections(vehiclePreUseData);
 }
+    else {
+  const vehiclePreUseError = await vehiclePreUseRes.text();
+  console.error("Vehicle inspection load failed:", vehiclePreUseError);
+  alert(`Vehicle inspection load failed: ${vehiclePreUseError}`);
+} 
 
       const flraRes = await fetch(
   `${SUPABASE_URL}/rest/v1/field_flras?select=*&order=created_at.desc`,
