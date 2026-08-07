@@ -11943,6 +11943,26 @@ if (Array.isArray(item.photo_urls) && item.photo_urls.length > 0) {
   }
 }
       doc.setDrawColor(200);
+     if (item.driver_signature) {
+  if (y > 220) {
+    doc.addPage();
+    y = 20;
+  }
+
+  doc.setFont(undefined, "bold");
+  doc.text("Driver Signature:", 14, y);
+  doc.setFont(undefined, "normal");
+  y += 6;
+
+  const signatureFormat = String(item.driver_signature).startsWith(
+    "data:image/png"
+  )
+    ? "PNG"
+    : "JPEG";
+
+  doc.addImage(item.driver_signature, signatureFormat, 14, y, 70, 30);
+  y += 38;
+}
       doc.line(14, y, 196, y);
       y += 8;
 }
