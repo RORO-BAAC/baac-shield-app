@@ -2127,7 +2127,6 @@ status: "Open",
 }
 
 async function saveVehiclePreUseInspection() {
- alert("Vehicle submit function started");
   if (
     !vehiclePreUseForm.driverName.trim() ||
     !vehiclePreUseForm.vehicleUnitNumber.trim() ||
