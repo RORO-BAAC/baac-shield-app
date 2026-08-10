@@ -12050,7 +12050,10 @@ if (Array.isArray(item.photo_urls) && item.photo_urls.length > 0) {
           <strong>Safe to Operate:</strong>{" "}
           {item.safe_to_operate || "Not recorded"}
         </div>
-
+<div>
+  <strong>Supervisor Notified:</strong>{" "}
+  {item.supervisor_notified ? "Yes" : "No"}
+</div>
         {item.defects_found && (
           <div style={{ marginTop: 8 }}>
             <strong>Defect Description:</strong>{" "}
