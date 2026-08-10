@@ -11880,6 +11880,7 @@ setHazardDueDate(report.due_date || "");
         }`,
         `Emergency Equipment: ${item.first_aid_kit || "Not recorded"}`,
         `Defects Found: ${item.defects_found ? "Yes" : "No"}`,
+       `Supervisor Notified: ${item.supervisor_notified ? "Yes" : "No"}`,
         `Safe to Operate: ${item.safe_to_operate || "Not recorded"}`,
         `Removed from Service: ${
           item.vehicle_out_of_service ? "Yes" : "No"
