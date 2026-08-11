@@ -8283,7 +8283,30 @@ onClick={submitCorAction}
             }}
           />
         </div>
-
+<div>
+  <label>Defect Category</label>
+  <br />
+  <select
+    value={fleetDefectCategory}
+    onChange={(e) => setFleetDefectCategory(e.target.value)}
+    style={{
+      width: "100%",
+      padding: 12,
+      marginTop: 6,
+      borderRadius: 10,
+      border: "1px solid #cbd5e1",
+    }}
+  >
+    <option value="">Select category</option>
+    <option value="Mechanical">Mechanical</option>
+    <option value="Electrical">Electrical</option>
+    <option value="Tires / Wheels">Tires / Wheels</option>
+    <option value="Body / Damage">Body / Damage</option>
+    <option value="Fluid / Leak">Fluid / Leak</option>
+    <option value="Safety Equipment">Safety Equipment</option>
+    <option value="Other">Other</option>
+  </select>
+</div>
         <div>
           <label>Priority</label>
           <br />
