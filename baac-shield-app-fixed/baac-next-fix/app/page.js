@@ -8203,7 +8203,7 @@ onClick={submitCorAction}
         </div>
 
         <div>
-          <label>Reported By</label>
+       <label>Reported By *</label>
           <br />
           <input
             value={fleetReportedBy}
