@@ -15852,6 +15852,111 @@ onChange={(e) =>
         <option value="Fusion Splice">Fusion Splice</option>
         <option value="Mechanical Splice">Mechanical Splice</option>
         <option value="Other">Other</option>
+
+<div
+  style={{
+    marginTop: 22,
+    paddingTop: 18,
+    borderTop: "1px solid #e2e8f0",
+  }}
+>
+  <h3 style={{ marginTop: 0, color: "#0f2f63" }}>
+    Workmanship Checks
+  </h3>
+
+  <div
+    style={{
+      display: "grid",
+      gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+      gap: 14,
+    }}
+  >
+    <label style={{ display: "grid", gap: 6 }}>
+      <span style={{ fontWeight: "bold", color: "#334155" }}>
+        Tray Condition
+      </span>
+      <select
+        value={qaqcSpliceTrayCondition}
+        onChange={(e) => setQaqcSpliceTrayCondition(e.target.value)}
+        style={{
+          padding: 11,
+          borderRadius: 10,
+          border: "1px solid #cbd5e1",
+          background: "white",
+        }}
+      >
+        <option value="">Select</option>
+        <option value="Acceptable">Acceptable</option>
+        <option value="Deficient">Deficient</option>
+        <option value="N/A">N/A</option>
+      </select>
+    </label>
+
+    <label style={{ display: "grid", gap: 6 }}>
+      <span style={{ fontWeight: "bold", color: "#334155" }}>
+        Fibre Routing Acceptable
+      </span>
+      <select
+        value={qaqcSpliceRoutingAcceptable}
+        onChange={(e) => setQaqcSpliceRoutingAcceptable(e.target.value)}
+        style={{
+          padding: 11,
+          borderRadius: 10,
+          border: "1px solid #cbd5e1",
+          background: "white",
+        }}
+      >
+        <option value="">Select</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+        <option value="N/A">N/A</option>
+      </select>
+    </label>
+
+    <label style={{ display: "grid", gap: 6 }}>
+      <span style={{ fontWeight: "bold", color: "#334155" }}>
+        Labels Complete
+      </span>
+      <select
+        value={qaqcSpliceLabelsComplete}
+        onChange={(e) => setQaqcSpliceLabelsComplete(e.target.value)}
+        style={{
+          padding: 11,
+          borderRadius: 10,
+          border: "1px solid #cbd5e1",
+          background: "white",
+        }}
+      >
+        <option value="">Select</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+        <option value="N/A">N/A</option>
+      </select>
+    </label>
+
+    <label style={{ display: "grid", gap: 6 }}>
+      <span style={{ fontWeight: "bold", color: "#334155" }}>
+        Splice Protection Installed
+      </span>
+      <select
+        value={qaqcSpliceProtectionInstalled}
+        onChange={(e) => setQaqcSpliceProtectionInstalled(e.target.value)}
+        style={{
+          padding: 11,
+          borderRadius: 10,
+          border: "1px solid #cbd5e1",
+          background: "white",
+        }}
+      >
+        <option value="">Select</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+        <option value="N/A">N/A</option>
+      </select>
+    </label>
+  </div>
+</div>
+       
       </select>
     </label>
   </div>
