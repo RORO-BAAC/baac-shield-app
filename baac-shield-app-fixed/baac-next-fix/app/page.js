@@ -8349,7 +8349,7 @@ onClick={submitCorAction}
         </div>
 
         <div>
-          <label>Out of Service?</label>
+          <label>Out of Service? *</label>
           <br />
           <select
             value={fleetOutOfService}
