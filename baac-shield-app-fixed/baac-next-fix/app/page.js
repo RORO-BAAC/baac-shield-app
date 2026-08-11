@@ -599,6 +599,33 @@ const [qaqcCableStatus, setQaqcCableStatus] = useState("");
 
 const [qaqcCablePhotos, setQaqcCablePhotos] = useState([]);
  const [qaqcItemDescription, setQaqcItemDescription] = useState("");
+ const [qaqcSpliceRecords, setQaqcSpliceRecords] = useState([]);
+const [selectedQaqcSpliceRecord, setSelectedQaqcSpliceRecord] = useState(null);
+
+const [qaqcSpliceProjectId, setQaqcSpliceProjectId] = useState("");
+const [qaqcSpliceClientOwner, setQaqcSpliceClientOwner] = useState("");
+const [qaqcSpliceLocation, setQaqcSpliceLocation] = useState("");
+const [qaqcSpliceDate, setQaqcSpliceDate] = useState("");
+const [qaqcSpliceTechnician, setQaqcSpliceTechnician] = useState("");
+
+const [qaqcSpliceClosureId, setQaqcSpliceClosureId] = useState("");
+const [qaqcSpliceCableFrom, setQaqcSpliceCableFrom] = useState("");
+const [qaqcSpliceCableTo, setQaqcSpliceCableTo] = useState("");
+const [qaqcSpliceFibreCount, setQaqcSpliceFibreCount] = useState("");
+const [qaqcSpliceMethod, setQaqcSpliceMethod] = useState("");
+
+const [qaqcSpliceTrayCondition, setQaqcSpliceTrayCondition] = useState("");
+const [qaqcSpliceRoutingAcceptable, setQaqcSpliceRoutingAcceptable] = useState("");
+const [qaqcSpliceLabelsComplete, setQaqcSpliceLabelsComplete] = useState("");
+const [qaqcSpliceProtectionInstalled, setQaqcSpliceProtectionInstalled] = useState("");
+
+const [qaqcSpliceResult, setQaqcSpliceResult] = useState("");
+const [qaqcSpliceDeficiencies, setQaqcSpliceDeficiencies] = useState("");
+const [qaqcSpliceAssignedTo, setQaqcSpliceAssignedTo] = useState("");
+const [qaqcSpliceNotes, setQaqcSpliceNotes] = useState("");
+const [qaqcSpliceStatus, setQaqcSpliceStatus] = useState("");
+
+const [qaqcSplicePhotos, setQaqcSplicePhotos] = useState([]);
 const [qaqcItemCode, setQaqcItemCode] = useState("");
 const [qaqcQuantityOrdered, setQaqcQuantityOrdered] = useState("");
 const [qaqcQuantityReceived, setQaqcQuantityReceived] = useState("");
