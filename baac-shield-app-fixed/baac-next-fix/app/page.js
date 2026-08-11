@@ -8327,7 +8327,7 @@ onClick={submitCorAction}
   </select>
 </div>
         <div>
-          <label>Priority</label>
+          <label>Priority *</label>
           <br />
           <select
             value={fleetPriority}
