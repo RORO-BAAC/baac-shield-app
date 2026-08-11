@@ -15754,7 +15754,108 @@ onChange={(e) =>
     />
   </label>
 </div>
-           
+        <div
+  style={{
+    marginTop: 22,
+    paddingTop: 18,
+    borderTop: "1px solid #e2e8f0",
+  }}
+>
+  <h3 style={{ marginTop: 0, color: "#0f2f63" }}>Splice Details</h3>
+
+  <div
+    style={{
+      display: "grid",
+      gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+      gap: 14,
+    }}
+  >
+    <label style={{ display: "grid", gap: 6 }}>
+      <span style={{ fontWeight: "bold", color: "#334155" }}>
+        Closure / Splice ID
+      </span>
+      <input
+        type="text"
+        value={qaqcSpliceClosureId}
+        onChange={(e) => setQaqcSpliceClosureId(e.target.value)}
+        style={{
+          padding: 11,
+          borderRadius: 10,
+          border: "1px solid #cbd5e1",
+        }}
+      />
+    </label>
+
+    <label style={{ display: "grid", gap: 6 }}>
+      <span style={{ fontWeight: "bold", color: "#334155" }}>
+        Cable From
+      </span>
+      <input
+        type="text"
+        value={qaqcSpliceCableFrom}
+        onChange={(e) => setQaqcSpliceCableFrom(e.target.value)}
+        style={{
+          padding: 11,
+          borderRadius: 10,
+          border: "1px solid #cbd5e1",
+        }}
+      />
+    </label>
+
+    <label style={{ display: "grid", gap: 6 }}>
+      <span style={{ fontWeight: "bold", color: "#334155" }}>
+        Cable To
+      </span>
+      <input
+        type="text"
+        value={qaqcSpliceCableTo}
+        onChange={(e) => setQaqcSpliceCableTo(e.target.value)}
+        style={{
+          padding: 11,
+          borderRadius: 10,
+          border: "1px solid #cbd5e1",
+        }}
+      />
+    </label>
+
+    <label style={{ display: "grid", gap: 6 }}>
+      <span style={{ fontWeight: "bold", color: "#334155" }}>
+        Fibre Count
+      </span>
+      <input
+        type="text"
+        value={qaqcSpliceFibreCount}
+        onChange={(e) => setQaqcSpliceFibreCount(e.target.value)}
+        style={{
+          padding: 11,
+          borderRadius: 10,
+          border: "1px solid #cbd5e1",
+        }}
+      />
+    </label>
+
+    <label style={{ display: "grid", gap: 6 }}>
+      <span style={{ fontWeight: "bold", color: "#334155" }}>
+        Splice Method
+      </span>
+      <select
+        value={qaqcSpliceMethod}
+        onChange={(e) => setQaqcSpliceMethod(e.target.value)}
+        style={{
+          padding: 11,
+          borderRadius: 10,
+          border: "1px solid #cbd5e1",
+          background: "white",
+        }}
+      >
+        <option value="">Select method</option>
+        <option value="Fusion Splice">Fusion Splice</option>
+        <option value="Mechanical Splice">Mechanical Splice</option>
+        <option value="Other">Other</option>
+      </select>
+    </label>
+  </div>
+</div>   
       </section>
     </div>
   )}
