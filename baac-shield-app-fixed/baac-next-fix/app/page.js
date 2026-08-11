@@ -14277,6 +14277,8 @@ if (Array.isArray(item.photo_urls) && item.photo_urls.length > 0) {
   setQaqcInspectionType("cable-placement-inspection");
 } else if (inspectionType === "Cable Placement Records") {
   setQaqcInspectionType("cable-placement-records");
+   } else if (inspectionType === "Splicing Record") {
+  setQaqcInspectionType("splicing-record");
 } else {
   alert(`${inspectionType} form is the next build step.`);
 }
