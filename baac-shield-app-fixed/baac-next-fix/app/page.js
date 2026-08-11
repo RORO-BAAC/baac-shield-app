@@ -8249,7 +8249,21 @@ onClick={submitCorAction}
             }}
           />
         </div>
-
+<div>
+  <label>Job #</label>
+  <br />
+  <input
+    value={fleetJobNumber}
+    onChange={(e) => setFleetJobNumber(e.target.value)}
+    style={{
+      width: "100%",
+      padding: 12,
+      marginTop: 6,
+      borderRadius: 10,
+      border: "1px solid #cbd5e1",
+    }}
+  />
+</div>
         <div>
           <label>Location</label>
           <br />
