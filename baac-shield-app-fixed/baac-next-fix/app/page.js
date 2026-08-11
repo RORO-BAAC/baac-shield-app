@@ -15622,6 +15622,54 @@ onChange={(e) =>
 
 {activeTab === "qaqc" &&
   qaqcSection === "telecom" &&
+  qaqcInspectionType === "splicing-record" && (
+    <div
+      style={{
+        display: "grid",
+        gap: 18,
+        marginBottom: 24,
+      }}
+    >
+      <section
+        style={{
+          background: "white",
+          padding: 20,
+          borderRadius: 16,
+          border: "1px solid #e2e8f0",
+          boxShadow: "0 2px 12px rgba(15,23,42,0.06)",
+        }}
+      >
+        <button
+          type="button"
+          onClick={() => setQaqcInspectionType("")}
+          style={{
+            padding: "9px 13px",
+            borderRadius: 10,
+            border: "1px solid #cbd5e1",
+            background: "white",
+            color: "#123d82",
+            fontWeight: "bold",
+            cursor: "pointer",
+            marginBottom: 16,
+          }}
+        >
+          ← Back to Telecom & Fibre
+        </button>
+
+        <h2 style={{ marginTop: 0, color: "#0f2f63" }}>
+          Fibre Splicing Record
+        </h2>
+
+        <p style={{ color: "#475569", marginBottom: 0 }}>
+          Document fibre splicing work, closure details, workmanship checks,
+          deficiencies and inspection status.
+        </p>
+      </section>
+    </div>
+  )}
+
+{activeTab === "qaqc" &&
+  qaqcSection === "telecom" &&
   qaqcInspectionType === "cable-placement-records" && (
     <div
       style={{
