@@ -15664,6 +15664,97 @@ onChange={(e) =>
           Document fibre splicing work, closure details, workmanship checks,
           deficiencies and inspection status.
         </p>
+
+<div
+  style={{
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+    gap: 14,
+    marginTop: 20,
+  }}
+>
+  <label style={{ display: "grid", gap: 6 }}>
+    <span style={{ fontWeight: "bold", color: "#334155" }}>Project</span>
+    <select
+      value={qaqcSpliceProjectId}
+      onChange={(e) => setQaqcSpliceProjectId(e.target.value)}
+      style={{
+        padding: 11,
+        borderRadius: 10,
+        border: "1px solid #cbd5e1",
+        background: "white",
+      }}
+    >
+      <option value="">Select project</option>
+      {projects.map((project) => (
+        <option key={project.id} value={project.id}>
+          {project.name}
+        </option>
+      ))}
+    </select>
+  </label>
+
+  <label style={{ display: "grid", gap: 6 }}>
+    <span style={{ fontWeight: "bold", color: "#334155" }}>
+      Client / Owner
+    </span>
+    <input
+      type="text"
+      value={qaqcSpliceClientOwner}
+      onChange={(e) => setQaqcSpliceClientOwner(e.target.value)}
+      style={{
+        padding: 11,
+        borderRadius: 10,
+        border: "1px solid #cbd5e1",
+      }}
+    />
+  </label>
+
+  <label style={{ display: "grid", gap: 6 }}>
+    <span style={{ fontWeight: "bold", color: "#334155" }}>Location</span>
+    <input
+      type="text"
+      value={qaqcSpliceLocation}
+      onChange={(e) => setQaqcSpliceLocation(e.target.value)}
+      style={{
+        padding: 11,
+        borderRadius: 10,
+        border: "1px solid #cbd5e1",
+      }}
+    />
+  </label>
+
+  <label style={{ display: "grid", gap: 6 }}>
+    <span style={{ fontWeight: "bold", color: "#334155" }}>Date</span>
+    <input
+      type="date"
+      value={qaqcSpliceDate}
+      onChange={(e) => setQaqcSpliceDate(e.target.value)}
+      style={{
+        padding: 11,
+        borderRadius: 10,
+        border: "1px solid #cbd5e1",
+      }}
+    />
+  </label>
+
+  <label style={{ display: "grid", gap: 6 }}>
+    <span style={{ fontWeight: "bold", color: "#334155" }}>
+      Technician / Inspector
+    </span>
+    <input
+      type="text"
+      value={qaqcSpliceTechnician}
+      onChange={(e) => setQaqcSpliceTechnician(e.target.value)}
+      style={{
+        padding: 11,
+        borderRadius: 10,
+        border: "1px solid #cbd5e1",
+      }}
+    />
+  </label>
+</div>
+           
       </section>
     </div>
   )}
