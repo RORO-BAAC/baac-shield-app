@@ -2649,9 +2649,14 @@ async function saveFleetDefect(statusValue = "Open") {
   setLoading(true);
   setMessage("");
 
- if (!fleetUnitNumber || !fleetReportedBy || !fleetDefectIdentified) {
+ if (
+  !fleetUnitNumber ||
+  !fleetReportedBy ||
+  !fleetDefectIdentified ||
+  !fleetPriority
+) {
   setMessage(
-    "Please complete required fields: Unit #, Reported By, and Defect Identified."
+   "Please complete required fields: Unit #, Reported By, Defect Identified, and Priority."
   );
   setLoading(false);
   return;
