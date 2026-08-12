@@ -15959,7 +15959,119 @@ onChange={(e) =>
     </label>
   </div>
 </div>
-       
+
+<div
+  style={{
+    marginTop: 22,
+    paddingTop: 18,
+    borderTop: "1px solid #e2e8f0",
+  }}
+>
+  <h3 style={{ marginTop: 0, color: "#0f2f63" }}>
+    Inspection Result & Deficiencies
+  </h3>
+
+  <div
+    style={{
+      display: "grid",
+      gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+      gap: 14,
+    }}
+  >
+    <label style={{ display: "grid", gap: 6 }}>
+      <span style={{ fontWeight: "bold", color: "#334155" }}>
+        Inspection Result
+      </span>
+      <select
+        value={qaqcSpliceResult}
+        onChange={(e) => setQaqcSpliceResult(e.target.value)}
+        style={{
+          padding: 11,
+          borderRadius: 10,
+          border: "1px solid #cbd5e1",
+          background: "white",
+        }}
+      >
+        <option value="">Select result</option>
+        <option value="Pass">Pass</option>
+        <option value="Pass with Deficiencies">Pass with Deficiencies</option>
+        <option value="Fail">Fail</option>
+      </select>
+    </label>
+
+    <label style={{ display: "grid", gap: 6 }}>
+      <span style={{ fontWeight: "bold", color: "#334155" }}>
+        Status
+      </span>
+      <select
+        value={qaqcSpliceStatus}
+        onChange={(e) => setQaqcSpliceStatus(e.target.value)}
+        style={{
+          padding: 11,
+          borderRadius: 10,
+          border: "1px solid #cbd5e1",
+          background: "white",
+        }}
+      >
+        <option value="">Select status</option>
+        <option value="Open">Open</option>
+        <option value="Pending Correction">Pending Correction</option>
+        <option value="Complete">Complete</option>
+      </select>
+    </label>
+
+    <label style={{ display: "grid", gap: 6 }}>
+      <span style={{ fontWeight: "bold", color: "#334155" }}>
+        Corrective Action Assigned To
+      </span>
+      <input
+        type="text"
+        value={qaqcSpliceAssignedTo}
+        onChange={(e) => setQaqcSpliceAssignedTo(e.target.value)}
+        style={{
+          padding: 11,
+          borderRadius: 10,
+          border: "1px solid #cbd5e1",
+        }}
+      />
+    </label>
+  </div>
+
+  <label style={{ display: "grid", gap: 6, marginTop: 14 }}>
+    <span style={{ fontWeight: "bold", color: "#334155" }}>
+      Deficiency Details
+    </span>
+    <textarea
+      value={qaqcSpliceDeficiencies}
+      onChange={(e) => setQaqcSpliceDeficiencies(e.target.value)}
+      rows={4}
+      style={{
+        padding: 11,
+        borderRadius: 10,
+        border: "1px solid #cbd5e1",
+        resize: "vertical",
+      }}
+    />
+  </label>
+
+  <label style={{ display: "grid", gap: 6, marginTop: 14 }}>
+    <span style={{ fontWeight: "bold", color: "#334155" }}>
+      Notes
+    </span>
+    <textarea
+      value={qaqcSpliceNotes}
+      onChange={(e) => setQaqcSpliceNotes(e.target.value)}
+      rows={4}
+      style={{
+        padding: 11,
+        borderRadius: 10,
+        border: "1px solid #cbd5e1",
+        resize: "vertical",
+      }}
+    />
+  </label>
+</div>
+            
        </section>
     </div>
   )}
