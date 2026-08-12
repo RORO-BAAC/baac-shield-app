@@ -14350,6 +14350,7 @@ if (Array.isArray(item.photo_urls) && item.photo_urls.length > 0) {
   "Cable Placement",
       "Cable Placement Records",
   "Splicing Record",
+         "Splicing Records", 
   "Fibre Testing",
   "Equipment Installation",
   "As-Built / Closeout",
