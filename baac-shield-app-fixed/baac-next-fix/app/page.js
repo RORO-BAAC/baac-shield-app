@@ -16165,8 +16165,6 @@ onChange={(e) =>
   </label>
 </div>
             
-       </section>
-
 <div
   style={{
     marginTop: 22,
@@ -16265,7 +16263,7 @@ onChange={(e) =>
 </button>
     </div>
   )}
-
+</section>
 {activeTab === "qaqc" &&
   qaqcSection === "telecom" &&
   qaqcInspectionType === "cable-placement-records" && (
