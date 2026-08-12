@@ -16311,6 +16311,56 @@ onChange={(e) =>
         <p style={{ color: "#64748b", margin: 0 }}>
           {qaqcSpliceRecords.length} splicing record(s)
         </p>
+                <div
+  style={{
+    display: "grid",
+    gap: 12,
+    marginTop: 20,
+  }}
+>
+  {qaqcSpliceRecords.map((record) => (
+    <button
+      key={record.id}
+      type="button"
+      onClick={() => setSelectedQaqcSpliceRecord(record)}
+      style={{
+        textAlign: "left",
+        padding: 16,
+        borderRadius: 12,
+        border: "1px solid #cbd5e1",
+        background: "#f8fafc",
+        cursor: "pointer",
+      }}
+    >
+      <div
+        style={{
+          fontWeight: "bold",
+          color: "#0f2f63",
+          fontSize: 16,
+        }}
+      >
+        {record.closure_id || "Splicing Record"}
+      </div>
+
+      <div style={{ color: "#475569", marginTop: 6 }}>
+        {record.inspection_date || "No date"} •{" "}
+        {record.technician_name || "No technician"}
+      </div>
+
+      <div style={{ color: "#64748b", marginTop: 4 }}>
+        {record.inspection_location || "No location"} •{" "}
+        {record.inspection_result || "No result"} •{" "}
+        {record.inspection_status || "No status"}
+      </div>
+    </button>
+  ))}
+
+  {qaqcSpliceRecords.length === 0 && (
+    <div style={{ color: "#64748b" }}>
+      No fibre splicing records found.
+    </div>
+  )}
+</div>
       </section>
     </div>
   )}
