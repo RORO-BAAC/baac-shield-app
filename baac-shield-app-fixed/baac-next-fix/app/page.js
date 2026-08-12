@@ -5827,6 +5827,88 @@ async function submitQaqcCableInspection() {
     setLoading(false);
   }
 }
+
+async function submitQaqcSpliceRecord() {
+  setLoading(true);
+  setMessage("");
+
+  try {
+    const spliceFiles = qaqcSplicePhotos.map((photo) => photo.file);
+    const uploadedPhotoUrls = await uploadPhotosToSupabase(spliceFiles);
+
+    const { error } = await supabase
+      .from("qaqc_splicing_records")
+      .insert([
+        {
+          project_id: qaqcSpliceProjectId,
+          client_owner: qaqcSpliceClientOwner,
+          inspection_location: qaqcSpliceLocation,
+          inspection_date: qaqcSpliceDate || null,
+          technician_name: qaqcSpliceTechnician,
+
+          closure_id: qaqcSpliceClosureId,
+          cable_from: qaqcSpliceCableFrom,
+          cable_to: qaqcSpliceCableTo,
+          fibre_count: qaqcSpliceFibreCount,
+          splice_method: qaqcSpliceMethod,
+
+          tray_condition: qaqcSpliceTrayCondition,
+          routing_acceptable: qaqcSpliceRoutingAcceptable,
+          labels_complete: qaqcSpliceLabelsComplete,
+          protection_installed: qaqcSpliceProtectionInstalled,
+
+          inspection_result: qaqcSpliceResult,
+          deficiency_details: qaqcSpliceDeficiencies,
+          corrective_action_assigned_to: qaqcSpliceAssignedTo,
+          inspection_notes: qaqcSpliceNotes,
+          inspection_status: qaqcSpliceStatus,
+
+          photo_urls: uploadedPhotoUrls.join(", "),
+          inspector_signature: reviewSupervisorSignature,
+        },
+      ]);
+
+    if (error) throw error;
+
+    setQaqcSpliceProjectId("");
+    setQaqcSpliceClientOwner("");
+    setQaqcSpliceLocation("");
+    setQaqcSpliceDate("");
+    setQaqcSpliceTechnician("");
+
+    setQaqcSpliceClosureId("");
+    setQaqcSpliceCableFrom("");
+    setQaqcSpliceCableTo("");
+    setQaqcSpliceFibreCount("");
+    setQaqcSpliceMethod("");
+
+    setQaqcSpliceTrayCondition("");
+    setQaqcSpliceRoutingAcceptable("");
+    setQaqcSpliceLabelsComplete("");
+    setQaqcSpliceProtectionInstalled("");
+
+    setQaqcSpliceResult("");
+    setQaqcSpliceDeficiencies("");
+    setQaqcSpliceAssignedTo("");
+    setQaqcSpliceNotes("");
+    setQaqcSpliceStatus("");
+    setQaqcSplicePhotos([]);
+
+    setReviewSupervisorSignature("");
+    supervisorSigRef.current?.clear();
+
+    await loadRecords();
+
+    setMessage("Fibre splicing record submitted successfully.");
+    alert("Fibre splicing record submitted successfully.");
+  } catch (error) {
+    setMessage(`Could not submit fibre splicing record: ${error.message}`);
+    alert(`Could not submit fibre splicing record: ${error.message}`);
+  } finally {
+    setLoading(false);
+  }
+}
+
   return (
     <main
       style={{
