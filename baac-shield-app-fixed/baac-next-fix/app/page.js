@@ -16261,9 +16261,9 @@ onChange={(e) =>
 >
   {loading ? "Submitting..." : "Submit Fibre Splicing Record"}
 </button>
-    </div>
-  )}
 </section>
+</div>
+)}
 {activeTab === "qaqc" &&
   qaqcSection === "telecom" &&
   qaqcInspectionType === "cable-placement-records" && (
