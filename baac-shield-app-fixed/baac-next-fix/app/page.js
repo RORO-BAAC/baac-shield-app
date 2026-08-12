@@ -16361,6 +16361,84 @@ onChange={(e) =>
     </div>
   )}
 </div>
+        {selectedQaqcSpliceRecord && (
+  <div
+    style={{
+      marginTop: 20,
+      padding: 18,
+      borderRadius: 14,
+      border: "2px solid #123d82",
+      background: "#f8fafc",
+    }}
+  >
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "space-between",
+        gap: 12,
+        alignItems: "center",
+        marginBottom: 16,
+      }}
+    >
+      <h3 style={{ margin: 0, color: "#0f2f63" }}>
+        Splicing Record Details
+      </h3>
+
+      <button
+        type="button"
+        onClick={() => setSelectedQaqcSpliceRecord(null)}
+        style={{
+          padding: "8px 12px",
+          borderRadius: 8,
+          border: "1px solid #cbd5e1",
+          background: "white",
+          cursor: "pointer",
+        }}
+      >
+        Close
+      </button>
+    </div>
+
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+        gap: 12,
+      }}
+    >
+      <div><strong>Closure / Splice ID:</strong><br />{selectedQaqcSpliceRecord.closure_id || "-"}</div>
+      <div><strong>Date:</strong><br />{selectedQaqcSpliceRecord.inspection_date || "-"}</div>
+      <div><strong>Technician:</strong><br />{selectedQaqcSpliceRecord.technician_name || "-"}</div>
+      <div><strong>Location:</strong><br />{selectedQaqcSpliceRecord.inspection_location || "-"}</div>
+      <div><strong>Client / Owner:</strong><br />{selectedQaqcSpliceRecord.client_owner || "-"}</div>
+      <div><strong>Cable From:</strong><br />{selectedQaqcSpliceRecord.cable_from || "-"}</div>
+      <div><strong>Cable To:</strong><br />{selectedQaqcSpliceRecord.cable_to || "-"}</div>
+      <div><strong>Fibre Count:</strong><br />{selectedQaqcSpliceRecord.fibre_count || "-"}</div>
+      <div><strong>Splice Method:</strong><br />{selectedQaqcSpliceRecord.splice_method || "-"}</div>
+      <div><strong>Tray Condition:</strong><br />{selectedQaqcSpliceRecord.tray_condition || "-"}</div>
+      <div><strong>Routing Acceptable:</strong><br />{selectedQaqcSpliceRecord.routing_acceptable || "-"}</div>
+      <div><strong>Labels Complete:</strong><br />{selectedQaqcSpliceRecord.labels_complete || "-"}</div>
+      <div><strong>Protection Installed:</strong><br />{selectedQaqcSpliceRecord.protection_installed || "-"}</div>
+      <div><strong>Inspection Result:</strong><br />{selectedQaqcSpliceRecord.inspection_result || "-"}</div>
+      <div><strong>Status:</strong><br />{selectedQaqcSpliceRecord.inspection_status || "-"}</div>
+      <div><strong>Assigned To:</strong><br />{selectedQaqcSpliceRecord.corrective_action_assigned_to || "-"}</div>
+    </div>
+
+    <div style={{ marginTop: 16 }}>
+      <strong>Deficiency Details</strong>
+      <div style={{ marginTop: 5 }}>
+        {selectedQaqcSpliceRecord.deficiency_details || "None"}
+      </div>
+    </div>
+
+    <div style={{ marginTop: 16 }}>
+      <strong>Notes</strong>
+      <div style={{ marginTop: 5 }}>
+        {selectedQaqcSpliceRecord.inspection_notes || "None"}
+      </div>
+    </div>
+  </div>
+)}
       </section>
     </div>
   )}
