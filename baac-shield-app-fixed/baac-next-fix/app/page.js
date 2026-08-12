@@ -1104,6 +1104,17 @@ if (qaqcCableError) {
 }
 
 setQaqcCableInspections(qaqcCableData || []);   
+
+     const { data: qaqcSpliceData, error: qaqcSpliceError } = await supabase
+  .from("qaqc_splicing_records")
+  .select("*")
+  .order("created_at", { ascending: false });
+
+if (qaqcSpliceError) {
+  throw qaqcSpliceError;
+}
+
+setQaqcSpliceRecords(qaqcSpliceData || []);     
             
     } catch (error) {
       setMessage(`Could not load records from database: ${error.message}`);
