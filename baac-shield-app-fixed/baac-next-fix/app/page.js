@@ -15960,11 +15960,7 @@ onChange={(e) =>
   </div>
 </div>
        
-      </select>
-    </label>
-  </div>
-</div>   
-      </section>
+       </section>
     </div>
   )}
 
