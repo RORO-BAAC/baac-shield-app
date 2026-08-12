@@ -16073,6 +16073,85 @@ onChange={(e) =>
 </div>
             
        </section>
+
+<div
+  style={{
+    marginTop: 22,
+    paddingTop: 18,
+    borderTop: "1px solid #e2e8f0",
+  }}
+>
+  <h3 style={{ marginTop: 0, color: "#0f2f63" }}>
+    Photos
+  </h3>
+
+  <p style={{ color: "#475569" }}>
+    Add photos of the splice closure, trays, fibre routing, labels or deficiencies.
+  </p>
+
+  <input
+    type="file"
+    accept="image/*"
+    multiple
+    onChange={(e) => {
+      const files = Array.from(e.target.files || []);
+
+      const newPhotos = files.map((file) => ({
+        file,
+        preview: URL.createObjectURL(file),
+      }));
+
+      setQaqcSplicePhotos((current) => [...current, ...newPhotos]);
+    }}
+  />
+
+  {qaqcSplicePhotos.length > 0 && (
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))",
+        gap: 12,
+        marginTop: 16,
+      }}
+    >
+      {qaqcSplicePhotos.map((photo, index) => (
+        <div key={index}>
+          <img
+            src={photo.preview}
+            alt={`Splicing photo ${index + 1}`}
+            style={{
+              width: "100%",
+              height: 120,
+              objectFit: "cover",
+              borderRadius: 10,
+              border: "1px solid #cbd5e1",
+            }}
+          />
+
+          <button
+            type="button"
+            onClick={() =>
+              setQaqcSplicePhotos((current) =>
+                current.filter((_, photoIndex) => photoIndex !== index)
+              )
+            }
+            style={{
+              marginTop: 6,
+              padding: "7px 10px",
+              borderRadius: 8,
+              border: "1px solid #cbd5e1",
+              background: "white",
+              cursor: "pointer",
+            }}
+          >
+            Remove
+          </button>
+        </div>
+      ))}
+    </div>
+  )}
+</div>
+          
     </div>
   )}
 
