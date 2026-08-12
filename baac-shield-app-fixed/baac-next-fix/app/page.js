@@ -16244,7 +16244,25 @@ onChange={(e) =>
     </div>
   )}
 </div>
-          
+          <button
+  type="button"
+  onClick={submitQaqcSpliceRecord}
+  disabled={loading}
+  style={{
+    marginTop: 20,
+    padding: "12px 18px",
+    borderRadius: 10,
+    border: "none",
+    background: "#123d82",
+    color: "white",
+    fontWeight: "bold",
+    fontSize: 16,
+    cursor: loading ? "not-allowed" : "pointer",
+    opacity: loading ? 0.7 : 1,
+  }}
+>
+  {loading ? "Submitting..." : "Submit Fibre Splicing Record"}
+</button>
     </div>
   )}
 
