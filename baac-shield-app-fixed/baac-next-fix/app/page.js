@@ -14628,7 +14628,8 @@ if (Array.isArray(item.photo_urls) && item.photo_urls.length > 0) {
   setQaqcInspectionType("splicing-record");
 } else if (inspectionType === "Splicing Records") {
   setQaqcInspectionType("splicing-records");
-        
+        } else if (inspectionType === "Fibre Testing") {
+  setQaqcInspectionType("fibre-testing");
 } else {
   alert(`${inspectionType} form is the next build step.`);
 }
