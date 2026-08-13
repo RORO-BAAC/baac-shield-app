@@ -672,6 +672,19 @@ const [qaqcEquipmentResult, setQaqcEquipmentResult] = useState("");
 const [qaqcEquipmentDeficiencies, setQaqcEquipmentDeficiencies] = useState("");
 const [qaqcEquipmentNotes, setQaqcEquipmentNotes] = useState("");
 const [qaqcEquipmentPhotos, setQaqcEquipmentPhotos] = useState([]);    
+      const [qaqcCloseoutProjectId, setQaqcCloseoutProjectId] = useState("");
+const [qaqcCloseoutClientOwner, setQaqcCloseoutClientOwner] = useState("");
+const [qaqcCloseoutLocation, setQaqcCloseoutLocation] = useState("");
+const [qaqcCloseoutDate, setQaqcCloseoutDate] = useState("");
+
+const [qaqcCloseoutAsBuiltsStatus, setQaqcCloseoutAsBuiltsStatus] = useState("");
+const [qaqcCloseoutRedlinesStatus, setQaqcCloseoutRedlinesStatus] = useState("");
+const [qaqcCloseoutTestDocsStatus, setQaqcCloseoutTestDocsStatus] = useState("");
+const [qaqcCloseoutDeficienciesClosed, setQaqcCloseoutDeficienciesClosed] = useState("");
+const [qaqcCloseoutFinalAcceptance, setQaqcCloseoutFinalAcceptance] = useState("");
+
+const [qaqcCloseoutNotes, setQaqcCloseoutNotes] = useState("");
+const [qaqcCloseoutPhotos, setQaqcCloseoutPhotos] = useState([]);
 const [qaqcQuantityOrdered, setQaqcQuantityOrdered] = useState("");
 const [qaqcQuantityReceived, setQaqcQuantityReceived] = useState("");
 const [qaqcMaterialCondition, setQaqcMaterialCondition] = useState("");
