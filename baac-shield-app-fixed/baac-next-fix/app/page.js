@@ -5658,21 +5658,60 @@ if (!user) {
         }}
       />
 
-      <button
-        type="button"
-        style={{
-          width: "100%",
-          padding: 12,
-          background: "#123d82",
-          color: "white",
-          border: "none",
-          borderRadius: 8,
-          fontWeight: "bold",
-          cursor: "pointer",
-        }}
-      >
-        Create Account
-      </button>
+     <button
+  type="button"
+  onClick={async () => {
+    const normalizedEmail = email.trim().toLowerCase();
+
+    const allowedSignupDomains = [
+      "@baac.com",
+      "@baacconstruction.com",
+    ];
+
+    if (
+      !allowedSignupDomains.some((domain) =>
+        normalizedEmail.endsWith(domain)
+      )
+    ) {
+      alert("Please use your @baac.com or @baacconstruction.com email address.");
+      return;
+    }
+
+    if (!password) {
+      alert("Please enter a password.");
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      alert("Passwords do not match.");
+      return;
+    }
+
+    const { error } = await supabase.auth.signUp({
+      email: normalizedEmail,
+      password,
+    });
+
+    if (error) {
+      alert(error.message);
+      return;
+    }
+
+    setSignupComplete(true);
+  }}
+  style={{
+    width: "100%",
+    padding: 12,
+    background: "#123d82",
+    color: "white",
+    border: "none",
+    borderRadius: 8,
+    fontWeight: "bold",
+    cursor: "pointer",
+  }}
+>
+  Create Account
+</button>
 
       <p
         style={{
