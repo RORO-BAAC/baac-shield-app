@@ -5585,7 +5585,128 @@ if (!user) {
 >
   Create Account
 </button>
+{authMode === "signup" && (
+  <div
+    style={{
+      position: "fixed",
+      inset: 0,
+      background: "#f8fafc",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      padding: 20,
+      zIndex: 9999,
+    }}
+  >
+    <div
+      style={{
+        width: "100%",
+        maxWidth: 400,
+        background: "white",
+        padding: 24,
+        borderRadius: 12,
+        boxShadow: "0 2px 12px rgba(0,0,0,0.1)",
+      }}
+    >
+      <h2 style={{ marginTop: 0, color: "#123d82" }}>
+        Create Your Account
+      </h2>
 
+      <p style={{ color: "#475569", marginBottom: 20 }}>
+        Use your BAAC company email address to create your SHIELD account.
+      </p>
+
+      <input
+        type="email"
+        placeholder="BAAC Email Address"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        style={{
+          width: "100%",
+          padding: 12,
+          marginBottom: 10,
+          border: "1px solid #cbd5e1",
+          borderRadius: 8,
+        }}
+      />
+
+      <input
+        type="password"
+        placeholder="Password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        style={{
+          width: "100%",
+          padding: 12,
+          marginBottom: 10,
+          border: "1px solid #cbd5e1",
+          borderRadius: 8,
+        }}
+      />
+
+      <input
+        type="password"
+        placeholder="Confirm Password"
+        value={confirmPassword}
+        onChange={(e) => setConfirmPassword(e.target.value)}
+        style={{
+          width: "100%",
+          padding: 12,
+          marginBottom: 10,
+          border: "1px solid #cbd5e1",
+          borderRadius: 8,
+        }}
+      />
+
+      <button
+        type="button"
+        style={{
+          width: "100%",
+          padding: 12,
+          background: "#123d82",
+          color: "white",
+          border: "none",
+          borderRadius: 8,
+          fontWeight: "bold",
+          cursor: "pointer",
+        }}
+      >
+        Create Account
+      </button>
+
+      <p
+        style={{
+          marginTop: 16,
+          fontSize: 13,
+          color: "#64748b",
+          textAlign: "center",
+        }}
+      >
+        Only @baacconstruction.com and @baac.com email addresses are permitted.
+      </p>
+
+      <button
+        type="button"
+        onClick={() => {
+          setAuthMode("login");
+          setConfirmPassword("");
+        }}
+        style={{
+          width: "100%",
+          padding: 10,
+          marginTop: 6,
+          background: "transparent",
+          color: "#123d82",
+          border: "none",
+          fontWeight: "bold",
+          cursor: "pointer",
+        }}
+      >
+        Back to Login
+      </button>
+    </div>
+  </div>
+)}
       </div>
             
     </main>
