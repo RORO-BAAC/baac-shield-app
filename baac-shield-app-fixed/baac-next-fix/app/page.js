@@ -16246,6 +16246,24 @@ onChange={(e) =>
     </div>
   )}
 </div>
+        <div
+  style={{
+    marginTop: 20,
+    padding: 16,
+    borderRadius: 12,
+    border: "1px solid #cbd5e1",
+    background: "#f8fafc",
+  }}
+>
+  <h3 style={{ marginTop: 0, color: "#0f2f63" }}>
+    Inspector Signature
+  </h3>
+
+  <SignatureBox
+    sigRef={supervisorSigRef}
+    onSave={setReviewSupervisorSignature}
+  />
+</div>
           <button
   type="button"
   onClick={submitQaqcSpliceRecord}
