@@ -17345,7 +17345,117 @@ onChange={(e) =>
     />
   </label>
 </div>
-            
+   <div style={{ display: "grid", gap: 14, marginTop: 18 }}>
+  <label>
+    Visual Condition
+    <select
+      value={qaqcEquipmentVisualCondition}
+      onChange={(e) => setQaqcEquipmentVisualCondition(e.target.value)}
+      style={{
+        width: "100%",
+        marginTop: 6,
+        padding: 10,
+        borderRadius: 8,
+        border: "1px solid #cbd5e1",
+      }}
+    >
+      <option value="">Select</option>
+      <option value="Acceptable">Acceptable</option>
+      <option value="Deficiency">Deficiency</option>
+      <option value="N/A">N/A</option>
+    </select>
+  </label>
+
+  <label>
+    Installation Acceptable
+    <select
+      value={qaqcEquipmentInstallationAcceptable}
+      onChange={(e) => setQaqcEquipmentInstallationAcceptable(e.target.value)}
+      style={{
+        width: "100%",
+        marginTop: 6,
+        padding: 10,
+        borderRadius: 8,
+        border: "1px solid #cbd5e1",
+      }}
+    >
+      <option value="">Select</option>
+      <option value="Yes">Yes</option>
+      <option value="No">No</option>
+      <option value="Pending">Pending</option>
+    </select>
+  </label>
+
+  <label>
+    Overall Result
+    <select
+      value={qaqcEquipmentResult}
+      onChange={(e) => setQaqcEquipmentResult(e.target.value)}
+      style={{
+        width: "100%",
+        marginTop: 6,
+        padding: 10,
+        borderRadius: 8,
+        border: "1px solid #cbd5e1",
+      }}
+    >
+      <option value="">Select</option>
+      <option value="Pass">Pass</option>
+      <option value="Fail">Fail</option>
+      <option value="Pending">Pending</option>
+    </select>
+  </label>
+
+  <label>
+    Deficiencies / Corrective Actions
+    <textarea
+      value={qaqcEquipmentDeficiencies}
+      onChange={(e) => setQaqcEquipmentDeficiencies(e.target.value)}
+      rows={4}
+      style={{
+        width: "100%",
+        marginTop: 6,
+        padding: 10,
+        borderRadius: 8,
+        border: "1px solid #cbd5e1",
+      }}
+    />
+  </label>
+
+  <label>
+    Notes
+    <textarea
+      value={qaqcEquipmentNotes}
+      onChange={(e) => setQaqcEquipmentNotes(e.target.value)}
+      rows={4}
+      style={{
+        width: "100%",
+        marginTop: 6,
+        padding: 10,
+        borderRadius: 8,
+        border: "1px solid #cbd5e1",
+      }}
+    />
+  </label>
+
+  <label>
+    Supporting Photos
+    <input
+      type="file"
+      accept="image/*"
+      multiple
+      onChange={(e) => {
+        const files = Array.from(e.target.files || []);
+        const newPhotos = files.map((file) => ({
+          file,
+          preview: URL.createObjectURL(file),
+        }));
+        setQaqcEquipmentPhotos((current) => [...current, ...newPhotos]);
+      }}
+      style={{ marginTop: 6 }}
+    />
+  </label>
+</div>         
       </section>
     </div>
 )}
