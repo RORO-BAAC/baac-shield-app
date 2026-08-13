@@ -16986,7 +16986,121 @@ onChange={(e) =>
     />
   </label>
 </div> 
-      </section>
+     <div
+  style={{
+    marginTop: 22,
+    paddingTop: 18,
+    borderTop: "1px solid #e2e8f0",
+  }}
+>
+  <h3 style={{ color: "#0f2f63", marginTop: 0 }}>
+    Testing Verification
+  </h3>
+
+  <div
+    style={{
+      display: "grid",
+      gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+      gap: 14,
+    }}
+  >
+    <label>
+      <strong>Test Report</strong>
+      <select
+        value={qaqcFibreTestStatus}
+        onChange={(e) => setQaqcFibreTestStatus(e.target.value)}
+        style={{
+          width: "100%",
+          padding: 10,
+          marginTop: 6,
+          borderRadius: 8,
+          border: "1px solid #cbd5e1",
+        }}
+      >
+        <option value="">Select</option>
+        <option value="Received">Received</option>
+        <option value="Pending">Pending</option>
+        <option value="Not Required">Not Required</option>
+      </select>
+    </label>
+
+    <label>
+      <strong>Overall Result</strong>
+      <select
+        value={qaqcFibreTestResult}
+        onChange={(e) => setQaqcFibreTestResult(e.target.value)}
+        style={{
+          width: "100%",
+          padding: 10,
+          marginTop: 6,
+          borderRadius: 8,
+          border: "1px solid #cbd5e1",
+        }}
+      >
+        <option value="">Select</option>
+        <option value="Pass">Pass</option>
+        <option value="Fail">Fail</option>
+        <option value="Pending">Pending</option>
+      </select>
+    </label>
+  </div>
+
+  <label style={{ display: "block", marginTop: 14 }}>
+    <strong>Deficiencies / Corrective Actions</strong>
+    <textarea
+      value={qaqcFibreTestDeficiencies}
+      onChange={(e) => setQaqcFibreTestDeficiencies(e.target.value)}
+      rows={3}
+      style={{
+        width: "100%",
+        padding: 10,
+        marginTop: 6,
+        borderRadius: 8,
+        border: "1px solid #cbd5e1",
+      }}
+    />
+  </label>
+
+  <label style={{ display: "block", marginTop: 14 }}>
+    <strong>Comments / Notes</strong>
+    <textarea
+      value={qaqcFibreTestNotes}
+      onChange={(e) => setQaqcFibreTestNotes(e.target.value)}
+      rows={3}
+      style={{
+        width: "100%",
+        padding: 10,
+        marginTop: 6,
+        borderRadius: 8,
+        border: "1px solid #cbd5e1",
+      }}
+    />
+  </label>
+
+  <div style={{ marginTop: 16 }}>
+    <strong>Supporting Photos / Test Report Images</strong>
+
+    <input
+      type="file"
+      accept="image/*"
+      multiple
+      onChange={(e) => {
+        const files = Array.from(e.target.files || []);
+        const newPhotos = files.map((file) => ({
+          file,
+          preview: URL.createObjectURL(file),
+        }));
+
+        setQaqcFibreTestPhotos((current) => [
+          ...current,
+          ...newPhotos,
+        ]);
+      }}
+      style={{ display: "block", marginTop: 8 }}
+    />
+  </div>
+</div>
+          </section>
     </div>
 )}
 {activeTab === "qaqc" &&
