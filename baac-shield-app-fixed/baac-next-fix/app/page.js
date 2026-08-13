@@ -629,6 +629,32 @@ const [qaqcSpliceStatus, setQaqcSpliceStatus] = useState("");
 
 const [qaqcSplicePhotos, setQaqcSplicePhotos] = useState([]);
 const [qaqcItemCode, setQaqcItemCode] = useState("");
+    const [qaqcFibreTestRecords, setQaqcFibreTestRecords] = useState([]);
+const [selectedQaqcFibreTestRecord, setSelectedQaqcFibreTestRecord] = useState(null);
+
+const [qaqcFibreTestProjectId, setQaqcFibreTestProjectId] = useState("");
+const [qaqcFibreTestClientOwner, setQaqcFibreTestClientOwner] = useState("");
+const [qaqcFibreTestLocation, setQaqcFibreTestLocation] = useState("");
+const [qaqcFibreTestDate, setQaqcFibreTestDate] = useState("");
+const [qaqcFibreTestTechnician, setQaqcFibreTestTechnician] = useState("");
+
+const [qaqcFibreTestCableId, setQaqcFibreTestCableId] = useState("");
+const [qaqcFibreTestFromLocation, setQaqcFibreTestFromLocation] = useState("");
+const [qaqcFibreTestToLocation, setQaqcFibreTestToLocation] = useState("");
+const [qaqcFibreTestFibreCount, setQaqcFibreTestFibreCount] = useState("");
+
+const [qaqcFibreTestType, setQaqcFibreTestType] = useState("");
+const [qaqcFibreTestWavelength, setQaqcFibreTestWavelength] = useState("");
+const [qaqcFibreTestEquipment, setQaqcFibreTestEquipment] = useState("");
+const [qaqcFibreTestEquipmentSerial, setQaqcFibreTestEquipmentSerial] = useState("");
+
+const [qaqcFibreTestResult, setQaqcFibreTestResult] = useState("");
+const [qaqcFibreTestDeficiencies, setQaqcFibreTestDeficiencies] = useState("");
+const [qaqcFibreTestAssignedTo, setQaqcFibreTestAssignedTo] = useState("");
+const [qaqcFibreTestNotes, setQaqcFibreTestNotes] = useState("");
+const [qaqcFibreTestStatus, setQaqcFibreTestStatus] = useState("");
+
+const [qaqcFibreTestPhotos, setQaqcFibreTestPhotos] = useState([]);  
 const [qaqcQuantityOrdered, setQaqcQuantityOrdered] = useState("");
 const [qaqcQuantityReceived, setQaqcQuantityReceived] = useState("");
 const [qaqcMaterialCondition, setQaqcMaterialCondition] = useState("");
