@@ -16476,6 +16476,24 @@ onChange={(e) =>
     </div>
   </div>
 )}
+      {selectedQaqcSpliceRecord.inspector_signature && (
+  <div style={{ marginTop: 18 }}>
+    <h3 style={{ color: "#0f2f63" }}>Inspector Signature</h3>
+
+    <img
+      src={selectedQaqcSpliceRecord.inspector_signature}
+      alt="Inspector signature"
+      style={{
+        maxWidth: 360,
+        width: "100%",
+        background: "white",
+        border: "1px solid #cbd5e1",
+        borderRadius: 10,
+        padding: 10,
+      }}
+    />
+  </div>
+)}
   </div>
 )}
       </section>
