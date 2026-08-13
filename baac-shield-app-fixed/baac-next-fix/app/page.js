@@ -17601,6 +17601,77 @@ onChange={(e) =>
         <p style={{ color: "#64748b", marginBottom: 20 }}>
           Confirm final QA/QC documentation, deficiency closure and project closeout readiness.
         </p>
+        <div style={{ display: "grid", gap: 14 }}>
+  <label>
+    Project
+    <select
+      value={qaqcCloseoutProjectId}
+      onChange={(e) => setQaqcCloseoutProjectId(e.target.value)}
+      style={{
+        width: "100%",
+        marginTop: 6,
+        padding: 10,
+        borderRadius: 8,
+        border: "1px solid #cbd5e1",
+      }}
+    >
+      <option value="">Select project</option>
+      {projects.map((project) => (
+        <option key={project.id} value={project.id}>
+          {project.name}
+        </option>
+      ))}
+    </select>
+  </label>
+
+  <label>
+    Client / Owner
+    <input
+      type="text"
+      value={qaqcCloseoutClientOwner}
+      onChange={(e) => setQaqcCloseoutClientOwner(e.target.value)}
+      style={{
+        width: "100%",
+        marginTop: 6,
+        padding: 10,
+        borderRadius: 8,
+        border: "1px solid #cbd5e1",
+      }}
+    />
+  </label>
+
+  <label>
+    Location
+    <input
+      type="text"
+      value={qaqcCloseoutLocation}
+      onChange={(e) => setQaqcCloseoutLocation(e.target.value)}
+      style={{
+        width: "100%",
+        marginTop: 6,
+        padding: 10,
+        borderRadius: 8,
+        border: "1px solid #cbd5e1",
+      }}
+    />
+  </label>
+
+  <label>
+    Closeout Date
+    <input
+      type="date"
+      value={qaqcCloseoutDate}
+      onChange={(e) => setQaqcCloseoutDate(e.target.value)}
+      style={{
+        width: "100%",
+        marginTop: 6,
+        padding: 10,
+        borderRadius: 8,
+        border: "1px solid #cbd5e1",
+      }}
+    />
+  </label>
+</div>        
       </section>
     </div>
 )}
