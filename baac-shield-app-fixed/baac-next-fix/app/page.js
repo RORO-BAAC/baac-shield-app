@@ -16820,6 +16820,100 @@ onChange={(e) =>
           Document fibre test details, test equipment, results, deficiencies and
           inspection status.
         </p>
+        <div
+  style={{
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+    gap: 14,
+    marginTop: 20,
+  }}
+>
+  <label>
+    <strong>Project</strong>
+    <select
+      value={qaqcFibreTestProjectId}
+      onChange={(e) => setQaqcFibreTestProjectId(e.target.value)}
+      style={{
+        width: "100%",
+        padding: 10,
+        marginTop: 6,
+        borderRadius: 8,
+        border: "1px solid #cbd5e1",
+      }}
+    >
+      <option value="">Select Project</option>
+      {projects.map((project) => (
+        <option key={project.id} value={project.id}>
+          {project.name}
+        </option>
+      ))}
+    </select>
+  </label>
+
+  <label>
+    <strong>Client / Owner</strong>
+    <input
+      type="text"
+      value={qaqcFibreTestClientOwner}
+      onChange={(e) => setQaqcFibreTestClientOwner(e.target.value)}
+      style={{
+        width: "100%",
+        padding: 10,
+        marginTop: 6,
+        borderRadius: 8,
+        border: "1px solid #cbd5e1",
+      }}
+    />
+  </label>
+
+  <label>
+    <strong>Location</strong>
+    <input
+      type="text"
+      value={qaqcFibreTestLocation}
+      onChange={(e) => setQaqcFibreTestLocation(e.target.value)}
+      style={{
+        width: "100%",
+        padding: 10,
+        marginTop: 6,
+        borderRadius: 8,
+        border: "1px solid #cbd5e1",
+      }}
+    />
+  </label>
+
+  <label>
+    <strong>Date</strong>
+    <input
+      type="date"
+      value={qaqcFibreTestDate}
+      onChange={(e) => setQaqcFibreTestDate(e.target.value)}
+      style={{
+        width: "100%",
+        padding: 10,
+        marginTop: 6,
+        borderRadius: 8,
+        border: "1px solid #cbd5e1",
+      }}
+    />
+  </label>
+
+  <label>
+    <strong>Technician / Inspector</strong>
+    <input
+      type="text"
+      value={qaqcFibreTestTechnician}
+      onChange={(e) => setQaqcFibreTestTechnician(e.target.value)}
+      style={{
+        width: "100%",
+        padding: 10,
+        marginTop: 6,
+        borderRadius: 8,
+        border: "1px solid #cbd5e1",
+      }}
+    />
+  </label>
+</div>        
       </section>
     </div>
 )}
