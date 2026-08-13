@@ -17671,7 +17671,108 @@ onChange={(e) =>
       }}
     />
   </label>
-</div>        
+</div>    
+          <div style={{ display: "grid", gap: 14, marginTop: 16 }}>
+  <label>
+    As-Built Drawings
+    <select
+      value={qaqcCloseoutAsBuiltsStatus}
+      onChange={(e) => setQaqcCloseoutAsBuiltsStatus(e.target.value)}
+      style={{
+        width: "100%",
+        marginTop: 6,
+        padding: 10,
+        borderRadius: 8,
+        border: "1px solid #cbd5e1",
+      }}
+    >
+      <option value="">Select status</option>
+      <option value="Complete">Complete</option>
+      <option value="Pending">Pending</option>
+      <option value="Not Required">Not Required</option>
+    </select>
+  </label>
+
+  <label>
+    Redlines Complete
+    <select
+      value={qaqcCloseoutRedlinesStatus}
+      onChange={(e) => setQaqcCloseoutRedlinesStatus(e.target.value)}
+      style={{
+        width: "100%",
+        marginTop: 6,
+        padding: 10,
+        borderRadius: 8,
+        border: "1px solid #cbd5e1",
+      }}
+    >
+      <option value="">Select status</option>
+      <option value="Complete">Complete</option>
+      <option value="Pending">Pending</option>
+      <option value="Not Required">Not Required</option>
+    </select>
+  </label>
+
+  <label>
+    Test / Commissioning Documents
+    <select
+      value={qaqcCloseoutTestDocsStatus}
+      onChange={(e) => setQaqcCloseoutTestDocsStatus(e.target.value)}
+      style={{
+        width: "100%",
+        marginTop: 6,
+        padding: 10,
+        borderRadius: 8,
+        border: "1px solid #cbd5e1",
+      }}
+    >
+      <option value="">Select status</option>
+      <option value="Received">Received</option>
+      <option value="Pending">Pending</option>
+      <option value="Not Required">Not Required</option>
+    </select>
+  </label>
+
+  <label>
+    Deficiencies Closed
+    <select
+      value={qaqcCloseoutDeficienciesClosed}
+      onChange={(e) => setQaqcCloseoutDeficienciesClosed(e.target.value)}
+      style={{
+        width: "100%",
+        marginTop: 6,
+        padding: 10,
+        borderRadius: 8,
+        border: "1px solid #cbd5e1",
+      }}
+    >
+      <option value="">Select status</option>
+      <option value="Yes">Yes</option>
+      <option value="No">No</option>
+      <option value="Pending">Pending</option>
+    </select>
+  </label>
+
+  <label>
+    Final Acceptance
+    <select
+      value={qaqcCloseoutFinalAcceptance}
+      onChange={(e) => setQaqcCloseoutFinalAcceptance(e.target.value)}
+      style={{
+        width: "100%",
+        marginTop: 6,
+        padding: 10,
+        borderRadius: 8,
+        border: "1px solid #cbd5e1",
+      }}
+    >
+      <option value="">Select status</option>
+      <option value="Complete">Complete</option>
+      <option value="Pending">Pending</option>
+      <option value="Deficiency">Deficiency</option>
+    </select>
+  </label>
+</div>
       </section>
     </div>
 )}
