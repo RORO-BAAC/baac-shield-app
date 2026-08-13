@@ -17158,6 +17158,25 @@ onChange={(e) =>
       style={{ display: "block", marginTop: 8 }}
     />
   </div>
+    <button
+  type="button"
+  onClick={submitQaqcFibreTestRecord}
+  disabled={loading}
+  style={{
+    marginTop: 20,
+    width: "100%",
+    padding: "12px 16px",
+    borderRadius: 10,
+    border: "none",
+    background: "#123d82",
+    color: "white",
+    fontWeight: "bold",
+    cursor: loading ? "not-allowed" : "pointer",
+    opacity: loading ? 0.7 : 1,
+  }}
+>
+  {loading ? "Submitting..." : "Submit Fibre Testing Record"}
+</button>      
 </div>
           </section>
     </div>
