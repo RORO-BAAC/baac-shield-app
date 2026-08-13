@@ -14788,6 +14788,8 @@ if (Array.isArray(item.photo_urls) && item.photo_urls.length > 0) {
   setQaqcInspectionType("fibre-testing");
 } else if (inspectionType === "Equipment Installation") {
   setQaqcInspectionType("equipment-installation");
+} else if (inspectionType === "As-Built / Closeout") {
+  setQaqcInspectionType("as-built-closeout");
 } else {
   alert(`${inspectionType} form is the next build step.`);
 }
