@@ -151,7 +151,9 @@ const [user, setUser] = useState(null);
   const [users, setUsers] = useState([]);
   const [accountActive, setAccountActive] = useState(true);
   const [email, setEmail] = useState("");
-
+const [authMode, setAuthMode] = useState("login");
+const [confirmPassword, setConfirmPassword] = useState("");
+const [signupComplete, setSignupComplete] = useState(false);
 useEffect(() => {
   if (user?.email && !worker) {
     setWorker(user.email);
