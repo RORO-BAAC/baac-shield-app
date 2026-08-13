@@ -5565,38 +5565,22 @@ if (!user) {
 </button>
 
 <button
-  onClick={async () => {
-   const allowedSignupDomains = ["@baacconstruction.com", "@baac.com"];
-
-if (
-  !allowedSignupDomains.some((domain) =>
-    email.toLowerCase().endsWith(domain)
-  )
-) {
-  alert("Use your BAAC company email.");
-  return;
-}
-
-    const { error } = await supabase.auth.signUp({
-      email,
-      password,
-    });
-
-    if (error) {
-      alert(error.message);
-    } else {
-      alert("Account created. Check your email to confirm.");
-    }
+  type="button"
+  onClick={() => {
+    setAuthMode("signup");
+    setConfirmPassword("");
+    setSignupComplete(false);
   }}
   style={{
     width: "100%",
     padding: 12,
     marginTop: 10,
-    background: "#123d82",
-    color: "white",
-    border: "none",
+    background: "white",
+    color: "#123d82",
+    border: "2px solid #123d82",
     borderRadius: 8,
     fontWeight: "bold",
+    cursor: "pointer",
   }}
 >
   Create Account
