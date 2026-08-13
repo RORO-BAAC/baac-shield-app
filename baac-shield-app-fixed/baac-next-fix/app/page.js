@@ -5744,6 +5744,87 @@ if (!user) {
         Back to Login
       </button>
     </div>
+       {signupComplete && (
+  <div
+    style={{
+      position: "fixed",
+      inset: 0,
+      background: "#f8fafc",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      padding: 20,
+      zIndex: 10000,
+    }}
+  >
+    <div
+      style={{
+        width: "100%",
+        maxWidth: 420,
+        background: "white",
+        padding: 28,
+        borderRadius: 14,
+        boxShadow: "0 2px 14px rgba(0,0,0,0.12)",
+        textAlign: "center",
+      }}
+    >
+      <div
+        style={{
+          fontSize: 42,
+          marginBottom: 10,
+        }}
+      >
+        ✓
+      </div>
+
+      <h2 style={{ color: "#123d82", marginBottom: 10 }}>
+        Account Created
+      </h2>
+
+      <p style={{ color: "#475569", lineHeight: 1.5 }}>
+        We sent a verification link to:
+      </p>
+
+      <p
+        style={{
+          fontWeight: "bold",
+          color: "#123d82",
+          wordBreak: "break-word",
+        }}
+      >
+        {email}
+      </p>
+
+      <p style={{ color: "#475569", lineHeight: 1.5 }}>
+        Open your BAAC email and click the verification link to activate your
+        SHIELD account. Then return here and log in.
+      </p>
+
+      <button
+        type="button"
+        onClick={() => {
+          setSignupComplete(false);
+          setAuthMode("login");
+          setPassword("");
+          setConfirmPassword("");
+        }}
+        style={{
+          width: "100%",
+          padding: 12,
+          marginTop: 12,
+          background: "#123d82",
+          color: "white",
+          border: "none",
+          borderRadius: 8,
+          fontWeight: "bold",
+          cursor: "pointer",
+        }}
+      >
+        Back to Login
+      </button>
+    </div>
+  </div>
+)}       
   </div>
 )}
       </div>
