@@ -6172,7 +6172,66 @@ async function submitQaqcSpliceRecord() {
     setLoading(false);
   }
 }
+async function submitQaqcFibreTestRecord() {
+  setLoading(true);
+  setMessage("");
 
+  try {
+    const fibreTestFiles = qaqcFibreTestPhotos.map((photo) => photo.file);
+    const uploadedPhotoUrls = await uploadPhotosToSupabase(fibreTestFiles);
+
+    const { error } = await supabase
+      .from("qaqc_fibre_test_records")
+      .insert([
+        {
+          project_id: qaqcFibreTestProjectId,
+          client_owner: qaqcFibreTestClientOwner,
+          inspection_location: qaqcFibreTestLocation,
+          inspection_date: qaqcFibreTestDate || null,
+          technician_name: qaqcFibreTestTechnician,
+
+          cable_id: qaqcFibreTestCableId,
+          from_location: qaqcFibreTestFromLocation,
+          to_location: qaqcFibreTestToLocation,
+          fibre_count: qaqcFibreTestFibreCount,
+
+          test_report_status: qaqcFibreTestStatus,
+          overall_result: qaqcFibreTestResult,
+          deficiency_details: qaqcFibreTestDeficiencies,
+          inspection_notes: qaqcFibreTestNotes,
+
+          photo_urls: uploadedPhotoUrls.join(", "),
+        },
+      ]);
+
+    if (error) throw error;
+
+    setQaqcFibreTestProjectId("");
+    setQaqcFibreTestClientOwner("");
+    setQaqcFibreTestLocation("");
+    setQaqcFibreTestDate("");
+    setQaqcFibreTestTechnician("");
+
+    setQaqcFibreTestCableId("");
+    setQaqcFibreTestFromLocation("");
+    setQaqcFibreTestToLocation("");
+    setQaqcFibreTestFibreCount("");
+
+    setQaqcFibreTestStatus("");
+    setQaqcFibreTestResult("");
+    setQaqcFibreTestDeficiencies("");
+    setQaqcFibreTestNotes("");
+    setQaqcFibreTestPhotos([]);
+
+    setMessage("Fibre testing record submitted successfully.");
+    alert("Fibre testing record submitted successfully.");
+  } catch (error) {
+    setMessage(`Could not submit fibre testing record: ${error.message}`);
+    alert(`Could not submit fibre testing record: ${error.message}`);
+  } finally {
+    setLoading(false);
+  }
+}
   return (
     <main
       style={{
