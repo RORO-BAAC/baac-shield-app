@@ -6249,6 +6249,72 @@ async function submitQaqcFibreTestRecord() {
     setLoading(false);
   }
 }
+
+async function submitQaqcEquipmentInstallation() {
+  setLoading(true);
+  setMessage("");
+
+  try {
+    const equipmentFiles = qaqcEquipmentPhotos.map((photo) => photo.file);
+    const uploadedPhotoUrls = await uploadPhotosToSupabase(equipmentFiles);
+
+    const { error } = await supabase
+      .from("qaqc_equipment_installation_records")
+      .insert([
+        {
+          project_id: qaqcEquipmentProjectId,
+          client_owner: qaqcEquipmentClientOwner,
+          installation_location: qaqcEquipmentLocation,
+          installation_date: qaqcEquipmentDate || null,
+          installer_subcontractor: qaqcEquipmentInstaller,
+
+          equipment_description: qaqcEquipmentDescription,
+          manufacturer: qaqcEquipmentManufacturer,
+          model: qaqcEquipmentModel,
+          serial_number: qaqcEquipmentSerial,
+
+          visual_condition: qaqcEquipmentVisualCondition,
+          installation_acceptable: qaqcEquipmentInstallationAcceptable,
+          overall_result: qaqcEquipmentResult,
+          deficiency_details: qaqcEquipmentDeficiencies,
+          installation_notes: qaqcEquipmentNotes,
+
+          photo_urls: uploadedPhotoUrls.join(", "),
+        },
+      ]);
+
+    if (error) throw error;
+
+    setQaqcEquipmentProjectId("");
+    setQaqcEquipmentClientOwner("");
+    setQaqcEquipmentLocation("");
+    setQaqcEquipmentDate("");
+    setQaqcEquipmentInstaller("");
+    setQaqcEquipmentDescription("");
+    setQaqcEquipmentManufacturer("");
+    setQaqcEquipmentModel("");
+    setQaqcEquipmentSerial("");
+    setQaqcEquipmentVisualCondition("");
+    setQaqcEquipmentInstallationAcceptable("");
+    setQaqcEquipmentResult("");
+    setQaqcEquipmentDeficiencies("");
+    setQaqcEquipmentNotes("");
+    setQaqcEquipmentPhotos([]);
+
+    setMessage("Equipment installation record submitted successfully.");
+    alert("Equipment installation record submitted successfully.");
+  } catch (error) {
+    setMessage(
+      `Could not submit equipment installation record: ${error.message}`
+    );
+    alert(
+      `Could not submit equipment installation record: ${error.message}`
+    );
+  } finally {
+    setLoading(false);
+  }
+}
+
   return (
     <main
       style={{
