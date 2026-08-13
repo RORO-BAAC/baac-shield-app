@@ -16437,6 +16437,45 @@ onChange={(e) =>
         {selectedQaqcSpliceRecord.inspection_notes || "None"}
       </div>
     </div>
+            {selectedQaqcSpliceRecord.photo_urls && (
+  <div style={{ marginTop: 18 }}>
+    <h3 style={{ color: "#0f2f63" }}>Inspection Photos</h3>
+
+    <div
+      style={{
+        display: "flex",
+        gap: 10,
+        flexWrap: "wrap",
+        marginTop: 8,
+      }}
+    >
+      {selectedQaqcSpliceRecord.photo_urls
+        .split(",")
+        .map((url) => url.trim())
+        .filter(Boolean)
+        .map((url, index) => (
+          <a
+            key={`splice-photo-${index}`}
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src={url}
+              alt={`Splicing inspection photo ${index + 1}`}
+              style={{
+                width: 160,
+                height: 120,
+                objectFit: "cover",
+                borderRadius: 10,
+                border: "1px solid #cbd5e1",
+              }}
+            />
+          </a>
+        ))}
+    </div>
+  </div>
+)}
   </div>
 )}
       </section>
