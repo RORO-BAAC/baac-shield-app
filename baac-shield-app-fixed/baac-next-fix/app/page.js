@@ -16778,6 +16778,53 @@ onChange={(e) =>
   )}
 {activeTab === "qaqc" &&
   qaqcSection === "telecom" &&
+  qaqcInspectionType === "fibre-testing" && (
+    <div
+      style={{
+        display: "grid",
+        gap: 18,
+        marginBottom: 24,
+      }}
+    >
+      <section
+        style={{
+          background: "white",
+          padding: 20,
+          borderRadius: 16,
+          border: "1px solid #e2e8f0",
+          boxShadow: "0 2px 12px rgba(15,23,42,0.06)",
+        }}
+      >
+        <button
+          type="button"
+          onClick={() => setQaqcInspectionType("")}
+          style={{
+            padding: "9px 13px",
+            borderRadius: 10,
+            border: "1px solid #cbd5e1",
+            background: "white",
+            color: "#123d82",
+            fontWeight: "bold",
+            cursor: "pointer",
+            marginBottom: 16,
+          }}
+        >
+          ← Back to Telecom Inspections
+        </button>
+
+        <h1 style={{ margin: "0 0 8px", color: "#0f2f63" }}>
+          Fibre Testing Record
+        </h1>
+
+        <p style={{ color: "#64748b", marginBottom: 20 }}>
+          Document fibre test details, test equipment, results, deficiencies and
+          inspection status.
+        </p>
+      </section>
+    </div>
+)}
+{activeTab === "qaqc" &&
+  qaqcSection === "telecom" &&
   qaqcInspectionType === "cable-placement-records" && (
     <div
       style={{
