@@ -6327,6 +6327,61 @@ async function submitQaqcEquipmentInstallation() {
     setLoading(false);
   }
 }
+async function submitQaqcCloseoutRecord() {
+  setLoading(true);
+  setMessage("");
+
+  try {
+    const closeoutFiles = qaqcCloseoutPhotos.map((photo) => photo.file);
+    const uploadedPhotoUrls = await uploadPhotosToSupabase(closeoutFiles);
+
+    const { error } = await supabase
+      .from("qaqc_closeout_records")
+      .insert([
+        {
+          project_id: qaqcCloseoutProjectId,
+          client_owner: qaqcCloseoutClientOwner,
+          closeout_location: qaqcCloseoutLocation,
+          closeout_date: qaqcCloseoutDate || null,
+
+          as_builts_status: qaqcCloseoutAsBuiltsStatus,
+          redlines_status: qaqcCloseoutRedlinesStatus,
+          test_docs_status: qaqcCloseoutTestDocsStatus,
+          deficiencies_closed_status: qaqcCloseoutDeficienciesClosed,
+          final_acceptance_status: qaqcCloseoutFinalAcceptance,
+
+          closeout_notes: qaqcCloseoutNotes,
+          photo_urls: uploadedPhotoUrls.join(", "),
+        },
+      ]);
+
+    if (error) throw error;
+
+    setQaqcCloseoutProjectId("");
+    setQaqcCloseoutClientOwner("");
+    setQaqcCloseoutLocation("");
+    setQaqcCloseoutDate("");
+    setQaqcCloseoutAsBuiltsStatus("");
+    setQaqcCloseoutRedlinesStatus("");
+    setQaqcCloseoutTestDocsStatus("");
+    setQaqcCloseoutDeficienciesClosed("");
+    setQaqcCloseoutFinalAcceptance("");
+    setQaqcCloseoutNotes("");
+    setQaqcCloseoutPhotos([]);
+
+    setMessage("As-Built / Closeout record submitted successfully.");
+    alert("As-Built / Closeout record submitted successfully.");
+  } catch (error) {
+    setMessage(
+      `Could not submit As-Built / Closeout record: ${error.message}`
+    );
+    alert(
+      `Could not submit As-Built / Closeout record: ${error.message}`
+    );
+  } finally {
+    setLoading(false);
+  }
+}
 
   return (
     <main
