@@ -654,7 +654,24 @@ const [qaqcFibreTestAssignedTo, setQaqcFibreTestAssignedTo] = useState("");
 const [qaqcFibreTestNotes, setQaqcFibreTestNotes] = useState("");
 const [qaqcFibreTestStatus, setQaqcFibreTestStatus] = useState("");
 
-const [qaqcFibreTestPhotos, setQaqcFibreTestPhotos] = useState([]);  
+const [qaqcFibreTestPhotos, setQaqcFibreTestPhotos] = useState([]);
+  const [qaqcEquipmentProjectId, setQaqcEquipmentProjectId] = useState("");
+const [qaqcEquipmentClientOwner, setQaqcEquipmentClientOwner] = useState("");
+const [qaqcEquipmentLocation, setQaqcEquipmentLocation] = useState("");
+const [qaqcEquipmentDate, setQaqcEquipmentDate] = useState("");
+const [qaqcEquipmentInstaller, setQaqcEquipmentInstaller] = useState("");
+
+const [qaqcEquipmentDescription, setQaqcEquipmentDescription] = useState("");
+const [qaqcEquipmentManufacturer, setQaqcEquipmentManufacturer] = useState("");
+const [qaqcEquipmentModel, setQaqcEquipmentModel] = useState("");
+const [qaqcEquipmentSerial, setQaqcEquipmentSerial] = useState("");
+
+const [qaqcEquipmentVisualCondition, setQaqcEquipmentVisualCondition] = useState("");
+const [qaqcEquipmentInstallationAcceptable, setQaqcEquipmentInstallationAcceptable] = useState("");
+const [qaqcEquipmentResult, setQaqcEquipmentResult] = useState("");
+const [qaqcEquipmentDeficiencies, setQaqcEquipmentDeficiencies] = useState("");
+const [qaqcEquipmentNotes, setQaqcEquipmentNotes] = useState("");
+const [qaqcEquipmentPhotos, setQaqcEquipmentPhotos] = useState([]);    
 const [qaqcQuantityOrdered, setQaqcQuantityOrdered] = useState("");
 const [qaqcQuantityReceived, setQaqcQuantityReceived] = useState("");
 const [qaqcMaterialCondition, setQaqcMaterialCondition] = useState("");
