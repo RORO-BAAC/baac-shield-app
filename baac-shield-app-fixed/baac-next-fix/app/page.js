@@ -17242,6 +17242,110 @@ onChange={(e) =>
         <p style={{ color: "#64748b", marginBottom: 20 }}>
           Document installed equipment, installation condition and final QA/QC acceptance.
         </p>
+<div style={{ display: "grid", gap: 14 }}>
+  <label>
+    Project
+    <select
+      value={qaqcEquipmentProjectId}
+      onChange={(e) => setQaqcEquipmentProjectId(e.target.value)}
+      style={{
+        width: "100%",
+        marginTop: 6,
+        padding: 10,
+        borderRadius: 8,
+        border: "1px solid #cbd5e1",
+      }}
+    >
+      <option value="">Select project</option>
+      {projects.map((project) => (
+        <option key={project.id} value={project.id}>
+          {project.name}
+        </option>
+      ))}
+    </select>
+  </label>
+
+  <label>
+    Client / Owner
+    <input
+      type="text"
+      value={qaqcEquipmentClientOwner}
+      onChange={(e) => setQaqcEquipmentClientOwner(e.target.value)}
+      style={{
+        width: "100%",
+        marginTop: 6,
+        padding: 10,
+        borderRadius: 8,
+        border: "1px solid #cbd5e1",
+      }}
+    />
+  </label>
+
+  <label>
+    Location
+    <input
+      type="text"
+      value={qaqcEquipmentLocation}
+      onChange={(e) => setQaqcEquipmentLocation(e.target.value)}
+      style={{
+        width: "100%",
+        marginTop: 6,
+        padding: 10,
+        borderRadius: 8,
+        border: "1px solid #cbd5e1",
+      }}
+    />
+  </label>
+
+  <label>
+    Installation Date
+    <input
+      type="date"
+      value={qaqcEquipmentDate}
+      onChange={(e) => setQaqcEquipmentDate(e.target.value)}
+      style={{
+        width: "100%",
+        marginTop: 6,
+        padding: 10,
+        borderRadius: 8,
+        border: "1px solid #cbd5e1",
+      }}
+    />
+  </label>
+
+  <label>
+    Installer / Subcontractor
+    <input
+      type="text"
+      value={qaqcEquipmentInstaller}
+      onChange={(e) => setQaqcEquipmentInstaller(e.target.value)}
+      style={{
+        width: "100%",
+        marginTop: 6,
+        padding: 10,
+        borderRadius: 8,
+        border: "1px solid #cbd5e1",
+      }}
+    />
+  </label>
+
+  <label>
+    Equipment / Item Installed
+    <input
+      type="text"
+      value={qaqcEquipmentDescription}
+      onChange={(e) => setQaqcEquipmentDescription(e.target.value)}
+      style={{
+        width: "100%",
+        marginTop: 6,
+        padding: 10,
+        borderRadius: 8,
+        border: "1px solid #cbd5e1",
+      }}
+    />
+  </label>
+</div>
+            
       </section>
     </div>
 )}
