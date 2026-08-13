@@ -16914,6 +16914,78 @@ onChange={(e) =>
     />
   </label>
 </div>        
+         <div
+  style={{
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+    gap: 14,
+    marginTop: 20,
+  }}
+>
+  <label>
+    <strong>Cable ID</strong>
+    <input
+      type="text"
+      value={qaqcFibreTestCableId}
+      onChange={(e) => setQaqcFibreTestCableId(e.target.value)}
+      style={{
+        width: "100%",
+        padding: 10,
+        marginTop: 6,
+        borderRadius: 8,
+        border: "1px solid #cbd5e1",
+      }}
+    />
+  </label>
+
+  <label>
+    <strong>From Location</strong>
+    <input
+      type="text"
+      value={qaqcFibreTestFromLocation}
+      onChange={(e) => setQaqcFibreTestFromLocation(e.target.value)}
+      style={{
+        width: "100%",
+        padding: 10,
+        marginTop: 6,
+        borderRadius: 8,
+        border: "1px solid #cbd5e1",
+      }}
+    />
+  </label>
+
+  <label>
+    <strong>To Location</strong>
+    <input
+      type="text"
+      value={qaqcFibreTestToLocation}
+      onChange={(e) => setQaqcFibreTestToLocation(e.target.value)}
+      style={{
+        width: "100%",
+        padding: 10,
+        marginTop: 6,
+        borderRadius: 8,
+        border: "1px solid #cbd5e1",
+      }}
+    />
+  </label>
+
+  <label>
+    <strong>Fibre Count</strong>
+    <input
+      type="text"
+      value={qaqcFibreTestFibreCount}
+      onChange={(e) => setQaqcFibreTestFibreCount(e.target.value)}
+      style={{
+        width: "100%",
+        padding: 10,
+        marginTop: 6,
+        borderRadius: 8,
+        border: "1px solid #cbd5e1",
+      }}
+    />
+  </label>
+</div> 
       </section>
     </div>
 )}
