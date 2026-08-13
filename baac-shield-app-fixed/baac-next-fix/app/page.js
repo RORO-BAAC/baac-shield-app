@@ -17522,7 +17522,28 @@ onChange={(e) =>
       style={{ marginTop: 6 }}
     />
   </label>
-</div>         
+</div>    
+
+<button
+  type="button"
+  onClick={submitQaqcEquipmentInstallation}
+  disabled={loading}
+  style={{
+    marginTop: 20,
+    width: "100%",
+    padding: "12px 16px",
+    borderRadius: 10,
+    border: "none",
+    background: "#123d82",
+    color: "white",
+    fontWeight: "bold",
+    cursor: loading ? "not-allowed" : "pointer",
+    opacity: loading ? 0.7 : 1,
+  }}
+>
+  {loading ? "Submitting..." : "Submit Equipment Installation Record"}
+</button>
+          
       </section>
     </div>
 )}
