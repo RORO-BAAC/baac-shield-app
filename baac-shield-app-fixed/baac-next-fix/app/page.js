@@ -16651,6 +16651,11 @@ onChange={(e) =>
         gap: 12,
       }}
     >
+    <div>
+  <strong>Project ID:</strong>
+  <br />
+  {selectedQaqcSpliceRecord.project_id || "-"}
+</div>
       <div><strong>Closure / Splice ID:</strong><br />{selectedQaqcSpliceRecord.closure_id || "-"}</div>
       <div><strong>Date:</strong><br />{selectedQaqcSpliceRecord.inspection_date || "-"}</div>
       <div><strong>Technician:</strong><br />{selectedQaqcSpliceRecord.technician_name || "-"}</div>
