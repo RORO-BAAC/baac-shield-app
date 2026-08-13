@@ -17773,6 +17773,41 @@ onChange={(e) =>
     </select>
   </label>
 </div>
+   <div style={{ display: "grid", gap: 14, marginTop: 16 }}>
+  <label>
+    Closeout Notes
+    <textarea
+      value={qaqcCloseoutNotes}
+      onChange={(e) => setQaqcCloseoutNotes(e.target.value)}
+      rows={4}
+      style={{
+        width: "100%",
+        marginTop: 6,
+        padding: 10,
+        borderRadius: 8,
+        border: "1px solid #cbd5e1",
+      }}
+    />
+  </label>
+
+  <label>
+    Supporting Photos / Closeout Documents
+    <input
+      type="file"
+      accept="image/*"
+      multiple
+      onChange={(e) => {
+        const files = Array.from(e.target.files || []);
+        const newPhotos = files.map((file) => ({
+          file,
+          preview: URL.createObjectURL(file),
+        }));
+        setQaqcCloseoutPhotos((current) => [...current, ...newPhotos]);
+      }}
+      style={{ marginTop: 6 }}
+    />
+  </label>
+</div>       
       </section>
     </div>
 )}
