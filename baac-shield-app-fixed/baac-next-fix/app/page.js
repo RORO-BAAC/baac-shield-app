@@ -6617,7 +6617,11 @@ Signed in as: {user?.email} · Role: {role}
 </button>
   <button
   type="button"
-  onClick={() => setActiveTab("qaqc")}
+onClick={() => {
+  setActiveTab("qaqc");
+  setQaqcSection("dashboard");
+  setQaqcInspectionType("");
+}}
   style={{
     padding: "10px 14px",
     borderRadius: 10,
