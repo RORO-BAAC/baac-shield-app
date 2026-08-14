@@ -6634,6 +6634,11 @@ onClick={() => {
 >
   QA/QC
 </button> 
+   {activeTab === "qaqc" && (
+  <span style={{ color: "yellow", fontWeight: "bold" }}>
+    QAQC STATE: {qaqcSection}
+  </span>
+)}     
 <button
   type="button"
   onClick={() => setActiveTab("crm")}
