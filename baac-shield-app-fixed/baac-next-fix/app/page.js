@@ -2491,7 +2491,8 @@ if (!emailRes.ok) {
   console.error("Vehicle check email notification failed:", emailError);
   setMessage(`Report saved, but email failed: ${emailError}`);
 } else {
-  setMessage("Vehicle pre-use inspection submitted successfully.");
+setMessage("Thank you for your report and supporting the BAAC HSE Program.");
+alert("Thank you for your report and supporting the BAAC HSE Program.");
 }
     await loadRecords();
    setVehiclePreUseForm((previous) => ({
