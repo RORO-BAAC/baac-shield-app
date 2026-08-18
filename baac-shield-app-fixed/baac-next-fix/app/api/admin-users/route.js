@@ -77,7 +77,11 @@ export async function GET(request) {
     });
 
     if (error) throw error;
+const { data: userRoles, error: userRolesError } = await supabaseAdmin
+  .from("user_roles")
+  .select("email, role, active");
 
+if (userRolesError) throw userRolesError;
     const safeUsers = users.map((authUser) => ({
       id: authUser.id,
       email: authUser.email,
