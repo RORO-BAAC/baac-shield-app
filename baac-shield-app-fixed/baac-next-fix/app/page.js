@@ -21693,6 +21693,20 @@ onChange={(e) =>
             {roleRecord.active ? "Disable" : "Enable"}
           </button>
         )}
+<button
+  type="button"
+  onClick={() => sendPasswordReset(authUser.email)}
+  style={{
+    width: "fit-content",
+    padding: "6px 10px",
+    borderRadius: 6,
+    border: "1px solid #cbd5e1",
+    background: "white",
+    cursor: "pointer",
+  }}
+>
+  Send Password Reset
+</button>
       </div>
     );
   })
