@@ -109,6 +109,97 @@ if (userRolesError) throw userRolesError;
     );
   }
 }
+export async function PATCH(request) {
+  try {
+    const authorization = request.headers.get("authorization");
+
+    if (!authorization?.startsWith("Bearer ")) {
+      return Response.json(
+        { error: "Unauthorized" },
+        { status: 401 }
+      );
+    }
+
+    const accessToken = authorization.replace("Bearer ", "");
+
+    const {
+      data: { user: requestingUser },
+      error: userError,
+    } = await supabaseAuth.auth.getUser(accessToken);
+
+    if (userError || !requestingUser?.email) {
+      return Response.json(
+        { error: "Unauthorized" },
+        { status: 401 }
+      );
+    }
+
+    const { data: roleData, error: roleError } = await supabaseAdmin
+      .from("user_roles")
+      .select("role, active")
+      .eq("email", requestingUser.email)
+      .maybeSingle();
+
+    if (roleError) throw roleError;
+
+    if (
+      !roleData ||
+      roleData.role !== "admin" ||
+      roleData.active === false
+    ) {
+      return Response.json(
+        { error: "Forbidden" },
+        { status: 403 }
+      );
+    }
+
+    const body = await request.json();
+    const { email, role } = body || {};
+
+    if (!email || !role) {
+      return Response.json(
+        { error: "Email and role are required." },
+        { status: 400 }
+      );
+    }
+
+    if (!["worker", "supervisor", "admin"].includes(role)) {
+      return Response.json(
+        { error: "Invalid role." },
+        { status: 400 }
+      );
+    }
+
+    const { data: updatedRole, error: updateError } = await supabaseAdmin
+      .from("user_roles")
+      .upsert(
+        {
+          email,
+          role,
+          active: true,
+        },
+        {
+          onConflict: "email",
+        }
+      )
+      .select("email, role, active")
+      .single();
+
+    if (updateError) throw updateError;
+
+    return Response.json({
+      success: true,
+      user: updatedRole,
+    });
+  } catch (error) {
+    console.error("Admin role update error:", error);
+
+    return Response.json(
+      { error: error.message || "Could not update role." },
+      { status: 500 }
+    );
+  }
+}
 export async function DELETE(request) {
   try {
     const authorization = request.headers.get("authorization");
