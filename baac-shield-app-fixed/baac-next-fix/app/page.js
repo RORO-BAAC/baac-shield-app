@@ -21649,7 +21649,9 @@ onChange={(e) =>
       Manage BAAC SHIELD settings, supervisor access, projects, and reporting options.
     </p>
 
-<h3>User Management</h3>
+<h3>
+  User Management — {authUsers.length} Accounts
+</h3>
 
 <div
   style={{
@@ -21657,117 +21659,169 @@ onChange={(e) =>
     borderRadius: 12,
     padding: 12,
     marginBottom: 16,
+    display: "grid",
+    gap: 12,
   }}
 >
   {authUsers.length === 0 ? (
-  <div style={{ color: "#64748b" }}>
-    No authenticated user accounts loaded.
-  </div>
-) : (
-  authUsers.map((authUser) => {
-    const roleRecord = users.find(
-      (u) => u.email?.toLowerCase() === authUser.email?.toLowerCase()
-    );
+    <div style={{ color: "#64748b" }}>
+      No authenticated user accounts loaded.
+    </div>
+  ) : (
+    <>
+      <label style={{ fontWeight: "bold" }}>
+        Select User
+      </label>
 
-    return (
-      <div
-        key={authUser.id}
+      <select
+        value={selectedAuthUserId}
+        onChange={(e) => setSelectedAuthUserId(e.target.value)}
         style={{
-          padding: "12px 0",
-          borderBottom: "1px solid #eee",
-          display: "grid",
-          gap: 6,
+          padding: 10,
+          borderRadius: 8,
+          border: "1px solid #cbd5e1",
+          maxWidth: 520,
         }}
       >
-        <div
-          style={{
-            fontWeight: "bold",
-            wordBreak: "break-word",
-          }}
-        >
-          {authUser.email}
-        </div>
+        <option value="">Select a user...</option>
 
-        <div style={{ fontSize: 13, color: "#475569" }}>
-          Created:{" "}
-          {authUser.createdAt
-            ? new Date(authUser.createdAt).toLocaleString()
-            : "Unknown"}
-        </div>
+        {[...authUsers]
+          .sort((a, b) =>
+            (a.email || "").localeCompare(b.email || "")
+          )
+          .map((authUser) => (
+            <option key={authUser.id} value={authUser.id}>
+              {authUser.email}
+            </option>
+          ))}
+      </select>
 
-        <div style={{ fontSize: 13, color: "#475569" }}>
-          Last Sign-In:{" "}
-          {authUser.lastSignInAt
-            ? new Date(authUser.lastSignInAt).toLocaleString()
-            : "Never"}
-        </div>
+      {selectedAuthUserId &&
+        (() => {
+          const authUser = authUsers.find(
+            (u) => u.id === selectedAuthUserId
+          );
 
-        <div style={{ fontSize: 13, color: "#475569" }}>
-          Email Confirmed: {authUser.emailConfirmedAt ? "Yes" : "No"}
-        </div>
+          if (!authUser) return null;
 
-        <div style={{ fontSize: 13 }}>
-          <strong>Role:</strong> {roleRecord?.role || "Not assigned"}
-          {" • "}
-          <strong>Status:</strong>{" "}
-          {roleRecord
-            ? roleRecord.active
-              ? "Active"
-              : "Disabled"
-            : "No role record"}
-        </div>
+          const roleRecord = users.find(
+            (u) =>
+              u.email?.toLowerCase() ===
+              authUser.email?.toLowerCase()
+          );
 
-        {roleRecord && (
-          <button
-            type="button"
-            onClick={() =>
-              toggleUserStatus(roleRecord.email, roleRecord.active)
-            }
-            style={{
-              width: "fit-content",
-              padding: "6px 10px",
-              borderRadius: 6,
-              border: "1px solid #cbd5e1",
-              cursor: "pointer",
-            }}
-          >
-            {roleRecord.active ? "Disable" : "Enable"}
-          </button>
-        )}
-<button
-  type="button"
-  onClick={() => sendPasswordReset(authUser.email)}
-  style={{
-    width: "fit-content",
-    padding: "6px 10px",
-    borderRadius: 6,
-    border: "1px solid #cbd5e1",
-    background: "white",
-    cursor: "pointer",
-  }}
->
-  Send Password Reset
-</button>
-        <button
-  type="button"
-  onClick={() => deleteAuthUser(authUser.id, authUser.email)}
-  style={{
-    width: "fit-content",
-    padding: "6px 10px",
-    borderRadius: 6,
-    border: "1px solid #dc2626",
-    background: "#fff5f5",
-    color: "#b91c1c",
-    cursor: "pointer",
-    fontWeight: "bold",
-  }}
->
-  Delete User
-</button>
-      </div>
-    );
-  })
-)}
+          return (
+            <div
+              style={{
+                marginTop: 8,
+                padding: 14,
+                border: "1px solid #e2e8f0",
+                borderRadius: 10,
+                display: "grid",
+                gap: 8,
+              }}
+            >
+              <div
+                style={{
+                  fontWeight: "bold",
+                  wordBreak: "break-word",
+                }}
+              >
+                {authUser.email}
+              </div>
+
+              <div style={{ fontSize: 13, color: "#475569" }}>
+                Created:{" "}
+                {authUser.createdAt
+                  ? new Date(authUser.createdAt).toLocaleString()
+                  : "Unknown"}
+              </div>
+
+              <div style={{ fontSize: 13, color: "#475569" }}>
+                Last Sign-In:{" "}
+                {authUser.lastSignInAt
+                  ? new Date(authUser.lastSignInAt).toLocaleString()
+                  : "Never"}
+              </div>
+
+              <div style={{ fontSize: 13, color: "#475569" }}>
+                Email Confirmed:{" "}
+                {authUser.emailConfirmedAt ? "Yes" : "No"}
+              </div>
+
+              <div style={{ fontSize: 13 }}>
+                <strong>Role:</strong>{" "}
+                {roleRecord?.role || "Not assigned"}
+                {" • "}
+                <strong>Status:</strong>{" "}
+                {roleRecord
+                  ? roleRecord.active
+                    ? "Active"
+                    : "Disabled"
+                  : "No role record"}
+              </div>
+
+              {roleRecord && (
+                <button
+                  type="button"
+                  onClick={() =>
+                    toggleUserStatus(
+                      roleRecord.email,
+                      roleRecord.active
+                    )
+                  }
+                  style={{
+                    width: "fit-content",
+                    padding: "6px 10px",
+                    borderRadius: 6,
+                    border: "1px solid #cbd5e1",
+                    cursor: "pointer",
+                  }}
+                >
+                  {roleRecord.active ? "Disable" : "Enable"}
+                </button>
+              )}
+
+              <button
+                type="button"
+                onClick={() =>
+                  sendPasswordReset(authUser.email)
+                }
+                style={{
+                  width: "fit-content",
+                  padding: "6px 10px",
+                  borderRadius: 6,
+                  border: "1px solid #cbd5e1",
+                  background: "white",
+                  cursor: "pointer",
+                }}
+              >
+                Send Password Reset
+              </button>
+
+              <button
+                type="button"
+                onClick={() =>
+                  deleteAuthUser(authUser.id, authUser.email)
+                }
+                style={{
+                  width: "fit-content",
+                  padding: "6px 10px",
+                  borderRadius: 6,
+                  border: "1px solid #dc2626",
+                  background: "#fff5f5",
+                  color: "#b91c1c",
+                  cursor: "pointer",
+                  fontWeight: "bold",
+                }}
+              >
+                Delete User
+              </button>
+            </div>
+          );
+        })()}
+    </>
+  )}
 </div>
    <div
   style={{
