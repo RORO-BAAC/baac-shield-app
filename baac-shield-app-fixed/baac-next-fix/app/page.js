@@ -21977,7 +21977,6 @@ onChange={(e) =>
 </div>
 </div>
 </div>
-</div>
 )}
 
 {selectedRecord && (
