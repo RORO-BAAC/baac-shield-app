@@ -21679,6 +21679,16 @@ onChange={(e) =>
   })
 )}
 </div>
+   <div
+  style={{
+    padding: 16,
+    border: "1px solid #dbe4ee",
+    borderRadius: 12,
+    background: "#f8fafc",
+    display: "grid",
+    gap: 10,
+  }}
+>   
   <h3 style={{ marginTop: 0, color: "#0f2f66" }}>
     Supervisor PIN
   </h3>
