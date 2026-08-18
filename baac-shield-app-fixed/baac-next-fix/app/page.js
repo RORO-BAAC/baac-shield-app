@@ -850,7 +850,11 @@ useEffect(() => {
 
   function unlockProtectedTab() {
     if (pinInput === supervisorPin) {
-      setActiveTab(pendingTab);
+     setActiveTab(pendingTab);
+
+if (pendingTab === "admin") {
+  loadAuthUsers();
+}
       setShowPinPrompt(false);
       setPinInput("");
       setMessage("");
