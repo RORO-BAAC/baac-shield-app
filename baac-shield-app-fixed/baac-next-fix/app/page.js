@@ -950,15 +950,7 @@ if (roleError) {
   }
 }
 }
-    const { data: usersData, error: usersError } = await supabase
-  .from("user_roles")
-  .select("email, role, active");
-
-if (usersError) {
-  console.error("Could not load user roles:", usersError);
-} else {
-  setUsers(usersData || []);
-}
+  
   });
 }, []);
   
