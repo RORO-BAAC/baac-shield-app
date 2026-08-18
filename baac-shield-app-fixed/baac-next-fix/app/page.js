@@ -1804,6 +1804,13 @@ async function loadAuthUsers() {
     }
 
     setAuthUsers(data.users || []);
+        setUsers(
+  (data.users || []).map((authUser) => ({
+    email: authUser.email,
+    role: authUser.role,
+    active: authUser.active,
+  }))
+);
   } catch (error) {
     console.error("Auth user load failed:", error);
     setMessage(`Could not load user accounts: ${error.message}`);
