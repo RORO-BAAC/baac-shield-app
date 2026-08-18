@@ -21818,7 +21818,37 @@ onChange={(e) =>
                     : "Disabled"
                   : "No role record"}
               </div>
+<div
+  style={{
+    display: "grid",
+    gap: 6,
+    maxWidth: 300,
+  }}
+>
+  <label style={{ fontWeight: "bold", fontSize: 13 }}>
+    Assign Role
+  </label>
 
+  <select
+    value={roleRecord?.role || ""}
+    onChange={(e) => {
+      if (e.target.value) {
+        saveUserRole(authUser.email, e.target.value);
+      }
+    }}
+    style={{
+      padding: 8,
+      borderRadius: 6,
+      border: "1px solid #cbd5e1",
+      background: "white",
+    }}
+  >
+    <option value="">Select role...</option>
+    <option value="worker">Worker</option>
+    <option value="supervisor">Supervisor</option>
+    <option value="admin">Admin</option>
+  </select>
+</div>
               {roleRecord && (
                 <button
                   type="button"
