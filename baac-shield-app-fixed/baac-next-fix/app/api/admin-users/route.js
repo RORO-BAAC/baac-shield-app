@@ -82,13 +82,22 @@ const { data: userRoles, error: userRolesError } = await supabaseAdmin
   .select("email, role, active");
 
 if (userRolesError) throw userRolesError;
-    const safeUsers = users.map((authUser) => ({
-      id: authUser.id,
-      email: authUser.email,
-      createdAt: authUser.created_at,
-      lastSignInAt: authUser.last_sign_in_at,
-      emailConfirmedAt: authUser.email_confirmed_at,
-    }));
+  const safeUsers = users.map((authUser) => {
+  const roleRecord = userRoles.find(
+    (roleUser) =>
+      roleUser.email?.toLowerCase() === authUser.email?.toLowerCase()
+  );
+
+  return {
+    id: authUser.id,
+    email: authUser.email,
+    createdAt: authUser.created_at,
+    lastSignInAt: authUser.last_sign_in_at,
+    emailConfirmedAt: authUser.email_confirmed_at,
+    role: roleRecord?.role || null,
+    active: roleRecord?.active ?? null,
+  };
+});
 
     return Response.json({ users: safeUsers });
   } catch (error) {
