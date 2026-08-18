@@ -934,25 +934,21 @@ useEffect(() => {
     setUser(data.user);
 
     if (data.user?.email) {
-      const res = await fetch(
-        `${SUPABASE_URL}/rest/v1/user_roles?email=eq.${data.user.email}&select=role,active`,
-        {
-          headers: {
-            apikey: SUPABASE_KEY,
-            Authorization: `Bearer ${SUPABASE_KEY}`,
-          },
-        }
-      );
+     const { data: roleData, error: roleError } = await supabase
+  .from("user_roles")
+  .select("role, active")
+  .eq("email", data.user.email)
+  .maybeSingle();
 
-    if (res.ok) {
-  const roles = await res.json();
+if (roleError) {
+  console.error("Could not load user role:", roleError);
+} else if (roleData) {
+  setAccountActive(roleData.active);
 
- if (roles[0]) {
-  setAccountActive(roles[0].active);
-
-  if (roles[0]?.role) {
-    setRole(roles[0].role);
+  if (roleData.role) {
+    setRole(roleData.role);
   }
+}
 }
       const usersRes = await fetch(
   `${SUPABASE_URL}/rest/v1/user_roles?select=email,role,active`,
