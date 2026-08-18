@@ -1819,6 +1819,25 @@ async function loadAuthUsers() {
     setMessage(`Could not load user accounts: ${error.message}`);
   }
 }
+   async function sendPasswordReset(email) {
+  const confirmed = window.confirm(
+    `Send a password reset email to ${email}?`
+  );
+
+  if (!confirmed) return;
+
+  try {
+    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: window.location.origin,
+    });
+
+    if (error) throw error;
+
+    alert(`Password reset email sent to ${email}.`);
+  } catch (error) {
+    alert(`Could not send password reset: ${error.message}`);
+  }
+}   
 async function toggleUserStatus(email, active) {
   const confirmed = window.confirm(
   `${active ? "Disable" : "Enable"} ${email}?`
