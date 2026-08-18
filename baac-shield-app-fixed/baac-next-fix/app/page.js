@@ -964,8 +964,6 @@ if (usersRes.ok) {
   const usersData = await usersRes.json();
   setUsers(usersData);
 }
-}
-    }
   });
 }, []);
   
