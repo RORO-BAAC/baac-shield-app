@@ -950,19 +950,14 @@ if (roleError) {
   }
 }
 }
-      const usersRes = await fetch(
-  `${SUPABASE_URL}/rest/v1/user_roles?select=email,role,active`,
-  {
-    headers: {
-      apikey: SUPABASE_KEY,
-      Authorization: `Bearer ${SUPABASE_KEY}`,
-    },
-  }
-);
+    const { data: usersData, error: usersError } = await supabase
+  .from("user_roles")
+  .select("email, role, active");
 
-if (usersRes.ok) {
-  const usersData = await usersRes.json();
-  setUsers(usersData);
+if (usersError) {
+  console.error("Could not load user roles:", usersError);
+} else {
+  setUsers(usersData || []);
 }
   });
 }, []);
