@@ -1786,7 +1786,35 @@ async function loadSettings() {
     setMessage(`Could not load settings: ${error.message}`);
   }
 }
+async function loadAuthUsers() {
+  try {
+    const {
+      data: { session },
+    } = await supabase.auth.getSession();
 
+    if (!session?.access_token) {
+      setMessage("Could not load user accounts: no active session.");
+      return;
+    }
+
+    const res = await fetch("/api/admin-users", {
+      headers: {
+        Authorization: `Bearer ${session.access_token}`,
+      },
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      throw new Error(data.error || "Could not load user accounts.");
+    }
+
+    setAuthUsers(data.users || []);
+  } catch (error) {
+    console.error("Auth user load failed:", error);
+    setMessage(`Could not load user accounts: ${error.message}`);
+  }
+}
 async function toggleUserStatus(email, active) {
   const confirmed = window.confirm(
   `${active ? "Disable" : "Enable"} ${email}?`
