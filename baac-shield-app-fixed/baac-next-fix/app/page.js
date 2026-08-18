@@ -21747,6 +21747,22 @@ onChange={(e) =>
 >
   Send Password Reset
 </button>
+        <button
+  type="button"
+  onClick={() => deleteAuthUser(authUser.id, authUser.email)}
+  style={{
+    width: "fit-content",
+    padding: "6px 10px",
+    borderRadius: 6,
+    border: "1px solid #dc2626",
+    background: "#fff5f5",
+    color: "#b91c1c",
+    cursor: "pointer",
+    fontWeight: "bold",
+  }}
+>
+  Delete User
+</button>
       </div>
     );
   })
