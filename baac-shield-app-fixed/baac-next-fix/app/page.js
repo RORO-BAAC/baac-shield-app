@@ -1879,6 +1879,64 @@ async function loadAuthUsers() {
     alert(`Could not delete user: ${error.message}`);
   }
 }     
+    async function saveUserRole(email, newRole) {
+  if (!email || !newRole) return;
+
+  try {
+    const existingUser = users.find(
+      (u) => u.email?.toLowerCase() === email.toLowerCase()
+    );
+
+    let result;
+
+    if (existingUser) {
+      result = await supabase
+        .from("user_roles")
+        .update({
+          role: newRole,
+          active: true,
+        })
+        .eq("email", email);
+    } else {
+      result = await supabase
+        .from("user_roles")
+        .insert({
+          email,
+          role: newRole,
+          active: true,
+        });
+    }
+
+    if (result.error) throw result.error;
+
+    setUsers((current) => {
+      const existing = current.find(
+        (u) => u.email?.toLowerCase() === email.toLowerCase()
+      );
+
+      if (existing) {
+        return current.map((u) =>
+          u.email?.toLowerCase() === email.toLowerCase()
+            ? { ...u, role: newRole, active: true }
+            : u
+        );
+      }
+
+      return [
+        ...current,
+        {
+          email,
+          role: newRole,
+          active: true,
+        },
+      ];
+    });
+
+    alert(`${email} is now assigned as ${newRole}.`);
+  } catch (error) {
+    alert(`Could not update role: ${error.message}`);
+  }
+}  
 async function toggleUserStatus(email, active) {
   const confirmed = window.confirm(
   `${active ? "Disable" : "Enable"} ${email}?`
