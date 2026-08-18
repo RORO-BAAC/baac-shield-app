@@ -150,6 +150,7 @@ const [user, setUser] = useState(null);
   const [role, setRole] = useState("worker");
   const [users, setUsers] = useState([]);
       const [authUsers, setAuthUsers] = useState([]);
+      const [selectedAuthUserId, setSelectedAuthUserId] = useState("");
   const [accountActive, setAccountActive] = useState(true);
   const [email, setEmail] = useState("");
 const [authMode, setAuthMode] = useState("login");
