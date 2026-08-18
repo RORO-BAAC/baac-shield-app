@@ -21599,65 +21599,86 @@ onChange={(e) =>
     marginBottom: 16,
   }}
 >
-  {users.map((u) => (
-  <div
-  key={u.email}
-  style={{
-    display: "flex",
-    justifyContent: "space-between",
-    flexWrap: "wrap",
-    gap: 8,
-    padding: "8px 0",
-    borderBottom: "1px solid #eee",
-  }}
->
-   <span
-  style={{
-    wordBreak: "break-word",
-    maxWidth: "100%",
-  }}
->
-  {u.email}
-</span>
-<div
-  style={{
-    display: "flex",
-    gap: 10,
-    alignItems: "center",
-    flexWrap: "wrap",
-  }}
->
-  <span>
-    <strong>{u.role}</strong>
-    {" • "}
-    {u.active ? "Active" : "Disabled"}
-  </span>
+  {authUsers.length === 0 ? (
+  <div style={{ color: "#64748b" }}>
+    No authenticated user accounts loaded.
+  </div>
+) : (
+  authUsers.map((authUser) => {
+    const roleRecord = users.find(
+      (u) => u.email?.toLowerCase() === authUser.email?.toLowerCase()
+    );
 
-  <button
-onClick={() => toggleUserStatus(u.email, u.active)}
-    style={{
-      padding: "4px 8px",
-      borderRadius: 6,
-      border: "1px solid #cbd5e1",
-      cursor: "pointer",
-    }}
-  >
-{u.active ? "Disable" : "Enable"}
-  </button>
+    return (
+      <div
+        key={authUser.id}
+        style={{
+          padding: "12px 0",
+          borderBottom: "1px solid #eee",
+          display: "grid",
+          gap: 6,
+        }}
+      >
+        <div
+          style={{
+            fontWeight: "bold",
+            wordBreak: "break-word",
+          }}
+        >
+          {authUser.email}
+        </div>
+
+        <div style={{ fontSize: 13, color: "#475569" }}>
+          Created:{" "}
+          {authUser.createdAt
+            ? new Date(authUser.createdAt).toLocaleString()
+            : "Unknown"}
+        </div>
+
+        <div style={{ fontSize: 13, color: "#475569" }}>
+          Last Sign-In:{" "}
+          {authUser.lastSignInAt
+            ? new Date(authUser.lastSignInAt).toLocaleString()
+            : "Never"}
+        </div>
+
+        <div style={{ fontSize: 13, color: "#475569" }}>
+          Email Confirmed: {authUser.emailConfirmedAt ? "Yes" : "No"}
+        </div>
+
+        <div style={{ fontSize: 13 }}>
+          <strong>Role:</strong> {roleRecord?.role || "Not assigned"}
+          {" • "}
+          <strong>Status:</strong>{" "}
+          {roleRecord
+            ? roleRecord.active
+              ? "Active"
+              : "Disabled"
+            : "No role record"}
+        </div>
+
+        {roleRecord && (
+          <button
+            type="button"
+            onClick={() =>
+              toggleUserStatus(roleRecord.email, roleRecord.active)
+            }
+            style={{
+              width: "fit-content",
+              padding: "6px 10px",
+              borderRadius: 6,
+              border: "1px solid #cbd5e1",
+              cursor: "pointer",
+            }}
+          >
+            {roleRecord.active ? "Disable" : "Enable"}
+          </button>
+        )}
+      </div>
+    );
+  })
+)}
 </div>
-    </div>
-  ))}
-</div>
-        
-    <div
-      style={{
-        padding: 16,
-        border: "1px solid #dbe4ee",
-        borderRadius: 12,
-        background: "#f8fafc",
-      }}
-    >
-      <div style={{ display: "grid", gap: 10 }}>
   <h3 style={{ marginTop: 0, color: "#0f2f66" }}>
     Supervisor PIN
   </h3>
