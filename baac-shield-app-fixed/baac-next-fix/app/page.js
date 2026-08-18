@@ -1838,6 +1838,46 @@ async function loadAuthUsers() {
     alert(`Could not send password reset: ${error.message}`);
   }
 }   
+ async function deleteAuthUser(userId, email) {
+  const confirmed = window.confirm(
+    `Permanently delete ${email}?\n\nThis will remove the user's login account and cannot be undone.`
+  );
+
+  if (!confirmed) return;
+
+  try {
+    const {
+      data: { session },
+    } = await supabase.auth.getSession();
+
+    if (!session?.access_token) {
+      throw new Error("No active session.");
+    }
+
+    const res = await fetch("/api/admin-users", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${session.access_token}`,
+      },
+      body: JSON.stringify({
+        userId,
+        email,
+      }),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      throw new Error(data.error || "Could not delete user.");
+    }
+
+    alert(`${email} deleted successfully.`);
+    await loadAuthUsers();
+  } catch (error) {
+    alert(`Could not delete user: ${error.message}`);
+  }
+}     
 async function toggleUserStatus(email, active) {
   const confirmed = window.confirm(
   `${active ? "Disable" : "Enable"} ${email}?`
