@@ -96,3 +96,91 @@ export async function GET(request) {
     );
   }
 }
+export async function DELETE(request) {
+  try {
+    const authorization = request.headers.get("authorization");
+
+    if (!authorization?.startsWith("Bearer ")) {
+      return Response.json(
+        { error: "Unauthorized" },
+        { status: 401 }
+      );
+    }
+
+    const accessToken = authorization.replace("Bearer ", "");
+
+    const {
+      data: { user: requestingUser },
+      error: userError,
+    } = await supabaseAuth.auth.getUser(accessToken);
+
+    if (userError || !requestingUser?.email) {
+      return Response.json(
+        { error: "Unauthorized" },
+        { status: 401 }
+      );
+    }
+
+    const { data: roleData, error: roleError } = await supabaseAdmin
+      .from("user_roles")
+      .select("role, active")
+      .eq("email", requestingUser.email)
+      .maybeSingle();
+
+    if (roleError) throw roleError;
+
+    if (
+      !roleData ||
+      roleData.role !== "admin" ||
+      roleData.active === false
+    ) {
+      return Response.json(
+        { error: "Forbidden" },
+        { status: 403 }
+      );
+    }
+
+    const body = await request.json();
+    const { userId, email } = body || {};
+
+    if (!userId || !email) {
+      return Response.json(
+        { error: "User ID and email are required." },
+        { status: 400 }
+      );
+    }
+
+    if (email.toLowerCase() === requestingUser.email.toLowerCase()) {
+      return Response.json(
+        { error: "You cannot delete your own account." },
+        { status: 400 }
+      );
+    }
+
+    const { error: deleteAuthError } =
+      await supabaseAdmin.auth.admin.deleteUser(userId);
+
+    if (deleteAuthError) throw deleteAuthError;
+
+    const { error: deleteRoleError } = await supabaseAdmin
+      .from("user_roles")
+      .delete()
+      .eq("email", email);
+
+    if (deleteRoleError) throw deleteRoleError;
+
+    return Response.json({
+      success: true,
+      message: `${email} deleted successfully.`,
+    });
+  } catch (error) {
+    console.error("Admin user delete error:", error);
+
+    return Response.json(
+      {
+        error: error.message || "Could not delete user.",
+      },
+      { status: 500 }
+    );
+  }
+}
