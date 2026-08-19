@@ -1867,35 +1867,35 @@ async function loadAuthUsers() {
     alert(`Could not delete user: ${error.message}`);
   }
 }     
-    async function saveUserRole(email, newRole) {
+   async function saveUserRole(email, newRole) {
   if (!email || !newRole) return;
 
   try {
-    const existingUser = users.find(
-      (u) => u.email?.toLowerCase() === email.toLowerCase()
-    );
+    const {
+      data: { session },
+    } = await supabase.auth.getSession();
 
-    let result;
-
-    if (existingUser) {
-      result = await supabase
-        .from("user_roles")
-        .update({
-          role: newRole,
-          active: true,
-        })
-        .eq("email", email);
-    } else {
-      result = await supabase
-        .from("user_roles")
-        .insert({
-          email,
-          role: newRole,
-          active: true,
-        });
+    if (!session?.access_token) {
+      throw new Error("No active session.");
     }
 
-    if (result.error) throw result.error;
+    const res = await fetch("/api/admin-users", {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${session.access_token}`,
+      },
+      body: JSON.stringify({
+        email,
+        role: newRole,
+      }),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      throw new Error(data.error || "Could not update role.");
+    }
 
     setUsers((current) => {
       const existing = current.find(
@@ -1924,7 +1924,7 @@ async function loadAuthUsers() {
   } catch (error) {
     alert(`Could not update role: ${error.message}`);
   }
-}  
+}
 async function toggleUserStatus(email, active) {
   const confirmed = window.confirm(
   `${active ? "Disable" : "Enable"} ${email}?`
