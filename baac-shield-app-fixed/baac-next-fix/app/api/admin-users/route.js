@@ -153,39 +153,86 @@ export async function PATCH(request) {
       );
     }
 
-    const body = await request.json();
-    const { email, role } = body || {};
+  const body = await request.json();
+const { email, role, active } = body || {};
 
-    if (!email || !role) {
-      return Response.json(
-        { error: "Email and role are required." },
-        { status: 400 }
-      );
+if (!email) {
+  return Response.json(
+    { error: "Email is required." },
+    { status: 400 }
+  );
+}
+
+if (role === undefined && active === undefined) {
+  return Response.json(
+    { error: "Role or active status is required." },
+    { status: 400 }
+  );
+}
+
+if (
+  role !== undefined &&
+  !["worker", "supervisor", "admin"].includes(role)
+) {
+  return Response.json(
+    { error: "Invalid role." },
+    { status: 400 }
+  );
+}
+
+if (active !== undefined && typeof active !== "boolean") {
+  return Response.json(
+    { error: "Active status must be true or false." },
+    { status: 400 }
+  );
+}
+
+if (
+  email.toLowerCase() === requestingUser.email.toLowerCase() &&
+  active === false
+) {
+  return Response.json(
+    { error: "You cannot disable your own account." },
+    { status: 400 }
+  );
+}
+
+const { data: existingRole, error: existingRoleError } = await supabaseAdmin
+  .from("user_roles")
+  .select("role, active")
+  .eq("email", email)
+  .maybeSingle();
+
+if (existingRoleError) throw existingRoleError;
+
+const finalRole = role ?? existingRole?.role;
+
+if (!finalRole) {
+  return Response.json(
+    { error: "A role must be assigned before changing account status." },
+    { status: 400 }
+  );
+}
+
+const { data: updatedRole, error: updateError } = await supabaseAdmin
+  .from("user_roles")
+  .upsert(
+    {
+      email,
+      role: finalRole,
+      active:
+        typeof active === "boolean"
+          ? active
+          : existingRole?.active ?? true,
+    },
+    {
+      onConflict: "email",
     }
+  )
+  .select("email, role, active")
+  .single();
 
-    if (!["worker", "supervisor", "admin"].includes(role)) {
-      return Response.json(
-        { error: "Invalid role." },
-        { status: 400 }
-      );
-    }
-
-    const { data: updatedRole, error: updateError } = await supabaseAdmin
-      .from("user_roles")
-      .upsert(
-        {
-          email,
-          role,
-          active: true,
-        },
-        {
-          onConflict: "email",
-        }
-      )
-      .select("email, role, active")
-      .single();
-
-    if (updateError) throw updateError;
+if (updateError) throw updateError;
 
     return Response.json({
       success: true,
