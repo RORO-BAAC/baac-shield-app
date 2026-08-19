@@ -1927,32 +1927,57 @@ async function loadAuthUsers() {
 }
 async function toggleUserStatus(email, active) {
   const confirmed = window.confirm(
-  `${active ? "Disable" : "Enable"} ${email}?`
-);
+    `${active ? "Disable" : "Enable"} ${email}?`
+  );
 
-if (!confirmed) return;
-  
-  const res = await fetch(
-    `${SUPABASE_URL}/rest/v1/user_roles?email=eq.${email}`,
-    {
+  if (!confirmed) return;
+
+  try {
+    const {
+      data: { session },
+    } = await supabase.auth.getSession();
+
+    if (!session?.access_token) {
+      throw new Error("No active session.");
+    }
+
+    const res = await fetch("/api/admin-users", {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
-        apikey: SUPABASE_KEY,
-        Authorization: `Bearer ${SUPABASE_KEY}`,
-        Prefer: "return=representation",
+        Authorization: `Bearer ${session.access_token}`,
       },
       body: JSON.stringify({
+        email,
         active: !active,
       }),
-    }
-  );
+    });
 
-  if (res.ok) {
+    const data = await res.json();
+
+    if (!res.ok) {
+      throw new Error(data.error || "Could not update account status.");
+    }
+
+    setUsers((current) =>
+      current.map((u) =>
+        u.email?.toLowerCase() === email.toLowerCase()
+          ? { ...u, active: !active }
+          : u
+      )
+    );
+
+    setAuthUsers((current) =>
+      current.map((u) =>
+        u.email?.toLowerCase() === email.toLowerCase()
+          ? { ...u, active: !active }
+          : u
+      )
+    );
+
     alert(`${email} updated successfully`);
-    window.location.reload();
-  } else {
-    alert("Update failed");
+  } catch (error) {
+    alert(`Update failed: ${error.message}`);
   }
 }
   
