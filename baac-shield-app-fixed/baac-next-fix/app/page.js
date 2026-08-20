@@ -14666,7 +14666,7 @@ if (Array.isArray(item.photo_urls) && item.photo_urls.length > 0) {
         }}
       >
         <div style={{ fontWeight: "bold", color: "#0f2f63" }}>
-          {allProjects.find((p) => p.id === record.project_id)?.name ||
+       {allProjects.find((p) => String(p.id) === String(record.project_id))?.name ||
             "Project"}
         </div>
 
