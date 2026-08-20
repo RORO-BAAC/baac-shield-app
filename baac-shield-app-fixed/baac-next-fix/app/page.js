@@ -14621,10 +14621,7 @@ if (Array.isArray(item.photo_urls) && item.photo_urls.length > 0) {
  </div>
 )}
 </section>
-</div>
-</div>
-)}
-<section
+     <section
   style={{
     background: "white",
     borderRadius: 16,
@@ -14690,7 +14687,11 @@ if (Array.isArray(item.photo_urls) && item.photo_urls.length > 0) {
     ))}
   </div>
 )}       
-</section>
+</section> 
+</div>
+</div>
+)}
+
 {activeTab === "qaqc" && qaqcSection === "dashboard" && (
   <div
     style={{
