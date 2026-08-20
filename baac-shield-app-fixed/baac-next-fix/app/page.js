@@ -14653,6 +14653,43 @@ if (Array.isArray(item.photo_urls) && item.photo_urls.length > 0) {
   >
     QA/QC As-Built / Closeout Records ({qaqcCloseoutRecords.length})
   </button>
+   {openRecordsSection === "qaqc-closeout" && (
+  <div style={{ marginTop: 16, display: "grid", gap: 12 }}>
+    {qaqcCloseoutRecords.map((record) => (
+      <div
+        key={record.id}
+        style={{
+          padding: 14,
+          border: "1px solid #e2e8f0",
+          borderRadius: 12,
+          background: "#f8fafc",
+        }}
+      >
+        <div style={{ fontWeight: "bold", color: "#0f2f63" }}>
+          {allProjects.find((p) => p.id === record.project_id)?.name ||
+            "Project"}
+        </div>
+
+        <div style={{ marginTop: 6 }}>
+          <strong>Date:</strong> {record.closeout_date || "—"}
+        </div>
+
+        <div>
+          <strong>Location:</strong> {record.closeout_location || "—"}
+        </div>
+
+        <div>
+          <strong>Client / Owner:</strong> {record.client_owner || "—"}
+        </div>
+
+        <div>
+          <strong>Final Acceptance:</strong>{" "}
+          {record.final_acceptance_status || "—"}
+        </div>
+      </div>
+    ))}
+  </div>
+)}       
 </section>
 {activeTab === "qaqc" && qaqcSection === "dashboard" && (
   <div
