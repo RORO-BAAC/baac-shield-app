@@ -14615,7 +14615,7 @@ if (Array.isArray(item.photo_urls) && item.photo_urls.length > 0) {
 </div>
 )}
 
-{activeTab === "qaqc" && (
+{activeTab === "qaqc" && qaqcSection === "dashboard" && (
   <div
     style={{
       display: "grid",
