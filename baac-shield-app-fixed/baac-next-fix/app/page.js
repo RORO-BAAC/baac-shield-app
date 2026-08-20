@@ -1161,7 +1161,16 @@ if (qaqcSpliceError) {
 }
 
 setQaqcSpliceRecords(qaqcSpliceData || []);     
-            
+    const { data: qaqcCloseoutData, error: qaqcCloseoutError } = await supabase
+  .from("qaqc_closeout_records")
+  .select("*")
+  .order("created_at", { ascending: false });
+
+if (qaqcCloseoutError) {
+  throw qaqcCloseoutError;
+}
+
+setQaqcCloseoutRecords(qaqcCloseoutData || []);        
     } catch (error) {
       setMessage(`Could not load records from database: ${error.message}`);
     }
