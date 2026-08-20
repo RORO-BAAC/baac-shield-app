@@ -657,6 +657,7 @@ const [qaqcFibreTestNotes, setQaqcFibreTestNotes] = useState("");
 const [qaqcFibreTestStatus, setQaqcFibreTestStatus] = useState("");
 
 const [qaqcFibreTestPhotos, setQaqcFibreTestPhotos] = useState([]);
+     const [qaqcCloseoutRecords, setQaqcCloseoutRecords] = useState([]); 
   const [qaqcEquipmentProjectId, setQaqcEquipmentProjectId] = useState("");
 const [qaqcEquipmentClientOwner, setQaqcEquipmentClientOwner] = useState("");
 const [qaqcEquipmentLocation, setQaqcEquipmentLocation] = useState("");
