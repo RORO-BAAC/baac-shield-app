@@ -17793,6 +17793,8 @@ onChange={(e) =>
 </button>
           
       </section>
+  </div>
+)}
       {activeTab === "qaqc" &&
   qaqcSection === "telecom" &&
   qaqcInspectionType === "as-built-closeout" && (
@@ -18063,9 +18065,7 @@ onChange={(e) =>
       </section>
     </div>
 )}
-    </div>
-)}
-
+  
 {activeTab === "qaqc" &&
   qaqcSection === "telecom" &&
   qaqcInspectionType === "cable-placement-records" && (
