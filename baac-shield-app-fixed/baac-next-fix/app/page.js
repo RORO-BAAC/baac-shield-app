@@ -6783,9 +6783,17 @@ Signed in as: {user?.email} · Role: {role}
   <button
   type="button"
 onClick={() => {
-  setActiveTab("qaqc");
   setQaqcSection("dashboard");
   setQaqcInspectionType("");
+  setActiveTab("qaqc");
+
+  window.history.replaceState(
+    {
+      activeTab: "qaqc",
+      qaqcSection: "dashboard",
+    },
+    ""
+  );
 }}
   style={{
     padding: "10px 14px",
