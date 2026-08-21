@@ -14852,6 +14852,51 @@ if (Array.isArray(item.photo_urls) && item.photo_urls.length > 0) {
   >
     {openRecordsSection === "qaqc-fibre-testing" ? "▼" : "▶"} QA/QC Fibre Testing Records ({qaqcFibreTestRecords.length})
   </button>
+     {openRecordsSection === "qaqc-fibre-testing" && (
+  <div style={{ marginTop: 16, display: "grid", gap: 12 }}>
+    {qaqcFibreTestRecords.map((record) => (
+      <div
+        key={record.id}
+        style={{
+          padding: 14,
+          border: "1px solid #e2e8f0",
+          borderRadius: 12,
+          background: "#f8fafc",
+        }}
+      >
+        <div style={{ fontWeight: "bold", color: "#0f2f63" }}>
+          {allProjects.find(
+            (p) => String(p.id) === String(record.project_id)
+          )?.name || "Project"}
+        </div>
+
+        <div style={{ marginTop: 6 }}>
+          <strong>Date:</strong> {record.inspection_date || "—"}
+        </div>
+
+        <div>
+          <strong>Location:</strong> {record.inspection_location || "—"}
+        </div>
+
+        <div>
+          <strong>Technician:</strong> {record.technician_name || "—"}
+        </div>
+
+        <div>
+          <strong>Cable ID:</strong> {record.cable_id || "—"}
+        </div>
+
+        <div>
+          <strong>Result:</strong> {record.overall_result || "—"}
+        </div>
+
+        <div>
+          <strong>Status:</strong> {record.test_report_status || "—"}
+        </div>
+      </div>
+    ))}
+  </div>
+)}     
 </section>
      <section
   style={{
