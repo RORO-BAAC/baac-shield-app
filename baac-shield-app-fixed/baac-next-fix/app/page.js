@@ -14667,6 +14667,35 @@ if (Array.isArray(item.photo_urls) && item.photo_urls.length > 0) {
  </div>
 )}
 </section>
+      <section
+  style={{
+    background: "white",
+    borderRadius: 16,
+    padding: 18,
+    border: "1px solid #e2e8f0",
+  }}
+>
+  <button
+    type="button"
+    onClick={() =>
+      setOpenRecordsSection(
+        openRecordsSection === "qaqc-splicing" ? "" : "qaqc-splicing"
+      )
+    }
+    style={{
+      width: "100%",
+      textAlign: "left",
+      background: "transparent",
+      border: "none",
+      fontWeight: "bold",
+      fontSize: 16,
+      color: "#0f2f63",
+      cursor: "pointer",
+    }}
+  >
+    {openRecordsSection === "qaqc-splicing" ? "▼" : "▶"} QA/QC Fibre Splicing Records ({qaqcSpliceRecords.length})
+  </button>
+</section>
      <section
   style={{
     background: "white",
