@@ -14626,7 +14626,6 @@ if (Array.isArray(item.photo_urls) && item.photo_urls.length > 0) {
     background: "white",
     borderRadius: 16,
     padding: 18,
-    marginTop: 16,
     border: "1px solid #e2e8f0",
   }}
 >
