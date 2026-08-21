@@ -1172,6 +1172,16 @@ if (qaqcFibreTestError) {
 }
 
 setQaqcFibreTestRecords(qaqcFibreTestData || []);   
+          const { data: qaqcEquipmentData, error: qaqcEquipmentError } = await supabase
+  .from("qaqc_equipment_installation_records")
+  .select("*")
+  .order("created_at", { ascending: false });
+
+if (qaqcEquipmentError) {
+  throw qaqcEquipmentError;
+}
+
+setQaqcEquipmentRecords(qaqcEquipmentData || []);
     const { data: qaqcCloseoutData, error: qaqcCloseoutError } = await supabase
   .from("qaqc_closeout_records")
   .select("*")
