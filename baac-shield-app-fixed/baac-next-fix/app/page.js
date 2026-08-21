@@ -14648,7 +14648,7 @@ if (Array.isArray(item.photo_urls) && item.photo_urls.length > 0) {
       cursor: "pointer",
     }}
   >
-    QA/QC As-Built / Closeout Records ({qaqcCloseoutRecords.length})
+  {openRecordsSection === "qaqc-closeout" ? "▼" : "▶"} QA/QC As-Built / Closeout Records ({qaqcCloseoutRecords.length})
   </button>
    {openRecordsSection === "qaqc-closeout" && (
   <div style={{ marginTop: 16, display: "grid", gap: 12 }}>
