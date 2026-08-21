@@ -1161,6 +1161,16 @@ if (qaqcSpliceError) {
 }
 
 setQaqcSpliceRecords(qaqcSpliceData || []);     
+       const { data: qaqcFibreTestData, error: qaqcFibreTestError } = await supabase
+  .from("qaqc_fibre_test_records")
+  .select("*")
+  .order("created_at", { ascending: false });
+
+if (qaqcFibreTestError) {
+  throw qaqcFibreTestError;
+}
+
+setQaqcFibreTestRecords(qaqcFibreTestData || []);   
     const { data: qaqcCloseoutData, error: qaqcCloseoutError } = await supabase
   .from("qaqc_closeout_records")
   .select("*")
