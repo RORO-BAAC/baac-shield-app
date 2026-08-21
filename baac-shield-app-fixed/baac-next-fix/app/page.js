@@ -5079,6 +5079,56 @@ function downloadQaqcCableInspectionPdf(inspection) {
 
   doc.save(`qaqc-fibre-splicing-${record.id}.pdf`);
 }
+      function downloadQaqcFibreTestPdf(record) {
+  if (!record) return;
+
+  const projectName =
+    allProjects.find(
+      (project) => String(project.id) === String(record.project_id)
+    )?.name ||
+    record.project_id ||
+    "-";
+
+  const doc = new jsPDF();
+
+  doc.setFillColor(15, 47, 102);
+  doc.rect(0, 0, 210, 32, "F");
+
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(17);
+  doc.text(`${companyName} QA/QC FIBRE TESTING RECORD`, 14, 18);
+
+  doc.setFontSize(10);
+  doc.text(`Generated: ${new Date().toLocaleString()}`, 14, 26);
+
+  doc.setTextColor(0, 0, 0);
+  doc.setFontSize(11);
+
+  let y = 44;
+
+  const addLine = (label, value) => {
+    const text = `${label}: ${value || "-"}`;
+    const lines = doc.splitTextToSize(text, 180);
+    doc.text(lines, 14, y);
+    y += lines.length * 6 + 2;
+  };
+
+  addLine("Project", projectName);
+  addLine("Client / Owner", record.client_owner);
+  addLine("Location", record.inspection_location);
+  addLine("Inspection Date", record.inspection_date);
+  addLine("Technician", record.technician_name);
+  addLine("Cable ID", record.cable_id);
+  addLine("From Location", record.from_location);
+  addLine("To Location", record.to_location);
+  addLine("Fibre Count", record.fibre_count);
+  addLine("Overall Result", record.overall_result);
+  addLine("Report Status", record.test_report_status);
+  addLine("Deficiency Details", record.deficiency_details);
+  addLine("Inspection Notes", record.inspection_notes);
+
+  doc.save(`qaqc-fibre-testing-${record.id}.pdf`);
+}
   function exportQaqcInspectionsCsv() {
   const rows = [
     [
