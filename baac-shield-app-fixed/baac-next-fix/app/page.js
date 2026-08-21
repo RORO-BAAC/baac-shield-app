@@ -4963,7 +4963,53 @@ function downloadQaqcCableInspectionPdf(inspection) {
 
   doc.save(`qaqc-cable-placement-inspection-${inspection.id}.pdf`);
 }
-  
+  function downloadQaqcCloseoutPdf(record) {
+  if (!record) return;
+
+  const projectName =
+    allProjects.find(
+      (project) => String(project.id) === String(record.project_id)
+    )?.name ||
+    record.project_id ||
+    "-";
+
+  const doc = new jsPDF();
+
+  doc.setFillColor(15, 47, 102);
+  doc.rect(0, 0, 210, 32, "F");
+
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(17);
+  doc.text(`${companyName} QA/QC AS-BUILT / CLOSEOUT RECORD`, 14, 18);
+
+  doc.setFontSize(10);
+  doc.text(`Generated: ${new Date().toLocaleString()}`, 14, 26);
+
+  doc.setTextColor(0, 0, 0);
+  doc.setFontSize(11);
+
+  let y = 44;
+
+  const addLine = (label, value) => {
+    const text = `${label}: ${value || "-"}`;
+    const lines = doc.splitTextToSize(text, 180);
+    doc.text(lines, 14, y);
+    y += lines.length * 6 + 2;
+  };
+
+  addLine("Project", projectName);
+  addLine("Client / Owner", record.client_owner);
+  addLine("Location", record.closeout_location);
+  addLine("Closeout Date", record.closeout_date);
+  addLine("As-Builts Status", record.as_builts_status);
+  addLine("Redlines Status", record.redlines_status);
+  addLine("Test Documentation Status", record.test_docs_status);
+  addLine("Deficiencies Closed", record.deficiencies_closed_status);
+  addLine("Final Acceptance", record.final_acceptance_status);
+  addLine("Closeout Notes", record.closeout_notes);
+
+  doc.save(`qaqc-as-built-closeout-${record.id}.pdf`);
+}
   function exportQaqcInspectionsCsv() {
   const rows = [
     [
