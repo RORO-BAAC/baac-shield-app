@@ -558,6 +558,7 @@ const [qaqcWarningTapeInstalled, setQaqcWarningTapeInstalled] = useState("");
 const [qaqcTracerWireInstalled, setQaqcTracerWireInstalled] = useState("");
 const [qaqcDuctSpecVerified, setQaqcDuctSpecVerified] = useState("");
 const [qaqcDuctVarianceDetails, setQaqcDuctVarianceDetails] = useState("");
+      const [qaqcUtilityClearanceVerified, setQaqcUtilityClearanceVerified] = useState("");
 const [qaqcBendsSweepsAcceptable, setQaqcBendsSweepsAcceptable] = useState("");
 const [qaqcMandrelTestCompleted, setQaqcMandrelTestCompleted] = useState("");
 const [qaqcPullStringInstalled, setQaqcPullStringInstalled] = useState("");
