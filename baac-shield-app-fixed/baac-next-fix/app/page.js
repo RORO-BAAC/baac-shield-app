@@ -6330,6 +6330,7 @@ async function submitQaqcDuctInspection() {
           tracer_wire_installed: qaqcTracerWireInstalled,
 spec_verified: qaqcDuctSpecVerified,
 variance_details: qaqcDuctVarianceDetails,
+             utility_clearance_verified: qaqcUtilityClearanceVerified, 
           bends_sweeps_acceptable: qaqcBendsSweepsAcceptable,
           mandrel_test_completed: qaqcMandrelTestCompleted,
           pull_string_installed: qaqcPullStringInstalled,
