@@ -6327,7 +6327,8 @@ async function submitQaqcDuctInspection() {
           bedding_material: qaqcBeddingMaterial,
           warning_tape_installed: qaqcWarningTapeInstalled,
           tracer_wire_installed: qaqcTracerWireInstalled,
-
+spec_verified: qaqcDuctSpecVerified,
+variance_details: qaqcDuctVarianceDetails,
           bends_sweeps_acceptable: qaqcBendsSweepsAcceptable,
           mandrel_test_completed: qaqcMandrelTestCompleted,
           pull_string_installed: qaqcPullStringInstalled,
