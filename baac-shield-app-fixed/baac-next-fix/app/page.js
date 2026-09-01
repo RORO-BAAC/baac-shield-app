@@ -19284,7 +19284,52 @@ onChange={(e) =>
     </select>
   </label>
 </div>
+<div
+  style={{
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+    gap: 14,
+    marginTop: 18,
+  }}
+>
+  <label>
+    Approved Drawing / Project Specification Verified?
+    <select
+      value={qaqcDuctSpecVerified}
+      onChange={(e) => setQaqcDuctSpecVerified(e.target.value)}
+      style={{
+        width: "100%",
+        padding: 10,
+        borderRadius: 10,
+        border: "1px solid #cbd5e1",
+        marginTop: 4,
+      }}
+    >
+      <option value="">Select</option>
+      <option value="Yes">Yes</option>
+      <option value="No">No</option>
+      <option value="N/A">N/A</option>
+    </select>
+  </label>
 
+  <label>
+    Deviation / Variance Details
+    <textarea
+      value={qaqcDuctVarianceDetails}
+      onChange={(e) => setQaqcDuctVarianceDetails(e.target.value)}
+      placeholder="Describe any deviation from approved drawings or project specifications."
+      rows={3}
+      style={{
+        width: "100%",
+        padding: 10,
+        borderRadius: 10,
+        border: "1px solid #cbd5e1",
+        marginTop: 4,
+        resize: "vertical",
+      }}
+    />
+  </label>
+</div>
 <h2 style={{ marginTop: 24, color: "#0f2f63" }}>
   Duct Acceptance Checks
 </h2>
