@@ -6364,6 +6364,8 @@ variance_details: qaqcDuctVarianceDetails,
     setQaqcBeddingMaterial("");
     setQaqcWarningTapeInstalled("");
     setQaqcTracerWireInstalled("");
+        setQaqcDuctSpecVerified("");
+setQaqcDuctVarianceDetails(""); 
     setQaqcBendsSweepsAcceptable("");
     setQaqcMandrelTestCompleted("");
     setQaqcPullStringInstalled("");
