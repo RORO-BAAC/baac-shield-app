@@ -18814,7 +18814,10 @@ onChange={(e) =>
                 <strong>To Location:</strong>{" "}
                 {selectedQaqcCableInspection.to_location || "-"}
               </p>
-
+<p>
+  <strong>Approved Drawing / Project Specification Verified:</strong>{" "}
+  {selectedQaqcCableInspection.spec_verified || "-"}
+</p>
               <p>
                 <strong>Placement Method:</strong>{" "}
                 {selectedQaqcCableInspection.placement_method || "-"}
