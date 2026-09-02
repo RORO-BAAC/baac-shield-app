@@ -4898,7 +4898,7 @@ function downloadQaqcInspectionPdf(inspection) {
   addLine("Bedding Material", inspection.bedding_material);
   addLine("Warning Tape Installed", inspection.warning_tape_installed);
   addLine("Tracer Wire Installed", inspection.tracer_wire_installed);
-
+addLine("Utility Clearance Verified", inspection.utility_clearance_verified);
   addLine("Bends / Sweeps Acceptable", inspection.bends_sweeps_acceptable);
   addLine("Mandrel Test Completed", inspection.mandrel_test_completed);
   addLine("Pull String Installed", inspection.pull_string_installed);
