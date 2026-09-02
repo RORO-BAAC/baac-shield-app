@@ -19383,7 +19383,26 @@ onChange={(e) =>
     <option value="No">No</option>
     <option value="N/A">N/A</option>
   </select>
-</label>    
+</label>   
+      <label>
+  Restoration Complete?
+  <select
+    value={qaqcRestorationComplete}
+    onChange={(e) => setQaqcRestorationComplete(e.target.value)}
+    style={{
+      width: "100%",
+      padding: 10,
+      borderRadius: 10,
+      border: "1px solid #cbd5e1",
+      marginTop: 4,
+    }}
+  >
+    <option value="">Select</option>
+    <option value="Yes">Yes</option>
+    <option value="No">No</option>
+    <option value="N/A">N/A</option>
+  </select>
+</label>  
  <label>
   Restoration Complete?
   <select
