@@ -560,12 +560,13 @@ const [qaqcDuctSpecVerified, setQaqcDuctSpecVerified] = useState("");
 const [qaqcDuctVarianceDetails, setQaqcDuctVarianceDetails] = useState("");
       const [qaqcUtilityClearanceVerified, setQaqcUtilityClearanceVerified] = useState("");
       const [qaqcCompactionBackfillVerified, setQaqcCompactionBackfillVerified] = useState("");
+      const [qaqcRestorationComplete, setQaqcRestorationComplete] = useState("");
 const [qaqcBendsSweepsAcceptable, setQaqcBendsSweepsAcceptable] = useState("");
 const [qaqcMandrelTestCompleted, setQaqcMandrelTestCompleted] = useState("");
 const [qaqcPullStringInstalled, setQaqcPullStringInstalled] = useState("");
 const [qaqcDuctPlugsInstalled, setQaqcDuctPlugsInstalled] = useState("");
 const [qaqcVaultPullboxCondition, setQaqcVaultPullboxCondition] = useState("");
-
+               
 const [qaqcDuctResult, setQaqcDuctResult] = useState("");
 const [qaqcDuctDeficiencies, setQaqcDuctDeficiencies] = useState("");
 const [qaqcDuctCorrectiveActionAssignedTo, setQaqcDuctCorrectiveActionAssignedTo] = useState("");
