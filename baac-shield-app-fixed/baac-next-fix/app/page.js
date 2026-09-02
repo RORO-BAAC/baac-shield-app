@@ -6394,6 +6394,7 @@ setQaqcDuctVarianceDetails("");
      setQaqcUtilityClearanceVerified("");   
       setQaqcCompactionBackfillVerified("");  
         setQaqcRestorationComplete("");
+        setQaqcHandholeVaultDocumentationComplete("");
     setQaqcBendsSweepsAcceptable("");
     setQaqcMandrelTestCompleted("");
     setQaqcPullStringInstalled("");
