@@ -6460,6 +6460,7 @@ async function submitQaqcCableInspection() {
           from_location: qaqcCableFromLocation,
           to_location: qaqcCableToLocation,
 spec_verified: qaqcCableSpecVerified,
+              variance_details: qaqcCableVarianceDetails,
           placement_method: qaqcCablePlacementMethod,
           pathway_used: qaqcCablePathwayUsed,
           cable_condition: qaqcCableCondition,
