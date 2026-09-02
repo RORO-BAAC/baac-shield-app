@@ -4994,7 +4994,10 @@ function downloadQaqcCableInspectionPdf(inspection) {
   addLine("Cable Length", inspection.cable_length);
   addLine("From Location", inspection.from_location);
   addLine("To Location", inspection.to_location);
-
+addLine(
+  "Approved Drawing / Project Specification Verified",
+  inspection.spec_verified
+);
   addLine("Placement Method", inspection.placement_method);
   addLine("Pathway Used", inspection.pathway_used);
   addLine("Cable Condition", inspection.cable_condition);
