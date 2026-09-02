@@ -16339,6 +16339,7 @@ onChange={(e) =>
           <p><strong>Approved Drawing / Project Specification Verified:</strong> {selectedQaqcDuctInspection.spec_verified || "-"}</p>
 <p><strong>Deviation / Variance Details:</strong> {selectedQaqcDuctInspection.variance_details || "-"}</p>
 <p><strong>Utility Clearance Verified:</strong> {selectedQaqcDuctInspection.utility_clearance_verified || "-"}</p>
+      <p><strong>Compaction / Backfill Verified:</strong> {selectedQaqcDuctInspection.compaction_backfill_verified || "-"}</p>    
     <p><strong>Bends / Sweeps Acceptable:</strong> {selectedQaqcDuctInspection.bends_sweeps_acceptable || "-"}</p>
     <p><strong>Mandrel Test Completed:</strong> {selectedQaqcDuctInspection.mandrel_test_completed || "-"}</p>
     <p><strong>Pull String Installed:</strong> {selectedQaqcDuctInspection.pull_string_installed || "-"}</p>
