@@ -6340,6 +6340,7 @@ async function submitQaqcDuctInspection() {
           bedding_material: qaqcBeddingMaterial,
           warning_tape_installed: qaqcWarningTapeInstalled,
           tracer_wire_installed: qaqcTracerWireInstalled,
+              tracer_wire_continuity_verified: qaqcTracerWireContinuityVerified,
 spec_verified: qaqcDuctSpecVerified,
 variance_details: qaqcDuctVarianceDetails,
              utility_clearance_verified: qaqcUtilityClearanceVerified, 
