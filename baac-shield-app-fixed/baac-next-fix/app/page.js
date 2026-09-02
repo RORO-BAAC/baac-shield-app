@@ -556,6 +556,7 @@ const [qaqcTrenchWidth, setQaqcTrenchWidth] = useState("");
 const [qaqcBeddingMaterial, setQaqcBeddingMaterial] = useState("");
 const [qaqcWarningTapeInstalled, setQaqcWarningTapeInstalled] = useState("");
 const [qaqcTracerWireInstalled, setQaqcTracerWireInstalled] = useState("");
+      const [qaqcTracerWireContinuityVerified, setQaqcTracerWireContinuityVerified] = useState("");
 const [qaqcDuctSpecVerified, setQaqcDuctSpecVerified] = useState("");
 const [qaqcDuctVarianceDetails, setQaqcDuctVarianceDetails] = useState("");
       const [qaqcUtilityClearanceVerified, setQaqcUtilityClearanceVerified] = useState("");
