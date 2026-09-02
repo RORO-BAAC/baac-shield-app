@@ -16759,6 +16759,23 @@ onChange={(e) =>
     <option value="N/A">N/A</option>
   </select>
 </label>
+    <label>
+  Deviation / Variance Details
+  <textarea
+    value={qaqcCableVarianceDetails}
+    onChange={(e) => setQaqcCableVarianceDetails(e.target.value)}
+    rows={3}
+    placeholder="Describe any deviation from the approved drawing or project specification"
+    style={{
+      width: "100%",
+      padding: 10,
+      borderRadius: 10,
+      border: "1px solid #cbd5e1",
+      marginTop: 4,
+      boxSizing: "border-box",
+    }}
+  />
+</label>    
               <input
                 value={qaqcCablePlacementMethod}
                 onChange={(event) => setQaqcCablePlacementMethod(event.target.value)}
