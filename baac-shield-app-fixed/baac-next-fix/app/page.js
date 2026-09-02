@@ -593,7 +593,7 @@ const [qaqcCableSizeCount, setQaqcCableSizeCount] = useState("");
 const [qaqcCableLength, setQaqcCableLength] = useState("");
 const [qaqcCableFromLocation, setQaqcCableFromLocation] = useState("");
 const [qaqcCableToLocation, setQaqcCableToLocation] = useState("");
-
+const [qaqcCableSpecVerified, setQaqcCableSpecVerified] = useState("");
 const [qaqcCablePlacementMethod, setQaqcCablePlacementMethod] = useState("");
 const [qaqcCablePathwayUsed, setQaqcCablePathwayUsed] = useState("");
 const [qaqcCableCondition, setQaqcCableCondition] = useState("");
