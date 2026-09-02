@@ -4898,6 +4898,8 @@ function downloadQaqcInspectionPdf(inspection) {
   addLine("Bedding Material", inspection.bedding_material);
   addLine("Warning Tape Installed", inspection.warning_tape_installed);
   addLine("Tracer Wire Installed", inspection.tracer_wire_installed);
+        addLine("Approved Drawing / Project Specification Verified", inspection.spec_verified);
+addLine("Deviation / Variance Details", inspection.variance_details);
 addLine("Utility Clearance Verified", inspection.utility_clearance_verified);
   addLine("Bends / Sweeps Acceptable", inspection.bends_sweeps_acceptable);
   addLine("Mandrel Test Completed", inspection.mandrel_test_completed);
