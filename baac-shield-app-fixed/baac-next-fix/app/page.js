@@ -4906,6 +4906,10 @@ addLine("Deviation / Variance Details", inspection.variance_details);
 addLine("Utility Clearance Verified", inspection.utility_clearance_verified);
         addLine("Compaction / Backfill Verified", inspection.compaction_backfill_verified);
       addLine("Restoration Complete", inspection.restoration_complete);  
+      addLine(
+  "Final Handhole / Vault Documentation Complete",
+  inspection.handhole_vault_documentation_complete
+);  
   addLine("Bends / Sweeps Acceptable", inspection.bends_sweeps_acceptable);
   addLine("Mandrel Test Completed", inspection.mandrel_test_completed);
   addLine("Pull String Installed", inspection.pull_string_installed);
