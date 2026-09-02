@@ -19321,6 +19321,25 @@ onChange={(e) =>
     marginTop: 18,
   }}
 >
+ <label>
+  Tracer Wire Continuity / Locate Verification?
+  <select
+    value={qaqcTracerWireContinuityVerified}
+    onChange={(e) => setQaqcTracerWireContinuityVerified(e.target.value)}
+    style={{
+      width: "100%",
+      padding: 10,
+      borderRadius: 10,
+      border: "1px solid #cbd5e1",
+      marginTop: 4,
+    }}
+  >
+    <option value="">Select</option>
+    <option value="Yes">Yes</option>
+    <option value="No">No</option>
+    <option value="N/A">N/A</option>
+  </select>
+</label>     
   <label>
     Approved Drawing / Project Specification Verified?
     <select
