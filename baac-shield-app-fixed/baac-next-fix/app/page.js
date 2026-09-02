@@ -4902,6 +4902,10 @@ function downloadQaqcInspectionPdf(inspection) {
   addLine("Bedding Material", inspection.bedding_material);
   addLine("Warning Tape Installed", inspection.warning_tape_installed);
   addLine("Tracer Wire Installed", inspection.tracer_wire_installed);
+        addLine(
+  "Tracer Wire Continuity / Locate Verification",
+  inspection.tracer_wire_continuity_verified
+);
         addLine("Approved Drawing / Project Specification Verified", inspection.spec_verified);
 addLine("Deviation / Variance Details", inspection.variance_details);
 addLine("Utility Clearance Verified", inspection.utility_clearance_verified);
