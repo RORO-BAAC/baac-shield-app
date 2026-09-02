@@ -4922,6 +4922,10 @@ addLine("Utility Clearance Verified", inspection.utility_clearance_verified);
   "Handhole / Vault Grounding & Bonding Verified",
   inspection.handhole_grounding_bonding_verified
 ); 
+    addLine(
+  "Handhole / Vault Labeling & Conduit Tags Complete",
+  inspection.handhole_vault_labeling_complete
+);    
   addLine("Mandrel Test Completed", inspection.mandrel_test_completed);
   addLine("Pull String Installed", inspection.pull_string_installed);
   addLine("Duct Plugs Installed", inspection.duct_plugs_installed);
