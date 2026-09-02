@@ -6494,7 +6494,8 @@ spec_verified: qaqcCableSpecVerified,
     setQaqcCableLength("");
     setQaqcCableFromLocation("");
     setQaqcCableToLocation("");
-    setQaqcCableSpecVerified("");    
+    setQaqcCableSpecVerified("");  
+    setQaqcCableVarianceDetails("");    
     setQaqcCablePlacementMethod("");
     setQaqcCablePathwayUsed("");
     setQaqcCableCondition("");
