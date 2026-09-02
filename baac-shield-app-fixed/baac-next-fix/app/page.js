@@ -16345,19 +16345,20 @@ onChange={(e) =>
 <p><strong>Deviation / Variance Details:</strong> {selectedQaqcDuctInspection.variance_details || "-"}</p>
 <p><strong>Utility Clearance Verified:</strong> {selectedQaqcDuctInspection.utility_clearance_verified || "-"}</p>
       <p><strong>Compaction / Backfill Verified:</strong> {selectedQaqcDuctInspection.compaction_backfill_verified || "-"}</p>    
+         <p><strong>Restoration Complete:</strong> {selectedQaqcDuctInspection.restoration_complete || "-"}</p> 
     <p><strong>Bends / Sweeps Acceptable:</strong> {selectedQaqcDuctInspection.bends_sweeps_acceptable || "-"}</p>
     <p><strong>Mandrel Test Completed:</strong> {selectedQaqcDuctInspection.mandrel_test_completed || "-"}</p>
     <p><strong>Pull String Installed:</strong> {selectedQaqcDuctInspection.pull_string_installed || "-"}</p>
     <p><strong>Duct Plugs Installed:</strong> {selectedQaqcDuctInspection.duct_plugs_installed || "-"}</p>
     <p><strong>Vault / Pull Box Condition:</strong> {selectedQaqcDuctInspection.vault_pullbox_condition || "-"}</p>
-
+     
     <p><strong>Inspection Result:</strong> {selectedQaqcDuctInspection.inspection_result || "-"}</p>
     <p><strong>Status:</strong> {selectedQaqcDuctInspection.inspection_status || "-"}</p>
     <p><strong>Deficiency Details:</strong> {selectedQaqcDuctInspection.deficiency_details || "-"}</p>
     <p><strong>Corrective Action Assigned To:</strong> {selectedQaqcDuctInspection.corrective_action_assigned_to || "-"}</p>
     <p><strong>Inspection Notes:</strong> {selectedQaqcDuctInspection.inspection_notes || "-"}</p>
 {selectedQaqcDuctInspection.photo_urls && (
-  <div style={{ marginTop: 18 }}>
+  <div style={{ marginTop: 18 }}>   
     <h3 style={{ color: "#0f2f63" }}>Inspection Photos</h3>
 
     <div
