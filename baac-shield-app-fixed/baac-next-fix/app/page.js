@@ -6377,6 +6377,7 @@ variance_details: qaqcDuctVarianceDetails,
 setQaqcDuctVarianceDetails(""); 
      setQaqcUtilityClearanceVerified("");   
       setQaqcCompactionBackfillVerified("");  
+        setQaqcRestorationComplete("");
     setQaqcBendsSweepsAcceptable("");
     setQaqcMandrelTestCompleted("");
     setQaqcPullStringInstalled("");
