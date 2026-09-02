@@ -6336,6 +6336,7 @@ async function submitQaqcDuctInspection() {
 spec_verified: qaqcDuctSpecVerified,
 variance_details: qaqcDuctVarianceDetails,
              utility_clearance_verified: qaqcUtilityClearanceVerified, 
+              compaction_backfill_verified: qaqcCompactionBackfillVerified,
           bends_sweeps_acceptable: qaqcBendsSweepsAcceptable,
           mandrel_test_completed: qaqcMandrelTestCompleted,
           pull_string_installed: qaqcPullStringInstalled,
