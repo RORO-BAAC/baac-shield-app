@@ -6402,6 +6402,7 @@ setQaqcDuctVarianceDetails("");
         setQaqcRestorationComplete("");
         setQaqcHandholeVaultDocumentationComplete("");
      setQaqcHandholeGroundingBondingVerified("");   
+        setQaqcHandholeVaultLabelingComplete("");
     setQaqcBendsSweepsAcceptable("");
     setQaqcMandrelTestCompleted("");
     setQaqcPullStringInstalled("");
