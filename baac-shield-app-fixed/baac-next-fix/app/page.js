@@ -564,6 +564,7 @@ const [qaqcDuctVarianceDetails, setQaqcDuctVarianceDetails] = useState("");
       const [qaqcRestorationComplete, setQaqcRestorationComplete] = useState("");
  const [qaqcHandholeVaultDocumentationComplete, setQaqcHandholeVaultDocumentationComplete] = useState("");  
     const [qaqcHandholeGroundingBondingVerified, setQaqcHandholeGroundingBondingVerified] = useState("");  
+      const [qaqcHandholeVaultLabelingComplete, setQaqcHandholeVaultLabelingComplete] = useState("");
 const [qaqcBendsSweepsAcceptable, setQaqcBendsSweepsAcceptable] = useState("");
 const [qaqcMandrelTestCompleted, setQaqcMandrelTestCompleted] = useState("");
 const [qaqcPullStringInstalled, setQaqcPullStringInstalled] = useState("");
