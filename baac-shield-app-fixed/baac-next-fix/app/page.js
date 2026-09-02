@@ -4999,6 +4999,7 @@ addLine(
   "Approved Drawing / Project Specification Verified",
   inspection.spec_verified
 );
+      addLine("Deviation / Variance Details", inspection.variance_details);
   addLine("Placement Method", inspection.placement_method);
   addLine("Pathway Used", inspection.pathway_used);
   addLine("Cable Condition", inspection.cable_condition);
@@ -18825,6 +18826,10 @@ onChange={(e) =>
                 <strong>Cable Size / Fibre Count:</strong>{" "}
                 {selectedQaqcCableInspection.cable_size_count || "-"}
               </p>
+                    <p>
+  <strong>Deviation / Variance Details:</strong>{" "}
+  {selectedQaqcCableInspection.variance_details || "-"}
+</p>
               <p>
                 <strong>Cable Length:</strong>{" "}
                 {selectedQaqcCableInspection.cable_length || "-"}
