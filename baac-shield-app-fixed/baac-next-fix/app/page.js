@@ -16734,6 +16734,25 @@ onChange={(e) =>
                 gap: 12,
               }}
             >
+                  <label>
+  Approved Drawing / Project Specification Verified?
+  <select
+    value={qaqcCableSpecVerified}
+    onChange={(e) => setQaqcCableSpecVerified(e.target.value)}
+    style={{
+      width: "100%",
+      padding: 10,
+      borderRadius: 10,
+      border: "1px solid #cbd5e1",
+      marginTop: 4,
+    }}
+  >
+    <option value="">Select</option>
+    <option value="Yes">Yes</option>
+    <option value="No">No</option>
+    <option value="N/A">N/A</option>
+  </select>
+</label>
               <input
                 value={qaqcCablePlacementMethod}
                 onChange={(event) => setQaqcCablePlacementMethod(event.target.value)}
