@@ -16373,7 +16373,8 @@ onChange={(e) =>
          <p><strong>Restoration Complete:</strong> {selectedQaqcDuctInspection.restoration_complete || "-"}</p> 
    <p><strong>Final Handhole / Vault Documentation Complete:</strong> {selectedQaqcDuctInspection.handhole_vault_documentation_complete || "-"}</p>
      <p><strong>Handhole / Vault Grounding & Bonding Verified:</strong> {selectedQaqcDuctInspection.handhole_grounding_bonding_verified || "-"}</p>     
-    <p><strong>Bends / Sweeps Acceptable:</strong> {selectedQaqcDuctInspection.bends_sweeps_acceptable || "-"}</p>
+   <p><strong>Handhole / Vault Labeling & Conduit Tags Complete:</strong> {selectedQaqcDuctInspection.handhole_vault_labeling_complete || "-"}</p>
+          <p><strong>Bends / Sweeps Acceptable:</strong> {selectedQaqcDuctInspection.bends_sweeps_acceptable || "-"}</p>
     <p><strong>Mandrel Test Completed:</strong> {selectedQaqcDuctInspection.mandrel_test_completed || "-"}</p>
     <p><strong>Pull String Installed:</strong> {selectedQaqcDuctInspection.pull_string_installed || "-"}</p>
     <p><strong>Duct Plugs Installed:</strong> {selectedQaqcDuctInspection.duct_plugs_installed || "-"}</p>
