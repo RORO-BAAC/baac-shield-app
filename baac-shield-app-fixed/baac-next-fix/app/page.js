@@ -16333,6 +16333,8 @@ onChange={(e) =>
     <p><strong>Bedding Material:</strong> {selectedQaqcDuctInspection.bedding_material || "-"}</p>
     <p><strong>Warning Tape Installed:</strong> {selectedQaqcDuctInspection.warning_tape_installed || "-"}</p>
     <p><strong>Tracer Wire Installed:</strong> {selectedQaqcDuctInspection.tracer_wire_installed || "-"}</p>
+          <p><strong>Approved Drawing / Project Specification Verified:</strong> {selectedQaqcDuctInspection.spec_verified || "-"}</p>
+<p><strong>Deviation / Variance Details:</strong> {selectedQaqcDuctInspection.variance_details || "-"}</p>
 <p><strong>Utility Clearance Verified:</strong> {selectedQaqcDuctInspection.utility_clearance_verified || "-"}</p>
     <p><strong>Bends / Sweeps Acceptable:</strong> {selectedQaqcDuctInspection.bends_sweeps_acceptable || "-"}</p>
     <p><strong>Mandrel Test Completed:</strong> {selectedQaqcDuctInspection.mandrel_test_completed || "-"}</p>
