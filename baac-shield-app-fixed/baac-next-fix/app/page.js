@@ -19334,6 +19334,25 @@ onChange={(e) =>
       }}
     />
   </label>
+          <label>
+  Utility Clearance Verified?
+  <select
+    value={qaqcUtilityClearanceVerified}
+    onChange={(e) => setQaqcUtilityClearanceVerified(e.target.value)}
+    style={{
+      width: "100%",
+      padding: 10,
+      borderRadius: 10,
+      border: "1px solid #cbd5e1",
+      marginTop: 4,
+    }}
+  >
+    <option value="">Select</option>
+    <option value="Yes">Yes</option>
+    <option value="No">No</option>
+    <option value="N/A">N/A</option>
+  </select>
+</label>
 </div>
 <h2 style={{ marginTop: 24, color: "#0f2f63" }}>
   Duct Acceptance Checks
