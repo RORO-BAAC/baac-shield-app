@@ -16846,6 +16846,7 @@ onChange={(e) =>
                 ["Slack Loop Installed", qaqcCableSlackLoopInstalled, setQaqcCableSlackLoopInstalled],
                 ["Cable Supports Acceptable", qaqcCableSupportsAcceptable, setQaqcCableSupportsAcceptable],
                 ["Pull Tension Issue", qaqcCablePullTensionIssue, setQaqcCablePullTensionIssue],
+                  ["Pulling Tension Within Manufacturer / Project Limits", qaqcCablePullTensionVerified, setQaqcCablePullTensionVerified],  
               ].map(([label, value, setter]) => (
                 <select
                   key={label}
