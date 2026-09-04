@@ -18934,6 +18934,10 @@ onChange={(e) =>
 </p>   
 <p>
   <strong>Cable Ends Sealed / Protected After Placement:</strong>{" "}
+<p>
+  <strong>Cable Identification / Tagging Matches Drawings and Schedule:</strong>{" "}
+  {selectedQaqcCableInspection.cable_identification_verified || "-"}
+</p>
   {selectedQaqcCableInspection.cable_ends_protected || "-"}
 </p>
               <p>
