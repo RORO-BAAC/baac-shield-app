@@ -5018,6 +5018,10 @@ addLine(
   "Pulling Tension Within Manufacturer / Project Limits",
   inspection.pull_tension_verified
 );
+      addLine(
+  "Cable Ends Sealed / Protected After Placement",
+  inspection.cable_ends_protected
+);
   addLine("Inspection Result", inspection.inspection_result);
   addLine("Status", inspection.inspection_status);
   addLine("Deficiency Details", inspection.deficiency_details);
