@@ -5003,6 +5003,10 @@ addLine(
       addLine("Deviation / Variance Details", inspection.variance_details);
   addLine("Placement Method", inspection.placement_method);
   addLine("Pathway Used", inspection.pathway_used);
+      addLine(
+  "Cable Route / Pathway Matches Approved Drawing",
+  inspection.route_verified
+);
   addLine("Cable Condition", inspection.cable_condition);
   addLine("Bend Radius Acceptable", inspection.bend_radius_acceptable);
   addLine("Cable Marking Complete", inspection.cable_marking_complete);
