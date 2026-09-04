@@ -6518,6 +6518,7 @@ pull_tension_verified: qaqcCablePullTensionVerified,
     setQaqcCableSupportsAcceptable("");
     setQaqcCablePullTensionIssue("");
       setQaqcCablePullTensionVerified("");  
+        setQaqcCableEndsProtected("");
     setQaqcCableResult("");
     setQaqcCableDeficiencies("");
     setQaqcCableCorrectiveActionAssignedTo("");
