@@ -6512,6 +6512,7 @@ pull_tension_verified: qaqcCablePullTensionVerified,
     setQaqcCableSlackLoopInstalled("");
     setQaqcCableSupportsAcceptable("");
     setQaqcCablePullTensionIssue("");
+      setQaqcCablePullTensionVerified("");  
     setQaqcCableResult("");
     setQaqcCableDeficiencies("");
     setQaqcCableCorrectiveActionAssignedTo("");
