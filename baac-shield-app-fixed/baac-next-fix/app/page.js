@@ -604,7 +604,7 @@ const [qaqcCableMarkingComplete, setQaqcCableMarkingComplete] = useState("");
 const [qaqcCableSlackLoopInstalled, setQaqcCableSlackLoopInstalled] = useState("");
 const [qaqcCableSupportsAcceptable, setQaqcCableSupportsAcceptable] = useState("");
 const [qaqcCablePullTensionIssue, setQaqcCablePullTensionIssue] = useState("");
-
+const [qaqcCablePullTensionVerified, setQaqcCablePullTensionVerified] = useState("");
 const [qaqcCableResult, setQaqcCableResult] = useState("");
 const [qaqcCableDeficiencies, setQaqcCableDeficiencies] = useState("");
 const [qaqcCableCorrectiveActionAssignedTo, setQaqcCableCorrectiveActionAssignedTo] = useState("");
