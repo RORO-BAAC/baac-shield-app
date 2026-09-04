@@ -5013,7 +5013,10 @@ addLine(
   addLine("Slack Loop Installed", inspection.slack_loop_installed);
   addLine("Cable Supports Acceptable", inspection.cable_supports_acceptable);
   addLine("Pull Tension Issue", inspection.pull_tension_issue);
-
+addLine(
+  "Pulling Tension Within Manufacturer / Project Limits",
+  inspection.pull_tension_verified
+);
   addLine("Inspection Result", inspection.inspection_result);
   addLine("Status", inspection.inspection_status);
   addLine("Deficiency Details", inspection.deficiency_details);
