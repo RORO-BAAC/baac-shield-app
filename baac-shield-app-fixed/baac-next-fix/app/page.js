@@ -18924,7 +18924,10 @@ onChange={(e) =>
   <strong>Pulling Tension Within Manufacturer / Project Limits:</strong>{" "}
   {selectedQaqcCableInspection.pull_tension_verified || "-"}
 </p>   
-
+<p>
+  <strong>Cable Ends Sealed / Protected After Placement:</strong>{" "}
+  {selectedQaqcCableInspection.cable_ends_protected || "-"}
+</p>
               <p>
                 <strong>Inspection Result:</strong>{" "}
                 {selectedQaqcCableInspection.inspection_result || "-"}
