@@ -6501,6 +6501,7 @@ spec_verified: qaqcCableSpecVerified,
     setQaqcCableVarianceDetails("");    
     setQaqcCablePlacementMethod("");
     setQaqcCablePathwayUsed("");
+     setQaqcCableRouteVerified("");   
     setQaqcCableCondition("");
     setQaqcCableBendRadiusAcceptable("");
     setQaqcCableMarkingComplete("");
