@@ -16800,7 +16800,25 @@ onChange={(e) =>
                   border: "1px solid #cbd5e1",
                 }}
               />
-
+<label>
+  Cable Route / Pathway Matches Approved Drawing?
+  <select
+    value={qaqcCableRouteVerified}
+    onChange={(e) => setQaqcCableRouteVerified(e.target.value)}
+    style={{
+      width: "100%",
+      padding: 10,
+      borderRadius: 10,
+      border: "1px solid #cbd5e1",
+      marginTop: 4,
+    }}
+  >
+    <option value="">Select</option>
+    <option value="Yes">Yes</option>
+    <option value="No">No</option>
+    <option value="N/A">N/A</option>
+  </select>
+</label>
               <select
                 value={qaqcCableCondition}
                 onChange={(event) => setQaqcCableCondition(event.target.value)}
