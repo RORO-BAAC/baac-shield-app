@@ -16853,6 +16853,7 @@ onChange={(e) =>
                 ["Cable Supports Acceptable", qaqcCableSupportsAcceptable, setQaqcCableSupportsAcceptable],
                 ["Pull Tension Issue", qaqcCablePullTensionIssue, setQaqcCablePullTensionIssue],
                   ["Pulling Tension Within Manufacturer / Project Limits", qaqcCablePullTensionVerified, setQaqcCablePullTensionVerified],  
+                    ["Cable Ends Sealed / Protected After Placement?", qaqcCableEndsProtected, setQaqcCableEndsProtected],
               ].map(([label, value, setter]) => (
                 <select
                   key={label}
