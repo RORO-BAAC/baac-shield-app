@@ -18913,6 +18913,10 @@ onChange={(e) =>
                 <strong>Pull Tension Issue:</strong>{" "}
                 {selectedQaqcCableInspection.pull_tension_issue || "-"}
               </p>
+                 <p>
+  <strong>Pulling Tension Within Manufacturer / Project Limits:</strong>{" "}
+  {selectedQaqcCableInspection.pull_tension_verified || "-"}
+</p>   
 
               <p>
                 <strong>Inspection Result:</strong>{" "}
