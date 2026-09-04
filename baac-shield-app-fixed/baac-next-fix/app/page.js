@@ -18878,6 +18878,11 @@ onChange={(e) =>
                 <strong>Pathway Used:</strong>{" "}
                 {selectedQaqcCableInspection.pathway_used || "-"}
               </p>
+                    
+                    <p>
+  <strong>Cable Route / Pathway Matches Approved Drawing:</strong>{" "}
+  {selectedQaqcCableInspection.route_verified || "-"}
+</p>
               <p>
                 <strong>Cable Condition:</strong>{" "}
                 {selectedQaqcCableInspection.cable_condition || "-"}
