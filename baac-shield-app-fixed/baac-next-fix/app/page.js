@@ -16861,6 +16861,7 @@ onChange={(e) =>
                 ["Pull Tension Issue", qaqcCablePullTensionIssue, setQaqcCablePullTensionIssue],
                   ["Pulling Tension Within Manufacturer / Project Limits", qaqcCablePullTensionVerified, setQaqcCablePullTensionVerified],  
                     ["Cable Ends Sealed / Protected After Placement?", qaqcCableEndsProtected, setQaqcCableEndsProtected],
+                    ["Cable Identification / Tagging Matches Drawings and Schedule?", qaqcCableIdentificationVerified, setQaqcCableIdentificationVerified],
               ].map(([label, value, setter]) => (
                 <select
                   key={label}
