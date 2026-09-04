@@ -597,6 +597,7 @@ const [qaqcCableSpecVerified, setQaqcCableSpecVerified] = useState("");
   const [qaqcCableVarianceDetails, setQaqcCableVarianceDetails] = useState("");    
 const [qaqcCablePlacementMethod, setQaqcCablePlacementMethod] = useState("");
 const [qaqcCablePathwayUsed, setQaqcCablePathwayUsed] = useState("");
+  const [qaqcCableRouteVerified, setQaqcCableRouteVerified] = useState("");    
 const [qaqcCableCondition, setQaqcCableCondition] = useState("");
 const [qaqcCableBendRadiusAcceptable, setQaqcCableBendRadiusAcceptable] = useState("");
 const [qaqcCableMarkingComplete, setQaqcCableMarkingComplete] = useState("");
