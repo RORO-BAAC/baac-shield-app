@@ -6476,7 +6476,7 @@ spec_verified: qaqcCableSpecVerified,
           slack_loop_installed: qaqcCableSlackLoopInstalled,
           cable_supports_acceptable: qaqcCableSupportsAcceptable,
           pull_tension_issue: qaqcCablePullTensionIssue,
-
+pull_tension_verified: qaqcCablePullTensionVerified,
           inspection_result: qaqcCableResult,
           deficiency_details: qaqcCableDeficiencies,
           corrective_action_assigned_to: qaqcCableCorrectiveActionAssignedTo,
