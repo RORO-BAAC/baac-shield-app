@@ -18826,10 +18826,7 @@ onChange={(e) =>
                 <strong>Cable Size / Fibre Count:</strong>{" "}
                 {selectedQaqcCableInspection.cable_size_count || "-"}
               </p>
-                    <p>
-  <strong>Deviation / Variance Details:</strong>{" "}
-  {selectedQaqcCableInspection.variance_details || "-"}
-</p>
+                  
               <p>
                 <strong>Cable Length:</strong>{" "}
                 {selectedQaqcCableInspection.cable_length || "-"}
@@ -18846,6 +18843,12 @@ onChange={(e) =>
   <strong>Approved Drawing / Project Specification Verified:</strong>{" "}
   {selectedQaqcCableInspection.spec_verified || "-"}
 </p>
+
+  <p>
+  <strong>Deviation / Variance Details:</strong>{" "}
+  {selectedQaqcCableInspection.variance_details || "-"}
+</p>
+      
               <p>
                 <strong>Placement Method:</strong>{" "}
                 {selectedQaqcCableInspection.placement_method || "-"}
