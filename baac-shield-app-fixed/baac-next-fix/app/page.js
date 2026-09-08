@@ -6635,7 +6635,8 @@ async function submitQaqcSpliceRecord() {
     setQaqcSpliceLabelsComplete("");
     setQaqcSpliceProtectionInstalled("");
 setQaqcSplicePlanVerified("");
-  setQaqcSpliceClosureSealed("");      
+  setQaqcSpliceClosureSealed(""); 
+      setQaqcSpliceFibreIdentificationVerified("");  
     setQaqcSpliceResult("");
     setQaqcSpliceDeficiencies("");
     setQaqcSpliceAssignedTo("");
