@@ -6607,6 +6607,8 @@ async function submitQaqcSpliceRecord() {
           protection_installed: qaqcSpliceProtectionInstalled,
           splice_plan_verified: qaqcSplicePlanVerified,
               closure_sealed: qaqcSpliceClosureSealed,
+              fibre_identification_verified: qaqcSpliceFibreIdentificationVerified,
+splice_loss_acceptable: qaqcSpliceLossAcceptable,
           inspection_result: qaqcSpliceResult,
           deficiency_details: qaqcSpliceDeficiencies,
           corrective_action_assigned_to: qaqcSpliceAssignedTo,
