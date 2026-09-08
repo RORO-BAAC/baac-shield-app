@@ -17461,6 +17461,26 @@ onChange={(e) =>
     <option value="N/A">N/A</option>
   </select>
 </label>    
+    <label style={{ display: "grid", gap: 6 }}>
+  <span style={{ fontWeight: "bold", color: "#334155" }}>
+    Closure / Enclosure Properly Sealed?
+  </span>
+  <select
+    value={qaqcSpliceClosureSealed}
+    onChange={(e) => setQaqcSpliceClosureSealed(e.target.value)}
+    style={{
+      padding: 11,
+      borderRadius: 10,
+      border: "1px solid #cbd5e1",
+      background: "white",
+    }}
+  >
+    <option value="">Select</option>
+    <option value="Yes">Yes</option>
+    <option value="No">No</option>
+    <option value="N/A">N/A</option>
+  </select>
+</label>    
   </div>
 </div>
 
