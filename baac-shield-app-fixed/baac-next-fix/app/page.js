@@ -177,6 +177,7 @@ const [hazardDueDate, setHazardDueDate] = useState("");
   const [risk, setRisk] = useState("");
   const [selectedShields, setSelectedShields] = useState([]);
   const [notes, setNotes] = useState("");
+      const [controlNotes, setControlNotes] = useState("");
   const [stopWork, setStopWork] = useState(false);
   const [photos, setPhotos] = useState([]);
 
