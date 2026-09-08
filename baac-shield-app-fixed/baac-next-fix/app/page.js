@@ -6686,7 +6686,7 @@ async function submitQaqcFibreTestRecord() {
           from_location: qaqcFibreTestFromLocation,
           to_location: qaqcFibreTestToLocation,
           fibre_count: qaqcFibreTestFibreCount,
-
+calibration_current: qaqcFibreTestCalibrationCurrent,
           test_report_status: qaqcFibreTestStatus,
           overall_result: qaqcFibreTestResult,
           deficiency_details: qaqcFibreTestDeficiencies,
