@@ -5209,6 +5209,7 @@ addLine(
   addLine("From Location", record.from_location);
   addLine("To Location", record.to_location);
   addLine("Fibre Count", record.fibre_count);
+  addLine("Test Equipment Calibration / Certification Current", record.calibration_current);          
   addLine("Overall Result", record.overall_result);
   addLine("Report Status", record.test_report_status);
   addLine("Deficiency Details", record.deficiency_details);
