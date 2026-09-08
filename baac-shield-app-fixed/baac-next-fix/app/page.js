@@ -640,6 +640,7 @@ const [qaqcSpliceProtectionInstalled, setQaqcSpliceProtectionInstalled] = useSta
 const [qaqcSplicePlanVerified, setQaqcSplicePlanVerified] = useState("");
 const [qaqcSpliceClosureSealed, setQaqcSpliceClosureSealed] = useState("");   
  const [qaqcSpliceFibreIdentificationVerified, setQaqcSpliceFibreIdentificationVerified] = useState("");     
+ const [qaqcSpliceLossAcceptable, setQaqcSpliceLossAcceptable] = useState("");     
 const [qaqcSpliceResult, setQaqcSpliceResult] = useState("");
 const [qaqcSpliceDeficiencies, setQaqcSpliceDeficiencies] = useState("");
 const [qaqcSpliceAssignedTo, setQaqcSpliceAssignedTo] = useState("");
