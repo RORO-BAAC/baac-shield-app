@@ -5150,6 +5150,7 @@ addLine(
   "Approved Splice Plan / Fibre Assignment Verified",
   record.splice_plan_verified
 );          
+  addLine("Closure / Enclosure Properly Sealed", record.closure_sealed);          
   addLine("Inspection Result", record.inspection_result);
   addLine("Status", record.inspection_status);
   addLine("Deficiency Details", record.deficiency_details);
