@@ -23202,8 +23202,20 @@ onChange={(e) =>
     <p><strong>Supervisor:</strong> {selectedRecord.record.supervisor_name || "—"}</p>
     <p><strong>Risk:</strong> {selectedRecord.record.critical_risk || "—"}</p>
     <p><strong>Task:</strong> {selectedRecord.record.task_description || "—"}</p>
-    <p><strong>Shield Controls:</strong> {selectedRecord.record.shield_control || "—"}</p>
-    <p><strong>Notes:</strong> {selectedRecord.record.notes || "—"}</p>
+  <p>
+  <strong>Shield Controls:</strong>{" "}
+  {selectedRecord.record.shield_control || "—"}
+</p>
+
+<p>
+  <strong>Control Notes / Additional Controls:</strong>{" "}
+  {selectedRecord.record.control_notes || "—"}
+</p>
+
+<p>
+  <strong>Specific Hazard / Additional Hazard Details:</strong>{" "}
+  {selectedRecord.record.notes || "—"}
+</p>
     <p><strong>Status:</strong> {selectedRecord.record.status || "—"}</p>
     <p><strong>Corrective Actions:</strong> {selectedRecord.record.corrective_actions || "—"}</p>
     <p><strong>Assigned To:</strong> {selectedRecord.record.assigned_to || "—"}</p>
