@@ -2197,6 +2197,7 @@ function toggleFlraCheckbox(value, setter) {
         critical_risk: risk,
         shield_control: selectedShields.join(", "),
         notes,
+           control_notes: controlNotes, 
         stop_work: stopWork,
         photos: uploadedPhotoUrls.join(", "),
         status: "Pending Review",
