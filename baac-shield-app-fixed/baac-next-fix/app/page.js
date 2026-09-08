@@ -6633,7 +6633,7 @@ async function submitQaqcSpliceRecord() {
     setQaqcSpliceLabelsComplete("");
     setQaqcSpliceProtectionInstalled("");
 setQaqcSplicePlanVerified("");
-        
+  setQaqcSpliceClosureSealed("");      
     setQaqcSpliceResult("");
     setQaqcSpliceDeficiencies("");
     setQaqcSpliceAssignedTo("");
