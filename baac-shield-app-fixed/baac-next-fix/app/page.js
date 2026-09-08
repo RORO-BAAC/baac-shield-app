@@ -23243,6 +23243,10 @@ onChange={(e) =>
   <strong>Specific Hazard / Additional Hazard Details:</strong>{" "}
   {selectedRecord.record.notes || "—"}
 </p>
+      <p>
+  <strong>Workers Present in Discussion:</strong>{" "}
+  {selectedRecord.record.workers_present || "—"}
+</p>
     <p><strong>Status:</strong> {selectedRecord.record.status || "—"}</p>
     <p><strong>Corrective Actions:</strong> {selectedRecord.record.corrective_actions || "—"}</p>
     <p><strong>Assigned To:</strong> {selectedRecord.record.assigned_to || "—"}</p>
