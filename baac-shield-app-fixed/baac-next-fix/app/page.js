@@ -17435,6 +17435,26 @@ onChange={(e) =>
         <option value="N/A">N/A</option>
       </select>
     </label>
+        <label style={{ display: "grid", gap: 6 }}>
+  <span style={{ fontWeight: "bold", color: "#334155" }}>
+    Approved Splice Plan / Fibre Assignment Verified?
+  </span>
+  <select
+    value={qaqcSplicePlanVerified}
+    onChange={(e) => setQaqcSplicePlanVerified(e.target.value)}
+    style={{
+      padding: 11,
+      borderRadius: 10,
+      border: "1px solid #cbd5e1",
+      background: "white",
+    }}
+  >
+    <option value="">Select</option>
+    <option value="Yes">Yes</option>
+    <option value="No">No</option>
+    <option value="N/A">N/A</option>
+  </select>
+</label>    
   </div>
 </div>
 
