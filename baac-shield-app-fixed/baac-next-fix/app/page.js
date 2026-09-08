@@ -6602,6 +6602,7 @@ async function submitQaqcSpliceRecord() {
           labels_complete: qaqcSpliceLabelsComplete,
           protection_installed: qaqcSpliceProtectionInstalled,
           splice_plan_verified: qaqcSplicePlanVerified,
+              closure_sealed: qaqcSpliceClosureSealed,
           inspection_result: qaqcSpliceResult,
           deficiency_details: qaqcSpliceDeficiencies,
           corrective_action_assigned_to: qaqcSpliceAssignedTo,
