@@ -553,6 +553,7 @@ const [qaqcToLocation, setQaqcToLocation] = useState("");
 
 const [qaqcTrenchDepth, setQaqcTrenchDepth] = useState("");
 const [qaqcTrenchWidth, setQaqcTrenchWidth] = useState("");
+ const [qaqcInstallationMethod, setQaqcInstallationMethod] = useState("");     
 const [qaqcBeddingMaterial, setQaqcBeddingMaterial] = useState("");
 const [qaqcWarningTapeInstalled, setQaqcWarningTapeInstalled] = useState("");
 const [qaqcTracerWireInstalled, setQaqcTracerWireInstalled] = useState("");
