@@ -17843,6 +17843,7 @@ onChange={(e) =>
       <div><strong>Routing Acceptable:</strong><br />{selectedQaqcSpliceRecord.routing_acceptable || "-"}</div>
       <div><strong>Labels Complete:</strong><br />{selectedQaqcSpliceRecord.labels_complete || "-"}</div>
       <div><strong>Protection Installed:</strong><br />{selectedQaqcSpliceRecord.protection_installed || "-"}</div>
+      <div><strong>Approved Splice Plan / Fibre Assignment Verified:</strong><br />{selectedQaqcSpliceRecord.splice_plan_verified || "-"}</div>
       <div><strong>Inspection Result:</strong><br />{selectedQaqcSpliceRecord.inspection_result || "-"}</div>
       <div><strong>Status:</strong><br />{selectedQaqcSpliceRecord.inspection_status || "-"}</div>
       <div><strong>Assigned To:</strong><br />{selectedQaqcSpliceRecord.corrective_action_assigned_to || "-"}</div>
