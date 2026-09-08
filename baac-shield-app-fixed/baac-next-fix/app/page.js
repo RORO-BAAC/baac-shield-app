@@ -5025,6 +5025,10 @@ addLine(
   "Cable Ends Sealed / Protected After Placement",
   inspection.cable_ends_protected
 );
+      addLine(
+  "Cable Identification / Tagging Matches Drawings and Schedule",
+  inspection.cable_identification_verified
+);
   addLine("Inspection Result", inspection.inspection_result);
   addLine("Status", inspection.inspection_status);
   addLine("Deficiency Details", inspection.deficiency_details);
