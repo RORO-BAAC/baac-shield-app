@@ -6626,7 +6626,8 @@ async function submitQaqcSpliceRecord() {
     setQaqcSpliceRoutingAcceptable("");
     setQaqcSpliceLabelsComplete("");
     setQaqcSpliceProtectionInstalled("");
-
+setQaqcSplicePlanVerified("");
+        
     setQaqcSpliceResult("");
     setQaqcSpliceDeficiencies("");
     setQaqcSpliceAssignedTo("");
