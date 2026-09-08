@@ -6371,6 +6371,7 @@ async function submitQaqcDuctInspection() {
 
           trench_depth: qaqcTrenchDepth,
           trench_width: qaqcTrenchWidth,
+             installation_method: qaqcInstallationMethod, 
           bedding_material: qaqcBeddingMaterial,
           warning_tape_installed: qaqcWarningTapeInstalled,
           tracer_wire_installed: qaqcTracerWireInstalled,
