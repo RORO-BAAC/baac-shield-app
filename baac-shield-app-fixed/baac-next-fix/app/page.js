@@ -7293,7 +7293,23 @@ onChange={(e) => setWorker(e.target.value)}
               )}
             </div>
           </div>
-
+<div>
+  <label>Control Notes / Additional Controls</label>
+  <br />
+  <textarea
+    value={controlNotes}
+    onChange={(e) => setControlNotes(e.target.value)}
+    rows="4"
+    placeholder="Describe site-specific controls, positioning, barricades, spotters, communication methods, or other controls being used."
+    style={{
+      width: "100%",
+      padding: 12,
+      marginTop: 6,
+      borderRadius: 10,
+      border: "1px solid #cbd5e1",
+    }}
+  />
+</div>
           <div>
             <label>Hazards / Notes</label>
             <br />
