@@ -32,6 +32,8 @@ workersPresent,
         <p><strong>Task:</strong> ${task || "-"}</p>
         <p><strong>Risk:</strong> ${risk || "-"}</p>
         <p><strong>Notes:</strong> ${notes || "-"}</p>
+        <p><strong>Control Notes / Additional Controls:</strong> ${controlNotes || "-"}</p>
+<p><strong>Workers Present in Discussion:</strong> ${workersPresent || "-"}</p>
         <p><strong>Stop Work:</strong> ${stopWork ? "YES" : "No"}</p>
       `,
     });
