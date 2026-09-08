@@ -12139,7 +12139,12 @@ setHazardDueDate(report.due_date || "");
     : "—"}
   {record.task_description && record.task_description.length > 120 ? "..." : ""}
 </div>
-
+{record.control_notes && (
+  <div>
+    <strong>Control Notes / Additional Controls:</strong>{" "}
+    {record.control_notes}
+  </div>
+)}
 <div>
   <strong>Submitted:</strong>{" "}
   {record.submitted_at
