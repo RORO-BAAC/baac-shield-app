@@ -12172,6 +12172,12 @@ setHazardDueDate(report.due_date || "");
     {record.notes}
   </div>
 )}
+{record.workers_present && (
+  <div>
+    <strong>Workers Present in Discussion:</strong>{" "}
+    {record.workers_present}
+  </div>
+)}
 <div>
   <strong>Submitted:</strong>{" "}
   {record.submitted_at
