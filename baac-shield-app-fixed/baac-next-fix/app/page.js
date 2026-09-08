@@ -6708,7 +6708,7 @@ calibration_current: qaqcFibreTestCalibrationCurrent,
     setQaqcFibreTestFromLocation("");
     setQaqcFibreTestToLocation("");
     setQaqcFibreTestFibreCount("");
-
+setQaqcFibreTestCalibrationCurrent("");
     setQaqcFibreTestStatus("");
     setQaqcFibreTestResult("");
     setQaqcFibreTestDeficiencies("");
