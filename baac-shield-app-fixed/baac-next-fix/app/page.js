@@ -7328,6 +7328,23 @@ onChange={(e) => setWorker(e.target.value)}
     }}
   />
 </div>
+        <div>
+  <label>Workers Present in Discussion</label>
+  <br />
+  <textarea
+    value={workersPresent}
+    onChange={(e) => setWorkersPresent(e.target.value)}
+    rows="3"
+    placeholder="Enter the names of workers present for this discussion."
+    style={{
+      width: "100%",
+      padding: 12,
+      marginTop: 6,
+      borderRadius: 10,
+      border: "1px solid #cbd5e1",
+    }}
+  />
+</div>
              <div
             style={{
               border: "1px solid #d1d5db",
