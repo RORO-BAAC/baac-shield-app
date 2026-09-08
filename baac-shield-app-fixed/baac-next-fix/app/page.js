@@ -3681,7 +3681,11 @@ due_date: hazardDueDate,
     addLine("Task Description", record.task_description);
     addLine("Critical Risk", record.critical_risk);
     addLine("Shield Controls", record.shield_control);
-    addLine("Notes", record.notes);
+addLine("Control Notes / Additional Controls", record.control_notes);
+addLine(
+  "Specific Hazard / Additional Hazard Details",
+  record.notes
+);
     addLine("Status", record.status);
     addLine("Reviewed By", record.reviewed_by);
     addLine("Supervisor Comments", record.supervisor_review_comments);
