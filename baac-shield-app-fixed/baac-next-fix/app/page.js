@@ -6641,6 +6641,7 @@ splice_loss_acceptable: qaqcSpliceLossAcceptable,
 setQaqcSplicePlanVerified("");
   setQaqcSpliceClosureSealed(""); 
       setQaqcSpliceFibreIdentificationVerified("");  
+    setQaqcSpliceLossAcceptable("");    
     setQaqcSpliceResult("");
     setQaqcSpliceDeficiencies("");
     setQaqcSpliceAssignedTo("");
