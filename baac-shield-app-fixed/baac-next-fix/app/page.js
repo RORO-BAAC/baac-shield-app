@@ -7253,7 +7253,22 @@ onChange={(e) => setWorker(e.target.value)}
               <option>Work Authorization</option>
             </select>
           </div>
-
+       <div>
+<label>Specific Hazard / Additional Hazard Details</label>
+            <br />
+            <textarea
+              value={notes}
+              onChange={(e) => setNotes(e.target.value)}
+              rows="4"
+              style={{
+                width: "100%",
+                padding: 12,
+                marginTop: 6,
+                borderRadius: 10,
+                border: "1px solid #cbd5e1",
+              }}
+            />
+          </div>
           <div>
             <label>Shield / Controls</label>
             <div
@@ -7310,24 +7325,7 @@ onChange={(e) => setWorker(e.target.value)}
     }}
   />
 </div>
-          <div>
-<label>Specific Hazard / Additional Hazard Details</label>
-            <br />
-            <textarea
-              value={notes}
-              onChange={(e) => setNotes(e.target.value)}
-              rows="4"
-              style={{
-                width: "100%",
-                padding: 12,
-                marginTop: 6,
-                borderRadius: 10,
-                border: "1px solid #cbd5e1",
-              }}
-            />
-          </div>
-
-          <div
+             <div
             style={{
               border: "1px solid #d1d5db",
               borderRadius: 14,
