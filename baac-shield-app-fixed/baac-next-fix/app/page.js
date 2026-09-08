@@ -668,6 +668,7 @@ const [qaqcFibreTestWavelength, setQaqcFibreTestWavelength] = useState("");
 const [qaqcFibreTestEquipment, setQaqcFibreTestEquipment] = useState("");
 const [qaqcFibreTestEquipmentSerial, setQaqcFibreTestEquipmentSerial] = useState("");
 const [qaqcFibreTestCalibrationCurrent, setQaqcFibreTestCalibrationCurrent] = useState("");
+ const [qaqcFibreTestAcceptanceCriteriaMet, setQaqcFibreTestAcceptanceCriteriaMet] = useState("");     
 const [qaqcFibreTestResult, setQaqcFibreTestResult] = useState("");
 const [qaqcFibreTestDeficiencies, setQaqcFibreTestDeficiencies] = useState("");
 const [qaqcFibreTestAssignedTo, setQaqcFibreTestAssignedTo] = useState("");
