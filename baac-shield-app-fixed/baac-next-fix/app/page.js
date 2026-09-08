@@ -3690,6 +3690,7 @@ addLine(
   "Specific Hazard / Additional Hazard Details",
   record.notes
 );
+       addLine("Workers Present in Discussion", record.workers_present);
     addLine("Status", record.status);
     addLine("Reviewed By", record.reviewed_by);
     addLine("Supervisor Comments", record.supervisor_review_comments);
