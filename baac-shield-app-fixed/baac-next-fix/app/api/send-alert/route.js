@@ -15,6 +15,8 @@ export async function POST(req) {
       task,
       risk,
       notes,
+      controlNotes,
+workersPresent,
       stopWork,
     } = body;
 
