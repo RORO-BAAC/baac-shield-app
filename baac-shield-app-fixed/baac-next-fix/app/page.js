@@ -6596,7 +6596,7 @@ async function submitQaqcSpliceRecord() {
           routing_acceptable: qaqcSpliceRoutingAcceptable,
           labels_complete: qaqcSpliceLabelsComplete,
           protection_installed: qaqcSpliceProtectionInstalled,
-
+          splice_plan_verified: qaqcSplicePlanVerified,
           inspection_result: qaqcSpliceResult,
           deficiency_details: qaqcSpliceDeficiencies,
           corrective_action_assigned_to: qaqcSpliceAssignedTo,
