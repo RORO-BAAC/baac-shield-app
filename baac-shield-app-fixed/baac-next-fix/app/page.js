@@ -19393,7 +19393,31 @@ onChange={(e) =>
       }}
     />
   </label>
-
+<label>
+  Installation Method
+  <select
+    value={qaqcInstallationMethod}
+    onChange={(e) => setQaqcInstallationMethod(e.target.value)}
+    style={{
+      width: "100%",
+      padding: 10,
+      borderRadius: 10,
+      border: "1px solid #cbd5e1",
+      marginTop: 4,
+    }}
+  >
+    <option value="">Select method</option>
+    <option value="Open Cut / Trench">Open Cut / Trench</option>
+    <option value="Plow">Plow</option>
+    <option value="HDD / Directional Drill">HDD / Directional Drill</option>
+    <option value="Bore / Auger Bore">Bore / Auger Bore</option>
+    <option value="Microtrench">Microtrench</option>
+    <option value="Existing Conduit / Duct">Existing Conduit / Duct</option>
+    <option value="Aerial / Pole Line">Aerial / Pole Line</option>
+    <option value="Bridge / Structure Attachment">Bridge / Structure Attachment</option>
+    <option value="Other">Other</option>
+  </select>
+</label>
   <label>
     Bedding Material
     <input
