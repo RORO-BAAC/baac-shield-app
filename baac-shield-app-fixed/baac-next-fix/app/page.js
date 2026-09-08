@@ -5145,6 +5145,10 @@ addLine(
   addLine("Routing Acceptable", record.routing_acceptable);
   addLine("Labels Complete", record.labels_complete);
   addLine("Protection Installed", record.protection_installed);
+  addLine(
+  "Approved Splice Plan / Fibre Assignment Verified",
+  record.splice_plan_verified
+);          
   addLine("Inspection Result", record.inspection_result);
   addLine("Status", record.inspection_status);
   addLine("Deficiency Details", record.deficiency_details);
