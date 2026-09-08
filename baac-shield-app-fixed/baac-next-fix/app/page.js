@@ -7311,7 +7311,7 @@ onChange={(e) => setWorker(e.target.value)}
   />
 </div>
           <div>
-            <label>Hazards / Notes</label>
+<label>Specific Hazard / Additional Hazard Details</label>
             <br />
             <textarea
               value={notes}
