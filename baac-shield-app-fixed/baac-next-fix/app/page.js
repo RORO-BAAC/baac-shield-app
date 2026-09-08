@@ -7164,12 +7164,7 @@ onChange={(e) => setWorker(e.target.value)}
             />
           </div>
 
-          <div>
-            <label>Worker Signature</label>
-            <SignatureBox sigRef={workerSigRef} onSave={setWorkerSignature} />
-          </div>
-
-          <div>
+                  <div>
             <label>Project Name</label>
             <br />
             <select
@@ -7396,7 +7391,10 @@ onChange={(e) => setWorker(e.target.value)}
               Unsafe condition identified — stop work and escalate
             </label>
           </div>
-
+            <div>
+            <label>Worker Signature</label>
+            <SignatureBox sigRef={workerSigRef} onSave={setWorkerSignature} />
+          </div>
           <button
             type="submit"
             disabled={loading}
