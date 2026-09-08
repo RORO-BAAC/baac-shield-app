@@ -2241,6 +2241,7 @@ function toggleFlraCheckbox(value, setter) {
           task,
           risk,
           notes,
+             controlNotes, 
           stopWork,
         }),
       });
