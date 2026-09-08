@@ -637,7 +637,7 @@ const [qaqcSpliceTrayCondition, setQaqcSpliceTrayCondition] = useState("");
 const [qaqcSpliceRoutingAcceptable, setQaqcSpliceRoutingAcceptable] = useState("");
 const [qaqcSpliceLabelsComplete, setQaqcSpliceLabelsComplete] = useState("");
 const [qaqcSpliceProtectionInstalled, setQaqcSpliceProtectionInstalled] = useState("");
-
+const [qaqcSplicePlanVerified, setQaqcSplicePlanVerified] = useState("");
 const [qaqcSpliceResult, setQaqcSpliceResult] = useState("");
 const [qaqcSpliceDeficiencies, setQaqcSpliceDeficiencies] = useState("");
 const [qaqcSpliceAssignedTo, setQaqcSpliceAssignedTo] = useState("");
