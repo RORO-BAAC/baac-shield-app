@@ -2176,6 +2176,7 @@ function toggleFlraCheckbox(value, setter) {
     setSelectedShields([]);
     setNotes("");
       setControlNotes("");  
+     setWorkersPresent("");   
     setStopWork(false);
     setPhotos([]);
     workerSigRef.current?.clear();
