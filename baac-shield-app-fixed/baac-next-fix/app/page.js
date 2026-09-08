@@ -6416,6 +6416,7 @@ variance_details: qaqcDuctVarianceDetails,
     setQaqcToLocation("");
     setQaqcTrenchDepth("");
     setQaqcTrenchWidth("");
+    setQaqcInstallationMethod("");    
     setQaqcBeddingMaterial("");
     setQaqcWarningTapeInstalled("");
     setQaqcTracerWireInstalled("");
