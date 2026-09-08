@@ -16398,6 +16398,10 @@ onChange={(e) =>
 
     <p><strong>Trench Depth:</strong> {selectedQaqcDuctInspection.trench_depth || "-"}</p>
     <p><strong>Trench Width:</strong> {selectedQaqcDuctInspection.trench_width || "-"}</p>
+        <p>
+  <strong>Installation Method:</strong>{" "}
+  {selectedQaqcDuctInspection.installation_method || "-"}
+</p>  
     <p><strong>Bedding Material:</strong> {selectedQaqcDuctInspection.bedding_material || "-"}</p>
     <p><strong>Warning Tape Installed:</strong> {selectedQaqcDuctInspection.warning_tape_installed || "-"}</p>
     <p><strong>Tracer Wire Installed:</strong> {selectedQaqcDuctInspection.tracer_wire_installed || "-"}</p>
