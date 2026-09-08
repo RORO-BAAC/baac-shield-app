@@ -4906,6 +4906,7 @@ function downloadQaqcInspectionPdf(inspection) {
 
   addLine("Trench Depth", inspection.trench_depth);
   addLine("Trench Width", inspection.trench_width);
+   addLine("Installation Method", inspection.installation_method);     
   addLine("Bedding Material", inspection.bedding_material);
   addLine("Warning Tape Installed", inspection.warning_tape_installed);
   addLine("Tracer Wire Installed", inspection.tracer_wire_installed);
