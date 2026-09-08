@@ -12145,6 +12145,12 @@ setHazardDueDate(report.due_date || "");
     {record.control_notes}
   </div>
 )}
+{record.notes && (
+  <div>
+    <strong>Specific Hazard / Additional Hazard Details:</strong>{" "}
+    {record.notes}
+  </div>
+)}
 <div>
   <strong>Submitted:</strong>{" "}
   {record.submitted_at
