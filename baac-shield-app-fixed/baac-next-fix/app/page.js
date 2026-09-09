@@ -15120,7 +15120,9 @@ if (Array.isArray(item.photo_urls) && item.photo_urls.length > 0) {
 <div>
   <strong>Test Type:</strong> {record.test_type || "—"}
 </div>
-              
+              <div>
+  <strong>Wavelength:</strong> {record.wavelength || "—"}
+</div>
                   <div>
   <strong>Acceptance Criteria Met:</strong> {record.acceptance_criteria_met || "—"}
 </div>    
