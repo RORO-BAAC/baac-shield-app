@@ -18244,7 +18244,29 @@ onChange={(e) =>
       gap: 14,
     }}
   >
-     <label>
+   
+       <label>
+  <strong>Test Type</strong>
+  <select
+    value={qaqcFibreTestType}
+    onChange={(e) => setQaqcFibreTestType(e.target.value)}
+    style={{
+      width: "100%",
+      padding: 10,
+      marginTop: 6,
+      borderRadius: 8,
+      border: "1px solid #cbd5e1",
+    }}
+  >
+    <option value="">Select</option>
+    <option value="OTDR">OTDR</option>
+    <option value="OLTS / LSPM">OLTS / LSPM</option>
+    <option value="Optical Power Meter">Optical Power Meter</option>
+    <option value="Visual Fault Locator">Visual Fault Locator</option>
+    <option value="Other">Other</option>
+  </select>
+</label> 
+        <label>
   <strong>Test Equipment Calibration / Certification Current?</strong>
   <select
     value={qaqcFibreTestCalibrationCurrent}
