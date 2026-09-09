@@ -15111,6 +15111,11 @@ if (Array.isArray(item.photo_urls) && item.photo_urls.length > 0) {
   <strong>Calibration Current:</strong> {record.calibration_current || "—"}
 </div>
         <div>
+
+              <div>
+  <strong>Acceptance Criteria Met:</strong> {record.acceptance_criteria_met || "—"}
+</div>
+              
           <strong>Result:</strong> {record.overall_result || "—"}
         </div>
 
