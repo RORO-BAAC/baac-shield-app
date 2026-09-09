@@ -18273,6 +18273,30 @@ onChange={(e) =>
   </select>
 </label> 
         <label>
+  <strong>Wavelength</strong>
+  <select
+    value={qaqcFibreTestWavelength}
+    onChange={(e) => setQaqcFibreTestWavelength(e.target.value)}
+    style={{
+      width: "100%",
+      padding: 10,
+      marginTop: 6,
+      borderRadius: 8,
+      border: "1px solid #cbd5e1",
+    }}
+  >
+    <option value="">Select</option>
+    <option value="850 nm">850 nm</option>
+    <option value="1300 nm">1300 nm</option>
+    <option value="1310 nm">1310 nm</option>
+    <option value="1490 nm">1490 nm</option>
+    <option value="1550 nm">1550 nm</option>
+    <option value="1625 nm">1625 nm</option>
+    <option value="1310 / 1550 nm">1310 / 1550 nm</option>
+    <option value="Other">Other</option>
+  </select>
+</label>
+        <label>
   <strong>Test Equipment Calibration / Certification Current?</strong>
   <select
     value={qaqcFibreTestCalibrationCurrent}
