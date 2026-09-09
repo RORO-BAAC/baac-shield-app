@@ -18299,6 +18299,22 @@ onChange={(e) =>
     <option value="1310 / 1550 nm">1310 / 1550 nm</option>
     <option value="Other">Other</option>
   </select>
+    <label>
+  <strong>Test Equipment</strong>
+  <input
+    type="text"
+    value={qaqcFibreTestEquipment}
+    onChange={(e) => setQaqcFibreTestEquipment(e.target.value)}
+    placeholder="e.g. EXFO OTDR, Fluke OLTS"
+    style={{
+      width: "100%",
+      padding: 10,
+      marginTop: 6,
+      borderRadius: 8,
+      border: "1px solid #cbd5e1",
+    }}
+  />
+</label>    
 </label>
         <label>
   <strong>Test Equipment Calibration / Certification Current?</strong>
