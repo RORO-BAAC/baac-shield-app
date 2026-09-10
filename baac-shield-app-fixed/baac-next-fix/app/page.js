@@ -15147,6 +15147,11 @@ if (Array.isArray(item.photo_urls) && item.photo_urls.length > 0) {
 <div>
   <strong>Test Report Attached / Referenced:</strong> {record.report_referenced || "—"}
 </div>
+
+<div>
+  <strong>Bi-Directional Testing Completed:</strong> {record.bidirectional_complete || "—"}
+</div>
+              
                                 <div>
   <strong>Acceptance Criteria Met:</strong> {record.acceptance_criteria_met || "—"}
 </div>    
