@@ -693,6 +693,7 @@ const [qaqcEquipmentSerial, setQaqcEquipmentSerial] = useState("");
 
 const [qaqcEquipmentVisualCondition, setQaqcEquipmentVisualCondition] = useState("");
 const [qaqcEquipmentInstallationAcceptable, setQaqcEquipmentInstallationAcceptable] = useState("");
+const [qaqcEquipmentMountedSecure, setQaqcEquipmentMountedSecure] = useState("");      
 const [qaqcEquipmentResult, setQaqcEquipmentResult] = useState("");
 const [qaqcEquipmentDeficiencies, setQaqcEquipmentDeficiencies] = useState("");
 const [qaqcEquipmentNotes, setQaqcEquipmentNotes] = useState("");
