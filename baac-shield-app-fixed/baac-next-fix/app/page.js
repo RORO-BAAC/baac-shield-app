@@ -6699,6 +6699,7 @@ async function submitQaqcFibreTestRecord() {
        test_equipment: qaqcFibreTestEquipment,       
        equipment_serial: qaqcFibreTestEquipmentSerial,       
 calibration_current: qaqcFibreTestCalibrationCurrent,
+           report_referenced: qaqcFibreTestReportReferenced,   
           acceptance_criteria_met: qaqcFibreTestAcceptanceCriteriaMet,    
           test_report_status: qaqcFibreTestStatus,
           overall_result: qaqcFibreTestResult,
