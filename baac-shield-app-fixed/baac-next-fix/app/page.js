@@ -5212,7 +5212,8 @@ addLine(
   addLine("Fibre Count", record.fibre_count);
   addLine("Test Type", record.test_type);  
   addLine("Wavelength", record.wavelength); 
-  addLine("Test Equipment", record.test_equipment);          
+  addLine("Test Equipment", record.test_equipment); 
+  addLine("Equipment Serial", record.equipment_serial);          
   addLine("Test Equipment Calibration / Certification Current", record.calibration_current);        
   addLine("Test Results Meet Project / Client Acceptance Criteria", record.acceptance_criteria_met);          
   addLine("Overall Result", record.overall_result);
