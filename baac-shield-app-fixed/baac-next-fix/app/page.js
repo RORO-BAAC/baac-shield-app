@@ -6797,6 +6797,7 @@ async function submitQaqcEquipmentInstallation() {
     setQaqcEquipmentSerial("");
     setQaqcEquipmentVisualCondition("");
     setQaqcEquipmentInstallationAcceptable("");
+    setQaqcEquipmentMountedSecure("");    
     setQaqcEquipmentResult("");
     setQaqcEquipmentDeficiencies("");
     setQaqcEquipmentNotes("");
