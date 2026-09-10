@@ -6773,9 +6773,9 @@ async function submitQaqcEquipmentInstallation() {
           manufacturer: qaqcEquipmentManufacturer,
           model: qaqcEquipmentModel,
           serial_number: qaqcEquipmentSerial,
-
           visual_condition: qaqcEquipmentVisualCondition,
           installation_acceptable: qaqcEquipmentInstallationAcceptable,
+          mounted_secure: qaqcEquipmentMountedSecure,   
           overall_result: qaqcEquipmentResult,
           deficiency_details: qaqcEquipmentDeficiencies,
           installation_notes: qaqcEquipmentNotes,
