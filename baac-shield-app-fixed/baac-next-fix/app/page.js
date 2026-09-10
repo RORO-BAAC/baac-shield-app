@@ -5217,7 +5217,8 @@ addLine(
   addLine("Test Equipment", record.test_equipment); 
   addLine("Equipment Serial", record.equipment_serial);          
   addLine("Test Equipment Calibration / Certification Current", record.calibration_current); 
-     addLine("Test Report Attached / Referenced", record.report_referenced);       
+            addLine("Test Report Attached / Referenced", record.report_referenced);  
+       addLine("Bi-Directional Testing Completed", record.bidirectional_complete);     
   addLine("Test Results Meet Project / Client Acceptance Criteria", record.acceptance_criteria_met);          
   addLine("Overall Result", record.overall_result);
   addLine("Report Status", record.test_report_status);
