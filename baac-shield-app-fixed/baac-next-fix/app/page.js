@@ -15255,6 +15255,10 @@ if (Array.isArray(item.photo_urls) && item.photo_urls.length > 0) {
             <strong>Serial:</strong> {record.serial_number || "—"}
           </div>
 
+        <div>
+  <strong>Equipment Mounted / Secured Correctly:</strong> {record.mounted_secure || "—"}
+</div>
+                
           <div>
             <strong>Result:</strong> {record.overall_result || "—"}
           </div>
