@@ -6731,6 +6731,7 @@ calibration_current: qaqcFibreTestCalibrationCurrent,
         setQaqcFibreTestEquipmentSerial("");
     setQaqcFibreTestCalibrationCurrent("");   
      setQaqcFibreTestReportReferenced("");   
+     setQaqcFibreTestBidirectionalComplete("");   
     setQaqcFibreTestAcceptanceCriteriaMet("");
     setQaqcFibreTestStatus("");
     setQaqcFibreTestResult("");
