@@ -15139,8 +15139,11 @@ if (Array.isArray(item.photo_urls) && item.photo_urls.length > 0) {
 <div>
   <strong>Equipment Serial:</strong> {record.equipment_serial || "—"}
 </div>
-              
-                  <div>
+
+<div>
+  <strong>Test Report Attached / Referenced:</strong> {record.report_referenced || "—"}
+</div>
+                                <div>
   <strong>Acceptance Criteria Met:</strong> {record.acceptance_criteria_met || "—"}
 </div>    
         <div>      
