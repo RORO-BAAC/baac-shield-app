@@ -15313,6 +15313,10 @@ if (Array.isArray(item.photo_urls) && item.photo_urls.length > 0) {
         <div>
   <strong>Equipment Mounted / Secured Correctly:</strong> {record.mounted_secure || "—"}
 </div>
+
+        <div>
+  <strong>Grounding / Bonding Complete:</strong> {record.grounding_bonding_complete || "—"}
+</div>        
                 
           <div>
             <strong>Result:</strong> {record.overall_result || "—"}
