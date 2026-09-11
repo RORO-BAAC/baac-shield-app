@@ -15314,6 +15314,24 @@ if (Array.isArray(item.photo_urls) && item.photo_urls.length > 0) {
           <div>
             <strong>Result:</strong> {record.overall_result || "—"}
           </div>
+
+<button
+  type="button"
+  onClick={() => downloadQaqcEquipmentPdf(record)}
+  style={{
+    marginTop: 10,
+    padding: "8px 12px",
+    borderRadius: 10,
+    border: "none",
+    background: "#123d82",
+    color: "white",
+    fontWeight: "bold",
+    cursor: "pointer",
+  }}
+>
+  Download PDF
+</button>
+                
         </div>
       ))}
     </div>
