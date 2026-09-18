@@ -5277,7 +5277,8 @@ addLine(
   addLine("Visual Condition", record.visual_condition);
   addLine("Installation Acceptable", record.installation_acceptable);
   addLine("Equipment Mounted / Secured Correctly", record.mounted_secure);
-  addLine("Grounding / Bonding Complete", record.grounding_bonding_complete);      
+  addLine("Grounding / Bonding Complete", record.grounding_bonding_complete);  
+  addLine("Equipment Labeling / Identification Complete", record.labeling_complete);      
   addLine("Overall Result", record.overall_result);
   addLine("Deficiency Details", record.deficiency_details);
   addLine("Installation Notes", record.installation_notes);
