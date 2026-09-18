@@ -2717,7 +2717,7 @@ if (!emailRes.ok) {
   setMessage(`Report saved, but email failed: ${emailError}`);
 } else {
 setMessage("Thank you for your report and supporting the BAAC HSE Program.");
-alert("Thank you for your report and supporting the BAAC HSE Program.");
+setShowVehicleSubmitConfirmation(true);
 }
     await loadRecords();
    setVehiclePreUseForm((previous) => ({
