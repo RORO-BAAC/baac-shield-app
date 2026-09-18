@@ -374,6 +374,7 @@ const [vehiclePreUseDriverSignature, setVehiclePreUseDriverSignature] =
 const [vehiclePreUseSupervisorSignature, setVehiclePreUseSupervisorSignature] =
   useState("");
 const [vehiclePreUseResetKey, setVehiclePreUseResetKey] = useState(0);
+const [showVehicleSubmitConfirmation, setShowVehicleSubmitConfirmation] = useState(false);      
 const [flraRecords, setFlraRecords] = useState([]);
 const [flraProject, setFlraProject] = useState("");
   const [flraWorkerName, setFlraWorkerName] = useState("");
