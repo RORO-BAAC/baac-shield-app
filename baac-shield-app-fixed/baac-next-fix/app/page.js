@@ -15321,6 +15321,9 @@ if (Array.isArray(item.photo_urls) && item.photo_urls.length > 0) {
 
         <div>
   <strong>Grounding / Bonding Complete:</strong> {record.grounding_bonding_complete || "—"}
+    <div>
+  <strong>Equipment Labeling / Identification Complete:</strong> {record.labeling_complete || "—"}
+</div>            
 </div>        
                 
           <div>
