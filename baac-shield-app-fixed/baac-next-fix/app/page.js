@@ -18852,6 +18852,25 @@ onChange={(e) =>
     <option value="N/A">N/A</option>
   </select>
 </label>     
+<label>
+  Equipment Labeling / Identification Complete?
+  <select
+    value={qaqcEquipmentLabelingComplete}
+    onChange={(e) => setQaqcEquipmentLabelingComplete(e.target.value)}
+    style={{
+      width: "100%",
+      marginTop: 6,
+      padding: 10,
+      borderRadius: 8,
+      border: "1px solid #cbd5e1",
+    }}
+  >
+    <option value="">Select</option>
+    <option value="Yes">Yes</option>
+    <option value="No">No</option>
+    <option value="N/A">N/A</option>
+  </select>
+</label>
     Overall Result
     <select
       value={qaqcEquipmentResult}
