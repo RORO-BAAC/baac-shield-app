@@ -22984,6 +22984,70 @@ onChange={(e) =>
 )}
   </div>
 )}
+{showVehicleSubmitConfirmation && (
+  <div
+    style={{
+      position: "fixed",
+      inset: 0,
+      background: "rgba(15, 23, 42, 0.55)",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      zIndex: 1100,
+      padding: 20,
+    }}
+  >
+    <div
+      style={{
+        width: "100%",
+        maxWidth: 440,
+        background: "white",
+        borderRadius: 16,
+        padding: 24,
+        boxShadow: "0 10px 35px rgba(0,0,0,0.25)",
+        textAlign: "center",
+      }}
+    >
+      <h2
+        style={{
+          marginTop: 0,
+          marginBottom: 12,
+          color: "#123d82",
+        }}
+      >
+        Vehicle Check Complete — Nice Work
+      </h2>
+
+      <p
+        style={{
+          marginTop: 0,
+          marginBottom: 20,
+          color: "#475569",
+          lineHeight: 1.6,
+        }}
+      >
+        Your inspection has been submitted and recorded. Thanks for helping
+        keep the wheels turning and the paperwork gods satisfied.
+      </p>
+
+      <button
+        type="button"
+        onClick={() => setShowVehicleSubmitConfirmation(false)}
+        style={{
+          padding: "11px 22px",
+          borderRadius: 10,
+          border: "none",
+          background: "#123d82",
+          color: "white",
+          fontWeight: "bold",
+          cursor: "pointer",
+        }}
+      >
+        Done
+      </button>
+    </div>
+  </div>
+)}
 {showPinPrompt && (
         <div
           style={{
