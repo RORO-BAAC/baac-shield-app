@@ -6836,6 +6836,7 @@ async function submitQaqcEquipmentInstallation() {
           mounted_secure: qaqcEquipmentMountedSecure, 
           grounding_bonding_complete: qaqcEquipmentGroundingBondingComplete,   
           labeling_complete: qaqcEquipmentLabelingComplete,    
+          functional_test_complete: qaqcEquipmentFunctionalTestComplete,    
           overall_result: qaqcEquipmentResult,
           deficiency_details: qaqcEquipmentDeficiencies,
           installation_notes: qaqcEquipmentNotes,
