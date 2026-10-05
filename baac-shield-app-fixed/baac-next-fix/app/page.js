@@ -20508,8 +20508,100 @@ onChange={(e) =>
   </button>
 </div>
           </section>
+
+{activeTab === "competency" && (
+  <div
+    style={{
+      background: "white",
+      padding: 20,
+      borderRadius: 16,
+      boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
+      marginBottom: 20,
+    }}
+  >
+    <h2 style={{ marginTop: 0, color: "#0f2f63" }}>
+      People & Competency
+    </h2>
+
+    <p style={{ color: "#64748b", marginBottom: 20 }}>
+      Manage employee role progression, competency assessments, training requirements,
+      approvals, and development records.
+    </p>
+
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+        gap: 14,
+      }}
+    >
+      <button
+        type="button"
+        style={{
+          padding: 18,
+          borderRadius: 12,
+          border: "1px solid #cbd5e1",
+          background: "#f8fafc",
+          color: "#0f2f63",
+          fontWeight: "bold",
+          cursor: "pointer",
+          textAlign: "left",
+        }}
+      >
+        Role Progression
+      </button>
+
+      <button
+        type="button"
+        style={{
+          padding: 18,
+          borderRadius: 12,
+          border: "1px solid #cbd5e1",
+          background: "#f8fafc",
+          color: "#0f2f63",
+          fontWeight: "bold",
+          cursor: "pointer",
+          textAlign: "left",
+        }}
+      >
+        Competency Assessments
+      </button>
+
+      <button
+        type="button"
+        style={{
+          padding: 18,
+          borderRadius: 12,
+          border: "1px solid #cbd5e1",
+          background: "#f8fafc",
+          color: "#0f2f63",
+          fontWeight: "bold",
+          cursor: "pointer",
+          textAlign: "left",
+        }}
+      >
+        Employee Profiles
+      </button>
+
+      <button
+        type="button"
+        style={{
+          padding: 18,
+          borderRadius: 12,
+          border: "1px solid #cbd5e1",
+          background: "#f8fafc",
+          color: "#0f2f63",
+          fontWeight: "bold",
+          cursor: "pointer",
+          textAlign: "left",
+        }}
+      >
+        Approvals
+      </button>
     </div>
-     )}
+  </div>
+)}
+        
 {activeTab === "crm" && (
   <div
     style={{
