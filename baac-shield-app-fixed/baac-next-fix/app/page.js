@@ -7197,7 +7197,22 @@ onClick={() => {
 >
   QA/QC
 </button> 
- 
+
+   <button
+  type="button"
+  onClick={() => setActiveTab("competency")}
+  style={{
+    padding: "10px 14px",
+    borderRadius: 10,
+    border: "1px solid #cbd5e1",
+    background: activeTab === "competency" ? "#123d82" : "white",
+    color: activeTab === "competency" ? "white" : "#0f172a",
+    fontWeight: "bold",
+    cursor: "pointer",
+  }}
+>
+  People & Competency
+</button>     
 <button
   type="button"
   onClick={() => setActiveTab("crm")}
