@@ -20508,7 +20508,8 @@ onChange={(e) =>
   </button>
 </div>
           </section>
-
+</div>
+)}
 {activeTab === "competency" && (
   <div
     style={{
