@@ -20600,8 +20600,7 @@ onChange={(e) =>
       </button>
     </div>
   </div>
-)}
- </div>       
+)}     
 {activeTab === "crm" && (
   <div
     style={{
