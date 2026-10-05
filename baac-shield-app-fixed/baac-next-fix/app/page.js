@@ -18877,6 +18877,27 @@ onChange={(e) =>
     <option value="No">No</option>
     <option value="N/A">N/A</option>
   </select>
+
+<label>
+  Power / Functional Test Completed?
+  <select
+    value={qaqcEquipmentFunctionalTestComplete}
+    onChange={(e) => setQaqcEquipmentFunctionalTestComplete(e.target.value)}
+    style={{
+      width: "100%",
+      marginTop: 6,
+      padding: 10,
+      borderRadius: 8,
+      border: "1px solid #cbd5e1",
+    }}
+  >
+    <option value="">Select</option>
+    <option value="Yes">Yes</option>
+    <option value="No">No</option>
+    <option value="N/A">N/A</option>
+  </select>
+</label>
+        
 </label>
     Overall Result
     <select
