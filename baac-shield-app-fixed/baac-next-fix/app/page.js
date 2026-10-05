@@ -521,6 +521,7 @@ const [dailyActivityDate, setDailyActivityDate] = useState(
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [activeTab, setActiveTab] = useState("worker");
+  const [competencySection, setCompetencySection] = useState("dashboard");    
  const [qaqcSection, setQaqcSection] = useState("dashboard");
  const [qaqcInspectionType, setQaqcInspectionType] = useState("");
  const [qaqcProjectId, setQaqcProjectId] = useState("");
