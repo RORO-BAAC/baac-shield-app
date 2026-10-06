@@ -21214,7 +21214,84 @@ onClick={() => setCompetencySection("roleProgression")}
       />
     </div>
   </div>
+<div
+  style={{
+    marginTop: 18,
+    padding: 14,
+    borderRadius: 10,
+    border: "1px solid #e2e8f0",
+    background: "#f8fafc",
+  }}
+>
+  <h5 style={{ marginTop: 0, marginBottom: 12, color: "#0f2f63" }}>
+    Eligibility & Safety Verification
+  </h5>
 
+  <div
+    style={{
+      display: "grid",
+      gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
+      gap: 14,
+    }}
+  >
+    {[
+      [
+        "Time in Current Position Requirement Met?",
+        competencyTimeInPositionMet,
+        setCompetencyTimeInPositionMet,
+      ],
+      [
+        "Safety Record Acceptable?",
+        competencySafetyRecordAcceptable,
+        setCompetencySafetyRecordAcceptable,
+      ],
+      [
+        "Violations in Previous 12 Months?",
+        competencyViolationsPrevious12Months,
+        setCompetencyViolationsPrevious12Months,
+      ],
+      [
+        "Corrective Actions Resolved?",
+        competencyCorrectiveActionsResolved,
+        setCompetencyCorrectiveActionsResolved,
+      ],
+      [
+        "Required Training / Tickets Current?",
+        competencyTrainingCurrent,
+        setCompetencyTrainingCurrent,
+      ],
+    ].map(([label, value, setter]) => (
+      <div key={label}>
+        <label
+          style={{
+            display: "block",
+            fontWeight: "bold",
+            marginBottom: 6,
+          }}
+        >
+          {label}
+        </label>
+
+        <select
+          value={value}
+          onChange={(e) => setter(e.target.value)}
+          style={{
+            width: "100%",
+            padding: 10,
+            borderRadius: 8,
+            border: "1px solid #cbd5e1",
+            background: "white",
+          }}
+        >
+          <option value="">Select</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+          <option value="N/A">N/A</option>
+        </select>
+      </div>
+    ))}
+  </div>
+</div>
   <div style={{ marginTop: 14 }}>
     <label style={{ display: "block", fontWeight: "bold", marginBottom: 6 }}>
       HSE Notes
