@@ -20772,6 +20772,82 @@ onClick={() => setCompetencySection("roleProgression")}
       }}
     />
   </div>
+</div>    
+  <div
+  style={{
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
+    gap: 14,
+    marginTop: 14,
+  }}
+>
+  <div>
+    <label style={{ display: "block", fontWeight: "bold", marginBottom: 6 }}>
+      Manager
+    </label>
+    <input
+      type="text"
+      value={competencyManagerName}
+      onChange={(e) => setCompetencyManagerName(e.target.value)}
+      style={{
+        width: "100%",
+        padding: 10,
+        borderRadius: 8,
+        border: "1px solid #cbd5e1",
+      }}
+    />
+  </div>
+
+  <div>
+    <label style={{ display: "block", fontWeight: "bold", marginBottom: 6 }}>
+      Mentor
+    </label>
+    <input
+      type="text"
+      value={competencyMentorName}
+      onChange={(e) => setCompetencyMentorName(e.target.value)}
+      style={{
+        width: "100%",
+        padding: 10,
+        borderRadius: 8,
+        border: "1px solid #cbd5e1",
+      }}
+    />
+  </div>
+
+  <div>
+    <label style={{ display: "block", fontWeight: "bold", marginBottom: 6 }}>
+      Start Date
+    </label>
+    <input
+      type="date"
+      value={competencyStartDate}
+      onChange={(e) => setCompetencyStartDate(e.target.value)}
+      style={{
+        width: "100%",
+        padding: 10,
+        borderRadius: 8,
+        border: "1px solid #cbd5e1",
+      }}
+    />
+  </div>
+
+  <div>
+    <label style={{ display: "block", fontWeight: "bold", marginBottom: 6 }}>
+      Target Completion Date
+    </label>
+    <input
+      type="date"
+      value={competencyTargetCompletionDate}
+      onChange={(e) => setCompetencyTargetCompletionDate(e.target.value)}
+      style={{
+        width: "100%",
+        padding: 10,
+        borderRadius: 8,
+        border: "1px solid #cbd5e1",
+      }}
+    />
+  </div>
 </div>        
   </div>
 )}            
