@@ -532,6 +532,15 @@ const [competencyMentorName, setCompetencyMentorName] = useState("");
 const [competencyStartDate, setCompetencyStartDate] = useState("");
 const [competencyTargetCompletionDate, setCompetencyTargetCompletionDate] = useState("");    
 const [competencyItems, setCompetencyItems] = useState([]);      
+const [competencyStatus, setCompetencyStatus] = useState("In Progress");
+const [competencyHseReviewStatus, setCompetencyHseReviewStatus] = useState("");
+const [competencyHseReviewedBy, setCompetencyHseReviewedBy] = useState("");
+const [competencyHseReviewDate, setCompetencyHseReviewDate] = useState("");
+const [competencyHseNotes, setCompetencyHseNotes] = useState("");
+const [competencyFinalDecision, setCompetencyFinalDecision] = useState("");
+const [competencyEmployeeSignature, setCompetencyEmployeeSignature] = useState("");
+const [competencyManagerSignature, setCompetencyManagerSignature] = useState("");
+      
  const [qaqcSection, setQaqcSection] = useState("dashboard");
  const [qaqcInspectionType, setQaqcInspectionType] = useState("");
  const [qaqcProjectId, setQaqcProjectId] = useState("");
