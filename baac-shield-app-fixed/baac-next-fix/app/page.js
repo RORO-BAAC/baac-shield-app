@@ -21025,6 +21025,58 @@ onClick={() => setCompetencySection("roleProgression")}
     </button>
   </div>
 ))}
+ {competencyItems.length > 0 && (
+  <div
+    style={{
+      marginTop: 18,
+      padding: 16,
+      borderRadius: 10,
+      border: "1px solid #cbd5e1",
+      background: "#f8fafc",
+    }}
+  >
+    {(() => {
+      const ratedItems = competencyItems.filter(
+        (item) => item.managerRating !== ""
+      );
+
+      const totalScore = ratedItems.reduce(
+        (sum, item) => sum + Number(item.managerRating || 0),
+        0
+      );
+
+      const maximumScore = ratedItems.length * 4;
+
+      const overallPercentage =
+        maximumScore > 0
+          ? Math.round((totalScore / maximumScore) * 100)
+          : 0;
+
+      return (
+        <>
+          <div style={{ fontWeight: "bold", color: "#0f2f63" }}>
+            Overall Competency Score: {overallPercentage}%
+          </div>
+
+          <div
+            style={{
+              marginTop: 6,
+              fontSize: 13,
+              color: overallPercentage >= 80 ? "#166534" : "#b45309",
+              fontWeight: "bold",
+            }}
+          >
+            {ratedItems.length === 0
+              ? "Manager ratings have not been completed."
+              : overallPercentage >= 80
+              ? "Meets 80% competency threshold."
+              : "Below 80% competency threshold."}
+          </div>
+        </>
+      );
+    })()}
+  </div>
+)}     
 </div>       
   </div>
 )}            
