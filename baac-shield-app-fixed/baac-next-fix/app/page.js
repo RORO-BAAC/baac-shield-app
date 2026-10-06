@@ -20697,6 +20697,82 @@ onClick={() => setCompetencySection("roleProgression")}
     <p style={{ color: "#64748b" }}>
       Create and manage an employee role progression record.
     </p>
+    <div
+  style={{
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
+    gap: 14,
+    marginTop: 18,
+  }}
+>
+  <div>
+    <label style={{ display: "block", fontWeight: "bold", marginBottom: 6 }}>
+      Employee Name
+    </label>
+    <input
+      type="text"
+      value={competencyEmployeeName}
+      onChange={(e) => setCompetencyEmployeeName(e.target.value)}
+      style={{
+        width: "100%",
+        padding: 10,
+        borderRadius: 8,
+        border: "1px solid #cbd5e1",
+      }}
+    />
+  </div>
+
+  <div>
+    <label style={{ display: "block", fontWeight: "bold", marginBottom: 6 }}>
+      Employee Email
+    </label>
+    <input
+      type="email"
+      value={competencyEmployeeEmail}
+      onChange={(e) => setCompetencyEmployeeEmail(e.target.value)}
+      style={{
+        width: "100%",
+        padding: 10,
+        borderRadius: 8,
+        border: "1px solid #cbd5e1",
+      }}
+    />
+  </div>
+
+  <div>
+    <label style={{ display: "block", fontWeight: "bold", marginBottom: 6 }}>
+      Current Position
+    </label>
+    <input
+      type="text"
+      value={competencyCurrentPosition}
+      onChange={(e) => setCompetencyCurrentPosition(e.target.value)}
+      style={{
+        width: "100%",
+        padding: 10,
+        borderRadius: 8,
+        border: "1px solid #cbd5e1",
+      }}
+    />
+  </div>
+
+  <div>
+    <label style={{ display: "block", fontWeight: "bold", marginBottom: 6 }}>
+      Proposed Role
+    </label>
+    <input
+      type="text"
+      value={competencyProposedRole}
+      onChange={(e) => setCompetencyProposedRole(e.target.value)}
+      style={{
+        width: "100%",
+        padding: 10,
+        borderRadius: 8,
+        border: "1px solid #cbd5e1",
+      }}
+    />
+  </div>
+</div>        
   </div>
 )}            
   </div>
