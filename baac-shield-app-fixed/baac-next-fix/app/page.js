@@ -21230,6 +21230,45 @@ onClick={() => setCompetencySection("roleProgression")}
     />
   </div>
 </div>
+  <div
+  style={{
+    marginTop: 24,
+    paddingTop: 20,
+    borderTop: "1px solid #e2e8f0",
+  }}
+>
+  <h4 style={{ marginTop: 0, color: "#0f2f63" }}>
+    Final Competency Decision
+  </h4>
+
+  <p style={{ color: "#64748b" }}>
+    Record the final decision following competency assessment and HSE review.
+  </p>
+
+  <div style={{ marginTop: 14, maxWidth: 420 }}>
+    <label style={{ display: "block", fontWeight: "bold", marginBottom: 6 }}>
+      Final Decision
+    </label>
+
+    <select
+      value={competencyFinalDecision}
+      onChange={(e) => setCompetencyFinalDecision(e.target.value)}
+      style={{
+        width: "100%",
+        padding: 10,
+        borderRadius: 8,
+        border: "1px solid #cbd5e1",
+        background: "white",
+      }}
+    >
+      <option value="">Select decision</option>
+      <option value="Confirm in Role">Confirm in Role</option>
+      <option value="Extend Assessment">Extend Assessment</option>
+      <option value="Return to Mentor Stage">Return to Mentor Stage</option>
+      <option value="Not Approved">Not Approved</option>
+    </select>
+  </div>
+</div>        
 </div>       
   </div>
 )}            
