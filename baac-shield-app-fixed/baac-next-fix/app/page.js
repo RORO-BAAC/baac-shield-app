@@ -20619,6 +20619,7 @@ onChange={(e) =>
     >
       <button
         type="button"
+onClick={() => setCompetencySection("roleProgression")}
         style={{
           padding: 18,
           borderRadius: 12,
