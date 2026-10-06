@@ -21268,7 +21268,87 @@ onClick={() => setCompetencySection("roleProgression")}
       <option value="Not Approved">Not Approved</option>
     </select>
   </div>
-</div>        
+</div>    
+<div
+  style={{
+    marginTop: 24,
+    paddingTop: 20,
+    borderTop: "1px solid #e2e8f0",
+  }}
+>
+  <h4 style={{ marginTop: 0, color: "#0f2f63" }}>
+    Employee & Manager Sign-Off
+  </h4>
+
+  <p style={{ color: "#64748b" }}>
+    Employee and manager acknowledge the final competency decision and assessment outcome.
+  </p>
+
+  <div
+    style={{
+      display: "grid",
+      gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+      gap: 20,
+      marginTop: 16,
+    }}
+  >
+    <div>
+      <label style={{ display: "block", fontWeight: "bold", marginBottom: 6 }}>
+        Employee Signature
+      </label>
+
+      <SignatureCanvas
+        penColor="black"
+        onEnd={(signaturePad) => {
+          const canvas = signaturePad?.target;
+          if (canvas) {
+            setCompetencyEmployeeSignature(canvas.toDataURL("image/png"));
+          }
+        }}
+        canvasProps={{
+          width: 350,
+          height: 160,
+          style: {
+            width: "100%",
+            maxWidth: 350,
+            height: 160,
+            border: "2px solid #cbd5e1",
+            borderRadius: 10,
+            background: "white",
+          },
+        }}
+      />
+    </div>
+
+    <div>
+      <label style={{ display: "block", fontWeight: "bold", marginBottom: 6 }}>
+        Manager Signature
+      </label>
+
+      <SignatureCanvas
+        penColor="black"
+        onEnd={(signaturePad) => {
+          const canvas = signaturePad?.target;
+          if (canvas) {
+            setCompetencyManagerSignature(canvas.toDataURL("image/png"));
+          }
+        }}
+        canvasProps={{
+          width: 350,
+          height: 160,
+          style: {
+            width: "100%",
+            maxWidth: 350,
+            height: 160,
+            border: "2px solid #cbd5e1",
+            borderRadius: 10,
+            background: "white",
+          },
+        }}
+      />
+    </div>
+  </div>
+</div>          
 </div>       
   </div>
 )}            
