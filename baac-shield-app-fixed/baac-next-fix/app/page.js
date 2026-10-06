@@ -20682,6 +20682,23 @@ onClick={() => setCompetencySection("roleProgression")}
         Approvals
       </button>
     </div>
+  {competencySection === "roleProgression" && (
+  <div
+    style={{
+      marginTop: 24,
+      paddingTop: 20,
+      borderTop: "1px solid #e2e8f0",
+    }}
+  >
+    <h3 style={{ marginTop: 0, color: "#0f2f63" }}>
+      Role Progression
+    </h3>
+
+    <p style={{ color: "#64748b" }}>
+      Create and manage an employee role progression record.
+    </p>
+  </div>
+)}            
   </div>
 )}     
 {activeTab === "crm" && (
