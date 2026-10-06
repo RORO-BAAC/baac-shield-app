@@ -21076,7 +21076,110 @@ onClick={() => setCompetencySection("roleProgression")}
       );
     })()}
   </div>
-)}     
+)}    
+<div
+  style={{
+    marginTop: 24,
+    paddingTop: 20,
+    borderTop: "1px solid #e2e8f0",
+  }}
+>
+  <h4 style={{ marginTop: 0, color: "#0f2f63" }}>
+    HSE Review
+  </h4>
+
+  <p style={{ color: "#64748b" }}>
+    Confirm safety eligibility, training status, and HSE approval before final role progression.
+  </p>
+
+  <div
+    style={{
+      display: "grid",
+      gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+      gap: 14,
+      marginTop: 14,
+    }}
+  >
+    <div>
+      <label style={{ display: "block", fontWeight: "bold", marginBottom: 6 }}>
+        HSE Review Status
+      </label>
+
+      <select
+        value={competencyHseReviewStatus}
+        onChange={(e) => setCompetencyHseReviewStatus(e.target.value)}
+        style={{
+          width: "100%",
+          padding: 10,
+          borderRadius: 8,
+          border: "1px solid #cbd5e1",
+          background: "white",
+        }}
+      >
+        <option value="">Select status</option>
+        <option value="Pending">Pending</option>
+        <option value="Approved">Approved</option>
+        <option value="Needs More Training">Needs More Training</option>
+        <option value="Not Approved">Not Approved</option>
+      </select>
+    </div>
+
+    <div>
+      <label style={{ display: "block", fontWeight: "bold", marginBottom: 6 }}>
+        Reviewed By
+      </label>
+
+      <input
+        type="text"
+        value={competencyHseReviewedBy}
+        onChange={(e) => setCompetencyHseReviewedBy(e.target.value)}
+        style={{
+          width: "100%",
+          padding: 10,
+          borderRadius: 8,
+          border: "1px solid #cbd5e1",
+        }}
+      />
+    </div>
+
+    <div>
+      <label style={{ display: "block", fontWeight: "bold", marginBottom: 6 }}>
+        Review Date
+      </label>
+
+      <input
+        type="date"
+        value={competencyHseReviewDate}
+        onChange={(e) => setCompetencyHseReviewDate(e.target.value)}
+        style={{
+          width: "100%",
+          padding: 10,
+          borderRadius: 8,
+          border: "1px solid #cbd5e1",
+        }}
+      />
+    </div>
+  </div>
+
+  <div style={{ marginTop: 14 }}>
+    <label style={{ display: "block", fontWeight: "bold", marginBottom: 6 }}>
+      HSE Notes
+    </label>
+
+    <textarea
+      value={competencyHseNotes}
+      onChange={(e) => setCompetencyHseNotes(e.target.value)}
+      rows={4}
+      style={{
+        width: "100%",
+        padding: 10,
+        borderRadius: 8,
+        border: "1px solid #cbd5e1",
+        resize: "vertical",
+      }}
+    />
+  </div>
+</div>
 </div>       
   </div>
 )}            
