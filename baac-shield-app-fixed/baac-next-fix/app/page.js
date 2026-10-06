@@ -1271,7 +1271,21 @@ async function saveCompetencyProgression() {
 
   setLoading(true);
   setMessage("");
+const ratedItems = competencyItems.filter(
+  (item) => item.managerRating !== ""
+);
 
+const finalScore =
+  ratedItems.length > 0
+    ? Math.round(
+        (ratedItems.reduce(
+          (total, item) => total + Number(item.managerRating || 0),
+          0
+        ) /
+          (ratedItems.length * 4)) *
+          100
+      )
+    : 0;
   try {
     const payload = {
       employee_name: competencyEmployeeName.trim(),
