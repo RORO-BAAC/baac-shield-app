@@ -855,7 +855,8 @@ const rpasPreflightSigRef = useRef(null);
 const rpasPostflightSigRef = useRef(null);
 const vehiclePreUseDriverSigRef = useRef(null);
 const vehiclePreUseSupervisorSigRef = useRef(null);
-
+const competencyEmployeeSigRef = useRef(null);
+const competencyManagerSigRef = useRef(null);
 function navigateQaqc(section) {
   window.history.pushState(
     {
