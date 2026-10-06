@@ -21003,7 +21003,57 @@ onClick={() => setCompetencySection("roleProgression")}
         <option value="4">4 - Exceeds / Can Teach</option>
       </select>
     </div>
+<div>
+  <label style={{ display: "block", fontWeight: "bold", marginBottom: 6 }}>
+    Gap
+  </label>
 
+  {item.employeeRating !== "" && item.managerRating !== "" ? (
+    <div
+      style={{
+        padding: 10,
+        borderRadius: 8,
+        border:
+          Math.abs(
+            Number(item.employeeRating) - Number(item.managerRating)
+          ) >= 2
+            ? "2px solid #dc2626"
+            : "1px solid #cbd5e1",
+        background:
+          Math.abs(
+            Number(item.employeeRating) - Number(item.managerRating)
+          ) >= 2
+            ? "#fef2f2"
+            : "white",
+        color:
+          Math.abs(
+            Number(item.employeeRating) - Number(item.managerRating)
+          ) >= 2
+            ? "#b91c1c"
+            : "#0f172a",
+        fontWeight: "bold",
+        textAlign: "center",
+      }}
+    >
+      {Math.abs(
+        Number(item.employeeRating) - Number(item.managerRating)
+      )}
+    </div>
+  ) : (
+    <div
+      style={{
+        padding: 10,
+        borderRadius: 8,
+        border: "1px solid #cbd5e1",
+        background: "white",
+        color: "#94a3b8",
+        textAlign: "center",
+      }}
+    >
+      -
+    </div>
+  )}
+</div>
     <button
       type="button"
       onClick={() =>
