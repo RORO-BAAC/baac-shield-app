@@ -21384,27 +21384,10 @@ onClick={() => setCompetencySection("roleProgression")}
         Employee Signature
       </label>
 
-      <SignatureCanvas
-        penColor="black"
-        onEnd={(signaturePad) => {
-          const canvas = signaturePad?.target;
-          if (canvas) {
-            setCompetencyEmployeeSignature(canvas.toDataURL("image/png"));
-          }
-        }}
-        canvasProps={{
-          width: 350,
-          height: 160,
-          style: {
-            width: "100%",
-            maxWidth: 350,
-            height: 160,
-            border: "2px solid #cbd5e1",
-            borderRadius: 10,
-            background: "white",
-          },
-        }}
-      />
+     <SignatureBox
+  sigRef={competencyEmployeeSigRef}
+  onSave={setCompetencyEmployeeSignature}
+/>
     </div>
 
     <div>
