@@ -20907,6 +20907,124 @@ onClick={() => setCompetencySection("roleProgression")}
       No competencies added yet.
     </p>
   )}
+{competencyItems.map((item, index) => (
+  <div
+    key={index}
+    style={{
+      display: "grid",
+      gridTemplateColumns: "minmax(260px, 2fr) minmax(180px, 1fr) minmax(180px, 1fr) auto",
+      gap: 12,
+      alignItems: "end",
+      marginTop: 14,
+      padding: 14,
+      border: "1px solid #e2e8f0",
+      borderRadius: 10,
+      background: "#f8fafc",
+    }}
+  >
+    <div>
+      <label style={{ display: "block", fontWeight: "bold", marginBottom: 6 }}>
+        Competency
+      </label>
+      <input
+        type="text"
+        value={item.competency}
+        onChange={(e) => {
+          const updated = [...competencyItems];
+          updated[index] = {
+            ...updated[index],
+            competency: e.target.value,
+          };
+          setCompetencyItems(updated);
+        }}
+        style={{
+          width: "100%",
+          padding: 10,
+          borderRadius: 8,
+          border: "1px solid #cbd5e1",
+        }}
+      />
+    </div>
+
+    <div>
+      <label style={{ display: "block", fontWeight: "bold", marginBottom: 6 }}>
+        Employee Rating
+      </label>
+      <select
+        value={item.employeeRating}
+        onChange={(e) => {
+          const updated = [...competencyItems];
+          updated[index] = {
+            ...updated[index],
+            employeeRating: e.target.value,
+          };
+          setCompetencyItems(updated);
+        }}
+        style={{
+          width: "100%",
+          padding: 10,
+          borderRadius: 8,
+          border: "1px solid #cbd5e1",
+        }}
+      >
+        <option value="">Select rating</option>
+        <option value="1">1 - Not Yet Competent</option>
+        <option value="2">2 - Developing</option>
+        <option value="3">3 - Competent</option>
+        <option value="4">4 - Exceeds / Can Teach</option>
+      </select>
+    </div>
+
+    <div>
+      <label style={{ display: "block", fontWeight: "bold", marginBottom: 6 }}>
+        Manager Rating
+      </label>
+      <select
+        value={item.managerRating}
+        onChange={(e) => {
+          const updated = [...competencyItems];
+          updated[index] = {
+            ...updated[index],
+            managerRating: e.target.value,
+          };
+          setCompetencyItems(updated);
+        }}
+        style={{
+          width: "100%",
+          padding: 10,
+          borderRadius: 8,
+          border: "1px solid #cbd5e1",
+        }}
+      >
+        <option value="">Select rating</option>
+        <option value="1">1 - Not Yet Competent</option>
+        <option value="2">2 - Developing</option>
+        <option value="3">3 - Competent</option>
+        <option value="4">4 - Exceeds / Can Teach</option>
+      </select>
+    </div>
+
+    <button
+      type="button"
+      onClick={() =>
+        setCompetencyItems(
+          competencyItems.filter((_, itemIndex) => itemIndex !== index)
+        )
+      }
+      style={{
+        padding: "10px 12px",
+        borderRadius: 8,
+        border: "1px solid #dc2626",
+        background: "white",
+        color: "#dc2626",
+        fontWeight: "bold",
+        cursor: "pointer",
+      }}
+    >
+      Remove
+    </button>
+  </div>
+))}
 </div>       
   </div>
 )}            
