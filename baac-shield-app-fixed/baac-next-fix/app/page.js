@@ -1253,7 +1253,58 @@ setCompetencyProgressions(competencyData || []);
       setMessage(`Could not load records from database: ${error.message}`);
     }
   }
+async function saveCompetencyProgression() {
+  if (!competencyEmployeeName.trim()) {
+    setMessage("Please enter the employee name.");
+    return;
+  }
 
+  if (!competencyCurrentPosition.trim() || !competencyProposedRole.trim()) {
+    setMessage("Please enter the current position and proposed role.");
+    return;
+  }
+
+  setLoading(true);
+  setMessage("");
+
+  try {
+    const payload = {
+      employee_name: competencyEmployeeName.trim(),
+      employee_email: competencyEmployeeEmail.trim(),
+      current_position: competencyCurrentPosition.trim(),
+      proposed_role: competencyProposedRole.trim(),
+      manager_name: competencyManagerName.trim(),
+      mentor_name: competencyMentorName.trim(),
+      start_date: competencyStartDate || null,
+      target_completion_date: competencyTargetCompletionDate || null,
+      status: competencyStatus,
+      competency_items: competencyItems,
+      hse_review_status: competencyHseReviewStatus,
+      hse_reviewed_by: competencyHseReviewedBy,
+      hse_review_date: competencyHseReviewDate || null,
+      hse_notes: competencyHseNotes,
+      final_decision: competencyFinalDecision,
+      employee_signature: competencyEmployeeSignature,
+      manager_signature: competencyManagerSignature,
+      created_by: user?.email || "",
+    };
+
+    const { error } = await supabase
+      .from("competency_role_progressions")
+      .insert([payload]);
+
+    if (error) {
+      throw error;
+    }
+
+    setMessage("Role progression record saved successfully.");
+    await loadRecords();
+  } catch (error) {
+    setMessage(`Could not save role progression: ${error.message}`);
+  } finally {
+    setLoading(false);
+  }
+}
   async function loadProjects() {
     try {
       const res = await fetch(
