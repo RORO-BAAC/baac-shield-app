@@ -1238,7 +1238,17 @@ if (qaqcCloseoutError) {
   throw qaqcCloseoutError;
 }
 
-setQaqcCloseoutRecords(qaqcCloseoutData || []);        
+setQaqcCloseoutRecords(qaqcCloseoutData || []);   
+  const { data: competencyData, error: competencyError } = await supabase
+  .from("competency_role_progressions")
+  .select("*")
+  .order("created_at", { ascending: false });
+
+if (competencyError) {
+  throw competencyError;
+}
+
+setCompetencyProgressions(competencyData || []);        
     } catch (error) {
       setMessage(`Could not load records from database: ${error.message}`);
     }
