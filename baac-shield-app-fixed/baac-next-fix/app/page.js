@@ -20848,7 +20848,66 @@ onClick={() => setCompetencySection("roleProgression")}
       }}
     />
   </div>
-</div>        
+</div>   
+   <div
+  style={{
+    marginTop: 24,
+    paddingTop: 20,
+    borderTop: "1px solid #e2e8f0",
+  }}
+>
+  <div
+    style={{
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      gap: 12,
+      flexWrap: "wrap",
+      marginBottom: 14,
+    }}
+  >
+    <div>
+      <h4 style={{ margin: 0, color: "#0f2f63" }}>
+        Competency Checklist
+      </h4>
+
+      <p style={{ margin: "4px 0 0", color: "#64748b" }}>
+        Add the competencies required for this role progression.
+      </p>
+    </div>
+
+    <button
+      type="button"
+      onClick={() =>
+        setCompetencyItems([
+          ...competencyItems,
+          {
+            competency: "",
+            employeeRating: "",
+            managerRating: "",
+          },
+        ])
+      }
+      style={{
+        padding: "10px 14px",
+        borderRadius: 8,
+        border: "none",
+        background: "#123d82",
+        color: "white",
+        fontWeight: "bold",
+        cursor: "pointer",
+      }}
+    >
+      + Add Competency
+    </button>
+  </div>
+
+  {competencyItems.length === 0 && (
+    <p style={{ color: "#94a3b8", margin: 0 }}>
+      No competencies added yet.
+    </p>
+  )}
+</div>       
   </div>
 )}            
   </div>
