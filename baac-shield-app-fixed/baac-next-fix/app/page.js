@@ -540,7 +540,11 @@ const [competencyHseNotes, setCompetencyHseNotes] = useState("");
 const [competencyFinalDecision, setCompetencyFinalDecision] = useState("");
 const [competencyEmployeeSignature, setCompetencyEmployeeSignature] = useState("");
 const [competencyManagerSignature, setCompetencyManagerSignature] = useState("");
-      
+const [competencyTimeInPositionMet, setCompetencyTimeInPositionMet] = useState("");
+const [competencySafetyRecordAcceptable, setCompetencySafetyRecordAcceptable] = useState("");
+const [competencyViolationsPrevious12Months, setCompetencyViolationsPrevious12Months] = useState("");
+const [competencyCorrectiveActionsResolved, setCompetencyCorrectiveActionsResolved] = useState("");
+const [competencyTrainingCurrent, setCompetencyTrainingCurrent] = useState("");      
  const [qaqcSection, setQaqcSection] = useState("dashboard");
  const [qaqcInspectionType, setQaqcInspectionType] = useState("");
  const [qaqcProjectId, setQaqcProjectId] = useState("");
