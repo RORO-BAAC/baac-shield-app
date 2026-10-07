@@ -21690,6 +21690,21 @@ onClick={() => setCompetencySection("roleProgression")}
     >
       {loading ? "Submitting..." : "Submit Innovation Idea"}
     </button>
+    {message && (
+  <div
+    style={{
+      marginTop: 16,
+      padding: 14,
+      borderRadius: 10,
+      background: "#f1f5f9",
+      border: "1px solid #cbd5e1",
+      fontWeight: "bold",
+      color: "#0f172a",
+    }}
+  >
+    {message}
+  </div>
+)}      
   </div>
 )}
 {activeTab === "crm" && (
