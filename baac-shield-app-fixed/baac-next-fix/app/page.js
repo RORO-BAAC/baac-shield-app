@@ -7432,7 +7432,23 @@ onClick={() => {
     Admin Settings
   </button>
 )}
-      
+   {(role === "admin" || role === "supervisor") && (
+  <button
+    type="button"
+    onClick={() => setActiveTab("innovationReview")}
+    style={{
+      padding: "10px 14px",
+      borderRadius: 10,
+      border: "1px solid #cbd5e1",
+      background: activeTab === "innovationReview" ? "#123d82" : "white",
+      color: activeTab === "innovationReview" ? "white" : "#0f172a",
+      fontWeight: "bold",
+      cursor: "pointer",
+    }}
+  >
+    Innovation Review
+  </button>
+)}   
 </div>
 
       {activeTab === "worker" && (
