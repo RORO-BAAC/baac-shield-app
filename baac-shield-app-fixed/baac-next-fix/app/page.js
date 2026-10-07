@@ -7318,6 +7318,21 @@ onClick={() => {
 >
   People & Competency
 </button>     
+ <button
+  type="button"
+  onClick={() => setActiveTab("innovation")}
+  style={{
+    padding: "10px 14px",
+    borderRadius: 10,
+    border: "1px solid #cbd5e1",
+    background: activeTab === "innovation" ? "#123d82" : "white",
+    color: activeTab === "innovation" ? "white" : "#0f172a",
+    fontWeight: "bold",
+    cursor: "pointer",
+  }}
+>
+  Innovation
+</button>       
 <button
   type="button"
   onClick={() => setActiveTab("crm")}
