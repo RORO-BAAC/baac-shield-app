@@ -21821,11 +21821,13 @@ onClick={() => setCompetencySection("roleProgression")}
           {innovationSubmissions.map((submission) => (
             <div
               key={submission.id}
+           onClick={() => setSelectedInnovationSubmission(submission)}
               style={{
                 border: "1px solid #dbe4ee",
                 borderRadius: 12,
                 padding: 16,
                 background: "#f8fafc",
+               cursor: "pointer",     
               }}
             >
               <div
