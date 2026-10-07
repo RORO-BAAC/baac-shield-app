@@ -21930,7 +21930,9 @@ onClick={() => setCompetencySection("roleProgression")}
       )}
     </div>
   )}
-{selectedInnovationSubmission && (
+{activeTab === "innovationReview" &&
+  selectedInnovationSubmission &&
+  (role === "admin" || role === "supervisor") && (
   <div
     style={{
       marginTop: 20,
