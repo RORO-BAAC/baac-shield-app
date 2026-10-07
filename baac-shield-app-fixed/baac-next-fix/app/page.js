@@ -21709,6 +21709,224 @@ onClick={() => setCompetencySection("roleProgression")}
 )}      
   </div>
 )}
+{activeTab === "innovationReview" &&
+  (role === "admin" || role === "supervisor") && (
+    <div
+      style={{
+        background: "white",
+        padding: 20,
+        borderRadius: 16,
+        boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
+        marginBottom: 20,
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          gap: 12,
+          flexWrap: "wrap",
+          marginBottom: 18,
+        }}
+      >
+        <div>
+          <h2 style={{ margin: 0, color: "#0f2f63" }}>
+            Innovation Review
+          </h2>
+
+          <p style={{ marginTop: 6, color: "#64748b" }}>
+            Review employee ideas, confidential submissions, and potential
+            Best Suggestions Pool entries.
+          </p>
+        </div>
+
+        <button
+          type="button"
+          onClick={async () => {
+            setLoading(true);
+            setMessage("");
+
+            try {
+              const { data, error } = await supabase
+                .from("innovation_submissions")
+                .select("*")
+                .order("created_at", { ascending: false });
+
+              if (error) throw error;
+
+              setInnovationSubmissions(data || []);
+            } catch (error) {
+              setMessage(
+                `Could not load innovation submissions: ${error.message}`
+              );
+            } finally {
+              setLoading(false);
+            }
+          }}
+          style={{
+            padding: "10px 14px",
+            borderRadius: 10,
+            border: "none",
+            background: "#123d82",
+            color: "white",
+            fontWeight: "bold",
+            cursor: "pointer",
+          }}
+        >
+          {loading ? "Loading..." : "Load / Refresh Submissions"}
+        </button>
+      </div>
+
+      {message && (
+        <div
+          style={{
+            padding: 12,
+            borderRadius: 10,
+            background: "#f1f5f9",
+            border: "1px solid #cbd5e1",
+            marginBottom: 16,
+            fontWeight: "bold",
+          }}
+        >
+          {message}
+        </div>
+      )}
+
+      <div
+        style={{
+          marginBottom: 16,
+          fontWeight: "bold",
+          color: "#334155",
+        }}
+      >
+        Submissions: {innovationSubmissions.length}
+      </div>
+
+      {innovationSubmissions.length === 0 ? (
+        <div
+          style={{
+            padding: 20,
+            border: "1px dashed #cbd5e1",
+            borderRadius: 12,
+            color: "#64748b",
+            textAlign: "center",
+          }}
+        >
+          No submissions loaded yet.
+        </div>
+      ) : (
+        <div style={{ display: "grid", gap: 14 }}>
+          {innovationSubmissions.map((submission) => (
+            <div
+              key={submission.id}
+              style={{
+                border: "1px solid #dbe4ee",
+                borderRadius: 12,
+                padding: 16,
+                background: "#f8fafc",
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  gap: 12,
+                  flexWrap: "wrap",
+                  marginBottom: 10,
+                }}
+              >
+                <div>
+                  <h3 style={{ margin: 0, color: "#0f2f63" }}>
+                    {submission.title || "Untitled Idea"}
+                  </h3>
+
+                  <div
+                    style={{
+                      marginTop: 5,
+                      fontSize: 13,
+                      color: "#64748b",
+                    }}
+                  >
+                    {submission.category || "No category"} •{" "}
+                    {submission.impact_level || "No impact selected"}
+                  </div>
+                </div>
+
+                <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+                  <span
+                    style={{
+                      padding: "5px 9px",
+                      borderRadius: 999,
+                      background: "#e2e8f0",
+                      fontSize: 12,
+                      fontWeight: "bold",
+                    }}
+                  >
+                    {submission.status || "New"}
+                  </span>
+
+                  {submission.confidential && (
+                    <span
+                      style={{
+                        padding: "5px 9px",
+                        borderRadius: 999,
+                        background: "#fee2e2",
+                        fontSize: 12,
+                        fontWeight: "bold",
+                        color: "#991b1b",
+                      }}
+                    >
+                      Confidential
+                    </span>
+                  )}
+                </div>
+              </div>
+
+              <div style={{ display: "grid", gap: 8, fontSize: 14 }}>
+                <div>
+                  <strong>Submitted By:</strong>{" "}
+                  {submission.submitted_by || "Not provided"}
+                </div>
+
+                <div>
+                  <strong>Email:</strong>{" "}
+                  {submission.submitted_by_email || "Not available"}
+                </div>
+
+                <div>
+                  <strong>Department / Team:</strong>{" "}
+                  {submission.department_team || "Not provided"}
+                </div>
+
+                <div>
+                  <strong>Idea:</strong>{" "}
+                  {submission.idea_description || "Not provided"}
+                </div>
+
+                <div>
+                  <strong>Problem It Solves:</strong>{" "}
+                  {submission.problem_solved || "Not provided"}
+                </div>
+
+                <div>
+                  <strong>Expected Improvement:</strong>{" "}
+                  {submission.expected_improvement || "Not provided"}
+                </div>
+
+                <div>
+                  <strong>Submitted:</strong>{" "}
+                  {submission.created_at
+                    ? new Date(submission.created_at).toLocaleString()
+                    : "Unknown"}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  )}
 {activeTab === "crm" && (
   <div
     style={{
