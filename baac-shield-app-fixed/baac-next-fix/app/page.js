@@ -21553,18 +21553,7 @@ onClick={() => setCompetencySection("roleProgression")}
         />
       </div>
 
-      <div>
-        <label style={{ display: "block", fontWeight: "bold", marginBottom: 6 }}>
-          Project / Area
-        </label>
-        <input
-          value={innovationProjectArea}
-          onChange={(e) => setInnovationProjectArea(e.target.value)}
-          style={{ width: "100%", padding: 10 }}
-        />
-      </div>
-
-      <div>
+          <div>
         <label style={{ display: "block", fontWeight: "bold", marginBottom: 6 }}>
           Category
         </label>
