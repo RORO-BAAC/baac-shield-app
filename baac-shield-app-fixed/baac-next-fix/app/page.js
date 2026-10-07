@@ -21505,6 +21505,193 @@ onClick={() => setCompetencySection("roleProgression")}
 )}            
   </div>
 )}     
+{activeTab === "innovation" && (
+  <div
+    style={{
+      background: "white",
+      padding: 20,
+      borderRadius: 16,
+      boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
+      marginBottom: 20,
+    }}
+  >
+    <h2 style={{ marginTop: 0, color: "#0f2f63" }}>
+      Innovation
+    </h2>
+
+    <p style={{ color: "#64748b", marginBottom: 20 }}>
+      Share ideas that improve safety, technology, productivity, quality,
+      workflows, equipment, or how we work.
+    </p>
+
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
+        gap: 14,
+      }}
+    >
+      <div>
+        <label style={{ display: "block", fontWeight: "bold", marginBottom: 6 }}>
+          Your Name
+        </label>
+        <input
+          value={innovationSubmittedBy}
+          onChange={(e) => setInnovationSubmittedBy(e.target.value)}
+          style={{ width: "100%", padding: 10 }}
+        />
+      </div>
+
+      <div>
+        <label style={{ display: "block", fontWeight: "bold", marginBottom: 6 }}>
+          Department / Team
+        </label>
+        <input
+          value={innovationDepartmentTeam}
+          onChange={(e) => setInnovationDepartmentTeam(e.target.value)}
+          style={{ width: "100%", padding: 10 }}
+        />
+      </div>
+
+      <div>
+        <label style={{ display: "block", fontWeight: "bold", marginBottom: 6 }}>
+          Project / Area
+        </label>
+        <input
+          value={innovationProjectArea}
+          onChange={(e) => setInnovationProjectArea(e.target.value)}
+          style={{ width: "100%", padding: 10 }}
+        />
+      </div>
+
+      <div>
+        <label style={{ display: "block", fontWeight: "bold", marginBottom: 6 }}>
+          Category
+        </label>
+        <select
+          value={innovationCategory}
+          onChange={(e) => setInnovationCategory(e.target.value)}
+          style={{ width: "100%", padding: 10 }}
+        >
+          <option value="">Select Category</option>
+          <option value="Innovation">Innovation</option>
+          <option value="Technology">Technology</option>
+          <option value="Process Improvement">Process Improvement</option>
+          <option value="Safety Improvement">Safety Improvement</option>
+          <option value="Quality Improvement">Quality Improvement</option>
+          <option value="Cost Savings">Cost Savings</option>
+          <option value="Productivity">Productivity</option>
+          <option value="Equipment / Tools">Equipment / Tools</option>
+          <option value="Employee Experience">Employee Experience</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+    </div>
+
+    <div style={{ marginTop: 16 }}>
+      <label style={{ display: "block", fontWeight: "bold", marginBottom: 6 }}>
+        Idea Title
+      </label>
+      <input
+        value={innovationTitle}
+        onChange={(e) => setInnovationTitle(e.target.value)}
+        style={{ width: "100%", padding: 10 }}
+      />
+    </div>
+
+    <div style={{ marginTop: 16 }}>
+      <label style={{ display: "block", fontWeight: "bold", marginBottom: 6 }}>
+        Describe Your Idea
+      </label>
+      <textarea
+        value={innovationIdeaDescription}
+        onChange={(e) => setInnovationIdeaDescription(e.target.value)}
+        rows={5}
+        style={{ width: "100%", padding: 10 }}
+      />
+    </div>
+
+    <div style={{ marginTop: 16 }}>
+      <label style={{ display: "block", fontWeight: "bold", marginBottom: 6 }}>
+        What Problem Does This Solve?
+      </label>
+      <textarea
+        value={innovationProblemSolved}
+        onChange={(e) => setInnovationProblemSolved(e.target.value)}
+        rows={3}
+        style={{ width: "100%", padding: 10 }}
+      />
+    </div>
+
+    <div style={{ marginTop: 16 }}>
+      <label style={{ display: "block", fontWeight: "bold", marginBottom: 6 }}>
+        How Would This Improve BAAC?
+      </label>
+      <textarea
+        value={innovationExpectedImprovement}
+        onChange={(e) => setInnovationExpectedImprovement(e.target.value)}
+        rows={3}
+        style={{ width: "100%", padding: 10 }}
+      />
+    </div>
+
+    <div style={{ marginTop: 16 }}>
+      <label style={{ display: "block", fontWeight: "bold", marginBottom: 6 }}>
+        Expected Impact
+      </label>
+      <select
+        value={innovationImpactLevel}
+        onChange={(e) => setInnovationImpactLevel(e.target.value)}
+        style={{ width: "100%", padding: 10 }}
+      >
+        <option value="">Select Impact</option>
+        <option value="Low">Low</option>
+        <option value="Medium">Medium</option>
+        <option value="High">High</option>
+      </select>
+    </div>
+
+    <label
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: 8,
+        marginTop: 18,
+        fontWeight: "bold",
+      }}
+    >
+      <input
+        type="checkbox"
+        checked={innovationConfidential}
+        onChange={(e) => setInnovationConfidential(e.target.checked)}
+      />
+      Confidential Submission
+    </label>
+
+    <p style={{ color: "#64748b", fontSize: 13, marginTop: 6 }}>
+      Confidential submissions will only be visible to authorized reviewers.
+    </p>
+
+    <button
+      type="button"
+      onClick={saveInnovationSubmission}
+      disabled={loading}
+      style={{
+        marginTop: 20,
+        padding: "12px 18px",
+        borderRadius: 10,
+        border: "none",
+        background: "#123d82",
+        color: "white",
+        fontWeight: "bold",
+        cursor: "pointer",
+        fontSize: 15,
+      }}
+    >
+      {loading ? "Submitting..." : "Submit Innovation Idea"}
+    </button>
+  </div>
+)}
 {activeTab === "crm" && (
   <div
     style={{
