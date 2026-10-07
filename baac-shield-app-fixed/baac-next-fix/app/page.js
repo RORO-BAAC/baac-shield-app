@@ -548,7 +548,6 @@ const [competencyTrainingCurrent, setCompetencyTrainingCurrent] = useState("");
  const [innovationSubmissions, setInnovationSubmissions] = useState([]);
 const [innovationSubmittedBy, setInnovationSubmittedBy] = useState("");
 const [innovationDepartmentTeam, setInnovationDepartmentTeam] = useState("");
-const [innovationProjectArea, setInnovationProjectArea] = useState("");
 const [innovationCategory, setInnovationCategory] = useState("");
 const [innovationTitle, setInnovationTitle] = useState("");
 const [innovationIdeaDescription, setInnovationIdeaDescription] = useState("");
