@@ -1359,8 +1359,7 @@ training_current: competencyTrainingCurrent,
       submitted_by: innovationSubmittedBy.trim(),
       submitted_by_email: user?.email || "",
       department_team: innovationDepartmentTeam.trim(),
-      project_area: innovationProjectArea.trim(),
-      category: innovationCategory,
+         category: innovationCategory,
       title: innovationTitle.trim(),
       idea_description: innovationIdeaDescription.trim(),
       problem_solved: innovationProblemSolved.trim(),
@@ -1382,8 +1381,7 @@ training_current: competencyTrainingCurrent,
 
     setInnovationSubmittedBy("");
     setInnovationDepartmentTeam("");
-    setInnovationProjectArea("");
-    setInnovationCategory("");
+      setInnovationCategory("");
     setInnovationTitle("");
     setInnovationIdeaDescription("");
     setInnovationProblemSolved("");
