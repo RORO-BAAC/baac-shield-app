@@ -1341,6 +1341,63 @@ training_current: competencyTrainingCurrent,
     setLoading(false);
   }
 }
+ async function saveInnovationSubmission() {
+  if (!innovationTitle.trim()) {
+    setMessage("Please enter an idea title.");
+    return;
+  }
+
+  if (!innovationIdeaDescription.trim()) {
+    setMessage("Please describe your idea.");
+    return;
+  }
+
+  setLoading(true);
+  setMessage("");
+
+  try {
+    const payload = {
+      submitted_by: innovationSubmittedBy.trim(),
+      submitted_by_email: user?.email || "",
+      department_team: innovationDepartmentTeam.trim(),
+      project_area: innovationProjectArea.trim(),
+      category: innovationCategory,
+      title: innovationTitle.trim(),
+      idea_description: innovationIdeaDescription.trim(),
+      problem_solved: innovationProblemSolved.trim(),
+      expected_improvement: innovationExpectedImprovement.trim(),
+      impact_level: innovationImpactLevel,
+      confidential: innovationConfidential,
+      status: innovationStatus,
+    };
+
+    const { error } = await supabase
+      .from("innovation_submissions")
+      .insert([payload]);
+
+    if (error) throw error;
+
+    setMessage(
+      "Thanks for helping us build better! Your idea has been submitted for review and may be entered into our Best Suggestions Pool for recognition and great prizes."
+    );
+
+    setInnovationSubmittedBy("");
+    setInnovationDepartmentTeam("");
+    setInnovationProjectArea("");
+    setInnovationCategory("");
+    setInnovationTitle("");
+    setInnovationIdeaDescription("");
+    setInnovationProblemSolved("");
+    setInnovationExpectedImprovement("");
+    setInnovationImpactLevel("");
+    setInnovationConfidential(false);
+    setInnovationStatus("New");
+  } catch (error) {
+    setMessage(`Could not submit innovation idea: ${error.message}`);
+  } finally {
+    setLoading(false);
+  }
+}     
   async function loadProjects() {
     try {
       const res = await fetch(
