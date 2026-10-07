@@ -21930,6 +21930,109 @@ onClick={() => setCompetencySection("roleProgression")}
       )}
     </div>
   )}
+{selectedInnovationSubmission && (
+  <div
+    style={{
+      marginTop: 20,
+      border: "2px solid #123d82",
+      borderRadius: 14,
+      padding: 18,
+      background: "#ffffff",
+    }}
+  >
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        gap: 12,
+        flexWrap: "wrap",
+        marginBottom: 16,
+      }}
+    >
+      <div>
+        <h3 style={{ margin: 0, color: "#0f2f63" }}>
+          Review Submission
+        </h3>
+
+        <div style={{ marginTop: 4, color: "#64748b", fontSize: 13 }}>
+          {selectedInnovationSubmission.title || "Untitled Idea"}
+        </div>
+      </div>
+
+      <button
+        type="button"
+        onClick={() => setSelectedInnovationSubmission(null)}
+        style={{
+          padding: "8px 12px",
+          borderRadius: 8,
+          border: "1px solid #cbd5e1",
+          background: "white",
+          cursor: "pointer",
+          fontWeight: "bold",
+        }}
+      >
+        Close
+      </button>
+    </div>
+
+    <div style={{ display: "grid", gap: 12 }}>
+      <div>
+        <strong>Submitted By:</strong>{" "}
+        {selectedInnovationSubmission.submitted_by || "Not provided"}
+      </div>
+
+      <div>
+        <strong>Email:</strong>{" "}
+        {selectedInnovationSubmission.submitted_by_email || "Not available"}
+      </div>
+
+      <div>
+        <strong>Department / Team:</strong>{" "}
+        {selectedInnovationSubmission.department_team || "Not provided"}
+      </div>
+
+      <div>
+        <strong>Category:</strong>{" "}
+        {selectedInnovationSubmission.category || "Not provided"}
+      </div>
+
+      <div>
+        <strong>Impact:</strong>{" "}
+        {selectedInnovationSubmission.impact_level || "Not provided"}
+      </div>
+
+      <div>
+        <strong>Idea:</strong>{" "}
+        {selectedInnovationSubmission.idea_description || "Not provided"}
+      </div>
+
+      <div>
+        <strong>Problem It Solves:</strong>{" "}
+        {selectedInnovationSubmission.problem_solved || "Not provided"}
+      </div>
+
+      <div>
+        <strong>Expected Improvement:</strong>{" "}
+        {selectedInnovationSubmission.expected_improvement || "Not provided"}
+      </div>
+
+      {selectedInnovationSubmission.confidential && (
+        <div
+          style={{
+            padding: 10,
+            borderRadius: 8,
+            background: "#fee2e2",
+            color: "#991b1b",
+            fontWeight: "bold",
+          }}
+        >
+          Confidential Submission
+        </div>
+      )}
+    </div>
+  </div>
+)}
 {activeTab === "crm" && (
   <div
     style={{
