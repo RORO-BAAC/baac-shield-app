@@ -22033,7 +22033,7 @@ onClick={() => setCompetencySection("roleProgression")}
       </div>
 <button
   type="button"
-  onClick={() => {}}
+ onClick={() => generateInnovationPdf(selectedInnovationSubmission)}
   style={{
     padding: "8px 12px",
     borderRadius: 8,
