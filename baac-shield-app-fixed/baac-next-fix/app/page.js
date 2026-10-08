@@ -22053,6 +22053,28 @@ onClick={() => setCompetencySection("roleProgression")}
     <option value="Not Proceeding">Not Proceeding</option>
   </select>
 </div>
+
+ <textarea
+    value={selectedInnovationSubmission.review_notes || ""}
+    onChange={(e) =>
+      setSelectedInnovationSubmission({
+        ...selectedInnovationSubmission,
+        review_notes: e.target.value,
+      })
+    }
+    placeholder="Add follow-up notes, implementation considerations, or review comments..."
+    rows={4}
+    style={{
+      width: "100%",
+      padding: 10,
+      borderRadius: 8,
+      border: "1px solid #cbd5e1",
+      resize: "vertical",
+      boxSizing: "border-box",
+    }}
+  />
+</div>
+        
 <button
   type="button"
   onClick={async () => {
@@ -22115,26 +22137,6 @@ onClick={() => setCompetencySection("roleProgression")}
     Reviewer Notes
   </label>
 
-  <textarea
-    value={selectedInnovationSubmission.review_notes || ""}
-    onChange={(e) =>
-      setSelectedInnovationSubmission({
-        ...selectedInnovationSubmission,
-        review_notes: e.target.value,
-      })
-    }
-    placeholder="Add follow-up notes, implementation considerations, or review comments..."
-    rows={4}
-    style={{
-      width: "100%",
-      padding: 10,
-      borderRadius: 8,
-      border: "1px solid #cbd5e1",
-      resize: "vertical",
-      boxSizing: "border-box",
-    }}
-  />
-</div>
 </button>
       {selectedInnovationSubmission.confidential && (
         <div
