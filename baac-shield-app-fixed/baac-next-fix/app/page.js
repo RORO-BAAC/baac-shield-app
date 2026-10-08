@@ -22054,7 +22054,18 @@ onClick={() => setCompetencySection("roleProgression")}
   </select>
 </div>
 
- <textarea
+<div>
+  <label
+    style={{
+      display: "block",
+      fontWeight: "bold",
+      marginBottom: 6,
+    }}
+  >
+    Reviewer Notes
+  </label>
+
+  <textarea
     value={selectedInnovationSubmission.review_notes || ""}
     onChange={(e) =>
       setSelectedInnovationSubmission({
@@ -22126,16 +22137,6 @@ onClick={() => setCompetencySection("roleProgression")}
   }}
 >
   {loading ? "Saving..." : "Save Review"}
-<div>
-  <label
-    style={{
-      display: "block",
-      fontWeight: "bold",
-      marginBottom: 6,
-    }}
-  >
-    Reviewer Notes
-  </label>
 
 </button>
       {selectedInnovationSubmission.confidential && (
