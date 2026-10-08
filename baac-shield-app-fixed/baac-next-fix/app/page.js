@@ -22065,6 +22065,7 @@ onClick={() => setCompetencySection("roleProgression")}
         .update({
           status: selectedInnovationSubmission.status || "New",
           reviewed_by: user?.email || "",
+         review_notes: selectedInnovationSubmission.review_notes || "",     
           updated_at: new Date().toISOString(),
         })
         .eq("id", selectedInnovationSubmission.id);
@@ -22078,6 +22079,7 @@ onClick={() => setCompetencySection("roleProgression")}
                 ...submission,
                 status: selectedInnovationSubmission.status || "New",
                 reviewed_by: user?.email || "",
+              review_notes: selectedInnovationSubmission.review_notes || "",    
               }
             : submission
         )
