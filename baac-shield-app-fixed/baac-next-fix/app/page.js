@@ -21869,7 +21869,17 @@ onClick={() => setCompetencySection("roleProgression")}
           color: "#334155",
         }}
       >
-        Submissions: {innovationSubmissions.length}
+      Submissions: {
+  innovationSubmissions.filter((submission) => {
+    const isCompleted =
+      submission.status === "Implemented" ||
+      submission.status === "Not Proceeding";
+
+    if (innovationReviewFilter === "Completed") return isCompleted;
+    if (innovationReviewFilter === "Active") return !isCompleted;
+    return true;
+  }).length
+}
       </div>
 <div
   style={{
