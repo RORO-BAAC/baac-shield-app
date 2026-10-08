@@ -21982,15 +21982,19 @@ onClick={() => setCompetencySection("roleProgression")}
     </div>
 
     <div style={{ display: "grid", gap: 12 }}>
-      <div>
-        <strong>Submitted By:</strong>{" "}
-        {selectedInnovationSubmission.submitted_by || "Not provided"}
-      </div>
+     <div>
+  <strong>Submitted By:</strong>{" "}
+  {selectedInnovationSubmission.confidential
+    ? "Confidential"
+    : selectedInnovationSubmission.submitted_by || "Not provided"}
+</div>
 
-      <div>
-        <strong>Email:</strong>{" "}
-        {selectedInnovationSubmission.submitted_by_email || "Not available"}
-      </div>
+<div>
+  <strong>Email:</strong>{" "}
+  {selectedInnovationSubmission.confidential
+    ? "Hidden"
+    : selectedInnovationSubmission.submitted_by_email || "Not available"}
+</div>
 
       <div>
         <strong>Department / Team:</strong>{" "}
