@@ -22085,7 +22085,36 @@ onClick={() => setCompetencySection("roleProgression")}
     }}
   />
 </div>
-        
+  <div>
+  <label
+    style={{
+      display: "block",
+      fontWeight: "bold",
+      marginBottom: 6,
+    }}
+  >
+    Estimated Value / Benefit
+  </label>
+
+  <input
+    type="text"
+    value={selectedInnovationSubmission.estimated_value || ""}
+    onChange={(e) =>
+      setSelectedInnovationSubmission({
+        ...selectedInnovationSubmission,
+        estimated_value: e.target.value,
+      })
+    }
+    placeholder="Example: $5,000 annual savings, faster workflow, reduced exposure..."
+    style={{
+      width: "100%",
+      padding: 10,
+      borderRadius: 8,
+      border: "1px solid #cbd5e1",
+      boxSizing: "border-box",
+    }}
+  />
+</div>      
 <button
   type="button"
   onClick={async () => {
