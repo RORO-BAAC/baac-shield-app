@@ -22128,6 +22128,7 @@ onClick={() => setCompetencySection("roleProgression")}
           status: selectedInnovationSubmission.status || "New",
           reviewed_by: user?.email || "",
          review_notes: selectedInnovationSubmission.review_notes || "",     
+         estimated_value: selectedInnovationSubmission.estimated_value || "",     
           updated_at: new Date().toISOString(),
         })
         .eq("id", selectedInnovationSubmission.id);
@@ -22142,6 +22143,7 @@ onClick={() => setCompetencySection("roleProgression")}
                 status: selectedInnovationSubmission.status || "New",
                 reviewed_by: user?.email || "",
               review_notes: selectedInnovationSubmission.review_notes || "",    
+            estimated_value: selectedInnovationSubmission.estimated_value || "",      
               }
             : submission
         )
