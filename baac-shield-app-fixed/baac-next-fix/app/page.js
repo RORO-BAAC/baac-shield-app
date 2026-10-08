@@ -21871,7 +21871,35 @@ onClick={() => setCompetencySection("roleProgression")}
       >
         Submissions: {innovationSubmissions.length}
       </div>
-
+<div
+  style={{
+    display: "flex",
+    gap: 8,
+    flexWrap: "wrap",
+    marginBottom: 16,
+  }}
+>
+  {["Active", "Completed", "All"].map((filter) => (
+    <button
+      key={filter}
+      type="button"
+      onClick={() => setInnovationReviewFilter(filter)}
+      style={{
+        padding: "8px 12px",
+        borderRadius: 8,
+        border: "1px solid #cbd5e1",
+        background:
+          innovationReviewFilter === filter ? "#123d82" : "white",
+        color:
+          innovationReviewFilter === filter ? "white" : "#334155",
+        cursor: "pointer",
+        fontWeight: "bold",
+      }}
+    >
+      {filter}
+    </button>
+  ))}
+</div>
       {innovationSubmissions.length === 0 ? (
         <div
           style={{
