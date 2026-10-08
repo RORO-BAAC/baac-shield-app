@@ -21885,7 +21885,7 @@ onClick={() => setCompetencySection("roleProgression")}
                   )}
                 </div>
               </div>
-
+<div style={{ display: "grid", gap: 8, fontSize: 14 }}>
              <div>
   <strong>Submitted By:</strong>{" "}
   {submission.confidential
