@@ -1396,6 +1396,73 @@ training_current: competencyTrainingCurrent,
     setLoading(false);
   }
 }     
+   function generateInnovationPdf(submission) {
+  if (!submission) return;
+
+  const doc = new jsPDF();
+  const left = 15;
+  let y = 18;
+
+  const addLine = (label, value) => {
+    const text = value || "Not provided";
+    const lines = doc.splitTextToSize(`${label}: ${text}`, 180);
+
+    if (y + lines.length * 7 > 280) {
+      doc.addPage();
+      y = 18;
+    }
+
+    doc.text(lines, left, y);
+    y += lines.length * 7 + 3;
+  };
+
+  doc.setFontSize(18);
+  doc.text("BAAC Innovation Submission", left, y);
+  y += 12;
+
+  doc.setFontSize(11);
+
+  addLine("Idea Title", submission.title);
+  addLine("Status", submission.status || "New");
+  addLine("Confidential", submission.confidential ? "Yes" : "No");
+
+  addLine(
+    "Submitted By",
+    submission.confidential
+      ? "Confidential"
+      : submission.submitted_by || "Not provided"
+  );
+
+  addLine(
+    "Email",
+    submission.confidential
+      ? "Hidden"
+      : submission.submitted_by_email || "Not available"
+  );
+
+  addLine("Department / Team", submission.department_team);
+  addLine("Category", submission.category);
+  addLine("Impact", submission.impact_level);
+  addLine("Idea", submission.idea_description);
+  addLine("Problem It Solves", submission.problem_solved);
+  addLine("Expected Improvement", submission.expected_improvement);
+  addLine("Estimated Value / Benefit", submission.estimated_value);
+  addLine("Reviewer Notes", submission.review_notes);
+  addLine("Reviewed By", submission.reviewed_by);
+
+  addLine(
+    "Submitted",
+    submission.created_at
+      ? new Date(submission.created_at).toLocaleString()
+      : "Unknown"
+  );
+
+  const safeTitle = (submission.title || "innovation-submission")
+    .replace(/[^a-z0-9]/gi, "-")
+    .toLowerCase();
+
+  doc.save(`BAAC-Innovation-${safeTitle}.pdf`);
+}   
   async function loadProjects() {
     try {
       const res = await fetch(
