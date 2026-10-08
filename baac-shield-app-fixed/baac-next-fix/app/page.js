@@ -21910,7 +21910,15 @@ onClick={() => setCompetencySection("roleProgression")}
     </button>
   ))}
 </div>
-      {innovationSubmissions.length === 0 ? (
+  {innovationSubmissions.filter((submission) => {
+  const isCompleted =
+    submission.status === "Implemented" ||
+    submission.status === "Not Proceeding";
+
+  if (innovationReviewFilter === "Completed") return isCompleted;
+  if (innovationReviewFilter === "Active") return !isCompleted;
+  return true;
+}).length === 0 ? (
         <div
           style={{
             padding: 20,
