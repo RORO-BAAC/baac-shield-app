@@ -21920,7 +21920,11 @@ onClick={() => setCompetencySection("roleProgression")}
             textAlign: "center",
           }}
         >
-          No submissions loaded yet.
+        {innovationReviewFilter === "Active"
+  ? "No active submissions."
+  : innovationReviewFilter === "Completed"
+  ? "No completed submissions."
+  : "No submissions loaded yet."}
         </div>
       ) : (
         <div style={{ display: "grid", gap: 14 }}>
