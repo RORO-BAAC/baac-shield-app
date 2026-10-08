@@ -21964,7 +21964,20 @@ onClick={() => setCompetencySection("roleProgression")}
           {selectedInnovationSubmission.title || "Untitled Idea"}
         </div>
       </div>
-
+<button
+  type="button"
+  onClick={() => {}}
+  style={{
+    padding: "8px 12px",
+    borderRadius: 8,
+    border: "1px solid #cbd5e1",
+    background: "white",
+    cursor: "pointer",
+    fontWeight: "bold",
+  }}
+>
+  Print / PDF
+</button>
       <button
         type="button"
         onClick={() => setSelectedInnovationSubmission(null)}
