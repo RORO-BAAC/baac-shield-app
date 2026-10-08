@@ -22053,6 +22053,56 @@ onClick={() => setCompetencySection("roleProgression")}
     <option value="Not Proceeding">Not Proceeding</option>
   </select>
 </div>
+<button
+  type="button"
+  onClick={async () => {
+    setLoading(true);
+    setMessage("");
+
+    try {
+      const { error } = await supabase
+        .from("innovation_submissions")
+        .update({
+          status: selectedInnovationSubmission.status || "New",
+          reviewed_by: user?.email || "",
+          updated_at: new Date().toISOString(),
+        })
+        .eq("id", selectedInnovationSubmission.id);
+
+      if (error) throw error;
+
+      setInnovationSubmissions((current) =>
+        current.map((submission) =>
+          submission.id === selectedInnovationSubmission.id
+            ? {
+                ...submission,
+                status: selectedInnovationSubmission.status || "New",
+                reviewed_by: user?.email || "",
+              }
+            : submission
+        )
+      );
+
+      setMessage("Innovation review saved successfully.");
+    } catch (error) {
+      setMessage(`Could not save innovation review: ${error.message}`);
+    } finally {
+      setLoading(false);
+    }
+  }}
+  disabled={loading}
+  style={{
+    padding: "10px 16px",
+    borderRadius: 8,
+    border: "none",
+    background: "#123d82",
+    color: "white",
+    fontWeight: "bold",
+    cursor: "pointer",
+  }}
+>
+  {loading ? "Saving..." : "Save Review"}
+</button>
       {selectedInnovationSubmission.confidential && (
         <div
           style={{
