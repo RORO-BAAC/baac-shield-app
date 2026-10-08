@@ -22018,7 +22018,41 @@ onClick={() => setCompetencySection("roleProgression")}
         <strong>Expected Improvement:</strong>{" "}
         {selectedInnovationSubmission.expected_improvement || "Not provided"}
       </div>
+<div>
+  <label
+    style={{
+      display: "block",
+      fontWeight: "bold",
+      marginBottom: 6,
+    }}
+  >
+    Review Status
+  </label>
 
+  <select
+    value={selectedInnovationSubmission.status || "New"}
+    onChange={(e) =>
+      setSelectedInnovationSubmission({
+        ...selectedInnovationSubmission,
+        status: e.target.value,
+      })
+    }
+    style={{
+      width: "100%",
+      padding: 10,
+      borderRadius: 8,
+      border: "1px solid #cbd5e1",
+      background: "white",
+    }}
+  >
+    <option value="New">New</option>
+    <option value="Under Review">Under Review</option>
+    <option value="Shortlisted">Shortlisted</option>
+    <option value="Approved">Approved</option>
+    <option value="Implemented">Implemented</option>
+    <option value="Not Proceeding">Not Proceeding</option>
+  </select>
+</div>
       {selectedInnovationSubmission.confidential && (
         <div
           style={{
