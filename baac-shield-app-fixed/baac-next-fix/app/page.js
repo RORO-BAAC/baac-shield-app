@@ -21914,7 +21914,23 @@ onClick={() => setCompetencySection("roleProgression")}
         </div>
       ) : (
         <div style={{ display: "grid", gap: 14 }}>
-          {innovationSubmissions.map((submission) => (
+        {innovationSubmissions
+  .filter((submission) => {
+    const isCompleted =
+      submission.status === "Implemented" ||
+      submission.status === "Not Proceeding";
+
+    if (innovationReviewFilter === "Completed") {
+      return isCompleted;
+    }
+
+    if (innovationReviewFilter === "Active") {
+      return !isCompleted;
+    }
+
+    return true;
+  })
+  .map((submission) => (
             <div
               key={submission.id}
            onClick={() => setSelectedInnovationSubmission(submission)}
