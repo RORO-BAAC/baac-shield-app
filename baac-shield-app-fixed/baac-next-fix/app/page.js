@@ -22102,6 +22102,37 @@ onClick={() => setCompetencySection("roleProgression")}
   }}
 >
   {loading ? "Saving..." : "Save Review"}
+<div>
+  <label
+    style={{
+      display: "block",
+      fontWeight: "bold",
+      marginBottom: 6,
+    }}
+  >
+    Reviewer Notes
+  </label>
+
+  <textarea
+    value={selectedInnovationSubmission.review_notes || ""}
+    onChange={(e) =>
+      setSelectedInnovationSubmission({
+        ...selectedInnovationSubmission,
+        review_notes: e.target.value,
+      })
+    }
+    placeholder="Add follow-up notes, implementation considerations, or review comments..."
+    rows={4}
+    style={{
+      width: "100%",
+      padding: 10,
+      borderRadius: 8,
+      border: "1px solid #cbd5e1",
+      resize: "vertical",
+      boxSizing: "border-box",
+    }}
+  />
+</div>
 </button>
       {selectedInnovationSubmission.confidential && (
         <div
