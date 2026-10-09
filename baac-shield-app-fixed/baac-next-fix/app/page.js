@@ -20827,6 +20827,7 @@ onClick={() => setCompetencySection("roleProgression")}
 
       <button
         type="button"
+onClick={() => setCompetencySection("assessments")}
         style={{
           padding: 18,
           borderRadius: 12,
