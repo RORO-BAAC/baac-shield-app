@@ -1310,6 +1310,7 @@ const finalScore =
       start_date: competencyStartDate || null,
       target_completion_date: competencyTargetCompletionDate || null,
       status: competencyStatus,
+      final_score: finalScore,    
       competency_items: competencyItems,
       hse_review_status: competencyHseReviewStatus,
       hse_reviewed_by: competencyHseReviewedBy,
