@@ -20841,9 +20841,10 @@ onClick={() => setCompetencySection("assessments")}
       >
         Competency Assessments
       </button>
-
+onClick={() => setCompetencySection("profiles")}
       <button
         type="button"
+
         style={{
           padding: 18,
           borderRadius: 12,
