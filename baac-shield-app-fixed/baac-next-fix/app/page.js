@@ -21735,6 +21735,83 @@ onClick={() => setCompetencySection("approvals")}
     )}
   </div>
 )}
+ {competencySection === "approvals" && (
+  <div
+    style={{
+      marginTop: 24,
+      paddingTop: 20,
+      borderTop: "1px solid #e2e8f0",
+    }}
+  >
+    <h3 style={{ marginTop: 0, color: "#0f2f63" }}>
+      Approvals
+    </h3>
+
+    <p style={{ color: "#64748b" }}>
+      Review role progression records awaiting management or final approval.
+    </p>
+
+    {competencyProgressions.filter(
+      (record) => !record.final_decision || record.final_decision === "Pending"
+    ).length === 0 ? (
+      <div
+        style={{
+          padding: 20,
+          border: "1px dashed #cbd5e1",
+          borderRadius: 12,
+          color: "#64748b",
+          textAlign: "center",
+          marginTop: 16,
+        }}
+      >
+        No approvals are currently pending.
+      </div>
+    ) : (
+      <div style={{ display: "grid", gap: 12, marginTop: 16 }}>
+        {competencyProgressions
+          .filter(
+            (record) =>
+              !record.final_decision || record.final_decision === "Pending"
+          )
+          .map((record) => (
+            <div
+              key={record.id}
+              style={{
+                border: "1px solid #e2e8f0",
+                borderRadius: 12,
+                padding: 16,
+                background: "#f8fafc",
+              }}
+            >
+              <div style={{ fontWeight: "bold", color: "#0f2f63" }}>
+                {record.employee_name || "Unnamed Employee"}
+              </div>
+
+              <div style={{ marginTop: 6 }}>
+                <strong>Current Position:</strong>{" "}
+                {record.current_position || "Not provided"}
+              </div>
+
+              <div style={{ marginTop: 6 }}>
+                <strong>Proposed Role:</strong>{" "}
+                {record.proposed_role || "Not provided"}
+              </div>
+
+              <div style={{ marginTop: 6 }}>
+                <strong>Status:</strong>{" "}
+                {record.status || "Not set"}
+              </div>
+
+              <div style={{ marginTop: 6 }}>
+                <strong>Final Decision:</strong>{" "}
+                {record.final_decision || "Pending"}
+              </div>
+            </div>
+          ))}
+      </div>
+    )}
+  </div>
+)}     
       </div>
 )}     
 {activeTab === "innovation" && (
