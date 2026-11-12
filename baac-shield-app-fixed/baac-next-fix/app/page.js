@@ -21756,7 +21756,7 @@ onClick={() => setCompetencySection("approvals")}
             </div>
 
             <div style={{ marginTop: 6 }}>
-              <strong>Status:</strong> {getTrainingStatus(record)}
+           <strong>Status:</strong> {record.status || "Not set"}
             </div>
 
             <div style={{ marginTop: 6 }}>
