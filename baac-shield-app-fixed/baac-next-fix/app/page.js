@@ -22079,7 +22079,7 @@ onClick={() => setCompetencySection("approvals")}
               borderRadius: 999,
               fontWeight: "bold",
               background:
-                record.status === "Current"
+                getTrainingStatus(record) === "Current"
                   ? "#dcfce7"
                   : record.status === "Expiring"
                   ? "#fef3c7"
@@ -22087,7 +22087,7 @@ onClick={() => setCompetencySection("approvals")}
                   ? "#fee2e2"
                   : "#e2e8f0",
               color:
-                record.status === "Current"
+                getTrainingStatus(record) === "Current"
                   ? "#166534"
                   : record.status === "Expiring"
                   ? "#92400e"
