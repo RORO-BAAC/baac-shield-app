@@ -530,7 +530,23 @@ const [trainingName, setTrainingName] = useState("");
 const [trainingProvider, setTrainingProvider] = useState("");
 const [trainingCompletionDate, setTrainingCompletionDate] = useState("");
 const [trainingExpiryDate, setTrainingExpiryDate] = useState("");
-const [trainingNotes, setTrainingNotes] = useState("");     
+const [trainingNotes, setTrainingNotes] = useState("");    
+function getTrainingStatus(record) {
+  if (!record?.expiry_date) return "Current";
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const expiry = new Date(`${record.expiry_date}T00:00:00`);
+
+  const daysUntilExpiry = Math.ceil(
+    (expiry - today) / (1000 * 60 * 60 * 24)
+  );
+
+  if (daysUntilExpiry < 0) return "Expired";
+  if (daysUntilExpiry <= 30) return "Expiring";
+  return "Current";
+}      
 const [competencyEmployeeName, setCompetencyEmployeeName] = useState("");
 const [competencyEmployeeEmail, setCompetencyEmployeeEmail] = useState("");
 const [competencyCurrentPosition, setCompetencyCurrentPosition] = useState("");
