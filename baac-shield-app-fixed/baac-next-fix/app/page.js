@@ -20860,6 +20860,7 @@ onClick={() => setCompetencySection("profiles")}
 
       <button
         type="button"
+onClick={() => setCompetencySection("approvals")}
         style={{
           padding: 18,
           borderRadius: 12,
