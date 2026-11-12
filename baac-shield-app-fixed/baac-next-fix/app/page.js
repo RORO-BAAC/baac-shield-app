@@ -1384,7 +1384,22 @@ async function saveTrainingRecord() {
       training_provider: trainingProvider.trim(),
       completion_date: trainingCompletionDate || null,
       expiry_date: trainingExpiryDate || null,
-      status: trainingStatus,
+   status: (() => {
+  if (!trainingExpiryDate) return "Current";
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const expiry = new Date(`${trainingExpiryDate}T00:00:00`);
+
+  const daysUntilExpiry = Math.ceil(
+    (expiry - today) / (1000 * 60 * 60 * 24)
+  );
+
+  if (daysUntilExpiry < 0) return "Expired";
+  if (daysUntilExpiry <= 30) return "Expiring";
+  return "Current";
+})(),
       notes: trainingNotes.trim(),
       created_by: user?.email || "",
     };
