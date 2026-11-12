@@ -22016,7 +22016,7 @@ onClick={() => setCompetencySection("approvals")}
     Expired:{" "}
     {
       employeeTrainingRecords.filter(
-        (record) => record.status === "Expired"
+     (record) => getTrainingStatus(record) === "Expired"
       ).length
     }
   </div>
