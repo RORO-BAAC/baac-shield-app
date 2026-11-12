@@ -21838,6 +21838,108 @@ onClick={() => setCompetencySection("approvals")}
     <p style={{ color: "#64748b" }}>
       Review training status and identify requirements that may affect employee progression.
     </p>
+    <div
+  style={{
+    marginTop: 16,
+    padding: 16,
+    border: "1px solid #e2e8f0",
+    borderRadius: 12,
+    background: "#f8fafc",
+  }}
+>
+  <h4 style={{ marginTop: 0, color: "#0f2f63" }}>
+    Add Training Record
+  </h4>
+
+  <div
+    style={{
+      display: "grid",
+      gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+      gap: 12,
+    }}
+  >
+    <input
+      type="text"
+      placeholder="Employee Name"
+      value={trainingEmployeeName}
+      onChange={(e) => setTrainingEmployeeName(e.target.value)}
+    />
+
+    <input
+      type="email"
+      placeholder="Employee Email"
+      value={trainingEmployeeEmail}
+      onChange={(e) => setTrainingEmployeeEmail(e.target.value)}
+    />
+
+    <input
+      type="text"
+      placeholder="Training / Certification"
+      value={trainingName}
+      onChange={(e) => setTrainingName(e.target.value)}
+    />
+
+    <input
+      type="text"
+      placeholder="Training Provider"
+      value={trainingProvider}
+      onChange={(e) => setTrainingProvider(e.target.value)}
+    />
+
+    <input
+      type="date"
+      value={trainingCompletionDate}
+      onChange={(e) => setTrainingCompletionDate(e.target.value)}
+    />
+
+    <input
+      type="date"
+      value={trainingExpiryDate}
+      onChange={(e) => setTrainingExpiryDate(e.target.value)}
+    />
+
+    <select
+      value={trainingStatus}
+      onChange={(e) => setTrainingStatus(e.target.value)}
+    >
+      <option value="Current">Current</option>
+      <option value="Expiring">Expiring</option>
+      <option value="Expired">Expired</option>
+    </select>
+  </div>
+
+  <textarea
+    placeholder="Notes"
+    value={trainingNotes}
+    onChange={(e) => setTrainingNotes(e.target.value)}
+    style={{
+      width: "100%",
+      marginTop: 12,
+      minHeight: 80,
+      padding: 10,
+      borderRadius: 8,
+      border: "1px solid #cbd5e1",
+    }}
+  />
+
+  <button
+    type="button"
+    onClick={saveTrainingRecord}
+    disabled={loading}
+    style={{
+      marginTop: 12,
+      padding: "10px 16px",
+      borderRadius: 8,
+      border: "none",
+      background: "#0f2f63",
+      color: "white",
+      fontWeight: "bold",
+      cursor: "pointer",
+    }}
+  >
+    {loading ? "Saving..." : "Save Training Record"}
+  </button>
+</div>        
 <div
   style={{
     display: "grid",
