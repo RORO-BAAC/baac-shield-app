@@ -21805,10 +21805,31 @@ onClick={() => setCompetencySection("approvals")}
               {record.proposed_role || "Not provided"}
             </div>
 
-            <div style={{ marginTop: 6 }}>
-              <strong>Training Current:</strong>{" "}
-              {record.training_current || "Not reviewed"}
-            </div>
+           <div style={{ marginTop: 10 }}>
+  <strong>Training Current:</strong>{" "}
+  <span
+    style={{
+      display: "inline-block",
+      padding: "4px 10px",
+      borderRadius: 999,
+      fontWeight: "bold",
+      background:
+        record.training_current === "Yes"
+          ? "#dcfce7"
+          : record.training_current === "No"
+          ? "#fee2e2"
+          : "#e2e8f0",
+      color:
+        record.training_current === "Yes"
+          ? "#166534"
+          : record.training_current === "No"
+          ? "#991b1b"
+          : "#475569",
+    }}
+  >
+    {record.training_current || "Not reviewed"}
+  </span>
+</div>
           </div>
         ))}
       </div>
