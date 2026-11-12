@@ -20857,7 +20857,22 @@ onClick={() => setCompetencySection("profiles")}
       >
         Employee Profiles
       </button>
-
+<button
+  type="button"
+  onClick={() => setCompetencySection("training")}
+  style={{
+    padding: 18,
+    borderRadius: 12,
+    border: "1px solid #cbd5e1",
+    background: "#f8fafc",
+    color: "#0f2f63",
+    fontWeight: "bold",
+    cursor: "pointer",
+    textAlign: "left",
+  }}
+>
+  Training Requirements
+</button>
       <button
         type="button"
 onClick={() => setCompetencySection("approvals")}
