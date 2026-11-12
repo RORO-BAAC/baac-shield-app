@@ -21913,15 +21913,7 @@ onClick={() => setCompetencySection("approvals")}
       onChange={(e) => setTrainingExpiryDate(e.target.value)}
     />
 
-    <select
-      value={trainingStatus}
-      onChange={(e) => setTrainingStatus(e.target.value)}
-    >
-      <option value="Current">Current</option>
-      <option value="Expiring">Expiring</option>
-      <option value="Expired">Expired</option>
-    </select>
-  </div>
+      </div>
 
   <textarea
     placeholder="Notes"
