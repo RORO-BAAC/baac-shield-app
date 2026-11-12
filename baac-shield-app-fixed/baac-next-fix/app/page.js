@@ -22096,7 +22096,7 @@ onClick={() => setCompetencySection("approvals")}
                   : "#475569",
             }}
           >
-            {record.status || "Not set"}
+         {getTrainingStatus(record)}
           </span>
         </div>
 
