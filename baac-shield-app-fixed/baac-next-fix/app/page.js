@@ -1362,6 +1362,59 @@ training_current: competencyTrainingCurrent,
     setLoading(false);
   }
 }
+async function saveTrainingRecord() {
+  if (!trainingEmployeeName.trim()) {
+    setMessage("Please enter the employee name.");
+    return;
+  }
+
+  if (!trainingName.trim()) {
+    setMessage("Please enter the training or certification name.");
+    return;
+  }
+
+  setLoading(true);
+  setMessage("");
+
+  try {
+    const payload = {
+      employee_name: trainingEmployeeName.trim(),
+      employee_email: trainingEmployeeEmail.trim(),
+      training_name: trainingName.trim(),
+      training_provider: trainingProvider.trim(),
+      completion_date: trainingCompletionDate || null,
+      expiry_date: trainingExpiryDate || null,
+      status: trainingStatus,
+      notes: trainingNotes.trim(),
+      created_by: user?.email || "",
+    };
+
+    const { error } = await supabase
+      .from("employee_training_records")
+      .insert([payload]);
+
+    if (error) {
+      throw error;
+    }
+
+    setMessage("Training record saved successfully.");
+
+    setTrainingEmployeeName("");
+    setTrainingEmployeeEmail("");
+    setTrainingName("");
+    setTrainingProvider("");
+    setTrainingCompletionDate("");
+    setTrainingExpiryDate("");
+    setTrainingStatus("Current");
+    setTrainingNotes("");
+
+    await loadRecords();
+  } catch (error) {
+    setMessage(`Could not save training record: ${error.message}`);
+  } finally {
+    setLoading(false);
+  }
+}      
  async function saveTrainingRecord() {
   if (!trainingEmployeeName.trim()) {
     setMessage("Please enter the employee name.");
