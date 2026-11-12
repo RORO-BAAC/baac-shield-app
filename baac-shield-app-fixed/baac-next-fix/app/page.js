@@ -21960,8 +21960,25 @@ onClick={() => setCompetencySection("approvals")}
   >
     Current:{" "}
     {
-      competencyProgressions.filter(
-        (record) => record.training_current === "Yes"
+      employeeTrainingRecords.filter(
+        (record) => record.status === "Current"
+      ).length
+    }
+  </div>
+
+  <div
+    style={{
+      padding: 14,
+      borderRadius: 10,
+      background: "#fef3c7",
+      color: "#92400e",
+      fontWeight: "bold",
+    }}
+  >
+    Expiring:{" "}
+    {
+      employeeTrainingRecords.filter(
+        (record) => record.status === "Expiring"
       ).length
     }
   </div>
@@ -21975,27 +21992,10 @@ onClick={() => setCompetencySection("approvals")}
       fontWeight: "bold",
     }}
   >
-    Needs Attention:{" "}
+    Expired:{" "}
     {
-      competencyProgressions.filter(
-        (record) => record.training_current === "No"
-      ).length
-    }
-  </div>
-
-  <div
-    style={{
-      padding: 14,
-      borderRadius: 10,
-      background: "#e2e8f0",
-      color: "#475569",
-      fontWeight: "bold",
-    }}
-  >
-    Not Reviewed:{" "}
-    {
-      competencyProgressions.filter(
-        (record) => !record.training_current
+      employeeTrainingRecords.filter(
+        (record) => record.status === "Expired"
       ).length
     }
   </div>
