@@ -22000,74 +22000,94 @@ onClick={() => setCompetencySection("approvals")}
     }
   </div>
 </div>
-    {competencyProgressions.length === 0 ? (
-      <div
-        style={{
-          padding: 20,
-          border: "1px dashed #cbd5e1",
-          borderRadius: 12,
-          color: "#64748b",
-          textAlign: "center",
-          marginTop: 16,
-        }}
-      >
-        No employee progression records are available.
-      </div>
-    ) : (
-      <div style={{ display: "grid", gap: 12, marginTop: 16 }}>
-        {competencyProgressions.map((record) => (
-          <div
-            key={record.id}
-            style={{
-              border: "1px solid #e2e8f0",
-              borderRadius: 12,
-              padding: 16,
-              background: "#f8fafc",
-            }}
-          >
-            <div style={{ fontWeight: "bold", color: "#0f2f63" }}>
-              {record.employee_name || "Unnamed Employee"}
-            </div>
-
-            <div style={{ marginTop: 6 }}>
-              <strong>Current Position:</strong>{" "}
-              {record.current_position || "Not provided"}
-            </div>
-
-            <div style={{ marginTop: 6 }}>
-              <strong>Proposed Role:</strong>{" "}
-              {record.proposed_role || "Not provided"}
-            </div>
-
-           <div style={{ marginTop: 10 }}>
-  <strong>Training Current:</strong>{" "}
-  <span
+  {employeeTrainingRecords.length === 0 ? (
+  <div
     style={{
-      display: "inline-block",
-      padding: "4px 10px",
-      borderRadius: 999,
-      fontWeight: "bold",
-      background:
-        record.training_current === "Yes"
-          ? "#dcfce7"
-          : record.training_current === "No"
-          ? "#fee2e2"
-          : "#e2e8f0",
-      color:
-        record.training_current === "Yes"
-          ? "#166534"
-          : record.training_current === "No"
-          ? "#991b1b"
-          : "#475569",
+      padding: 20,
+      border: "1px dashed #cbd5e1",
+      borderRadius: 12,
+      color: "#64748b",
+      textAlign: "center",
+      marginTop: 16,
     }}
   >
-    {record.training_current || "Not reviewed"}
-  </span>
-</div>
+    No training records are available.
+  </div>
+) : (
+  <div style={{ display: "grid", gap: 12, marginTop: 16 }}>
+    {employeeTrainingRecords.map((record) => (
+      <div
+        key={record.id}
+        style={{
+          border: "1px solid #e2e8f0",
+          borderRadius: 12,
+          padding: 16,
+          background: "#f8fafc",
+        }}
+      >
+        <div style={{ fontWeight: "bold", color: "#0f2f63" }}>
+          {record.employee_name || "Unnamed Employee"}
+        </div>
+
+        <div style={{ marginTop: 6 }}>
+          <strong>Training:</strong>{" "}
+          {record.training_name || "Not provided"}
+        </div>
+
+        <div style={{ marginTop: 6 }}>
+          <strong>Provider:</strong>{" "}
+          {record.training_provider || "Not provided"}
+        </div>
+
+        <div style={{ marginTop: 6 }}>
+          <strong>Completion Date:</strong>{" "}
+          {record.completion_date || "Not provided"}
+        </div>
+
+        <div style={{ marginTop: 6 }}>
+          <strong>Expiry Date:</strong>{" "}
+          {record.expiry_date || "Not provided"}
+        </div>
+
+        <div style={{ marginTop: 10 }}>
+          <strong>Status:</strong>{" "}
+          <span
+            style={{
+              display: "inline-block",
+              padding: "4px 10px",
+              borderRadius: 999,
+              fontWeight: "bold",
+              background:
+                record.status === "Current"
+                  ? "#dcfce7"
+                  : record.status === "Expiring"
+                  ? "#fef3c7"
+                  : record.status === "Expired"
+                  ? "#fee2e2"
+                  : "#e2e8f0",
+              color:
+                record.status === "Current"
+                  ? "#166534"
+                  : record.status === "Expiring"
+                  ? "#92400e"
+                  : record.status === "Expired"
+                  ? "#991b1b"
+                  : "#475569",
+            }}
+          >
+            {record.status || "Not set"}
+          </span>
+        </div>
+
+        {record.notes && (
+          <div style={{ marginTop: 8 }}>
+            <strong>Notes:</strong> {record.notes}
           </div>
-        ))}
+        )}
       </div>
-    )}
+    ))}
+  </div>
+)}
   </div>
 )}
  {competencySection === "approvals" && (
