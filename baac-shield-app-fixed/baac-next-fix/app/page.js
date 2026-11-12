@@ -523,6 +523,7 @@ const [dailyActivityDate, setDailyActivityDate] = useState(
   const [activeTab, setActiveTab] = useState("worker");
   const [competencySection, setCompetencySection] = useState("dashboard");
   const [competencyProgressions, setCompetencyProgressions] = useState([]); 
+  const [employeeTrainingRecords, setEmployeeTrainingRecords] = useState([]);    
 const [competencyEmployeeName, setCompetencyEmployeeName] = useState("");
 const [competencyEmployeeEmail, setCompetencyEmployeeEmail] = useState("");
 const [competencyCurrentPosition, setCompetencyCurrentPosition] = useState("");
