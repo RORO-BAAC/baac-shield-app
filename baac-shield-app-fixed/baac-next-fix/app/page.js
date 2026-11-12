@@ -533,7 +533,7 @@ const [trainingExpiryDate, setTrainingExpiryDate] = useState("");
 const [trainingNotes, setTrainingNotes] = useState("");    
 function getTrainingStatus(record) {
   if (!record?.expiry_date) return "Current";
-
+ 
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
