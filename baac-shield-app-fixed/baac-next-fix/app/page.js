@@ -1268,6 +1268,16 @@ if (competencyError) {
 }
 
 setCompetencyProgressions(competencyData || []);        
+ const { data: trainingData, error: trainingError } = await supabase
+  .from("employee_training_records")
+  .select("*")
+  .order("created_at", { ascending: false });
+
+if (trainingError) {
+  throw trainingError;
+}
+
+setEmployeeTrainingRecords(trainingData || []);         
     } catch (error) {
       setMessage(`Could not load records from database: ${error.message}`);
     }
