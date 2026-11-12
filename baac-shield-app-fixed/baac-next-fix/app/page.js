@@ -21765,7 +21765,66 @@ onClick={() => setCompetencySection("approvals")}
     <p style={{ color: "#64748b" }}>
       Review training status and identify requirements that may affect employee progression.
     </p>
+<div
+  style={{
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
+    gap: 12,
+    marginTop: 16,
+    marginBottom: 16,
+  }}
+>
+  <div
+    style={{
+      padding: 14,
+      borderRadius: 10,
+      background: "#dcfce7",
+      color: "#166534",
+      fontWeight: "bold",
+    }}
+  >
+    Current:{" "}
+    {
+      competencyProgressions.filter(
+        (record) => record.training_current === "Yes"
+      ).length
+    }
+  </div>
 
+  <div
+    style={{
+      padding: 14,
+      borderRadius: 10,
+      background: "#fee2e2",
+      color: "#991b1b",
+      fontWeight: "bold",
+    }}
+  >
+    Needs Attention:{" "}
+    {
+      competencyProgressions.filter(
+        (record) => record.training_current === "No"
+      ).length
+    }
+  </div>
+
+  <div
+    style={{
+      padding: 14,
+      borderRadius: 10,
+      background: "#e2e8f0",
+      color: "#475569",
+      fontWeight: "bold",
+    }}
+  >
+    Not Reviewed:{" "}
+    {
+      competencyProgressions.filter(
+        (record) => !record.training_current
+      ).length
+    }
+  </div>
+</div>
     {competencyProgressions.length === 0 ? (
       <div
         style={{
