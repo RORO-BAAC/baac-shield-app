@@ -22083,7 +22083,7 @@ onClick={() => setCompetencySection("approvals")}
                   ? "#dcfce7"
               getTrainingStatus(record) === "Expiring"
                   ? "#fef3c7"
-                  : record.status === "Expired"
+                 getTrainingStatus(record) === "Expired"
                   ? "#fee2e2"
                   : "#e2e8f0",
               color:
@@ -22091,7 +22091,7 @@ onClick={() => setCompetencySection("approvals")}
                   ? "#166534"
                   : record.status === "Expiring"
                   ? "#92400e"
-                  : record.status === "Expired"
+             getTrainingStatus(record) === "Expired"
                   ? "#991b1b"
                   : "#475569",
             }}
