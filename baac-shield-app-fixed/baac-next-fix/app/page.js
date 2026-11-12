@@ -21982,7 +21982,7 @@ onClick={() => setCompetencySection("approvals")}
     Current:{" "}
     {
       employeeTrainingRecords.filter(
-        (record) => record.status === "Current"
+(record) => getTrainingStatus(record) === "Current"
       ).length
     }
   </div>
