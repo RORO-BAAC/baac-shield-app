@@ -530,7 +530,6 @@ const [trainingName, setTrainingName] = useState("");
 const [trainingProvider, setTrainingProvider] = useState("");
 const [trainingCompletionDate, setTrainingCompletionDate] = useState("");
 const [trainingExpiryDate, setTrainingExpiryDate] = useState("");
-const [trainingStatus, setTrainingStatus] = useState("Current");
 const [trainingNotes, setTrainingNotes] = useState("");     
 const [competencyEmployeeName, setCompetencyEmployeeName] = useState("");
 const [competencyEmployeeEmail, setCompetencyEmployeeEmail] = useState("");
@@ -1420,8 +1419,7 @@ async function saveTrainingRecord() {
     setTrainingProvider("");
     setTrainingCompletionDate("");
     setTrainingExpiryDate("");
-    setTrainingStatus("Current");
-    setTrainingNotes("");
+      setTrainingNotes("");
 
     await loadRecords();
   } catch (error) {
