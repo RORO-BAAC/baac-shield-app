@@ -22086,14 +22086,14 @@ onClick={() => setCompetencySection("approvals")}
                  : getTrainingStatus(record) === "Expired"
                   ? "#fee2e2"
                   : "#e2e8f0",
-              color:
-                getTrainingStatus(record) === "Current"
-                  ? "#166534"
-                  : record.status === "Expiring"
-                  ? "#92400e"
-             getTrainingStatus(record) === "Expired"
-                  ? "#991b1b"
-                  : "#475569",
+             color:
+  getTrainingStatus(record) === "Current"
+    ? "#166534"
+    : getTrainingStatus(record) === "Expiring"
+    ? "#92400e"
+    : getTrainingStatus(record) === "Expired"
+    ? "#991b1b"
+    : "#475569",
             }}
           >
          {getTrainingStatus(record)}
