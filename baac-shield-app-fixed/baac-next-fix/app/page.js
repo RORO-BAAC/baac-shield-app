@@ -22081,7 +22081,7 @@ onClick={() => setCompetencySection("approvals")}
               background:
                 getTrainingStatus(record) === "Current"
                   ? "#dcfce7"
-                  : record.status === "Expiring"
+              getTrainingStatus(record) === "Expiring"
                   ? "#fef3c7"
                   : record.status === "Expired"
                   ? "#fee2e2"
