@@ -21992,7 +21992,25 @@ onClick={() => setCompetencySection("approvals")}
   <option value="Current">Current</option>
   <option value="Expiring">Expiring</option>
   <option value="Expired">Expired</option>
-</select>  
+</select> 
+      <button
+  type="button"
+  onClick={() => {
+    setTrainingSearch("");
+    setTrainingStatusFilter("All");
+  }}
+  style={{
+    marginTop: 10,
+    padding: "10px 14px",
+    borderRadius: 8,
+    border: "1px solid #cbd5e1",
+    background: "white",
+    cursor: "pointer",
+    fontWeight: "bold",
+  }}
+>
+  Clear Filters
+</button>
         <div
   style={{
     display: "grid",
