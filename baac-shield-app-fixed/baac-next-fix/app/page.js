@@ -22068,13 +22068,12 @@ onClick={() => setCompetencySection("approvals")}
   </div>
 ) : (
   <div style={{ display: "grid", gap: 12, marginTop: 16 }}>
-   {employeeTrainingRecords
-  .filter((record) => {
-    const search = trainingSearch.trim().toLowerCase();
+   .filter((record) => {
+  const search = trainingSearch.trim().toLowerCase();
 
-    if (!search) return true;
-
-    return [
+  const matchesSearch =
+    !search ||
+    [
       record.employee_name,
       record.employee_email,
       record.training_name,
@@ -22082,8 +22081,13 @@ onClick={() => setCompetencySection("approvals")}
     ].some((value) =>
       (value || "").toLowerCase().includes(search)
     );
-  })
-  .map((record) => (
+
+  const matchesStatus =
+    trainingStatusFilter === "All" ||
+    getTrainingStatus(record) === trainingStatusFilter;
+
+  return matchesSearch && matchesStatus;
+})
       <div
         key={record.id}
         style={{
