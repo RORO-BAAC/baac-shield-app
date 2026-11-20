@@ -22068,7 +22068,8 @@ onClick={() => setCompetencySection("approvals")}
   </div>
 ) : (
   <div style={{ display: "grid", gap: 12, marginTop: 16 }}>
-   .filter((record) => {
+  {employeeTrainingRecords
+  .filter((record) => {
   const search = trainingSearch.trim().toLowerCase();
 
   const matchesSearch =
