@@ -22107,7 +22107,19 @@ onClick={() => setCompetencySection("approvals")}
 
   return matchesSearch && matchesStatus;
 })
-.map((record) => (   
+.sort((a, b) => {
+  const order = {
+    Expired: 1,
+    Expiring: 2,
+    Current: 3,
+  };
+
+  return (
+    order[getTrainingStatus(a)] -
+    order[getTrainingStatus(b)]
+  );
+})
+      .map((record) => (   
       <div
         key={record.id}
         style={{
