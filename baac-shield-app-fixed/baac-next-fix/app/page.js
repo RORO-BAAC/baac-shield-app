@@ -21962,7 +21962,20 @@ onClick={() => setCompetencySection("approvals")}
     {loading ? "Saving..." : "Save Training Record"}
   </button>
 </div>        
-<div
+<input
+  type="text"
+  placeholder="Search employee, training, or provider..."
+  value={trainingSearch}
+  onChange={(e) => setTrainingSearch(e.target.value)}
+  style={{
+    width: "100%",
+    marginTop: 16,
+    padding: 10,
+    borderRadius: 8,
+    border: "1px solid #cbd5e1",
+  }}
+/>
+        <div
   style={{
     display: "grid",
     gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
