@@ -532,6 +532,7 @@ const [trainingCompletionDate, setTrainingCompletionDate] = useState("");
 const [trainingExpiryDate, setTrainingExpiryDate] = useState("");
 const [trainingNotes, setTrainingNotes] = useState("");    
 const [trainingSearch, setTrainingSearch] = useState("");
+  const [trainingStatusFilter, setTrainingStatusFilter] = useState("All");    
 function getTrainingStatus(record) {
   if (!record?.expiry_date) return "Current";
  
