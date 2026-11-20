@@ -22089,6 +22089,7 @@ onClick={() => setCompetencySection("approvals")}
 
   return matchesSearch && matchesStatus;
 })
+.map((record) => (   
       <div
         key={record.id}
         style={{
