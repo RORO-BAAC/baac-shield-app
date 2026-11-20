@@ -21976,6 +21976,23 @@ onClick={() => setCompetencySection("approvals")}
     border: "1px solid #cbd5e1",
   }}
 />
+    <select
+  value={trainingStatusFilter}
+  onChange={(e) => setTrainingStatusFilter(e.target.value)}
+  style={{
+    width: "100%",
+    marginTop: 10,
+    padding: 10,
+    borderRadius: 8,
+    border: "1px solid #cbd5e1",
+    background: "white",
+  }}
+>
+  <option value="All">All Statuses</option>
+  <option value="Current">Current</option>
+  <option value="Expiring">Expiring</option>
+  <option value="Expired">Expired</option>
+</select>  
         <div
   style={{
     display: "grid",
