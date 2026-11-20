@@ -22050,7 +22050,22 @@ onClick={() => setCompetencySection("approvals")}
   </div>
 ) : (
   <div style={{ display: "grid", gap: 12, marginTop: 16 }}>
-    {employeeTrainingRecords.map((record) => (
+   {employeeTrainingRecords
+  .filter((record) => {
+    const search = trainingSearch.trim().toLowerCase();
+
+    if (!search) return true;
+
+    return [
+      record.employee_name,
+      record.employee_email,
+      record.training_name,
+      record.training_provider,
+    ].some((value) =>
+      (value || "").toLowerCase().includes(search)
+    );
+  })
+  .map((record) => (
       <div
         key={record.id}
         style={{
